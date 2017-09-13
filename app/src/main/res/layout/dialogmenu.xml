@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4ccbff"
+    >
+
+
+    <Button
+        android:layout_marginTop="10dp"
+        style="@style/button_style"
+        android:layout_width="match_parent"
+        android:text="Public kids Story"
+        android:id="@+id/Chat"
+        android:layout_height="wrap_content" />
+
+
+    <Button
+        android:layout_marginTop="10dp"
+        style="@style/button_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Share Kids Story"
+        android:id="@+id/Share"
+        />
+
+
+    <Button
+        android:layout_marginTop="10dp"
+        style="@style/button_style"
+        android:text="Update Profile"
+        android:id="@+id/Update_Profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

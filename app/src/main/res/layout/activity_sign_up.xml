@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="#4ccbff"
+    android:layout_height="match_parent"
+    tools:context="com.example.codetribe.my_kid.sign_up">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/signup_reg_email"
+        android:layout_marginTop="150dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <EditText
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:id="@+id/signupEmail"
+        />
+</android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/signup_reg_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:id="@+id/signupPassword"
+        />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/signupButton"
+        style="@style/button_style"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SignUp" />
+
+    <!-- Link to Login Screen -->
+    <TextView android:id="@+id/link_to_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="40dp"
+        android:text="Already has account? !Login here"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="#025f7c"/>
+
+
+</LinearLayout>

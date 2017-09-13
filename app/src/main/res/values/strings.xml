@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">My_KId</string>
+    <string name="err_msg_name">Enter your full name</string>
+    <string name="err_msg_surname">Enter your Surname</string>
+    <string name="err_msg_minimumPassword">You have Entered less than 6 character in your pasasword</string>
+    <string name="err_msg_idnumber">Enter your Correct Idnumber</string>
+    <string name="err_msg_email">Enter valid email address</string>
+    <string name="err_msg_password">Enter the password</string>
+
+    <array name="genres">
+        <item>Rock</item>
+        <item>Sufi</item>
+        <item>Pop</item>
+        <item>Folk</item>
+    </array>
+    <string name="title_activity_mainapp">Mainapp</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+</resources>
