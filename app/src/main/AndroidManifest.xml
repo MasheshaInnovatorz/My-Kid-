@@ -27,7 +27,15 @@
         <activity android:name=".ImageListsActivity" />
         <activity android:name=".Chat" />
         <activity android:name=".Mainapp"></activity>
+<<<<<<< HEAD
         <activity android:name=".Welcome_activity"></activity>
+=======
+<<<<<<< HEAD
+        <activity android:name=".Teachers"></activity>
+=======
+        <activity android:name=".Kid"></activity>
+>>>>>>> 76d8294a6991e568c3fe851eb68515d60aeb3b2c
+>>>>>>> f280029d265752bff1ea67a9569241ecdf067241
     </application>
 
 </manifest>
