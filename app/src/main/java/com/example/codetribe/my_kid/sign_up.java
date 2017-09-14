@@ -28,8 +28,8 @@ public class sign_up extends AppCompatActivity {
 
 
     private EditText inputEmail, inputPassword;
-    private Button btnSignUp;
-    TextView mainNav;
+   // private Button
+    TextView mainNav,btnSignUp;
 
     //firebase Authentification
     private FirebaseAuth auth;
@@ -50,14 +50,13 @@ public class sign_up extends AppCompatActivity {
         mDatabaseRef  = FirebaseDatabase.getInstance().getReference();
         mUserCheckData = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        btnSignUp = (Button) findViewById(R.id.signupButton);
-
-        inputEmail = (EditText) findViewById(R.id.signupEmail);
+        btnSignUp = (TextView) findViewById(R.id.sinup);
+        inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.signupPassword);
-        mainNav = (TextView)findViewById(R.id.link_to_login);
+       // mainNav = (TextView)findViewById(R.id.login);
 
 
-        mainNav.setOnClickListener(new View.OnClickListener(){
+        /*mainNav.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
@@ -65,7 +64,7 @@ public class sign_up extends AppCompatActivity {
                 startActivity(new Intent(sign_up.this, MainActivity.class));
                 finish();
             }
-        });
+        });*/
 
         mAuthListener = new FirebaseAuth.AuthStateListener(){
             @Override
