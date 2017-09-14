@@ -153,7 +153,6 @@ public class sign_up extends AppCompatActivity {
                         }
                     });
                 }
-                //pfariso
 
             /*    auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(sign_up.this, new OnCompleteListener<AuthResult>() {

@@ -203,34 +203,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        Intent i=new Intent(MainActivity.this,ResetPassword.class);
        startActivity(i);
 
-   }
-
+         }
     }
 
-
-  /**  //dialog menu
-    public void Dialog(View view) {
-        final Dialog alertDialog = new Dialog(MainActivity.this);
-        alertDialog.setContentView(R.layout.dialogmenu);
-
-
-        alertDialog.setTitle("Select Your Activity");
-        Button button = (Button) alertDialog.findViewById(R.id.Chat);
-        Button button1 = (Button) alertDialog.findViewById(R.id.Share);
-        Button button2 = (Button) alertDialog.findViewById(R.id.Update_Profile);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alertDialog.dismiss();
-            }
-        });
-        alertDialog.show();
-    }*/
-    }
+}
