@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:background="#4ccbff"
     android:padding="3dp"
+
     tools:context="com.example.codetribe.my_kid.Chat">
 
     <TextView
