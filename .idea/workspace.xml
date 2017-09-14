@@ -9,7 +9,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc023b50-8f1f-4ca5-8761-d609eafd9ae7" name="Default" comment="boroko">
+    <list default="true" id="bc023b50-8f1f-4ca5-8761-d609eafd9ae7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="My_KId.iws" />
@@ -42,26 +42,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/codetribe/my_kid/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3434">
+            <state relative-caret-position="130">
               <caret line="226" column="0" selection-start-line="226" selection-start-column="0" selection-end-line="226" selection-end-column="0" />
               <folding />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mr_boroko.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/mr_boroko.xml">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer2">
-            <state />
           </provider>
         </entry>
       </file>
@@ -2557,11 +2544,18 @@
       <option name="project" value="LOCAL" />
       <updated>1505378252931</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="first update">
+      <created>1505378646281</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1505378646281</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2607,7 +2601,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="boroko" />
-    <option name="LAST_COMMIT_MESSAGE" value="boroko" />
+    <MESSAGE value="first update" />
+    <option name="LAST_COMMIT_MESSAGE" value="first update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -2626,6 +2621,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2221#3144#0" expanded="true" />
+            <element signature="e#3143#3144#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2720,6 +2720,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2221#3144#0" expanded="true" />
+            <element signature="e#3143#3144#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2814,6 +2819,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2221#3144#0" expanded="true" />
+            <element signature="e#3143#3144#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2908,6 +2918,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="40" column="17" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2221#3144#0" expanded="true" />
+            <element signature="e#3143#3144#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2994,6 +3009,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1105">
           <caret line="69" column="24" selection-start-line="69" selection-start-column="24" selection-end-line="69" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2221#3144#0" expanded="true" />
+            <element signature="e#3143#3144#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3078,7 +3098,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/codetribe/my_kid/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3434">
+        <state relative-caret-position="130">
           <caret line="226" column="0" selection-start-line="226" selection-start-column="0" selection-end-line="226" selection-end-column="0" />
           <folding />
         </state>
