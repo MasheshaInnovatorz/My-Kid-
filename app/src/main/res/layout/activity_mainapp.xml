@@ -2,50 +2,71 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    android:background="#4ccbff"
+    android:background="@drawable/kidsbackground1"
     >
-
-<ImageView
-    android:layout_width="120dp"
-    android:layout_height="120dp"
-    android:layout_marginTop="100dp"
-    android:layout_gravity="center_horizontal"
-    android:src="@drawable/mykidicon"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:background="@drawable/timg"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:padding="20dp"
         >
 
-        <Button
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/mykidicon"/>
+
+
+        <TextView
             android:layout_marginTop="10dp"
-            style="@style/button_style"
-            android:layout_width="match_parent"
-            android:text="Public kids Story"
             android:id="@+id/Chat"
-            android:layout_height="wrap_content" />
-
-
-        <Button
-            android:layout_marginTop="10dp"
-            style="@style/button_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Share Kids Story"
-            android:id="@+id/Share"
+            android:background="@drawable/angle"
+            android:text="Public kids Story"
+            android:textSize="16dp"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:padding="16dp"
             />
 
 
-        <Button
+        <TextView
             android:layout_marginTop="10dp"
-            style="@style/button_style"
-            android:text="Update Profile"
+            android:id="@+id/Share"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/angle"
+            android:text="Share Kids Story"
+            android:textSize="16dp"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:padding="16dp"
+            />
+
+        <TextView
+            android:layout_marginTop="10dp"
             android:id="@+id/Update_Profile"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/angle"
+            android:text="Update Profile"
+            android:textSize="16dp"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:padding="16dp"
+            />
     </LinearLayout>
 
 </LinearLayout>

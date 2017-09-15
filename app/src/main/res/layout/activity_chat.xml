@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,44 +7,48 @@
     android:orientation="vertical"
     android:background="#4ccbff"
     android:padding="3dp"
-
     tools:context="com.example.codetribe.my_kid.Chat">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="Upload Kids Work Here"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textSize="30sp"
-     />
 
-    <ImageView
-        android:id="@+id/imageVIew"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_gravity="center"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/enterName"
-        android:hint="Write Kids Progress Update"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:layout_marginTop="10dp"
-        style="@style/button_style"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Browse image to upload"
-        android:onClick="btnBrowse_click"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Upload Kids Work Here"
+            android:textSize="30sp" />
 
-    <Button
+        <ImageView
+            android:id="@+id/imageVIew"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+          />
+
+        <EditText
+            android:id="@+id/enterName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Write Kids Progress Update"
+           />
+
+        <!--
+        <Button
+            android:id="@+id/button2"
+            style="@style/button_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:onClick="btnBrowse_click"
+            android:text="Browse image to upload"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <Button
         android:layout_marginTop="10dp"
         style="@style/button_style"
         android:layout_width="match_parent"
@@ -53,5 +57,52 @@
         android:onClick="btnUpload_click"
         tools:layout_editor_absoluteY="0dp"
         tools:layout_editor_absoluteX="0dp" />
+-->
+    </LinearLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:padding="2dp">
+
+
+
+        <TextView
+            android:onClick="btnBrowse_click"
+            android:text="Browse image to upload"
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="#fff"
+            android:background="@drawable/angle"
+            android:gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:padding="16dp"
+            android:layout_weight="2"
+
+            />
+
+
+        <TextView
+            android:background="@drawable/angle"
+            android:textSize="16dp"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:padding="16dp"
+            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Upload image"
+            android:onClick="btnUpload_click"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>
+
