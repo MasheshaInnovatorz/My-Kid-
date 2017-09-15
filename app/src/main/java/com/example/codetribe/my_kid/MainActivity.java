@@ -8,7 +8,6 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -42,12 +41,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     DatabaseReference mDatabaseRef;
 
     private ProgressDialog progressDialog;
-
     private TextView forgot;
 
     TextInputLayout passwordLayout;
     TextInputLayout emailLayout;
     String uid = "some-uid";
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,8 +63,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        //  emailLayout  = (TextInputLayout)findViewById(R.id.input_layout_email);
         //declaration
 
-
-
         backtowelcome=(ImageView)findViewById(R.id.back_to_welcome);
        // signup= (TextView)findViewById(R.id.sinup);
         editEmail = (EditText)findViewById(R.id.email);
@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //firebase
         mDatabaseRef  = FirebaseDatabase.getInstance().getReference().child("Users");
         mFirebaseAuth  = FirebaseAuth.getInstance();
+
+
 
 
         progressDialog = new ProgressDialog(this);
@@ -145,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     ;
                 }else{
                     //startActivity(new Intent(MainActivity.this,Kid.class));
-                    Intent intent = new Intent(MainActivity.this,Kid.class);
+                    Intent intent = new Intent(MainActivity.this,Teachers.class);
                     intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                     startActivity(intent);
                 }

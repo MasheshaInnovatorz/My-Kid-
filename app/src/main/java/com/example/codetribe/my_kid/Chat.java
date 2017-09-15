@@ -42,6 +42,7 @@ public class Chat extends AppCompatActivity {
     public static final String FB_STORAGE_PATH  = "image/";
     public static final String FB_DATABASE_PATH  = "image";
     public static final int REQUEST_CODE = 1234;
+    String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +53,11 @@ public class Chat extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Chat");
 
-
+        Intent intent = getIntent();
+       id = intent.getStringExtra("kid_id");
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
-        mDatabseRef = FirebaseDatabase.getInstance().getReference(FB_DATABASE_PATH);
+        mDatabseRef = FirebaseDatabase.getInstance().getReference().child(FB_DATABASE_PATH).child(id);
 
         imageview = (ImageView)findViewById(R.id.imageVIew);
         txtImageName = (EditText)findViewById(R.id.enterName);
