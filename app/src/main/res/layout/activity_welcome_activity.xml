@@ -28,6 +28,7 @@
             android:gravity="center"
             android:text="My Kids"
             android:textColor="#c4c5c9"
+            android:textStyle="bold"
             android:textSize="22sp"
             android:layout_below="@+id/signup_welcome"
             android:layout_alignParentStart="true"
