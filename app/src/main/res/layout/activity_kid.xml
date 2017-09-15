@@ -23,7 +23,7 @@
 
 
             <TextView
-                android:id="@+id/editProvfile"
+                android:id="@+id/editprovfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
@@ -41,7 +41,7 @@
 
 
             <EditText
-                android:id="@+id/editName"
+                android:id="@+id/editname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/names"
@@ -56,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Surname"
-                android:layout_below="@id/editName"
+                android:layout_below="@id/editname"
                 android:textSize="20dp"
                 />
 
@@ -89,23 +89,23 @@
 
 
             <TextView
-                android:id="@+id/kidId"
+                android:id="@+id/kidid"
                 android:layout_margin="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Kid ID number"
                 android:textSize="20dp"
-                android:layout_below="@id/email"/>
+             />
 
             <EditText
-                android:id="@+id/editKidId"
+                android:id="@+id/editkidid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:hint="Enter ID number "
                 android:textSize="20dp"
                 android:inputType="text"
-                android:layout_below="@id/kidId" />
+                android:layout_below="@id/kidid" />
 
             <TextView
                 android:id="@+id/parentId"
@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:text="Parent ID"
                 android:textSize="20dp"
-                android:layout_below="@id/editKidId"/>
+                android:layout_below="@id/editkidid"/>
 
             <EditText
                 android:id="@+id/editParentId"
