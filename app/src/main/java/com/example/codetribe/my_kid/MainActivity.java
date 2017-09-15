@@ -125,9 +125,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     Intent intent = new Intent(MainActivity.this,profile.class);
                     intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
-                    startActivity(intent);
+
+                    ;
                 }else{
-                    startActivity(new Intent(MainActivity.this,Mainapp.class));
+                    //startActivity(new Intent(MainActivity.this,Kid.class));
+                    Intent intent = new Intent(MainActivity.this,Kid.class);
+                    intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
+                    startActivity(intent);
                 }
             }
         }
@@ -169,7 +173,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 checkUserValidation(dataSnapshot, userEmailString);
                             }
-
                             @Override
                             public void onCancelled(DatabaseError databaseError) {
 

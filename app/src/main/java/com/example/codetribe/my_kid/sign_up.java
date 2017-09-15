@@ -154,26 +154,6 @@ public class sign_up extends AppCompatActivity {
                     });
                 }
 
-            /*    auth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(sign_up.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                Toast.makeText(sign_up.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
-                                // progressBar.setVisibility(View.GONE);
-                                // If sign in fails, display a message to the user. If sign in succeeds
-                                // the auth state listener will be notified and logic to handle the
-                                // signed in user can be handled in the listener.
-                                if (!task.isSuccessful()) {
-                                    Toast.makeText(sign_up.this, "Authentication failed." + task.getException(),
-                                            Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(sign_up.this, "Successfuly Created." + task.getException(),
-                                            Toast.LENGTH_SHORT).show();
-                                    finish();
-                                    startActivity(new Intent(sign_up.this, MainActivity.class));
-                                }
-                            }
-                        });*/
             }
         });
             }

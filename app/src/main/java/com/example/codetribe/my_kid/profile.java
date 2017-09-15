@@ -78,7 +78,7 @@ private RadioButton rdGenders;
         inputLayoutSurname = (TextInputLayout)findViewById(R.id.input_reg_Surname);
         inputLayoutEmail = (TextInputLayout) findViewById(R.id.input_layout_email);
         inputLayoutPassword = (TextInputLayout)findViewById(R.id.input_layout_password);
-        inputLayoutIdnumber = (TextInputLayout)findViewById(R.id.input_reg_idParents);
+       inputLayoutIdnumber = (TextInputLayout)findViewById(R.id.input_reg_idParents);
 
         //watcher
         //inputName.addTextChangedListener(new MyInputWatcher(inputName));
