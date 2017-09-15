@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,8 +29,8 @@ import java.util.Iterator;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-  Button login_Button;
-    TextView signup;
+    TextView login_Button;
+ ImageView backtowelcome;
 
    //declaring buttons and textiew
     private FirebaseUser mFirebaseUser;
@@ -56,14 +57,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         getSupportActionBar().setTitle("Login");
 
-        passwordLayout  = (TextInputLayout)findViewById(R.id.input_layout_password);
-         emailLayout  = (TextInputLayout)findViewById(R.id.input_layout_email);
+       // passwordLayout  = (TextInputLayout)findViewById(R.id.input_layout_password);
+       //  emailLayout  = (TextInputLayout)findViewById(R.id.input_layout_email);
         //declaration
-        login_Button = (Button)findViewById(R.id.login);
-        signup= (TextView)findViewById(R.id.signUp);
+
+
+
+        backtowelcome=(ImageView)findViewById(R.id.back_to_welcome);
+       // signup= (TextView)findViewById(R.id.sinup);
         editEmail = (EditText)findViewById(R.id.email);
         editPassword= (EditText)findViewById(R.id.password);
-        forgot = (TextView)findViewById(R.id.forgotten);
+        forgot = (TextView)findViewById(R.id.forget_password) ;
+        login_Button = (TextView) findViewById(R.id.login);
+
 
         //firebase
         mDatabaseRef  = FirebaseDatabase.getInstance().getReference().child("Users");
@@ -71,8 +77,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         progressDialog = new ProgressDialog(this);
-        //database
 
+        //backbutton
+        backtowelcome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(MainActivity.this,Welcome_activity.class);
+                startActivity(i);
+            }
+        });
+
+
+        //database
         mAuthListener = new FirebaseAuth.AuthStateListener(){
 
             @Override
@@ -106,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
        //setOnclick
       login_Button.setOnClickListener(this);
-        signup.setOnClickListener(this);
+        //signup.setOnClickListener(this);
         forgot.setOnClickListener(this);
     }
 
@@ -195,11 +211,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        userLogin();
 
    }
-   if(view == signup){
+  /* if(view == signup){
        Intent i=new Intent(MainActivity.this,sign_up.class);
        startActivity(i);
 
-   }
+   }*/
    if(view == forgot){
        finish();
       // startActivity(new Intent(this, Chat.class));

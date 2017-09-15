@@ -21,10 +21,11 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class profile extends AppCompatActivity {
 
+      TextView signUpButton;
     private TextView signupLink;
     private EditText inputName, inputSurname, inputEmail, inputIdnumber, inputAddress, inputCity, inputCellphoneNumber;
     private TextInputLayout inputLayoutName, inputLayoutSurname, inputLayoutEmail, inputLayoutPassword, inputLayoutIdnumber;
-    private Button signUpButton;
+    //private Button signUpButton;
     RadioGroup radGender;
 
     //Firebase
@@ -53,8 +54,8 @@ private RadioButton rdGenders;
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(keyUser);
 
         //buttons
-        signupLink = (TextView) findViewById(R.id.link_to_login);
-        signUpButton = (Button) findViewById(R.id.btnRegister);
+       // signupLink = (TextView) findViewById(R.id.back_to_signup);
+        signUpButton = (TextView) findViewById(R.id.btnRegister);
 
         //Edit lessons
         inputName = (EditText) findViewById(R.id.reg_fullname);
@@ -76,9 +77,15 @@ private RadioButton rdGenders;
         //TextLayout
         inputLayoutName = (TextInputLayout)findViewById(R.id.input_reg_fullname);
         inputLayoutSurname = (TextInputLayout)findViewById(R.id.input_reg_Surname);
+<<<<<<< HEAD
         inputLayoutEmail = (TextInputLayout) findViewById(R.id.input_layout_email);
         inputLayoutPassword = (TextInputLayout)findViewById(R.id.input_layout_password);
        inputLayoutIdnumber = (TextInputLayout)findViewById(R.id.input_reg_idParents);
+=======
+      //  inputLayoutEmail = (TextInputLayout) findViewById(R.id.input_layout_email);
+     //   inputLayoutPassword = (TextInputLayout)findViewById(R.id.input_layout_password);
+        inputLayoutIdnumber = (TextInputLayout)findViewById(R.id.input_reg_idParents);
+>>>>>>> 090b542f2b37806fb65a855aa20468364cc5511f
 
         //watcher
         //inputName.addTextChangedListener(new MyInputWatcher(inputName));

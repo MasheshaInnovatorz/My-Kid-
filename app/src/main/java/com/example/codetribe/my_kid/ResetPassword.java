@@ -1,5 +1,6 @@
 package com.example.codetribe.my_kid;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,8 +22,9 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class ResetPassword extends AppCompatActivity {
 
+    private TextView btnReset;
     private EditText inputEmail;
-    private Button btnReset, btnBack;
+    private ImageView btnBack;
     private FirebaseAuth auth;
     private ProgressBar progressBar;
 
@@ -32,11 +36,21 @@ public class ResetPassword extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Reset Password");
 
+        btnBack=(ImageView)findViewById(R.id.back_to_login);
         inputEmail = (EditText) findViewById(R.id.email);
-        btnReset = (Button) findViewById(R.id.btn_reset_password);
+        btnReset = (TextView) findViewById(R.id.btn_reset_password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         auth = FirebaseAuth.getInstance();
+
+        //back button
+    btnBack.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent i=new Intent(ResetPassword.this,MainActivity.class);
+            startActivity(i);
+        }
+    });
 
 
         btnReset.setOnClickListener(new View.OnClickListener() {
