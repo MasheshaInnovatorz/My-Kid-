@@ -27,8 +27,12 @@
         <activity android:name=".ImageListsActivity" />
         <activity android:name=".Chat" />
         <activity android:name=".Mainapp"></activity>
+
+        <activity android:name=".Teachers"></activity>
+
         <activity android:name=".Welcome_activity"></activity>
         <activity android:name=".Teachers"></activity>
+
         <activity android:name=".Kid"></activity>
 
     </application>

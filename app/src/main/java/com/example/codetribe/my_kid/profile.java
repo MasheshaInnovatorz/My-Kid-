@@ -9,7 +9,6 @@ import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -77,9 +76,15 @@ private RadioButton rdGenders;
         //TextLayout
         inputLayoutName = (TextInputLayout)findViewById(R.id.input_reg_fullname);
         inputLayoutSurname = (TextInputLayout)findViewById(R.id.input_reg_Surname);
+
+       // inputLayoutEmail = (TextInputLayout) findViewById(R.id.input_layout_email);
+       // inputLayoutPassword = (TextInputLayout)findViewById(R.id.input_layout_password);
+       //inputLayoutIdnumber = (TextInputLayout)findViewById(R.id.input_reg_idParents);
+
       //  inputLayoutEmail = (TextInputLayout) findViewById(R.id.input_layout_email);
      //   inputLayoutPassword = (TextInputLayout)findViewById(R.id.input_layout_password);
-        inputLayoutIdnumber = (TextInputLayout)findViewById(R.id.input_reg_idParents);
+      //  inputLayoutIdnumber = (TextInputLayout)findViewById(R.id.input_reg_idParents);
+
 
         //watcher
         //inputName.addTextChangedListener(new MyInputWatcher(inputName));

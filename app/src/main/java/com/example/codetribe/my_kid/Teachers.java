@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 public class Teachers extends AppCompatActivity {
 
+    public static final String ARTIST_ID = "artistid";
     private TextView upload_kids,add_Kids;
 
     @Override
