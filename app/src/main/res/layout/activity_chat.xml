@@ -1,40 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#4ccbff"
-    android:padding="3dp"
+    android:padding="1dp"
     tools:context="com.example.codetribe.my_kid.Chat">
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="8dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/head"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Upload Kids Work Here"
+            android:textAlignment="center"
             android:textSize="30sp" />
+
+
+        <view
+            android:layout_width="match_parent"
+            android:layout_below="@+id/head"
+            android:layout_height="2dp"></view>
 
         <ImageView
             android:id="@+id/imageVIew"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-          />
+            android:layout_below="@+id/head"
+            android:layout_gravity="center" />
+
+
 
         <EditText
             android:id="@+id/enterName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Write Kids Progress Update"
-           />
+            android:layout_height="45dp"
+            android:layout_marginBottom="56dp"
+            android:background="@drawable/editextstyle"
+            android:backgroundTint="#B3E5FC"
+            android:drawableLeft="@drawable/ic_mood_black_24dp"
+            android:hint="Write Kids Progress Update..."
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true" />
 
         <!--
         <Button
@@ -58,51 +74,51 @@
         tools:layout_editor_absoluteY="0dp"
         tools:layout_editor_absoluteX="0dp" />
 -->
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:padding="2dp">
 
 
-
-        <TextView
-            android:onClick="btnBrowse_click"
-            android:text="Browse image to upload"
-            android:id="@+id/button2"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:textColor="#fff"
-            android:background="@drawable/angle"
-            android:gravity="center"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:padding="16dp"
-            android:layout_weight="2"
-
-            />
+            android:layout_height="50dp"
+            android:layout_above="@+id/enterName"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
 
-        <TextView
-            android:background="@drawable/angle"
-            android:textSize="16dp"
-            android:textColor="#fff"
-            android:gravity="center"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:padding="16dp"
-            android:layout_weight="2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Upload image"
-            android:onClick="btnUpload_click"
-            />
+            <TextView
+                android:id="@+id/button2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/angle"
+                android:drawableLeft="@drawable/ic_attach_file_black_24dp"
+                android:gravity="center"
+                android:onClick="btnBrowse_click"
+                android:padding="16dp"
+                android:text="Browse image"
+                android:textColor="#fff"
+                android:textSize="16dp"
 
-    </LinearLayout>
+                />
 
-</RelativeLayout>
+            <view
+                android:layout_width="wrap_content"
+                android:layout_height="0.1dp"></view>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/angle"
+                android:drawableLeft="@drawable/ic_photo_camera_black_24dp"
+                android:gravity="center"
+                android:onClick="btnUpload_click"
+                android:padding="16dp"
+                android:text="Upload image"
+                android:textColor="#fff"
+                android:textSize="16dp" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
 

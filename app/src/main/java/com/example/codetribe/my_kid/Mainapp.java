@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -20,9 +21,9 @@ public class Mainapp extends AppCompatActivity {
 
 
         getSupportActionBar().setTitle("Categories");
-        Button chat = (Button)findViewById(R.id.Chat);
-        Button share = (Button)findViewById(R.id.Share);
-        Button profilek = (Button) findViewById(R.id.Update_Profile);
+        TextView chat = (TextView) findViewById(R.id.Chat);
+        TextView share = (TextView)findViewById(R.id.Share);
+        TextView profilek = (TextView) findViewById(R.id.Update_Profile);
 
 
         share.setOnClickListener(new View.OnClickListener() {
