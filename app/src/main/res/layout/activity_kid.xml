@@ -96,11 +96,11 @@
                 android:layout_height="wrap_content"
                 android:text="Kid ID number"
                 android:textSize="20dp"
-<<<<<<< HEAD
+
                 />
-=======
+
              />
->>>>>>> 090b542f2b37806fb65a855aa20468364cc5511f
+
 
             <EditText
                 android:id="@+id/editkidid"

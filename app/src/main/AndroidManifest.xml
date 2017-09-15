@@ -27,13 +27,12 @@
         <activity android:name=".ImageListsActivity" />
         <activity android:name=".Chat" />
         <activity android:name=".Mainapp"></activity>
-<<<<<<< HEAD
+
         <activity android:name=".Teachers"></activity>
 
-=======
         <activity android:name=".Welcome_activity"></activity>
         <activity android:name=".Teachers"></activity>
->>>>>>> 090b542f2b37806fb65a855aa20468364cc5511f
+
         <activity android:name=".Kid"></activity>
 
     </application>

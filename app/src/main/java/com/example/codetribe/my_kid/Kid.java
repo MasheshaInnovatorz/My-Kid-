@@ -45,10 +45,10 @@ public class Kid extends AppCompatActivity {
         setContentView(R.layout.activity_kid);
 
         //initializing
-        kidname = (EditText)findViewById(R.id.editName);
+        kidname = (EditText)findViewById(R.id.editname);
         kidsurname =(EditText)findViewById(R.id.editSurname);
         kidaddress =  (EditText)findViewById(R.id.editAdress);
-        kididNumber = (EditText)findViewById(R.id.editKidId);
+        kididNumber = (EditText)findViewById(R.id.editkidid);
         kidparentid = (EditText)findViewById(R.id.editParentId);
         imagepic  = (ImageView) findViewById(R.id.profilePicture);
         radKidGender = (RadioGroup)findViewById(R.id.genders);
