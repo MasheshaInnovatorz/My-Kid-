@@ -44,6 +44,7 @@ public class Chat extends AppCompatActivity {
     public static final int REQUEST_CODE = 1234;
     String id;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +53,7 @@ public class Chat extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Chat");
+
 
         Intent intent = getIntent();
        id = intent.getStringExtra("kid_id");
@@ -170,6 +172,7 @@ public class Chat extends AppCompatActivity {
             this.finish();
         }
         return super.onOptionsItemSelected(item);
+
     }
 
 }

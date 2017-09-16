@@ -5,10 +5,10 @@
     <item>
         <shape android:shape="rectangle">
             <corners android:radius="50dp"/>
-            <solid android:color="#FDFDFE"/>
+            <solid android:color="#039BE5"/>
             <size android:height="35dp"/>
-            <gradient android:startColor="#71DA98"
-                android:endColor="#56C5ED"/>
+            <gradient android:startColor="#03A9F4"
+                android:endColor="#4FC3F7"/>
         </shape>
     </item>
 </selector>

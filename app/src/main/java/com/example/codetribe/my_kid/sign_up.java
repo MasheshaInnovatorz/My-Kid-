@@ -43,7 +43,7 @@ public class sign_up extends AppCompatActivity {
 
 
 
-        getSupportActionBar().setTitle("SignUp");
+      //  getSupportActionBar().setTitle("SignUp");
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
