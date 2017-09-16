@@ -41,7 +41,8 @@ public class ImageListsActivity extends AppCompatActivity {
         progressDialog.setMessage("pease wait loading list image");
         progressDialog.show();
 
-        mDatabaseRef= FirebaseDatabase.getInstance().getReference(Chat.FB_DATABASE_PATH);
+        mDatabaseRef= FirebaseDatabase.getInstance().getReference(Chat
+                .FB_DATABASE_PATH);
 
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
