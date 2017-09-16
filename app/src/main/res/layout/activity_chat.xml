@@ -13,7 +13,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:padding="8dp">
 
         <TextView
@@ -26,15 +25,16 @@
             android:textSize="30sp" />
 
 
-        <view
+        <!--<view
             android:layout_width="match_parent"
             android:layout_below="@+id/head"
-            android:layout_height="2dp"></view>
+            android:layout_height="2dp"></view>-->
 
         <ImageView
             android:id="@+id/imageVIew"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#4ccbff"
             android:layout_below="@+id/head"
             android:layout_gravity="center" />
 
@@ -65,14 +65,13 @@
 
 
             <TextView
-                android:id="@+id/button2"
+                android:id="@+id/txtBrowse_click"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/angle"
                 android:drawableLeft="@drawable/ic_attach_file_black_24dp"
                 android:gravity="center"
-                android:onClick="btnBrowse_click"
                 android:padding="16dp"
                 android:text="Browse image"
                 android:textColor="#fff"
@@ -80,18 +79,18 @@
 
                 />
 
-            <view
+           <!--<view
                 android:layout_width="wrap_content"
-                android:layout_height="0.1dp"></view>
+                android:layout_height="0.1dp"></view>-->
 
             <TextView
+                android:id="@+id/txtUpload_click"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/angle"
                 android:drawableLeft="@drawable/ic_photo_camera_black_24dp"
                 android:gravity="center"
-                android:onClick="btnUpload_click"
                 android:padding="16dp"
                 android:text="Upload image"
                 android:textColor="#fff"

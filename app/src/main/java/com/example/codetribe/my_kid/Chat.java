@@ -16,6 +16,7 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -38,6 +39,7 @@ public class Chat extends AppCompatActivity {
     private ImageView imageview;
     private EditText txtImageName;
     private Uri imgUri;
+    private TextView txtUpload, txtBrowse;
 
     public static final String FB_STORAGE_PATH  = "image/";
     public static final String FB_DATABASE_PATH  = "image";
@@ -64,14 +66,30 @@ public class Chat extends AppCompatActivity {
         imageview = (ImageView)findViewById(R.id.imageVIew);
         txtImageName = (EditText)findViewById(R.id.enterName);
 
+        txtBrowse= (TextView)findViewById(R.id.txtBrowse_click);
+        txtUpload=(TextView)findViewById(R.id.txtUpload_click);
+
+
+        txtBrowse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent,"Select image"), REQUEST_CODE);
+
+            }
+        });
+
+        txtUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               upload();
+            }
+        });
 
     }
-    public void btnBrowse_click(View v){
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent,"Select image"), REQUEST_CODE);
-    }
+
 
     @Override
     protected void onActivityResult(int requestCode,int resultCode, Intent data){
@@ -96,7 +114,7 @@ public class Chat extends AppCompatActivity {
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
 
-    public void btnUpload_click(View v){
+    public void upload(){
         if(imgUri!= null){
             final ProgressDialog dialog = new ProgressDialog(this);
             dialog.setTitle("Uploading image");
