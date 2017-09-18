@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        getSupportActionBar().setTitle("Login");
+      //  getSupportActionBar().setTitle("Login");
 
        // passwordLayout  = (TextInputLayout)findViewById(R.id.input_layout_password);
        //  emailLayout  = (TextInputLayout)findViewById(R.id.input_layout_email);
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     ;
                 }else{
                     //startActivity(new Intent(MainActivity.this,Kid.class));
-                    Intent intent = new Intent(MainActivity.this,Teachers.class);
+                    Intent intent = new Intent(MainActivity.this,Mainapp.class);
                     intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                     startActivity(intent);
                 }
