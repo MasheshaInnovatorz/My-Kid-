@@ -31,7 +31,7 @@
             android:layout_height="2dp"></view>-->
 
         <ImageView
-            android:id="@+id/imageVIew"
+            android:id="@+id/imageview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#4ccbff"
@@ -41,7 +41,7 @@
 
 
         <EditText
-            android:id="@+id/enterName"
+            android:id="@+id/entername"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginBottom="56dp"
@@ -58,7 +58,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_above="@+id/enterName"
+            android:layout_above="@+id/entername"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
@@ -79,9 +79,7 @@
 
                 />
 
-           <!--<view
-                android:layout_width="wrap_content"
-                android:layout_height="0.1dp"></view>-->
+
 
             <TextView
                 android:id="@+id/txtUpload_click"
@@ -92,7 +90,7 @@
                 android:drawableLeft="@drawable/ic_photo_camera_black_24dp"
                 android:gravity="center"
                 android:padding="16dp"
-                android:text="Upload image"
+                android:text="Update progress"
                 android:textColor="#fff"
                 android:textSize="16dp" />
 

@@ -42,7 +42,7 @@
     <ImageView
         android:saveEnabled="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:id="@+id/imgView"/>
 
     <TextView
@@ -63,7 +63,7 @@
         android:paddingBottom="10dp"
         android:background="@drawable/layoutstyle1"
         android:paddingRight="10dp"
-        android:layout_height="60dp" >
+        android:layout_height="wrap_content" >
         <!-- set profile pic button -->
         <ImageView
             android:id="@+id/send_pic"

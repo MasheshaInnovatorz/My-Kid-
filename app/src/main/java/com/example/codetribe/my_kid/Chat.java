@@ -63,8 +63,8 @@ public class Chat extends AppCompatActivity {
         mStorageRef = FirebaseStorage.getInstance().getReference();
         mDatabseRef = FirebaseDatabase.getInstance().getReference().child(FB_DATABASE_PATH).child(id);
 
-        imageview = (ImageView)findViewById(R.id.imageVIew);
-        txtImageName = (EditText)findViewById(R.id.enterName);
+        imageview = (ImageView)findViewById(R.id.imageview);
+        txtImageName = (EditText)findViewById(R.id.entername);
 
         txtBrowse= (TextView)findViewById(R.id.txtBrowse_click);
         txtUpload=(TextView)findViewById(R.id.txtUpload_click);
