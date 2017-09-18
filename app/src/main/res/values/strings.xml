@@ -7,6 +7,10 @@
     <string name="err_msg_email">Enter valid email address</string>
     <string name="err_msg_password">Enter the password</string>
 
+    <string-array name="LoginType">
+        <item>Teacher</item>
+        <item>Parent</item>
+    </string-array>
     <array name="genres">
         <item>Rock</item>
         <item>Sufi</item>
