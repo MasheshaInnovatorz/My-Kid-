@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#4ccbff"
+    android:background="@drawable/kidsbackground1"
     android:padding="1dp"
     tools:context="com.example.codetribe.my_kid.Chat">
 
@@ -13,6 +13,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/timg"
         android:padding="8dp">
 
         <TextView
@@ -20,35 +21,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@drawable/textviewsstyle"
             android:text="Upload kids work here"
             android:textAlignment="center"
             android:textSize="30sp" />
 
 
-
         <ImageView
             android:id="@+id/imageview"
+            android:background="@drawable/textviewsstyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#4ccbff"
             android:layout_below="@+id/head"
-            android:layout_gravity="center" />
-
+            android:layout_marginTop="2dp"
+            android:gravity="center_vertical"
+            android:src="@drawable/photo_camera_" />
 
 
         <EditText
             android:id="@+id/entername"
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
             android:layout_marginBottom="56dp"
             android:background="@drawable/editextstyle"
             android:backgroundTint="#B3E5FC"
             android:drawableLeft="@drawable/ic_mood_black_24dp"
-            android:hint="write kids progress update..."
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true" />
-
-
+            android:hint="write kids progress update..." />
 
 
         <LinearLayout
@@ -75,11 +75,6 @@
 
                 />
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 6e06a924f6e49ec10b63a77315f3c8b3c0f3edaa
             <TextView
                 android:id="@+id/txtUpload_click"
                 android:layout_width="0dp"
