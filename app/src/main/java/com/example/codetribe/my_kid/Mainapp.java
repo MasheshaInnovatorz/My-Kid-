@@ -7,18 +7,20 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Mainapp extends AppCompatActivity {
 
+    String idLoged;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainapp);
 
+        Intent keyId = getIntent();
+        idLoged = keyId.getStringExtra("User_KEY");
 
         getSupportActionBar().setTitle("Categories");
         TextView chat = (TextView) findViewById(R.id.Chat);
@@ -29,7 +31,8 @@ public class Mainapp extends AppCompatActivity {
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Mainapp.this, Chat.class) ;
+                Intent intent = new Intent(Mainapp.this, Chat.class);
+                intent.putExtra("kid_id",idLoged);
                 startActivity(intent);
             }
         });
@@ -37,7 +40,8 @@ public class Mainapp extends AppCompatActivity {
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Mainapp.this,ImageListsActivity .class) ;
+                Intent intent = new Intent(Mainapp.this,ImageListsActivity .class);
+                intent.putExtra("kid_id",idLoged);
                 startActivity(intent);
             }
         });
@@ -45,7 +49,8 @@ public class Mainapp extends AppCompatActivity {
         profilek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Mainapp.this,profile.class) ;
+                Intent intent = new Intent(Mainapp.this,profile.class);
+                intent.putExtra("kid_id",idLoged);
                 startActivity(intent);
             }
         });

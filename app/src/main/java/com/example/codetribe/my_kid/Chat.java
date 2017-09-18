@@ -44,7 +44,7 @@ public class Chat extends AppCompatActivity {
     public static final String FB_STORAGE_PATH  = "image/";
     public static final String FB_DATABASE_PATH  = "image";
     public static final int REQUEST_CODE = 1234;
-    String id;
+    String idKid;
 
 
     @Override
@@ -58,10 +58,10 @@ public class Chat extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-       id = intent.getStringExtra("kid_id");
+       idKid= intent.getStringExtra("kid_id");
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
-        mDatabseRef = FirebaseDatabase.getInstance().getReference().child(FB_DATABASE_PATH).child(id);
+        mDatabseRef = FirebaseDatabase.getInstance().getReference().child(FB_DATABASE_PATH).child(idKid);
 
         imageview = (ImageView)findViewById(R.id.imageview);
         txtImageName = (EditText)findViewById(R.id.entername);
@@ -91,7 +91,7 @@ public class Chat extends AppCompatActivity {
     }
 
 
-    @Override
+    @Override0
     protected void onActivityResult(int requestCode,int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
         if(requestCode == REQUEST_CODE && resultCode == RESULT_OK && data != null && data.getData() != null){

@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Intent intent = new Intent(MainActivity.this,profile.class);
                     intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
 
-                    ;
+
                 }else{
                     //startActivity(new Intent(MainActivity.this,Kid.class));
                     Intent intent = new Intent(MainActivity.this,Mainapp.class);

@@ -25,10 +25,6 @@
             android:textSize="30sp" />
 
 
-        <!--<view
-            android:layout_width="match_parent"
-            android:layout_below="@+id/head"
-            android:layout_height="2dp"></view>-->
 
         <ImageView
             android:id="@+id/imageview"
@@ -79,8 +75,11 @@
 
                 />
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 6e06a924f6e49ec10b63a77315f3c8b3c0f3edaa
             <TextView
                 android:id="@+id/txtUpload_click"
                 android:layout_width="0dp"
