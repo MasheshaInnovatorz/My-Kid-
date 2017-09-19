@@ -164,21 +164,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(this, dataUser.child("userKey").getValue().toString(), Toast.LENGTH_SHORT).show();
                     startActivity(intentUser);
 
-                }else{
-                  if(dataUser.child("role").getValue().toString().equals("teacher")) {
+                }else {
+                    if (dataUser.child("role").getValue().toString().equals("teacher")) {
 
-                      Intent intent = new Intent(MainActivity.this, Teachers.class);
-                      intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
-                      startActivity(intent);
-                      Toast.makeText(this, "Welcome To Teachers Page", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(MainActivity.this, Teachers.class);
+                        intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
+                        startActivity(intent);
+                        Toast.makeText(this, "Welcome To Teachers Page", Toast.LENGTH_SHORT).show();
 
-                  }else if(dataUser.child("role").getValue().toString().equals("parent")){
+                    } else if (dataUser.child("role").getValue().toString().equals("parent")) {
 
-                      Intent intent = new Intent(MainActivity.this, Mainapp.class);
-                      intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
-                      startActivity(intent);
-                      Toast.makeText(this, "Welcome To Parents Page", Toast.LENGTH_SHORT).show();
-                  }
+                        Intent intent = new Intent(MainActivity.this, Mainapp.class);
+                        intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
+                        intent.putExtra("parent_id", dataUser.child("userIdNumber").getValue().toString());
+                        startActivity(intent);
+                        Toast.makeText(this, "Welcome To Parents Page", Toast.LENGTH_SHORT).show();
+                    } else if (dataUser.child("role").getValue().toString().equals("admin")) {
+                        Intent intent = new Intent(MainActivity.this, Mainapp.class);
+                        intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
+                        startActivity(intent);
+                        Toast.makeText(this, "Welcome To Admin Page", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(MainActivity.this, "Welcome To Parents Page", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
 
             }

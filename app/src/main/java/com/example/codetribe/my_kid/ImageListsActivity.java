@@ -1,6 +1,7 @@
 package com.example.codetribe.my_kid;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -15,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ImageListsActivity extends AppCompatActivity {
@@ -24,15 +26,21 @@ public class ImageListsActivity extends AppCompatActivity {
     private ListView iv;
     private ImageListAdapter adapter;
     private ProgressDialog progressDialog;
+    String parentid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_lists);
 
+
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Child Story");
+
+        Intent intent = getIntent();
+       parentid= intent.getStringExtra("parentIdentity");
+
 
         imgList=new ArrayList<>();
         iv=(ListView)findViewById(R.id.listViewImage);
@@ -49,11 +57,12 @@ public class ImageListsActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 progressDialog.dismiss();
 
+                Iterator iterator = dataSnapshot.getChildren().iterator();
                 //fetch image from firebase
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     //imageupload class require default contractor
 
-
+                    snapshot.child("parentid").getValue().toString().equals(parentid);
                     ImageUpload img=snapshot.getValue(ImageUpload.class);
                     imgList.add(img);
                 }

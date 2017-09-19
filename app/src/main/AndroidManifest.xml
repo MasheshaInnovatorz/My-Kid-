@@ -31,6 +31,11 @@
             android:name=".ResetPassword"
             android:theme="@style/AppTheme.LoginStyle" />
 
+
+        <activity
+            android:name=".ResetPassword"
+            android:theme="@style/AppTheme.LoginStyle" />
+
         <activity android:name=".profile" />
         <activity android:name=".ImageListsActivity" />
 
@@ -42,12 +47,16 @@
             android:theme="@style/AppTheme.LoginStyle" />
         <activity android:name=".Kid" />
 
+        <activity android:name=".Admin"></activity>
+
+
         <activity
             android:name=".View_profile" android:theme="@style/AppTheme.LoginStyle">
 
 
         </activity>
 
+>>>>>>> 907e4fa82cfdf7384e43a5a4364d2d84c0848839
     </application>
 
 </manifest>
