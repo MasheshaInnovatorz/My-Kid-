@@ -19,6 +19,7 @@ import java.util.List;
 
 public class ImageListsActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseRef;
+
     private List<ImageUpload> imgList;
     private ListView iv;
     private ImageListAdapter adapter;
@@ -38,11 +39,10 @@ public class ImageListsActivity extends AppCompatActivity {
 
         //show progress dialog during list image loading
         progressDialog=new ProgressDialog(this);
-        progressDialog.setMessage("pease wait loading list image");
+        progressDialog.setMessage("Please wait While Loading List Image");
         progressDialog.show();
 
-        mDatabaseRef= FirebaseDatabase.getInstance().getReference(Chat
-                .FB_DATABASE_PATH);
+        mDatabaseRef= FirebaseDatabase.getInstance().getReference(Chat.FB_DATABASE_PATH);
 
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -52,6 +52,8 @@ public class ImageListsActivity extends AppCompatActivity {
                 //fetch image from firebase
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     //imageupload class require default contractor
+
+
                     ImageUpload img=snapshot.getValue(ImageUpload.class);
                     imgList.add(img);
                 }

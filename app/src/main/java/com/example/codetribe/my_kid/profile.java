@@ -149,9 +149,9 @@ editprofile.setOnClickListener(new View.OnClickListener() {
         if (!validateSurname()) {
             return;
         }
-        if (!validateIdNumber()) {
+        /*if (!validateIdNumber()) {
             return;
-        }
+        }*/
 
        /* if (!validateEmail()) {
             return;
@@ -186,7 +186,7 @@ editprofile.setOnClickListener(new View.OnClickListener() {
         return true;
     }
 
-    private boolean validateIdNumber() {
+    /*private boolean validateIdNumber() {
         if (inputIdnumber.getText().toString().trim().isEmpty()) {
             inputLayoutIdnumber.setError(getString(R.string.err_msg_idnumber));
             requestFocus(inputIdnumber);
@@ -195,7 +195,7 @@ editprofile.setOnClickListener(new View.OnClickListener() {
             inputLayoutIdnumber.setErrorEnabled(false);
         }
         return true;
-    }
+    }*/
 
    /* private boolean validatePassword() {
         if (inputPassword.getText().toString().trim().isEmpty()) {
@@ -268,7 +268,7 @@ editprofile.setOnClickListener(new View.OnClickListener() {
                     validateSurname();
                     break;
                 case R.id.input_reg_idParents:
-                    validateIdNumber();
+                   // validateIdNumber();
                     break;
                /* case R.id.input_reg_email:
                     validateEmail();

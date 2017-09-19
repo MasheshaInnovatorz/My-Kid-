@@ -73,6 +73,7 @@
 
             />
 
+<<<<<<< HEAD
         <TextView
             android:id="@+id/txtUpload_click"
             android:layout_width="0dp"
@@ -87,6 +88,24 @@
             android:textSize="16dp" />
     </LinearLayout>
 </RelativeLayout>
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> a732d8e5d1f084e7d9c7137f89c174feae83f1f1
+            <TextView
+                android:id="@+id/txtUpload_click"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/angle"
+                android:drawableLeft="@drawable/ic_photo_camera_black_24dp"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="Update progress"
+                android:textColor="#fff"
+                android:textSize="16dp" />
+>>>>>>> 7055e8c50ab71c9893d2122bb21d6e2af176f312
 
 
 
