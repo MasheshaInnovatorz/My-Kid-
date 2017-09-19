@@ -2,6 +2,7 @@ package com.example.codetribe.my_kid;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -21,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class profile extends AppCompatActivity {
 
       TextView signUpButton;
-    private TextView signupLink;
+    private TextView editprofile;
     private EditText inputName, inputSurname, inputEmail, inputIdnumber, inputAddress, inputCity, inputCellphoneNumber;
     private TextInputLayout inputLayoutName, inputLayoutSurname, inputLayoutEmail, inputLayoutPassword, inputLayoutIdnumber;
     //private Button signUpButton;
@@ -57,6 +58,8 @@ private RadioButton rdGenders;
         signUpButton = (TextView) findViewById(R.id.btnRegister);
 
         //Edit lessons
+        editprofile=(TextView) findViewById(R.id.editprofile);
+
         inputName = (EditText) findViewById(R.id.reg_fullname);
         inputSurname = (EditText) findViewById(R.id.reg_Surname);
         //inputEmail = (EditText) findViewById(R.id.reg_email);
@@ -93,7 +96,13 @@ private RadioButton rdGenders;
         //inputPassword.addTextChangedListener(new MyInputWatcher(inputPassword));
         //inputIdnumber.addTextChangedListener(new MyInputWatcher(inputIdnumber));
 
-
+editprofile.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(profile.this,View_profile.class) ;
+        startActivity(intent);
+    }
+});
             signUpButton.setOnClickListener(new View.OnClickListener(){
 
             @Override

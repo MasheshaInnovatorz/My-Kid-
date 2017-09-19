@@ -26,11 +26,20 @@
         <activity
             android:name=".sign_up"
             android:theme="@style/AppTheme.LoginStyle" />
+<<<<<<< HEAD
         <activity
             android:name=".ResetPassword"
             android:theme="@style/AppTheme.LoginStyle" />
+=======
+
+        <activity
+            android:name=".ResetPassword"
+            android:theme="@style/AppTheme.LoginStyle" />
+
+>>>>>>> 907e4fa82cfdf7384e43a5a4364d2d84c0848839
         <activity android:name=".profile" />
         <activity android:name=".ImageListsActivity" />
+
         <activity android:name=".Chat" />
         <activity android:name=".Mainapp" />
         <activity android:name=".Teachers" />
@@ -38,7 +47,17 @@
             android:name=".Welcome_activity"
             android:theme="@style/AppTheme.LoginStyle" />
         <activity android:name=".Kid" />
+<<<<<<< HEAD
         <activity android:name=".Admin"></activity>
+=======
+
+        <activity
+            android:name=".View_profile">
+
+
+        </activity>
+
+>>>>>>> 907e4fa82cfdf7384e43a5a4364d2d84c0848839
     </application>
 
 </manifest>
