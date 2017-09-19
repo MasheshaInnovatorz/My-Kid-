@@ -2,7 +2,6 @@ package com.example.codetribe.my_kid;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -64,7 +63,7 @@ private RadioButton rdGenders;
         inputSurname = (EditText) findViewById(R.id.reg_Surname);
         //inputEmail = (EditText) findViewById(R.id.reg_email);
         //inputPassword = (EditText) findViewById(R.id.reg_password);
-        inputIdnumber = (EditText) findViewById(R.id.reg_idParents);
+        //inputIdnumber = (EditText) findViewById(R.id.reg_idParents);
         inputAddress = (EditText) findViewById(R.id.reg_address);
         inputCity = (EditText) findViewById(R.id.reg_city);
         inputCellphoneNumber = (EditText) findViewById(R.id.reg_phone);
@@ -267,9 +266,9 @@ editprofile.setOnClickListener(new View.OnClickListener() {
                 case R.id.input_reg_Surname:
                     validateSurname();
                     break;
-                case R.id.input_reg_idParents:
+                //case R.id.input_reg_idParents:
                    // validateIdNumber();
-                    break;
+                  //  break;
                /* case R.id.input_reg_email:
                     validateEmail();
                     break;*/

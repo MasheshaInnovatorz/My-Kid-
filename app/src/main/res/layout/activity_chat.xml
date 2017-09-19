@@ -57,8 +57,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true">
 
-<<<<<<< HEAD
-=======
+
 
         <TextView
             android:id="@+id/txtBrowse_click"
@@ -75,7 +74,7 @@
 
             />
 
-<<<<<<< HEAD
+
         <TextView
             android:id="@+id/txtUpload_click"
             android:layout_width="0dp"
@@ -90,23 +89,8 @@
             android:textSize="16dp" />
     </LinearLayout>
 </RelativeLayout>
-=======
-<<<<<<< HEAD
->>>>>>> 907e4fa82cfdf7384e43a5a4364d2d84c0848839
 
-            <TextView
-                android:id="@+id/txtUpload_click"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/angle"
-                android:drawableLeft="@drawable/ic_photo_camera_black_24dp"
-                android:gravity="center"
-                android:padding="16dp"
-                android:text="Update progress"
-                android:textColor="#fff"
-                android:textSize="16dp" />
->>>>>>> 7055e8c50ab71c9893d2122bb21d6e2af176f312
+
 
 
 
