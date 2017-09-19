@@ -75,11 +75,7 @@
 
                 />
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 6e06a924f6e49ec10b63a77315f3c8b3c0f3edaa
             <TextView
                 android:id="@+id/txtUpload_click"
                 android:layout_width="0dp"

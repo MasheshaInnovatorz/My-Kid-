@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -132,15 +131,16 @@ public class sign_up extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful())
                             {
-                                DatabaseReference mChildDatabase = mDatabaseRef.child("Users").push();
+                                String user_id = task.getResult().getUser().getUid();
+                                DatabaseReference mChildDatabase = mDatabaseRef.child("Users").child(user_id);
 
-                                String key_user = mChildDatabase.getKey();
+                               // String key_user = mChildDatabase.getKey();
 
                                 mChildDatabase.child("isVerified").setValue("unverified");
-                                mChildDatabase.child("userKey").setValue(key_user);
+                                mChildDatabase.child("userKey").setValue(user_id);
+                                mChildDatabase.child("role").setValue("none");
                                 mChildDatabase.child("emailUser").setValue(userEmailString);
                                 mChildDatabase.child("passWordUser").setValue(userPassString);
-
                                 Toast.makeText(sign_up.this, "User Account Created", Toast.LENGTH_SHORT).show();
                                 auth.signOut();
                                 startActivity(new Intent(sign_up.this,MainActivity.class));

@@ -140,9 +140,9 @@ private RadioButton rdGenders;
         if (!validateSurname()) {
             return;
         }
-        if (!validateIdNumber()) {
+        /*if (!validateIdNumber()) {
             return;
-        }
+        }*/
 
        /* if (!validateEmail()) {
             return;
@@ -177,7 +177,7 @@ private RadioButton rdGenders;
         return true;
     }
 
-    private boolean validateIdNumber() {
+    /*private boolean validateIdNumber() {
         if (inputIdnumber.getText().toString().trim().isEmpty()) {
             inputLayoutIdnumber.setError(getString(R.string.err_msg_idnumber));
             requestFocus(inputIdnumber);
@@ -186,7 +186,7 @@ private RadioButton rdGenders;
             inputLayoutIdnumber.setErrorEnabled(false);
         }
         return true;
-    }
+    }*/
 
    /* private boolean validatePassword() {
         if (inputPassword.getText().toString().trim().isEmpty()) {
@@ -259,7 +259,7 @@ private RadioButton rdGenders;
                     validateSurname();
                     break;
                 case R.id.input_reg_idParents:
-                    validateIdNumber();
+                   // validateIdNumber();
                     break;
                /* case R.id.input_reg_email:
                     validateEmail();

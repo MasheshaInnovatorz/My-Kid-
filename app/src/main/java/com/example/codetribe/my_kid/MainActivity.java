@@ -76,8 +76,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mFirebaseAuth  = FirebaseAuth.getInstance();
 
 
-
-
         progressDialog = new ProgressDialog(this);
 
         //backbutton
@@ -128,6 +126,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         forgot.setOnClickListener(this);
     }
 
+
+    @Override
+    public void onClick(View view) {
+   if(view ==login_Button){
+       userLogin();
+
+   }
+  /* if(view == signup){
+       Intent i=new Intent(MainActivity.this,sign_up.class);
+       startActivity(i);
+
+   }*/
+   if(view == forgot){
+       finish();
+      // startActivity(new Intent(this, Chat.class));
+       Intent i=new Intent(MainActivity.this,ResetPassword.class);
+       startActivity(i);
+
+         }
+    }
+
     private void checkUserValidation(DataSnapshot dataSnapshot, String emailForVer){
 
         Iterator iterator = dataSnapshot.getChildren().iterator();
@@ -140,31 +159,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             {
                 if(dataUser.child("isVerified").getValue().toString().equals("unverified")){
 
-
-                    Intent intent = new Intent(MainActivity.this,profile.class);
-                    intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
-
+                    Intent intentUser = new Intent(MainActivity.this,profile.class);
+                    intentUser.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
+                    Toast.makeText(this, dataUser.child("userKey").getValue().toString(), Toast.LENGTH_SHORT).show();
+                    startActivity(intentUser);
 
                 }else{
-                    //startActivity(new Intent(MainActivity.this,Kid.class));
-                    Intent intent = new Intent(MainActivity.this,Mainapp.class);
-                    intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
-                    startActivity(intent);
+                  if(dataUser.child("role").getValue().toString().equals("teacher")) {
+
+                      Intent intent = new Intent(MainActivity.this, Teachers.class);
+                      intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
+                      startActivity(intent);
+                      Toast.makeText(this, "Welcome To Teachers Page", Toast.LENGTH_SHORT).show();
+
+                  }else if(dataUser.child("role").getValue().toString().equals("parent")){
+
+                      Intent intent = new Intent(MainActivity.this, Mainapp.class);
+                      intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
+                      startActivity(intent);
+                      Toast.makeText(this, "Welcome To Parents Page", Toast.LENGTH_SHORT).show();
+                  }
                 }
+
             }
         }
 
     }
     private void userLogin(){
-        String email = editEmail.getText().toString().trim();
-        final String password = editPassword.getText().toString().trim();
+        final String userEmailString, userPasswordString;
 
-        if (TextUtils.isEmpty((email))) {
+        userEmailString  = editEmail.getText().toString().trim();
+        userPasswordString = editPassword.getText().toString().trim();
+
+        if (TextUtils.isEmpty((userEmailString))) {
 
             Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(TextUtils.isEmpty(password)){
+        if(TextUtils.isEmpty(userPasswordString)){
             Toast.makeText(this, "Please enter password", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -173,11 +205,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         progressDialog.show();
 
 
-
-        final String userEmailString, userPasswordString;
-
-        userEmailString  = editEmail.getText().toString().trim();
-        userPasswordString = editPassword.getText().toString().trim();
 
         if(!TextUtils.isEmpty(userEmailString) && !TextUtils.isEmpty(userPasswordString)){
 
@@ -206,25 +233,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-    }
-    @Override
-    public void onClick(View view) {
-   if(view ==login_Button){
-       userLogin();
-
-   }
-  /* if(view == signup){
-       Intent i=new Intent(MainActivity.this,sign_up.class);
-       startActivity(i);
-
-   }*/
-   if(view == forgot){
-       finish();
-      // startActivity(new Intent(this, Chat.class));
-       Intent i=new Intent(MainActivity.this,ResetPassword.class);
-       startActivity(i);
-
-         }
     }
 
 }
