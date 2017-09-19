@@ -65,14 +65,28 @@ public class Mainapp extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.logout) {
-            logout();
+        switch (item.getItemId())   {
 
-            return true;
+            case R.id.action_settings:
+                //();
+                return true;
+            case R.id.help:
+              //  showHelp();
+                return true;
+
+            case R.id.logout:
+                //  showHelp();
+                return true;
+
+            case R.id.view_profile:
+
+                Intent intent = new Intent(Mainapp.this,View_profile.class) ;
+                startActivity(intent);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
     private void logout() {
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(Mainapp.this,MainActivity.class) ;
