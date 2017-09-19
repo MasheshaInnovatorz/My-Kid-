@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Mainapp extends AppCompatActivity {
 
-    String idLoged;
+    String idLoged,parentId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +21,7 @@ public class Mainapp extends AppCompatActivity {
 
         Intent keyId = getIntent();
         idLoged = keyId.getStringExtra("User_KEY");
+        parentId = keyId.getStringExtra("parent_id");
 
         getSupportActionBar().setTitle("Categories");
         TextView chat = (TextView) findViewById(R.id.Chat);
@@ -42,6 +43,7 @@ public class Mainapp extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Mainapp.this,ImageListsActivity .class);
                 intent.putExtra("kid_id",idLoged);
+                intent.putExtra("parentIdentity",parentId);
                 startActivity(intent);
             }
         });
