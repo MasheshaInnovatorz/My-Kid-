@@ -43,7 +43,7 @@
         <activity android:name=".Kid" />
 
         <activity
-            android:name=".View_profile">
+            android:name=".View_profile" android:theme="@style/AppTheme.LoginStyle">
 
 
         </activity>

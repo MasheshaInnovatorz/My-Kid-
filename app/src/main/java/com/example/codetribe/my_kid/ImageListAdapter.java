@@ -36,8 +36,8 @@ public class ImageListAdapter extends ArrayAdapter<ImageUpload> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
         LayoutInflater inflater=context.getLayoutInflater();
-
         View v=inflater.inflate(resource,null);
+
         TextView tvName=(TextView)v.findViewById(R.id.tvImageName);
         ImageView img=(ImageView)v.findViewById(R.id.imgView);
 

@@ -58,13 +58,13 @@ private RadioButton rdGenders;
         signUpButton = (TextView) findViewById(R.id.btnRegister);
 
         //Edit lessons
-        editprofile=(TextView) findViewById(R.id.editprofile);
+
 
         inputName = (EditText) findViewById(R.id.reg_fullname);
         inputSurname = (EditText) findViewById(R.id.reg_Surname);
         //inputEmail = (EditText) findViewById(R.id.reg_email);
         //inputPassword = (EditText) findViewById(R.id.reg_password);
-        inputIdnumber = (EditText) findViewById(R.id.reg_idParents);
+       // inputIdnumber = (EditText) findViewById(R.id.reg_idParents);
         inputAddress = (EditText) findViewById(R.id.reg_address);
         inputCity = (EditText) findViewById(R.id.reg_city);
         inputCellphoneNumber = (EditText) findViewById(R.id.reg_phone);
@@ -95,22 +95,14 @@ private RadioButton rdGenders;
         //inputEmail.addTextChangedListener(new MyInputWatcher(inputEmail));
         //inputPassword.addTextChangedListener(new MyInputWatcher(inputPassword));
         //inputIdnumber.addTextChangedListener(new MyInputWatcher(inputIdnumber));
-
-editprofile.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent(profile.this,View_profile.class) ;
-        startActivity(intent);
-    }
-});
-            signUpButton.setOnClickListener(new View.OnClickListener(){
+       signUpButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
                 submitForm();
 
                 userNameString = inputName.getText().toString().trim();
-                userContactString = inputIdnumber.getText().toString().trim();
+//                userContactString = inputIdnumber.getText().toString().trim();
                 inputSurnameString = inputSurname.getText().toString().trim();
                 inputIdnumberString = inputCellphoneNumber.getText().toString().trim();
                 inputAddressString = inputAddress.getText().toString().trim();
@@ -132,10 +124,6 @@ editprofile.setOnClickListener(new View.OnClickListener() {
 
                     Toast.makeText(profile.this, "User Profile Added", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(profile.this, Mainapp.class));
-
-
-
-
 
             }
         });
@@ -267,9 +255,9 @@ editprofile.setOnClickListener(new View.OnClickListener() {
                 case R.id.input_reg_Surname:
                     validateSurname();
                     break;
-                case R.id.input_reg_idParents:
+            //    case R.id.input_reg_idParents:
                    // validateIdNumber();
-                    break;
+                   // break;
                /* case R.id.input_reg_email:
                     validateEmail();
                     break;*/
