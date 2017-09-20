@@ -65,7 +65,8 @@ public class Kid extends AppCompatActivity {
         keyUser =  intent.getStringExtra("User_KEY");
 
         //database
-        databaseKids = FirebaseDatabase.getInstance().getReference().child("Kids").child(keyUser);
+        databaseKids = FirebaseDatabase.getInstance().getReference().child("Kids");
+        //databaseKids = FirebaseDatabase.getInstance().getReference().child("Kids").child(keyUser);
 
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,7 +120,7 @@ public class Kid extends AppCompatActivity {
 
             String id = databaseKids.push().getKey();
 
-            Kids kids = new Kids(id, kidStringname, kidStringsurname, kidStringaddress, kididStringNumber, kidStringparentid,  genderString);
+            Kids kids = new Kids(id,keyUser, kidStringname, kidStringsurname, kidStringaddress, kididStringNumber, kidStringparentid,  genderString);
 
             databaseKids.child(id).setValue(kids);
 

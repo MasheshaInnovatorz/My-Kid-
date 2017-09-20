@@ -35,6 +35,7 @@ public class Mainapp extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Mainapp.this, Chat.class);
                 intent.putExtra("kid_id",idLoged);
+                intent.putExtra("parentIdentity",parentId);
                 startActivity(intent);
             }
         });

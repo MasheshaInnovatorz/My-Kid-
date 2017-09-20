@@ -38,13 +38,13 @@
         android:orientation="vertical"
         android:layout_height="wrap_content">
 
-    <ImageView
-        android:saveEnabled="true"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:id="@+id/imgView"/>
+        <ImageView
+            android:id="@+id/imgView"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:saveEnabled="true" />
 
-    <TextView
+        <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
