@@ -63,11 +63,10 @@ private RadioButton rdGenders;
         inputSurname = (EditText) findViewById(R.id.reg_Surname);
         //inputEmail = (EditText) findViewById(R.id.reg_email);
         //inputPassword = (EditText) findViewById(R.id.reg_password);
-<<<<<<< HEAD
+
        // inputIdnumber = (EditText) findViewById(R.id.reg_idParents);
-=======
         //inputIdnumber = (EditText) findViewById(R.id.reg_idParents);
->>>>>>> 71ba167c62754c4e3f36e555b11c9c4741ec9717
+
         inputAddress = (EditText) findViewById(R.id.reg_address);
         inputCity = (EditText) findViewById(R.id.reg_city);
         inputCellphoneNumber = (EditText) findViewById(R.id.reg_phone);
@@ -258,15 +257,15 @@ private RadioButton rdGenders;
                 case R.id.input_reg_Surname:
                     validateSurname();
                     break;
-<<<<<<< HEAD
+
             //    case R.id.input_reg_idParents:
                    // validateIdNumber();
                    // break;
-=======
+
                 //case R.id.input_reg_idParents:
                    // validateIdNumber();
                   //  break;
->>>>>>> 71ba167c62754c4e3f36e555b11c9c4741ec9717
+
                /* case R.id.input_reg_email:
                     validateEmail();
                     break;*/

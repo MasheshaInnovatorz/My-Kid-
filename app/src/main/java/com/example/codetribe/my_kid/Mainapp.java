@@ -23,6 +23,7 @@ public class Mainapp extends AppCompatActivity {
         idLoged = keyId.getStringExtra("User_KEY");
         parentId = keyId.getStringExtra("parent_id");
 
+
         getSupportActionBar().setTitle("Categories");
         TextView chat = (TextView) findViewById(R.id.Chat);
         TextView share = (TextView)findViewById(R.id.Share);
@@ -82,7 +83,8 @@ public class Mainapp extends AppCompatActivity {
 
             case R.id.view_profile:
 
-                Intent intent = new Intent(Mainapp.this,View_profile.class) ;
+                Intent intent = new Intent(Mainapp.this,View_profile.class);
+                intent.putExtra("parent_user",idLoged);
                 startActivity(intent);
                 return true;
         }

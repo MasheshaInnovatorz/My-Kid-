@@ -42,6 +42,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private ProgressDialog progressDialog;
     private TextView forgot;
+    public static final String username = "usenameID";
+    public static final String usersurname = "userSurname";
+
 
     TextInputLayout passwordLayout;
     TextInputLayout emailLayout;
@@ -157,6 +160,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             if(dataUser.child("emailUser").getValue().toString().equals(emailForVer))
             {
+
+
                 if(dataUser.child("isVerified").getValue().toString().equals("unverified")){
 
                     Intent intentUser = new Intent(MainActivity.this,profile.class);
@@ -179,13 +184,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         intent.putExtra("parent_id", dataUser.child("userIdNumber").getValue().toString());
                         startActivity(intent);
                         Toast.makeText(this, "Welcome To Parents Page", Toast.LENGTH_SHORT).show();
+
+
+
+
                     } else if (dataUser.child("role").getValue().toString().equals("admin")) {
-                        Intent intent = new Intent(MainActivity.this, Mainapp.class);
+                        Intent intent = new Intent(MainActivity.this, Admin.class);
                         intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                         startActivity(intent);
                         Toast.makeText(this, "Welcome To Admin Page", Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(MainActivity.this, "Welcome To Parents Page", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(MainActivity.this, "Please Contact A heard Master To Assign you A Role", Toast.LENGTH_SHORT).show();
                     }
 
                 }
