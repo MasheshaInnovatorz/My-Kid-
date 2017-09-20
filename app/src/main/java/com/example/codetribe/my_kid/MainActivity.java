@@ -210,6 +210,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
+    
         progressDialog.setMessage("Wait While Logging In");
         progressDialog.show();
 
