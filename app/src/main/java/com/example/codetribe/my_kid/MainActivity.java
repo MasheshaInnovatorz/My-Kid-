@@ -180,12 +180,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         startActivity(intent);
                         Toast.makeText(this, "Welcome To Parents Page", Toast.LENGTH_SHORT).show();
                     } else if (dataUser.child("role").getValue().toString().equals("admin")) {
-                        Intent intent = new Intent(MainActivity.this, Mainapp.class);
+                        Intent intent = new Intent(MainActivity.this, Admin.class);
                         intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                         startActivity(intent);
                         Toast.makeText(this, "Welcome To Admin Page", Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(MainActivity.this, "Welcome To Parents Page", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(MainActivity.this, "Please Contact A heard Master To Assign you A Role", Toast.LENGTH_SHORT).show();
                     }
 
                 }
