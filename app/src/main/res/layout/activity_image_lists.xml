@@ -7,8 +7,9 @@
     tools:context="com.example.codetribe.my_kid.ImageListsActivity">
 
     <ListView
-        android:layout_width="match_parent"
+        android:layout_width="368dp"
         android:layout_height="wrap_content"
-        android:id="@+id/listViewImage"/>
+        android:id="@+id/listViewImage"
+        />
 
 </android.support.constraint.ConstraintLayout>

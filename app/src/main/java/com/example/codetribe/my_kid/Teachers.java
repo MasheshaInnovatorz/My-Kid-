@@ -45,7 +45,10 @@ public class Teachers extends AppCompatActivity {
         kid = new ArrayList<>();
 
 
-        kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Kids").child(userKey);
+        //kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Kids").child(userKey);
+
+        kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Kids");
+
 
         add_Kids = (TextView)findViewById(R.id.text_Add_Kids);
 
@@ -84,9 +87,14 @@ public class Teachers extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 kid.clear();
-                for (DataSnapshot tracksnapshot : dataSnapshot.getChildren()){
-                    Kids kidInf = tracksnapshot.getValue(Kids.class);
-                    kid.add(kidInf);
+                for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()){
+
+                    if(kidssnapshot.child("teachersId").getValue().toString().equals(userKey)) {
+                        Kids kidInf = kidssnapshot.getValue(Kids.class);
+                        kid.add(kidInf);
+                    }else{
+
+                    }
                 }
                 KidsArray trackListAdapter = new KidsArray(Teachers.this,kid);
                 listViewKids.setAdapter(trackListAdapter);

@@ -182,6 +182,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Intent intent = new Intent(MainActivity.this, Mainapp.class);
                         intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                         intent.putExtra("parent_id", dataUser.child("userIdNumber").getValue().toString());
+
                         startActivity(intent);
                         Toast.makeText(this, "Welcome To Parents Page", Toast.LENGTH_SHORT).show();
 
