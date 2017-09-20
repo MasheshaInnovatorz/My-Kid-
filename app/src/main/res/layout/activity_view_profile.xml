@@ -85,8 +85,9 @@
                 android:background="#fff"
                 android:clickable="true"
                 android:elevation="4dp"
+                android:id="@+id/gender_view"
                 android:padding="20dp"
-                android:text="Full Names" />
+                android:text="gender" />
 
             <TextView
                 android:layout_width="fill_parent"
@@ -97,8 +98,10 @@
                 android:background="#fff"
                 android:clickable="true"
                 android:elevation="4dp"
+                android:id="@+id/phone_view"
                 android:padding="20dp"
-                android:text="Surname"/>
+                android:text="phone number"/>
+
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -107,7 +110,8 @@
                 android:clickable="true"
                 android:elevation="4dp"
                 android:padding="20dp"
-                android:text="Email Address" />
+                android:id="@+id/address_view"
+                android:text="Home Address" />
 
             <TextView
                 android:layout_width="fill_parent"
@@ -117,9 +121,10 @@
                 android:layout_marginTop="3dp"
                 android:background="#fff"
                 android:clickable="true"
+                android:id="@+id/email_view"
                 android:elevation="4dp"
                 android:padding="20dp"
-                android:text="Cell Number" />
+                android:text="Email" />
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>
