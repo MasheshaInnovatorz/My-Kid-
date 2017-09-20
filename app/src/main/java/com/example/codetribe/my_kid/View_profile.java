@@ -1,10 +1,9 @@
 package com.example.codetribe.my_kid;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,26 +12,51 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
 
-import static com.example.codetribe.my_kid.Chat.FB_DATABASE_PATH;
+import java.util.Iterator;
 
 public class View_profile extends AppCompatActivity {
 
-<<<<<<< HEAD
 
-=======
     private DatabaseReference databaseReference;
-    TextView name;
->>>>>>> c99fcacec9edf6d902cc10a3a0327ae6e77b3419
+    TextView name,surname;
+    String iduser;
+
+    String nameString,surnameString;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_profile);
 
+        //initialize
+        name = (TextView) findViewById(R.id.user_profile_name);
+        surname= (TextView)findViewById(R.id.user_profile_status);
 
-<<<<<<< HEAD
-=======
+
+        Intent intentId =getIntent();
+        iduser = intentId.getStringExtra("parent_user");
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+
+
+
+
+
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                Infor(dataSnapshot,iduser);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
         ImageView editprofile=(ImageView) findViewById(R.id.editprofile);
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +66,8 @@ public class View_profile extends AppCompatActivity {
             }
 
         });
+
+
 
 /*
         databaseReference = FirebaseDatabase.getInstance().getReference().child("courses").child("Business");
@@ -63,6 +89,31 @@ public class View_profile extends AppCompatActivity {
             }
         });
         */
->>>>>>> c99fcacec9edf6d902cc10a3a0327ae6e77b3419
+
     }
+
+
+    private void Infor(DataSnapshot dataSnapshot, String userId){
+
+        Iterator iterator = dataSnapshot.getChildren().iterator();
+
+        while(iterator.hasNext()) {
+            DataSnapshot dataUser = (DataSnapshot) iterator.next();
+
+            if (dataUser.child("userKey").getValue().toString().equals(userId))
+            {
+
+                name.setText(dataUser.child("userName").getValue().toString());
+                surname.setText(dataUser.child("userSurname").getValue().toString());
+
+
+
+            }
+
+
+        }
+
+    }
+
+
 }
