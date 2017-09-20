@@ -6,14 +6,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+        <!-- cover_header/top background -->
         <ImageView
             android:id="@+id/header_cover_image"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/kidsbackground1" />
-
+            android:src="@mipmap/ic_launcher" />
+        <!-- user_profile_photo -->
         <ImageButton
             android:id="@+id/user_profile_photo"
             android:layout_width="120dp"
@@ -25,57 +25,47 @@
             android:elevation="5dp"
             android:padding="20dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/mykidicon" />
+            android:src="@mipmap/ic_launcher" />
 
         <RelativeLayout
             android:id="@+id/profile_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/header_cover_image"
-            android:background="#4FC3F7"
+            android:background="#4ccbff"
             android:elevation="4dp"
             android:paddingBottom="24dp">
+            <!-- you can delete these buttons wa dira drop whata what..-->
 
-
-            <TextView
-                android:id="@+id/editprofile"
-                android:layout_width="70dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="16dp"
-                android:text="edit profile"
-                android:textColor="#FAFAFA"
-                android:layout_marginTop="16dp"
-                android:layout_toLeftOf="@+id/drop_down_option_menu"
-              />
-
+            !-- edit profile button -->
             <ImageView
-                android:id="@+id/drop_down_option_menu"
+                android:id="@+id/editprofile"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_marginTop="16dp"
                 android:src="@drawable/ic_more_vert_black_24dp" />
-
+            <!-- set user name -->
             <TextView
                 android:id="@+id/user_profile_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="76dp"
-                android:text="Viral Android"
+                android:text="Luambo Dologi"
                 android:textColor="#fff"
                 android:textSize="24sp"
                 android:textStyle="bold" />
-
+            <!-- set user status -->
             <TextView
-                android:id="@+id/user_profile_short_bio"
+                android:id="@+id/user_profile_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/user_profile_name"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="12dp"
-                android:text="Android free tutorials and example"
+                android:text="Ndi Muvhenda"
                 android:textColor="#fff"
                 android:textSize="14sp" />
         </RelativeLayout>
@@ -85,40 +75,18 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/profile_layout"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="5dp"
             android:orientation="vertical">
-
+            <!-- any info you wanna display using the texViews below-->
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:background="@drawable/profilestyletext"
+                android:background="#fff"
                 android:clickable="true"
                 android:elevation="4dp"
                 android:padding="20dp"
-                android:text="Android Profile UI Design" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginBottom="3dp"
-                android:layout_marginTop="3dp"
-                android:clickable="true"
-                android:elevation="4dp"
-                android:background="@drawable/profilestyletext"
-                android:padding="20dp"
-                android:text="Android Profile XMl UI Design" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:clickable="true"
-                android:background="@drawable/profilestyletext"
-                android:elevation="4dp"
-                android:padding="20dp"
-                android:text="Android Profile UI Design" />
+                android:text="Full Names" />
 
             <TextView
                 android:layout_width="fill_parent"
@@ -126,21 +94,32 @@
                 android:layout_margin="5dp"
                 android:layout_marginBottom="3dp"
                 android:layout_marginTop="3dp"
-                android:background="@drawable/profilestyletext"
+                android:background="#fff"
                 android:clickable="true"
                 android:elevation="4dp"
                 android:padding="20dp"
-                android:text="Android Profile XMl UI Design" />
+                android:text="Surname"/>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#fff"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:padding="20dp"
+                android:text="Email Address" />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="3dp"
+                android:background="#fff"
                 android:clickable="true"
-                android:background="@drawable/profilestyletext"
                 android:elevation="4dp"
                 android:padding="20dp"
-                android:text="Android Profile UI Design" />
+                android:text="Cell Number" />
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>

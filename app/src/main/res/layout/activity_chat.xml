@@ -23,6 +23,7 @@
         android:text="Upload kids work here"
         android:textAlignment="center"
         android:textSize="30sp" />
+
     <ImageView
         android:id="@+id/imageview"
         android:layout_width="match_parent"
@@ -87,6 +88,9 @@
             android:text="Update progress"
             android:textColor="#fff"
             android:textSize="16dp" />
+
+
+
     </LinearLayout>
 </RelativeLayout>
 
