@@ -22,7 +22,7 @@ public class profile extends AppCompatActivity {
 
       TextView signUpButton;
     private TextView editprofile;
-    private EditText inputName, inputSurname, inputEmail, inputIdnumber, inputAddress, inputCity, inputCellphoneNumber;
+    private EditText inputName, inputSurname, inputEmail, inputIdnumber, inputAddress, inputCity, inputCellphoneNumber,reg_idnumberhint;
     private TextInputLayout inputLayoutName, inputLayoutSurname, inputLayoutEmail, inputLayoutPassword, inputLayoutIdnumber;
     //private Button signUpButton;
     RadioGroup radGender;
@@ -71,7 +71,7 @@ private RadioButton rdGenders;
         inputCity = (EditText) findViewById(R.id.reg_city);
         inputCellphoneNumber = (EditText) findViewById(R.id.reg_phone);
         radGender = (RadioGroup)findViewById(R.id.gender);
-
+        inputIdnumber= (EditText) findViewById(R.id.reg_idnumber);
 
 
 
@@ -79,6 +79,7 @@ private RadioButton rdGenders;
 
 
         //TextLayout
+
         inputLayoutName = (TextInputLayout)findViewById(R.id.input_reg_fullname);
         inputLayoutSurname = (TextInputLayout)findViewById(R.id.input_reg_Surname);
 
@@ -104,9 +105,9 @@ private RadioButton rdGenders;
                 submitForm();
 
                 userNameString = inputName.getText().toString().trim();
-//                userContactString = inputIdnumber.getText().toString().trim();
+           userContactString = inputCellphoneNumber.getText().toString().trim();
                 inputSurnameString = inputSurname.getText().toString().trim();
-                inputIdnumberString = inputCellphoneNumber.getText().toString().trim();
+                inputIdnumberString = inputIdnumber.getText().toString().trim();
                 inputAddressString = inputAddress.getText().toString().trim();
                 inputCityString = inputCity.getText().toString().trim();
                 int selectedId= radGender.getCheckedRadioButtonId();
