@@ -128,19 +128,13 @@
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/hkidid"
                 android:layout_width="match_parent"
-<<<<<<< HEAD
+
                 android:layout_height="wrap_content"
                 android:text="Kid ID number"
                 android:textSize="20dp"
 
-                />
+                >
 
-
-
-
-=======
-                android:layout_height="wrap_content">
->>>>>>> c7ead6a295b073544cc0a5a406eda8073278c9d7
             <EditText
                 android:textSize="16dp"
                 android:id="@+id/editkidid"
