@@ -66,7 +66,7 @@ public class View_profile extends AppCompatActivity {
         });
 
 
-        ImageView editprofile=(ImageView) findViewById(R.id.editprofile);
+        TextView editprofile=(TextView) findViewById(R.id.editprofile);
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,10 +114,10 @@ public class View_profile extends AppCompatActivity {
 
                 name.setText("Name: " + dataUser.child("userName").getValue().toString());
                 surname.setText("Surname: " + dataUser.child("userSurname").getValue().toString());
-                gender.setText("Gender: "+ dataUser.child("userGender").getValue().toString());
-                phonenumber.setText("Contact: "+ dataUser.child("userContact").getValue().toString());
-                address.setText("Lives in: "+ dataUser.child("userAddress").getValue().toString());
-                email.setText("Email address: "+ dataUser.child("emailUser").getValue().toString());
+                gender.setText( dataUser.child("userGender").getValue().toString());
+                phonenumber.setText( dataUser.child("userIdNumber").getValue().toString());
+                address.setText(dataUser.child("userAddress").getValue().toString());
+                email.setText( dataUser.child("emailUser").getValue().toString());
 
 
         //     profilecover.setImageDrawable(dataSnapshot.child("fdsdfs").getRef());

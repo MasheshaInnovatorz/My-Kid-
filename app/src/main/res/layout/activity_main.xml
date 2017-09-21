@@ -77,6 +77,7 @@
                 android:maxLength="12"
                 android:padding="16dp"
                 android:text="0727056059"
+                android:drawableRight="@drawable/ic_remove_red_eye_black_24dp"
                 android:textColor="#ADCCE2"
                 android:textColorHint="#ADCCE2"
                 android:textSize="16dp" />

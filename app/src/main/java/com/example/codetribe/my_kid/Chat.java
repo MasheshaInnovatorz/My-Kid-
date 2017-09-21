@@ -31,7 +31,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import static com.example.codetribe.my_kid.R.id.parentId;
+//import static com.example.codetribe.my_kid.R.id.parentId;
 
 public class Chat extends AppCompatActivity {
 
@@ -61,7 +61,8 @@ public class Chat extends AppCompatActivity {
 
         Intent intent = getIntent();
        idKid= intent.getStringExtra("kid_id");
-        intent.putExtra("parentIdentity",parentId);
+
+       // intent.putExtra("parentIdentity",parentId);
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
         mDatabseRef = FirebaseDatabase.getInstance().getReference().child(FB_DATABASE_PATH).child(idKid);

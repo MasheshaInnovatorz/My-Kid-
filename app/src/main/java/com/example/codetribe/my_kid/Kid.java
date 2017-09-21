@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -17,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Kid extends AppCompatActivity {
 
-
+    private EditText hintname,hintsurname,hintkidid,hintpid,hintParentId;
 
    EditText kidname,
            kidsurname,
@@ -27,7 +28,7 @@ public class Kid extends AppCompatActivity {
     ImageView imagepic;
     RadioGroup radKidGender;
     RadioButton radGender;
-   Button btnCreate;
+   TextView btnCreate;
     String genderString,keyUser;
     String  kidStringname,
             kidStringsurname,
@@ -44,20 +45,28 @@ public class Kid extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kid);
 
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Add kid Profile");
+
+
         //initializing
         kidname = (EditText)findViewById(R.id.editname);
         kidsurname =(EditText)findViewById(R.id.editSurname);
         kidaddress =  (EditText)findViewById(R.id.editAdress);
         kididNumber = (EditText)findViewById(R.id.editkidid);
         kidparentid = (EditText)findViewById(R.id.editParentId);
-        imagepic  = (ImageView) findViewById(R.id.profilePicture);
         radKidGender = (RadioGroup)findViewById(R.id.genders);
+        btnCreate = (TextView) findViewById(R.id.btnKidUpdate);
 
-        btnCreate = (Button) findViewById(R.id.btnKidUpdate);
+//hint editext
 
-
-
-
+        hintname = (EditText)findViewById(R.id.hname);
+        hintsurname =(EditText)findViewById(R.id.hSurname);
+        hintkidid =  (EditText)findViewById(R.id.hAdress);
+        hintpid = (EditText)findViewById(R.id.hkidid);
+        hintParentId=(EditText)findViewById(R.id.hpid);
 
 
         Intent intent = getIntent();
