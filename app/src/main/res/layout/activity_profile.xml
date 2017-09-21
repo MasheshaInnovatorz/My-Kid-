@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/kidsbackground1"
     android:layout_height="match_parent"
     tools:context="com.example.codetribe.my_kid.profile">
 
@@ -20,6 +21,17 @@
             android:orientation="vertical"
             android:layout_alignParentBottom="true"
             android:id="@+id/linearLayout">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="3dp"
+                android:text="Update Your Profile"
+                android:background="@drawable/textviewsstyle"
+                android:textSize="30sp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="#ADCCE2"
+                />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_reg_fullname"
