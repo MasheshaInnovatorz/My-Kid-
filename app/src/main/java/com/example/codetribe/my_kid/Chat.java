@@ -62,7 +62,11 @@ public class Chat extends AppCompatActivity {
         Intent intent = getIntent();
        idKid= intent.getStringExtra("kid_id");
 
+        //intent.putExtra("parentIdentity",parentId);
+
+
        // intent.putExtra("parentIdentity",parentId);
+
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
         mDatabseRef = FirebaseDatabase.getInstance().getReference().child(FB_DATABASE_PATH).child(idKid);
