@@ -1,35 +1,27 @@
 {
   "project_info": {
-    "project_number": "690634994954",
-    "firebase_url": "https://mykid-159c2.firebaseio.com",
-    "project_id": "mykid-159c2",
-    "storage_bucket": "mykid-159c2.appspot.com"
+    "project_number": "365625133175",
+    "firebase_url": "https://lufuno-a6da6.firebaseio.com",
+    "project_id": "lufuno-a6da6",
+    "storage_bucket": "lufuno-a6da6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:690634994954:android:752017e007e87309",
+        "mobilesdk_app_id": "1:365625133175:android:752017e007e87309",
         "android_client_info": {
           "package_name": "com.example.codetribe.my_kid"
         }
       },
       "oauth_client": [
         {
-          "client_id": "690634994954-ki0c7pmq5h04okocjq9seuq79k1h3bpt.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.codetribe.my_kid",
-            "certificate_hash": "d70a3d5736c421ae7f0c051667ac2980de8a74fc"
-          }
-        },
-        {
-          "client_id": "690634994954-5nsq11iuf805riqb344ikk3ab25ehkf9.apps.googleusercontent.com",
+          "client_id": "365625133175-fvat559ucpbm0f9a88q6p5i0u7s3g27e.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAwuluiJLnG5idQ_-3wu7yTHjVhc6mE7n4"
+          "current_key": "AIzaSyC4ljrgiwn42O7bqRmAVNoSujPsVHt2iiY"
         }
       ],
       "services": {
@@ -37,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "690634994954-5nsq11iuf805riqb344ikk3ab25ehkf9.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

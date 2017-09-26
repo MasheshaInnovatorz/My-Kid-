@@ -4,54 +4,68 @@ package com.example.codetribe.my_kid;
  * Created by CodeTribe on 9/1/2017.
  */
 
+
 public class UserProfile {
-    private String name;
-    private String surnmame;
-    private String ownersId;
-    private String address;
-    private String city;
-    private String cellPhone;
-    private String gender;
+    private String keyUser;
+    private String userName;
+    private String userSurname;
+    private String userIdNumber;
+    private String userAddress;
+    private String userCity;
+    private String userContact;
+    private String userGender;
+    private String isVerified;
 
     public UserProfile() {
     }
 
-    public UserProfile(String name, String surnmame, String ownersId, String address, String city, String cellPhone, String gender) {
-        this.name = name;
-        this.surnmame = surnmame;
-        this.ownersId = ownersId;
-        this.address = address;
-        this.city = city;
-        this.cellPhone = cellPhone;
-        this.gender = gender;
+    public UserProfile(String keyUser, String userName, String userSurname, String userIdNumber, String userAddress, String userCity, String userContact, String userGender, String isVerified) {
+        this.keyUser = keyUser;
+        this.userName = userName;
+        this.userSurname = userSurname;
+        this.userIdNumber = userIdNumber;
+        this.userAddress = userAddress;
+        this.userCity = userCity;
+        this.userContact = userContact;
+        this.userGender = userGender;
+        this.isVerified = isVerified;
     }
 
-    public String getName() {
-        return name;
+
+    public String getKeyUser() {
+        return keyUser;
     }
 
-    public String getSurnmame() {
-        return surnmame;
+    public String getUserName() {
+        return userName;
     }
 
-    public String getOwnersId() {
-        return ownersId;
+    public String getUserSurname() {
+        return userSurname;
     }
 
-    public String getAddress() {
-        return address;
+    public String getUserIdNumber() {
+        return userIdNumber;
     }
 
-    public String getCity() {
-        return city;
+    public String getUserAddress() {
+        return userAddress;
     }
 
-    public String getCellPhone() {
-        return cellPhone;
+    public String getUserCity() {
+        return userCity;
     }
 
-    public String getGender() {
-        return gender;
+    public String getUserContact() {
+        return userContact;
+    }
+
+    public String getUserGender() {
+        return userGender;
+    }
+
+    public String getIsVerified() {
+        return isVerified;
     }
 }
 

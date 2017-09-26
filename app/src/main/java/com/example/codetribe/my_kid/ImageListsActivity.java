@@ -60,8 +60,6 @@ public class ImageListsActivity extends AppCompatActivity {
 
 
 
-
-
     }
 
     private void Infor(DataSnapshot kidSnapshot, DataSnapshot dataSnapshot, String userId){
@@ -79,7 +77,7 @@ public class ImageListsActivity extends AppCompatActivity {
                     DataSnapshot dataUser = (DataSnapshot) iterator.next();
 
                     if (kidsUser.getKey().equals(dataUser.getKey())) {
-
+                        imgList.clear();
 
                         for(DataSnapshot snapshot : dataUser.getChildren()){
 
@@ -129,6 +127,7 @@ public class ImageListsActivity extends AppCompatActivity {
                 mDatabaseRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
+
                         progressDialog.dismiss();
 
 

@@ -143,7 +143,8 @@ public class sign_up extends AppCompatActivity {
                                 mChildDatabase.child("passWordUser").setValue(userPassString);
                                 Toast.makeText(sign_up.this, "User Account Created", Toast.LENGTH_SHORT).show();
                                 auth.signOut();
-                                startActivity(new Intent(sign_up.this,MainActivity.class));
+                                startActivity(new Intent(sign_up.this,Welcome_activity.class));
+
                             }else{
                                 Toast.makeText(sign_up.this, "User Fialed to login", Toast.LENGTH_SHORT).show();
 
