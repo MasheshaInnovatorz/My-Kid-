@@ -20,9 +20,12 @@ public class Kid extends AppCompatActivity {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
    // private EditText;
     private TextInputLayout  hintname,hintsurname,hintkidid,hintpid,hintParentId;
 =======
+=======
+>>>>>>> d6176d3915119fa0c6cb1b8ec5e257c6d723a992
 =======
 >>>>>>> d6176d3915119fa0c6cb1b8ec5e257c6d723a992
     private TextInputLayout hintname,hintsurname,hintkidid,hintpid,hintParentId;
@@ -74,6 +77,7 @@ public class Kid extends AppCompatActivity {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         hintname =(TextInputLayout)findViewById(R.id.hname);
         hintsurname =(TextInputLayout)findViewById(R.id.hSurname);
         hintkidid =(TextInputLayout)findViewById(R.id.hAdress);
@@ -82,12 +86,17 @@ public class Kid extends AppCompatActivity {
 =======
 =======
 >>>>>>> d6176d3915119fa0c6cb1b8ec5e257c6d723a992
+=======
+>>>>>>> d6176d3915119fa0c6cb1b8ec5e257c6d723a992
         hintname = (TextInputLayout)findViewById(R.id.hname);
         hintsurname =(TextInputLayout) findViewById(R.id.hSurname);
         hintkidid =  (TextInputLayout) findViewById(R.id.hAdress);
         hintpid = (TextInputLayout) findViewById(R.id.hkidid);
         hintParentId=(TextInputLayout) findViewById(R.id.hpid);
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> d6176d3915119fa0c6cb1b8ec5e257c6d723a992
+=======
 >>>>>>> d6176d3915119fa0c6cb1b8ec5e257c6d723a992
 =======
 >>>>>>> d6176d3915119fa0c6cb1b8ec5e257c6d723a992
