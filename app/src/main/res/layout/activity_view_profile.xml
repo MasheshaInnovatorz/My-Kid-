@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:background="@drawable/kidsbackground1"
+    android:layout_height="wrap_content">
+
+<ScrollView
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <RelativeLayout
@@ -76,52 +81,74 @@
 
 
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/profile_layout"
             android:background="@drawable/timg"
             android:padding="10dp"
             android:orientation="vertical">
             <!-- any info you wanna display using the texViews below-->
+
             <TextView
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:background="@drawable/angle"
+                android:text="  gender" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="21dp"
                 android:textColor="#FFFFFF"
                 android:background="@drawable/textviewsstyle"
                 android:id="@+id/gender_view"
-                android:padding="10dp"
-                android:text="gender" />
+                android:text="  male" />
+
+            <TextView
+                android:layout_marginTop="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/angle"
+                android:text="  phone number" />
 
             <TextView
                 android:textColor="#FFFFFF"
                 android:background="@drawable/textviewsstyle"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="21dp"
                 android:id="@+id/phone_view"
-                android:padding="10dp"
-                android:text="phone number"/>
+                android:text="  072 7056 059"/>
+
+            <TextView
+                android:layout_marginTop="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/angle"
+                android:text="  Lives in " />
 
             <TextView
                 android:textColor="#FFFFFF"
                 android:background="@drawable/textviewsstyle"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="21dp"
                 android:id="@+id/address_view"
-                android:text="Home Address" />
+                android:text="  Mandala" />
+
+            <TextView
+                android:layout_marginTop="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/angle"
+                android:text="  Email" />
 
             <TextView
                 android:textColor="#FFFFFF"
                 android:background="@drawable/textviewsstyle"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="21dp"
                 android:id="@+id/email_view"
-                android:padding="10dp"
-                android:text="Email" />
+                android:text="  mudaurrudzani@gmail.com" />
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>
+    </LinearLayout>

@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
+<<<<<<< HEAD
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+=======
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+>>>>>>> d6176d3915119fa0c6cb1b8ec5e257c6d723a992
+=======
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+>>>>>>> d6176d3915119fa0c6cb1b8ec5e257c6d723a992
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,9 +16,42 @@
     tools:context="com.example.codetribe.my_kid.ImageListsActivity">
 
     <ListView
+        android:id="@+id/listViewImage"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
-        android:id="@+id/listViewImage"
-        />
+    />
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btnParticipate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Participate"/>
+
+    </LinearLayout>
+
+
+<<<<<<< HEAD
+=======
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btnParticipate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Participate"/>
+
+    </LinearLayout>
+
+
+>>>>>>> d6176d3915119fa0c6cb1b8ec5e257c6d723a992
+</RelativeLayout>
