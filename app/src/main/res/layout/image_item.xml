@@ -41,8 +41,9 @@
         <ImageView
             android:id="@+id/imgView"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:saveEnabled="true" />
+            android:layout_height="400dp"
+            android:saveEnabled="true"
+           />
 
         <TextView
         android:layout_width="match_parent"
@@ -55,59 +56,59 @@
 
     <LinearLayout
         android:id="@+id/rlSend"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:paddingTop="5dp"
-        android:paddingBottom="10dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:background="@drawable/layoutstyle1"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
         android:paddingRight="10dp"
-        android:layout_height="wrap_content" >
+        android:paddingTop="5dp">
         <!-- set profile pic button -->
         <ImageView
             android:id="@+id/send_pic"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/etMessage"
             android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_toLeftOf="@+id/etMessage"
             android:layout_weight="0.1"
             android:background="@drawable/button_style"
-            android:paddingLeft="5dp"
-            android:layout_gravity="center"
-            android:paddingRight="5dp"
-            android:layout_marginLeft="5dp"
             android:onClick="attV"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:src="@drawable/attachment" />
 
         <EditText
-            android:drawableRight="@drawable/ic_comment_black_24dp"
             android:id="@+id/etMessage"
-
-            android:layout_toLeftOf="@+id/btSend"
-            android:layout_alignBottom="@+id/btSend"
-            android:background="@drawable/edit_text_background"
             android:layout_width="0dp"
-            android:backgroundTint="#FDFDFE"
+
             android:layout_height="match_parent"
+            android:layout_alignBottom="@+id/btSend"
+            android:layout_toLeftOf="@+id/btSend"
+            android:layout_weight="0.7"
+            android:background="@drawable/edit_text_background"
+            android:backgroundTint="#FDFDFE"
+            android:drawableRight="@drawable/ic_comment_black_24dp"
             android:gravity="center_vertical"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
             android:hint="Reply"
-            android:inputType="textShortMessage"
             android:imeOptions="actionSend"
-            android:layout_weight="0.7" />
+            android:inputType="textShortMessage"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" />
+
         <Button
             android:id="@+id/btnSend"
             android:layout_width="0dp"
             android:layout_height="48dp"
-            android:gravity="center"
+            android:layout_alignParentRight="true"
             android:layout_weight="0.13"
             android:background="@drawable/button_style"
-            android:layout_alignParentRight="true"
+            android:gravity="center"
             android:text="reply"
             android:textColor="@android:color/white"
-            android:textSize="10sp" >
-        </Button>
+            android:textSize="10sp"></Button>
 
     </LinearLayout>
 </LinearLayout>

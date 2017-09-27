@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -27,8 +29,9 @@ public class ImageListsActivity extends AppCompatActivity {
     private ListView iv;
     private ImageListAdapter adapter;
     private ProgressDialog progressDialog;
+    private String KidsId;
     String parentid;
-
+    private Button btnparticipate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,7 @@ public class ImageListsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Child Story");
+
 
         Intent intent = getIntent();
        parentid= intent.getStringExtra("parentIdentity");
@@ -54,10 +58,7 @@ public class ImageListsActivity extends AppCompatActivity {
 
         mDatabaseRef= FirebaseDatabase.getInstance().getReference(Chat.FB_DATABASE_PATH);
         childRef = FirebaseDatabase.getInstance().getReference("Kids");
-
-
-
-
+        btnparticipate = (Button)findViewById(R.id.btnParticipate);
 
 
     }
@@ -69,7 +70,7 @@ public class ImageListsActivity extends AppCompatActivity {
         Iterator kidsIterator = kidSnapshot.getChildren().iterator();
 
         while(kidsIterator.hasNext()) {
-            DataSnapshot kidsUser = (DataSnapshot) kidsIterator.next();
+            final DataSnapshot kidsUser = (DataSnapshot) kidsIterator.next();
 
             if (kidsUser.child("parentid").getValue().toString().equals(userId)) {
 
@@ -83,6 +84,8 @@ public class ImageListsActivity extends AppCompatActivity {
 
                        ImageUpload img = snapshot.getValue(ImageUpload.class);
                             imgList.add(img);
+
+                            KidsId = kidsUser.getKey();
                         }
                         //init adapter
                         adapter=new ImageListAdapter(ImageListsActivity.this,R.layout.image_item,imgList);
@@ -93,6 +96,7 @@ public class ImageListsActivity extends AppCompatActivity {
 
                     }
                 }
+
 
 
 
@@ -133,6 +137,20 @@ public class ImageListsActivity extends AppCompatActivity {
 
 
                         Infor(kidSnapshot,dataSnapshot, parentid);
+
+                        btnparticipate.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                                Intent intent = new Intent(ImageListsActivity.this,Chat.class);
+                                intent.putExtra("kid_id",KidsId);
+                                startActivity(intent);
+
+                                Toast.makeText(ImageListsActivity.this, KidsId, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+
 
                         //fetch image from firebase
                        /* for(DataSnapshot snapshot : dataSnapshot.getChildren()){
