@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,11 +40,13 @@ public class ImageListAdapter extends ArrayAdapter<ImageUpload> {
         View v=inflater.inflate(resource,null);
 
         TextView tvName=(TextView)v.findViewById(R.id.tvImageName);
+        TextView uploadedName = (TextView)v.findViewById(R.id.senderid);
         ImageView img=(ImageView)v.findViewById(R.id.imgView);
         img.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
 
         tvName.setText(listImage.get(position).getName());
+      uploadedName.setText(listImage.get(position).getPersonUploaded());
         Glide.with(context).load(listImage.get(position).getUri()).into(img);
 
         return  v;

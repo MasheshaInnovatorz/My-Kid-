@@ -30,7 +30,7 @@ public class ImageListsActivity extends AppCompatActivity {
     private ImageListAdapter adapter;
     private ProgressDialog progressDialog;
     private String KidsId;
-    String parentid;
+    String parentid,userKey;
     private Button btnparticipate;
 
     @Override
@@ -46,6 +46,8 @@ public class ImageListsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
        parentid= intent.getStringExtra("parentIdentity");
+        userKey= intent.getStringExtra("User_KEY");
+
 
 
         imgList=new ArrayList<>();
@@ -144,6 +146,8 @@ public class ImageListsActivity extends AppCompatActivity {
 
                                 Intent intent = new Intent(ImageListsActivity.this,Chat.class);
                                 intent.putExtra("kid_id",KidsId);
+                                intent.putExtra("User_KEY",userKey);
+
                                 startActivity(intent);
 
                                 Toast.makeText(ImageListsActivity.this, KidsId, Toast.LENGTH_SHORT).show();
