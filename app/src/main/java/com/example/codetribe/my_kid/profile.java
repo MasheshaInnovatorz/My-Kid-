@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +19,10 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import static com.example.codetribe.my_kid.R.id.gender;
+
 public class profile extends AppCompatActivity {
+
 
       TextView signUpButton;
     private TextView editprofile;
@@ -45,12 +49,16 @@ private RadioButton rdGenders;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Update profile");
 
+
+
         //database
         Intent intent = getIntent();
         keyUser =  intent.getStringExtra("User_KEY");
 
+
+
         //database
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(keyUser);
+     databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(keyUser);
 
         //buttons
        // signupLink = (TextView) findViewById(R.id.back_to_signup);
@@ -70,7 +78,7 @@ private RadioButton rdGenders;
         inputAddress = (EditText) findViewById(R.id.reg_address);
         inputCity = (EditText) findViewById(R.id.reg_city);
         inputCellphoneNumber = (EditText) findViewById(R.id.reg_phone);
-        radGender = (RadioGroup)findViewById(R.id.gender);
+        radGender = (RadioGroup)findViewById(gender);
         inputIdnumber= (EditText) findViewById(R.id.reg_idnumber);
 
 
@@ -102,9 +110,10 @@ private RadioButton rdGenders;
 
             @Override
             public void onClick(View view) {
-                submitForm();
+                //submitForm();
 
-                userNameString = inputName.getText().toString().trim();
+                saveProfile();
+              /*  userNameString = inputName.getText().toString().trim();
            userContactString = inputCellphoneNumber.getText().toString().trim();
                 inputSurnameString = inputSurname.getText().toString().trim();
                 inputIdnumberString = inputIdnumber.getText().toString().trim();
@@ -126,11 +135,63 @@ private RadioButton rdGenders;
                     databaseReference.child("isVerified").setValue("verified");
 
                     Toast.makeText(profile.this, "User Profile Added", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(profile.this, Mainapp.class));
+
+                    startActivity(new Intent(profile.this, Welcome_activity.class));*/
 
             }
         });
 
+    }
+
+    private void saveProfile(){
+
+       // submitForm();
+
+        userNameString = inputName.getText().toString().trim();
+        userContactString = inputCellphoneNumber.getText().toString().trim();
+        inputSurnameString = inputSurname.getText().toString().trim();
+        inputIdnumberString = inputIdnumber.getText().toString().trim();
+        inputAddressString = inputAddress.getText().toString().trim();
+        inputCityString = inputCity.getText().toString().trim();
+        int selectedId= radGender.getCheckedRadioButtonId();
+        rdGenders =(RadioButton)findViewById(selectedId);
+        genderString  = rdGenders.getText().toString();
+
+
+
+
+
+        //databaseKids.child(id).setValue(kids);
+
+            if(!TextUtils.isEmpty(inputIdnumberString)){
+
+
+                String isVerified = "verified";
+
+
+                UserProfile profile = new UserProfile(keyUser, userNameString, inputSurnameString, inputIdnumberString, inputAddressString, inputCityString,userContactString,genderString,isVerified);
+
+
+
+        databaseReference.child("userName").setValue(profile.getUserName());
+        databaseReference.child("userSurname").setValue(profile.getUserSurname());
+        databaseReference.child("userIdNumber").setValue(profile.getUserIdNumber());
+        databaseReference.child("userContact").setValue(profile.getUserContact());
+        databaseReference.child("userAddress").setValue(profile.getUserAddress());
+        databaseReference.child("userCity").setValue(profile.getUserCity());
+        databaseReference.child("userGender").setValue(profile.getUserGender());
+        databaseReference.child("isVerified").setValue(profile.getIsVerified());
+
+
+
+             //databaseReference.setValue(profile);
+
+                Toast.makeText(profile.this, "User Profile Added", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(profile.this, Welcome_activity.class));
+
+            }else{
+                Toast.makeText(profile.this, "User Failed to add Profile", Toast.LENGTH_SHORT).show();
+            }
     }
 
     private void submitForm() {
@@ -152,7 +213,7 @@ private RadioButton rdGenders;
             return;
         }*/
 
-        Toast.makeText(getApplicationContext(), "Thank You!", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getApplicationContext(), "Thank You!", Toast.LENGTH_SHORT).show();
     }
 
     private boolean validateFullName() {

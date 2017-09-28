@@ -5,35 +5,31 @@
     android:layout_height="match_parent">
 
 
-
-
     <LinearLayout
-        android:background="@drawable/layoutstyle1"
+        android:background="@drawable/angle"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/kidsNameId"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textAlignment="textStart"
-            android:text="mavhungu Phuluso"
-            android:id="@+id/senderid"
-          />
+            android:textAlignment="textStart" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="share"
             android:drawableRight="@drawable/ic_share_black_24dp"/>
 
     </LinearLayout>
 
 
     <LinearLayout
+        android:background="@drawable/textviewsstyle"
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="wrap_content">
@@ -41,74 +37,19 @@
         <ImageView
             android:id="@+id/imgView"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:saveEnabled="true" />
+            android:layout_height="400dp"
+            android:saveEnabled="true"
+           />
 
         <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Image name"
+          android:background="@drawable/textviewsstyle"
         android:id="@+id/tvImageName"/>
 
 </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/rlSend"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:paddingTop="5dp"
-        android:paddingBottom="10dp"
-        android:background="@drawable/layoutstyle1"
-        android:paddingRight="10dp"
-        android:layout_height="wrap_content" >
-        <!-- set profile pic button -->
-        <ImageView
-            android:id="@+id/send_pic"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/etMessage"
-            android:layout_alignParentRight="true"
-            android:layout_weight="0.1"
-            android:background="@drawable/button_style"
-            android:paddingLeft="5dp"
-            android:layout_gravity="center"
-            android:paddingRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:onClick="attV"
-            android:src="@drawable/attachment" />
-
-        <EditText
-            android:drawableRight="@drawable/ic_comment_black_24dp"
-            android:id="@+id/etMessage"
-
-            android:layout_toLeftOf="@+id/btSend"
-            android:layout_alignBottom="@+id/btSend"
-            android:background="@drawable/edit_text_background"
-            android:layout_width="0dp"
-            android:backgroundTint="#FDFDFE"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:hint="Reply"
-            android:inputType="textShortMessage"
-            android:imeOptions="actionSend"
-            android:layout_weight="0.7" />
-        <Button
-            android:id="@+id/btnSend"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:gravity="center"
-            android:layout_weight="0.13"
-            android:background="@drawable/button_style"
-            android:layout_alignParentRight="true"
-            android:text="reply"
-            android:textColor="@android:color/white"
-            android:textSize="10sp" >
-        </Button>
-
-    </LinearLayout>
 </LinearLayout>
 

@@ -50,8 +50,9 @@ public class View_profile extends AppCompatActivity {
 
     private Uri imgUri;
     private DatabaseReference databaseReference;
-    TextView name,surname,gender,phonenumber,address,email;
+    TextView name,surname,gender,phonenumber,address,email,editprofile;
     String iduser;
+<<<<<<< HEAD
     ImageView profilecover,photo;
 
     int RESULT_LOAD_IMG = 1;
@@ -60,6 +61,10 @@ public class View_profile extends AppCompatActivity {
     StorageReference storageRef,imagesRef,userProfileRef;
     String user_id;
 
+=======
+    ImageView profilecover;
+    String idLoged;
+>>>>>>> c3a5ee674950c0a8f60e8dcfd7b56401525a6892
     String nameString,surnameString;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +94,19 @@ public class View_profile extends AppCompatActivity {
 
         photo = (ImageView) findViewById(R.id.user_profile_photo);
         profilecover=(ImageView) findViewById(R.id.header_cover_image);
+
+
+        //profile edit
+        editprofile=(TextView)findViewById(R.id.editprofile);
+        editprofile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i=new Intent(View_profile.this,profile.class);
+                startActivity(i);
+            }
+        });
+
 
         Intent intentId =getIntent();
         iduser = intentId.getStringExtra("parent_user");
@@ -272,10 +290,10 @@ public class View_profile extends AppCompatActivity {
 
                 name.setText("Name : " + dataUser.child("userName").getValue().toString());
                 surname.setText("Surname : " + dataUser.child("userSurname").getValue().toString());
-                gender.setText("Gender :   "+ dataUser.child("userGender").getValue().toString());
-                phonenumber.setText("Contact :    "+ dataUser.child("userContact").getValue().toString());
-                address.setText("Lives in :   "+ dataUser.child("userAddress").getValue().toString());
-                email.setText("Email address :   "+ dataUser.child("emailUser").getValue().toString());
+                gender.setText("  "+ dataUser.child("userGender").getValue().toString());
+                phonenumber.setText("  "+ dataUser.child("userContact").getValue().toString());
+                address.setText("  "+ dataUser.child("userAddress").getValue().toString());
+                email.setText("  "+ dataUser.child("emailUser").getValue().toString());
 
 
         //     profilecover.setImageDrawable(dataSnapshot.child("fdsdfs").getRef());

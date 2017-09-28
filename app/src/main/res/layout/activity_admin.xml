@@ -8,16 +8,13 @@
 
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="admin page"
-        android:textAlignment="center"
-        android:textSize="60sp"
-        android:layout_height="wrap_content"
-
-    ></TextView>
 
 
+    <ListView
+        android:id="@+id/listUser"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/text_Add_Kids"
+        android:layout_height="match_parent" />
 
 
 </android.support.constraint.ConstraintLayout>

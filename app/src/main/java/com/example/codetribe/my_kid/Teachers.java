@@ -42,6 +42,7 @@ public class Teachers extends AppCompatActivity {
         //String id = intent.getStringExtra(Teachers.ARTIST_ID);
         userKey =  intent.getStringExtra("User_KEY");
 
+
         kid = new ArrayList<>();
 
 
@@ -57,10 +58,8 @@ public class Teachers extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Kids kido =  kid.get(i);
-
                 Intent intent = new Intent(getApplicationContext(),Chat.class);
                 intent.putExtra("kid_id", kido.getId());
-
 
                 startActivity(intent);
             }

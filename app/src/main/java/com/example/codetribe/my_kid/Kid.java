@@ -2,10 +2,10 @@ package com.example.codetribe.my_kid;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -18,17 +18,30 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Kid extends AppCompatActivity {
 
-    private EditText hintname,hintsurname,hintkidid,hintpid,hintParentId;
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+   // private EditText;
+    private TextInputLayout  hintname,hintsurname,hintkidid,hintpid,hintParentId;
+=======
+=======
+>>>>>>> d6176d3915119fa0c6cb1b8ec5e257c6d723a992
+=======
+>>>>>>> d6176d3915119fa0c6cb1b8ec5e257c6d723a992
+    private TextInputLayout hintname,hintsurname,hintkidid,hintpid,hintParentId;
 
+>>>>>>> d6176d3915119fa0c6cb1b8ec5e257c6d723a992
    EditText kidname,
            kidsurname,
            kidaddress,
            kididNumber,
            kidparentid;
+
     ImageView imagepic;
-    RadioGroup radKidGender;
-    RadioButton radGender;
-   TextView btnCreate;
+     RadioGroup radKidGender;
+      RadioButton radGender;
+     TextView btnCreate;
+
     String genderString,keyUser;
     String  kidStringname,
             kidStringsurname,
@@ -62,11 +75,31 @@ public class Kid extends AppCompatActivity {
 
 //hint editext
 
-        hintname = (EditText)findViewById(R.id.hname);
-        hintsurname =(EditText)findViewById(R.id.hSurname);
-        hintkidid =  (EditText)findViewById(R.id.hAdress);
-        hintpid = (EditText)findViewById(R.id.hkidid);
-        hintParentId=(EditText)findViewById(R.id.hpid);
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+        hintname =(TextInputLayout)findViewById(R.id.hname);
+        hintsurname =(TextInputLayout)findViewById(R.id.hSurname);
+        hintkidid =(TextInputLayout)findViewById(R.id.hAdress);
+        hintpid =(TextInputLayout)findViewById(R.id.hkidid);
+        hintParentId=(TextInputLayout)findViewById(R.id.hpid);
+=======
+=======
+>>>>>>> d6176d3915119fa0c6cb1b8ec5e257c6d723a992
+=======
+>>>>>>> d6176d3915119fa0c6cb1b8ec5e257c6d723a992
+        hintname = (TextInputLayout)findViewById(R.id.hname);
+        hintsurname =(TextInputLayout) findViewById(R.id.hSurname);
+        hintkidid =  (TextInputLayout) findViewById(R.id.hAdress);
+        hintpid = (TextInputLayout) findViewById(R.id.hkidid);
+        hintParentId=(TextInputLayout) findViewById(R.id.hpid);
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> d6176d3915119fa0c6cb1b8ec5e257c6d723a992
+=======
+>>>>>>> d6176d3915119fa0c6cb1b8ec5e257c6d723a992
+=======
+>>>>>>> d6176d3915119fa0c6cb1b8ec5e257c6d723a992
 
 
         Intent intent = getIntent();

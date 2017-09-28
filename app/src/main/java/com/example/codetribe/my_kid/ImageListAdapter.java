@@ -40,6 +40,8 @@ public class ImageListAdapter extends ArrayAdapter<ImageUpload> {
 
         TextView tvName=(TextView)v.findViewById(R.id.tvImageName);
         ImageView img=(ImageView)v.findViewById(R.id.imgView);
+        img.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
 
         tvName.setText(listImage.get(position).getName());
         Glide.with(context).load(listImage.get(position).getUri()).into(img);
