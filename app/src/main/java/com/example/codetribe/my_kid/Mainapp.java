@@ -35,6 +35,7 @@ public class Mainapp extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Mainapp.this, Chat.class);
                 intent.putExtra("kid_id",idLoged);
+                intent.putExtra("User_KEY",idLoged);
                 intent.putExtra("parentIdentity",parentId);
                 startActivity(intent);
             }
@@ -45,6 +46,7 @@ public class Mainapp extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Mainapp.this,ImageListsActivity .class);
                 intent.putExtra("kid_id",idLoged);
+                intent.putExtra("User_KEY",idLoged);
                 intent.putExtra("parentIdentity",parentId);
                 startActivity(intent);
             }

@@ -7,15 +7,22 @@ package com.example.codetribe.my_kid;
 public class ImageUpload {
     public String name;
     public String uri;
+    public String personUploaded;
 
-    public ImageUpload(String name, String uri) {
+    public ImageUpload(String name, String uri,String personUploaded) {
         this.name = name;
         this.uri = uri;
+        this.personUploaded = personUploaded;
     }
 
     public ImageUpload() {
         this.name = name;
         this.uri = uri;
+        this.personUploaded = personUploaded;
+    }
+
+    public String getPersonUploaded() {
+        return personUploaded;
     }
 
     public String getName() {
