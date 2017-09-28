@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+=======
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+>>>>>>> f9a19f525ae461d24089491eaf2517a51396fe85
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,6 +22,7 @@
         android:orientation="vertical"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+<<<<<<< HEAD
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="13dp">
 
@@ -28,6 +34,14 @@
             android:textAlignment="center"
             android:drawableLeft="@drawable/ic_edit_black_24dp"
             android:layout_height="30dp"
+=======
+        android:layout_alignParentRight="true"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btnParticipate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+>>>>>>> f9a19f525ae461d24089491eaf2517a51396fe85
             android:text="Participate"/>
 
     </LinearLayout>
