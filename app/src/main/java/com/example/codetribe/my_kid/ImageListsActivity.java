@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -33,8 +32,6 @@ public class ImageListsActivity extends AppCompatActivity {
     private String KidsId;
     String parentid;
     private Button btnparticipate;
-    private TextView sendKids;
-    String Surname,name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,19 +51,14 @@ public class ImageListsActivity extends AppCompatActivity {
         imgList=new ArrayList<>();
         iv=(ListView)findViewById(R.id.listViewImage);
 
-
-
-
         //show progress dialog during list image loading
         progressDialog=new ProgressDialog(this);
-        progressDialog.setMessage("Please wait While Loading Kid Memories");
+        progressDialog.setMessage("Please wait While Loading List Image");
         progressDialog.show();
 
         mDatabaseRef= FirebaseDatabase.getInstance().getReference(Chat.FB_DATABASE_PATH);
         childRef = FirebaseDatabase.getInstance().getReference("Kids");
         btnparticipate = (Button)findViewById(R.id.btnParticipate);
-
-
 
 
     }
@@ -82,10 +74,6 @@ public class ImageListsActivity extends AppCompatActivity {
 
             if (kidsUser.child("parentid").getValue().toString().equals(userId)) {
 
-                Surname =  kidsUser.child("surname").getValue().toString();
-                name = kidsUser.child("name").getValue().toString();
-
-
                 while(iterator.hasNext()) {
                     DataSnapshot dataUser = (DataSnapshot) iterator.next();
 
@@ -94,20 +82,11 @@ public class ImageListsActivity extends AppCompatActivity {
 
                         for(DataSnapshot snapshot : dataUser.getChildren()){
 
-
-
-
-                            Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
-
                        ImageUpload img = snapshot.getValue(ImageUpload.class);
                             imgList.add(img);
 
-
                             KidsId = kidsUser.getKey();
                         }
-
-
-
                         //init adapter
                         adapter=new ImageListAdapter(ImageListsActivity.this,R.layout.image_item,imgList);
                         iv.setAdapter(adapter);
@@ -159,12 +138,6 @@ public class ImageListsActivity extends AppCompatActivity {
 
                         Infor(kidSnapshot,dataSnapshot, parentid);
 
-
-
-
-
-
-                       // senderId.setText(kids);
                         btnparticipate.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
