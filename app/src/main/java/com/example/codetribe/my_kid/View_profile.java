@@ -1,10 +1,7 @@
 package com.example.codetribe.my_kid;
 
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -13,17 +10,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,18 +26,11 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.sql.Ref;
 import java.util.Iterator;
-
-import static android.R.attr.data;
-import static android.R.attr.duration;
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
-import static com.example.codetribe.my_kid.R.drawable.user;
 
 public class View_profile extends AppCompatActivity {
 
@@ -52,8 +38,9 @@ public class View_profile extends AppCompatActivity {
     private DatabaseReference databaseReference;
     TextView name,surname,gender,phonenumber,address,email,editprofile;
     String iduser;
-<<<<<<< HEAD
-    ImageView profilecover,photo;
+    String image_url;
+
+    ImageView photo;
 
     int RESULT_LOAD_IMG = 1;
 
@@ -61,11 +48,12 @@ public class View_profile extends AppCompatActivity {
     StorageReference storageRef,imagesRef,userProfileRef;
     String user_id;
 
-=======
+
     ImageView profilecover;
     String idLoged;
->>>>>>> c3a5ee674950c0a8f60e8dcfd7b56401525a6892
+
     String nameString,surnameString;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +71,7 @@ public class View_profile extends AppCompatActivity {
         }
         imagesRef = storageRef.child("images");
         userProfileRef = storageRef.child("images/"+user_id+".jpg");
+
 
         //initialize
         name = (TextView) findViewById(R.id.user_profile_name);
@@ -260,7 +249,12 @@ public class View_profile extends AppCompatActivity {
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
                             Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                            String image_url = downloadUrl.toString();
+                            image_url = downloadUrl.toString();
+
+                           Glide.with(getApplicationContext()).load(image_url).into(photo);
+                           Glide.with(getApplicationContext()).load(image_url).into(profilecover);
+                            //listImage.get(position).getUri()).into(img)
+
                             Log.i("Ygritte", image_url);
 
                         }
