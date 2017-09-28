@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-=======
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
->>>>>>> d6176d3915119fa0c6cb1b8ec5e257c6d723a992
-=======
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
->>>>>>> d6176d3915119fa0c6cb1b8ec5e257c6d723a992
-=======
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
->>>>>>> d6176d3915119fa0c6cb1b8ec5e257c6d723a992
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -28,52 +15,20 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:orientation="vertical"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_height="wrap_content">
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="13dp">
+
         <Button
             android:id="@+id/btnParticipate"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:background="@drawable/angle"
+            android:textColor="#fff"
+            android:textAlignment="center"
+            android:drawableLeft="@drawable/ic_edit_black_24dp"
+            android:layout_height="30dp"
             android:text="Participate"/>
 
     </LinearLayout>
-
-
-<<<<<<< HEAD
-=======
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/btnParticipate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Participate"/>
-
-    </LinearLayout>
-
-
-<<<<<<< HEAD
->>>>>>> d6176d3915119fa0c6cb1b8ec5e257c6d723a992
-=======
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/btnParticipate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Participate"/>
-
-    </LinearLayout>
-
-
->>>>>>> d6176d3915119fa0c6cb1b8ec5e257c6d723a992
 </RelativeLayout>
