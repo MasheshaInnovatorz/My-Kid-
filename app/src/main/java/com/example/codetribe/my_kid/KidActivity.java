@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class Kid extends AppCompatActivity {
+public class KidActivity extends AppCompatActivity {
 
 
    // private EditText;
@@ -52,7 +52,7 @@ public class Kid extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Add kid Profile");
+        getSupportActionBar().setTitle("Add kid Profile_Update");
 
 
         //initializing
@@ -78,12 +78,15 @@ public class Kid extends AppCompatActivity {
         hintkidid =  (TextInputLayout) findViewById(R.id.hAdress);
         hintpid = (TextInputLayout) findViewById(R.id.hkidid);
         hintParentId=(TextInputLayout) findViewById(R.id.hpid);
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/Kid.java
 
 
 
+=======
+>>>>>>> 6b3cccec0f4a3806acf8ebc980302fa36f4331ad:app/src/main/java/com/example/codetribe/my_kid/KidActivity.java
 
         Intent intent = getIntent();
-        //String id = intent.getStringExtra(Teachers.ARTIST_ID);
+        //String id = intent.getStringExtra(Teachers_activity.ARTIST_ID);
         keyUser =  intent.getStringExtra("User_KEY");
 
         //database
@@ -111,8 +114,8 @@ public class Kid extends AppCompatActivity {
                 databaseKids.child("userAddress").setValue(kidStringparentid);
                 databaseKids.child("userCity").setValue(genderString);
 
-                Toast.makeText(Kid.this, "User Profile Added", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Kid.this, Mainapp.class));
+                Toast.makeText(KidActivity.this, "User Profile_Update Added", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(KidActivity.this, Parent_activity.class));
 
 */
                 saveKids();

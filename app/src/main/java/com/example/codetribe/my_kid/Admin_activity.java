@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Admin extends AppCompatActivity {
+public class Admin_activity extends AppCompatActivity {
 
     String userKey;
     //public static final String ARTIST_ID = "artistid";
@@ -38,7 +38,7 @@ public class Admin extends AppCompatActivity {
         listUsers  = (ListView)findViewById(R.id.listUser);
 
         Intent intent = getIntent();
-        //String id = intent.getStringExtra(Teachers.ARTIST_ID);
+        //String id = intent.getStringExtra(Teachers_activity.ARTIST_ID);
         userKey =  intent.getStringExtra("User_KEY");
 
         user = new ArrayList<>();
@@ -55,7 +55,7 @@ public class Admin extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 UserProfile users =  user.get(i);
 
-                Intent intent = new Intent(getApplicationContext(),Chat.class);
+                Intent intent = new Intent(getApplicationContext(),Uploud_kids_memo.class);
                 intent.putExtra("users_kids", users.getKeyUser());
 
 
@@ -86,7 +86,7 @@ public class Admin extends AppCompatActivity {
 
 
                 }
-                UserArray trackListAdapter = new UserArray(Admin.this,user);
+                UserArray trackListAdapter = new UserArray(Admin_activity.this,user);
                 listUsers.setAdapter(trackListAdapter);
             }
 
