@@ -37,12 +37,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/header_cover_image"
-            android:background="#4ccbff"
+            android:background="#54abee"
             android:elevation="4dp"
             android:paddingBottom="24dp">
             <!-- you can delete these buttons wa dira drop whata what..-->
 
-            <!-- edit profile button -->
+            <!-- edit Profile_Update button -->
 
             <TextView
                 android:id="@+id/editprofile"

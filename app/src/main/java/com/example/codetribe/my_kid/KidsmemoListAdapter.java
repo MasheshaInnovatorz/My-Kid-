@@ -8,7 +8,6 @@ import android.app.Activity;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,13 +19,13 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class ImageListAdapter extends ArrayAdapter<ImageUpload> {
+public class KidsmemoListAdapter extends ArrayAdapter<MemokidsUpload_class> {
     private Activity context;
     private int resource;
-    private List<ImageUpload> listImage;
+    private List<MemokidsUpload_class> listImage;
 
 
-    public ImageListAdapter(@NonNull Activity context, @LayoutRes int resource, @NonNull List<ImageUpload> objects) {
+    public KidsmemoListAdapter(@NonNull Activity context, @LayoutRes int resource, @NonNull List<MemokidsUpload_class> objects) {
         super(context, resource, objects);
         this.context = context;
         this.resource =resource;

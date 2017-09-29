@@ -21,7 +21,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,7 +37,7 @@ import java.util.Iterator;
 
 //import static com.example.codetribe.my_kid.R.id.parentId;
 
-public class Chat extends AppCompatActivity {
+public class Uploud_kids_memo extends AppCompatActivity {
 
 
     private StorageReference mStorageRef;
@@ -60,11 +59,11 @@ public class Chat extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
+        setContentView(R.layout.uploud_kids_memo);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Chat");
+        getSupportActionBar().setTitle("Uploud_kids_memo");
 
 
         Intent intent = getIntent();
@@ -82,7 +81,7 @@ public class Chat extends AppCompatActivity {
 
               Infor(dataSnapshot,userId);
 
-                //Toast.makeText(Chat.this, userId, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Uploud_kids_memo.this, userId, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -167,7 +166,7 @@ public class Chat extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
 
-                    ImageUpload imageUpload = new ImageUpload(txtImageName.getText().toString(),taskSnapshot.getDownloadUrl().toString(),results);
+                    MemokidsUpload_class imageUpload = new MemokidsUpload_class(txtImageName.getText().toString(),taskSnapshot.getDownloadUrl().toString(),results);
 
                     //save image infor in to firebase database
                     String uploadId  = mDatabseRef.push().getKey();
@@ -223,7 +222,7 @@ public class Chat extends AppCompatActivity {
                     results = name + " " + surname;
                 }
                 else{
-                    Toast.makeText(Chat.this, "NOne Existing", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Uploud_kids_memo.this, "NOne Existing", Toast.LENGTH_SHORT).show();
                 }
 
                /* name.setText("Name : " + dataUser.child("userName").getValue().toString());

@@ -8,7 +8,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.codetribe.my_kid.ImageListsActivity">
+    tools:context="com.example.codetribe.my_kid.KidsmemoListsActivity">
 
     <ListView
         android:id="@+id/listViewImage"

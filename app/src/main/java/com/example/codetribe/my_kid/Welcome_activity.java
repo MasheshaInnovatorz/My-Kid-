@@ -25,7 +25,7 @@ import android.widget.TextView;
                         @Override
                         public void onClick(View v) {
 
-                            Intent it = new Intent(Welcome_activity.this,sign_up.class);
+                            Intent it = new Intent(Welcome_activity.this,Sign_up.class);
                             startActivity(it);
 
                         }
@@ -34,7 +34,7 @@ import android.widget.TextView;
                     sin.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                             Intent it = new Intent(Welcome_activity.this, MainActivity.class);
+                             Intent it = new Intent(Welcome_activity.this, LoginActivity.class);
                             startActivity(it);
 
                            /* AlertDialog.Builder mBuilder = new AlertDialog.Builder(Welcome_activity.this);
@@ -56,7 +56,7 @@ import android.widget.TextView;
                                 public void onClick(DialogInterface dialogInterface, int which) {
 
                                     if (mSpinner.getSelectedItem().toString().equalsIgnoreCase("Choose Login type")) {
-                                        //Toast.makeText(MainActivity.this,
+                                        //Toast.makeText(LoginActivity.this,
                                         // m = Spinner.getSelectedItem().toString(),
                                         //Toast.LENGTH_SHORT).show();
 
@@ -66,11 +66,11 @@ import android.widget.TextView;
 
                                     switch(text) {
                                         case "Teacher":
-                                            Intent intent = new Intent(Welcome_activity.this, MainActivity.class);
+                                            Intent intent = new Intent(Welcome_activity.this, LoginActivity.class);
                                             startActivity(intent);
                                             break;
                                         case "Parent":
-                                            Intent i = new Intent(Welcome_activity.this, MainActivity.class);
+                                            Intent i = new Intent(Welcome_activity.this, LoginActivity.class);
                                             startActivity(i);
                                             break;
                                         default:

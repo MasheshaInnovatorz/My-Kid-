@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:background="@drawable/kidsbackground1"
     android:padding="1dp"
-    tools:context="com.example.codetribe.my_kid.Chat">
+    tools:context="com.example.codetribe.my_kid.Uploud_kids_memo">
 
 
 

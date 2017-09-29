@@ -85,13 +85,13 @@ public class View_profile extends AppCompatActivity {
         profilecover=(ImageView) findViewById(R.id.header_cover_image);
 
 
-        //profile edit
+        //Profile_Update edit
         editprofile=(TextView)findViewById(R.id.editprofile);
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent i=new Intent(View_profile.this,profile.class);
+                Intent i=new Intent(View_profile.this,Profile_Update.class);
                 startActivity(i);
             }
         });
@@ -113,7 +113,7 @@ public class View_profile extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                         //   Log.d(TAG, "User profile updated.");
+                         //   Log.d(TAG, "User Profile_Update updated.");
                         }
                     }
                 });*/
@@ -176,7 +176,7 @@ public class View_profile extends AppCompatActivity {
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(View_profile.this,profile.class) ;
+                Intent intent = new Intent(View_profile.this,Profile_Update.class) ;
                 startActivity(intent);
             }
 
