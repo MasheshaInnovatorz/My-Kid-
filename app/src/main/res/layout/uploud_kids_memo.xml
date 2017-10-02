@@ -41,7 +41,6 @@
         android:layout_height="45dp"
         android:background="@drawable/editextstyle"
         android:backgroundTint="#B3E5FC"
-        android:drawableLeft="@drawable/ic_mood_black_24dp"
         android:hint="write kids progress update..."
         android:layout_above="@+id/linearLayout2"
         android:layout_alignParentStart="true"

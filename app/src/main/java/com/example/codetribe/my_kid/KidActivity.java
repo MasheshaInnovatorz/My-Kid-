@@ -78,12 +78,7 @@ public class KidActivity extends AppCompatActivity {
         hintkidid =  (TextInputLayout) findViewById(R.id.hAdress);
         hintpid = (TextInputLayout) findViewById(R.id.hkidid);
         hintParentId=(TextInputLayout) findViewById(R.id.hpid);
-<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/Kid.java
 
-
-
-=======
->>>>>>> 6b3cccec0f4a3806acf8ebc980302fa36f4331ad:app/src/main/java/com/example/codetribe/my_kid/KidActivity.java
 
         Intent intent = getIntent();
         //String id = intent.getStringExtra(Teachers_activity.ARTIST_ID);
