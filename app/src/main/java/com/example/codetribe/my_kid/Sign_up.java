@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Iterator;
 
-public class sign_up extends AppCompatActivity {
+public class Sign_up extends AppCompatActivity {
 
 
     private EditText inputEmail, inputPassword;
@@ -60,7 +60,7 @@ public class sign_up extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(sign_up.this, MainActivity.class));
+                startActivity(new Intent(Sign_up.this, LoginActivity.class));
                 finish();
             }
         });*/
@@ -87,7 +87,7 @@ public class sign_up extends AppCompatActivity {
                         }
                     });
 
-                    //startActivity(new Intent(MainActivity.this, Welcome.class));
+                    //startActivity(new Intent(LoginActivity.this, Welcome.class));
 
                 }else{
 
@@ -141,12 +141,12 @@ public class sign_up extends AppCompatActivity {
                                 mChildDatabase.child("role").setValue("none");
                                 mChildDatabase.child("emailUser").setValue(userEmailString);
                                 mChildDatabase.child("passWordUser").setValue(userPassString);
-                                Toast.makeText(sign_up.this, "User Account Created", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Sign_up.this, "User Account Created", Toast.LENGTH_SHORT).show();
                                 auth.signOut();
-                                startActivity(new Intent(sign_up.this,Welcome_activity.class));
+                                startActivity(new Intent(Sign_up.this,Welcome_activity.class));
 
                             }else{
-                                Toast.makeText(sign_up.this, "User Fialed to login", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Sign_up.this, "User Fialed to login", Toast.LENGTH_SHORT).show();
 
 
                             }
@@ -167,11 +167,11 @@ public class sign_up extends AppCompatActivity {
 
             if(dataUser.child("emailUser").getValue().toString().equals(emailForVer)) {
                 if (dataUser.child("isVerified").getValue().toString().equals("unverified")) {
-                    Intent intent = new Intent(sign_up.this, MainActivity.class);
+                    Intent intent = new Intent(Sign_up.this, LoginActivity.class);
                     intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                     startActivity(intent);
                 } else {
-                    startActivity(new Intent(sign_up.this, Mainapp.class));
+                    startActivity(new Intent(Sign_up.this, Parent_activity.class));
                 }
             }
         }

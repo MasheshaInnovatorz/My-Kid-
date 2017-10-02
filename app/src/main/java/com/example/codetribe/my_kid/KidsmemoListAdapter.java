@@ -19,13 +19,13 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class ImageListAdapter extends ArrayAdapter<ImageUpload> {
+public class KidsmemoListAdapter extends ArrayAdapter<MemokidsUpload_class> {
     private Activity context;
     private int resource;
-    private List<ImageUpload> listImage;
+    private List<MemokidsUpload_class> listImage;
 
 
-    public ImageListAdapter(@NonNull Activity context, @LayoutRes int resource, @NonNull List<ImageUpload> objects) {
+    public KidsmemoListAdapter(@NonNull Activity context, @LayoutRes int resource, @NonNull List<MemokidsUpload_class> objects) {
         super(context, resource, objects);
         this.context = context;
         this.resource =resource;
@@ -39,11 +39,13 @@ public class ImageListAdapter extends ArrayAdapter<ImageUpload> {
         View v=inflater.inflate(resource,null);
 
         TextView tvName=(TextView)v.findViewById(R.id.tvImageName);
+        TextView uploadedName = (TextView)v.findViewById(R.id.senderid);
         ImageView img=(ImageView)v.findViewById(R.id.imgView);
         img.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
 
         tvName.setText(listImage.get(position).getName());
+      uploadedName.setText(listImage.get(position).getPersonUploaded());
         Glide.with(context).load(listImage.get(position).getUri()).into(img);
 
         return  v;

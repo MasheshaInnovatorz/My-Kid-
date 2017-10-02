@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import static com.example.codetribe.my_kid.R.id.gender;
 
-public class profile extends AppCompatActivity {
+public class Profile_Update extends AppCompatActivity {
 
 
       TextView signUpButton;
@@ -43,11 +43,11 @@ private RadioButton rdGenders;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_profile_edit);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Update profile");
+        getSupportActionBar().setTitle("Update Profile_Update");
 
 
 
@@ -134,9 +134,9 @@ private RadioButton rdGenders;
                     databaseReference.child("userGender").setValue(genderString);
                     databaseReference.child("isVerified").setValue("verified");
 
-                    Toast.makeText(profile.this, "User Profile Added", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Profile_Update.this, "User Profile_Update Added", Toast.LENGTH_SHORT).show();
 
-                    startActivity(new Intent(profile.this, Welcome_activity.class));*/
+                    startActivity(new Intent(Profile_Update.this, Welcome_activity.class));*/
 
             }
         });
@@ -171,8 +171,6 @@ private RadioButton rdGenders;
 
                 UserProfile profile = new UserProfile(keyUser, userNameString, inputSurnameString, inputIdnumberString, inputAddressString, inputCityString,userContactString,genderString,isVerified);
 
-
-
         databaseReference.child("userName").setValue(profile.getUserName());
         databaseReference.child("userSurname").setValue(profile.getUserSurname());
         databaseReference.child("userIdNumber").setValue(profile.getUserIdNumber());
@@ -184,13 +182,13 @@ private RadioButton rdGenders;
 
 
 
-             //databaseReference.setValue(profile);
+             //databaseReference.setValue(Profile_Update);
 
-                Toast.makeText(profile.this, "User Profile Added", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(profile.this, Welcome_activity.class));
+                Toast.makeText(Profile_Update.this, "User Profile_Update Added", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Profile_Update.this, Welcome_activity.class));
 
             }else{
-                Toast.makeText(profile.this, "User Failed to add Profile", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Profile_Update.this, "User Failed to add Profile_Update", Toast.LENGTH_SHORT).show();
             }
     }
 

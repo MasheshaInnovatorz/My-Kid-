@@ -18,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Teachers extends AppCompatActivity {
+public class Teachers_activity extends AppCompatActivity {
 
     String userKey;
     //public static final String ARTIST_ID = "artistid";
@@ -39,9 +39,8 @@ public class Teachers extends AppCompatActivity {
         listViewKids  = (ListView)findViewById(R.id.listViewkids);
 
         Intent intent = getIntent();
-        //String id = intent.getStringExtra(Teachers.ARTIST_ID);
+        //String id = intent.getStringExtra(Teachers_activity.ARTIST_ID);
         userKey =  intent.getStringExtra("User_KEY");
-
 
         kid = new ArrayList<>();
 
@@ -58,8 +57,12 @@ public class Teachers extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Kids kido =  kid.get(i);
-                Intent intent = new Intent(getApplicationContext(),Chat.class);
+
+                Intent intent = new Intent(getApplicationContext(),Uploud_kids_memo.class);
                 intent.putExtra("kid_id", kido.getId());
+                intent.putExtra("User_KEY",userKey);
+
+
 
                 startActivity(intent);
             }
@@ -68,10 +71,10 @@ public class Teachers extends AppCompatActivity {
         add_Kids.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =  new Intent(Teachers.this,Kid.class);
+                Intent intent =  new Intent(Teachers_activity.this,KidActivity.class);
                 intent.putExtra("User_KEY",userKey);
                 startActivity(intent);
-                Toast.makeText(Teachers.this,userKey, Toast.LENGTH_SHORT).show();
+                Toast.makeText(Teachers_activity.this,userKey, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -95,7 +98,7 @@ public class Teachers extends AppCompatActivity {
 
                     }
                 }
-                KidsArray trackListAdapter = new KidsArray(Teachers.this,kid);
+                KidsArray trackListAdapter = new KidsArray(Teachers_activity.this,kid);
                 listViewKids.setAdapter(trackListAdapter);
             }
 

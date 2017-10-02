@@ -21,8 +21,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -30,14 +33,17 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Iterator;
 
 //import static com.example.codetribe.my_kid.R.id.parentId;
 
-public class Chat extends AppCompatActivity {
+public class Uploud_kids_memo extends AppCompatActivity {
 
 
     private StorageReference mStorageRef;
-    private DatabaseReference mDatabseRef;
+    private DatabaseReference mDatabseRef,mDatabaseUser;
+
+    private String name, surname, results;
     private ImageView imageview;
     private EditText txtImageName;
     private Uri imgUri;
@@ -46,22 +52,43 @@ public class Chat extends AppCompatActivity {
     public static final String FB_STORAGE_PATH  = "image/";
     public static final String FB_DATABASE_PATH  = "image";
     public static final int REQUEST_CODE = 1234;
-    String idKid;
+
+    String idKid,userId;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
+        setContentView(R.layout.uploud_kids_memo);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Chat");
+        getSupportActionBar().setTitle("Uploud_kids_memo");
 
 
         Intent intent = getIntent();
        idKid= intent.getStringExtra("kid_id");
+       userId=intent.getStringExtra("User_KEY");
 
+
+
+        mDatabaseUser = FirebaseDatabase.getInstance().getReference("Users");
+
+
+        mDatabaseUser.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+              Infor(dataSnapshot,userId);
+
+                //Toast.makeText(Uploud_kids_memo.this, userId, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         //intent.putExtra("parentIdentity",parentId);
 
 
@@ -73,6 +100,7 @@ public class Chat extends AppCompatActivity {
 
         imageview = (ImageView)findViewById(R.id.imageview);
         txtImageName = (EditText)findViewById(R.id.entername);
+
 
         txtBrowse= (TextView)findViewById(R.id.txtBrowse_click);
         txtUpload=(TextView)findViewById(R.id.txtUpload_click);
@@ -138,7 +166,7 @@ public class Chat extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
 
-                    ImageUpload imageUpload = new ImageUpload(txtImageName.getText().toString(),taskSnapshot.getDownloadUrl().toString());
+                    MemokidsUpload_class imageUpload = new MemokidsUpload_class(txtImageName.getText().toString(),taskSnapshot.getDownloadUrl().toString(),results);
 
                     //save image infor in to firebase database
                     String uploadId  = mDatabseRef.push().getKey();
@@ -179,6 +207,42 @@ public class Chat extends AppCompatActivity {
 
     }
 
+
+    private void Infor(DataSnapshot dataSnapshot, String userId){
+
+        Iterator iterator = dataSnapshot.getChildren().iterator();
+
+        while(iterator.hasNext()) {
+            DataSnapshot dataUser = (DataSnapshot) iterator.next();
+
+            if (dataUser.child("userKey").getValue().toString().equals(userId))
+            {
+                    name =  dataUser.child("userName").getValue().toString();
+                    surname  = dataUser.child("userSurname").getValue().toString();
+                    results = name + " " + surname;
+                }
+                else{
+                    Toast.makeText(Uploud_kids_memo.this, "NOne Existing", Toast.LENGTH_SHORT).show();
+                }
+
+               /* name.setText("Name : " + dataUser.child("userName").getValue().toString());
+                surname.setText("Surname : " + dataUser.child("userSurname").getValue().toString());
+                gender.setText("  "+ dataUser.child("userGender").getValue().toString());
+                phonenumber.setText("  "+ dataUser.child("userContact").getValue().toString());
+                address.setText("  "+ dataUser.child("userAddress").getValue().toString());
+                email.setText("  "+ dataUser.child("emailUser").getValue().toString());
+
+
+                //     profilecover.setImageDrawable(dataSnapshot.child("fdsdfs").getRef());
+
+                //Lives in
+
+            }*/
+
+
+        }
+
+    }
 
 
     @Override
