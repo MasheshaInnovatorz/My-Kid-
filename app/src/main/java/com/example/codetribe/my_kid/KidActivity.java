@@ -19,9 +19,19 @@ import com.google.firebase.database.FirebaseDatabase;
 public class KidActivity extends AppCompatActivity {
 
 
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/Kid.java
+
+   // private EditText;
+    //private TextInputLayout  hintname,hintsurname,hintkidid,hintpid,hintParentId;
+
+    private TextInputLayout hintname,hintsurname,hintkidid,hintpid,hintParentId;
+
+
+=======
    // private EditText;
     private TextInputLayout  hintname,hintsurname,hintkidid,hintpid,hintParentId;
 
+>>>>>>> e3d4dd30c39d368612dd979fa60b21a6392afc88:app/src/main/java/com/example/codetribe/my_kid/KidActivity.java
    EditText kidname,
            kidsurname,
            kidaddress,
@@ -66,7 +76,10 @@ public class KidActivity extends AppCompatActivity {
 
 //hint editext
 
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/Kid.java
+=======
 
+>>>>>>> e3d4dd30c39d368612dd979fa60b21a6392afc88:app/src/main/java/com/example/codetribe/my_kid/KidActivity.java
         hintname =(TextInputLayout)findViewById(R.id.hname);
         hintsurname =(TextInputLayout)findViewById(R.id.hSurname);
         hintkidid =(TextInputLayout)findViewById(R.id.hAdress);
@@ -78,6 +91,15 @@ public class KidActivity extends AppCompatActivity {
         hintkidid =  (TextInputLayout) findViewById(R.id.hAdress);
         hintpid = (TextInputLayout) findViewById(R.id.hkidid);
         hintParentId=(TextInputLayout) findViewById(R.id.hpid);
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/Kid.java
+=======
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/Kid.java
+
+>>>>>>> e3d4dd30c39d368612dd979fa60b21a6392afc88:app/src/main/java/com/example/codetribe/my_kid/KidActivity.java
+
+
+=======
+>>>>>>> 6b3cccec0f4a3806acf8ebc980302fa36f4331ad:app/src/main/java/com/example/codetribe/my_kid/KidActivity.java
 
         Intent intent = getIntent();
         //String id = intent.getStringExtra(Teachers_activity.ARTIST_ID);

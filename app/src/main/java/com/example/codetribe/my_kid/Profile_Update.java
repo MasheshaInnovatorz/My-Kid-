@@ -171,8 +171,6 @@ private RadioButton rdGenders;
 
                 UserProfile profile = new UserProfile(keyUser, userNameString, inputSurnameString, inputIdnumberString, inputAddressString, inputCityString,userContactString,genderString,isVerified);
 
-
-
         databaseReference.child("userName").setValue(profile.getUserName());
         databaseReference.child("userSurname").setValue(profile.getUserSurname());
         databaseReference.child("userIdNumber").setValue(profile.getUserIdNumber());

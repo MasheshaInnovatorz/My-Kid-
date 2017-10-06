@@ -35,7 +35,8 @@ import java.util.Iterator;
 public class View_profile extends AppCompatActivity {
 
     private Uri imgUri;
-    private DatabaseReference databaseReference;
+
+
     TextView name,surname,gender,phonenumber,address,email,editprofile;
     String iduser;
     String image_url;
@@ -44,8 +45,12 @@ public class View_profile extends AppCompatActivity {
 
     int RESULT_LOAD_IMG = 1;
 
+    //database
     FirebaseStorage storage;
-    StorageReference storageRef,imagesRef,userProfileRef;
+    private DatabaseReference databaseReference;
+
+    StorageReference storageRef,imagesRef,userProfileRef,callImage;
+
     String user_id;
 
 
@@ -62,7 +67,13 @@ public class View_profile extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+
+
+
+
 
         if ( user != null) {
             user_id = user.getUid();
@@ -73,6 +84,10 @@ public class View_profile extends AppCompatActivity {
         userProfileRef = storageRef.child("images/"+user_id+".jpg");
 
 
+        if(userProfileRef.getDownloadUrl().getResult() != null){
+            Glide.with(getApplicationContext()).load(userProfileRef.getDownloadUrl()).into(photo);
+            Glide.with(getApplicationContext()).load(userProfileRef.getDownloadUrl()).into(profilecover);
+        }
         //initialize
         name = (TextView) findViewById(R.id.user_profile_name);
         surname= (TextView)findViewById(R.id.user_profile_status);
@@ -267,6 +282,14 @@ public class View_profile extends AppCompatActivity {
 
             }
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
+
     }
 
     private void Infor(DataSnapshot dataSnapshot, String userId){
