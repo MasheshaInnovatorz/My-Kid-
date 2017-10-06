@@ -17,5 +17,6 @@ public class Developers extends AppCompatActivity {
         String[] countries={"Select Creche Name","rudzy","tali","pfari"};
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android. R.layout.simple_dropdown_item_1line,countries);
         spinner.setAdapter(adapter);
+        //sdfsdfsdf
     }
 }
