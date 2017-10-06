@@ -29,7 +29,7 @@ import java.util.Iterator;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView login_Button;
- ImageView backtowelcome;
+ ImageView backtowelcome,icon;
 
    //declaring buttons and textiew
     private FirebaseUser mFirebaseUser;
@@ -51,14 +51,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     String uid = "some-uid";
 
 
-
+    private TextInputLayout input_email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
 
-
+        icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                
+            }
+        });
 
       //  getSupportActionBar().setTitle("Login");
 
@@ -72,6 +77,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editPassword= (EditText)findViewById(R.id.password);
         forgot = (TextView)findViewById(R.id.forget_password) ;
         login_Button = (TextView) findViewById(R.id.login);
+
+        input_email= (TextInputLayout)findViewById(R.id.input_reg_fullname);
 
 
         //firebase

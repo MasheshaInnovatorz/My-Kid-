@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -28,19 +28,14 @@
         <activity
             android:name=".Sign_up"
             android:theme="@style/AppTheme.LoginStyle" />
-
         <activity
             android:name=".ResetPassword"
             android:theme="@style/AppTheme.LoginStyle" />
-
-
         <activity
             android:name=".ResetPassword"
             android:theme="@style/AppTheme.LoginStyle" />
-
         <activity android:name=".Profile_Update" />
         <activity android:name=".KidsmemoListsActivity" />
-
         <activity android:name=".Uploud_kids_memo" />
         <activity android:name=".Parent_activity" />
         <activity android:name=".Teachers_activity" />
@@ -48,17 +43,11 @@
             android:name=".Welcome_activity"
             android:theme="@style/AppTheme.LoginStyle" />
         <activity android:name=".KidActivity" />
-
-        <activity android:name=".Admin_activity"></activity>
-
-
+        <activity android:name=".Admin_activity" />
         <activity
-            android:name=".View_profile" android:theme="@style/AppTheme.LoginStyle">
-
-
-        </activity>
-
-
+            android:name=".View_profile"
+            android:theme="@style/AppTheme.LoginStyle"></activity>
+        <activity android:name=".Developers"></activity>
     </application>
 
 </manifest>

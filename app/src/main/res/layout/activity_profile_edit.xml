@@ -113,7 +113,6 @@
                     android:maxLength="12"
                     android:textColor="#ADCCE2"
                     android:background="#0000"
-
                     android:padding="16dp"
                     android:layout_marginRight="35dp"/>
 
@@ -172,7 +171,7 @@
                     android:hint="Id Number"
                     android:textColorHint="#ADCCE2"
                     android:layout_marginLeft="22dp"
-                    android:inputType="textCapWords"
+                    android:inputType="numberDecimal"
                     android:maxLength="12"
                     android:textColor="#ADCCE2"
                     android:background="#0000"
@@ -202,7 +201,7 @@
                     android:hint="Phone Number"
                     android:textColorHint="#ADCCE2"
                     android:layout_marginLeft="22dp"
-                    android:inputType="textCapWords"
+                    android:inputType="numberDecimal"
                     android:maxLength="12"
                     android:textColor="#ADCCE2"
                     android:background="#0000"

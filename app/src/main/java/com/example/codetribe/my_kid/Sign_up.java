@@ -3,6 +3,7 @@ package com.example.codetribe.my_kid;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -30,6 +31,7 @@ public class Sign_up extends AppCompatActivity {
    // private Button
     TextView mainNav,btnSignUp;
 
+    private TextInputLayout input_email1;
     //firebase Authentification
     private FirebaseAuth auth;
     FirebaseAuth.AuthStateListener mAuthListener;
@@ -54,7 +56,7 @@ public class Sign_up extends AppCompatActivity {
         inputPassword = (EditText) findViewById(R.id.signupPassword);
        // mainNav = (TextView)findViewById(R.id.login);
 
-
+        input_email1= (TextInputLayout)findViewById(R.id.input_email);
         /*mainNav.setOnClickListener(new View.OnClickListener(){
 
             @Override
