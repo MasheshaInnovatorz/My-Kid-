@@ -23,15 +23,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class ImageListsActivity extends AppCompatActivity {
+public class KidsmemoListsActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseRef,childRef;
 
-    private List<ImageUpload> imgList;
+    private List<MemokidsUpload_class> imgList;
     private ListView iv;
-    private ImageListAdapter adapter;
+    private KidsmemoListAdapter adapter;
     private ProgressDialog progressDialog;
     private String KidsId;
-    String parentid;
+    String parentid,userKey;
     private Button btnparticipate;
     private TextView sendKids;
     String Surname,name;
@@ -39,7 +39,7 @@ public class ImageListsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_image_lists);
+        setContentView(R.layout.activity_kidsmemo_lists);
 
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -49,6 +49,8 @@ public class ImageListsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
        parentid= intent.getStringExtra("parentIdentity");
+        userKey= intent.getStringExtra("User_KEY");
+
 
 
         imgList=new ArrayList<>();
@@ -62,7 +64,7 @@ public class ImageListsActivity extends AppCompatActivity {
         progressDialog.setMessage("Please wait While Loading Kid Memories");
         progressDialog.show();
 
-        mDatabaseRef= FirebaseDatabase.getInstance().getReference(Chat.FB_DATABASE_PATH);
+        mDatabaseRef= FirebaseDatabase.getInstance().getReference(Uploud_kids_memo.FB_DATABASE_PATH);
         childRef = FirebaseDatabase.getInstance().getReference("Kids");
         btnparticipate = (Button)findViewById(R.id.btnParticipate);
 
@@ -94,12 +96,16 @@ public class ImageListsActivity extends AppCompatActivity {
 
                         for(DataSnapshot snapshot : dataUser.getChildren()){
 
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/ImageListsActivity.java
 
 
 
                             Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
 
                        ImageUpload img = snapshot.getValue(ImageUpload.class);
+=======
+                       MemokidsUpload_class img = snapshot.getValue(MemokidsUpload_class.class);
+>>>>>>> 8e30d93c600b1fbb2293eb17d630bb1d26dff173:app/src/main/java/com/example/codetribe/my_kid/KidsmemoListsActivity.java
                             imgList.add(img);
 
 
@@ -109,7 +115,7 @@ public class ImageListsActivity extends AppCompatActivity {
 
 
                         //init adapter
-                        adapter=new ImageListAdapter(ImageListsActivity.this,R.layout.image_item,imgList);
+                        adapter=new KidsmemoListAdapter(KidsmemoListsActivity.this,R.layout.kids_memo_lists_activity,imgList);
                         iv.setAdapter(adapter);
 
                         Toast.makeText(this, kidsUser.child("parentid").getValue().toString(), Toast.LENGTH_SHORT).show();
@@ -169,11 +175,13 @@ public class ImageListsActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
 
-                                Intent intent = new Intent(ImageListsActivity.this,Chat.class);
+                                Intent intent = new Intent(KidsmemoListsActivity.this,Uploud_kids_memo.class);
                                 intent.putExtra("kid_id",KidsId);
+                                intent.putExtra("User_KEY",userKey);
+
                                 startActivity(intent);
 
-                                Toast.makeText(ImageListsActivity.this, KidsId, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(KidsmemoListsActivity.this, KidsId, Toast.LENGTH_SHORT).show();
                             }
                         });
 
@@ -185,11 +193,11 @@ public class ImageListsActivity extends AppCompatActivity {
 
 
                             snapshot.child("parentid").getValue().toString().equals(parentid);
-                            ImageUpload img=snapshot.getValue(ImageUpload.class);
+                            MemokidsUpload_class img=snapshot.getValue(MemokidsUpload_class.class);
                             imgList.add(img);
                         }
                         //init adapter
-                        adapter=new ImageListAdapter(ImageListsActivity.this,R.layout.image_item,imgList);
+                        adapter=new KidsmemoListAdapter(KidsmemoListsActivity.this,R.layout.kids_memo_lists_activity,imgList);
                         iv.setAdapter(adapter);*/
                     }
 

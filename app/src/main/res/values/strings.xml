@@ -7,16 +7,13 @@
     <string name="err_msg_email">Enter valid email address</string>
     <string name="err_msg_password">Enter the password</string>
 
-    <string-array name="LoginType">
+    <string-array name="user_role">
         <item>Teacher</item>
         <item>Parent</item>
+
     </string-array>
-    <array name="genres">
-        <item>Rock</item>
-        <item>Sufi</item>
-        <item>Pop</item>
-        <item>Folk</item>
-    </array>
+
+
     <string name="title_activity_mainapp">Mainapp</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>

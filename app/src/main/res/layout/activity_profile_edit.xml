@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:background="@drawable/kidsbackground1"
     android:layout_height="match_parent"
-    tools:context="com.example.codetribe.my_kid.profile">
+    tools:context="com.example.codetribe.my_kid.Profile_Update">
 
 <ScrollView
     android:layout_width="match_parent"
@@ -113,7 +113,6 @@
                     android:maxLength="12"
                     android:textColor="#ADCCE2"
                     android:background="#0000"
-
                     android:padding="16dp"
                     android:layout_marginRight="35dp"/>
 
@@ -172,7 +171,7 @@
                     android:hint="Id Number"
                     android:textColorHint="#ADCCE2"
                     android:layout_marginLeft="22dp"
-                    android:inputType="textCapWords"
+                    android:inputType="numberDecimal"
                     android:maxLength="12"
                     android:textColor="#ADCCE2"
                     android:background="#0000"
@@ -202,7 +201,7 @@
                     android:hint="Phone Number"
                     android:textColorHint="#ADCCE2"
                     android:layout_marginLeft="22dp"
-                    android:inputType="textCapWords"
+                    android:inputType="numberDecimal"
                     android:maxLength="12"
                     android:textColor="#ADCCE2"
                     android:background="#0000"

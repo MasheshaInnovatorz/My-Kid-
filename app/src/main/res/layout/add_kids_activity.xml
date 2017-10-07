@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD:app/src/main/res/layout/activity_kid.xml
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+=======
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+>>>>>>> 8e30d93c600b1fbb2293eb17d630bb1d26dff173:app/src/main/res/layout/add_kids_activity.xml
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@drawable/kidsbackground1"
     android:layout_height="match_parent"
-    tools:context="com.example.codetribe.my_kid.profile">
+    tools:context="com.example.codetribe.my_kid.Profile_Update">
 
 
     <ScrollView

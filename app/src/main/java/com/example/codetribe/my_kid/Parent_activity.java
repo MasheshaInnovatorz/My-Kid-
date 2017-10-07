@@ -11,13 +11,13 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Mainapp extends AppCompatActivity {
+public class Parent_activity extends AppCompatActivity {
 
     String idLoged,parentId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mainapp);
+        setContentView(R.layout.parent_activity);
 
         Intent keyId = getIntent();
         idLoged = keyId.getStringExtra("User_KEY");
@@ -33,8 +33,9 @@ public class Mainapp extends AppCompatActivity {
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Mainapp.this, Chat.class);
+                Intent intent = new Intent(Parent_activity.this, Uploud_kids_memo.class);
                 intent.putExtra("kid_id",idLoged);
+                intent.putExtra("User_KEY",idLoged);
                 intent.putExtra("parentIdentity",parentId);
                 startActivity(intent);
             }
@@ -43,8 +44,9 @@ public class Mainapp extends AppCompatActivity {
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Mainapp.this,ImageListsActivity .class);
+                Intent intent = new Intent(Parent_activity.this,KidsmemoListsActivity.class);
                 intent.putExtra("kid_id",idLoged);
+                intent.putExtra("User_KEY",idLoged);
                 intent.putExtra("parentIdentity",parentId);
                 startActivity(intent);
             }
@@ -53,7 +55,7 @@ public class Mainapp extends AppCompatActivity {
         profilek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Mainapp.this,profile.class);
+                Intent intent = new Intent(Parent_activity.this,Profile_Update.class);
                 intent.putExtra("kid_id",idLoged);
                 startActivity(intent);
             }
@@ -84,7 +86,7 @@ public class Mainapp extends AppCompatActivity {
 
             case R.id.view_profile:
 
-                Intent intent = new Intent(Mainapp.this,View_profile.class);
+                Intent intent = new Intent(Parent_activity.this,View_profile.class);
                 intent.putExtra("parent_user",idLoged);
                 startActivity(intent);
                 return true;
@@ -94,7 +96,7 @@ public class Mainapp extends AppCompatActivity {
 
     private void logout() {
         FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(Mainapp.this,MainActivity.class) ;
+        Intent intent = new Intent(Parent_activity.this,LoginActivity.class) ;
         startActivity(intent);
     }
 

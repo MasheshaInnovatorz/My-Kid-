@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.codetribe.my_kid.ImageListsActivity">
+    tools:context="com.example.codetribe.my_kid.KidsmemoListsActivity">
 
     <ListView
         android:id="@+id/listViewImage"
-        android:layout_width="368dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
     />
 
@@ -26,9 +26,17 @@
             android:background="@drawable/angle"
             android:textColor="#fff"
             android:textAlignment="center"
+<<<<<<< HEAD:app/src/main/res/layout/activity_image_lists.xml
             android:drawableLeft="@drawable/ic_edit_black_24dp"
             android:layout_height="30dp"
             android:text="Participate"/>
+=======
+            android:text="Participate"
+            android:drawableLeft="@drawable/ic_edit_black_24dp"
+            android:layout_height="30dp"/>
+
+
+>>>>>>> 8e30d93c600b1fbb2293eb17d630bb1d26dff173:app/src/main/res/layout/activity_kidsmemo_lists.xml
 
     </LinearLayout>
 </RelativeLayout>

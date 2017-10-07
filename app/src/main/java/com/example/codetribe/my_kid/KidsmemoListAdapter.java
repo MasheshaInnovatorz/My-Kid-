@@ -19,13 +19,13 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class ImageListAdapter extends ArrayAdapter<ImageUpload> {
+public class KidsmemoListAdapter extends ArrayAdapter<MemokidsUpload_class> {
     private Activity context;
     private int resource;
-    private List<ImageUpload> listImage;
+    private List<MemokidsUpload_class> listImage;
 
 
-    public ImageListAdapter(@NonNull Activity context, @LayoutRes int resource, @NonNull List<ImageUpload> objects) {
+    public KidsmemoListAdapter(@NonNull Activity context, @LayoutRes int resource, @NonNull List<MemokidsUpload_class> objects) {
         super(context, resource, objects);
         this.context = context;
         this.resource =resource;
@@ -40,13 +40,18 @@ public class ImageListAdapter extends ArrayAdapter<ImageUpload> {
 
         TextView kidsName = (TextView)v.findViewById(R.id.kidsNameId);
         TextView tvName=(TextView)v.findViewById(R.id.tvImageName);
+        TextView uploadedName = (TextView)v.findViewById(R.id.senderid);
         ImageView img=(ImageView)v.findViewById(R.id.imgView);
 
         img.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
 
         tvName.setText(listImage.get(position).getName());
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/ImageListAdapter.java
         kidsName.setText((listImage.get(position).getPersonsUploaded()));
+=======
+      uploadedName.setText(listImage.get(position).getPersonUploaded());
+>>>>>>> 8e30d93c600b1fbb2293eb17d630bb1d26dff173:app/src/main/java/com/example/codetribe/my_kid/KidsmemoListAdapter.java
         Glide.with(context).load(listImage.get(position).getUri()).into(img);
 
         return  v;
