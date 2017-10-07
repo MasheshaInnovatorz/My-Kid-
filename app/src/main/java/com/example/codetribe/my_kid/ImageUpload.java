@@ -5,18 +5,22 @@ package com.example.codetribe.my_kid;
  */
 
 public class ImageUpload {
-    public String name;
-    public String uri;
+    private String name;
+    private String personsUploaded;
+    private String uri;
 
-    public ImageUpload(String name, String uri) {
+    public ImageUpload(String name, String uri, String personsUploaded){
         this.name = name;
         this.uri = uri;
+        this.personsUploaded = personsUploaded;
     }
 
     public ImageUpload() {
         this.name = name;
         this.uri = uri;
+        this.personsUploaded = personsUploaded;
     }
+
 
     public String getName() {
         return name;
@@ -26,5 +30,8 @@ public class ImageUpload {
         return uri;
     }
 
+    public String getPersonsUploaded() {
+        return personsUploaded;
+    }
 
 }

@@ -28,6 +28,8 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import org.w3c.dom.Text;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -41,12 +43,12 @@ public class Chat extends AppCompatActivity {
     private ImageView imageview;
     private EditText txtImageName;
     private Uri imgUri;
-    private TextView txtUpload, txtBrowse;
+    private TextView txtUpload, txtBrowse,personUploaded;
 
     public static final String FB_STORAGE_PATH  = "image/";
     public static final String FB_DATABASE_PATH  = "image";
     public static final int REQUEST_CODE = 1234;
-    String idKid;
+    String idKid,nameOfUploader;
 
 
     @Override
@@ -61,6 +63,8 @@ public class Chat extends AppCompatActivity {
 
         Intent intent = getIntent();
        idKid= intent.getStringExtra("kid_id");
+        nameOfUploader= intent.getStringExtra("userUpLoader");
+
 
         //intent.putExtra("parentIdentity",parentId);
 
@@ -76,6 +80,7 @@ public class Chat extends AppCompatActivity {
 
         txtBrowse= (TextView)findViewById(R.id.txtBrowse_click);
         txtUpload=(TextView)findViewById(R.id.txtUpload_click);
+        personUploaded=(TextView)findViewById(R.id.kidsNameId);
 
 
         txtBrowse.setOnClickListener(new View.OnClickListener() {
@@ -138,7 +143,7 @@ public class Chat extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
 
-                    ImageUpload imageUpload = new ImageUpload(txtImageName.getText().toString(),taskSnapshot.getDownloadUrl().toString());
+                    ImageUpload imageUpload = new ImageUpload(txtImageName.getText().toString(),taskSnapshot.getDownloadUrl().toString(),nameOfUploader);
 
                     //save image infor in to firebase database
                     String uploadId  = mDatabseRef.push().getKey();

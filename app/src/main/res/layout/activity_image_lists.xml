@@ -15,13 +15,19 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:orientation="vertical"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_height="wrap_content">
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="13dp">
+
         <Button
             android:id="@+id/btnParticipate"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:background="@drawable/angle"
+            android:textColor="#fff"
+            android:textAlignment="center"
+            android:drawableLeft="@drawable/ic_edit_black_24dp"
+            android:layout_height="30dp"
             android:text="Participate"/>
 
     </LinearLayout>
