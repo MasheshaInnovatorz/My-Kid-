@@ -26,8 +26,23 @@ public class Profile_Update extends AppCompatActivity {
 
       TextView signUpButton;
     private TextView editprofile;
-    private EditText inputName, inputSurname, inputEmail, inputIdnumber, inputAddress, inputCity, inputCellphoneNumber,reg_idnumberhint;
-    private TextInputLayout inputLayoutName, inputLayoutSurname, inputLayoutEmail, inputLayoutPassword, inputLayoutIdnumber;
+
+    private EditText inputName,
+                     inputSurname,
+                     inputIdnumber,
+                     inputAddress,
+                     inputCity,
+                     inputCellphoneNumber;
+
+
+    //validdation
+    private TextInputLayout inputLayoutName,
+                            inputLayoutSurname,
+                            inputLayoutAddress,
+                            inputLayoutCity,
+                            inputLayoutIdNumber,
+                            inputLayoutNumber;
+
     //private Button signUpButton;
     RadioGroup radGender;
 
@@ -64,48 +79,32 @@ private RadioButton rdGenders;
        // signupLink = (TextView) findViewById(R.id.back_to_signup);
         signUpButton = (TextView) findViewById(R.id.btnRegister);
 
-        //Edit lessons
-
-
+        //Edit lText
         inputName = (EditText) findViewById(R.id.reg_fullname);
         inputSurname = (EditText) findViewById(R.id.reg_Surname);
-        //inputEmail = (EditText) findViewById(R.id.reg_email);
-        //inputPassword = (EditText) findViewById(R.id.reg_password);
-
-       // inputIdnumber = (EditText) findViewById(R.id.reg_idParents);
-        //inputIdnumber = (EditText) findViewById(R.id.reg_idParents);
-
         inputAddress = (EditText) findViewById(R.id.reg_address);
         inputCity = (EditText) findViewById(R.id.reg_city);
         inputCellphoneNumber = (EditText) findViewById(R.id.reg_phone);
         radGender = (RadioGroup)findViewById(gender);
         inputIdnumber= (EditText) findViewById(R.id.reg_idnumber);
 
-
-
-
-
-
         //TextLayout
-
         inputLayoutName = (TextInputLayout)findViewById(R.id.input_reg_fullname);
         inputLayoutSurname = (TextInputLayout)findViewById(R.id.input_reg_Surname);
-
-       // inputLayoutEmail = (TextInputLayout) findViewById(R.id.input_layout_email);
-       // inputLayoutPassword = (TextInputLayout)findViewById(R.id.input_layout_password);
-       //inputLayoutIdnumber = (TextInputLayout)findViewById(R.id.input_reg_idParents);
-
-      //  inputLayoutEmail = (TextInputLayout) findViewById(R.id.input_layout_email);
-     //   inputLayoutPassword = (TextInputLayout)findViewById(R.id.input_layout_password);
-      //  inputLayoutIdnumber = (TextInputLayout)findViewById(R.id.input_reg_idParents);
+        inputLayoutAddress = (TextInputLayout)findViewById(R.id.input_reg_address);
+        inputLayoutCity = (TextInputLayout) findViewById(R.id.input_reg_city);
+        inputLayoutIdNumber = (TextInputLayout)findViewById(R.id.input_reg_idNumber);
+        inputLayoutNumber = (TextInputLayout) findViewById(R.id.input_reg_phoneNo);
 
 
         //watcher
-        //inputName.addTextChangedListener(new MyInputWatcher(inputName));
-        //inputSurname.addTextChangedListener(new MyInputWatcher(inputSurname));
-        //inputEmail.addTextChangedListener(new MyInputWatcher(inputEmail));
-        //inputPassword.addTextChangedListener(new MyInputWatcher(inputPassword));
-        //inputIdnumber.addTextChangedListener(new MyInputWatcher(inputIdnumber));
+        inputName.addTextChangedListener(new MyInputWatcher(inputName));
+        inputSurname.addTextChangedListener(new MyInputWatcher(inputSurname));
+        inputAddress.addTextChangedListener(new MyInputWatcher(inputAddress));
+        inputCity.addTextChangedListener(new MyInputWatcher(inputCity));
+        inputIdnumber.addTextChangedListener(new MyInputWatcher(inputIdnumber));
+        inputCellphoneNumber.addTextChangedListener(new MyInputWatcher(inputCellphoneNumber));
+
        signUpButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -113,30 +112,7 @@ private RadioButton rdGenders;
                 //submitForm();
 
                 saveProfile();
-              /*  userNameString = inputName.getText().toString().trim();
-           userContactString = inputCellphoneNumber.getText().toString().trim();
-                inputSurnameString = inputSurname.getText().toString().trim();
-                inputIdnumberString = inputIdnumber.getText().toString().trim();
-                inputAddressString = inputAddress.getText().toString().trim();
-                inputCityString = inputCity.getText().toString().trim();
-                int selectedId= radGender.getCheckedRadioButtonId();
-                rdGenders =(RadioButton)findViewById(selectedId);
-                genderString  = rdGenders.getText().toString();
 
-
-
-                    databaseReference.child("userName").setValue(userNameString);
-                    databaseReference.child("userSurname").setValue(inputSurnameString);
-                    databaseReference.child("userIdNumber").setValue(inputIdnumberString);
-                    databaseReference.child("userContact").setValue(userContactString);
-                    databaseReference.child("userAddress").setValue(inputAddressString);
-                    databaseReference.child("userCity").setValue(inputCityString);
-                    databaseReference.child("userGender").setValue(genderString);
-                    databaseReference.child("isVerified").setValue("verified");
-
-                    Toast.makeText(Profile_Update.this, "User Profile_Update Added", Toast.LENGTH_SHORT).show();
-
-                    startActivity(new Intent(Profile_Update.this, Welcome_activity.class));*/
 
             }
         });
@@ -145,7 +121,7 @@ private RadioButton rdGenders;
 
     private void saveProfile(){
 
-       // submitForm();
+        submitForm();
 
         userNameString = inputName.getText().toString().trim();
         userContactString = inputCellphoneNumber.getText().toString().trim();
@@ -199,23 +175,24 @@ private RadioButton rdGenders;
         if (!validateSurname()) {
             return;
         }
-        /*if (!validateIdNumber()) {
+        if (!validateIdNumber()) {
             return;
-        }*/
+        }
 
-       /* if (!validateEmail()) {
-            return;
-        }*/
 
-       /* if (!validatePassword()) {
-            return;
-        }*/
 
-       // Toast.makeText(getApplicationContext(), "Thank You!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Thank You!", Toast.LENGTH_SHORT).show();
     }
 
     private boolean validateFullName() {
         if (inputName.getText().toString().trim().isEmpty()) {
+            if (inputName.getText().toString().length() <=6) {
+
+                inputLayoutName.setError("Your name is too short atleast >6 letters will do");
+                return false;
+            }else{
+                inputLayoutName.setErrorEnabled(false);
+            }
             inputLayoutName.setError(getString(R.string.err_msg_name));
             requestFocus(inputName);
             return false;
@@ -236,16 +213,38 @@ private RadioButton rdGenders;
         return true;
     }
 
-    /*private boolean validateIdNumber() {
+    private boolean validateIdNumber() {
         if (inputIdnumber.getText().toString().trim().isEmpty()) {
-            inputLayoutIdnumber.setError(getString(R.string.err_msg_idnumber));
+            if(inputIdnumber.getText().toString().length() <13 || inputIdnumber.getText().toString().length() >13){
+                inputLayoutIdNumber.setError("Identity Number Should be 13 digits");
+            }
+            inputLayoutIdNumber.setError(getString(R.string.err_msg_idnumber));
             requestFocus(inputIdnumber);
             return false;
         } else {
-            inputLayoutIdnumber.setErrorEnabled(false);
+            inputLayoutIdNumber.setErrorEnabled(false);
         }
         return true;
-    }*/
+    }
+
+    /*
+      //Edit lText
+        inputName = (EditText) findViewById(R.id.reg_fullname);
+        inputSurname = (EditText) findViewById(R.id.reg_Surname);
+        inputAddress = (EditText) findViewById(R.id.reg_address);
+        inputCity = (EditText) findViewById(R.id.reg_city);
+        inputCellphoneNumber = (EditText) findViewById(R.id.reg_phone);
+        radGender = (RadioGroup)findViewById(gender);
+        inputIdnumber= (EditText) findViewById(R.id.reg_idnumber);
+
+        //TextLayout
+        inputLayoutName = (TextInputLayout)findViewById(R.id.input_reg_fullname);
+        inputLayoutSurname = (TextInputLayout)findViewById(R.id.input_reg_Surname);
+        inputLayoutAddress = (TextInputLayout)findViewById(R.id.input_reg_address);
+        inputLayoutCity = (TextInputLayout) findViewById(R.id.input_reg_city);
+        inputLayoutIdNumber = (TextInputLayout)findViewById(R.id.input_reg_idNumber);
+        inputLayoutNumber = (TextInputLayout) findViewById(R.id.input_reg_phone);
+     */
 
    /* private boolean validatePassword() {
         if (inputPassword.getText().toString().trim().isEmpty()) {
