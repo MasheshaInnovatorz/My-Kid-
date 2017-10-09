@@ -34,6 +34,8 @@ import android.widget.TextView;
                     sin.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+
+
                              Intent it = new Intent(Welcome_activity.this, LoginActivity.class);
                             startActivity(it);
 

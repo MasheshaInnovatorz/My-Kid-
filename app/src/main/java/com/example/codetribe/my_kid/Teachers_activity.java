@@ -58,12 +58,9 @@ public class Teachers_activity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Kids kido =  kid.get(i);
-<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/Teachers.java
-                Intent intent = new Intent(getApplicationContext(),Chat.class);
-=======
+
 
                 Intent intent = new Intent(getApplicationContext(),Uploud_kids_memo.class);
->>>>>>> 8e30d93c600b1fbb2293eb17d630bb1d26dff173:app/src/main/java/com/example/codetribe/my_kid/Teachers_activity.java
                 intent.putExtra("kid_id", kido.getId());
                 intent.putExtra("User_KEY",userKey);
 

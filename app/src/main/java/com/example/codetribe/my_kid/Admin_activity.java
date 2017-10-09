@@ -45,11 +45,11 @@ public class Admin_activity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
 
 
-        spinner=(Spinner)findViewById(R.id.spinner2);
+       /* spinner=(Spinner)findViewById(R.id.spinner2);
         String[] countries={"rudzy","tali","pfari"};
         ArrayAdapter<String>adapter=new ArrayAdapter<String>(this,android. R.layout.simple_dropdown_item_1line,countries);
         spinner.setAdapter(adapter);
-
+*/
 
         listUsers = (ListView) findViewById(R.id.listUser);
 

@@ -96,16 +96,13 @@ public class KidsmemoListsActivity extends AppCompatActivity {
 
                         for(DataSnapshot snapshot : dataUser.getChildren()){
 
-<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/ImageListsActivity.java
 
 
 
                             Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
 
-                       ImageUpload img = snapshot.getValue(ImageUpload.class);
-=======
                        MemokidsUpload_class img = snapshot.getValue(MemokidsUpload_class.class);
->>>>>>> 8e30d93c600b1fbb2293eb17d630bb1d26dff173:app/src/main/java/com/example/codetribe/my_kid/KidsmemoListsActivity.java
+
                             imgList.add(img);
 
 

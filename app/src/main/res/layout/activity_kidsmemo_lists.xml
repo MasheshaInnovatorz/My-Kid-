@@ -26,17 +26,10 @@
             android:background="@drawable/angle"
             android:textColor="#fff"
             android:textAlignment="center"
-<<<<<<< HEAD:app/src/main/res/layout/activity_image_lists.xml
             android:drawableLeft="@drawable/ic_edit_black_24dp"
             android:layout_height="30dp"
             android:text="Participate"/>
-=======
-            android:text="Participate"
-            android:drawableLeft="@drawable/ic_edit_black_24dp"
-            android:layout_height="30dp"/>
 
-
->>>>>>> 8e30d93c600b1fbb2293eb17d630bb1d26dff173:app/src/main/res/layout/activity_kidsmemo_lists.xml
 
     </LinearLayout>
 </RelativeLayout>

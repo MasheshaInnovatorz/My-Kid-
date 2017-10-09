@@ -54,12 +54,8 @@ public class Uploud_kids_memo extends AppCompatActivity {
     public static final String FB_STORAGE_PATH  = "image/";
     public static final String FB_DATABASE_PATH  = "image";
     public static final int REQUEST_CODE = 1234;
-<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/Chat.java
-    String idKid,nameOfUploader;
-=======
 
     String idKid,userId;
->>>>>>> 8e30d93c600b1fbb2293eb17d630bb1d26dff173:app/src/main/java/com/example/codetribe/my_kid/Uploud_kids_memo.java
 
 
     @Override
@@ -74,10 +70,7 @@ public class Uploud_kids_memo extends AppCompatActivity {
 
         Intent intent = getIntent();
        idKid= intent.getStringExtra("kid_id");
-<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/Chat.java
-        nameOfUploader= intent.getStringExtra("userUpLoader");
-
-=======
+        results= intent.getStringExtra("userUpLoader");
        userId=intent.getStringExtra("User_KEY");
 
 
@@ -88,7 +81,6 @@ public class Uploud_kids_memo extends AppCompatActivity {
         mDatabaseUser.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
->>>>>>> 8e30d93c600b1fbb2293eb17d630bb1d26dff173:app/src/main/java/com/example/codetribe/my_kid/Uploud_kids_memo.java
 
               Infor(dataSnapshot,userId);
 
@@ -178,11 +170,7 @@ public class Uploud_kids_memo extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
 
-<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/Chat.java
-                    ImageUpload imageUpload = new ImageUpload(txtImageName.getText().toString(),taskSnapshot.getDownloadUrl().toString(),nameOfUploader);
-=======
                     MemokidsUpload_class imageUpload = new MemokidsUpload_class(txtImageName.getText().toString(),taskSnapshot.getDownloadUrl().toString(),results);
->>>>>>> 8e30d93c600b1fbb2293eb17d630bb1d26dff173:app/src/main/java/com/example/codetribe/my_kid/Uploud_kids_memo.java
 
                     //save image infor in to firebase database
                     String uploadId  = mDatabseRef.push().getKey();
