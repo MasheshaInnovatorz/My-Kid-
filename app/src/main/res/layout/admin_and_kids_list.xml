@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@drawable/kidsbackground1"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/timg"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textKidsName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/email_view"
+            android:layout_below="@+id/email_view"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/textviewsstyle"
+            android:onClick="sos"
+            android:padding="10dp"
+            android:text="User : Mudau Rudzani"
+            android:textColor="#FFFFFF" />
+
+
+        <TextView
+            android:id="@+id/textKidsSurname"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textKidsName"
+            android:layout_below="@+id/textKidsName"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="31dp"
+            android:background="@drawable/textviewsstyle"
+            android:padding="10dp"
+            android:text="account status : Active"
+            android:textColor="#FFFFFF" />
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textKidsSurname"
+            android:layout_below="@+id/textKidsSurname"
+            android:layout_marginTop="197dp"
+            android:background="@drawable/textviewsstyle"
+            android:padding="16dp"
+            android:text="Change User Role"
+            android:textColor="#fff"
+            android:textSize="16dp" />
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="29dp"
+            android:padding="10dp"
+            android:spinnerMode="dropdown"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

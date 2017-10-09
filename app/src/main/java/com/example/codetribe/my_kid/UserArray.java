@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.List;
@@ -30,10 +31,11 @@ public class UserArray extends ArrayAdapter<UserProfile>{
     public View getView(int position, View convertView, ViewGroup parent){
         LayoutInflater inflater = context.getLayoutInflater();
 
-        View listViewItem = inflater.inflate(R.layout.kids_list,null,true);
+        View listViewItem = inflater.inflate(R.layout.admin_and_kids_list,null,true);
 
         TextView textKdName = (TextView) listViewItem.findViewById(R.id.textKidsName);
         TextView surname = (TextView) listViewItem.findViewById(R.id.textKidsSurname);
+
 
         UserProfile kids = userList.get(position);
 

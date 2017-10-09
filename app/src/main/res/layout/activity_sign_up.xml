@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/kidsbackground1">
 
     <RelativeLayout
@@ -37,6 +38,10 @@
             android:orientation="vertical"
             android:layout_alignParentBottom="true">
 
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             <EditText
                 android:textSize="16dp"
@@ -48,10 +53,12 @@
                 android:textColorHint="#ADCCE2"
                 android:textColor="#ADCCE2"
                 android:layout_marginLeft="22dp"
-                android:inputType="text"
+                android:inputType="textEmailAddress"
                 android:background="#0000"
                 android:padding="16dp"
                 android:layout_marginRight="35dp"/>
+            </android.support.design.widget.TextInputLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_marginLeft="40dp"
@@ -59,21 +66,35 @@
                 android:layout_height="1dp"
                 android:background="#ADCCE2" />
 
-            <EditText
-                android:textSize="16dp"
-                android:id="@+id/signupPassword"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
-                android:textColorHint="#ADCCE2"
-                android:layout_marginLeft="22dp"
-                android:inputType="textPassword"
-                android:maxLength="12"
-                android:textColor="#ADCCE2"
-                android:background="#0000"
-                android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
-                android:padding="16dp"
-                android:layout_marginRight="35dp"/>
+                app:passwordToggleContentDescription="ruuu"
+                app:passwordToggleDrawable="@drawable/ic_remove_red_eye_black_24dp"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="#ADCCE2">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/signupPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="35dp"
+                    android:background="#0000"
+                    android:drawableStart="@drawable/ic_lock_outline_black_24dp"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:maxLength="12"
+                    android:padding="16dp"
+                    android:text="pfaruso"
+                    android:textColor="#ADCCE2"
+                    android:textColorHint="#ADCCE2"
+                    android:textSize="16dp"
+
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+
             <View
                 android:layout_width="match_parent"
                 android:layout_marginLeft="40dp"

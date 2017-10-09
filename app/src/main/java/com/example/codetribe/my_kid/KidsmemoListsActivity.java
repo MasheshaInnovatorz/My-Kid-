@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -32,6 +33,8 @@ public class KidsmemoListsActivity extends AppCompatActivity {
     private String KidsId;
     String parentid,userKey;
     private Button btnparticipate;
+    private TextView sendKids;
+    String Surname,name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +56,19 @@ public class KidsmemoListsActivity extends AppCompatActivity {
         imgList=new ArrayList<>();
         iv=(ListView)findViewById(R.id.listViewImage);
 
+
+
+
         //show progress dialog during list image loading
         progressDialog=new ProgressDialog(this);
-        progressDialog.setMessage("Please wait While Loading List Image");
+        progressDialog.setMessage("Please wait While Loading Kid Memories");
         progressDialog.show();
 
         mDatabaseRef= FirebaseDatabase.getInstance().getReference(Uploud_kids_memo.FB_DATABASE_PATH);
         childRef = FirebaseDatabase.getInstance().getReference("Kids");
         btnparticipate = (Button)findViewById(R.id.btnParticipate);
+
+
 
 
     }
@@ -76,6 +84,10 @@ public class KidsmemoListsActivity extends AppCompatActivity {
 
             if (kidsUser.child("parentid").getValue().toString().equals(userId)) {
 
+                Surname =  kidsUser.child("surname").getValue().toString();
+                name = kidsUser.child("name").getValue().toString();
+
+
                 while(iterator.hasNext()) {
                     DataSnapshot dataUser = (DataSnapshot) iterator.next();
 
@@ -84,11 +96,24 @@ public class KidsmemoListsActivity extends AppCompatActivity {
 
                         for(DataSnapshot snapshot : dataUser.getChildren()){
 
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/ImageListsActivity.java
+
+
+
+                            Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
+
+                       ImageUpload img = snapshot.getValue(ImageUpload.class);
+=======
                        MemokidsUpload_class img = snapshot.getValue(MemokidsUpload_class.class);
+>>>>>>> 8e30d93c600b1fbb2293eb17d630bb1d26dff173:app/src/main/java/com/example/codetribe/my_kid/KidsmemoListsActivity.java
                             imgList.add(img);
+
 
                             KidsId = kidsUser.getKey();
                         }
+
+
+
                         //init adapter
                         adapter=new KidsmemoListAdapter(KidsmemoListsActivity.this,R.layout.kids_memo_lists_activity,imgList);
                         iv.setAdapter(adapter);
@@ -140,6 +165,12 @@ public class KidsmemoListsActivity extends AppCompatActivity {
 
                         Infor(kidSnapshot,dataSnapshot, parentid);
 
+
+
+
+
+
+                       // senderId.setText(kids);
                         btnparticipate.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {

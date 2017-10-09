@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:padding="5dp"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:background="@drawable/angle"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/kidsNameId"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:drawableRight="@drawable/ic_share_black_24dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:background="@drawable/textviewsstyle"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgView"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:saveEnabled="true"
+           />
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Image name"
+          android:background="@drawable/textviewsstyle"
+        android:id="@+id/tvImageName"/>
+
+</LinearLayout>
+
+</LinearLayout>
+

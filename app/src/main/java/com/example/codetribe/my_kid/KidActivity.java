@@ -19,9 +19,31 @@ import com.google.firebase.database.FirebaseDatabase;
 public class KidActivity extends AppCompatActivity {
 
 
+<<<<<<< HEAD
    // private EditText;
     private TextInputLayout  hintname,hintsurname,hintkidid,hintpid,hintParentId;
 
+=======
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/Kid.java
+
+   // private EditText;
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/Kid.java
+    private TextInputLayout  hintname,hintsurname,hintkidid,hintpid,hintParentId;
+
+
+=======
+    //private TextInputLayout  hintname,hintsurname,hintkidid,hintpid,hintParentId;
+
+    private TextInputLayout hintname,hintsurname,hintkidid,hintpid,hintParentId;
+
+
+=======
+   // private EditText;
+    private TextInputLayout  hintname,hintsurname,hintkidid,hintpid,hintParentId;
+
+>>>>>>> e3d4dd30c39d368612dd979fa60b21a6392afc88:app/src/main/java/com/example/codetribe/my_kid/KidActivity.java
+>>>>>>> 8e30d93c600b1fbb2293eb17d630bb1d26dff173:app/src/main/java/com/example/codetribe/my_kid/KidActivity.java
+>>>>>>> 6b1441fea61d1a916b0ec93771c2a41af1276b25
    EditText kidname,
            kidsurname,
            kidaddress,
@@ -66,7 +88,18 @@ public class KidActivity extends AppCompatActivity {
 
 //hint editext
 
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/Kid.java
+
+=======
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/Kid.java
+=======
+
+>>>>>>> e3d4dd30c39d368612dd979fa60b21a6392afc88:app/src/main/java/com/example/codetribe/my_kid/KidActivity.java
+>>>>>>> 8e30d93c600b1fbb2293eb17d630bb1d26dff173:app/src/main/java/com/example/codetribe/my_kid/KidActivity.java
+>>>>>>> 6b1441fea61d1a916b0ec93771c2a41af1276b25
         hintname =(TextInputLayout)findViewById(R.id.hname);
         hintsurname =(TextInputLayout)findViewById(R.id.hSurname);
         hintkidid =(TextInputLayout)findViewById(R.id.hAdress);
@@ -78,6 +111,18 @@ public class KidActivity extends AppCompatActivity {
         hintkidid =  (TextInputLayout) findViewById(R.id.hAdress);
         hintpid = (TextInputLayout) findViewById(R.id.hkidid);
         hintParentId=(TextInputLayout) findViewById(R.id.hpid);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/Kid.java
+=======
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/Kid.java
+=======
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/Kid.java
+
+>>>>>>> e3d4dd30c39d368612dd979fa60b21a6392afc88:app/src/main/java/com/example/codetribe/my_kid/KidActivity.java
+
+>>>>>>> 8e30d93c600b1fbb2293eb17d630bb1d26dff173:app/src/main/java/com/example/codetribe/my_kid/KidActivity.java
+>>>>>>> 6b1441fea61d1a916b0ec93771c2a41af1276b25
 
 
         Intent intent = getIntent();
