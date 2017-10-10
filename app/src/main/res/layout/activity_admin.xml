@@ -18,6 +18,13 @@
         android:textAlignment="center" />
     -->
 
+
+    <Button
+        android:id="@+id/addkids"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add_Kids" />
+
     <ListView
         android:id="@+id/listUser"
         android:layout_width="match_parent"

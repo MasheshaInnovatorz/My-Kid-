@@ -13,10 +13,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -58,34 +61,14 @@ public class View_profile extends AppCompatActivity {
     String idLoged;
 
     String nameString,surnameString;
-
+    FirebaseUser user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_profile);
 
-        storage = FirebaseStorage.getInstance();
-        storageRef = storage.getReference();
-
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-
-
-
-
-
-        if ( user != null) {
-            user_id = user.getUid();
-        } else {
-            user_id = "unknown_uid";
-        }
-        imagesRef = storageRef.child("images");
-        userProfileRef = storageRef.child("images/"+user_id+".jpg");
-
-
-
-
+        //Profile_Update edit
+        editprofile=(TextView)findViewById(R.id.editprofile);
         //initialize
         name = (TextView) findViewById(R.id.user_profile_name);
         surname= (TextView)findViewById(R.id.user_profile_status);
@@ -97,9 +80,17 @@ public class View_profile extends AppCompatActivity {
         photo = (ImageView) findViewById(R.id.user_profile_photo);
         profilecover=(ImageView) findViewById(R.id.header_cover_image);
 
+        storage = FirebaseStorage.getInstance();
+        storageRef = storage.getReference();
 
-        //Profile_Update edit
-        editprofile=(TextView)findViewById(R.id.editprofile);
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
+        imagesRef = storageRef.child("images");
+        userProfileRef = storageRef.child("images/"+user_id+".jpg");
+
+
+
+
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,63 +100,28 @@ public class View_profile extends AppCompatActivity {
             }
         });
 
-
         Intent intentId =getIntent();
         iduser = intentId.getStringExtra("parent_user");
 
+
+        if ( user != null) {
+            user_id = user.getUid();
+            if (user.getPhotoUrl() != null) {
+                String profile_pic = user.getPhotoUrl().toString();
+                showProfilePic(profile_pic);
+            }
+        } else {
+            user_id = "unknown_uid";
+        }
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
-
-       /* UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                .setDisplayName("Jane Q. User")
-                .setPhotoUri(Uri.parse("https://lufuno-a6da6.firebaseio.com/Users/1506418683237.png"))
-                .build();
-
-        user.updateProfile(profileUpdates)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                         //   Log.d(TAG, "User Profile_Update updated.");
-                        }
-                    }
-                });*/
-
-
-
-       /* try {
-            Uri imageUri = user.getPhotoUrl();
-            if(imageUri != null)
-            {
-                InputStream imageStream = getContentResolver().openInputStream(imageUri);
-                Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                photo.setImageBitmap(selectedImage);
-            }
-            else
-            {
-                photo.setImageResource(R.drawable.benny);
-            }
-
-        } catch (FileNotFoundException e) {
-
-
-        }*/
         photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
-
-
-
-
                     Intent photoPickerIntent =  new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     //photoPickerIntent.setType("image/*");
                     startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG);
-
-
-
-
             }
         });
 
@@ -174,7 +130,6 @@ public class View_profile extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 Infor(dataSnapshot,iduser);
             }
 
@@ -183,7 +138,6 @@ public class View_profile extends AppCompatActivity {
 
             }
         });
-
 
         TextView editprofile=(TextView) findViewById(R.id.editprofile);
         editprofile.setOnClickListener(new View.OnClickListener() {
@@ -195,9 +149,7 @@ public class View_profile extends AppCompatActivity {
 
         });
 
-
-
-/*
+        /*
         databaseReference = FirebaseDatabase.getInstance().getReference().child("courses").child("Business");
         name = (TextView) findViewById(R.id.user_profile_name);
 
@@ -262,13 +214,28 @@ public class View_profile extends AppCompatActivity {
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
                             Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                            assert downloadUrl != null;
                             image_url = downloadUrl.toString();
 
-                           Glide.with(getApplicationContext()).load(image_url).into(photo);
-                           Glide.with(getApplicationContext()).load(image_url).into(profilecover);
-                            //listImage.get(position).getUri()).into(img)
-
+                             //listImage.get(position).getUri()).into(img)
+                            showProfilePic(image_url);
                             Log.i("Ygritte", image_url);
+
+                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                    .setPhotoUri(downloadUrl)
+                                    .build();
+
+                            if ( user != null ) {
+                                user.updateProfile(profileUpdates)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    Log.d("Profile Updated ", "User profile updated.");
+                                                }
+                                            }
+                                        });
+                            }
 
                         }
                     });
@@ -285,16 +252,18 @@ public class View_profile extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+    }
 
-
-
+    public void showProfilePic(String image_url) {
+        Glide.with(getApplicationContext()).load(image_url).into(photo);
+        Glide.with(getApplicationContext()).load(image_url).into(profilecover);
     }
 
     private void Infor(DataSnapshot dataSnapshot, String userId){
 
         Iterator iterator = dataSnapshot.getChildren().iterator();
-// NEW CODE
 
+// NEW CODE
 
 
         while(iterator.hasNext()) {
