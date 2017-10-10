@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -72,10 +71,7 @@ public class Teachers_activity extends AppCompatActivity {
         add_Kids.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =  new Intent(Teachers_activity.this,KidActivity.class);
-                intent.putExtra("User_KEY",userKey);
-                startActivity(intent);
-                Toast.makeText(Teachers_activity.this,userKey, Toast.LENGTH_SHORT).show();
+
             }
         });
 

@@ -10,10 +10,14 @@ public class MemokidsUpload_class {
     public String uri;
     public String personUploaded;
 
+
+
+
     public MemokidsUpload_class(String name, String uri, String personUploaded) {
         this.name = name;
         this.uri = uri;
         this.personUploaded = personUploaded;
+
     }
 
 
@@ -21,6 +25,7 @@ public class MemokidsUpload_class {
         this.name = name;
         this.uri = uri;
       this.personUploaded = personUploaded;
+
     }
 
     public String getName() {
@@ -31,7 +36,7 @@ public class MemokidsUpload_class {
         return uri;
     }
 
-    public String getPersonsUploaded() {
+    public String getPersonUploaded() {
         return personUploaded;
     }
 

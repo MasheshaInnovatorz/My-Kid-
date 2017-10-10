@@ -21,24 +21,28 @@ public class KidActivity extends AppCompatActivity {
 
 
    // private EditText;
-    private TextInputLayout  hintname,hintsurname,hintkidid,hintpid,hintParentId;
-   EditText kidname,
+    private TextInputLayout  hintname,hintsurname,hintkidid,hintpid,hintParentId,hintGradeAllocated,hintYear;
+     EditText kidname,
            kidsurname,
            kidaddress,
            kididNumber,
-           kidparentid;
+           kidparentid,
+             kidAllocated,
+            registeredYears;
 
     ImageView imagepic;
-     RadioGroup radKidGender;
-      RadioButton radGender;
-     TextView btnCreate;
+        RadioGroup radKidGender;
+        RadioButton radGender;
+         TextView btnCreate;
 
     String genderString,keyUser;
     String  kidStringname,
             kidStringsurname,
             kidStringaddress,
             kididStringNumber,
-            kidStringparentid;
+            kidStringparentid,
+            kidsKidsAllocated,
+    kidsYearRegistered;
 
 
     //database
@@ -61,18 +65,22 @@ public class KidActivity extends AppCompatActivity {
         kidaddress =  (EditText)findViewById(R.id.editAdress);
         kididNumber = (EditText)findViewById(R.id.editkidid);
         kidparentid = (EditText)findViewById(R.id.editParentId);
+        kidAllocated = (EditText)findViewById(R.id.editGrade);
+        registeredYears = (EditText)findViewById(R.id.editYear);
         radKidGender = (RadioGroup)findViewById(R.id.genders);
         btnCreate = (TextView) findViewById(R.id.btnKidUpdate);
 
-//hint editext
 
 
-
+        //hint editext
         hintname =(TextInputLayout)findViewById(R.id.hname);
         hintsurname =(TextInputLayout)findViewById(R.id.hSurname);
         hintkidid =(TextInputLayout)findViewById(R.id.hAdress);
         hintpid =(TextInputLayout)findViewById(R.id.hkidid);
         hintParentId=(TextInputLayout)findViewById(R.id.hpid);
+        hintGradeAllocated = (TextInputLayout)findViewById(R.id.hpgrade);
+        hintYear=  (TextInputLayout)findViewById(R.id.hpYear);
+
 
 
         Intent intent = getIntent();
@@ -80,7 +88,7 @@ public class KidActivity extends AppCompatActivity {
         keyUser =  intent.getStringExtra("User_KEY");
 
         //database
-        databaseKids = FirebaseDatabase.getInstance().getReference().child("Kids");
+        databaseKids = FirebaseDatabase.getInstance().getReference().child("Kids").child("Class");
         //databaseKids = FirebaseDatabase.getInstance().getReference().child("Kids").child(keyUser);
 
         btnCreate.setOnClickListener(new View.OnClickListener() {
@@ -125,6 +133,8 @@ public class KidActivity extends AppCompatActivity {
         kidStringaddress= kidaddress .getText().toString().trim();
         kididStringNumber= kididNumber.getText().toString().trim();
         kidStringparentid= kidparentid.getText().toString().trim();
+         kidsKidsAllocated = kidAllocated.getText().toString().trim();
+        kidsYearRegistered = registeredYears.getText().toString().trim();
 
         int selectedId= radKidGender.getCheckedRadioButtonId();
         radGender =(RadioButton)findViewById(selectedId);
@@ -135,15 +145,17 @@ public class KidActivity extends AppCompatActivity {
 
             String id = databaseKids.push().getKey();
 
-            Kids kids = new Kids(id,keyUser, kidStringname, kidStringsurname, kidStringaddress, kididStringNumber, kidStringparentid,  genderString);
+            Kids kids = new Kids(id,kidsKidsAllocated, kidStringname, kidStringsurname, kidStringaddress, kididStringNumber, kidStringparentid,  genderString,kidsYearRegistered);
 
-            databaseKids.child(id).setValue(kids);
+            databaseKids.child(kidsYearRegistered).child(id).setValue(kids);
 
-            Toast.makeText(this, "Track saved successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Kids saved successfully", Toast.LENGTH_SHORT).show();
+
+            startActivity(new Intent(getApplication(),Admin_activity.class));
 
 
         }else{
-            Toast.makeText(this, "Track name should not be empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Kid name should not be empty", Toast.LENGTH_SHORT).show();
         }
     }
 }

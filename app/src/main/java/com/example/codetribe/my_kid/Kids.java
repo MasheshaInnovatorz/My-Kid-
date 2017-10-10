@@ -6,7 +6,6 @@ package com.example.codetribe.my_kid;
 
 public class Kids {
     String id;
-    String teachersId;
     String name;
     String surname;
     String address;
@@ -14,33 +13,26 @@ public class Kids {
     String parentid;
     String profilepic;
     String gender;
+    String grade;
+    String yearRegistered;
+
 
     public Kids() {
     }
 
-    public Kids(String id,String teachersId,String name, String surname, String address, String idNumber, String parentid, String profilepic, String gender) {
+    public Kids(String id, String grade, String name, String surname, String address, String idNumber, String parentid, String gender, String yearRegistered) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.address = address;
         this.idNumber = idNumber;
         this.parentid = parentid;
-        this.teachersId = teachersId;
-        this.profilepic = profilepic;
+        this.yearRegistered = yearRegistered;
         this.gender = gender;
+        this.grade = grade;
+
     }
 
-    public Kids(String id,String teachersId, String name, String surname, String address, String idNumber, String parentid, String gender) {
-        this.id = id;
-
-        this.name = name;
-        this.surname = surname;
-        this.address = address;
-        this.idNumber = idNumber;
-        this.teachersId=teachersId;
-        this.parentid = parentid;
-        this.gender = gender;
-    }
 
     public String getId() {
         return id;
@@ -74,8 +66,13 @@ public class Kids {
         return gender;
     }
 
-    public String getTeachersId() {
-        return teachersId;
+    public String getGrade() {
+        return grade;
     }
 
+    public String getYearRegistered() {
+        return yearRegistered;
+    }
 }
+
+

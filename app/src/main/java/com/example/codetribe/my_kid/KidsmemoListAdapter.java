@@ -47,11 +47,11 @@ public class KidsmemoListAdapter extends ArrayAdapter<MemokidsUpload_class> {
 
 
         tvName.setText(listImage.get(position).getName());
-        kidsName.setText((listImage.get(position).getPersonsUploaded()));
 
-        //uploadedName.setText(listImage.get(position).getPersonUploaded());
 
-        //Glide.with(context).load(listImage.get(position).getUri()).into(img);
+        uploadedName.setText(listImage.get(position).getPersonUploaded());
+
+        Glide.with(context).load(listImage.get(position).getUri()).into(img);
 
         return  v;
     }

@@ -53,7 +53,7 @@ public class Admin_activity extends AppCompatActivity {
 */
 
         listUsers = (ListView) findViewById(R.id.listUser);
-
+        addkid =  (Button)findViewById(R.id.addkids);
         Intent intent = getIntent();
         //String id = intent.getStringExtra(Teachers_activity.ARTIST_ID);
         userKey = intent.getStringExtra("User_KEY");
@@ -64,6 +64,16 @@ public class Admin_activity extends AppCompatActivity {
         //kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Kids").child(userKey);
 
         usersRetriveRef = FirebaseDatabase.getInstance().getReference("Users");
+
+        addkid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =  new Intent(Admin_activity.this,KidActivity.class);
+                intent.putExtra("User_KEY",userKey);
+                startActivity(intent);
+                Toast.makeText(Admin_activity.this,userKey, Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
         listUsers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -152,8 +162,8 @@ public class Admin_activity extends AppCompatActivity {
                     user.add(kidInf);
 
                 }
-                UserArray trackListAdapter = new UserArray(Admin_activity.this, user);
-                listUsers.setAdapter(trackListAdapter);
+                UserArray userListAdapter = new UserArray(Admin_activity.this, user);
+                listUsers.setAdapter(userListAdapter);
             }
 
             @Override

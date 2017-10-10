@@ -17,15 +17,15 @@
             android:id="@+id/textKidsName"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/email_view"
-            android:layout_below="@+id/email_view"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:background="@drawable/textviewsstyle"
             android:onClick="sos"
             android:padding="10dp"
             android:text="User : Mudau Rudzani"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
 
 
         <TextView
