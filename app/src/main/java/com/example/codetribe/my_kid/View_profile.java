@@ -84,10 +84,8 @@ public class View_profile extends AppCompatActivity {
         userProfileRef = storageRef.child("images/"+user_id+".jpg");
 
 
-        if(userProfileRef.getDownloadUrl().getResult() != null){
-            Glide.with(getApplicationContext()).load(userProfileRef.getDownloadUrl()).into(photo);
-            Glide.with(getApplicationContext()).load(userProfileRef.getDownloadUrl()).into(profilecover);
-        }
+
+
         //initialize
         name = (TextView) findViewById(R.id.user_profile_name);
         surname= (TextView)findViewById(R.id.user_profile_status);

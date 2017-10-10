@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -70,6 +69,7 @@ public class Admin_activity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+                //spinner code
 
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(Admin_activity.this);
                 View mView = getLayoutInflater().inflate(R.layout.dialogue_spinner, null);

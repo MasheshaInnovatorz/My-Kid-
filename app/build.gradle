@@ -25,13 +25,10 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
         compile 'com.android.support:design:24.2.0'
     })
-<<<<<<< HEAD
+
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.android.support:design:23.0.1'
-=======
-    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
-    compile 'com.android.support:design:26.0.0-alpha1'
->>>>>>> 8e30d93c600b1fbb2293eb17d630bb1d26dff173
+
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.google.firebase:firebase-auth:11.4.0'
     compile 'com.google.firebase:firebase-storage:11.4.0'

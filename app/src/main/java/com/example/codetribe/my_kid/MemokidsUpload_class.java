@@ -5,7 +5,6 @@ package com.example.codetribe.my_kid;
  */
 
 
-
 public class MemokidsUpload_class {
     public String name;
     public String uri;
@@ -23,11 +22,6 @@ public class MemokidsUpload_class {
         this.uri = uri;
       this.personUploaded = personUploaded;
     }
-
-    /*public String getPersonUploaded() {
-        return personUploaded;
-    }*/
-
 
     public String getName() {
         return name;
