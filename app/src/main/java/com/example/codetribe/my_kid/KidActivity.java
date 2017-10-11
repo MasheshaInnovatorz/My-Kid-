@@ -44,6 +44,13 @@ public class KidActivity extends AppCompatActivity {
             kidsKidsAllocated,
     kidsYearRegistered;
 
+    // additional medical information
+    EditText   allergies,
+               dietRequirements,
+              doctorsRecomendations,
+                inkidHeight,
+               bodyWeight;
+
 
     //database
    DatabaseReference databaseKids;
