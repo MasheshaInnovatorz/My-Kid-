@@ -30,7 +30,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
     DatabaseReference mOrganizationRef;
     private TextView signup;
     private EditText orgaEmail,
-<<<<<<< HEAD
+
                      orgPassword,
                     crechName,
                     crechAddress,
@@ -40,17 +40,10 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                     adminSurname,
                     adminIdNo;
     private RadioButton radGender;
-=======
-            orgPassword,
-            crechName,
-            crechAddress,
-            crechCity,
-            crechPhoneNo,
-            adminName,
-            adminSurname,
-            adminIdNo;
+
+
     private RadioButton genderMale, genderFemale;
->>>>>>> 44e9a4c325d3c1d55390ee8f4bfee5fdc6238772
+
     private RadioGroup gender;
     //firebase Authentification
     private FirebaseAuth orgAuth;
@@ -67,30 +60,16 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         mOrganizationRef = FirebaseDatabase.getInstance().getReference();
 
 
-<<<<<<< HEAD
         orgaEmail = (EditText) findViewById(R.id.orgEmail);
         orgPassword = (EditText) findViewById(R.id.orgPassword);
         crechName = (EditText) findViewById(R.id.orgName);
-        crechAddress = (EditText) findViewById(R.id.orgAddress);
-        crechCity = (EditText) findViewById(R.id.orgCity);
-        crechPhoneNo = (EditText) findViewById(R.id.orgPhoneNumber);
+        crechAddress = (EditText) findViewById(R.id.orgStrName);
+        crechCity = (EditText) findViewById(orgCity);
+        crechPhoneNo = (EditText) findViewById(R.id.orgTelNumber);
         adminName = (EditText) findViewById(R.id.orgAdminName);
         adminSurname = (EditText) findViewById(R.id.orgAdminSurname);
         adminIdNo = (EditText) findViewById(R.id.orgAdminIDNumber);
-=======
-
-              orgaEmail = (EditText)findViewById(R.id.orgEmail);
-             orgPassword= (EditText)findViewById(R.id.orgPassword);
-              crechName = (EditText)findViewById(R.id.orgName);
-                crechAddress = (EditText)findViewById(R.id.orgStrName);
-                crechCity = (EditText)findViewById(orgCity);
-                crechPhoneNo  = (EditText)findViewById(R.id.orgTelNumber);
-                adminName = (EditText)findViewById(R.id.orgAdminName);
-                adminSurname = (EditText)findViewById(R.id.orgAdminSurname);
-                adminIdNo = (EditText)findViewById(R.id.orgAdminIDNumber);
-                 gender = (RadioGroup)findViewById(R.id.AdminGender);
-
->>>>>>> 1da425c0ccf0f8025ae9955918b200fa17ab5a29
+        gender = (RadioGroup) findViewById(R.id.AdminGender);
 
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -111,32 +90,20 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                 }
 
 
-                final String crechNameOrg, crechAddressOrg, crechCityOrg, crechPhoneNoOrg, adminNameOrg, adminSurnameOrg, adminIdNoOrg;
+                final String crechNameOrg, crechAddressOrg, crechCityOrg, crechPhoneNoOrg, adminNameOrg, adminSurnameOrg, adminIdNoOrg, adminGender;
 
 
-<<<<<<< HEAD
-
-
-
-                final String crechNameOrg,crechAddressOrg,crechCityOrg,crechPhoneNoOrg,adminNameOrg, adminSurnameOrg,adminIdNoOrg,adminGender;
-
-
-
-                crechNameOrg  = crechName.getText().toString().trim();
-=======
                 crechNameOrg = crechName.getText().toString().trim();
->>>>>>> 44e9a4c325d3c1d55390ee8f4bfee5fdc6238772
+
                 crechAddressOrg = crechAddress.getText().toString().trim();
                 crechCityOrg = crechCity.getText().toString().trim();
                 crechPhoneNoOrg = crechPhoneNo.getText().toString().trim();
                 adminNameOrg = adminName.getText().toString().trim();
                 adminSurnameOrg = adminSurname.getText().toString().trim();
                 adminIdNoOrg = adminIdNo.getText().toString().trim();
-                int selectedId= gender.getCheckedRadioButtonId();
-                radGender =(RadioButton)findViewById(selectedId);
-                adminGender  = radGender.getText().toString().trim();
-
-
+                int selectedId = gender.getCheckedRadioButtonId();
+                radGender = (RadioButton) findViewById(selectedId);
+                adminGender = radGender.getText().toString().trim();
 
 
                 if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
@@ -144,8 +111,8 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                               // String user_id = task.getResult().getUser().getUid();
-                            String adminRole = "admin";
+                                // String user_id = task.getResult().getUser().getUid();
+                                String adminRole = "admin";
 
                                 DatabaseReference mChildDatabase = mOrganizationRef.child("Creche").child(crechNameOrg);
                                 DatabaseReference mAdminRef = mChildDatabase.child("Users");
@@ -153,25 +120,23 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                                 String key = mChildDatabase.child("Creche").child(crechNameOrg).push().getKey();
                                 String adminKey = mAdminRef.child("Creche").child(crechNameOrg).child("Users").push().getKey();
 
-                                OrganizationRegister  orgReg = new OrganizationRegister(key,crechNameOrg,crechAddressOrg,crechCityOrg,email,crechPhoneNoOrg,password);
+                                OrganizationRegister orgReg = new OrganizationRegister(key, crechNameOrg, crechAddressOrg, crechCityOrg, email, crechPhoneNoOrg, password);
 
-                                CrecheOnwer_Class adminReg = new CrecheOnwer_Class(adminKey,adminNameOrg,adminSurnameOrg,adminIdNoOrg,adminGender,adminRole,email,crechNameOrg);
-
+                                CrecheOnwer_Class adminReg = new CrecheOnwer_Class(adminKey, adminNameOrg, adminSurnameOrg, adminIdNoOrg, adminGender, adminRole, email, crechNameOrg);
 
 
                                 //Map
-                                Map <String,Object> postingOrg =orgReg.toMap();
-                                Map<String, Object> organizationUpdate =  new HashMap<>();
+                                Map<String, Object> postingOrg = orgReg.toMap();
+                                Map<String, Object> organizationUpdate = new HashMap<>();
 
                                 organizationUpdate.put(key, postingOrg);
 
 
-                                Map <String,Object> postingAdmin =adminReg.toMap();
-                                Map<String, Object> adminUpdate =  new HashMap<>();
+                                Map<String, Object> postingAdmin = adminReg.toMap();
+                                Map<String, Object> adminUpdate = new HashMap<>();
 
 
                                 adminUpdate.put(adminKey, postingAdmin);
-
 
 
                                 //Updating Messages
@@ -188,7 +153,6 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                                 Toast.makeText(SignUpOrganisationActivity.this, "Organizational Failed to SignUp", Toast.LENGTH_SHORT).show();
 
 
-
                             }
                         }
                     });
@@ -196,11 +160,6 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
             }
         });
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 44e9a4c325d3c1d55390ee8f4bfee5fdc6238772
     }
 
     /*public void checkUserValidation(DataSnapshot dataSnapshot, String emailForVer){

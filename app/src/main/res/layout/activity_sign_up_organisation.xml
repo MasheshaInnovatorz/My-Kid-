@@ -27,11 +27,7 @@
                 android:layout_marginTop="3dp"
                 android:background="@drawable/textviewsstyle"
                 android:text="Register Creche Account"
-<<<<<<< HEAD
-                android:textAlignment="center"
-                android:textColor="#ADCCE2"
-                android:textSize="30sp" />
-=======
+
                 android:textAlignment="center"
                 android:textColor="#ADCCE2"
                 android:textSize="30sp" />
@@ -61,7 +57,6 @@
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
                 android:background="#ADCCE2"/>
->>>>>>> 1da425c0ccf0f8025ae9955918b200fa17ab5a29
 
             <EditText
                 android:id="@+id/orgName"
