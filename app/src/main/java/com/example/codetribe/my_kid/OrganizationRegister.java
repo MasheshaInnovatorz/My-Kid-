@@ -14,7 +14,7 @@ import java.util.Map;
 public class OrganizationRegister {
     public  String uid;
     public String orgname;
-    public String orgAddress;
+    public String orgAddress;//add street name and postal code
     public String orgCity;
     public String orgEmail;
     public String orgPhoneNo;

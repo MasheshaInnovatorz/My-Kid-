@@ -172,7 +172,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:background="@drawable/textviewsstyle"
-                android:text="Admin Information"
+                android:text="Creche Owner"
                 android:textAlignment="center"
                 android:textColor="#ADCCE2"
                 android:textSize="25sp" />

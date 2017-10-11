@@ -21,9 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.codetribe.my_kid.R.id.orgAddress;
 import static com.example.codetribe.my_kid.R.id.orgCity;
-import static com.example.codetribe.my_kid.R.id.orgEmail;
 
 
 public class SignUpOrganisationActivity extends AppCompatActivity {
@@ -40,7 +38,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                     adminName,
                     adminSurname,
                     adminIdNo;
-    private RadioButton  genderMale,genderFemale;
+    private RadioButton radGender;
     private RadioGroup gender;
 
 
@@ -64,16 +62,16 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
 
 
-              orgaEmail = (EditText)findViewById(orgEmail);
+              orgaEmail = (EditText)findViewById(R.id.orgEmail);
              orgPassword= (EditText)findViewById(R.id.orgPassword);
               crechName = (EditText)findViewById(R.id.orgName);
-                crechAddress = (EditText)findViewById(orgAddress);
+                crechAddress = (EditText)findViewById(R.id.orgStrName);
                 crechCity = (EditText)findViewById(orgCity);
-                crechPhoneNo  = (EditText)findViewById(R.id.orgPhoneNumber);
+                crechPhoneNo  = (EditText)findViewById(R.id.orgTelNumber);
                 adminName = (EditText)findViewById(R.id.orgAdminName);
                 adminSurname = (EditText)findViewById(R.id.orgAdminSurname);
                 adminIdNo = (EditText)findViewById(R.id.orgAdminIDNumber);
-
+                 gender = (RadioGroup)findViewById(R.id.AdminGender);
 
 
 
@@ -100,7 +98,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
 
 
-                final String crechNameOrg,crechAddressOrg,crechCityOrg,crechPhoneNoOrg,adminNameOrg, adminSurnameOrg,adminIdNoOrg;
+                final String crechNameOrg,crechAddressOrg,crechCityOrg,crechPhoneNoOrg,adminNameOrg, adminSurnameOrg,adminIdNoOrg,adminGender;
 
 
 
@@ -111,6 +109,11 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                 adminNameOrg = adminName.getText().toString().trim();
                 adminSurnameOrg =adminSurname.getText().toString().trim();
                 adminIdNoOrg = adminIdNo.getText().toString().trim();
+                int selectedId= gender.getCheckedRadioButtonId();
+                radGender =(RadioButton)findViewById(selectedId);
+                adminGender  = radGender.getText().toString().trim();
+
+
 
 
                 if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
@@ -119,20 +122,37 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                // String user_id = task.getResult().getUser().getUid();
+                            String adminRole = "admin";
 
+                                DatabaseReference mChildDatabase = mOrganizationRef.child("Creche").child(crechNameOrg);
+                                DatabaseReference mAdminRef = mChildDatabase.child("Users");
 
-                                DatabaseReference mChildDatabase = mOrganizationRef.child("Creche");
                                 String key = mChildDatabase.child("Creche").child(crechNameOrg).push().getKey();
+                                String adminKey = mAdminRef.child("Creche").child(crechNameOrg).child("Users").push().getKey();
 
                                 OrganizationRegister  orgReg = new OrganizationRegister(key,crechNameOrg,crechAddressOrg,crechCityOrg,email,crechPhoneNoOrg,password);
 
+                                CrecheOnwer_Class adminReg = new CrecheOnwer_Class(adminKey,adminNameOrg,adminSurnameOrg,adminIdNoOrg,adminGender,adminRole,email,crechNameOrg);
+
+
+
                                 //Map
                                 Map <String,Object> postingOrg =orgReg.toMap();
-
                                 Map<String, Object> organizationUpdate =  new HashMap<>();
 
-                                organizationUpdate.put(crechNameOrg +key, postingOrg);
+                                organizationUpdate.put(key, postingOrg);
 
+
+                                Map <String,Object> postingAdmin =adminReg.toMap();
+                                Map<String, Object> adminUpdate =  new HashMap<>();
+
+
+                                adminUpdate.put(adminKey, postingAdmin);
+
+
+
+                                //Updating Messages
+                                mAdminRef.updateChildren(adminUpdate);
                                 mChildDatabase.updateChildren(organizationUpdate);
 
                                 Toast.makeText(SignUpOrganisationActivity.this, key, Toast.LENGTH_SHORT).show();
@@ -153,11 +173,6 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
 
     }
 
