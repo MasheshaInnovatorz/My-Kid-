@@ -48,7 +48,8 @@
             android:name=".View_profile"
             android:theme="@style/AppTheme.LoginStyle" />
         <activity android:name=".Developers" />
-        <activity android:name=".SignUpOrganisationActivity"></activity>
+        <activity android:name=".SignUpOrganisationActivity" />
+        <activity android:name=".Create_Teacher_Account"></activity>
     </application>
 
 </manifest>

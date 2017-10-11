@@ -22,53 +22,44 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpOrganisationActivity extends AppCompatActivity {
 
+    FirebaseAuth.AuthStateListener mAuthListener;
+    DatabaseReference mOrganizationRef;
     private TextView signup;
-
-
     private EditText orgaEmail,
-                     orgPassword,
-                    crechName,
-                    crechAddress,
-                    crechCity,
-                    crechPhoneNo,
-                    adminName,
-                    adminSurname,
-                    adminIdNo;
-    private RadioButton  genderMale,genderFemale;
+            orgPassword,
+            crechName,
+            crechAddress,
+            crechCity,
+            crechPhoneNo,
+            adminName,
+            adminSurname,
+            adminIdNo;
+    private RadioButton genderMale, genderFemale;
     private RadioGroup gender;
-
-
-
     //firebase Authentification
     private FirebaseAuth orgAuth;
-    FirebaseAuth.AuthStateListener mAuthListener;
-
-    DatabaseReference mOrganizationRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_organisation);
 
-        signup  = (TextView)findViewById(R.id.btnRegisterCreche);
+        signup = (TextView) findViewById(R.id.btnRegisterCreche);
 
 
         orgAuth = FirebaseAuth.getInstance();
         mOrganizationRef = FirebaseDatabase.getInstance().getReference();
 
 
-
-              orgaEmail = (EditText)findViewById(R.id.orgEmail);
-             orgPassword= (EditText)findViewById(R.id.orgPassword);
-              crechName = (EditText)findViewById(R.id.orgName);
-                crechAddress = (EditText)findViewById(R.id.orgAddress);
-                crechCity = (EditText)findViewById(R.id.orgCity);
-                crechPhoneNo  = (EditText)findViewById(R.id.orgPhoneNumber);
-                adminName = (EditText)findViewById(R.id.orgAdminName);
-                adminSurname = (EditText)findViewById(R.id.orgAdminSurname);
-                adminIdNo = (EditText)findViewById(R.id.orgAdminIDNumber);
-
-
+        orgaEmail = (EditText) findViewById(R.id.orgEmail);
+        orgPassword = (EditText) findViewById(R.id.orgPassword);
+        crechName = (EditText) findViewById(R.id.orgName);
+        crechAddress = (EditText) findViewById(R.id.orgAddress);
+        crechCity = (EditText) findViewById(R.id.orgCity);
+        crechPhoneNo = (EditText) findViewById(R.id.orgPhoneNumber);
+        adminName = (EditText) findViewById(R.id.orgAdminName);
+        adminSurname = (EditText) findViewById(R.id.orgAdminSurname);
+        adminIdNo = (EditText) findViewById(R.id.orgAdminIDNumber);
 
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -89,21 +80,15 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                 }
 
 
+                final String crechNameOrg, crechAddressOrg, crechCityOrg, crechPhoneNoOrg, adminNameOrg, adminSurnameOrg, adminIdNoOrg;
 
 
-
-
-
-                final String crechNameOrg,crechAddressOrg,crechCityOrg,crechPhoneNoOrg,adminNameOrg, adminSurnameOrg,adminIdNoOrg;
-
-
-
-                crechNameOrg  = crechName.getText().toString().trim();
+                crechNameOrg = crechName.getText().toString().trim();
                 crechAddressOrg = crechAddress.getText().toString().trim();
-                crechCityOrg =crechCity.getText().toString().trim();
+                crechCityOrg = crechCity.getText().toString().trim();
                 crechPhoneNoOrg = crechPhoneNo.getText().toString().trim();
                 adminNameOrg = adminName.getText().toString().trim();
-                adminSurnameOrg =adminSurname.getText().toString().trim();
+                adminSurnameOrg = adminSurname.getText().toString().trim();
                 adminIdNoOrg = adminIdNo.getText().toString().trim();
 
 
@@ -143,10 +128,6 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
 
 
     }

@@ -23,14 +23,13 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_marginTop="3dp"
-                android:text="Register Creche Account"
-                android:background="@drawable/textviewsstyle"
-                android:textSize="30sp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/textviewsstyle"
+                android:text="Register Creche Account"
                 android:textAlignment="center"
                 android:textColor="#ADCCE2"
-                />
+                android:textSize="30sp" />
 
             <EditText
                 android:id="@+id/orgName"
@@ -205,18 +204,17 @@
                 android:id="@+id/btnRegisterCreche"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/angle"
-                android:text="Create Creche Account"
-                android:textSize="16dp"
-                android:textColor="#fff"
-                android:gravity="center"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:padding="16dp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="28dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
                 android:layout_marginTop="32dp"
-                />
+                android:background="@drawable/angle"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="Create Creche Account"
+                android:textColor="#fff"
+                android:textSize="16dp" />
         </LinearLayout>
     </ScrollView>
 
