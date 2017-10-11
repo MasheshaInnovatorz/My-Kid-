@@ -77,7 +77,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         //firebase
-        mDatabaseRef  = FirebaseDatabase.getInstance().getReference().child("Users");
+        mDatabaseRef  = FirebaseDatabase.getInstance().getReference().child("Creche");
+
         mFirebaseAuth  = FirebaseAuth.getInstance();
 
 
@@ -192,7 +193,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
                     } else if (dataUser.child("role").getValue().toString().equals("admin")) {
-                        Intent intent = new Intent(LoginActivity.this, Admin_activity.class);
+                        Intent intent = new Intent(LoginActivity.this, Create_Teacher_Account.class);
                         intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                         startActivity(intent);
                         Toast.makeText(this, "Welcome To Admin_activity Page", Toast.LENGTH_SHORT).show();

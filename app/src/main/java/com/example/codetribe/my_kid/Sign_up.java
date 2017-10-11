@@ -95,7 +95,6 @@ public class Sign_up extends AppCompatActivity {
 
                 }
 
-
             }
         };
         btnSignUp.setOnClickListener(new View.OnClickListener() {

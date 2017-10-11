@@ -26,10 +26,11 @@ import static com.example.codetribe.my_kid.R.id.orgCity;
 
 public class SignUpOrganisationActivity extends AppCompatActivity {
 
+    FirebaseAuth.AuthStateListener mAuthListener;
+    DatabaseReference mOrganizationRef;
     private TextView signup;
-
-
     private EditText orgaEmail,
+<<<<<<< HEAD
                      orgPassword,
                     crechName,
                     crechAddress,
@@ -39,28 +40,44 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                     adminSurname,
                     adminIdNo;
     private RadioButton radGender;
+=======
+            orgPassword,
+            crechName,
+            crechAddress,
+            crechCity,
+            crechPhoneNo,
+            adminName,
+            adminSurname,
+            adminIdNo;
+    private RadioButton genderMale, genderFemale;
+>>>>>>> 44e9a4c325d3c1d55390ee8f4bfee5fdc6238772
     private RadioGroup gender;
-
-
-
     //firebase Authentification
     private FirebaseAuth orgAuth;
-    FirebaseAuth.AuthStateListener mAuthListener;
-
-    DatabaseReference mOrganizationRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_organisation);
 
-        signup  = (TextView)findViewById(R.id.btnRegisterCreche);
+        signup = (TextView) findViewById(R.id.btnRegisterCreche);
 
 
         orgAuth = FirebaseAuth.getInstance();
         mOrganizationRef = FirebaseDatabase.getInstance().getReference();
 
 
+<<<<<<< HEAD
+        orgaEmail = (EditText) findViewById(R.id.orgEmail);
+        orgPassword = (EditText) findViewById(R.id.orgPassword);
+        crechName = (EditText) findViewById(R.id.orgName);
+        crechAddress = (EditText) findViewById(R.id.orgAddress);
+        crechCity = (EditText) findViewById(R.id.orgCity);
+        crechPhoneNo = (EditText) findViewById(R.id.orgPhoneNumber);
+        adminName = (EditText) findViewById(R.id.orgAdminName);
+        adminSurname = (EditText) findViewById(R.id.orgAdminSurname);
+        adminIdNo = (EditText) findViewById(R.id.orgAdminIDNumber);
+=======
 
               orgaEmail = (EditText)findViewById(R.id.orgEmail);
              orgPassword= (EditText)findViewById(R.id.orgPassword);
@@ -73,6 +90,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                 adminIdNo = (EditText)findViewById(R.id.orgAdminIDNumber);
                  gender = (RadioGroup)findViewById(R.id.AdminGender);
 
+>>>>>>> 1da425c0ccf0f8025ae9955918b200fa17ab5a29
 
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -93,8 +111,10 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                 }
 
 
+                final String crechNameOrg, crechAddressOrg, crechCityOrg, crechPhoneNoOrg, adminNameOrg, adminSurnameOrg, adminIdNoOrg;
 
 
+<<<<<<< HEAD
 
 
 
@@ -103,11 +123,14 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
 
                 crechNameOrg  = crechName.getText().toString().trim();
+=======
+                crechNameOrg = crechName.getText().toString().trim();
+>>>>>>> 44e9a4c325d3c1d55390ee8f4bfee5fdc6238772
                 crechAddressOrg = crechAddress.getText().toString().trim();
-                crechCityOrg =crechCity.getText().toString().trim();
+                crechCityOrg = crechCity.getText().toString().trim();
                 crechPhoneNoOrg = crechPhoneNo.getText().toString().trim();
                 adminNameOrg = adminName.getText().toString().trim();
-                adminSurnameOrg =adminSurname.getText().toString().trim();
+                adminSurnameOrg = adminSurname.getText().toString().trim();
                 adminIdNoOrg = adminIdNo.getText().toString().trim();
                 int selectedId= gender.getCheckedRadioButtonId();
                 radGender =(RadioButton)findViewById(selectedId);
@@ -174,6 +197,10 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
             }
         });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 44e9a4c325d3c1d55390ee8f4bfee5fdc6238772
     }
 
     /*public void checkUserValidation(DataSnapshot dataSnapshot, String emailForVer){
