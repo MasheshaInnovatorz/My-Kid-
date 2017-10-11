@@ -1,6 +1,5 @@
 package com.example.codetribe.my_kid;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +17,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.example.codetribe.my_kid.R.id.orgAddress;
+import static com.example.codetribe.my_kid.R.id.orgCity;
+import static com.example.codetribe.my_kid.R.id.orgEmail;
 
 
 public class SignUpOrganisationActivity extends AppCompatActivity {
@@ -51,6 +57,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         mOrganizationRef = FirebaseDatabase.getInstance().getReference();
 
 
+<<<<<<< HEAD
         orgaEmail = (EditText) findViewById(R.id.orgEmail);
         orgPassword = (EditText) findViewById(R.id.orgPassword);
         crechName = (EditText) findViewById(R.id.orgName);
@@ -60,6 +67,20 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         adminName = (EditText) findViewById(R.id.orgAdminName);
         adminSurname = (EditText) findViewById(R.id.orgAdminSurname);
         adminIdNo = (EditText) findViewById(R.id.orgAdminIDNumber);
+=======
+
+              orgaEmail = (EditText)findViewById(orgEmail);
+             orgPassword= (EditText)findViewById(R.id.orgPassword);
+              crechName = (EditText)findViewById(R.id.orgName);
+                crechAddress = (EditText)findViewById(orgAddress);
+                crechCity = (EditText)findViewById(orgCity);
+                crechPhoneNo  = (EditText)findViewById(R.id.orgPhoneNumber);
+                adminName = (EditText)findViewById(R.id.orgAdminName);
+                adminSurname = (EditText)findViewById(R.id.orgAdminSurname);
+                adminIdNo = (EditText)findViewById(R.id.orgAdminIDNumber);
+
+
+>>>>>>> 1da425c0ccf0f8025ae9955918b200fa17ab5a29
 
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -97,28 +118,32 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                String user_id = task.getResult().getUser().getUid();
-                                DatabaseReference mChildDatabase = mOrganizationRef.child("Crech").child(crechNameOrg);
-
-                                // String key_user = mChildDatabase.getKey();
-
-                                mChildDatabase.child("Admin").child(user_id).child("crechName").setValue(crechNameOrg);
-                                mChildDatabase.child("Admin").child(user_id).child("crechAddress").setValue(crechAddressOrg);
-                                mChildDatabase.child("Admin").child(user_id).child("crechCity").setValue(crechCityOrg);
-                                mChildDatabase.child("Admin").child(user_id).child("crechNumberPhone").setValue(crechPhoneNoOrg);
-                                mChildDatabase.child("Admin").child(user_id).child("adminName").setValue(adminNameOrg);
-                                mChildDatabase.child("Admin").child(user_id).child("adminSurname").setValue(adminSurnameOrg);
-                                mChildDatabase.child("Admin").child(user_id).child("adminIdNumber").setValue(adminIdNoOrg);
+                               // String user_id = task.getResult().getUser().getUid();
 
 
-                                Toast.makeText(SignUpOrganisationActivity.this, "Organizational Account Created", Toast.LENGTH_SHORT).show();
+                                DatabaseReference mChildDatabase = mOrganizationRef.child("Creche");
+                                String key = mChildDatabase.child("Creche").child(crechNameOrg).push().getKey();
+
+                                OrganizationRegister  orgReg = new OrganizationRegister(key,crechNameOrg,crechAddressOrg,crechCityOrg,email,crechPhoneNoOrg,password);
+
+                                //Map
+                                Map <String,Object> postingOrg =orgReg.toMap();
+
+                                Map<String, Object> organizationUpdate =  new HashMap<>();
+
+                                organizationUpdate.put(crechNameOrg +key, postingOrg);
+
+                                mChildDatabase.updateChildren(organizationUpdate);
+
+                                Toast.makeText(SignUpOrganisationActivity.this, key, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpOrganisationActivity.this, "Organization Sccessfully Created", Toast.LENGTH_SHORT).show();
+
                                 orgAuth.signOut();
-                                startActivity(new Intent(SignUpOrganisationActivity.this, Welcome_activity.class));
+
 
                             } else {
                                 Toast.makeText(SignUpOrganisationActivity.this, "Organizational Failed to SignUp", Toast.LENGTH_SHORT).show();
-                                Toast.makeText(SignUpOrganisationActivity.this, email, Toast.LENGTH_SHORT).show();
-                                Toast.makeText(SignUpOrganisationActivity.this, password, Toast.LENGTH_SHORT).show();
+
 
 
                             }

@@ -27,9 +27,41 @@
                 android:layout_marginTop="3dp"
                 android:background="@drawable/textviewsstyle"
                 android:text="Register Creche Account"
+<<<<<<< HEAD
                 android:textAlignment="center"
                 android:textColor="#ADCCE2"
                 android:textSize="30sp" />
+=======
+                android:textAlignment="center"
+                android:textColor="#ADCCE2"
+                android:textSize="30sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="#ADCCE2"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/textviewsstyle"
+                android:text="Company Information"
+                android:textAlignment="center"
+                android:textColor="#ADCCE2"
+                android:textSize="25sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="#ADCCE2"/>
+>>>>>>> 1da425c0ccf0f8025ae9955918b200fa17ab5a29
 
             <EditText
                 android:id="@+id/orgName"
@@ -48,13 +80,28 @@
                 android:textSize="16dp" />
 
             <EditText
-                android:id="@+id/orgAddress"
+                android:id="@+id/orgRegNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="22dp"
                 android:layout_marginRight="35dp"
                 android:background="#0000"
-                android:hint="Organisation Residential Address"
+                android:hint="Oganisation Registration Number"
+                android:inputType="phone"
+                android:maxLength="12"
+                android:padding="16dp"
+                android:textAlignment="center"
+                android:textColor="#ADCCE2"
+                android:textColorHint="#ADCCE2"
+                android:textSize="16dp" />
+            <EditText
+                android:id="@+id/orgStrName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="35dp"
+                android:background="#0000"
+                android:hint="Street Name"
                 android:inputType="textCapWords"
                 android:maxLength="12"
                 android:padding="16dp"
@@ -70,8 +117,24 @@
                 android:layout_marginLeft="22dp"
                 android:layout_marginRight="35dp"
                 android:background="#0000"
-                android:hint="Organisation City"
+                android:hint="City"
                 android:inputType="textCapWords"
+                android:maxLength="12"
+                android:padding="16dp"
+                android:textAlignment="center"
+                android:textColor="#ADCCE2"
+                android:textColorHint="#ADCCE2"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/orgPostalCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="35dp"
+                android:background="#0000"
+                android:hint="Postal Code"
+                android:inputType="phone"
                 android:maxLength="12"
                 android:padding="16dp"
                 android:textAlignment="center"
@@ -95,13 +158,13 @@
                 android:textSize="16dp" />
 
             <EditText
-                android:id="@+id/orgPhoneNumber"
+                android:id="@+id/orgTelNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="22dp"
                 android:layout_marginRight="35dp"
                 android:background="#0000"
-                android:hint="Oganisation Phone Number"
+                android:hint="Oganisation Telephone Number"
                 android:inputType="phone"
                 android:maxLength="12"
                 android:padding="16dp"
@@ -110,21 +173,23 @@
                 android:textColorHint="#ADCCE2"
                 android:textSize="16dp" />
 
-            <EditText
-                android:id="@+id/orgPassword"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="22dp"
-                android:layout_marginRight="35dp"
-                android:background="#0000"
-                android:hint="Organisation Password"
-                android:inputType="textPassword"
-                android:maxLength="12"
-                android:padding="16dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/textviewsstyle"
+                android:text="Admin Information"
                 android:textAlignment="center"
                 android:textColor="#ADCCE2"
-                android:textColorHint="#ADCCE2"
-                android:textSize="16dp" />
+                android:textSize="25sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginLeft="75dp"
+                android:layout_marginRight="75dp"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="#ADCCE2"/>
 
             <EditText
                 android:id="@+id/orgAdminName"
@@ -133,7 +198,7 @@
                 android:layout_marginLeft="22dp"
                 android:layout_marginRight="35dp"
                 android:background="#0000"
-                android:hint="Organisation Admin Name"
+                android:hint="Admin Name"
                 android:inputType="textPersonName"
                 android:maxLength="12"
                 android:padding="16dp"
@@ -149,7 +214,7 @@
                 android:layout_marginLeft="22dp"
                 android:layout_marginRight="35dp"
                 android:background="#0000"
-                android:hint="Organisation Admin Surname"
+                android:hint="Admin Surname"
                 android:inputType="textPersonName"
                 android:maxLength="12"
                 android:padding="16dp"
@@ -165,9 +230,25 @@
                 android:layout_marginLeft="22dp"
                 android:layout_marginRight="35dp"
                 android:background="#0000"
-                android:hint="Oganisation Admin ID Number"
+                android:hint="Admin ID Number"
                 android:inputType="phone"
                 android:maxLength="13"
+                android:padding="16dp"
+                android:textAlignment="center"
+                android:textColor="#ADCCE2"
+                android:textColorHint="#ADCCE2"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/orgPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="35dp"
+                android:background="#0000"
+                android:hint="Set Password"
+                android:inputType="textPassword"
+                android:maxLength="12"
                 android:padding="16dp"
                 android:textAlignment="center"
                 android:textColor="#ADCCE2"
@@ -199,6 +280,7 @@
                     android:text="Female" />
 
             </RadioGroup>
+
 
             <TextView
                 android:id="@+id/btnRegisterCreche"
