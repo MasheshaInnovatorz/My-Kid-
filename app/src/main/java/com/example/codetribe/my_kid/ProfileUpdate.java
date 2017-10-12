@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import static com.example.codetribe.my_kid.R.id.gender;
 
-public class Profile_Update extends AppCompatActivity {
+public class ProfileUpdate extends AppCompatActivity {
 
 
       TextView signUpButton;
@@ -62,7 +62,7 @@ private RadioButton rdGenders;
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Update Profile_Update");
+        getSupportActionBar().setTitle("Update ProfileUpdate");
 
 
 
@@ -158,13 +158,13 @@ private RadioButton rdGenders;
 
 
 
-             //databaseReference.setValue(Profile_Update);
+             //databaseReference.setValue(ProfileUpdate);
 
-                Toast.makeText(Profile_Update.this, "User Profile_Update Added", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Profile_Update.this, Welcome_activity.class));
+                Toast.makeText(ProfileUpdate.this, "User ProfileUpdate Added", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(ProfileUpdate.this, WelcomeActivity.class));
 
             }else{
-                Toast.makeText(Profile_Update.this, "User Failed to add Profile_Update", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileUpdate.this, "User Failed to add ProfileUpdate", Toast.LENGTH_SHORT).show();
             }
     }
 

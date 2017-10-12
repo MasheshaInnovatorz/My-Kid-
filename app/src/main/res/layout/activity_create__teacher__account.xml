@@ -7,7 +7,7 @@
     android:orientation="vertical"
 
     android:background="@drawable/kidsbackground1"
-    tools:context="com.example.codetribe.my_kid.Create_Teacher_Account">
+    tools:context="com.example.codetribe.my_kid.CreateTeacherAccount">
 
 
     <ScrollView

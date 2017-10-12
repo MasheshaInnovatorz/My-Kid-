@@ -28,6 +28,7 @@
                 android:background="@drawable/textviewsstyle"
                 android:text="Register Creche Account"
 
+
                 android:textAlignment="center"
                 android:textColor="#ADCCE2"
                 android:textSize="30sp" />

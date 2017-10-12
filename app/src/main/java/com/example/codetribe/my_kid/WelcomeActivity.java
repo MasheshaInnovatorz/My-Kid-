@@ -12,7 +12,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Welcome_activity extends AppCompatActivity {
+public class WelcomeActivity extends AppCompatActivity {
 
                 TextView sin;
                 LinearLayout sign_up;
@@ -31,13 +31,13 @@ public class Welcome_activity extends AppCompatActivity {
                         public void onClick(View v) {
 
 
-                            AlertDialog.Builder mBuilder = new AlertDialog.Builder(Welcome_activity.this);
+                            AlertDialog.Builder mBuilder = new AlertDialog.Builder(WelcomeActivity.this);
                             View mView = getLayoutInflater().inflate(R.layout.dialogue_spinner, null);
                             mBuilder.setTitle("Select A category to Login?");
 
                             final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
 
-                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(Welcome_activity.this, android.R.layout.simple_spinner_item
+                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(WelcomeActivity.this, android.R.layout.simple_spinner_item
                                     , getResources().getStringArray(R.array.signUp_Options));
 
                             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -60,16 +60,16 @@ public class Welcome_activity extends AppCompatActivity {
 
                                     switch (text) {
                                         case "User":
-                                            Intent it = new Intent(Welcome_activity.this, Sign_up.class);
+                                            Intent it = new Intent(WelcomeActivity.this, SignUp.class);
                                             startActivity(it);
 
                                             break;
                                         case "Organization":
-                                            Intent i = new Intent(Welcome_activity.this, SignUpOrganisationActivity.class);
+                                            Intent i = new Intent(WelcomeActivity.this, SignUpOrganisationActivity.class);
                                             startActivity(i);
                                             break;
                                         default:
-                                            Toast.makeText(Welcome_activity.this, "Choose an option to sign-Up", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(WelcomeActivity.this, "Choose an option to sign-Up", Toast.LENGTH_SHORT).show();
                                             break;
                                     }
 
@@ -98,16 +98,16 @@ public class Welcome_activity extends AppCompatActivity {
                         public void onClick(View v) {
 
 
-                             Intent it = new Intent(Welcome_activity.this, LoginActivity.class);
+                             Intent it = new Intent(WelcomeActivity.this, LoginActivity.class);
                             startActivity(it);
 
-                           /* AlertDialog.Builder mBuilder = new AlertDialog.Builder(Welcome_activity.this);
+                           /* AlertDialog.Builder mBuilder = new AlertDialog.Builder(WelcomeActivity.this);
                             View mView = getLayoutInflater().inflate(R.layout.dialogue_spinner, null);
                             mBuilder.setTitle("Select A category to Login?");
 
                             final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
 
-                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(Welcome_activity.this, android.R.layout.simple_spinner_item
+                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(WelcomeActivity.this, android.R.layout.simple_spinner_item
                                     ,getResources().getStringArray(R.array.LoginType));
 
                             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -130,15 +130,15 @@ public class Welcome_activity extends AppCompatActivity {
 
                                     switch(text) {
                                         case "Teacher":
-                                            Intent intent = new Intent(Welcome_activity.this, LoginActivity.class);
+                                            Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
                                             startActivity(intent);
                                             break;
                                         case "Parent":
-                                            Intent i = new Intent(Welcome_activity.this, LoginActivity.class);
+                                            Intent i = new Intent(WelcomeActivity.this, LoginActivity.class);
                                             startActivity(i);
                                             break;
                                         default:
-                                            Toast.makeText(Welcome_activity.this, "To continue select an Item ", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(WelcomeActivity.this, "To continue select an Item ", Toast.LENGTH_SHORT).show();
                                             break;
                                     }
 

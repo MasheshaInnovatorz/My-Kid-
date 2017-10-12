@@ -31,15 +31,13 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import org.w3c.dom.Text;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Iterator;
 
 //import static com.example.codetribe.my_kid.R.id.parentId;
 
-public class Uploud_kids_memo extends AppCompatActivity {
+public class UploadKidsMemo extends AppCompatActivity {
 
 
     private StorageReference mStorageRef;
@@ -65,7 +63,7 @@ public class Uploud_kids_memo extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Uploud_kids_memo");
+        getSupportActionBar().setTitle("UploadKidsMemo");
 
 
         Intent intent = getIntent();
@@ -84,7 +82,7 @@ public class Uploud_kids_memo extends AppCompatActivity {
 
               Infor(dataSnapshot,userId);
 
-                //Toast.makeText(Uploud_kids_memo.this, userId, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(UploadKidsMemo.this, userId, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -226,7 +224,7 @@ public class Uploud_kids_memo extends AppCompatActivity {
                     results = name + " " + surname;
                 }
                 else{
-                    Toast.makeText(Uploud_kids_memo.this, "NOne Existing", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UploadKidsMemo.this, "NOne Existing", Toast.LENGTH_SHORT).show();
                 }
 
                /* name.setText("Name : " + dataUser.child("userName").getValue().toString());

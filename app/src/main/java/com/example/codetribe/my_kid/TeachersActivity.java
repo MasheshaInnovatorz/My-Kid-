@@ -15,7 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Teachers_activity extends AppCompatActivity {
+public class TeachersActivity extends AppCompatActivity {
 
     String userKey;
     //public static final String ARTIST_ID = "artistid";
@@ -37,7 +37,17 @@ public class Teachers_activity extends AppCompatActivity {
         listViewKids  = (ListView)findViewById(R.id.listViewkids);
         fireAuth =  FirebaseAuth.getInstance();
 
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/Teachers_activity.java
 //=====
+=======
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/TeachersActivity.java
+        Intent intent = getIntent();
+        //String id = intent.getStringExtra(TeachersActivity.ARTIST_ID);
+        userKey =  intent.getStringExtra("User_KEY");
+=======
+>>>>>>> fcb69ce7254611b6e328c24fba4791f8db5c5171:app/src/main/java/com/example/codetribe/my_kid/Teachers_activity.java
+
+>>>>>>> 023d66d5bd4fd40b24da9a2b6a66420c547b7c69:app/src/main/java/com/example/codetribe/my_kid/TeachersActivity.java
 
         kid = new ArrayList<>();
 
@@ -59,7 +69,7 @@ public class Teachers_activity extends AppCompatActivity {
                 Kids kido =  kid.get(i);
 
 
-                Intent intent = new Intent(getApplicationContext(),Uploud_kids_memo.class);
+                Intent intent = new Intent(getApplicationContext(),UploadKidsMemo.class);
                 intent.putExtra("kid_id", kido.getId());
                 intent.putExtra("User_KEY",userKey);
 
@@ -95,7 +105,7 @@ public class Teachers_activity extends AppCompatActivity {
 
                     }
                 }
-                KidsArray trackListAdapter = new KidsArray(Teachers_activity.this,kid);
+                KidsArray trackListAdapter = new KidsArray(TeachersActivity.this,kid);
                 listViewKids.setAdapter(trackListAdapter);
             }
 

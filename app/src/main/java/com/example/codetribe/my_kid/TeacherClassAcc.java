@@ -4,7 +4,7 @@ package com.example.codetribe.my_kid;
  * Created by mudau on 10/10/2017.
  */
 
-public class Teacher_class_acc {
+public class TeacherClassAcc {
     private String teacherName;
     private String teacherSurname;
     private String teacherContact;
@@ -13,7 +13,7 @@ public class Teacher_class_acc {
     private String teacherGender;
     private String keyteacher;
 
-    public Teacher_class_acc(String teacherName, String teacherSurname, String teacherContact, String teacherClassroom, String teacherIdnumber, String teacherGender, String keyteacher) {
+    public TeacherClassAcc(String teacherName, String teacherSurname, String teacherContact, String teacherClassroom, String teacherIdnumber, String teacherGender, String keyteacher) {
         this.teacherName = teacherName;
         this.teacherSurname = teacherSurname;
         this.teacherContact = teacherContact;
