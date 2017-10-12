@@ -26,7 +26,7 @@
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.LoginStyle" />
         <activity
-            android:name=".Sign_up"
+            android:name=".SignUp"
             android:theme="@style/AppTheme.LoginStyle" />
         <activity
             android:name=".ResetPassword"
@@ -34,27 +34,23 @@
         <activity
             android:name=".ResetPassword"
             android:theme="@style/AppTheme.LoginStyle" />
-        <activity android:name=".Profile_Update" />
+        <activity android:name=".ProfileUpdate" />
         <activity android:name=".KidsmemoListsActivity" />
-        <activity android:name=".Uploud_kids_memo" />
-        <activity android:name=".Parent_activity" />
-        <activity android:name=".Teachers_activity" />
+        <activity android:name=".UploadKidsMemo" />
+        <activity android:name=".ParentActivity" />
+        <activity android:name=".TeachersActivity" />
         <activity
-            android:name=".Welcome_activity"
+            android:name=".WelcomeActivity"
             android:theme="@style/AppTheme.LoginStyle" />
         <activity android:name=".KidActivity" />
-        <activity android:name=".Admin_activity" />
+        <activity android:name=".AdminActivity" />
         <activity
-            android:name=".View_profile"
-<<<<<<< HEAD
+            android:name=".ViewProfile"
             android:theme="@style/AppTheme.LoginStyle" />
-        <activity android:name=".Developers" />
         <activity android:name=".SignUpOrganisationActivity" />
-        <activity android:name=".Create_Teacher_Account"></activity>
-=======
-            android:theme="@style/AppTheme.LoginStyle"></activity>
-        <activity android:name=".Developers"></activity>
->>>>>>> 1da425c0ccf0f8025ae9955918b200fa17ab5a29
+        <activity android:name=".CreateTeacherAccount"></activity>
+
+
     </application>
 
 </manifest>

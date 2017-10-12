@@ -35,7 +35,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Iterator;
 
-public class View_profile extends AppCompatActivity {
+public class ViewProfile extends AppCompatActivity {
 
     private Uri imgUri;
 
@@ -67,7 +67,7 @@ public class View_profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_profile);
 
-        //Profile_Update edit
+        //ProfileUpdate edit
         editprofile=(TextView)findViewById(R.id.editprofile);
         //initialize
         name = (TextView) findViewById(R.id.user_profile_name);
@@ -95,7 +95,7 @@ public class View_profile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent i=new Intent(View_profile.this,Profile_Update.class);
+                Intent i=new Intent(ViewProfile.this,ProfileUpdate.class);
                 startActivity(i);
             }
         });
@@ -143,7 +143,7 @@ public class View_profile extends AppCompatActivity {
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(View_profile.this,Profile_Update.class) ;
+                Intent intent = new Intent(ViewProfile.this,ProfileUpdate.class) ;
                 startActivity(intent);
             }
 

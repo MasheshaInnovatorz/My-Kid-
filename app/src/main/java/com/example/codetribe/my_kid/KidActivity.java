@@ -63,7 +63,7 @@ public class KidActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Add kid Profile_Update");
+        getSupportActionBar().setTitle("Add kid ProfileUpdate");
 
 
         //initializing
@@ -91,7 +91,7 @@ public class KidActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        //String id = intent.getStringExtra(Teachers_activity.ARTIST_ID);
+        //String id = intent.getStringExtra(TeachersActivity.ARTIST_ID);
         keyUser =  intent.getStringExtra("User_KEY");
 
         //database
@@ -119,8 +119,8 @@ public class KidActivity extends AppCompatActivity {
                 databaseKids.child("userAddress").setValue(kidStringparentid);
                 databaseKids.child("userCity").setValue(genderString);
 
-                Toast.makeText(KidActivity.this, "User Profile_Update Added", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(KidActivity.this, Parent_activity.class));
+                Toast.makeText(KidActivity.this, "User ProfileUpdate Added", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(KidActivity.this, ParentActivity.class));
 
 */
                 saveKids();
@@ -158,7 +158,7 @@ public class KidActivity extends AppCompatActivity {
 
             Toast.makeText(this, "Kids saved successfully", Toast.LENGTH_SHORT).show();
 
-            startActivity(new Intent(getApplication(),Admin_activity.class));
+            startActivity(new Intent(getApplication(),AdminActivity.class));
 
 
         }else{

@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class EditKidsProfile extends AppCompatActivity {
 
     private TextInputLayout h_allergies,h_dietRequirements,h_doctorsRecomendations,h_kidHeight,h_bodyWeight;
+
  public EditText allergies,
             dietRequirements,
             doctorsRecomendations,
@@ -58,7 +59,7 @@ public class EditKidsProfile extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        //String id = intent.getStringExtra(Teachers_activity.ARTIST_ID);
+        //String id = intent.getStringExtra(TeachersActivity.ARTIST_ID);
         keyUser =  intent.getStringExtra("User_KEY");
 
         //database

@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.codetribe.my_kid.R.id.orgAddress;
+//import static com.example.codetribe.my_kid.R.id.orgAddress;
 import static com.example.codetribe.my_kid.R.id.orgCity;
 import static com.example.codetribe.my_kid.R.id.orgEmail;
 
@@ -57,30 +57,30 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         mOrganizationRef = FirebaseDatabase.getInstance().getReference();
 
 
-<<<<<<< HEAD
+
         orgaEmail = (EditText) findViewById(R.id.orgEmail);
         orgPassword = (EditText) findViewById(R.id.orgPassword);
         crechName = (EditText) findViewById(R.id.orgName);
-        crechAddress = (EditText) findViewById(R.id.orgAddress);
+       // crechAddress = (EditText) findViewById(R.id.orgAddress);
         crechCity = (EditText) findViewById(R.id.orgCity);
-        crechPhoneNo = (EditText) findViewById(R.id.orgPhoneNumber);
+        crechPhoneNo = (EditText) findViewById(R.id.orgTelNumber);
         adminName = (EditText) findViewById(R.id.orgAdminName);
         adminSurname = (EditText) findViewById(R.id.orgAdminSurname);
         adminIdNo = (EditText) findViewById(R.id.orgAdminIDNumber);
-=======
+
 
               orgaEmail = (EditText)findViewById(orgEmail);
              orgPassword= (EditText)findViewById(R.id.orgPassword);
               crechName = (EditText)findViewById(R.id.orgName);
-                crechAddress = (EditText)findViewById(orgAddress);
+              //  crechAddress = (EditText)findViewById(orgAddress);
                 crechCity = (EditText)findViewById(orgCity);
-                crechPhoneNo  = (EditText)findViewById(R.id.orgPhoneNumber);
+            //    crechPhoneNo  = (EditText)findViewById(R.id.orgPhoneNumber);
                 adminName = (EditText)findViewById(R.id.orgAdminName);
                 adminSurname = (EditText)findViewById(R.id.orgAdminSurname);
                 adminIdNo = (EditText)findViewById(R.id.orgAdminIDNumber);
 
 
->>>>>>> 1da425c0ccf0f8025ae9955918b200fa17ab5a29
+
 
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -120,7 +120,6 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                // String user_id = task.getResult().getUser().getUid();
 
-
                                 DatabaseReference mChildDatabase = mOrganizationRef.child("Creche");
                                 String key = mChildDatabase.child("Creche").child(crechNameOrg).push().getKey();
 
@@ -136,7 +135,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                                 mChildDatabase.updateChildren(organizationUpdate);
 
                                 Toast.makeText(SignUpOrganisationActivity.this, key, Toast.LENGTH_SHORT).show();
-                                Toast.makeText(SignUpOrganisationActivity.this, "Organization Sccessfully Created", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpOrganisationActivity.this, "Organization Successfully Created", Toast.LENGTH_SHORT).show();
 
                                 orgAuth.signOut();
 
@@ -170,7 +169,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                     intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                     startActivity(intent);
                 } else {
-                    startActivity(new Intent(SignUpOrganisationActivity.this, Parent_activity.class));
+                    startActivity(new Intent(SignUpOrganisationActivity.this, ParentActivity.class));
                 }
             }
         }

@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Iterator;
 
-public class Sign_up extends AppCompatActivity {
+public class SignUp extends AppCompatActivity {
 
 
     private EditText inputEmail, inputPassword;
@@ -62,7 +62,7 @@ public class Sign_up extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(Sign_up.this, LoginActivity.class));
+                startActivity(new Intent(SignUp.this, LoginActivity.class));
                 finish();
             }
         });*/
@@ -142,12 +142,12 @@ public class Sign_up extends AppCompatActivity {
                                 mChildDatabase.child("role").setValue("none");
                                 mChildDatabase.child("emailUser").setValue(userEmailString);
                                 mChildDatabase.child("passWordUser").setValue(userPassString);
-                                Toast.makeText(Sign_up.this, "User Account Created", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUp.this, "User Account Created", Toast.LENGTH_SHORT).show();
                                 auth.signOut();
-                                startActivity(new Intent(Sign_up.this,Welcome_activity.class));
+                                startActivity(new Intent(SignUp.this,WelcomeActivity.class));
 
                             }else{
-                                Toast.makeText(Sign_up.this, "User Fialed to login", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUp.this, "User Fialed to login", Toast.LENGTH_SHORT).show();
 
 
                             }
@@ -168,11 +168,11 @@ public class Sign_up extends AppCompatActivity {
 
             if(dataUser.child("emailUser").getValue().toString().equals(emailForVer)) {
                 if (dataUser.child("isVerified").getValue().toString().equals("unverified")) {
-                    Intent intent = new Intent(Sign_up.this, LoginActivity.class);
+                    Intent intent = new Intent(SignUp.this, LoginActivity.class);
                     intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                     startActivity(intent);
                 } else {
-                    startActivity(new Intent(Sign_up.this, Parent_activity.class));
+                    startActivity(new Intent(SignUp.this, ParentActivity.class));
                 }
             }
         }

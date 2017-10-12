@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="5dp"
-    tools:context="com.example.codetribe.my_kid.Admin_activity">
+    tools:context="com.example.codetribe.my_kid.AdminActivity">
 <!--
     <TextView
         android:id="@+id/textKidsName"

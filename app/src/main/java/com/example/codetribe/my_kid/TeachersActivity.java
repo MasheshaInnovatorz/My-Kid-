@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Teachers_activity extends AppCompatActivity {
+public class TeachersActivity extends AppCompatActivity {
 
     String userKey;
     //public static final String ARTIST_ID = "artistid";
@@ -38,7 +38,7 @@ public class Teachers_activity extends AppCompatActivity {
         listViewKids  = (ListView)findViewById(R.id.listViewkids);
 
         Intent intent = getIntent();
-        //String id = intent.getStringExtra(Teachers_activity.ARTIST_ID);
+        //String id = intent.getStringExtra(TeachersActivity.ARTIST_ID);
         userKey =  intent.getStringExtra("User_KEY");
 
 
@@ -59,7 +59,7 @@ public class Teachers_activity extends AppCompatActivity {
                 Kids kido =  kid.get(i);
 
 
-                Intent intent = new Intent(getApplicationContext(),Uploud_kids_memo.class);
+                Intent intent = new Intent(getApplicationContext(),UploadKidsMemo.class);
                 intent.putExtra("kid_id", kido.getId());
                 intent.putExtra("User_KEY",userKey);
 
@@ -95,7 +95,7 @@ public class Teachers_activity extends AppCompatActivity {
 
                     }
                 }
-                KidsArray trackListAdapter = new KidsArray(Teachers_activity.this,kid);
+                KidsArray trackListAdapter = new KidsArray(TeachersActivity.this,kid);
                 listViewKids.setAdapter(trackListAdapter);
             }
 

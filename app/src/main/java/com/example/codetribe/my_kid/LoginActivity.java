@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         backtowelcome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(LoginActivity.this,Welcome_activity.class);
+                Intent i=new Intent(LoginActivity.this,WelcomeActivity.class);
                 startActivity(i);
             }
         });
@@ -140,13 +140,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
    }
   /* if(view == signup){
-       Intent i=new Intent(LoginActivity.this,Sign_up.class);
+       Intent i=new Intent(LoginActivity.this,SignUp.class);
        startActivity(i);
 
    }*/
    if(view == forgot){
        finish();
-      // startActivity(new Intent(this, Uploud_kids_memo.class));
+      // startActivity(new Intent(this, UploadKidsMemo.class));
        Intent i=new Intent(LoginActivity.this,ResetPassword.class);
        startActivity(i);
 
@@ -167,7 +167,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 if(dataUser.child("isVerified").getValue().toString().equals("unverified")){
 
-                    Intent intentUser = new Intent(LoginActivity.this,Profile_Update.class);
+                    Intent intentUser = new Intent(LoginActivity.this,ProfileUpdate.class);
                     intentUser.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                     Toast.makeText(this, dataUser.child("userKey").getValue().toString(), Toast.LENGTH_SHORT).show();
                     startActivity(intentUser);
@@ -175,14 +175,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }else {
                     if (dataUser.child("role").getValue().toString().equals("teacher")) {
 
-                        Intent intent = new Intent(LoginActivity.this, Teachers_activity.class);
+                        Intent intent = new Intent(LoginActivity.this, TeachersActivity.class);
                         intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                         startActivity(intent);
-                        Toast.makeText(this, "Welcome To Teachers_activity Page", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Welcome To TeachersActivity Page", Toast.LENGTH_SHORT).show();
 
                     } else if (dataUser.child("role").getValue().toString().equals("parent")) {
 
-                        Intent intent = new Intent(LoginActivity.this, Parent_activity.class);
+                        Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
                         intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                         intent.putExtra("parent_id", dataUser.child("userIdNumber").getValue().toString());
 
@@ -193,10 +193,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
                     } else if (dataUser.child("role").getValue().toString().equals("admin")) {
-                        Intent intent = new Intent(LoginActivity.this, Create_Teacher_Account.class);
+                        Intent intent = new Intent(LoginActivity.this, CreateTeacherAccount.class);
                         intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                         startActivity(intent);
-                        Toast.makeText(this, "Welcome To Admin_activity Page", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Welcome To AdminActivity Page", Toast.LENGTH_SHORT).show();
                     }else {
                         Toast.makeText(LoginActivity.this, "Please Contact A heard Master To Assign you A Role", Toast.LENGTH_SHORT).show();
                     }

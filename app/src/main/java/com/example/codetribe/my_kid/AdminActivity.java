@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Admin_activity extends AppCompatActivity {
+public class AdminActivity extends AppCompatActivity {
 
     String userKey;
     //public static final String ARTIST_ID = "artistid";
@@ -55,7 +55,7 @@ public class Admin_activity extends AppCompatActivity {
         listUsers = (ListView) findViewById(R.id.listUser);
         addkid =  (Button)findViewById(R.id.addkids);
         Intent intent = getIntent();
-        //String id = intent.getStringExtra(Teachers_activity.ARTIST_ID);
+        //String id = intent.getStringExtra(TeachersActivity.ARTIST_ID);
         userKey = intent.getStringExtra("User_KEY");
 
         user = new ArrayList<>();
@@ -68,10 +68,10 @@ public class Admin_activity extends AppCompatActivity {
         addkid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =  new Intent(Admin_activity.this,KidActivity.class);
+                Intent intent =  new Intent(AdminActivity.this,KidActivity.class);
                 intent.putExtra("User_KEY",userKey);
                 startActivity(intent);
-                Toast.makeText(Admin_activity.this,userKey, Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminActivity.this,userKey, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -83,13 +83,13 @@ public class Admin_activity extends AppCompatActivity {
 
                 //spinner code
 
-                AlertDialog.Builder mBuilder = new AlertDialog.Builder(Admin_activity.this);
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(AdminActivity.this);
                 View mView = getLayoutInflater().inflate(R.layout.dialogue_spinner, null);
                 mBuilder.setTitle("Change User Role");
 
                 final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
 
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(Admin_activity.this, android.R.layout.simple_spinner_item
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(AdminActivity.this, android.R.layout.simple_spinner_item
                         ,getResources().getStringArray(R.array.user_role));
 
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -112,15 +112,15 @@ public class Admin_activity extends AppCompatActivity {
 
                         switch(text) {
                             case "Teacher":
-                                Intent intent = new Intent(Admin_activity.this, LoginActivity.class);
+                                Intent intent = new Intent(AdminActivity.this, LoginActivity.class);
                                 startActivity(intent);
                                 break;
                             case "Parent":
-                                Intent i = new Intent(Admin_activity.this, LoginActivity.class);
+                                Intent i = new Intent(AdminActivity.this, LoginActivity.class);
                                 startActivity(i);
                                 break;
                             default:
-                                Toast.makeText(Admin_activity.this, "To continue select an Item ", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AdminActivity.this, "To continue select an Item ", Toast.LENGTH_SHORT).show();
                                 break;
                         }
 
@@ -162,7 +162,7 @@ public class Admin_activity extends AppCompatActivity {
                     user.add(kidInf);
 
                 }
-                UserArray userListAdapter = new UserArray(Admin_activity.this, user);
+                UserArray userListAdapter = new UserArray(AdminActivity.this, user);
                 listUsers.setAdapter(userListAdapter);
             }
 
