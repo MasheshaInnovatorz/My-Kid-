@@ -28,7 +28,8 @@ public class Admin_activity extends AppCompatActivity {
     String userKey;
     //public static final String ARTIST_ID = "artistid";
     private TextView add_Kids;
-    private Button addkid;
+    private Button addkid,addteacher;
+
 
 
     //initialization for kids
@@ -54,6 +55,7 @@ public class Admin_activity extends AppCompatActivity {
 
         listUsers = (ListView) findViewById(R.id.listUser);
         addkid =  (Button)findViewById(R.id.addkids);
+        addteacher=  (Button)findViewById(R.id.addTeacher);
         Intent intent = getIntent();
         //String id = intent.getStringExtra(Teachers_activity.ARTIST_ID);
         userKey = intent.getStringExtra("User_KEY");
@@ -64,6 +66,16 @@ public class Admin_activity extends AppCompatActivity {
         //kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Kids").child(userKey);
 
         usersRetriveRef = FirebaseDatabase.getInstance().getReference("Users");
+
+        addteacher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =  new Intent(Admin_activity.this,Create_Teacher_Account.class);
+                intent.putExtra("User_KEY",userKey);
+                startActivity(intent);
+                Toast.makeText(Admin_activity.this,userKey, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         addkid.setOnClickListener(new View.OnClickListener() {
             @Override
