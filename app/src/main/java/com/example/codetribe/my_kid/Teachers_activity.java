@@ -37,7 +37,7 @@ public class Teachers_activity extends AppCompatActivity {
         listViewKids  = (ListView)findViewById(R.id.listViewkids);
         fireAuth =  FirebaseAuth.getInstance();
 
-
+//=====
 
         kid = new ArrayList<>();
 
