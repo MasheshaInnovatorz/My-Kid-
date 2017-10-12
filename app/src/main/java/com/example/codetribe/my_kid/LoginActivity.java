@@ -193,11 +193,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
                     } else if (dataUser.child("role").getValue().toString().equals("admin")) {
-<<<<<<< HEAD
-                        Intent intent = new Intent(LoginActivity.this, CreateTeacherAccount.class);
-=======
-                        Intent intent = new Intent(LoginActivity.this, Admin_activity.class);
->>>>>>> fcb69ce7254611b6e328c24fba4791f8db5c5171
+
+                        Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+
                         intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                         startActivity(intent);
                         Toast.makeText(this, "Welcome To AdminActivity Page", Toast.LENGTH_SHORT).show();
