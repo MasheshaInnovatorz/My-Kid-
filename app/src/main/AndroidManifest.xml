@@ -31,15 +31,11 @@
         <activity
             android:name=".ResetPassword"
             android:theme="@style/AppTheme.LoginStyle" />
-<<<<<<< HEAD
-        <activity
-            android:name=".ResetPassword"
-            android:theme="@style/AppTheme.LoginStyle" />
-        <activity android:name=".ProfileUpdate" />
-=======
 
-        <activity android:name=".Profile_Update" />
->>>>>>> fcb69ce7254611b6e328c24fba4791f8db5c5171
+        <activity android:name=".ProfileUpdate" />
+
+
+
         <activity android:name=".KidsmemoListsActivity" />
         <activity android:name=".UploadKidsMemo" />
         <activity android:name=".ParentActivity" />
@@ -50,20 +46,16 @@
         <activity android:name=".KidActivity" />
         <activity android:name=".AdminActivity" />
         <activity
-<<<<<<< HEAD
             android:name=".ViewProfile"
-=======
-            android:name=".View_profile"
 
->>>>>>> fcb69ce7254611b6e328c24fba4791f8db5c5171
             android:theme="@style/AppTheme.LoginStyle" />
         <activity android:name=".SignUpOrganisationActivity" />
-<<<<<<< HEAD
-        <activity android:name=".CreateTeacherAccount"></activity>
-=======
-        <activity android:name=".Create_Teacher_Account"></activity>
 
->>>>>>> fcb69ce7254611b6e328c24fba4791f8db5c5171
+        <activity android:name=".CreateTeacherAccount"></activity>
+
+
+
+
 
 
     </application>

@@ -1,6 +1,5 @@
 package com.example.codetribe.my_kid;
         import android.content.Intent;
-<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/CreateTeacherAccount.java
         import android.support.annotation.NonNull;
         import android.support.design.widget.TextInputLayout;
         import android.support.v7.app.AppCompatActivity;
@@ -25,33 +24,8 @@ package com.example.codetribe.my_kid;
 
         import java.util.Iterator;
 
-public class CreateTeacherAccount extends AppCompatActivity {
-=======
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 public class Create_Teacher_Account extends AppCompatActivity {
->>>>>>> fcb69ce7254611b6e328c24fba4791f8db5c5171:app/src/main/java/com/example/codetribe/my_kid/Create_Teacher_Account.java
+
 
     TextInputLayout inputLayoutName, inputLayoutsurname, inputLayoutcontact, inputLayoutclassroom, inputLayoutidnumber, inputLayoutemail, inputLayoutpassword;
     String userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, useremailString, userpasswordString;
@@ -92,8 +66,6 @@ public class Create_Teacher_Account extends AppCompatActivity {
         gender = (RadioGroup) findViewById(R.id.teachergenders);
         createteacher = (TextView) findViewById(R.id.Create_Teacher_Account);
 
-<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/CreateTeacherAccount.java
-=======
 
         //database
         Intent intent = getIntent();
@@ -103,21 +75,21 @@ public class Create_Teacher_Account extends AppCompatActivity {
         // useremail = (EditText) findViewById(R.id.teacheremail);
         //  userpassword = (EditText) findViewById(R.id.teacherpassword);
         //createteacher = (TextView) findViewById(R.id.Create_Teacher_Account);
->>>>>>> fcb69ce7254611b6e328c24fba4791f8db5c5171:app/src/main/java/com/example/codetribe/my_kid/Create_Teacher_Account.java
+
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
         //database
         mDatabaseRef = FirebaseDatabase.getInstance().getReference();
-<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/CreateTeacherAccount.java
+
 
         keyTeacher=auth.getCurrentUser().getUid();
         teacherReference = FirebaseDatabase.getInstance().getReference().child("Creche").child("Teacher").child(keyTeacher);
         mCrecheRef =  FirebaseDatabase.getInstance().getReference().child("Creche");
 
-=======
+
         keyTeacher = auth.getCurrentUser().getUid();
         teacherReference = FirebaseDatabase.getInstance().getReference().child("Users");
->>>>>>> fcb69ce7254611b6e328c24fba4791f8db5c5171:app/src/main/java/com/example/codetribe/my_kid/Create_Teacher_Account.java
+
 
 
         createteacher.setOnClickListener(new View.OnClickListener() {
@@ -173,7 +145,6 @@ public class Create_Teacher_Account extends AppCompatActivity {
 
                                         String user_id = task.getResult().getUser().getUid();
 
-<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/CreateTeacherAccount.java
                 Toast.makeText(this, adminOrg, Toast.LENGTH_SHORT).show();
             if(orgname != null){
 
@@ -197,22 +168,19 @@ public class Create_Teacher_Account extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-=======
->>>>>>> fcb69ce7254611b6e328c24fba4791f8db5c5171:app/src/main/java/com/example/codetribe/my_kid/Create_Teacher_Account.java
+
 
 
                                         //firebase teacher database table
                                         DatabaseReference mChildDatabase = mDatabaseRef.child("Users").child(user_id);
 
-<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/CreateTeacherAccount.java
                 //        progressBar.setVisibility(View.VISIBLE);
                 //create user
                 auth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(CreateTeacherAccount.this, new OnCompleteListener<AuthResult>() {
+                        .addOnCompleteListener(Create_Teacher_Account.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-=======
->>>>>>> fcb69ce7254611b6e328c24fba4791f8db5c5171:app/src/main/java/com/example/codetribe/my_kid/Create_Teacher_Account.java
+
 
                                         //Storing Information
                                         Teacher_class_acc teacher = new Teacher_class_acc(userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, keyTeacher);
@@ -233,7 +201,6 @@ public class Create_Teacher_Account extends AppCompatActivity {
                                         Toast.makeText(Create_Teacher_Account.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
 
 
-<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/CreateTeacherAccount.java
                                 //firebase teacher database table
                                 DatabaseReference mChildDatabase = mDatabaseRef.child("teacher");
 
@@ -251,14 +218,14 @@ public class Create_Teacher_Account extends AppCompatActivity {
 
 
 
-                                Toast.makeText(CreateTeacherAccount.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Create_Teacher_Account.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
 
 
                                 if (!task.isSuccessful()) {
-                                    Toast.makeText(CreateTeacherAccount.this, "Authentication failed." + task.getException(),
+                                    Toast.makeText(Create_Teacher_Account.this, "Authentication failed." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
                                 } else {
-                                    startActivity(new Intent(CreateTeacherAccount.this, LoginActivity.class));
+                                    startActivity(new Intent(Create_Teacher_Account.this, LoginActivity.class));
                                     finish();
                                 }
                             }
@@ -267,7 +234,7 @@ public class Create_Teacher_Account extends AppCompatActivity {
             }
 
 
-=======
+
                                         if (!task.isSuccessful()) {
                                             Toast.makeText(Create_Teacher_Account.this, "Authentication failed." + task.getException(),
                                                     Toast.LENGTH_SHORT).show();
@@ -282,14 +249,12 @@ public class Create_Teacher_Account extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
->>>>>>> fcb69ce7254611b6e328c24fba4791f8db5c5171:app/src/main/java/com/example/codetribe/my_kid/Create_Teacher_Account.java
 
                     }
                 });
 
 
             }
-<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/CreateTeacherAccount.java
 
 
 

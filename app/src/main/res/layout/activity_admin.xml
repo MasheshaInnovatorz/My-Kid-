@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="5dp"
-<<<<<<< HEAD
     tools:context="com.example.codetribe.my_kid.AdminActivity">
 <!--
     <TextView
@@ -18,9 +17,6 @@
         android:textSize="30dp"
         android:textAlignment="center" />
     -->
-=======
-    tools:context="com.example.codetribe.my_kid.Admin_activity">
->>>>>>> fcb69ce7254611b6e328c24fba4791f8db5c5171
 
 
     <Button
