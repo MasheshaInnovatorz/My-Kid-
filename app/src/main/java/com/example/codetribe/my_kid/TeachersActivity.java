@@ -8,11 +8,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +25,7 @@ public class TeachersActivity extends AppCompatActivity {
     ListView listViewKids;
     List<Kids> kid;
 
+    FirebaseAuth fireAuth;
     //database
     DatabaseReference kidsRetriveRef;
 
@@ -36,10 +35,14 @@ public class TeachersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_teachers);
 
         listViewKids  = (ListView)findViewById(R.id.listViewkids);
+        fireAuth =  FirebaseAuth.getInstance();
 
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/TeachersActivity.java
         Intent intent = getIntent();
         //String id = intent.getStringExtra(TeachersActivity.ARTIST_ID);
         userKey =  intent.getStringExtra("User_KEY");
+=======
+>>>>>>> fcb69ce7254611b6e328c24fba4791f8db5c5171:app/src/main/java/com/example/codetribe/my_kid/Teachers_activity.java
 
 
         kid = new ArrayList<>();
@@ -47,7 +50,10 @@ public class TeachersActivity extends AppCompatActivity {
 
         //kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Kids").child(userKey);
 
-        kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Kids");
+       // kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Kids");
+
+        kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Users");
+
 
 
         add_Kids = (TextView)findViewById(R.id.text_Add_Kids);
@@ -82,13 +88,13 @@ public class TeachersActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        kidsRetriveRef.addValueEventListener(new ValueEventListener() {
+        /*kidsRetriveRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 kid.clear();
                 for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()){
 
-                    if(kidssnapshot.child("teachersId").getValue().toString().equals(userKey)) {
+                    if(kidssnapshot.child("userKey").getValue().toString().equals(fireAuth.getCurrentUser().getUid())) {
                         Kids kidInf = kidssnapshot.getValue(Kids.class);
                         kid.add(kidInf);
                     }else{
@@ -103,7 +109,7 @@ public class TeachersActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        });*/
     }
 
 

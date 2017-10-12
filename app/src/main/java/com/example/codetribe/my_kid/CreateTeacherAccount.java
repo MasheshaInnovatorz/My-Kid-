@@ -1,5 +1,6 @@
 package com.example.codetribe.my_kid;
         import android.content.Intent;
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/CreateTeacherAccount.java
         import android.support.annotation.NonNull;
         import android.support.design.widget.TextInputLayout;
         import android.support.v7.app.AppCompatActivity;
@@ -25,19 +26,45 @@ package com.example.codetribe.my_kid;
         import java.util.Iterator;
 
 public class CreateTeacherAccount extends AppCompatActivity {
+=======
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
-    TextInputLayout inputLayoutName, inputLayoutsurname, inputLayoutcontact,inputLayoutclassroom,inputLayoutidnumber,inputLayoutemail ,inputLayoutpassword;
-    String userNameString,userSurnameString,usercontactString,userclassroomString,useridnumberString,usergenderString,useremailString,userpasswordString;
-    private EditText name,surname,contact,classroom,idnumber,useremail,userpassword;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+public class Create_Teacher_Account extends AppCompatActivity {
+>>>>>>> fcb69ce7254611b6e328c24fba4791f8db5c5171:app/src/main/java/com/example/codetribe/my_kid/Create_Teacher_Account.java
+
+    TextInputLayout inputLayoutName, inputLayoutsurname, inputLayoutcontact, inputLayoutclassroom, inputLayoutidnumber, inputLayoutemail, inputLayoutpassword;
+    String userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, useremailString, userpasswordString;
+    private EditText name, surname, contact, classroom, idnumber, useremail, userpassword;
     RadioGroup gender;
     String keyTeacher;
     TextView createteacher;
-    String role="teacher";
+    String role = "teacher";
     private FirebaseAuth auth;
 
 
     //Firebase
-    private DatabaseReference teacherReference,mDatabaseRef,mCrecheRef;
+    private DatabaseReference teacherReference, mDatabaseRef, mCrecheRef;
     private RadioButton gnrteacher;
 
     @Override
@@ -65,61 +92,88 @@ public class CreateTeacherAccount extends AppCompatActivity {
         gender = (RadioGroup) findViewById(R.id.teachergenders);
         createteacher = (TextView) findViewById(R.id.Create_Teacher_Account);
 
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/CreateTeacherAccount.java
+=======
+
+        //database
+        Intent intent = getIntent();
+        keyTeacher = intent.getStringExtra("User_KEY");
+
+
+        // useremail = (EditText) findViewById(R.id.teacheremail);
+        //  userpassword = (EditText) findViewById(R.id.teacherpassword);
+        //createteacher = (TextView) findViewById(R.id.Create_Teacher_Account);
+>>>>>>> fcb69ce7254611b6e328c24fba4791f8db5c5171:app/src/main/java/com/example/codetribe/my_kid/Create_Teacher_Account.java
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
         //database
         mDatabaseRef = FirebaseDatabase.getInstance().getReference();
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/CreateTeacherAccount.java
 
         keyTeacher=auth.getCurrentUser().getUid();
         teacherReference = FirebaseDatabase.getInstance().getReference().child("Creche").child("Teacher").child(keyTeacher);
         mCrecheRef =  FirebaseDatabase.getInstance().getReference().child("Creche");
 
+=======
+        keyTeacher = auth.getCurrentUser().getUid();
+        teacherReference = FirebaseDatabase.getInstance().getReference().child("Users");
+>>>>>>> fcb69ce7254611b6e328c24fba4791f8db5c5171:app/src/main/java/com/example/codetribe/my_kid/Create_Teacher_Account.java
 
 
         createteacher.setOnClickListener(new View.OnClickListener() {
-                                         @Override
-                                         public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
 
-                                             //adminId
-                                             String AdminId  = auth.getCurrentUser().getUid();
-                                             final String adminEmail = auth.getCurrentUser().getEmail();
-
-
-
-                                             mCrecheRef.addValueEventListener(new ValueEventListener() {
-                                                 @Override
-                                                 public void onDataChange(DataSnapshot dataSnapshot) {
-                                                     Infor(dataSnapshot,adminEmail);
-                                                 }
-
-                                                 @Override
-                                                 public void onCancelled(DatabaseError databaseError) {
-
-                                                 }
-                                             });
+                //adminId
+                String AdminId = auth.getCurrentUser().getUid();
+                final String adminEmail = auth.getCurrentUser().getEmail();
 
 
+                teacherReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
 
-                                         }
-        });
-    }
+                        String email = useremail.getText().toString().trim();
+                        final String password = userpassword.getText().toString().trim();
+                        userNameString = name.getText().toString().trim();
+                        userSurnameString = surname.getText().toString().trim();
+                        usercontactString = contact.getText().toString().trim();
+                        userclassroomString = classroom.getText().toString().trim();
+                        useridnumberString = idnumber.getText().toString().trim();
 
-    private void Infor(DataSnapshot kidSnapshot,String varEmail){
+                        // useremailString = useremail.getText().toString().trim();
+                        // userpasswordString = userpassword.getText().toString().trim();
+                        //=========================================================
+                        int selectedId = gender.getCheckedRadioButtonId();
+                        gnrteacher = (RadioButton) findViewById(selectedId);
+                        usergenderString = gnrteacher.getText().toString().trim();
 
-        Iterator kidsIterator = kidSnapshot.getChildren().iterator();
+                        if (TextUtils.isEmpty(email)) {
+                            Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
-        String orgname;
+                        if (TextUtils.isEmpty(password)) {
+                            Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
-        while(kidsIterator.hasNext()) {
-            final DataSnapshot kidsUser = (DataSnapshot) kidsIterator.next();
+                        if (password.length() < 6) {
+                            Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
-            if (kidsUser.child("emailUser").getValue().toString().equals(varEmail)) {
+                        //        progressBar.setVisibility(View.VISIBLE);
+                        //create user
+                        auth.createUserWithEmailAndPassword(email, password)
+                                .addOnCompleteListener(Create_Teacher_Account.this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
 
-                orgname =  kidsUser.child("orgName").getValue().toString();
 
-                String adminOrg = kidsUser.child(orgname).child("Users").child("orgName").getValue().toString();
+                                        String user_id = task.getResult().getUser().getUid();
 
-
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/CreateTeacherAccount.java
                 Toast.makeText(this, adminOrg, Toast.LENGTH_SHORT).show();
             if(orgname != null){
 
@@ -143,29 +197,43 @@ public class CreateTeacherAccount extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+=======
+>>>>>>> fcb69ce7254611b6e328c24fba4791f8db5c5171:app/src/main/java/com/example/codetribe/my_kid/Create_Teacher_Account.java
 
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
-                if (password.length() < 6) {
-                    Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                                        //firebase teacher database table
+                                        DatabaseReference mChildDatabase = mDatabaseRef.child("Users").child(user_id);
 
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/CreateTeacherAccount.java
                 //        progressBar.setVisibility(View.VISIBLE);
                 //create user
                 auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(CreateTeacherAccount.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
+=======
+>>>>>>> fcb69ce7254611b6e328c24fba4791f8db5c5171:app/src/main/java/com/example/codetribe/my_kid/Create_Teacher_Account.java
+
+                                        //Storing Information
+                                        Teacher_class_acc teacher = new Teacher_class_acc(userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, keyTeacher);
+
+                                        mChildDatabase.child("userName").setValue(teacher.getTeacherName());
+                                        mChildDatabase.child("userSurname").setValue(teacher.getTeacherSurname());
+                                        mChildDatabase.child("userContact").setValue(teacher.getTeacherContact());
+                                        mChildDatabase.child("teacherClassroom").setValue(teacher.getTeacherClassroom());
+                                        mChildDatabase.child("userIdNumber").setValue(teacher.getTeacherIdnumber());
+                                        mChildDatabase.child("userGender").setValue(teacher.getTeacherGender());
+                                        mChildDatabase.child("role").setValue(role);
+                                        mChildDatabase.child("isVerified").setValue("verified");
+                                        mChildDatabase.child("userKey").setValue(task.getResult().getUser().getUid().toString().trim());
+                                        //login
+                                        mChildDatabase.child("emailUser").setValue(task.getResult().getUser().getEmail().toString().trim());
+                                        mChildDatabase.child("passWordUser").setValue(password);
+
+                                        Toast.makeText(Create_Teacher_Account.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
 
 
-                                String user_id = task.getResult().getUser().getUid();
-
-
-
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/CreateTeacherAccount.java
                                 //firebase teacher database table
                                 DatabaseReference mChildDatabase = mDatabaseRef.child("teacher");
 
@@ -199,10 +267,29 @@ public class CreateTeacherAccount extends AppCompatActivity {
             }
 
 
+=======
+                                        if (!task.isSuccessful()) {
+                                            Toast.makeText(Create_Teacher_Account.this, "Authentication failed." + task.getException(),
+                                                    Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            startActivity(new Intent(Create_Teacher_Account.this, LoginActivity.class));
+                                            finish();
+                                        }
+                                    }
+                                });
 
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+>>>>>>> fcb69ce7254611b6e328c24fba4791f8db5c5171:app/src/main/java/com/example/codetribe/my_kid/Create_Teacher_Account.java
+
+                    }
+                });
 
 
             }
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/CreateTeacherAccount.java
 
 
 
@@ -282,6 +369,13 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                 }
             }*/
+=======
+        });
+    }
+
+}
+
+>>>>>>> fcb69ce7254611b6e328c24fba4791f8db5c5171:app/src/main/java/com/example/codetribe/my_kid/Create_Teacher_Account.java
 
 
 
