@@ -20,8 +20,11 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 1c94c49cae063fdf4a899b5b4590edbb393d1229
 import static com.example.codetribe.my_kid.R.id.orgCity;
 import static com.example.codetribe.my_kid.R.id.orgEmail;
 
@@ -62,9 +65,20 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         mOrganizationRef = FirebaseDatabase.getInstance().getReference();
 
 
+<<<<<<< HEAD
 
 
         orgaEmail = (EditText) findViewById(orgEmail);
+=======
+
+
+        orgaEmail = (EditText) findViewById(R.id.orgEmail);
+        orgPassword = (EditText) findViewById(R.id.orgPassword);
+        crechName = (EditText) findViewById(R.id.orgName);
+       // crechAddress = (EditText) findViewById(R.id.orgAddress);
+
+        orgaEmail = (EditText) findViewById(R.id.orgEmail);
+>>>>>>> 1c94c49cae063fdf4a899b5b4590edbb393d1229
         orgPassword = (EditText) findViewById(R.id.orgPassword);
         crechName = (EditText) findViewById(R.id.orgName);
         crechAddress = (EditText) findViewById(R.id.orgStrName);
@@ -74,10 +88,14 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         adminName = (EditText) findViewById(R.id.orgAdminName);
         adminSurname = (EditText) findViewById(R.id.orgAdminSurname);
         adminIdNo = (EditText) findViewById(R.id.orgAdminIDNumber);
+<<<<<<< HEAD
+
+=======
+>>>>>>> 1c94c49cae063fdf4a899b5b4590edbb393d1229
 
 
 
-              orgaEmail = (EditText)findViewById(orgEmail);
+              orgaEmail = (EditText)findViewById(R.id.orgEmail);
              orgPassword= (EditText)findViewById(R.id.orgPassword);
               crechName = (EditText)findViewById(R.id.orgName);
               //  crechAddress = (EditText)findViewById(orgAddress);
@@ -89,6 +107,13 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
 
 
+<<<<<<< HEAD
+=======
+
+        gender = (RadioGroup) findViewById(R.id.AdminGender);
+
+
+>>>>>>> 1c94c49cae063fdf4a899b5b4590edbb393d1229
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,7 +158,13 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                                 String adminRole = "admin";
 
 
+<<<<<<< HEAD
                             DatabaseReference mChildDatabase = mOrganizationRef.child("Creche").child(crechNameOrg);
+=======
+                                DatabaseReference mChildDatabase = mOrganizationRef.child("Creche");
+
+                              //  DatabaseReference mChildDatabase = mOrganizationRef.child("Creche").child(crechNameOrg);
+>>>>>>> 1c94c49cae063fdf4a899b5b4590edbb393d1229
                                 DatabaseReference mAdminRef = mChildDatabase.child("Users");
 
 
