@@ -70,10 +70,10 @@ public class AdminActivity extends AppCompatActivity {
         addteacher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =  new Intent(Admin_activity.this,Create_Teacher_Account.class);
+                Intent intent =  new Intent(AdminActivity.this,CreateTeacherAccount.class);
                 intent.putExtra("User_KEY",userKey);
                 startActivity(intent);
-                Toast.makeText(Admin_activity.this,userKey, Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminActivity.this,userKey, Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -15,6 +15,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.R.attr.src;
+
 public class TeachersActivity extends AppCompatActivity {
 
     String userKey;
@@ -37,12 +39,9 @@ public class TeachersActivity extends AppCompatActivity {
         listViewKids  = (ListView)findViewById(R.id.listViewkids);
         fireAuth =  FirebaseAuth.getInstance();
 
-<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/TeachersActivity.java
         Intent intent = getIntent();
         //String id = intent.getStringExtra(TeachersActivity.ARTIST_ID);
         userKey =  intent.getStringExtra("User_KEY");
-=======
->>>>>>> fcb69ce7254611b6e328c24fba4791f8db5c5171:app/src/main/java/com/example/codetribe/my_kid/Teachers_activity.java
 
 
         kid = new ArrayList<>();

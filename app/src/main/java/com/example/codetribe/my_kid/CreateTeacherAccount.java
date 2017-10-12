@@ -24,7 +24,9 @@ package com.example.codetribe.my_kid;
 
         import java.util.Iterator;
 
-public class Create_Teacher_Account extends AppCompatActivity {
+        import static com.example.codetribe.my_kid.R.id.Create_Teacher_Account;
+
+public class CreateTeacherAccount extends AppCompatActivity {
 
 
     TextInputLayout inputLayoutName, inputLayoutsurname, inputLayoutcontact, inputLayoutclassroom, inputLayoutidnumber, inputLayoutemail, inputLayoutpassword;
@@ -38,7 +40,7 @@ public class Create_Teacher_Account extends AppCompatActivity {
 
 
     //Firebase
-    private DatabaseReference teacherReference, mDatabaseRef, mCrecheRef;
+    private DatabaseReference teacherReference, mDatabaseRef, mCrecheRef,mChildDatabase;
     private RadioButton gnrteacher;
 
     @Override
@@ -64,7 +66,7 @@ public class Create_Teacher_Account extends AppCompatActivity {
         useremail = (EditText) findViewById(R.id.teacheremail);
         userpassword = (EditText) findViewById(R.id.teacherpassword);
         gender = (RadioGroup) findViewById(R.id.teachergenders);
-        createteacher = (TextView) findViewById(R.id.Create_Teacher_Account);
+        createteacher = (TextView) findViewById(Create_Teacher_Account);
 
 
         //database
@@ -138,108 +140,89 @@ public class Create_Teacher_Account extends AppCompatActivity {
                         //        progressBar.setVisibility(View.VISIBLE);
                         //create user
                         auth.createUserWithEmailAndPassword(email, password)
-                                .addOnCompleteListener(Create_Teacher_Account.this, new OnCompleteListener<AuthResult>() {
+                                .addOnCompleteListener(CreateTeacherAccount.this, new OnCompleteListener<AuthResult>() {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
 
 
                                         String user_id = task.getResult().getUser().getUid();
 
-                Toast.makeText(this, adminOrg, Toast.LENGTH_SHORT).show();
-            if(orgname != null){
 
-                String email = useremail.getText().toString().trim();
-                String password = userpassword.getText().toString().trim();
+                                        final String email = useremail.getText().toString().trim();
+                                        final String password = userpassword.getText().toString().trim();
 
-                userNameString = name.getText().toString().trim();
-                userSurnameString = surname.getText().toString().trim();
-                usercontactString = contact.getText().toString().trim();
-                userclassroomString = classroom.getText().toString().trim();
-                useridnumberString = idnumber.getText().toString().trim();
+                                        userNameString = name.getText().toString().trim();
+                                        userSurnameString = surname.getText().toString().trim();
+                                        usercontactString = contact.getText().toString().trim();
+                                        userclassroomString = classroom.getText().toString().trim();
+                                        useridnumberString = idnumber.getText().toString().trim();
 
-                // useremailString = useremail.getText().toString().trim();
-                // userpasswordString = userpassword.getText().toString().trim();
-                //=========================================================
-                int selectedId = gender.getCheckedRadioButtonId();
-                gnrteacher = (RadioButton) findViewById(selectedId);
-                usergenderString = gnrteacher.getText().toString().trim();
+                                        // useremailString = useremail.getText().toString().trim();
+                                        // userpasswordString = userpassword.getText().toString().trim();
+                                        //=========================================================
+                                        int selectedId = gender.getCheckedRadioButtonId();
+                                        gnrteacher = (RadioButton) findViewById(selectedId);
+                                        usergenderString = gnrteacher.getText().toString().trim();
 
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
+                                        if (TextUtils.isEmpty(email)) {
+                                            Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                                            return;
+                                        }
 
 
                                         //firebase teacher database table
-                                        DatabaseReference mChildDatabase = mDatabaseRef.child("Users").child(user_id);
+                                        mChildDatabase = mDatabaseRef.child("Users").child(user_id);
 
-                //        progressBar.setVisibility(View.VISIBLE);
-                //create user
-                auth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(Create_Teacher_Account.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-
-
-                                        //Storing Information
-                                        Teacher_class_acc teacher = new Teacher_class_acc(userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, keyTeacher);
-
-                                        mChildDatabase.child("userName").setValue(teacher.getTeacherName());
-                                        mChildDatabase.child("userSurname").setValue(teacher.getTeacherSurname());
-                                        mChildDatabase.child("userContact").setValue(teacher.getTeacherContact());
-                                        mChildDatabase.child("teacherClassroom").setValue(teacher.getTeacherClassroom());
-                                        mChildDatabase.child("userIdNumber").setValue(teacher.getTeacherIdnumber());
-                                        mChildDatabase.child("userGender").setValue(teacher.getTeacherGender());
-                                        mChildDatabase.child("role").setValue(role);
-                                        mChildDatabase.child("isVerified").setValue("verified");
-                                        mChildDatabase.child("userKey").setValue(task.getResult().getUser().getUid().toString().trim());
-                                        //login
-                                        mChildDatabase.child("emailUser").setValue(task.getResult().getUser().getEmail().toString().trim());
-                                        mChildDatabase.child("passWordUser").setValue(password);
-
-                                        Toast.makeText(Create_Teacher_Account.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+                                        //        progressBar.setVisibility(View.VISIBLE);
+                                        //create user
+                                        auth.createUserWithEmailAndPassword(email, password)
+                                                .addOnCompleteListener(CreateTeacherAccount.this, new OnCompleteListener<AuthResult>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<AuthResult> task) {
 
 
-                                //firebase teacher database table
-                                DatabaseReference mChildDatabase = mDatabaseRef.child("teacher");
+                                                        //Storing Information
+                                                        TeacherClassAcc teacher = new TeacherClassAcc(userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, keyTeacher);
 
-                                //Storing Information
-                                TeacherClassAcc teacher = new TeacherClassAcc(userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, keyTeacher);
+                                                        mChildDatabase.child("userName").setValue(teacher.getTeacherName());
+                                                        mChildDatabase.child("userSurname").setValue(teacher.getTeacherSurname());
+                                                        mChildDatabase.child("userContact").setValue(teacher.getTeacherContact());
+                                                        mChildDatabase.child("teacherClassroom").setValue(teacher.getTeacherClassroom());
+                                                        mChildDatabase.child("userIdNumber").setValue(teacher.getTeacherIdnumber());
+                                                        mChildDatabase.child("userGender").setValue(teacher.getTeacherGender());
+                                                        mChildDatabase.child("role").setValue(role);
+                                                        mChildDatabase.child("isVerified").setValue("verified");
+                                                        mChildDatabase.child("userKey").setValue(task.getResult().getUser().getUid().toString().trim());
+                                                        //login
+                                                        mChildDatabase.child("emailUser").setValue(task.getResult().getUser().getEmail().toString().trim());
+                                                        mChildDatabase.child("passWordUser").setValue(password);
 
-                                teacherReference.child("teacherName").setValue(teacher.getTeacherName());
-                                teacherReference.child("teacherSurname").setValue(teacher.getTeacherSurname());
-                                teacherReference.child("teacherContact").setValue(teacher.getTeacherContact());
-                                teacherReference.child("teacherClassroom").setValue(teacher.getTeacherClassroom());
-                                teacherReference.child("teacherIdnumber").setValue(teacher.getTeacherIdnumber());
-                                teacherReference.child("teacherGender").setValue(teacher.getTeacherGender());
-                                teacherReference.child("role").setValue(role);
-                                teacherReference.child("isVerified").setValue("verified");
+                                                        Toast.makeText(CreateTeacherAccount.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
 
 
+                                                        //firebase teacher database table
+                                                        DatabaseReference mChildDatabase = mDatabaseRef.child("teacher");
 
-                                Toast.makeText(Create_Teacher_Account.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+
+                                                        Toast.makeText(CreateTeacherAccount.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
 
 
-                                if (!task.isSuccessful()) {
-                                    Toast.makeText(Create_Teacher_Account.this, "Authentication failed." + task.getException(),
-                                            Toast.LENGTH_SHORT).show();
-                                } else {
-                                    startActivity(new Intent(Create_Teacher_Account.this, LoginActivity.class));
-                                    finish();
-                                }
-                            }
-                        });
-
-            }
-
+                                                        if (!task.isSuccessful()) {
+                                                            Toast.makeText(CreateTeacherAccount.this, "Authentication failed." + task.getException(),
+                                                                    Toast.LENGTH_SHORT).show();
+                                                        } else {
+                                                            startActivity(new Intent(CreateTeacherAccount.this, LoginActivity.class));
+                                                            finish();
+                                                        }
+                                                    }
+                                                });
 
 
                                         if (!task.isSuccessful()) {
-                                            Toast.makeText(Create_Teacher_Account.this, "Authentication failed." + task.getException(),
+                                            Toast.makeText(CreateTeacherAccount.this, "Authentication failed." + task.getException(),
                                                     Toast.LENGTH_SHORT).show();
                                         } else {
-                                            startActivity(new Intent(Create_Teacher_Account.this, LoginActivity.class));
+                                            startActivity(new Intent(CreateTeacherAccount.this, LoginActivity.class));
                                             finish();
                                         }
                                     }
@@ -255,62 +238,6 @@ public class Create_Teacher_Account extends AppCompatActivity {
 
 
             }
-
-
-
-        }
-
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -334,13 +261,11 @@ public class Create_Teacher_Account extends AppCompatActivity {
 
                 }
             }*/
-=======
         });
     }
 
 }
 
->>>>>>> fcb69ce7254611b6e328c24fba4791f8db5c5171:app/src/main/java/com/example/codetribe/my_kid/Create_Teacher_Account.java
 
 
 
