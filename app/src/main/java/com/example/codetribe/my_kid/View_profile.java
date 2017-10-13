@@ -78,15 +78,21 @@ public class View_profile extends AppCompatActivity {
         email= (TextView)findViewById(R.id.email_view);
 
         photo = (ImageView) findViewById(R.id.user_profile_photo);
+
+
+
         profilecover=(ImageView) findViewById(R.id.header_cover_image);
+
+        
 
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
         user = FirebaseAuth.getInstance().getCurrentUser();
 
+
         imagesRef = storageRef.child("images");
-        userProfileRef = storageRef.child("images/"+user_id+".jpg");
+        userProfileRef = storageRef.child("images/"+user.getUid()+".jpg");
 
 
 
@@ -100,8 +106,7 @@ public class View_profile extends AppCompatActivity {
             }
         });
 
-        Intent intentId =getIntent();
-        iduser = intentId.getStringExtra("parent_user");
+
 
 
         if ( user != null) {
@@ -130,7 +135,7 @@ public class View_profile extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Infor(dataSnapshot,iduser);
+                Infor(dataSnapshot,user.getUid());
             }
 
             @Override
@@ -272,9 +277,11 @@ public class View_profile extends AppCompatActivity {
             if (dataUser.child("userKey").getValue().toString().equals(userId))
             {
 
+
+
                 name.setText("Name : " + dataUser.child("userName").getValue().toString());
                 surname.setText("Surname : " + dataUser.child("userSurname").getValue().toString());
-                gender.setText("  male :"+ dataUser.child("userGender").getValue().toString());
+                gender.setText(" Gender :"+ dataUser.child("userGender").getValue().toString());
                 phonenumber.setText("  phone number :"+ dataUser.child("userContact").getValue().toString());
                 address.setText("  Lives in :"+ dataUser.child("userAddress").getValue().toString());
                 email.setText("  Email :"+ dataUser.child("emailUser").getValue().toString());

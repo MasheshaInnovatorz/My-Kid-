@@ -14,6 +14,9 @@ public class Kids {
     String parentid;
     String profilepic;
     String gender;
+    String orgName;
+    String kidsGrade;
+    String kidsRegistered;
 
     //additional infromation
     String allergies;
@@ -26,18 +29,23 @@ public class Kids {
     public Kids() {
     }
 
-    public Kids(String id,String teachersId,String name, String surname, String address, String idNumber, String parentid, String profilepic, String gender) {
+
+
+    public Kids(String id,String name, String surname, String address, String idNumber,String parentid,String kidsGrade,String kidsRegistered, String gender, String orgName) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.address = address;
         this.idNumber = idNumber;
         this.parentid = parentid;
-        this.teachersId = teachersId;
-        this.profilepic = profilepic;
         this.gender = gender;
+        this.kidsGrade = kidsGrade;
+        this.orgName = orgName;
+        this.kidsRegistered = kidsRegistered;
 
     }
+
+
 
     public Kids(String id,String teachersId, String name, String surname, String address, String idNumber, String parentid, String gender) {
         this.id = id;
@@ -49,6 +57,18 @@ public class Kids {
         this.teachersId=teachersId;
         this.parentid = parentid;
         this.gender = gender;
+    }
+
+    public String getOrgName() {
+        return orgName;
+    }
+
+    public String getKidsGrade() {
+        return kidsGrade;
+    }
+
+    public String getKidsRegistered() {
+        return kidsRegistered;
     }
 
     public String getId() {
@@ -90,7 +110,7 @@ public class Kids {
 
     // new constractor for medical information
 
-    public Kids(String allergies,String dietRequirements,String doctorsRecomendations,int kidHeight,double bodyWeight,String parentid,String id)
+    //public Kids(String allergies,String dietRequirements,String doctorsRecomendations,int kidHeight,double bodyWeight,String parentid,String id)
 
     {
         this.allergies = allergies;

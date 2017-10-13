@@ -5,79 +5,80 @@ package com.example.codetribe.my_kid;
  */
 
 public class Teacher_class_acc {
-    private String teacherName;
-    private String teacherSurname;
-    private String teacherContact;
+    private String userName;
+    private String userSurname;
+    private String userContact;
     private String teacherClassroom;
-    private String teacherIdnumber;
-    private String teacherGender;
-    private String keyteacher;
+    private String userIdNumber;
+    private String userGender;
+    private String userKey;
+    private String emailUser;
+    private String passWordUser;
+    private String role;
+    private String isVerified;
+     private  String orgName;
 
-    public Teacher_class_acc(String teacherName, String teacherSurname, String teacherContact, String teacherClassroom, String teacherIdnumber, String teacherGender, String keyteacher) {
-        this.teacherName = teacherName;
-        this.teacherSurname = teacherSurname;
-        this.teacherContact = teacherContact;
+
+    public Teacher_class_acc(String userName, String userSurname, String userContact, String teacherClassroom, String userIdNumber, String userGender, String userKey, String emailUser, String passWordUser, String role, String isVerified, String orgName) {
+        this.userName = userName;
+        this.userSurname = userSurname;
+        this.userContact = userContact;
         this.teacherClassroom = teacherClassroom;
-        this.teacherIdnumber = teacherIdnumber;
-        this.teacherGender = teacherGender;
-        this.keyteacher = keyteacher;
+        this.userIdNumber = userIdNumber;
+        this.userGender = userGender;
+        this.userKey = userKey;
+        this.emailUser = emailUser;
+        this.passWordUser = passWordUser;
+        this.role = role;
+        this.isVerified = isVerified;
+        this.orgName = orgName;
     }
 
-    public String getTeacherName() {
-        return teacherName;
+    public String getOrgName() {
+        return orgName;
     }
 
-    public void setTeacherName(String teacherName) {
-        this.teacherName = teacherName;
+    public String getUserName() {
+        return userName;
     }
 
-    public String getTeacherSurname() {
-        return teacherSurname;
+    public String getUserSurname() {
+        return userSurname;
     }
 
-    public void setTeacherSurname(String teacherSurname) {
-        this.teacherSurname = teacherSurname;
-    }
-
-    public String getTeacherContact() {
-        return teacherContact;
-    }
-
-    public void setTeacherContact(String teacherContact) {
-        this.teacherContact = teacherContact;
+    public String getUserContact() {
+        return userContact;
     }
 
     public String getTeacherClassroom() {
         return teacherClassroom;
     }
 
-    public void setTeacherClassroom(String teacherClassroom) {
-        this.teacherClassroom = teacherClassroom;
+    public String getUserIdNumber() {
+        return userIdNumber;
     }
 
-    public String getTeacherIdnumber() {
-        return teacherIdnumber;
+    public String getUserGender() {
+        return userGender;
     }
 
-    public void setTeacherIdnumber(String teacherIdnumber) {
-        this.teacherIdnumber = teacherIdnumber;
+    public String getUserKey() {
+        return userKey;
     }
 
-    public String getTeacherGender() {
-        return teacherGender;
+    public String getEmailUser() {
+        return emailUser;
     }
 
-    public void setTeacherGender(String teacherGender) {
-        this.teacherGender = teacherGender;
+    public String getPassWordUser() {
+        return passWordUser;
     }
 
-    public String getKeyteacher() {
-        return keyteacher;
+    public String getRole() {
+        return role;
     }
 
-    public void setKeyteacher(String keyteacher) {
-        this.keyteacher = keyteacher;
+    public String getIsVerified() {
+        return isVerified;
     }
-
-
 }

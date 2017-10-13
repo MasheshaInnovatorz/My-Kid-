@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -28,7 +27,7 @@ public class Admin_activity extends AppCompatActivity {
     String userKey;
     //public static final String ARTIST_ID = "artistid";
     private TextView add_Kids;
-    private Button addkid,addteacher;
+    private TextView addkid,addteacher;
 
 
 
@@ -54,8 +53,8 @@ public class Admin_activity extends AppCompatActivity {
 */
 
         listUsers = (ListView) findViewById(R.id.listUser);
-        addkid =  (Button)findViewById(R.id.addkids);
-        addteacher=  (Button)findViewById(R.id.addTeacher);
+        addkid =  (TextView) findViewById(R.id.addkids);
+        addteacher=  (TextView) findViewById(R.id.addTeacher);
         Intent intent = getIntent();
         //String id = intent.getStringExtra(Teachers_activity.ARTIST_ID);
         userKey = intent.getStringExtra("User_KEY");
@@ -71,7 +70,6 @@ public class Admin_activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent =  new Intent(Admin_activity.this,Create_Teacher_Account.class);
-                intent.putExtra("User_KEY",userKey);
                 startActivity(intent);
                 Toast.makeText(Admin_activity.this,userKey, Toast.LENGTH_SHORT).show();
             }
@@ -81,7 +79,6 @@ public class Admin_activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent =  new Intent(Admin_activity.this,KidActivity.class);
-                intent.putExtra("User_KEY",userKey);
                 startActivity(intent);
                 Toast.makeText(Admin_activity.this,userKey, Toast.LENGTH_SHORT).show();
             }
@@ -173,6 +170,7 @@ public class Admin_activity extends AppCompatActivity {
                     UserProfile kidInf = kidssnapshot.getValue(UserProfile.class);
                     user.add(kidInf);
 
+                    Toast.makeText(Admin_activity.this, kidInf.getUserIdNumber(), Toast.LENGTH_SHORT).show();
                 }
                 UserArray userListAdapter = new UserArray(Admin_activity.this, user);
                 listUsers.setAdapter(userListAdapter);

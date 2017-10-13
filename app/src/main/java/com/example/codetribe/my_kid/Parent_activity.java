@@ -8,20 +8,28 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Parent_activity extends AppCompatActivity {
 
-    String idLoged,parentId;
+    String idLoged,parentId,kids_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.parent_activity);
 
+        //idLoged = FirebaseAuth.getInstance().getCurrentUser().getUid();
         Intent keyId = getIntent();
         idLoged = keyId.getStringExtra("User_KEY");
+        kids_id = keyId.getStringExtra("kid_id");
+
+
         parentId = keyId.getStringExtra("parent_id");
+
+        Toast.makeText(this, parentId, Toast.LENGTH_SHORT).show();
 
 
         getSupportActionBar().setTitle("Categories");

@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,8 +31,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
-import org.w3c.dom.Text;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -43,7 +42,7 @@ public class Uploud_kids_memo extends AppCompatActivity {
 
 
     private StorageReference mStorageRef;
-    private DatabaseReference mDatabseRef,mDatabaseUser;
+    private DatabaseReference mDatabseRef,mDatabaseUser,mRef, kidsRef;
 
     private String name, surname, results;
     private ImageView imageview;
@@ -55,7 +54,8 @@ public class Uploud_kids_memo extends AppCompatActivity {
     public static final String FB_DATABASE_PATH  = "image";
     public static final int REQUEST_CODE = 1234;
 
-    String idKid,userId;
+    String org_name;
+    String kidId,userId,identity;
 
 
     @Override
@@ -63,28 +63,89 @@ public class Uploud_kids_memo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.uploud_kids_memo);
 
+
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Uploud_kids_memo");
 
 
         Intent intent = getIntent();
-       idKid= intent.getStringExtra("kid_id");
+        kidId= intent.getStringExtra("kid_id");
         results= intent.getStringExtra("userUpLoader");
-       userId=intent.getStringExtra("User_KEY");
+         userId=intent.getStringExtra("User_KEY");
+
+        Toast.makeText(this, kidId, Toast.LENGTH_SHORT).show();
+
+        identity = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        mDatabseRef = FirebaseDatabase.getInstance().getReference().child(FB_DATABASE_PATH).child(userId
+
+        );
+
+        kidsRef = FirebaseDatabase.getInstance().getReference("Kids");
+
 
 
 
         mDatabaseUser = FirebaseDatabase.getInstance().getReference("Users");
 
+        mRef = FirebaseDatabase.getInstance().getReference("Users").child(identity).child("userIdNumber");
+        // intent.putExtra("parentIdentity",parentId);
 
-        mDatabaseUser.addValueEventListener(new ValueEventListener() {
+
+
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot parentSnapshot) {
 
-              Infor(dataSnapshot,userId);
+             org_name = parentSnapshot.getValue(String.class);
 
-                //Toast.makeText(Uploud_kids_memo.this, userId, Toast.LENGTH_SHORT).show();
+
+                mDatabaseUser.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(final DataSnapshot dataSnapshot) {
+
+
+                        kidsRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot kidsnapshot) {
+
+
+
+                                if(dataSnapshot.child("userKey").equals(identity)){
+                                    if(kidsnapshot.child("parentid").getValue().toString().equals(dataSnapshot.child("userIdNumber").getValue().toString()))
+                                    {
+                                        String esaan = kidsnapshot.child("id").getValue().toString();
+
+                                        Toast.makeText(Uploud_kids_memo.this, esaan, Toast.LENGTH_SHORT).show();
+
+                                    }
+
+
+                                }
+
+
+                                Infor(dataSnapshot,kidsnapshot,identity);
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
+
+
+                        //Toast.makeText(Uploud_kids_memo.this, userId, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+                //intent.putExtra("parentIdentity",parentId);
+               // passingValue();
             }
 
             @Override
@@ -92,14 +153,15 @@ public class Uploud_kids_memo extends AppCompatActivity {
 
             }
         });
-        //intent.putExtra("parentIdentity",parentId);
 
 
-       // intent.putExtra("parentIdentity",parentId);
+
+
+
 
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
-        mDatabseRef = FirebaseDatabase.getInstance().getReference().child(FB_DATABASE_PATH).child(idKid);
+
 
         imageview = (ImageView)findViewById(R.id.imageview);
         txtImageName = (EditText)findViewById(R.id.entername);
@@ -211,21 +273,35 @@ public class Uploud_kids_memo extends AppCompatActivity {
 
     }
 
+    private void passingValue(String IdNumber){
 
-    private void Infor(DataSnapshot dataSnapshot, String userId){
+
+
+    }
+
+    private void Infor(DataSnapshot dataSnapshot, DataSnapshot kidsSnapshot, String userId){
 
         Iterator iterator = dataSnapshot.getChildren().iterator();
 
         while(iterator.hasNext()) {
             DataSnapshot dataUser = (DataSnapshot) iterator.next();
 
-            if (dataUser.child("userKey").getValue().toString().equals(userId))
-            {
-                    name =  dataUser.child("userName").getValue().toString();
-                    surname  = dataUser.child("userSurname").getValue().toString();
-                    results = name + " " + surname;
-                }
-                else{
+
+            Iterator kidsIterator = kidsSnapshot.getChildren().iterator();
+
+            while (iterator.hasNext()) {
+                DataSnapshot kidsUser = (DataSnapshot) iterator.next();
+
+                if (dataUser.child("userKey").getValue().toString().equals(userId)) {
+                    if (kidsUser.child("parentid").getValue().toString().equals(dataUser.child("userIdNumber").getValue().toString())) {
+                        name = dataUser.child("userName").getValue().toString();
+                        surname = dataUser.child("userSurname").getValue().toString();
+
+                        results = name + " " + surname;
+
+
+                    }
+                } else {
                     Toast.makeText(Uploud_kids_memo.this, "NOne Existing", Toast.LENGTH_SHORT).show();
                 }
 
@@ -244,8 +320,9 @@ public class Uploud_kids_memo extends AppCompatActivity {
             }*/
 
 
-        }
+            }
 
+        }
     }
 
 

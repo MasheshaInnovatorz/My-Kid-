@@ -1,5 +1,6 @@
 package com.example.codetribe.my_kid;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -13,53 +14,58 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class KidActivity extends AppCompatActivity {
 
 
-
-   // private EditText;
-    private TextInputLayout  hintname,hintsurname,hintkidid,hintpid,hintParentId,hintGradeAllocated,hintYear;
-     EditText kidname,
-           kidsurname,
-           kidaddress,
-           kididNumber,
-           kidparentid,
-             kidAllocated,
+    // private EditText;
+    private TextInputLayout hintname, hintsurname, hintkidid, hintpid, hintParentId, hintGradeAllocated, hintYear;
+    EditText kidname,
+            kidsurname,
+            kidaddress,
+            kididNumber,
+            kidparentid,
+            kidAllocated,
             registeredYears;
 
     ImageView imagepic;
-        RadioGroup radKidGender;
-        RadioButton radGender;
-         TextView btnCreate;
+    RadioGroup radKidGender;
+    RadioButton radGender;
+    TextView btnCreate;
 
-    String genderString,keyUser;
-    String  kidStringname,
+    String genderString, keyUser;
+    String kidStringname,
             kidStringsurname,
             kidStringaddress,
             kididStringNumber,
             kidStringparentid,
             kidsKidsAllocated,
-    kidsYearRegistered;
+            kidsYearRegistered;
 
     // additional medical information
-    EditText   allergies,
-               dietRequirements,
-              doctorsRecomendations,
-                inkidHeight,
-               bodyWeight;
+    EditText allergies,
+            dietRequirements,
+            doctorsRecomendations,
+            inkidHeight,
+            bodyWeight;
 
 
     //database
-   DatabaseReference databaseKids;
+    DatabaseReference databaseKids, adminOrgNameRef;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_kids_activity);
 
+        context = getApplicationContext();
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -67,42 +73,44 @@ public class KidActivity extends AppCompatActivity {
 
 
         //initializing
-        kidname = (EditText)findViewById(R.id.editname);
-        kidsurname =(EditText)findViewById(R.id.editSurname);
-        kidaddress =  (EditText)findViewById(R.id.editAdress);
-        kididNumber = (EditText)findViewById(R.id.editkidid);
-        kidparentid = (EditText)findViewById(R.id.editParentId);
-        kidAllocated = (EditText)findViewById(R.id.editGrade);
-        registeredYears = (EditText)findViewById(R.id.editYear);
-        radKidGender = (RadioGroup)findViewById(R.id.genders);
+        kidname = (EditText) findViewById(R.id.editname);
+        kidsurname = (EditText) findViewById(R.id.editSurname);
+        kidaddress = (EditText) findViewById(R.id.editAdress);
+        kididNumber = (EditText) findViewById(R.id.editkidid);
+        kidparentid = (EditText) findViewById(R.id.editParentId);
+        kidAllocated = (EditText) findViewById(R.id.editGrade);
+        registeredYears = (EditText) findViewById(R.id.editYear);
+        radKidGender = (RadioGroup) findViewById(R.id.genders);
         btnCreate = (TextView) findViewById(R.id.btnKidUpdate);
 
 
-
         //hint editext
-        hintname =(TextInputLayout)findViewById(R.id.hname);
-        hintsurname =(TextInputLayout)findViewById(R.id.hSurname);
-        hintkidid =(TextInputLayout)findViewById(R.id.hAdress);
-        hintpid =(TextInputLayout)findViewById(R.id.hkidid);
-        hintParentId=(TextInputLayout)findViewById(R.id.hpid);
-        hintGradeAllocated = (TextInputLayout)findViewById(R.id.hpgrade);
-        hintYear=  (TextInputLayout)findViewById(R.id.hpYear);
-
+        hintname = (TextInputLayout) findViewById(R.id.hname);
+        hintsurname = (TextInputLayout) findViewById(R.id.hSurname);
+        hintkidid = (TextInputLayout) findViewById(R.id.hAdress);
+        hintpid = (TextInputLayout) findViewById(R.id.hkidid);
+        hintParentId = (TextInputLayout) findViewById(R.id.hpid);
+        hintGradeAllocated = (TextInputLayout) findViewById(R.id.hpgrade);
+        hintYear = (TextInputLayout) findViewById(R.id.hpYear);
 
 
         Intent intent = getIntent();
         //String id = intent.getStringExtra(Teachers_activity.ARTIST_ID);
-        keyUser =  intent.getStringExtra("User_KEY");
+        keyUser = intent.getStringExtra("User_KEY");
 
         //database
-        databaseKids = FirebaseDatabase.getInstance().getReference().child("Kids").child("Class");
+        databaseKids = FirebaseDatabase.getInstance().getReference().child("Kids");
+        final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        adminOrgNameRef = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("orgName");
         //databaseKids = FirebaseDatabase.getInstance().getReference().child("Kids").child(keyUser);
 
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-            /*    kidStringname= kidname.getText().toString().trim();
+                /*
+                kidStringname= kidname.getText().toString().trim();
                 kidStringsurname= kidsurname.getText().toString().trim();
                 kidStringaddress= kidaddress .getText().toString().trim();
                 kididStringNumber= kididNumber.getText().toString().trim();
@@ -123,47 +131,75 @@ public class KidActivity extends AppCompatActivity {
                 startActivity(new Intent(KidActivity.this, Parent_activity.class));
 
 */
-                saveKids();
 
 
+                adminOrgNameRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
 
+
+                        String org_name = dataSnapshot.getValue(String.class);
+                        //Toast.makeText(context,org_name, Toast.LENGTH_LONG).show();
+                        //adminSerach(dataSnapshot,userId);
+                        adminSerach(org_name);
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
             }
         });
 
     }
 
-    private void saveKids(){
+    public void adminSerach(String orgName) {
 
-        kidStringname= kidname.getText().toString().trim();
-        kidStringsurname= kidsurname.getText().toString().trim();
-        kidStringaddress= kidaddress .getText().toString().trim();
-        kididStringNumber= kididNumber.getText().toString().trim();
-        kidStringparentid= kidparentid.getText().toString().trim();
-         kidsKidsAllocated = kidAllocated.getText().toString().trim();
+
+        kidStringname = kidname.getText().toString().trim();
+        kidStringsurname = kidsurname.getText().toString().trim();
+        kidStringaddress = kidaddress.getText().toString().trim();
+        kididStringNumber = kididNumber.getText().toString().trim();
+        kidStringparentid = kidparentid.getText().toString().trim();
+        kidsKidsAllocated = kidAllocated.getText().toString().trim();
         kidsYearRegistered = registeredYears.getText().toString().trim();
 
-        int selectedId= radKidGender.getCheckedRadioButtonId();
-        radGender =(RadioButton)findViewById(selectedId);
-        genderString  = radGender.getText().toString();
+        int selectedId = radKidGender.getCheckedRadioButtonId();
+        radGender = (RadioButton) findViewById(selectedId);
+        genderString = radGender.getText().toString();
 
-        if(!TextUtils.isEmpty(kidStringparentid)){
+        Toast.makeText(this, orgName, Toast.LENGTH_SHORT).show();
+
+        if (!TextUtils.isEmpty(kidStringparentid)) {
 
 
             String id = databaseKids.push().getKey();
 
-            Kids kids = new Kids(id,kidsKidsAllocated, kidStringname, kidStringsurname, kidStringaddress, kididStringNumber, kidStringparentid,  genderString,kidsYearRegistered);
 
-            databaseKids.child(kidsYearRegistered).child(id).setValue(kids);
+
+            Kids kids = new Kids(id, kidStringname, kidStringsurname, kidStringaddress, kididStringNumber, kidStringparentid, kidsKidsAllocated, kidsYearRegistered,genderString,orgName);
+
+            databaseKids.child(id).setValue(kids);
 
             Toast.makeText(this, "Kids saved successfully", Toast.LENGTH_SHORT).show();
 
-            startActivity(new Intent(getApplication(),Admin_activity.class));
+            startActivity(new Intent(getApplication(), Admin_activity.class));
 
 
-        }else{
+        } else {
             Toast.makeText(this, "Kid name should not be empty", Toast.LENGTH_SHORT).show();
         }
+
+
     }
+
+  /*  private void saveKids(){
+
+
+    }*/
 }
 

@@ -16,6 +16,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -71,9 +72,9 @@ private RadioButton rdGenders;
         keyUser =  intent.getStringExtra("User_KEY");
 
 
-
+String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         //database
-     databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(keyUser);
+     databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
 
         //buttons
        // signupLink = (TextView) findViewById(R.id.back_to_signup);

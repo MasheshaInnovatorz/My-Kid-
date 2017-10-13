@@ -7,10 +7,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +31,7 @@ public class Teachers_activity extends AppCompatActivity {
 
     FirebaseAuth fireAuth;
     //database
-    DatabaseReference kidsRetriveRef;
+    DatabaseReference kidsRetriveRef,creachRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +49,35 @@ public class Teachers_activity extends AppCompatActivity {
         //kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Kids").child(userKey);
 
        // kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Kids");
+        creachRef = FirebaseDatabase.getInstance().getReference().child("Creche");
 
         kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Users");
 
 
+        creachRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                kid.clear();
+                for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()){
+
+                    if(kidssnapshot.child("adminKey").getValue().toString().equals(fireAuth.getCurrentUser().getUid())) {
+
+                        Toast.makeText(Teachers_activity.this, kidssnapshot.child("orgName").getValue().toString(), Toast.LENGTH_SHORT).show();
+                        /*Kids kidInf = kidssnapshot.getValue(Kids.class);
+                        kid.add(kidInf);*/
+                    }else{
+
+                    }
+                }
+                KidsArray trackListAdapter = new KidsArray(Teachers_activity.this,kid);
+                listViewKids.setAdapter(trackListAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         add_Kids = (TextView)findViewById(R.id.text_Add_Kids);
 

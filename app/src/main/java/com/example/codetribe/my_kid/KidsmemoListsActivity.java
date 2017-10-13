@@ -30,7 +30,7 @@ public class KidsmemoListsActivity extends AppCompatActivity {
     private ListView iv;
     private KidsmemoListAdapter adapter;
     private ProgressDialog progressDialog;
-    private String KidsId;
+    private String KidsId, kidsId_key;
     String parentid,userKey;
     private Button btnparticipate;
     private TextView sendKids;
@@ -50,8 +50,10 @@ public class KidsmemoListsActivity extends AppCompatActivity {
         Intent intent = getIntent();
        parentid= intent.getStringExtra("parentIdentity");
         userKey= intent.getStringExtra("User_KEY");
+        kidsId_key = intent.getStringExtra("kid_id");
 
 
+        //Toast.makeText(this, parentid, Toast.LENGTH_SHORT).show();
 
         imgList=new ArrayList<>();
         iv=(ListView)findViewById(R.id.listViewImage);
@@ -91,7 +93,7 @@ public class KidsmemoListsActivity extends AppCompatActivity {
                 while(iterator.hasNext()) {
                     DataSnapshot dataUser = (DataSnapshot) iterator.next();
 
-                    if (kidsUser.getKey().equals(dataUser.getKey())) {
+                    if (kidsUser.child("parentid").getValue().toString().equals(userId)) {
                         imgList.clear();
 
                         for(DataSnapshot snapshot : dataUser.getChildren()){
@@ -103,19 +105,20 @@ public class KidsmemoListsActivity extends AppCompatActivity {
 
                        MemokidsUpload_class img = snapshot.getValue(MemokidsUpload_class.class);
 
+
                             imgList.add(img);
 
 
-                            KidsId = kidsUser.getKey();
-                        }
+                            KidsId =kidsUser.getKey() ;
 
+
+                        }
 
 
                         //init adapter
                         adapter=new KidsmemoListAdapter(KidsmemoListsActivity.this,R.layout.kids_memo_lists_activity,imgList);
                         iv.setAdapter(adapter);
 
-                        Toast.makeText(this, kidsUser.child("parentid").getValue().toString(), Toast.LENGTH_SHORT).show();
 
 
                     }
@@ -162,7 +165,7 @@ public class KidsmemoListsActivity extends AppCompatActivity {
 
                         Infor(kidSnapshot,dataSnapshot, parentid);
 
-
+                       // Toast.makeText(KidsmemoListsActivity.this, parentid, Toast.LENGTH_SHORT).show();
 
 
 
@@ -173,8 +176,9 @@ public class KidsmemoListsActivity extends AppCompatActivity {
                             public void onClick(View view) {
 
                                 Intent intent = new Intent(KidsmemoListsActivity.this,Uploud_kids_memo.class);
-                                intent.putExtra("kid_id",KidsId);
+                                intent.putExtra("kid_id",parentid);
                                 intent.putExtra("User_KEY",userKey);
+
 
                                 startActivity(intent);
 

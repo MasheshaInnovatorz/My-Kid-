@@ -17,6 +17,7 @@ public class CrecheOnwer_Class {
     public String adminSurname;
     public String adminIdNo;
     public  String adminGender;
+    public String adminContact;
     public String adminRole;
     public String email;
     public String orgName;
@@ -25,7 +26,7 @@ public class CrecheOnwer_Class {
     public CrecheOnwer_Class() {
     }
 
-    public CrecheOnwer_Class(String adminUid, String admiName, String adminSurname, String adminIdNo, String adminGender,String adminRole,String email,String orgName) {
+    public CrecheOnwer_Class(String adminUid, String admiName, String adminSurname, String adminIdNo, String adminGender,String adminRole,String email,String orgName,String adminContact) {
         this.adminUid = adminUid;
         this.admiName = admiName;
         this.adminSurname = adminSurname;
@@ -34,6 +35,7 @@ public class CrecheOnwer_Class {
         this.adminRole = adminRole;
         this.email = email;
         this.orgName = orgName;
+        this.adminContact = adminContact;
 
     }
 
@@ -87,14 +89,17 @@ public class CrecheOnwer_Class {
     public Map<String, Object> toMap(){
         HashMap<String,Object> adminSave = new HashMap<>();
 
-        adminSave.put("userId", adminUid);
-        adminSave.put("name", admiName);
-        adminSave.put("surname", adminSurname);
-        adminSave.put("idNumber", adminIdNo);
-        adminSave.put("gender",adminGender);
+        adminSave.put("userKey", adminUid);
+        adminSave.put("userName", admiName);
+        adminSave.put("userSurname", adminSurname);
+        adminSave.put("userIdNumber", adminIdNo);
+        adminSave.put("userGender",adminGender);
         adminSave.put("role", adminRole);
         adminSave.put("emailUser",email);
         adminSave.put("orgName",orgName);
+        adminSave.put("userContact", adminContact);
+        adminSave.put("isVerified", "verified");
+        adminSave.put("userAddress", "Egret");
 
 
 

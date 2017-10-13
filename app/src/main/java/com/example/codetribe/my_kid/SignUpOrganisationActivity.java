@@ -1,5 +1,6 @@
 package com.example.codetribe.my_kid;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +28,7 @@ import static com.example.codetribe.my_kid.R.id.orgCity;
 public class SignUpOrganisationActivity extends AppCompatActivity {
 
     FirebaseAuth.AuthStateListener mAuthListener;
+
     DatabaseReference mOrganizationRef;
     private TextView signup;
     private EditText orgaEmail,
@@ -57,7 +59,8 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
 
         orgAuth = FirebaseAuth.getInstance();
-        mOrganizationRef = FirebaseDatabase.getInstance().getReference();
+        mOrganizationRef = FirebaseDatabase.getInstance().getReference().child("Creche");
+
 
 
         orgaEmail = (EditText) findViewById(R.id.orgEmail);
@@ -113,16 +116,17 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 // String user_id = task.getResult().getUser().getUid();
                                 String adminRole = "admin";
+                                String key = mOrganizationRef.push().getKey();
 
-                                DatabaseReference mChildDatabase = mOrganizationRef.child("Creche").child(crechNameOrg);
-                                DatabaseReference mAdminRef = mChildDatabase.child("Users");
+                                DatabaseReference mChildDatabase = mOrganizationRef;
+                               DatabaseReference mAdminRef = FirebaseDatabase.getInstance().getReference().child("Users");
+                                String userI = task.getResult().getUser().getUid();
 
-                                String key = mChildDatabase.child("Creche").child(crechNameOrg).push().getKey();
-                                String adminKey = mAdminRef.child("Creche").child(crechNameOrg).child("Users").push().getKey();
 
-                                OrganizationRegister orgReg = new OrganizationRegister(key, crechNameOrg, crechAddressOrg, crechCityOrg, email, crechPhoneNoOrg, password);
 
-                                CrecheOnwer_Class adminReg = new CrecheOnwer_Class(adminKey, adminNameOrg, adminSurnameOrg, adminIdNoOrg, adminGender, adminRole, email, crechNameOrg);
+                                OrganizationRegister orgReg = new OrganizationRegister(key, crechNameOrg, crechAddressOrg, crechCityOrg, email, crechPhoneNoOrg, password,key);
+
+                                CrecheOnwer_Class adminReg = new CrecheOnwer_Class(userI, adminNameOrg, adminSurnameOrg, adminIdNoOrg, adminGender, adminRole, email, crechNameOrg,crechPhoneNoOrg);
 
 
                                 //Map
@@ -136,17 +140,19 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                                 Map<String, Object> adminUpdate = new HashMap<>();
 
 
-                                adminUpdate.put(adminKey, postingAdmin);
+                                adminUpdate.put(userI, postingAdmin);
 
 
                                 //Updating Messages
                                 mAdminRef.updateChildren(adminUpdate);
+
                                 mChildDatabase.updateChildren(organizationUpdate);
 
-                                Toast.makeText(SignUpOrganisationActivity.this, key, Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(SignUpOrganisationActivity.this, key, Toast.LENGTH_SHORT).show();
                                 Toast.makeText(SignUpOrganisationActivity.this, "Organization Sccessfully Created", Toast.LENGTH_SHORT).show();
 
-                                orgAuth.signOut();
+                                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+
 
 
                             } else {
@@ -156,6 +162,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                             }
                         }
                     });
+                    orgAuth.signOut();
                 }
 
             }

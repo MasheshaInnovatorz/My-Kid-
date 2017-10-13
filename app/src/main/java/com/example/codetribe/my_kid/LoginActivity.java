@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         //firebase
-        mDatabaseRef  = FirebaseDatabase.getInstance().getReference().child("Users");
+        mDatabaseRef  = FirebaseDatabase.getInstance().getReference("Users");
 
         mFirebaseAuth  = FirebaseAuth.getInstance();
 
@@ -98,16 +98,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mAuthListener = new FirebaseAuth.AuthStateListener(){
 
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+            public void onAuthStateChanged(@NonNull final FirebaseAuth firebaseAuth) {
                 FirebaseUser  user = firebaseAuth.getCurrentUser();
 
+               //final String keyId = firebaseAuth.getCurrentUser().getEmail();
                 if(user != null){
 
-                    final String emailForVer = user.getEmail();
+                    //final String emailForVer = user.getEmail();
 
+                    final String emailForVer = user.getEmail().toString();
                     mDatabaseRef.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+
+
                             checkUserValidation(dataSnapshot,emailForVer);
 
                         }
@@ -161,18 +167,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         {
             DataSnapshot dataUser  = (DataSnapshot) iterator.next();
 
-            if(dataUser.child("emailUser").getValue().toString().equals(emailForVer))
+            if(dataUser.child("emailUser").getValue().toString().trim().equals(emailForVer))
             {
 
 
                 if(dataUser.child("isVerified").getValue().toString().equals("unverified")){
 
                     Intent intentUser = new Intent(LoginActivity.this,Profile_Update.class);
-                    intentUser.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
-                    Toast.makeText(this, dataUser.child("userKey").getValue().toString(), Toast.LENGTH_SHORT).show();
+                   // intentUser.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
+                   // Toast.makeText(this, dataUser.child("userKey").getValue().toString(), Toast.LENGTH_SHORT).show();
                     startActivity(intentUser);
 
                 }else {
+
                     if (dataUser.child("role").getValue().toString().equals("teacher")) {
 
                         Intent intent = new Intent(LoginActivity.this, Teachers_activity.class);
@@ -185,6 +192,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         Intent intent = new Intent(LoginActivity.this, Parent_activity.class);
                         intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                         intent.putExtra("parent_id", dataUser.child("userIdNumber").getValue().toString());
+                        //intent.putExtra("kid_id", dataUser.child("id").getValue().toString());
+
 
                         startActivity(intent);
                         Toast.makeText(this, "Welcome To Parents Page", Toast.LENGTH_SHORT).show();
@@ -194,10 +203,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     } else if (dataUser.child("role").getValue().toString().equals("admin")) {
                         Intent intent = new Intent(LoginActivity.this, Admin_activity.class);
-                        intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
+                       // intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                         startActivity(intent);
                         Toast.makeText(this, "Welcome To Admin_activity Page", Toast.LENGTH_SHORT).show();
                     }else {
+
+                        Toast.makeText(this, dataUser.child("role").getValue().toString(), Toast.LENGTH_SHORT).show();
                         Toast.makeText(LoginActivity.this, "Please Contact A heard Master To Assign you A Role", Toast.LENGTH_SHORT).show();
                     }
 
@@ -205,7 +216,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             }
 
-            Toast.makeText(LoginActivity.this, "Please Contact A heard Master To Assign you A Role", Toast.LENGTH_SHORT).show();
         }
 
     }
