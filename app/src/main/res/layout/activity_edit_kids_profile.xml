@@ -3,8 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     android:background="@drawable/kidsbackground1"
     tools:context="com.example.codetribe.my_kid.Profile_Update">
+=======
+    tools:context="com.example.codetribe.my_kid.ProfileUpdate">
+>>>>>>> c2b1ed454b683f8915a1a549e698267359aaf282
 
     <ScrollView
         android:layout_width="match_parent"

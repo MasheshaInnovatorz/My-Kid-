@@ -42,7 +42,7 @@
             android:paddingBottom="24dp">
             <!-- you can delete these buttons wa dira drop whata what..-->
 
-            <!-- edit Profile_Update button -->
+            <!-- edit ProfileUpdate button -->
 
             <TextView
                 android:id="@+id/editprofile"

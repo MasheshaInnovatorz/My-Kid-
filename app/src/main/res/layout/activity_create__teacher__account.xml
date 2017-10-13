@@ -4,9 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/kidsbackground1"
+<<<<<<< HEAD
 
     android:orientation="vertical"
     tools:context="com.example.codetribe.my_kid.Create_Teacher_Account">
+=======
+    tools:context="com.example.codetribe.my_kid.CreateTeacherAccount">
+>>>>>>> c2b1ed454b683f8915a1a549e698267359aaf282
 
 
     <ScrollView

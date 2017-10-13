@@ -66,7 +66,7 @@ public class KidsmemoListsActivity extends AppCompatActivity {
         progressDialog.setMessage("Please wait While Loading Kid Memories");
         progressDialog.show();
 
-        mDatabaseRef= FirebaseDatabase.getInstance().getReference(Uploud_kids_memo.FB_DATABASE_PATH);
+        mDatabaseRef= FirebaseDatabase.getInstance().getReference(UploadKidsMemo.FB_DATABASE_PATH);
         childRef = FirebaseDatabase.getInstance().getReference("Kids");
         btnparticipate = (Button)findViewById(R.id.btnParticipate);
 
@@ -175,8 +175,13 @@ public class KidsmemoListsActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
 
+<<<<<<< HEAD
                                 Intent intent = new Intent(KidsmemoListsActivity.this,Uploud_kids_memo.class);
                                 intent.putExtra("kid_id",parentid);
+=======
+                                Intent intent = new Intent(KidsmemoListsActivity.this,UploadKidsMemo.class);
+                                intent.putExtra("kid_id",KidsId);
+>>>>>>> c2b1ed454b683f8915a1a549e698267359aaf282
                                 intent.putExtra("User_KEY",userKey);
 
 

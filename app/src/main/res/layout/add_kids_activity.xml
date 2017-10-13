@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@drawable/kidsbackground1"
     android:layout_height="match_parent"
-    tools:context="com.example.codetribe.my_kid.Profile_Update">
+    tools:context="com.example.codetribe.my_kid.ProfileUpdate">
 
 
     <ScrollView

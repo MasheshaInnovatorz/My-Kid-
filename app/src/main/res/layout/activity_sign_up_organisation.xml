@@ -28,6 +28,11 @@
                 android:layout_marginTop="3dp"
                 android:background="@drawable/textviewsstyle"
                 android:text="Register Creche Account"
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> c2b1ed454b683f8915a1a549e698267359aaf282
                 android:textAlignment="center"
                 android:textColor="#ADCCE2"
                 android:textSize="30sp" />
