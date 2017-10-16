@@ -60,7 +60,6 @@ public class KidsmemoListsActivity extends AppCompatActivity {
 
 
 
-
         //show progress dialog during list image loading
         progressDialog=new ProgressDialog(this);
         progressDialog.setMessage("Please wait While Loading Kid Memories");
@@ -101,7 +100,7 @@ public class KidsmemoListsActivity extends AppCompatActivity {
 
 
 
-                            Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
 
                        MemokidsUpload_class img = snapshot.getValue(MemokidsUpload_class.class);
 
@@ -109,7 +108,7 @@ public class KidsmemoListsActivity extends AppCompatActivity {
                             imgList.add(img);
 
 
-                            KidsId =kidsUser.getKey() ;
+                            KidsId =kidsUser.child("id").getValue().toString();
 
 
                         }
@@ -121,6 +120,8 @@ public class KidsmemoListsActivity extends AppCompatActivity {
 
 
 
+                    }else{
+                        Toast.makeText(this, "You don't have a kid you are linked with", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -169,25 +170,29 @@ public class KidsmemoListsActivity extends AppCompatActivity {
 
 
 
-
-                       // senderId.setText(kids);
+// senderId.setText(kids);
                         btnparticipate.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
 
+                                if(KidsId != null) {
+
+                                    Intent intent = new Intent(KidsmemoListsActivity.this, UploadKidsMemo.class);
+                                    intent.putExtra("kid_id", KidsId);
+
+                                    intent.putExtra("User_KEY", userKey);
 
 
-                                Intent intent = new Intent(KidsmemoListsActivity.this,UploadKidsMemo.class);
-                                intent.putExtra("kid_id",KidsId);
+                                    startActivity(intent);
 
-                                intent.putExtra("User_KEY",userKey);
+                                }else{
+                                    Toast.makeText(KidsmemoListsActivity.this, "You dont have a kids in this creche or maybe made a mistake", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
 
-
-                                startActivity(intent);
-
-                                Toast.makeText(KidsmemoListsActivity.this, KidsId, Toast.LENGTH_SHORT).show();
                             }
                         });
+
 
 
 

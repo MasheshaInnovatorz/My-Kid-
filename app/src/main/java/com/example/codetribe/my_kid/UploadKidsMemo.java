@@ -41,7 +41,7 @@ public class UploadKidsMemo extends AppCompatActivity {
 
 
     private StorageReference mStorageRef;
-    private DatabaseReference mDatabseRef,mDatabaseUser,mRef;
+    private DatabaseReference mDatabseRef,mDatabaseUser,mRef,uploadedName;
 
     private String name, surname, results;
     private ImageView imageview;
@@ -81,7 +81,7 @@ public class UploadKidsMemo extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                Infor(dataSnapshot,userId);
+             //   Infor(dataSnapshot,identity);
 
                 //Toast.makeText(Uploud_kids_memo.this, userId, Toast.LENGTH_SHORT).show();
             }
@@ -99,13 +99,23 @@ public class UploadKidsMemo extends AppCompatActivity {
         mRef = FirebaseDatabase.getInstance().getReference("Users").child(identity).child("userIdNumber");
         // intent.putExtra("parentIdentity",parentId);
 
+
+     uploadedName  = FirebaseDatabase.getInstance().getReference("Users").child(identity);
+
+
+
+
+
+
+
+
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 String org_name = dataSnapshot.getValue(String.class);
 
-                passingValue(org_name);
+                passingValue(idKid);
             }
 
             @Override
@@ -181,17 +191,39 @@ public class UploadKidsMemo extends AppCompatActivity {
 
             ref.putFile(imgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                public void onSuccess(final UploadTask.TaskSnapshot taskSnapshot) {
 
                     dialog.dismiss();
 
                     Toast.makeText(getApplicationContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
 
-                    MemokidsUpload_class imageUpload = new MemokidsUpload_class(txtImageName.getText().toString(),taskSnapshot.getDownloadUrl().toString(),results);
 
-                    //save image infor in to firebase database
-                    String uploadId  = mDatabseRef.push().getKey();
-                    mDatabseRef.child(uploadId).setValue(imageUpload);
+                    uploadedName.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            name =  dataSnapshot.child("userName").getValue().toString();
+                            surname  = dataSnapshot.child("userSurname").getValue().toString();
+                            results = name + " " + surname;
+
+
+                            MemokidsUpload_class imageUpload = new MemokidsUpload_class(txtImageName.getText().toString(),taskSnapshot.getDownloadUrl().toString(),results);
+
+
+                            //save image infor in to firebase database
+                            String uploadId  = mDatabseRef.push().getKey();
+                            mDatabseRef.child(uploadId).setValue(imageUpload);
+                            Toast.makeText(UploadKidsMemo.this, results, Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+
+
+
 
                 }
             })
@@ -247,7 +279,8 @@ public class UploadKidsMemo extends AppCompatActivity {
                 results = name + " " + surname;
             }
             else{
-                Toast.makeText(UploadKidsMemo.this, "NOne Existing", Toast.LENGTH_SHORT).show();
+               Toast.makeText(UploadKidsMemo.this, "You dont have a Kid you are linked with from this creche", Toast.LENGTH_SHORT).show();
+                return;
             }
 
                /* name.setText("Name : " + dataUser.child("userName").getValue().toString());

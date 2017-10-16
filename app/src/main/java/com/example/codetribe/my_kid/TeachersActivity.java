@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -18,8 +17,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.R.attr.src;
 
 public class TeachersActivity extends AppCompatActivity {
 
@@ -33,7 +30,7 @@ public class TeachersActivity extends AppCompatActivity {
 
     FirebaseAuth fireAuth;
     //database
-    DatabaseReference kidsRetriveRef,creachRef;
+    DatabaseReference kidsRetriveRef,creachRef,orgNameReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,31 +49,47 @@ public class TeachersActivity extends AppCompatActivity {
         kid = new ArrayList<>();
 
 
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        orgNameReference = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("teacherClassroom");
         //kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Kids").child(userKey);
 
-       // kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Kids");
+        //kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Kids");
         creachRef = FirebaseDatabase.getInstance().getReference().child("Creche");
 
-        kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Users");
+        kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Kids");
+
+        orgNameReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+              final  String org_name = dataSnapshot.getValue(String.class);
 
 
-        creachRef.addValueEventListener(new ValueEventListener() {
+                kidsRetriveRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 kid.clear();
-                for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()){
 
-                    if(kidssnapshot.child("adminKey").getValue().toString().equals(fireAuth.getCurrentUser().getUid())) {
+                        for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()){
 
-                        Toast.makeText(TeachersActivity.this, kidssnapshot.child("orgName").getValue().toString(), Toast.LENGTH_SHORT).show();
-                        /*Kids kidInf = kidssnapshot.getValue(Kids.class);
-                        kid.add(kidInf);*/
-                    }else{
+
+                            if(kidssnapshot.child("kidsGrade").getValue().toString().equals(org_name)) {
+
+                                Kids kidInf = kidssnapshot.getValue(Kids.class);
+                                kid.add(kidInf);
+                            }else{
+
+                            }
+                        }
+                        KidsArray trackListAdapter = new KidsArray(TeachersActivity.this,kid);
+                        listViewKids.setAdapter(trackListAdapter);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
                     }
-                }
-                KidsArray trackListAdapter = new KidsArray(TeachersActivity.this,kid);
-                listViewKids.setAdapter(trackListAdapter);
+                });
+
             }
 
             @Override
