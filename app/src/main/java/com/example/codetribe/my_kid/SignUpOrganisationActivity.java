@@ -21,13 +21,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 1c94c49cae063fdf4a899b5b4590edbb393d1229
 import static com.example.codetribe.my_kid.R.id.orgCity;
-import static com.example.codetribe.my_kid.R.id.orgEmail;
 
 
 public class SignUpOrganisationActivity extends AppCompatActivity {
@@ -38,14 +33,14 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
     private TextView signup;
     private EditText orgaEmail,
 
-                     orgPassword,
-                    crechName,
-                    crechAddress,
-                    crechCity,
-                    crechPhoneNo,
-                    adminName,
-                    adminSurname,
-                    adminIdNo;
+    orgPassword,
+            crechName,
+            crechAddress,
+            crechCity,
+            crechPhoneNo,
+            adminName,
+            adminSurname,
+            adminIdNo;
     private RadioButton radGender;
 
 
@@ -68,55 +63,17 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
 
 
-<<<<<<< HEAD
-
-
-        orgaEmail = (EditText) findViewById(orgEmail);
-=======
-
-
         orgaEmail = (EditText) findViewById(R.id.orgEmail);
-        orgPassword = (EditText) findViewById(R.id.orgPassword);
-        crechName = (EditText) findViewById(R.id.orgName);
-       // crechAddress = (EditText) findViewById(R.id.orgAddress);
-
-        orgaEmail = (EditText) findViewById(R.id.orgEmail);
->>>>>>> 1c94c49cae063fdf4a899b5b4590edbb393d1229
         orgPassword = (EditText) findViewById(R.id.orgPassword);
         crechName = (EditText) findViewById(R.id.orgName);
         crechAddress = (EditText) findViewById(R.id.orgStrName);
         crechCity = (EditText) findViewById(orgCity);
-
         crechPhoneNo = (EditText) findViewById(R.id.orgTelNumber);
         adminName = (EditText) findViewById(R.id.orgAdminName);
         adminSurname = (EditText) findViewById(R.id.orgAdminSurname);
         adminIdNo = (EditText) findViewById(R.id.orgAdminIDNumber);
-<<<<<<< HEAD
-
-=======
->>>>>>> 1c94c49cae063fdf4a899b5b4590edbb393d1229
-
-
-
-              orgaEmail = (EditText)findViewById(R.id.orgEmail);
-             orgPassword= (EditText)findViewById(R.id.orgPassword);
-              crechName = (EditText)findViewById(R.id.orgName);
-              //  crechAddress = (EditText)findViewById(orgAddress);
-                crechCity = (EditText)findViewById(orgCity);
-            //    crechPhoneNo  = (EditText)findViewById(R.id.orgPhoneNumber);
-                adminName = (EditText)findViewById(R.id.orgAdminName);
-                adminSurname = (EditText)findViewById(R.id.orgAdminSurname);
-                adminIdNo = (EditText)findViewById(R.id.orgAdminIDNumber);
-
-
-
-<<<<<<< HEAD
-=======
-
         gender = (RadioGroup) findViewById(R.id.AdminGender);
 
-
->>>>>>> 1c94c49cae063fdf4a899b5b4590edbb393d1229
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,26 +119,10 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                                 String key = mOrganizationRef.push().getKey();
 
                                 DatabaseReference mChildDatabase = mOrganizationRef;
-                               DatabaseReference mAdminRef = FirebaseDatabase.getInstance().getReference().child("Users");
+                                DatabaseReference mAdminRef = FirebaseDatabase.getInstance().getReference().child("Users");
                                 String userI = task.getResult().getUser().getUid();
 
-<<<<<<< HEAD
 
-=======
-
-<<<<<<< HEAD
-                            DatabaseReference mChildDatabase = mOrganizationRef.child("Creche").child(crechNameOrg);
-=======
-                                DatabaseReference mChildDatabase = mOrganizationRef.child("Creche");
-
-                              //  DatabaseReference mChildDatabase = mOrganizationRef.child("Creche").child(crechNameOrg);
->>>>>>> 1c94c49cae063fdf4a899b5b4590edbb393d1229
-                                DatabaseReference mAdminRef = mChildDatabase.child("Users");
-
-
-                                String key = mChildDatabase.child("Creche").child(crechNameOrg).push().getKey();
-                                String adminKey = mAdminRef.child("Creche").child(crechNameOrg).child("Users").push().getKey();
->>>>>>> c2b1ed454b683f8915a1a549e698267359aaf282
 
                                 OrganizationRegister orgReg = new OrganizationRegister(key, crechNameOrg, crechAddressOrg, crechCityOrg, email, crechPhoneNoOrg, password,key);
 
@@ -207,13 +148,8 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
                                 mChildDatabase.updateChildren(organizationUpdate);
 
-<<<<<<< HEAD
                                 //Toast.makeText(SignUpOrganisationActivity.this, key, Toast.LENGTH_SHORT).show();
                                 Toast.makeText(SignUpOrganisationActivity.this, "Organization Sccessfully Created", Toast.LENGTH_SHORT).show();
-=======
-                                Toast.makeText(SignUpOrganisationActivity.this, key, Toast.LENGTH_SHORT).show();
-                                Toast.makeText(SignUpOrganisationActivity.this, "Organization Successfully Created", Toast.LENGTH_SHORT).show();
->>>>>>> c2b1ed454b683f8915a1a549e698267359aaf282
 
                                 startActivity(new Intent(getApplicationContext(),LoginActivity.class));
 
@@ -246,7 +182,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                     intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                     startActivity(intent);
                 } else {
-                    startActivity(new Intent(SignUpOrganisationActivity.this, ParentActivity.class));
+                    startActivity(new Intent(SignUpOrganisationActivity.this, Parent_activity.class));
                 }
             }
         }

@@ -173,15 +173,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 if(dataUser.child("isVerified").getValue().toString().equals("unverified")){
 
-<<<<<<< HEAD
-                    Intent intentUser = new Intent(LoginActivity.this,Profile_Update.class);
-                   // intentUser.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
-                   // Toast.makeText(this, dataUser.child("userKey").getValue().toString(), Toast.LENGTH_SHORT).show();
-=======
                     Intent intentUser = new Intent(LoginActivity.this,ProfileUpdate.class);
                     intentUser.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                     Toast.makeText(this, dataUser.child("userKey").getValue().toString(), Toast.LENGTH_SHORT).show();
->>>>>>> c2b1ed454b683f8915a1a549e698267359aaf282
                     startActivity(intentUser);
 
                 }else {
@@ -208,15 +202,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
                     } else if (dataUser.child("role").getValue().toString().equals("admin")) {
-<<<<<<< HEAD
-                        Intent intent = new Intent(LoginActivity.this, Admin_activity.class);
-                       // intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
-=======
 
                         Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
-
+                       // intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                         intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
->>>>>>> c2b1ed454b683f8915a1a549e698267359aaf282
                         startActivity(intent);
                         Toast.makeText(this, "Welcome To AdminActivity Page", Toast.LENGTH_SHORT).show();
                     }else {

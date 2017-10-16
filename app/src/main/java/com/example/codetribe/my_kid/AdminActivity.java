@@ -69,12 +69,9 @@ public class AdminActivity extends AppCompatActivity {
         addteacher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/Admin_activity.java
-                Intent intent =  new Intent(Admin_activity.this,Create_Teacher_Account.class);
-=======
+
                 Intent intent =  new Intent(AdminActivity.this,CreateTeacherAccount.class);
                 intent.putExtra("User_KEY",userKey);
->>>>>>> c2b1ed454b683f8915a1a549e698267359aaf282:app/src/main/java/com/example/codetribe/my_kid/AdminActivity.java
                 startActivity(intent);
                 Toast.makeText(AdminActivity.this,userKey, Toast.LENGTH_SHORT).show();
             }
@@ -83,12 +80,8 @@ public class AdminActivity extends AppCompatActivity {
         addkid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/Admin_activity.java
-                Intent intent =  new Intent(Admin_activity.this,KidActivity.class);
-=======
                 Intent intent =  new Intent(AdminActivity.this,KidActivity.class);
                 intent.putExtra("User_KEY",userKey);
->>>>>>> c2b1ed454b683f8915a1a549e698267359aaf282:app/src/main/java/com/example/codetribe/my_kid/AdminActivity.java
                 startActivity(intent);
                 Toast.makeText(AdminActivity.this,userKey, Toast.LENGTH_SHORT).show();
             }
@@ -180,7 +173,7 @@ public class AdminActivity extends AppCompatActivity {
                     UserProfile kidInf = kidssnapshot.getValue(UserProfile.class);
                     user.add(kidInf);
 
-                    Toast.makeText(Admin_activity.this, kidInf.getUserIdNumber(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdminActivity.this, kidInf.getUserIdNumber(), Toast.LENGTH_SHORT).show();
                 }
                 UserArray userListAdapter = new UserArray(AdminActivity.this, user);
                 listUsers.setAdapter(userListAdapter);

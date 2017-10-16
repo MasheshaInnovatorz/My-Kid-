@@ -7,6 +7,19 @@
     <string name="err_msg_email">Enter valid email address</string>
     <string name="err_msg_password">Enter the password</string>
 
+
+
+    <!--user validation-->
+    <string name="nameerror">Enter Valid Name</string>
+    <string name="surnameerror">Enter Valid Surname</string>
+    <string name="emailerror">Enter Valid Email</string>
+    <string name="passworderror">Enter Some Password</string>
+    <string name="contacterror">Enter Valid Mobile Number</string>
+    <string name="iderror">Enter Valid Id number</string>
+    <string name="classerror">Enter Valid Teacher Class</string>
+    <string name="mobileerror">Enter Valid Mobile Number</string>
+
+
     <string-array name="user_role">
         <item>Teacher</item>
         <item>Parent</item>

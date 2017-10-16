@@ -175,13 +175,11 @@ public class KidsmemoListsActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
 
-<<<<<<< HEAD
-                                Intent intent = new Intent(KidsmemoListsActivity.this,Uploud_kids_memo.class);
-                                intent.putExtra("kid_id",parentid);
-=======
+
+
                                 Intent intent = new Intent(KidsmemoListsActivity.this,UploadKidsMemo.class);
                                 intent.putExtra("kid_id",KidsId);
->>>>>>> c2b1ed454b683f8915a1a549e698267359aaf282
+
                                 intent.putExtra("User_KEY",userKey);
 
 

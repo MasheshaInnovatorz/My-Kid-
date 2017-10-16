@@ -95,13 +95,9 @@ public class KidActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-<<<<<<< HEAD
+
         //String id = intent.getStringExtra(Teachers_activity.ARTIST_ID);
         keyUser = intent.getStringExtra("User_KEY");
-=======
-        //String id = intent.getStringExtra(TeachersActivity.ARTIST_ID);
-        keyUser =  intent.getStringExtra("User_KEY");
->>>>>>> c2b1ed454b683f8915a1a549e698267359aaf282
 
         //database
         databaseKids = FirebaseDatabase.getInstance().getReference().child("Kids");
@@ -192,12 +188,8 @@ public class KidActivity extends AppCompatActivity {
 
             Toast.makeText(this, "Kids saved successfully", Toast.LENGTH_SHORT).show();
 
-<<<<<<< HEAD
-            startActivity(new Intent(getApplication(), Admin_activity.class));
-=======
-            startActivity(new Intent(getApplication(),AdminActivity.class));
->>>>>>> c2b1ed454b683f8915a1a549e698267359aaf282
 
+            startActivity(new Intent(getApplication(), AdminActivity.class));
 
         } else {
             Toast.makeText(this, "Kid name should not be empty", Toast.LENGTH_SHORT).show();

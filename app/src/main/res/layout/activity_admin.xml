@@ -1,13 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical"
-android:padding="5dp"
-tools:context="com.example.codetribe.my_kid.Admin_activity">
-=======
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -27,7 +18,7 @@ tools:context="com.example.codetribe.my_kid.Admin_activity">
         android:textAlignment="center" />
     -->
 
->>>>>>> c2b1ed454b683f8915a1a549e698267359aaf282
+
 
     <LinearLayout
         android:layout_width="match_parent"

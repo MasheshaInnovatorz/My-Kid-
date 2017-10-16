@@ -4,8 +4,8 @@ package com.example.codetribe.my_kid;
  * Created by mudau on 10/10/2017.
  */
 
-<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/Teacher_class_acc.java
-public class Teacher_class_acc {
+
+public class TeacherClassAcc {
     private String userName;
     private String userSurname;
     private String userContact;
@@ -17,28 +17,13 @@ public class Teacher_class_acc {
     private String passWordUser;
     private String role;
     private String isVerified;
-     private  String orgName;
+    private  String orgName;
 
 
-    public Teacher_class_acc(String userName, String userSurname, String userContact, String teacherClassroom, String userIdNumber, String userGender, String userKey, String emailUser, String passWordUser, String role, String isVerified, String orgName) {
+    public TeacherClassAcc(String userName, String userSurname, String userContact, String teacherClassroom, String userIdNumber, String userGender, String userKey, String emailUser, String passWordUser, String role, String isVerified, String orgName) {
         this.userName = userName;
         this.userSurname = userSurname;
         this.userContact = userContact;
-=======
-public class TeacherClassAcc {
-    private String teacherName;
-    private String teacherSurname;
-    private String teacherContact;
-    private String teacherClassroom;
-    private String teacherIdnumber;
-    private String teacherGender;
-    private String keyteacher;
-
-    public TeacherClassAcc(String teacherName, String teacherSurname, String teacherContact, String teacherClassroom, String teacherIdnumber, String teacherGender, String keyteacher) {
-        this.teacherName = teacherName;
-        this.teacherSurname = teacherSurname;
-        this.teacherContact = teacherContact;
->>>>>>> c2b1ed454b683f8915a1a549e698267359aaf282:app/src/main/java/com/example/codetribe/my_kid/TeacherClassAcc.java
         this.teacherClassroom = teacherClassroom;
         this.userIdNumber = userIdNumber;
         this.userGender = userGender;

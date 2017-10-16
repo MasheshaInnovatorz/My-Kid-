@@ -38,7 +38,7 @@ public class KidsmemoListAdapter extends ArrayAdapter<MemokidsUpload_class> {
         LayoutInflater inflater=context.getLayoutInflater();
         View v=inflater.inflate(resource,null);
 
-        TextView kidsName = (TextView)v.findViewById(R.id.kidsNameId);
+       // TextView kidsName = (TextView)v.findViewById(R.id.kidsNameId);
         TextView tvName=(TextView)v.findViewById(R.id.tvImageName);
         TextView uploadedName = (TextView)v.findViewById(R.id.senderid);
         ImageView img=(ImageView)v.findViewById(R.id.imgView);

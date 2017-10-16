@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -28,11 +27,6 @@
                 android:layout_marginTop="3dp"
                 android:background="@drawable/textviewsstyle"
                 android:text="Register Creche Account"
-<<<<<<< HEAD
-=======
-
-
->>>>>>> c2b1ed454b683f8915a1a549e698267359aaf282
                 android:textAlignment="center"
                 android:textColor="#ADCCE2"
                 android:textSize="30sp" />
