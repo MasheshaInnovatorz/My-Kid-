@@ -258,8 +258,15 @@ public class ViewProfile extends AppCompatActivity {
             if (dataUser.child("userKey").getValue().toString().equals(userId))
             {
 
+<<<<<<< HEAD
                 name.setText( dataUser.child("userSurname").getValue().toString()+  " "+ dataUser.child("userName").getValue().toString());
               //  surname.setText("Surname : " + dataUser.child("userSurname").getValue().toString());
+=======
+
+
+                name.setText("Name : " + dataUser.child("userName").getValue().toString() +  " " + dataUser.child("userSurname").getValue().toString());
+                surname.setText("Surname : " + dataUser.child("userSurname").getValue().toString());
+>>>>>>> 161ed6b62c106a7c5dcf9d53d01f8123ae4a60ae
                 gender.setText(" Gender :"+ dataUser.child("userGender").getValue().toString());
                 phonenumber.setText("  phone number :"+ dataUser.child("userContact").getValue().toString());
                 address.setText("  Lives in :"+ dataUser.child("userAddress").getValue().toString());

@@ -77,8 +77,11 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
 
+<<<<<<< HEAD
         imgList = new ArrayList<>();
 
+=======
+>>>>>>> 161ed6b62c106a7c5dcf9d53d01f8123ae4a60ae
         //show progress dialog during list image loading
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait While Loading Kid Memories");
@@ -116,7 +119,7 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
                         for (DataSnapshot snapshot : dataUser.getChildren()) {
 
 
-                            Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
 
                             MemokidsUpload_class img = snapshot.getValue(MemokidsUpload_class.class);
 
@@ -124,7 +127,11 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
                             imgList.add(img);
 
 
+<<<<<<< HEAD
                             KidsId = kidsUser.getKey();
+=======
+                            KidsId =kidsUser.child("id").getValue().toString();
+>>>>>>> 161ed6b62c106a7c5dcf9d53d01f8123ae4a60ae
 
 
                         }
@@ -137,6 +144,8 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
                         recyclerView.setAdapter(adapter);
 
 
+                    }else{
+                        Toast.makeText(this, "You don't have a kid you are linked with", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -164,22 +173,59 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
 
                         Infor(kidSnapshot,dataSnapshot, parentid);
 
+<<<<<<< HEAD
+=======
+                       // Toast.makeText(KidsmemoListsActivity.this, parentid, Toast.LENGTH_SHORT).show();
+
+
+
+// senderId.setText(kids);
+>>>>>>> 161ed6b62c106a7c5dcf9d53d01f8123ae4a60ae
                         btnparticipate.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
 
+<<<<<<< HEAD
                                 Intent intent = new Intent(KidsmemoListsActivity.this,UploadKidsMemo.class);
                                 intent.putExtra("kid_id",KidsId);
+=======
+                                if(KidsId != null) {
 
-                                intent.putExtra("User_KEY",userKey);
+                                    Intent intent = new Intent(KidsmemoListsActivity.this, UploadKidsMemo.class);
+                                    intent.putExtra("kid_id", KidsId);
+
+                                    intent.putExtra("User_KEY", userKey);
+>>>>>>> 161ed6b62c106a7c5dcf9d53d01f8123ae4a60ae
 
 
-                                startActivity(intent);
+                                    startActivity(intent);
 
-                                Toast.makeText(KidsmemoListsActivity.this, KidsId, Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Toast.makeText(KidsmemoListsActivity.this, "You dont have a kids in this creche or maybe made a mistake", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+
                             }
                         });
 
+<<<<<<< HEAD
+=======
+
+
+
+                        //fetch image from firebase
+                       /* for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            //imageupload class require default contractor
+
+
+                            snapshot.child("parentid").getValue().toString().equals(parentid);
+                            MemokidsUpload_class img=snapshot.getValue(MemokidsUpload_class.class);
+                            imgList.add(img);
+                        }
+                        //init adapter
+                        adapter=new KidsmemoListAdapter(KidsmemoListsActivity.this,R.layout.kids_memo_lists_activity,imgList);
+                        iv.setAdapter(adapter);*/
+>>>>>>> 161ed6b62c106a7c5dcf9d53d01f8123ae4a60ae
                     }
 
                     @Override
