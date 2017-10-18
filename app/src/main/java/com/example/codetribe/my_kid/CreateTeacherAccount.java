@@ -8,6 +8,9 @@ package com.example.codetribe.my_kid;
         import android.support.v7.app.AppCompatActivity;
         import android.text.TextUtils;
         import android.util.Patterns;
+        import android.view.Menu;
+        import android.view.MenuInflater;
+        import android.view.MenuItem;
         import android.view.View;
         import android.widget.EditText;
         import android.widget.ProgressBar;
@@ -44,7 +47,6 @@ public class CreateTeacherAccount extends AppCompatActivity {
     TextView createteacher;
     String role = "teacher";
     private FirebaseAuth auth;
-
     private ProgressBar progressBar;
     //Firebase
     private DatabaseReference teacherReference, mDatabaseRef, mCrecheRef, orgNameReference;
@@ -57,6 +59,11 @@ public class CreateTeacherAccount extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create__teacher__account);
+
+
+        getSupportActionBar().setTitle("Create Teacher Profile");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
@@ -78,13 +85,13 @@ public class CreateTeacherAccount extends AppCompatActivity {
         gender = (RadioGroup) findViewById(R.id.teachergenders);
         createteacher = (TextView) findViewById(R.id.Create_Teacher_Account);
 
-//adding validation to edittexts
+         //adding validation to edittexts
         awesomeValidation.addValidation(this, R.id.teachername, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
         awesomeValidation.addValidation(this, R.id.teachersurname, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.surnameerror);
         awesomeValidation.addValidation(this, R.id.teacheremail, Patterns.EMAIL_ADDRESS, R.string.emailerror);
         awesomeValidation.addValidation(this, teacherpassword, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.passworderror);
         awesomeValidation.addValidation(this, R.id.teachercontact, "^[2-9]{2}[0-9]{8}$", R.string.mobileerror);
-        awesomeValidation.addValidation(this, R.id.teacherid, "^[2-9]{2}[0-9]{8}$", R.string.iderror);
+        awesomeValidation.addValidation(this, R.id.teacherid, "^[2-9]{2}[0-13]{13}$", R.string.iderror);
         awesomeValidation.addValidation(this, R.id.teacherclass, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.classerror);
 
         //database
@@ -101,8 +108,6 @@ public class CreateTeacherAccount extends AppCompatActivity {
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Users");
         keyTeacher = auth.getCurrentUser().getUid();
         teacherReference = FirebaseDatabase.getInstance().getReference("Users");
-
-
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         orgNameReference = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("orgName");
 
@@ -117,8 +122,16 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                         String org_name = dataSnapshot.getValue(String.class);
 
+                        if (!awesomeValidation.validate()) {
+                            Toast.makeText(CreateTeacherAccount.this, "Validating....", Toast.LENGTH_LONG).show();
+                        }
+                        else
+                        {
+                            saveParent(org_name);
 
-                        saveParent(org_name);
+                        }
+
+
                     }
 
                     @Override
@@ -133,14 +146,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
     }
 
     public void saveParent(String orgName) {
-        if (awesomeValidation.validate()) {
-            if (gender.getCheckedRadioButtonId() == -1) {
-                // Toast.makeText(Create_Teacher_Account.this, "select a gender" , Toast.LENGTH_SHORT).show();
-                userpassword.setError("select a gender");
-            }
 
-            Toast.makeText(CreateTeacherAccount.this, "Validating....", Toast.LENGTH_LONG).show();
-        }
         //adminId
         String AdminId = auth.getCurrentUser().getUid();
         final String adminEmail = auth.getCurrentUser().getEmail();
@@ -217,7 +223,37 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_mainapp, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())   {
 
+            case R.id.action_settings:
+                //();
+                return true;
+            case R.id.help:
+                //  showHelp();
+                return true;
+
+            case R.id.logout:
+
+                return true;
+
+            case R.id.editKid:
+                //  showHelp();
+
+                return true;
+            case R.id.view_profile:
+
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
 
 

@@ -28,11 +28,14 @@ public class ParentActivity extends AppCompatActivity {
 
 
         parentId = keyId.getStringExtra("parent_id");
-
         Toast.makeText(this, parentId, Toast.LENGTH_SHORT).show();
 
 
         getSupportActionBar().setTitle("Categories");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         TextView chat = (TextView) findViewById(R.id.Chat);
         TextView share = (TextView)findViewById(R.id.Share);
         TextView profilek = (TextView) findViewById(R.id.Update_Profile);
@@ -43,7 +46,7 @@ public class ParentActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ParentActivity.this, UploadKidsMemo.class);
                 intent.putExtra("kid_id",idLoged);
-                intent.putExtra("User_KEY",idLoged);
+                intent.putExtra("User_KEY",kids_id);
                 intent.putExtra("parentIdentity",parentId);
                 startActivity(intent);
             }
@@ -93,14 +96,12 @@ public class ParentActivity extends AppCompatActivity {
                 return true;
 
             case R.id.editKid:
-                //  showHelp();
                 Intent intent_kid = new Intent(ParentActivity.this,EditKidsProfile.class);
-                intent_kid.putExtra("parent_user",idLoged);
+                intent_kid.putExtra("User_KEY",idLoged);
                 startActivity(intent_kid);
                 return true;
+
             case R.id.view_profile:
-
-
                 Intent intent = new Intent(ParentActivity.this,ViewProfile.class);
                 intent.putExtra("parent_user",idLoged);
                 startActivity(intent);

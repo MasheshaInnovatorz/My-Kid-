@@ -55,9 +55,11 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_organisation);
 
+        getSupportActionBar().setTitle("Register Creche Account");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         signup = (TextView) findViewById(R.id.btnRegisterCreche);
-
-
         orgAuth = FirebaseAuth.getInstance();
         mOrganizationRef = FirebaseDatabase.getInstance().getReference().child("Creche");
 
@@ -94,16 +96,14 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
 
                 final String crechNameOrg, crechAddressOrg, crechCityOrg, crechPhoneNoOrg, adminNameOrg, adminSurnameOrg, adminIdNoOrg, adminGender;
-
-
                 crechNameOrg = crechName.getText().toString().trim();
-
                 crechAddressOrg = crechAddress.getText().toString().trim();
                 crechCityOrg = crechCity.getText().toString().trim();
                 crechPhoneNoOrg = crechPhoneNo.getText().toString().trim();
                 adminNameOrg = adminName.getText().toString().trim();
                 adminSurnameOrg = adminSurname.getText().toString().trim();
                 adminIdNoOrg = adminIdNo.getText().toString().trim();
+
                 int selectedId = gender.getCheckedRadioButtonId();
                 radGender = (RadioButton) findViewById(selectedId);
                 adminGender = radGender.getText().toString().trim();
@@ -169,23 +169,4 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         });
     }
 
-    /*public void checkUserValidation(DataSnapshot dataSnapshot, String emailForVer){
-        Iterator iterator = dataSnapshot.getChildren().iterator();
-
-        while(iterator.hasNext())
-        {
-            DataSnapshot dataUser  = (DataSnapshot) iterator.next();
-
-            if(dataUser.child("emailUser").getValue().toString().equals(emailForVer)) {
-                if (dataUser.child("isVerified").getValue().toString().equals("unverified")) {
-                    Intent intent = new Intent(SignUpOrganisationActivity.this, LoginActivity.class);
-                    intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
-                    startActivity(intent);
-                } else {
-                    startActivity(new Intent(SignUpOrganisationActivity.this, Parent_activity.class));
-                }
-            }
-        }
-
-    }*/
 }

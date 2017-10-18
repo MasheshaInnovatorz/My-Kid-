@@ -78,7 +78,6 @@ public class EditKidsProfile extends AppCompatActivity {
 
     }
     private void saveKids(){
-
         s_allergies = allergies.getText().toString().trim();
         s_dietRequirements = dietRequirements .getText().toString().trim();
         s_doctorsRecomendations= doctorsRecomendations.getText().toString().trim();
@@ -86,10 +85,7 @@ public class EditKidsProfile extends AppCompatActivity {
         s_bodyWeight= bodyWeight.getText().toString().trim();
         kidStringparentid = kidStringparentidS.getText().toString();
 
-
         if(!TextUtils.isEmpty(kidStringparentid)){
-
-
             String id = databaseKids.push().getKey();
 
 

@@ -45,12 +45,10 @@ public class AdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
 
+        getSupportActionBar().setTitle("Admin");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-       /* spinner=(Spinner)findViewById(R.id.spinner2);
-        String[] countries={"rudzy","tali","pfari"};
-        ArrayAdapter<String>adapter=new ArrayAdapter<String>(this,android. R.layout.simple_dropdown_item_1line,countries);
-        spinner.setAdapter(adapter);
-*/
 
         listUsers = (ListView) findViewById(R.id.listUser);
         addkid =  (TextView) findViewById(R.id.addkids);

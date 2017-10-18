@@ -5,11 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/kidsbackground1"
+    android:background="#29B6F6"
     android:padding="1dp"
     tools:context="com.example.codetribe.my_kid.UploadKidsMemo">
 
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/timg"
+    >
 
     <TextView
         android:id="@+id/head"
@@ -37,9 +41,10 @@
     <EditText
         android:id="@+id/entername"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/editextstyle"
         android:backgroundTint="#B3E5FC"
+        android:textAlignment="center"
         android:hint="write kids progress update..."
         android:layout_above="@+id/linearLayout2"
         android:layout_alignParentStart="true"
@@ -91,6 +96,7 @@
 
 
     </LinearLayout>
+</RelativeLayout>
 </RelativeLayout>
 
 

@@ -4,55 +4,61 @@ package com.example.codetribe.my_kid;
  * Created by CodeTribe on 9/2/2017.
  */
 
-import android.app.Activity;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
+        import android.content.Context;
+        import android.support.v7.widget.RecyclerView;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.ImageView;
+        import android.widget.TextView;
+        import com.bumptech.glide.Glide;
+        import java.util.List;
 
-import com.bumptech.glide.Glide;
+/**
+ * Created by Belal on 2/23/2017.
+ */
 
-import java.util.List;
+public class KidsmemoListAdapter extends RecyclerView.Adapter<KidsmemoListAdapter.ViewHolder> {
 
-public class KidsmemoListAdapter extends ArrayAdapter<MemokidsUpload_class> {
-    private Activity context;
-    private int resource;
-    private List<MemokidsUpload_class> listImage;
+    private Context context;
+    private List<MemokidsUpload_class> uploads;
 
-
-    public KidsmemoListAdapter(@NonNull Activity context, @LayoutRes int resource, @NonNull List<MemokidsUpload_class> objects) {
-        super(context, resource, objects);
+    public KidsmemoListAdapter(Context context, List<MemokidsUpload_class> uploads) {
+        this.uploads = uploads;
         this.context = context;
-        this.resource =resource;
-        listImage = objects;
     }
 
-    @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
-        LayoutInflater inflater=context.getLayoutInflater();
-        View v=inflater.inflate(resource,null);
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.kids_memo_lists_activity, parent, false);
+        ViewHolder viewHolder = new ViewHolder(v);
+        return viewHolder;
+    }
 
-       // TextView kidsName = (TextView)v.findViewById(R.id.kidsNameId);
-        TextView tvName=(TextView)v.findViewById(R.id.tvImageName);
-        TextView uploadedName = (TextView)v.findViewById(R.id.senderid);
-        ImageView img=(ImageView)v.findViewById(R.id.imgView);
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        MemokidsUpload_class upload = uploads.get(position);
 
-        img.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        //holder.textViewName.setText(upload.getName());
+       // Glide.with(context).load(upload.getUri()).into(holder.imageView);
+    }
 
+    @Override
+    public int getItemCount() {
+        return uploads.size();
+    }
 
-        tvName.setText(listImage.get(position).getName());
+    class ViewHolder extends RecyclerView.ViewHolder {
 
+        public TextView textViewName;
+        public ImageView imageView;
 
-        uploadedName.setText(listImage.get(position).getPersonUploaded());
+        public ViewHolder(View itemView) {
+            super(itemView);
 
-        Glide.with(context).load(listImage.get(position).getUri()).into(img);
-
-        return  v;
+            textViewName = (TextView) itemView.findViewById(R.id.textViewName);
+            imageView = (ImageView) itemView.findViewById(R.id.imageView);
+        }
     }
 }

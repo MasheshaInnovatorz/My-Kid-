@@ -58,15 +58,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
 
-      
 
-      //  getSupportActionBar().setTitle("Login");
-
-       // passwordLayout  = (TextInputLayout)findViewById(R.id.input_layout_password);
-       //  emailLayout  = (TextInputLayout)findViewById(R.id.input_layout_email);
-        //declaration
-
-        backtowelcome=(ImageView)findViewById(R.id.back_to_welcome);
        // signup= (TextView)findViewById(R.id.sinup);
         editEmail = (EditText)findViewById(R.id.email);
         editPassword= (EditText)findViewById(R.id.password);
@@ -84,14 +76,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         progressDialog = new ProgressDialog(this);
 
-        //backbutton
-        backtowelcome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i=new Intent(LoginActivity.this,WelcomeActivity.class);
-                startActivity(i);
-            }
-        });
+
+
 
 
         //database
@@ -228,7 +214,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         userPasswordString = editPassword.getText().toString().trim();
 
         if (TextUtils.isEmpty((userEmailString))) {
-
             Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show();
             return;
         }

@@ -69,7 +69,7 @@ public class KidActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Add kid ProfileUpdate");
+        getSupportActionBar().setTitle("Add kid Profile");
 
 
         //initializing
@@ -109,30 +109,6 @@ public class KidActivity extends AppCompatActivity {
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                /*
-                kidStringname= kidname.getText().toString().trim();
-                kidStringsurname= kidsurname.getText().toString().trim();
-                kidStringaddress= kidaddress .getText().toString().trim();
-                kididStringNumber= kididNumber.getText().toString().trim();
-                kidStringparentid= kidparentid.getText().toString().trim();
-
-                int selectedId= radKidGender.getCheckedRadioButtonId();
-                radGender =(RadioButton)findViewById(selectedId);
-                genderString  = radGender.getText().toString();
-
-                databaseKids.child("userName").setValue(kidStringname);
-                databaseKids.child("userSurname").setValue(kidStringsurname);
-                databaseKids.child("userIdNumber").setValue(kidStringaddress);
-                databaseKids.child("userContact").setValue(kididStringNumber);
-                databaseKids.child("userAddress").setValue(kidStringparentid);
-                databaseKids.child("userCity").setValue(genderString);
-
-                Toast.makeText(KidActivity.this, "User ProfileUpdate Added", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(KidActivity.this, ParentActivity.class));
-
-*/
-
 
                 adminOrgNameRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override

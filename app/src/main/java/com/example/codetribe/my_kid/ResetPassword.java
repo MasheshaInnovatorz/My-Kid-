@@ -35,21 +35,14 @@ public class ResetPassword extends AppCompatActivity {
 
       //  getSupportActionBar().setTitle("Reset Password");
 
-        btnBack=(ImageView)findViewById(R.id.back_to_login);
+
         inputEmail = (EditText) findViewById(R.id.email);
         btnReset = (TextView) findViewById(R.id.btn_reset_password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         auth = FirebaseAuth.getInstance();
 
-        //back button
-    btnBack.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent i=new Intent(ResetPassword.this,LoginActivity.class);
-            startActivity(i);
-        }
-    });
+
 
 
         btnReset.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +64,7 @@ public class ResetPassword extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(ResetPassword.this, "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(ResetPassword.this, "Failed to send reset email!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ResetPassword.this, "You Dont Have Account To Reset !", Toast.LENGTH_SHORT).show();
                                 }
 
                             //    progressBar.setVisibility(View.GONE);

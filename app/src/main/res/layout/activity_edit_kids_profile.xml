@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/kidsbackground1"
+    android:background="#29B6F6"
     tools:context="com.example.codetribe.my_kid.ProfileUpdate">
 
     <ScrollView
@@ -21,23 +21,7 @@
             android:layout_alignParentBottom="true"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/textviewsstyle"
-                android:text="Update Your Kid Profile"
-                android:textAlignment="center"
-                android:textColor="#ADCCE2"
-                android:textSize="30sp" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:background="#ADCCE2" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/parentId"
@@ -52,8 +36,8 @@
                     android:layout_marginRight="35dp"
                     android:background="#0000"
                     android:hint=" Parent ID"
-                    android:inputType="textCapWords"
-                    android:maxLength="12"
+                    android:inputType="numberDecimal"
+                    android:maxLength="13"
                     android:padding="16dp"
                     android:textAlignment="center"
                     android:textColor="#ADCCE2"
@@ -83,7 +67,6 @@
                     android:background="#0000"
                     android:hint="Allergies Information"
                     android:inputType="textCapWords"
-                    android:maxLength="12"
                     android:padding="16dp"
                     android:textAlignment="center"
                     android:textColor="#ADCCE2"
@@ -113,11 +96,9 @@
                     android:background="#0000"
                     android:hint="Diet Information"
                     android:inputType="textCapWords"
-                    android:maxLength="12"
                     android:padding="16dp"
                     android:textAlignment="center"
                     android:textColor="#ADCCE2"
-
                     android:textColorHint="#ADCCE2"
                     android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
@@ -143,8 +124,7 @@
                     android:layout_marginRight="35dp"
                     android:background="#0000"
                     android:hint="Body Weight"
-                    android:inputType="textCapWords"
-                    android:maxLength="12"
+                    android:inputType="numberDecimal"
                     android:padding="16dp"
                     android:textAlignment="center"
                     android:textColor="#ADCCE2"
@@ -175,7 +155,6 @@
                     android:background="#0000"
                     android:hint="Doctors Recommendations"
                     android:inputType="textCapWords"
-                    android:maxLength="12"
                     android:padding="16dp"
                     android:textAlignment="center"
                     android:textColor="#ADCCE2"
@@ -206,8 +185,7 @@
                     android:layout_marginRight="35dp"
                     android:background="#0000"
                     android:hint="Kid Height"
-                    android:inputType="textCapWords"
-                    android:maxLength="12"
+                    android:inputType="numberDecimal"
                     android:padding="16dp"
                     android:textAlignment="center"
                     android:textColor="#ADCCE2"

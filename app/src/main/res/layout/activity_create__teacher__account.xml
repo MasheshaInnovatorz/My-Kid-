@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/kidsbackground1"
+    android:background="#29B6F6"
     android:orientation="vertical"
-    tools:context="com.example.codetribe.my_kid.Create_Teacher_Account">
+    tools:context="com.example.codetribe.my_kid.CreateTeacherAccount">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,23 +22,6 @@
             android:layout_alignParentBottom="true"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/textviewsstyle"
-                android:text="Create Teacher Profile"
-                android:textAlignment="center"
-                android:textColor="#ADCCE2"
-                android:textSize="30sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:background="#ADCCE2" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/inputteacherfullname"
@@ -54,10 +37,9 @@
                     android:background="#0000"
                     android:hint="First Name"
                     android:inputType="textCapWords"
-                    android:maxLength="12"
                     android:padding="16dp"
                     android:textAlignment="center"
-                    android:textColor="#ADCCE2"
+                    android:textColor="@android:color/white"
                     android:textColorHint="#ADCCE2"
                     android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
@@ -84,11 +66,9 @@
                     android:background="#0000"
                     android:hint="Surname"
                     android:inputType="textCapWords"
-                    android:maxLength="12"
                     android:padding="16dp"
                     android:textAlignment="center"
                     android:textColor="#ADCCE2"
-
                     android:textColorHint="#ADCCE2"
                     android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
@@ -112,8 +92,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginRight="35dp"
-                    android:hint="Email"
                     android:background="#0000"
+                    android:hint="Email"
                     android:inputType="textEmailAddress"
                     android:padding="16dp"
                     android:textAlignment="center"
@@ -141,8 +121,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginRight="35dp"
-                    android:hint="Password"
                     android:background="#0000"
+                    android:hint="Password"
                     android:inputType="textPassword"
                     android:padding="16dp"
                     android:textAlignment="center"
@@ -205,7 +185,7 @@
                     android:layout_marginRight="35dp"
                     android:background="#0000"
                     android:hint="Teacher's ID Number"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:maxLength="13"
                     android:padding="16dp"
                     android:textAlignment="center"
@@ -238,7 +218,6 @@
                     android:background="#0000"
                     android:hint="Teacher's Class"
                     android:inputType="textCapWords"
-                    android:maxLength="12"
                     android:padding="16dp"
                     android:textAlignment="center"
                     android:textColor="#ADCCE2"

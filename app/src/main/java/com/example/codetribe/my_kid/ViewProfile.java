@@ -1,39 +1,39 @@
 package com.example.codetribe.my_kid;
+        import android.content.Intent;
+        import android.database.Cursor;
+        import android.net.Uri;
+        import android.os.Bundle;
+        import android.provider.MediaStore;
+        import android.support.annotation.NonNull;
+        import android.support.v7.app.AppCompatActivity;
+        import android.util.Log;
+        import android.view.View;
+        import android.widget.ImageView;
+        import android.widget.TextView;
+        import android.widget.Toast;
 
-import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+        import com.bumptech.glide.Glide;
+        import com.google.android.gms.tasks.OnCompleteListener;
+        import com.google.android.gms.tasks.OnFailureListener;
+        import com.google.android.gms.tasks.OnSuccessListener;
+        import com.google.android.gms.tasks.Task;
+        import com.google.firebase.auth.FirebaseAuth;
+        import com.google.firebase.auth.FirebaseUser;
+        import com.google.firebase.auth.UserProfileChangeRequest;
+        import com.google.firebase.database.DataSnapshot;
+        import com.google.firebase.database.DatabaseError;
+        import com.google.firebase.database.DatabaseReference;
+        import com.google.firebase.database.FirebaseDatabase;
+        import com.google.firebase.database.ValueEventListener;
+        import com.google.firebase.storage.FirebaseStorage;
+        import com.google.firebase.storage.StorageReference;
+        import com.google.firebase.storage.UploadTask;
 
-import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.util.Iterator;
+        import java.io.File;
+        import java.io.FileInputStream;
+        import java.io.FileNotFoundException;
+        import java.io.InputStream;
+        import java.util.Iterator;
 
 public class ViewProfile extends AppCompatActivity {
 
@@ -67,11 +67,11 @@ public class ViewProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_profile);
 
-        //ProfileUpdate edit
+        //Profile_Update edit
         editprofile=(TextView)findViewById(R.id.editprofile);
         //initialize
         name = (TextView) findViewById(R.id.user_profile_name);
-        surname= (TextView)findViewById(R.id.user_profile_status);
+       // surname= (TextView)findViewById(R.id.user_profile_status);
         gender = (TextView) findViewById(R.id.gender_view);
         phonenumber= (TextView)findViewById(R.id.phone_view);
         address= (TextView)findViewById(R.id.address_view);
@@ -83,7 +83,7 @@ public class ViewProfile extends AppCompatActivity {
 
         profilecover=(ImageView) findViewById(R.id.header_cover_image);
 
-        
+
 
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
@@ -124,9 +124,9 @@ public class ViewProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                    Intent photoPickerIntent =  new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    //photoPickerIntent.setType("image/*");
-                    startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG);
+                Intent photoPickerIntent =  new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                //photoPickerIntent.setType("image/*");
+                startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG);
             }
         });
 
@@ -154,26 +154,6 @@ public class ViewProfile extends AppCompatActivity {
 
         });
 
-        /*
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("courses").child("Business");
-        name = (TextView) findViewById(R.id.user_profile_name);
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                CourseDetails courseDetails = dataSnapshot.getValue(CourseDetails.class);
-                code = courseDetails.getCourseCode();
-                name = courseDetails.getCourseName();
-
-                name.setText(name);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        */
 
     }
 
@@ -222,7 +202,7 @@ public class ViewProfile extends AppCompatActivity {
                             assert downloadUrl != null;
                             image_url = downloadUrl.toString();
 
-                             //listImage.get(position).getUri()).into(img)
+                            //listImage.get(position).getUri()).into(img)
                             showProfilePic(image_url);
                             Log.i("Ygritte", image_url);
 
@@ -237,6 +217,7 @@ public class ViewProfile extends AppCompatActivity {
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
                                                     Log.d("Profile Updated ", "User profile updated.");
+                                                    Toast.makeText(getApplication(), "Profile Picture Updated", Toast.LENGTH_SHORT).show();
                                                 }
                                             }
                                         });
@@ -277,22 +258,14 @@ public class ViewProfile extends AppCompatActivity {
             if (dataUser.child("userKey").getValue().toString().equals(userId))
             {
 
-
-
-                name.setText("Name : " + dataUser.child("userName").getValue().toString());
-                surname.setText("Surname : " + dataUser.child("userSurname").getValue().toString());
+                name.setText( dataUser.child("userSurname").getValue().toString()+  " "+ dataUser.child("userName").getValue().toString());
+              //  surname.setText("Surname : " + dataUser.child("userSurname").getValue().toString());
                 gender.setText(" Gender :"+ dataUser.child("userGender").getValue().toString());
                 phonenumber.setText("  phone number :"+ dataUser.child("userContact").getValue().toString());
                 address.setText("  Lives in :"+ dataUser.child("userAddress").getValue().toString());
                 email.setText("  Email :"+ dataUser.child("emailUser").getValue().toString());
 
-
-        //     profilecover.setImageDrawable(dataSnapshot.child("fdsdfs").getRef());
-
-          //Lives in
-
             }
-
 
         }
 

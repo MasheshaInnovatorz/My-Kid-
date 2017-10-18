@@ -7,17 +7,6 @@
     android:orientation="vertical"
     android:padding="5dp"
     tools:context="com.example.codetribe.my_kid.AdminActivity">
-<!--
-    <TextView
-        android:id="@+id/textKidsName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Admin"
-        android:textAllCaps="true"
-        android:textSize="30dp"
-        android:textAlignment="center" />
-    -->
-
 
 
     <LinearLayout
