@@ -7,7 +7,9 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,21 +24,29 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+
+import static com.example.codetribe.my_kid.R.id.spinner2;
 
 public class SignUp extends AppCompatActivity {
 
 
     private EditText inputEmail, inputPassword;
-   // private Button
+
+   private  ArrayAdapter<String> dataAdapter;
+    // private Button
     TextView mainNav,btnSignUp;
+    private Spinner orgNameList;
+    private List<String> list;
 
     private TextInputLayout input_email1;
     //firebase Authentification
     private FirebaseAuth auth;
     FirebaseAuth.AuthStateListener mAuthListener;
 
-    DatabaseReference mDatabaseRef,mUserCheckData;
+    DatabaseReference mDatabaseRef,mUserCheckData,crecheDataRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,10 +61,16 @@ public class SignUp extends AppCompatActivity {
         mDatabaseRef  = FirebaseDatabase.getInstance().getReference();
         mUserCheckData = FirebaseDatabase.getInstance().getReference().child("Users");
 
+
+
         btnSignUp = (TextView) findViewById(R.id.sinup);
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.signupPassword);
+
+         orgNameList = (Spinner) findViewById(R.id.orgname);
        // mainNav = (TextView)findViewById(R.id.login);
+
+        list  = new ArrayList<String>();
 
         input_email1= (TextInputLayout)findViewById(R.id.input_email);
         /*mainNav.setOnClickListener(new View.OnClickListener(){
@@ -66,6 +82,13 @@ public class SignUp extends AppCompatActivity {
                 finish();
             }
         });*/
+
+        dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list);
+
+
+
+
+
 
         mAuthListener = new FirebaseAuth.AuthStateListener(){
             @Override
@@ -97,12 +120,20 @@ public class SignUp extends AppCompatActivity {
 
             }
         };
+
+
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+
+
+
+
+
                 String email = inputEmail.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
+
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
@@ -155,6 +186,9 @@ public class SignUp extends AppCompatActivity {
                     });
                 }
 
+
+
+
             }
         });
             }
@@ -179,6 +213,47 @@ public class SignUp extends AppCompatActivity {
 
     }
 
+    public void searchForCreacheName(){
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Toast.makeText(this, "Ellow Chivhedzelele", Toast.LENGTH_SHORT).show();
+
+        crecheDataRef = FirebaseDatabase.getInstance().getReference("Creche");
+
+        crecheDataRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+
+                for (DataSnapshot checheSnapshot : dataSnapshot.getChildren()){
+
+                    if (!checheSnapshot.child("orgName").getValue().toString().equals(" ")) {
+                        list.add(checheSnapshot.child("orgName").getValue().toString());
+
+
+                        dataAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
+
+                        //simple_spinner_dropdown_item
+                        orgNameList.setAdapter(dataAdapter);
+                    }else{
+                        Toast.makeText(SignUp.this, "There is no Creche Registered", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
 }
 
