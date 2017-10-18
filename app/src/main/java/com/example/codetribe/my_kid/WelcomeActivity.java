@@ -33,7 +33,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
                             AlertDialog.Builder mBuilder = new AlertDialog.Builder(WelcomeActivity.this);
                             View mView = getLayoutInflater().inflate(R.layout.dialogue_spinner, null);
-                            mBuilder.setTitle("Select A category to Login?");
+                            mBuilder.setTitle("Select an option to create Account?");
 
                             final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
 
@@ -59,7 +59,7 @@ public class WelcomeActivity extends AppCompatActivity {
                                     final String text = mSpinner.getSelectedItem().toString();
 
                                     switch (text) {
-                                        case "User":
+                                        case "Parent":
                                             Intent it = new Intent(WelcomeActivity.this, SignUp.class);
                                             startActivity(it);
 

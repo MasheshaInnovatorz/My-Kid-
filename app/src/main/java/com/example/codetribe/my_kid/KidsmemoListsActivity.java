@@ -1,30 +1,27 @@
 package com.example.codetribe.my_kid;
         import android.app.ProgressDialog;
-        import android.content.Intent;
-        import android.provider.SyncStateContract;
-        import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
-        import android.support.v7.widget.LinearLayoutManager;
-        import android.support.v7.widget.RecyclerView;
-        import android.util.Log;
-        import android.view.Menu;
-        import android.view.MenuInflater;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.widget.Button;
-        import android.widget.ListView;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import com.google.firebase.database.DataSnapshot;
-        import com.google.firebase.database.DatabaseError;
-        import com.google.firebase.database.DatabaseReference;
-        import com.google.firebase.database.FirebaseDatabase;
-        import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-        import java.util.ArrayList;
-        import java.util.Iterator;
-        import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class KidsmemoListsActivity  extends AppCompatActivity {
     //recyclerview object
@@ -77,11 +74,8 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
 
-<<<<<<< HEAD
-        imgList = new ArrayList<>();
 
-=======
->>>>>>> 161ed6b62c106a7c5dcf9d53d01f8123ae4a60ae
+        imgList = new ArrayList<>();
         //show progress dialog during list image loading
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait While Loading Kid Memories");
@@ -127,18 +121,15 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
                             imgList.add(img);
 
 
-<<<<<<< HEAD
-                            KidsId = kidsUser.getKey();
-=======
                             KidsId =kidsUser.child("id").getValue().toString();
->>>>>>> 161ed6b62c106a7c5dcf9d53d01f8123ae4a60ae
+
 
 
                         }
 
 
                         //init adapter
-                        adapter = new KidsmemoListAdapter(getApplicationContext(), imgList);
+                        adapter = new KidsmemoListAdapter(getApplicationContext(),imgList);
 
                         //adding adapter to recyclerview
                         recyclerView.setAdapter(adapter);
@@ -173,29 +164,26 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
 
                         Infor(kidSnapshot,dataSnapshot, parentid);
 
-<<<<<<< HEAD
-=======
+
                        // Toast.makeText(KidsmemoListsActivity.this, parentid, Toast.LENGTH_SHORT).show();
 
 
 
 // senderId.setText(kids);
->>>>>>> 161ed6b62c106a7c5dcf9d53d01f8123ae4a60ae
+
                         btnparticipate.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
 
-<<<<<<< HEAD
-                                Intent intent = new Intent(KidsmemoListsActivity.this,UploadKidsMemo.class);
-                                intent.putExtra("kid_id",KidsId);
-=======
+
+
                                 if(KidsId != null) {
 
                                     Intent intent = new Intent(KidsmemoListsActivity.this, UploadKidsMemo.class);
                                     intent.putExtra("kid_id", KidsId);
 
                                     intent.putExtra("User_KEY", userKey);
->>>>>>> 161ed6b62c106a7c5dcf9d53d01f8123ae4a60ae
+
 
 
                                     startActivity(intent);
@@ -208,24 +196,27 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
                             }
                         });
 
-<<<<<<< HEAD
-=======
 
 
 
                         //fetch image from firebase
-                       /* for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                      /*  for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                             //imageupload class require default contractor
 
-
                             snapshot.child("parentid").getValue().toString().equals(parentid);
-                            MemokidsUpload_class img=snapshot.getValue(MemokidsUpload_class.class);
-                            imgList.add(img);
+                             img=snapshot.getValue(MemokidsUpload_class.class);
+                            imgListMemokidsUpload_class.add(img);
                         }
                         //init adapter
-                        adapter=new KidsmemoListAdapter(KidsmemoListsActivity.this,R.layout.kids_memo_lists_activity,imgList);
-                        iv.setAdapter(adapter);*/
->>>>>>> 161ed6b62c106a7c5dcf9d53d01f8123ae4a60ae
+                        /*adapter=new KidsmemoListAdapter(KidsmemoListsActivity.this,R.layout.kids_memo_lists_activity,imgList);
+                        iv.setAdapter(adapter);
+*/
+
+                        //init adapter
+                    //    adapter = new KidsmemoListAdapter(KidsmemoListsActivity.this, imgList);
+
+                        //adding adapter to recyclerview
+                 //       recyclerView.setAdapter(adapter);
                     }
 
                     @Override

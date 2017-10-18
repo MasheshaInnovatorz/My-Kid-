@@ -3,25 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="80dp"
     tools:context="com.example.codetribe.my_kid.TeachersActivity">
 
-
-    <TextView
-        android:id="@+id/text_Add_Kids"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:text="Add Kids"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="26dp" />
 
     <ListView
         android:id="@+id/listViewkids"
         android:layout_width="match_parent"
-        android:layout_below="@+id/text_Add_Kids"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

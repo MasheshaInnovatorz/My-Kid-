@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#29B6F6"
+    android:layout_height="80dp"
+    android:background="@drawable/timg"
     android:orientation="vertical">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:background="@drawable/timg"
         android:orientation="vertical">
 
@@ -20,7 +20,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/textviewsstyle"
+
             android:gravity="center_horizontal"
             android:onClick="sos"
             android:padding="10dp"
@@ -28,7 +28,7 @@
             android:textColor="#FFFFFF" />
 
 
-        <TextView
+        <!-- <TextView
             android:id="@+id/textKidsSurname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,10 +40,10 @@
             android:gravity="center_horizontal"
             android:padding="10dp"
             android:text="account status : Active"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF" />-->
 
 
-        <TextView
+        <!-- <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,17 +55,8 @@
             android:gravity="center_horizontal"
             android:padding="10dp"
             android:text="Change User Role"
-            android:textColor="#fff" />
+            android:textColor="#fff" />-->
 
-        <Spinner
-            android:id="@+id/spinner2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView"
-            android:layout_marginTop="29dp"
-            android:padding="10dp"
-            android:spinnerMode="dropdown" />
 
     </RelativeLayout>
 

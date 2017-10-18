@@ -4,15 +4,17 @@ package com.example.codetribe.my_kid;
  * Created by CodeTribe on 9/2/2017.
  */
 
-        import android.content.Context;
-        import android.support.v7.widget.RecyclerView;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.ImageView;
-        import android.widget.TextView;
-        import com.bumptech.glide.Glide;
-        import java.util.List;
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+
+import java.util.List;
 
 /**
  * Created by Belal on 2/23/2017.
@@ -40,8 +42,10 @@ public class KidsmemoListAdapter extends RecyclerView.Adapter<KidsmemoListAdapte
     public void onBindViewHolder(ViewHolder holder, int position) {
         MemokidsUpload_class upload = uploads.get(position);
 
-        //holder.textViewName.setText(upload.getName());
-       // Glide.with(context).load(upload.getUri()).into(holder.imageView);
+
+        holder.textviewSenderid.setText(upload.getPersonUploaded());
+      holder.textViewName.setText(upload.getName());
+        Glide.with(context).load(upload.getUri()).into(holder.imageView);
     }
 
     @Override
@@ -51,14 +55,16 @@ public class KidsmemoListAdapter extends RecyclerView.Adapter<KidsmemoListAdapte
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView textViewName;
+        public TextView textviewSenderid, textViewName;
         public ImageView imageView;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            textViewName = (TextView) itemView.findViewById(R.id.textViewName);
-            imageView = (ImageView) itemView.findViewById(R.id.imageView);
+            textViewName = (TextView) itemView.findViewById(R.id.tvImageName);
+            textviewSenderid = (TextView) itemView.findViewById(R.id.senderid);
+            imageView = (ImageView) itemView.findViewById(R.id.imgView);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         }
     }
 }

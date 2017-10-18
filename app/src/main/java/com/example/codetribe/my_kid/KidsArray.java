@@ -32,13 +32,14 @@ public class KidsArray extends ArrayAdapter<Kids>{
         View listViewItem = inflater.inflate(R.layout.admin_and_kids_list,null,true);
 
         TextView textKdName = (TextView) listViewItem.findViewById(R.id.textKidsName);
-        TextView surname = (TextView) listViewItem.findViewById(R.id.textKidsSurname);
+
+       // TextView surname = (TextView) listViewItem.findViewById(R.id.textKidsSurname);
 
 
         Kids kids = kidsList.get(position);
 
-        textKdName.setText(kids.getName());
-        surname.setText(kids.getSurname());
+        textKdName.setText("Grade : " + kids.kidsGrade + "\n"+ "Kid Name : " + kids.getName() +" "+ kids.getSurname());
+       // surname.setText(kids.getSurname());
 
         return listViewItem;
     }

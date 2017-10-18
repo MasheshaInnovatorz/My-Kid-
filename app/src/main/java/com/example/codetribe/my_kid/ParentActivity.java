@@ -31,9 +31,8 @@ public class ParentActivity extends AppCompatActivity {
         Toast.makeText(this, parentId, Toast.LENGTH_SHORT).show();
 
 
-        getSupportActionBar().setTitle("Categories");
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Parent");
+
 
 
         TextView chat = (TextView) findViewById(R.id.Chat);

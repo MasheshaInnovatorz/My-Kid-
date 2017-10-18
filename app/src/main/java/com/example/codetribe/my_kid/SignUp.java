@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static com.example.codetribe.my_kid.R.id.spinner2;
+
 
 public class SignUp extends AppCompatActivity {
 

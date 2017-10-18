@@ -28,6 +28,7 @@ public class TeachersActivity extends AppCompatActivity {
     ListView listViewKids;
     List<Kids> kid;
 
+
     FirebaseAuth fireAuth;
     //database
     DatabaseReference kidsRetriveRef,creachRef,orgNameReference;
@@ -98,7 +99,6 @@ public class TeachersActivity extends AppCompatActivity {
             }
         });
 
-        add_Kids = (TextView)findViewById(R.id.text_Add_Kids);
 
         listViewKids.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
@@ -116,12 +116,7 @@ public class TeachersActivity extends AppCompatActivity {
             }
         });
 
-        add_Kids.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
 
 
     }
