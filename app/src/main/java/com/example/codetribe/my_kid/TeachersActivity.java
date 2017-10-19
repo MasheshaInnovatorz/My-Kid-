@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -20,7 +21,7 @@ import java.util.List;
 
 public class TeachersActivity extends AppCompatActivity {
 
-    String userKey;
+    String userKey, teacherRole;
     //public static final String ARTIST_ID = "artistid";
     private TextView add_Kids;
 
@@ -28,10 +29,11 @@ public class TeachersActivity extends AppCompatActivity {
     ListView listViewKids;
     List<Kids> kid;
 
-
+    String org_name;
+    String userId;
     FirebaseAuth fireAuth;
     //database
-    DatabaseReference kidsRetriveRef,creachRef,orgNameReference;
+    DatabaseReference kidsRetriveRef,creachRef,orgNameReference,roleRefer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,15 +45,18 @@ public class TeachersActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         //String id = intent.getStringExtra(TeachersActivity.ARTIST_ID);
-        userKey =  intent.getStringExtra("User_KEY");
+        //userKey =  intent.getStringExtra("User_KEY");
 
 
 
         kid = new ArrayList<>();
 
 
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        orgNameReference = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("teacherClassroom");
+        userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        //orgNameReference = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("teacherClassroom");
+        orgNameReference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
+        //roleRefer = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("role");
+
         //kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Kids").child(userKey);
 
         //kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Kids");
@@ -62,13 +67,22 @@ public class TeachersActivity extends AppCompatActivity {
         orgNameReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-              final  String org_name = dataSnapshot.getValue(String.class);
 
+                //teacherName = dataSnapshot.child("role").getValue().toString();
+
+
+        //final String org_name = dataSnapshot.child("teacherClassroom").getValue().toString();
+
+                org_name = dataSnapshot.child("teacherClassroom").getValue(String.class);
+                teacherRole = dataSnapshot.child("role").getValue(String.class);
+
+
+                Toast.makeText(TeachersActivity.this,teacherRole , Toast.LENGTH_SHORT).show();
 
                 kidsRetriveRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                kid.clear();
+                     @Override
+                     public void onDataChange(DataSnapshot dataSnapshot) {
+                        kid.clear();
 
                         for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()){
 
@@ -77,6 +91,9 @@ public class TeachersActivity extends AppCompatActivity {
 
                                 Kids kidInf = kidssnapshot.getValue(Kids.class);
                                 kid.add(kidInf);
+
+                                Toast.makeText(TeachersActivity.this,kidInf.getId(), Toast.LENGTH_SHORT).show();
+
                             }else{
 
                             }
@@ -107,9 +124,12 @@ public class TeachersActivity extends AppCompatActivity {
                 Kids kido =  kid.get(i);
 
 
-                Intent intent = new Intent(getApplicationContext(),UploadKidsMemo.class);
+                Intent intent = new Intent(getApplicationContext(),KidsmemoListsActivity.class);
                 intent.putExtra("kid_id", kido.getId());
-                intent.putExtra("User_KEY",userKey);
+                intent.putExtra("user_role", teacherRole);
+
+
+
 
 
                 startActivity(intent);

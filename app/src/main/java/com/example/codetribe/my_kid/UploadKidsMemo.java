@@ -53,7 +53,7 @@ public class UploadKidsMemo extends AppCompatActivity {
     public static final String FB_DATABASE_PATH  = "image";
     public static final int REQUEST_CODE = 1234;
 
-    String idKid,userId,identity;
+    String idKid,userId,kidTeacherId,identity;
 
 
     @Override
@@ -69,6 +69,7 @@ public class UploadKidsMemo extends AppCompatActivity {
 
         Intent intent = getIntent();
         idKid= intent.getStringExtra("kid_id");
+        kidTeacherId = intent.getStringExtra("kidsTeacherId");
         results= intent.getStringExtra("userUpLoader");
         userId=intent.getStringExtra("User_KEY");
 
@@ -115,7 +116,13 @@ public class UploadKidsMemo extends AppCompatActivity {
 
                 String org_name = dataSnapshot.getValue(String.class);
 
-                passingValue(idKid);
+                if(idKid != null){
+                    passingValue(idKid);
+                }else if (kidTeacherId != null){
+                    passingValue(kidTeacherId);
+                }
+
+
             }
 
             @Override

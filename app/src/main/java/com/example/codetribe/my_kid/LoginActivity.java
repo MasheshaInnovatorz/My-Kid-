@@ -176,7 +176,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     } else if (dataUser.child("role").getValue().toString().equals("parent")) {
 
                         Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
-                        intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                         intent.putExtra("parent_id", dataUser.child("userIdNumber").getValue().toString());
                         //intent.putExtra("kid_id", dataUser.child("id").getValue().toString());
 

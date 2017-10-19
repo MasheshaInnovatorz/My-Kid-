@@ -1,5 +1,6 @@
 package com.example.codetribe.my_kid;
-        import android.app.ProgressDialog;
+
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +34,7 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
     //adapter object
     private RecyclerView.Adapter adapter;
     //database reference
-    private DatabaseReference mDatabaseRef,childRef;
+    private DatabaseReference mDatabaseRef,childRef, mUserInfor;
 
     //progress dialog
     private ProgressDialog progressDialog;
@@ -46,11 +48,12 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
    // private ListView iv;
 
   //  private KidsmemoListAdapter adapter;
-    private String KidsId, kidsId_key;
-    String parentid,userKey;
+    private String KidsId, kidsUserId;
+    String parentid,userKey, user_roles;
     private Button btnparticipate;
     private TextView sendKids;
     String Surname,name;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,10 +65,22 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Child Story");
         //get key from upload
-        Intent intent = getIntent();
-        parentid = intent.getStringExtra("parentIdentity");
-        userKey = intent.getStringExtra("User_KEY");
-        kidsId_key = intent.getStringExtra("kid_id");
+
+
+        //user_role  = intent.getStringExtra("user_role");
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -75,11 +90,16 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
 
 
+
+
+
         imgList = new ArrayList<>();
         //show progress dialog during list image loading
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait While Loading Kid Memories");
         progressDialog.show();
+
+
 
 
         //   mDatabase = FirebaseDatabase.getInstance().getReference(SyncStateContract.Constants.DATABASE_PATH_UPLOADS);
@@ -89,17 +109,18 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
 
     }
 
-    private void Infor(DataSnapshot kidSnapshot, DataSnapshot dataSnapshot, String userId){
+    public void InforTeacher(DataSnapshot kidSnapshot, DataSnapshot dataSnapshot, String kidsIdentity){
 
         Iterator iterator = dataSnapshot.getChildren().iterator();
-
         Iterator kidsIterator = kidSnapshot.getChildren().iterator();
 
+        // DatabaseReference teacher = FirebaseDatabase.getInstance().getReference("Users");
+
         while(kidsIterator.hasNext()) {
+
             final DataSnapshot kidsUser = (DataSnapshot) kidsIterator.next();
 
-            if (kidsUser.child("parentid").getValue().toString().equals(userId)) {
-
+            if(kidsUser.child("id").getValue().equals(kidsIdentity)) {
                 Surname = kidsUser.child("surname").getValue().toString();
                 name = kidsUser.child("name").getValue().toString();
 
@@ -107,41 +128,106 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
                 while (iterator.hasNext()) {
                     DataSnapshot dataUser = (DataSnapshot) iterator.next();
 
-                    if (kidsUser.child("parentid").getValue().toString().equals(userId)) {
-                        imgList.clear();
 
-                        for (DataSnapshot snapshot : dataUser.getChildren()) {
+                    if (kidsUser.child("id").getValue().equals(dataUser.getKey())) {
+                        if (dataUser.getKey().equals(kidsIdentity)) {
 
+                            imgList.clear();
 
-                            //Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
-
-                            MemokidsUpload_class img = snapshot.getValue(MemokidsUpload_class.class);
+                            for (DataSnapshot snapshot : dataUser.getChildren()) {
 
 
-                            imgList.add(img);
+                                Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
+
+                                MemokidsUpload_class img = snapshot.getValue(MemokidsUpload_class.class);
 
 
-                            KidsId =kidsUser.child("id").getValue().toString();
+                                imgList.add(img);
 
+
+                                KidsId = kidsUser.child("id").getValue().toString();
+
+
+                            }
+
+
+                            //init adapter
+                            adapter = new KidsmemoListAdapter(getApplicationContext(), imgList);
+
+                            //adding adapter to recyclerview
+                            recyclerView.setAdapter(adapter);
 
 
                         }
 
 
-                        //init adapter
-                        adapter = new KidsmemoListAdapter(getApplicationContext(),imgList);
-
-                        //adding adapter to recyclerview
-                        recyclerView.setAdapter(adapter);
-
-
-                    }else{
-                        Toast.makeText(this, "You don't have a kid you are linked with", Toast.LENGTH_SHORT).show();
                     }
                 }
+            }
 
 
-            }}
+    }
+    }
+
+
+    private void Infor(DataSnapshot kidSnapshot, DataSnapshot dataSnapshot, String userId){
+
+        Iterator iterator = dataSnapshot.getChildren().iterator();
+
+        Iterator kidsIterator = kidSnapshot.getChildren().iterator();
+
+      // DatabaseReference teacher = FirebaseDatabase.getInstance().getReference("Users");
+
+        while(kidsIterator.hasNext()) {
+            final DataSnapshot kidsUser = (DataSnapshot) kidsIterator.next();
+
+
+                if (kidsUser.child("parentid").getValue().toString().equals(userId)) {
+
+                    Surname = kidsUser.child("surname").getValue().toString();
+                    name = kidsUser.child("name").getValue().toString();
+
+
+                    while (iterator.hasNext()) {
+                        DataSnapshot dataUser = (DataSnapshot) iterator.next();
+
+                        if (kidsUser.child("parentid").getValue().toString().equals(userId)) {
+                            imgList.clear();
+
+                            for (DataSnapshot snapshot : dataUser.getChildren()) {
+
+
+                                Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
+
+                                MemokidsUpload_class img = snapshot.getValue(MemokidsUpload_class.class);
+
+
+                                imgList.add(img);
+
+
+                                KidsId = kidsUser.child("id").getValue().toString();
+
+
+                            }
+
+
+                            //init adapter
+                            adapter = new KidsmemoListAdapter(getApplicationContext(), imgList);
+
+                            //adding adapter to recyclerview
+                            recyclerView.setAdapter(adapter);
+
+
+                        } else {
+                            Toast.makeText(this, "You don't have a kid you are linked with", Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    }
+
+
+                }
+            }
     }
 
 
@@ -149,57 +235,85 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        childRef.addValueEventListener(new ValueEventListener() {
+
+
+        Intent intent = getIntent();
+        parentid = intent.getStringExtra("parentIdentity");
+        // userKey = intent.getStringExtra("User_KEY");
+        kidsUserId = intent.getStringExtra("kid_id");
+
+
+
+        userKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
+        mUserInfor = FirebaseDatabase.getInstance().getReference("Users").child(userKey);
+
+        mUserInfor.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(final DataSnapshot kidSnapshot) {
+            public void onDataChange( final DataSnapshot userSnapshot) {
 
-
-                mDatabaseRef.addValueEventListener(new ValueEventListener() {
+                childRef.addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        progressDialog.dismiss();
+                    public void onDataChange(final DataSnapshot kidSnapshot) {
 
 
+                        mDatabaseRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        Infor(kidSnapshot,dataSnapshot, parentid);
+                                progressDialog.dismiss();
 
 
-                       // Toast.makeText(KidsmemoListsActivity.this, parentid, Toast.LENGTH_SHORT).show();
+                                if(userSnapshot.child("role").getValue().toString().equals("parent")) {
+
+                                    Infor(kidSnapshot, dataSnapshot, parentid);
+
+                                }else if (userSnapshot.child("role").getValue().toString().equals("teacher")){
+                                    btnparticipate.setText("Share_Activity");
+
+                                    InforTeacher(kidSnapshot,dataSnapshot,kidsUserId);
+                                }else{
+                                    Toast.makeText(KidsmemoListsActivity.this, "Ahh you dont belong to any categories", Toast.LENGTH_SHORT).show();
+                                }
+
+
+                                // Toast.makeText(KidsmemoListsActivity.this, parentid, Toast.LENGTH_SHORT).show();
 
 
 
 // senderId.setText(kids);
 
-                        btnparticipate.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
+                                btnparticipate.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
 
 
 
-                                if(KidsId != null) {
+                                        if(KidsId != null || kidsUserId !=null) {
 
-                                    Intent intent = new Intent(KidsmemoListsActivity.this, UploadKidsMemo.class);
-                                    intent.putExtra("kid_id", KidsId);
+                                            Intent intent = new Intent(KidsmemoListsActivity.this, UploadKidsMemo.class);
+                                            intent.putExtra("kid_id", KidsId);
+                                            intent.putExtra("kidsTeacherId", kidsUserId);
 
-                                    intent.putExtra("User_KEY", userKey);
-
-
-
-                                    startActivity(intent);
-
-                                }else{
-                                    Toast.makeText(KidsmemoListsActivity.this, "You dont have a kids in this creche or maybe made a mistake", Toast.LENGTH_SHORT).show();
-                                    return;
-                                }
-
-                            }
-                        });
+                                            intent.putExtra("User_KEY", userKey);
 
 
 
+                                            startActivity(intent);
 
-                        //fetch image from firebase
+                                        }else{
+                                            Toast.makeText(KidsmemoListsActivity.this, "You dont have a kids in this creche or maybe made a mistake", Toast.LENGTH_SHORT).show();
+                                            return;
+                                        }
+
+                                    }
+                                });
+
+
+
+
+                                //fetch image from firebase
                       /*  for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                             //imageupload class require default contractor
 
@@ -212,16 +326,23 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
                         iv.setAdapter(adapter);
 */
 
-                        //init adapter
-                    //    adapter = new KidsmemoListAdapter(KidsmemoListsActivity.this, imgList);
+                                //init adapter
+                                //    adapter = new KidsmemoListAdapter(KidsmemoListsActivity.this, imgList);
 
-                        //adding adapter to recyclerview
-                 //       recyclerView.setAdapter(adapter);
+                                //adding adapter to recyclerview
+                                //       recyclerView.setAdapter(adapter);
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                progressDialog.dismiss();
+                            }
+                        });
                     }
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-                        progressDialog.dismiss();
+
                     }
                 });
             }
@@ -231,6 +352,8 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
 
             }
         });
+
+
 
 
     }
