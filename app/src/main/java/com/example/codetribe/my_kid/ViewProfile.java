@@ -260,7 +260,6 @@ public class ViewProfile extends AppCompatActivity {
 
 
                 name.setText("Name : " + dataUser.child("userName").getValue().toString() +  " " + dataUser.child("userSurname").getValue().toString());
-                surname.setText("Surname : " + dataUser.child("userSurname").getValue().toString());
                 gender.setText(" Gender :"+ dataUser.child("userGender").getValue().toString());
                 phonenumber.setText("  phone number :"+ dataUser.child("userContact").getValue().toString());
                 address.setText("  Lives in :"+ dataUser.child("userAddress").getValue().toString());

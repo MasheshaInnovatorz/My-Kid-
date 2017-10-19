@@ -2,63 +2,71 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:background="@drawable/timg"
+    android:padding="5dp"
+    android:layout_marginTop="3dp"
     android:orientation="vertical">
 
 
+
     <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="@drawable/timg"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:layout_marginBottom="3dp"
+        android:background="@drawable/layoutstyle1"
+        tools:context="com.example.android.miwok.Itemlist">
 
-        <TextView
-            android:id="@+id/textKidsName"
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_person_black_24dp"
+            />
+
+        <LinearLayout
+            android:id="@+id/text_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp"
-
-            android:gravity="center_horizontal"
-            android:onClick="sos"
-            android:padding="10dp"
-            android:text="User : Mudau Rudzani"
-            android:textColor="#FFFFFF" />
+            android:layout_toRightOf="@+id/image"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            >
 
 
-        <!-- <TextView
-            android:id="@+id/textKidsSurname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textKidsName"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/textviewsstyle"
-            android:gravity="center_horizontal"
-            android:padding="10dp"
-            android:text="account status : Active"
-            android:textColor="#FFFFFF" />-->
+            <TextView
+                android:textAppearance="?android:textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:layout_height="0dp"
+                android:id="@+id/textKidsName"
+                tools:text="Mudau Rudzani"
+                android:text="Mudau Rudzani"
+                />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/parentname"
+                android:layout_weight="1"
+                android:gravity="top"
+                android:textColor="#000000"
+                android:textAppearance="?android:textAppearanceMedium"
+                tools:text="Parent NAme"
+                android:text="Parent Name"
+                />
 
-        <!-- <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textKidsSurname"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/textviewsstyle"
-            android:gravity="center_horizontal"
-            android:padding="10dp"
-            android:text="Change User Role"
-            android:textColor="#fff" />-->
+        </LinearLayout>
 
 
     </RelativeLayout>
-
 
 </LinearLayout>
