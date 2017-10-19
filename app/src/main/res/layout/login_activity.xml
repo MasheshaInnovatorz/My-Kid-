@@ -11,42 +11,51 @@
         android:background="@drawable/timg">
 
 
-
         <ImageView
+            android:id="@+id/icon"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:id="@+id/icon"
             android:background="@drawable/kidlogo"
-            android:layout_above="@+id/linearLayout4"
+            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="52dp" />
+            android:layout_marginTop="38dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/icon"
+            android:layout_marginBottom="2dp"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:text="Welcome To Kids Creatives"
+            android:textAlignment="center"/>
 
         <LinearLayout
+            android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:orientation="vertical"
-            android:id="@+id/linearLayout4">
+            android:orientation="vertical">
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_log_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="22dp"
-                android:layout_marginRight="35dp"
-                android:layout_marginTop="30dp"
-                android:background="#0000"
-                android:hint="Username"
-                android:inputType="textEmailAddress"
-                android:padding="16dp"
-                android:textColor="#ADCCE2"
-                android:textColorHint="#ADCCE2"
-                android:textSize="16dp" />
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginTop="30dp"
+                    android:background="#0000"
+                    android:hint="Username"
+                    android:inputType="textEmailAddress"
+                    android:padding="16dp"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@android:color/white"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
             <View
@@ -57,14 +66,13 @@
                 android:background="#ADCCE2" />
 
 
-
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:passwordToggleContentDescription="ruuu"
                 app:passwordToggleDrawable="@drawable/ic_remove_red_eye_black_24dp"
                 app:passwordToggleEnabled="true"
-                app:passwordToggleTint="#ADCCE2">
+                app:passwordToggleTint="@android:color/white">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/password"

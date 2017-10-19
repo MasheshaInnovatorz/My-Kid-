@@ -191,7 +191,7 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
                     while (iterator.hasNext()) {
                         DataSnapshot dataUser = (DataSnapshot) iterator.next();
 
-                        if (kidsUser.child("parentid").getValue().toString().equals(userId)) {
+                        if (kidsUser.child("id").getValue().toString().equals(dataUser.getKey())) {
                             imgList.clear();
 
                             for (DataSnapshot snapshot : dataUser.getChildren()) {

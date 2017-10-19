@@ -40,7 +40,8 @@
                     android:padding="16dp"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
-                    android:textColorHint="#ADCCE2"
+                    android:textColorHint="@android:color/white"
+                    android:textAppearance="@android:color/white"
                     android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 

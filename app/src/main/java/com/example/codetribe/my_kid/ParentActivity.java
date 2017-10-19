@@ -91,7 +91,7 @@ public class ParentActivity extends AppCompatActivity {
                 return true;
 
             case R.id.logout:
-
+                    logout();
                 return true;
 
             case R.id.editKid:
