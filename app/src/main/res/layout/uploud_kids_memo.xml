@@ -9,9 +9,11 @@
     android:padding="1dp"
     tools:context="com.example.codetribe.my_kid.UploadKidsMemo">
 
+    
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="5dp"
     android:background="@drawable/timg"
     >
 

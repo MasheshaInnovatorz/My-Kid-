@@ -31,7 +31,6 @@ public class UserArray extends ArrayAdapter<UserProfile>{
         LayoutInflater inflater = context.getLayoutInflater();
 
         View listViewItem = inflater.inflate(R.layout.admin_and_kids_list,null,true);
-
         TextView textKdName = (TextView) listViewItem.findViewById(R.id.textKidsName);
        // TextView surname = (TextView) listViewItem.findViewById(R.id.textKidsSurname);
 

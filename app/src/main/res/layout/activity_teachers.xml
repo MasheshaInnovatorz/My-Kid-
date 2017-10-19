@@ -3,13 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+<<<<<<< HEAD
     android:layout_height="match_parent"
+=======
+    android:layout_height="wrap_content"
+>>>>>>> 3b7e287f7abab4f8c04ae2bf741041ff41566014
     tools:context="com.example.codetribe.my_kid.TeachersActivity">
 
 
     <ListView
         android:id="@+id/listViewkids"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
 
 </RelativeLayout>
