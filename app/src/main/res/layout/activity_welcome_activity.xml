@@ -67,7 +67,7 @@
                     android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:paddingLeft="3dp"
-                    android:src="@drawable/mykidicon" />
+                    android:src="@drawable/kidlogo" />
             </FrameLayout>
 
             <TextView
