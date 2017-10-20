@@ -63,7 +63,7 @@ private RadioButton rdGenders;
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Update ProfileUpdate");
+        getSupportActionBar().setTitle("Update Profile Update");
 
 
 
@@ -162,7 +162,7 @@ String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
              //databaseReference.setValue(ProfileUpdate);
 
                 Toast.makeText(ProfileUpdate.this, "User ProfileUpdate Added", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(ProfileUpdate.this, WelcomeActivity.class));
+                startActivity(new Intent(ProfileUpdate.this, ParentActivity.class));
 
             }else{
                 Toast.makeText(ProfileUpdate.this, "User Failed to add ProfileUpdate", Toast.LENGTH_SHORT).show();

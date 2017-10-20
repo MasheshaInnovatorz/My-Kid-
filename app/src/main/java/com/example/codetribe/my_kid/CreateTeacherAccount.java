@@ -1,6 +1,7 @@
 package com.example.codetribe.my_kid;
 
-        import android.content.Intent;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
@@ -11,7 +12,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -41,7 +41,8 @@ public class CreateTeacherAccount extends AppCompatActivity {
     TextView createteacher;
     String role = "teacher";
     private FirebaseAuth auth;
-    private ProgressBar progressBar;
+    //private ProgressBar progressBar;
+    private ProgressDialog progressDialog;
     //Firebase
     private DatabaseReference teacherReference, mDatabaseRef, mCrecheRef, orgNameReference;
     private RadioButton gnrteacher;
@@ -169,7 +170,6 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
 
 
-
                 //process the data further
 
                 //        progressBar.setVisibility(View.VISIBLE);
@@ -178,6 +178,12 @@ public class CreateTeacherAccount extends AppCompatActivity {
                         .addOnCompleteListener(CreateTeacherAccount.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
+
+
+                                progressDialog.setMessage("Wait While Registering Teacher");
+                                progressDialog.show();
+
+
 
                                 if (task.isSuccessful()) {
                                     //String user_id = task.getResult().getUser().getUid();
@@ -196,11 +202,14 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                                     startActivity(new Intent(getApplication(), AdminActivity.class));
 
+                                    progressDialog.dismiss();
+
                                 }
 
                                 if (!task.isSuccessful()) {
                                     Toast.makeText(CreateTeacherAccount.this, "Authentication failed." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
+                                    progressDialog.dismiss();
                                 } else {
                                     // startActivity(new Intent(Create_Teacher_Account.this, LoginActivity.class));
 

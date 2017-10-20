@@ -137,7 +137,6 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
                             for (DataSnapshot snapshot : dataUser.getChildren()) {
 
 
-                                Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
 
                                 MemokidsUpload_class img = snapshot.getValue(MemokidsUpload_class.class);
 
@@ -197,7 +196,7 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
                             for (DataSnapshot snapshot : dataUser.getChildren()) {
 
 
-                                Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
+                               // Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
 
                                 MemokidsUpload_class img = snapshot.getValue(MemokidsUpload_class.class);
 
