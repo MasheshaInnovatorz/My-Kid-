@@ -26,7 +26,7 @@ public class ParentActivity extends AppCompatActivity {
         idLoged = keyId.getStringExtra("User_KEY");
         kids_id = keyId.getStringExtra("kid_id");
 
-
+//r
         parentId = keyId.getStringExtra("parent_id");
         Toast.makeText(this, parentId, Toast.LENGTH_SHORT).show();
 
