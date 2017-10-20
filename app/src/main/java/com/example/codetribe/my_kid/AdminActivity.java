@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,10 +38,13 @@ public class AdminActivity extends AppCompatActivity {
     //initialization for kids
     ListView listUsers;
     List<UserProfile> user;
+    List<Kids> kidses;
 
+    private FirebaseAuth adminUser;
     //database
-    DatabaseReference usersRetriveRef;
+    DatabaseReference usersRetriveRef,kidsCreche;
    TextView sos;
+    String Idadmin;
     Spinner spinner;
 
     @Override
@@ -46,8 +53,9 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
 
         getSupportActionBar().setTitle("Admin");
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        
+
 
 
         listUsers = (ListView) findViewById(R.id.listUser);
@@ -58,11 +66,13 @@ public class AdminActivity extends AppCompatActivity {
         userKey = intent.getStringExtra("User_KEY");
 
         user = new ArrayList<>();
+        kidses = new ArrayList<>();
 
 
         //kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Kids").child(userKey);
 
         usersRetriveRef = FirebaseDatabase.getInstance().getReference("Users");
+        kidsCreche = FirebaseDatabase.getInstance().getReference("Kids");
 
         addteacher.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,7 +170,7 @@ public class AdminActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-
+        Idadmin=  FirebaseAuth.getInstance().getCurrentUser().getUid();
         usersRetriveRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -168,8 +178,20 @@ public class AdminActivity extends AppCompatActivity {
                 for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()) {
 
 
-                    UserProfile kidInf = kidssnapshot.getValue(UserProfile.class);
-                    user.add(kidInf);
+                   if(kidssnapshot.child("role").getValue().toString().equals("teacher")) {
+
+                       UserProfile kidInf = kidssnapshot.getValue(UserProfile.class);
+                       user.add(kidInf);
+
+                       kidInf.getKeyUser();
+
+                   }
+
+
+
+
+
+
 
 
                 }
@@ -184,5 +206,114 @@ public class AdminActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.adminmenu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+
+        switch (item.getItemId())   {
+            case R.id.view_teachers:
+                //  showHelp();
+                usersRetriveRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        user.clear();
+                        for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()) {
+
+
+                            if(kidssnapshot.child("role").getValue().toString().equals("teacher")) {
+
+                                UserProfile kidInf = kidssnapshot.getValue(UserProfile.class);
+                                user.add(kidInf);
+
+                                kidInf.getKeyUser();
+
+                            }
+
+
+
+
+
+
+
+
+                        }
+                        UserArray userListAdapter = new UserArray(AdminActivity.this, user);
+                        listUsers.setAdapter(userListAdapter);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+                return true;
+
+            case R.id.view_Kids:
+
+
+
+                usersRetriveRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange( final DataSnapshot crecheSnapshot) {
+
+                        for (final DataSnapshot adminSnap : crecheSnapshot.getChildren()) {
+
+                        if (adminSnap.child("userKey").getValue().toString().equals(Idadmin)) {
+
+                            kidsCreche.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    kidses.clear();
+                                    for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()) {
+
+
+                                        if (kidssnapshot.child("orgName").getValue().toString().equals(adminSnap.child("orgName").getValue().toString())) {
+
+                                            Kids kidInf = kidssnapshot.getValue(Kids.class);
+                                            kidses.add(kidInf);
+
+                                            kidInf.getId();
+
+                                        }
+
+
+                                    }
+                                    KidsArray userListAdapter = new KidsArray(AdminActivity.this, kidses);
+                                    listUsers.setAdapter(userListAdapter);
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+                        }
+                    }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+
+                return true;
+
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void logout() {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(AdminActivity.this,LoginActivity.class) ;
+        startActivity(intent);
+    }
 }

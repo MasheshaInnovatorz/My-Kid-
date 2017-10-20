@@ -31,11 +31,7 @@
         <activity
             android:name=".ResetPassword"
             android:theme="@style/AppTheme.LoginStyle" />
-
         <activity android:name=".ProfileUpdate" />
-
-
-
         <activity android:name=".KidsmemoListsActivity" />
         <activity android:name=".UploadKidsMemo" />
         <activity android:name=".ParentActivity" />
@@ -47,17 +43,10 @@
         <activity android:name=".AdminActivity" />
         <activity
             android:name=".ViewProfile"
-
             android:theme="@style/AppTheme.LoginStyle" />
         <activity android:name=".SignUpOrganisationActivity" />
-
-        <activity android:name=".CreateTeacherAccount"></activity>
-
-
-
-
-
-
+        <activity android:name=".CreateTeacherAccount" />
+        <activity android:name=".AboutUs"></activity>
     </application>
 
 </manifest>
