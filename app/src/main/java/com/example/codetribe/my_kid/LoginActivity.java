@@ -49,8 +49,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     TextInputLayout passwordLayout;
     TextInputLayout emailLayout;
     String uid = "some-uid";
-
-
     private TextInputLayout input_email;
 
     @Override

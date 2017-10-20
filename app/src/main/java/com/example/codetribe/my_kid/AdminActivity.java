@@ -46,9 +46,6 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
 
         getSupportActionBar().setTitle("Admin");
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         listUsers = (ListView) findViewById(R.id.listUser);
         addkid =  (TextView) findViewById(R.id.addkids);

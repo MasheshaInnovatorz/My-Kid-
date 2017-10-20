@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.codetribe.my_kid.ParentActivity">
+
+    <item
+        android:orderInCategory="100"
+        android:title="View profile"
+        android:id="@+id/view_profile"
+        app:showAsAction="never" />
+
+
+    <item
+        android:orderInCategory="100"
+        android:title="AboutUs"
+        android:id="@+id/aboutus"
+        app:showAsAction="never" />
+
+
+    <item
+        android:orderInCategory="100"
+        android:title="Logout"
+        android:id="@+id/logout"
+        app:showAsAction="never" />
+
+
+</menu>
