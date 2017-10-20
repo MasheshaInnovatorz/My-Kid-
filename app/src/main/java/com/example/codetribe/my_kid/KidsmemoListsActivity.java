@@ -226,6 +226,8 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
                     }
 
 
+                }else{
+                    Toast.makeText(KidsmemoListsActivity.this, "You dont have a Kid you are linked with from this creche", Toast.LENGTH_SHORT).show();
                 }
             }
     }

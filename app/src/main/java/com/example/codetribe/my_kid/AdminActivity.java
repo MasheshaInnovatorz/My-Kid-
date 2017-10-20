@@ -71,7 +71,7 @@ public class AdminActivity extends AppCompatActivity {
                 Intent intent =  new Intent(AdminActivity.this,CreateTeacherAccount.class);
                 intent.putExtra("User_KEY",userKey);
                 startActivity(intent);
-                Toast.makeText(AdminActivity.this,userKey, Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -81,7 +81,7 @@ public class AdminActivity extends AppCompatActivity {
                 Intent intent =  new Intent(AdminActivity.this,KidActivity.class);
                 intent.putExtra("User_KEY",userKey);
                 startActivity(intent);
-                Toast.makeText(AdminActivity.this,userKey, Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -171,7 +171,7 @@ public class AdminActivity extends AppCompatActivity {
                     UserProfile kidInf = kidssnapshot.getValue(UserProfile.class);
                     user.add(kidInf);
 
-                    Toast.makeText(AdminActivity.this, kidInf.getUserIdNumber(), Toast.LENGTH_SHORT).show();
+
                 }
                 UserArray userListAdapter = new UserArray(AdminActivity.this, user);
                 listUsers.setAdapter(userListAdapter);

@@ -64,7 +64,7 @@ public class UploadKidsMemo extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Uploud_kids_memo");
+        getSupportActionBar().setTitle("Uploud Kids Memo");
 
 
         Intent intent = getIntent();
@@ -219,7 +219,7 @@ public class UploadKidsMemo extends AppCompatActivity {
                             //save image infor in to firebase database
                             String uploadId  = mDatabseRef.push().getKey();
                             mDatabseRef.child(uploadId).setValue(imageUpload);
-                            Toast.makeText(UploadKidsMemo.this, results, Toast.LENGTH_SHORT).show();
+
                         }
 
                         @Override
