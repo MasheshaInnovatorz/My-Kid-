@@ -76,18 +76,12 @@ public class ViewProfile extends AppCompatActivity {
         phonenumber= (TextView)findViewById(R.id.phone_view);
         address= (TextView)findViewById(R.id.address_view);
         email= (TextView)findViewById(R.id.email_view);
-
         photo = (ImageView) findViewById(R.id.user_profile_photo);
-
-
-
         profilecover=(ImageView) findViewById(R.id.header_cover_image);
-
 
 
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
-
         user = FirebaseAuth.getInstance().getCurrentUser();
 
 
@@ -119,7 +113,6 @@ public class ViewProfile extends AppCompatActivity {
             user_id = "unknown_uid";
         }
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-
         photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -257,8 +250,6 @@ public class ViewProfile extends AppCompatActivity {
 
             if (dataUser.child("userKey").getValue().toString().equals(userId))
             {
-
-
                 name.setText(dataUser.child("userName").getValue().toString() +  " " + dataUser.child("userSurname").getValue().toString());
                 gender.setText(" Gender :"+ dataUser.child("userGender").getValue().toString());
                 phonenumber.setText("  phone number :"+ dataUser.child("userContact").getValue().toString());

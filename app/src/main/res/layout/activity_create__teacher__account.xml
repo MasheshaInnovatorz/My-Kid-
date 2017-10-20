@@ -193,7 +193,6 @@
                     android:textColor="#ADCCE2"
                     android:textColorHint="#ADCCE2"
                     android:textSize="16dp" />
-
             </android.support.design.widget.TextInputLayout>
 
 

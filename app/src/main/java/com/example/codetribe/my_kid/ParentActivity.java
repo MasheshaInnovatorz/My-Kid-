@@ -93,9 +93,9 @@ public class ParentActivity extends AppCompatActivity {
                 return true;
 
             case R.id.editKid:
-                Intent intent_kid = new Intent(ParentActivity.this,EditKidsProfile.class);
-                intent_kid.putExtra("User_KEY",idLoged);
-                startActivity(intent_kid);
+              //  Intent intent_kid = new Intent(ParentActivity.this,EditKidsProfile.class);
+              //  intent_kid.putExtra("User_KEY",idLoged);
+              //  startActivity(intent_kid);
                 return true;
 
             case R.id.view_profile:

@@ -3,6 +3,9 @@ package com.example.codetribe.my_kid;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -30,7 +33,7 @@ public class TeachersActivity extends AppCompatActivity {
     List<Kids> kid;
 
     String org_name;
-    String userId;
+    String userId,idLoged;
     FirebaseAuth fireAuth;
     //database
     DatabaseReference kidsRetriveRef,creachRef,orgNameReference,roleRefer;
@@ -40,6 +43,8 @@ public class TeachersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teachers);
 
+
+        getSupportActionBar().setTitle("Teacher");
         listViewKids  = (ListView)findViewById(R.id.listViewkids);
         fireAuth =  FirebaseAuth.getInstance();
 
@@ -68,11 +73,6 @@ public class TeachersActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                //teacherName = dataSnapshot.child("role").getValue().toString();
-
-
-        //final String org_name = dataSnapshot.child("teacherClassroom").getValue().toString();
-
                 org_name = dataSnapshot.child("teacherClassroom").getValue(String.class);
                 teacherRole = dataSnapshot.child("role").getValue(String.class);
 
@@ -80,19 +80,15 @@ public class TeachersActivity extends AppCompatActivity {
                 Toast.makeText(TeachersActivity.this,teacherRole , Toast.LENGTH_SHORT).show();
 
                 kidsRetriveRef.addValueEventListener(new ValueEventListener() {
-                     @Override
-                     public void onDataChange(DataSnapshot dataSnapshot) {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
                         kid.clear();
 
                         for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()){
-
-
                             if(kidssnapshot.child("kidsGrade").getValue().toString().equals(org_name)) {
-
                                 Kids kidInf = kidssnapshot.getValue(Kids.class);
                                 kid.add(kidInf);
-
-                                Toast.makeText(TeachersActivity.this,kidInf.getId(), Toast.LENGTH_SHORT).show();
+                            //    Toast.makeText(TeachersActivity.this,kidInf.getId(), Toast.LENGTH_SHORT).show();
 
                             }else{
 
@@ -107,7 +103,6 @@ public class TeachersActivity extends AppCompatActivity {
 
                     }
                 });
-
             }
 
             @Override
@@ -122,22 +117,12 @@ public class TeachersActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Kids kido =  kid.get(i);
-
-
                 Intent intent = new Intent(getApplicationContext(),KidsmemoListsActivity.class);
                 intent.putExtra("kid_id", kido.getId());
                 intent.putExtra("user_role", teacherRole);
-
-
-
-
-
                 startActivity(intent);
             }
         });
-
-
-
 
     }
 
@@ -146,6 +131,41 @@ public class TeachersActivity extends AppCompatActivity {
         super.onStart();
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menuteacher, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())   {
+
+            case R.id.aboutus:
+                //  showHelp();
+                return true;
+
+            case R.id.logout:
+                logout();
+                return true;
+
+
+            case R.id.view_profile:
+                Intent intent = new Intent(TeachersActivity.this,ViewProfile.class);
+                // intent.putExtra("User_KEY",userId);
+                intent.putExtra("user_id",idLoged);
+                startActivity(intent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void logout() {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(TeachersActivity.this,LoginActivity.class) ;
+        startActivity(intent);
     }
 
 
