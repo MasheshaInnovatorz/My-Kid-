@@ -28,7 +28,7 @@ public class ParentActivity extends AppCompatActivity {
 
 //r
         parentId = keyId.getStringExtra("parent_id");
-        Toast.makeText(this, parentId, Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, parentId, Toast.LENGTH_SHORT).show();
 
 
         getSupportActionBar().setTitle("Parent");
