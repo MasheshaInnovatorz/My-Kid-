@@ -1,41 +1,35 @@
 package com.example.codetribe.my_kid;
 
         import android.content.Intent;
-        import android.icu.util.Calendar;
-        import android.os.Bundle;
-        import android.support.annotation.NonNull;
-        import android.support.design.widget.TextInputLayout;
-        import android.support.v7.app.AppCompatActivity;
-        import android.text.TextUtils;
-        import android.util.Patterns;
-        import android.view.Menu;
-        import android.view.MenuInflater;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.widget.EditText;
-        import android.widget.ProgressBar;
-        import android.widget.RadioButton;
-        import android.widget.RadioGroup;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Patterns;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import com.basgeekball.awesomevalidation.AwesomeValidation;
-        import com.basgeekball.awesomevalidation.ValidationStyle;
-        import com.basgeekball.awesomevalidation.utility.RegexTemplate;
-        import com.google.android.gms.tasks.OnCompleteListener;
-        import com.google.android.gms.tasks.Task;
-        import com.google.common.collect.Range;
-        import com.google.firebase.auth.AuthResult;
-        import com.google.firebase.auth.FirebaseAuth;
-        import com.google.firebase.database.DataSnapshot;
-        import com.google.firebase.database.DatabaseError;
-        import com.google.firebase.database.DatabaseReference;
-        import com.google.firebase.database.FirebaseDatabase;
-        import com.google.firebase.database.ValueEventListener;
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-        import static com.basgeekball.awesomevalidation.ValidationStyle.TEXT_INPUT_LAYOUT;
-        import static com.example.codetribe.my_kid.R.id.password;
-        import static com.example.codetribe.my_kid.R.id.teacherpassword;
+import static com.example.codetribe.my_kid.R.id.teacherpassword;
 
 public class CreateTeacherAccount extends AppCompatActivity {
 
@@ -61,7 +55,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
         setContentView(R.layout.activity_create__teacher__account);
 
 
-        getSupportActionBar().setTitle("Create Teacher Profile");
+        getSupportActionBar().setTitle("Add Teacher");
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -91,7 +85,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
         awesomeValidation.addValidation(this, R.id.teacheremail, Patterns.EMAIL_ADDRESS, R.string.emailerror);
         awesomeValidation.addValidation(this, teacherpassword, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.passworderror);
         awesomeValidation.addValidation(this, R.id.teachercontact, "^[2-9]{2}[0-9]{8}$", R.string.mobileerror);
-        awesomeValidation.addValidation(this, R.id.teacherid, "^[2-9]{2}[0-13]{13}$", R.string.iderror);
+       // awesomeValidation.addValidation(this, R.id.teacherid, "^[2-9]{2}[0-13]{11}$", R.string.iderror);
         awesomeValidation.addValidation(this, R.id.teacherclass, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.classerror);
 
         //database

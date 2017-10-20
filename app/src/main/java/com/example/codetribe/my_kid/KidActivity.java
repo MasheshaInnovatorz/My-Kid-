@@ -69,7 +69,7 @@ public class KidActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Add kid Profile");
+        getSupportActionBar().setTitle("Add kid");
 
 
         //initializing
