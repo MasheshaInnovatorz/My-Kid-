@@ -1,5 +1,6 @@
 package com.example.codetribe.my_kid;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -40,6 +41,7 @@ public class SignUp extends AppCompatActivity {
     TextView mainNav,btnSignUp;
     private Spinner orgNameList;
     private List<String> list;
+    private ProgressDialog progressDialog;
 
     private TextInputLayout input_email1;
     //firebase Authentification
@@ -61,7 +63,7 @@ public class SignUp extends AppCompatActivity {
         mDatabaseRef  = FirebaseDatabase.getInstance().getReference();
         mUserCheckData = FirebaseDatabase.getInstance().getReference().child("Users");
 
-
+        progressDialog = new ProgressDialog(this);
 
         btnSignUp = (TextView) findViewById(R.id.sinup);
         inputEmail = (EditText) findViewById(R.id.email);
@@ -150,11 +152,15 @@ public class SignUp extends AppCompatActivity {
                     return;
                 }
 
+                progressDialog.setMessage("Wait While Creating an Account");
+                progressDialog.show();
 
                 final String userEmailString, userPassString;
 
                 userEmailString = inputEmail.getText().toString().trim();
                 userPassString = inputPassword.getText().toString().trim();
+
+
 
                 if(!TextUtils.isEmpty(userEmailString) && !TextUtils.isEmpty(userPassString))
                 {
@@ -170,7 +176,7 @@ public class SignUp extends AppCompatActivity {
 
                                 mChildDatabase.child("isVerified").setValue("unverified");
                                 mChildDatabase.child("userKey").setValue(user_id);
-                                mChildDatabase.child("role").setValue("none");
+                                mChildDatabase.child("role").setValue("parent");
                                 mChildDatabase.child("emailUser").setValue(userEmailString);
                                 mChildDatabase.child("passWordUser").setValue(userPassString);
                                 Toast.makeText(SignUp.this, "User Account Created", Toast.LENGTH_SHORT).show();
@@ -185,7 +191,7 @@ public class SignUp extends AppCompatActivity {
                         }
                     });
                 }
-
+                progressDialog.dismiss();
 
 
 
