@@ -55,13 +55,7 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
 
         getSupportActionBar().setTitle("Admin");
-<<<<<<< HEAD
 
-        
-
-
-=======
->>>>>>> 8f9c6a95337e3e59e08b89d153206fe5a4b6c04a
 
         listUsers = (ListView) findViewById(R.id.listUser);
         addkid =  (TextView) findViewById(R.id.addkids);
@@ -173,11 +167,8 @@ public class AdminActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-<<<<<<< HEAD
-=======
-
         Idadmin=  FirebaseAuth.getInstance().getCurrentUser().getUid();
->>>>>>> d15e3ca360e2d0847c2c85fceb5891bcada45b5c
+
         usersRetriveRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -193,13 +184,6 @@ public class AdminActivity extends AppCompatActivity {
                        kidInf.getKeyUser();
 
                    }
-
-
-
-
-
-
-
 
                 }
                 UserArray userListAdapter = new UserArray(AdminActivity.this, user);
@@ -242,13 +226,6 @@ public class AdminActivity extends AppCompatActivity {
 
                             }
 
-
-
-
-
-
-
-
                         }
                         UserArray userListAdapter = new UserArray(AdminActivity.this, user);
                         listUsers.setAdapter(userListAdapter);
@@ -288,7 +265,6 @@ public class AdminActivity extends AppCompatActivity {
                                             kidInf.getId();
 
                                         }
-
 
                                     }
                                     KidsArray userListAdapter = new KidsArray(AdminActivity.this, kidses);

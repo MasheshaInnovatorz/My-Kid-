@@ -35,7 +35,6 @@ public class SignUp extends AppCompatActivity {
 
 
     private EditText inputEmail, inputPassword;
-    private ProgressDialog progressDialog;
     //spinner
    private  ArrayAdapter<String> dataAdapter;
     // private Button
@@ -76,20 +75,7 @@ public class SignUp extends AppCompatActivity {
         list  = new ArrayList<String>();
 
         input_email1= (TextInputLayout)findViewById(R.id.input_email);
-        /*mainNav.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-
-                startActivity(new Intent(SignUp.this, LoginActivity.class));
-                finish();
-            }
-        });*/
-
         dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list);
-
-
-
 
 
 
