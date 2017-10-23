@@ -8,7 +8,6 @@
     <string name="err_msg_password">Enter the password</string>
 
 
-
     <!--user validation-->
     <string name="nameerror">Enter Valid Name</string>
     <string name="surnameerror">Enter Valid Surname</string>

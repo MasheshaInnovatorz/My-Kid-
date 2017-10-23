@@ -9,7 +9,10 @@
     tools:context="com.example.codetribe.my_kid.AdminActivity">
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> d15e3ca360e2d0847c2c85fceb5891bcada45b5c
     <ListView
         android:id="@+id/listUser"
         android:layout_width="match_parent"
@@ -71,10 +74,13 @@
     </LinearLayout>
 
 
+<<<<<<< HEAD
 
 
 
 
 
+=======
+>>>>>>> d15e3ca360e2d0847c2c85fceb5891bcada45b5c
 </RelativeLayout>
 

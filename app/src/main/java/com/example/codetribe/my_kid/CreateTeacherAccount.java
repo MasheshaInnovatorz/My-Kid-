@@ -174,14 +174,15 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                 //        progressBar.setVisibility(View.VISIBLE);
                 //create user
+                progressDialog.setMessage("Wait While Registering Teacher");
+                progressDialog.show();
+
                 auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(CreateTeacherAccount.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
 
 
-                                progressDialog.setMessage("Wait While Registering Teacher");
-                                progressDialog.show();
 
 
 
