@@ -207,8 +207,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
                                 }
 
                                 if (!task.isSuccessful()) {
-                                    Toast.makeText(CreateTeacherAccount.this, "Authentication failed." + task.getException(),
-                                            Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(CreateTeacherAccount.this, "Authentication failed." + task.getException(),   Toast.LENGTH_SHORT).show();
                                     progressDialog.dismiss();
                                 } else {
                                     // startActivity(new Intent(Create_Teacher_Account.this, LoginActivity.class));

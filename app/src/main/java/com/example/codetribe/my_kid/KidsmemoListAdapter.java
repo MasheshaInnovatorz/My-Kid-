@@ -64,6 +64,7 @@ public class KidsmemoListAdapter extends RecyclerView.Adapter<KidsmemoListAdapte
             textViewName = (TextView) itemView.findViewById(R.id.tvImageName);
             textviewSenderid = (TextView) itemView.findViewById(R.id.senderid);
             imageView = (ImageView) itemView.findViewById(R.id.imgView);
+
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         }
     }

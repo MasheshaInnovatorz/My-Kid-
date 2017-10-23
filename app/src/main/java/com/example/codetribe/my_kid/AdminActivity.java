@@ -22,6 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.codetribe.my_kid.R.styleable.AlertDialog;
+
 public class AdminActivity extends AppCompatActivity {
 
     String userKey;
@@ -50,14 +52,12 @@ public class AdminActivity extends AppCompatActivity {
         listUsers = (ListView) findViewById(R.id.listUser);
         addkid =  (TextView) findViewById(R.id.addkids);
         addteacher=  (TextView) findViewById(R.id.addTeacher);
+
         Intent intent = getIntent();
-        //String id = intent.getStringExtra(TeachersActivity.ARTIST_ID);
         userKey = intent.getStringExtra("User_KEY");
 
         user = new ArrayList<>();
 
-
-        //kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Kids").child(userKey);
 
         usersRetriveRef = FirebaseDatabase.getInstance().getReference("Users");
 
@@ -81,6 +81,7 @@ public class AdminActivity extends AppCompatActivity {
 
             }
         });
+
 
 
         listUsers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -156,8 +157,6 @@ public class AdminActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-
         usersRetriveRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

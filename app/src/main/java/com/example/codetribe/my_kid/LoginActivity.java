@@ -94,10 +94,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     mDatabaseRef.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-
-
-
-
                             checkUserValidation(dataSnapshot,emailForVer);
 
                         }

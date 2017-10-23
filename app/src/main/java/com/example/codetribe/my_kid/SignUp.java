@@ -35,7 +35,8 @@ public class SignUp extends AppCompatActivity {
 
 
     private EditText inputEmail, inputPassword;
-
+    private ProgressDialog progressDialog;
+    //spinner
    private  ArrayAdapter<String> dataAdapter;
     // private Button
     TextView mainNav,btnSignUp;
@@ -184,7 +185,7 @@ public class SignUp extends AppCompatActivity {
                                 startActivity(new Intent(SignUp.this,WelcomeActivity.class));
 
                             }else{
-                                Toast.makeText(SignUp.this, "User Fialed to login", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUp.this, "Parent Fialed to Register", Toast.LENGTH_SHORT).show();
 
 
                             }
@@ -227,15 +228,13 @@ public class SignUp extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        Toast.makeText(this, "Ellow Chivhedzelele", Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, "Ellow Chivhedzelele", Toast.LENGTH_SHORT).show();
 
         crecheDataRef = FirebaseDatabase.getInstance().getReference("Creche");
 
         crecheDataRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-
 
                 for (DataSnapshot checheSnapshot : dataSnapshot.getChildren()){
 
@@ -250,8 +249,6 @@ public class SignUp extends AppCompatActivity {
                     }else{
                         Toast.makeText(SignUp.this, "There is no Creche Registered", Toast.LENGTH_SHORT).show();
                     }
-
-
                 }
             }
 

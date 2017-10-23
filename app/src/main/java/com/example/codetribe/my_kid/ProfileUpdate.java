@@ -37,12 +37,13 @@ public class ProfileUpdate extends AppCompatActivity {
 
 
     //validdation
-    private TextInputLayout inputLayoutName,
-                            inputLayoutSurname,
-                            inputLayoutAddress,
-                            inputLayoutCity,
-                            inputLayoutIdNumber,
-                            inputLayoutNumber;
+    private TextInputLayout
+            inputLayoutName,
+            inputLayoutSurname
+           ,inputLayoutAddress,
+            inputLayoutCity,
+            inputLayoutIdNumber,
+            inputLayoutNumber;
 
     //private Button signUpButton;
     RadioGroup radGender;
@@ -161,11 +162,11 @@ String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
              //databaseReference.setValue(ProfileUpdate);
 
-                Toast.makeText(ProfileUpdate.this, "User ProfileUpdate Added", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileUpdate.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(ProfileUpdate.this, ParentActivity.class));
 
             }else{
-                Toast.makeText(ProfileUpdate.this, "User Failed to add ProfileUpdate", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileUpdate.this, "User Failed to Update Profile", Toast.LENGTH_SHORT).show();
             }
     }
 
@@ -228,60 +229,6 @@ String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         return true;
     }
 
-    /*
-      //Edit lText
-        inputName = (EditText) findViewById(R.id.reg_fullname);
-        inputSurname = (EditText) findViewById(R.id.reg_Surname);
-        inputAddress = (EditText) findViewById(R.id.reg_address);
-        inputCity = (EditText) findViewById(R.id.reg_city);
-        inputCellphoneNumber = (EditText) findViewById(R.id.reg_phone);
-        radGender = (RadioGroup)findViewById(gender);
-        inputIdnumber= (EditText) findViewById(R.id.reg_idnumber);
-
-        //TextLayout
-        inputLayoutName = (TextInputLayout)findViewById(R.id.input_reg_fullname);
-        inputLayoutSurname = (TextInputLayout)findViewById(R.id.input_reg_Surname);
-        inputLayoutAddress = (TextInputLayout)findViewById(R.id.input_reg_address);
-        inputLayoutCity = (TextInputLayout) findViewById(R.id.input_reg_city);
-        inputLayoutIdNumber = (TextInputLayout)findViewById(R.id.input_reg_idNumber);
-        inputLayoutNumber = (TextInputLayout) findViewById(R.id.input_reg_phone);
-     */
-
-   /* private boolean validatePassword() {
-        if (inputPassword.getText().toString().trim().isEmpty()) {
-            inputLayoutPassword.setError(getString(R.string.err_msg_password));
-            requestFocus(inputPassword);
-            return false;
-        } else {
-            inputLayoutPassword.setErrorEnabled(false);
-        }
-        return true;
-    }*/
-
-    /*private boolean validateEmail() {
-       String email = inputEmail.getText().toString().trim();
-        if (email.isEmpty() || !isValidEmail(email)) {
-            inputLayoutEmail.setError(getString(R.string.err_msg_email));
-            requestFocus(inputEmail);
-            return false;
-        } else {
-            inputLayoutEmail.setErrorEnabled(false);
-        }
-        return true;*/
-    /*    if (inputEmail.getText().toString().trim().isEmpty()) {
-            inputLayoutSurname.setError(getString(R.string.err_msg_surname));
-            requestFocus(inputEmail);
-            return false;
-        } else {
-            inputLayoutEmail.setErrorEnabled(false);
-        }
-        return true;
-    }*/
-
-/*
-    private static boolean isValidEmail(String email) {
-        return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
-    }*/
 
     private void requestFocus(View view) {
         if (view.requestFocus()) {
