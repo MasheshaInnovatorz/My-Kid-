@@ -9,6 +9,11 @@
         android:id="@+id/view_profile"
         app:showAsAction="never" />
 
+    <item
+        android:orderInCategory="100"
+        android:title="Group Chat"
+        android:id="@+id/Group_Chat"
+        app:showAsAction="never" />
 
     <item
         android:orderInCategory="100"

@@ -125,11 +125,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
        userLogin();
 
    }
-  /* if(view == signup){
-       Intent i=new Intent(LoginActivity.this,SignUp.class);
-       startActivity(i);
 
-   }*/
    if(view == forgot){
        finish();
       // startActivity(new Intent(this, UploadKidsMemo.class));
@@ -152,7 +148,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
                 if(dataUser.child("isVerified").getValue().toString().equals("unverified")){
-
                     Intent intentUser = new Intent(LoginActivity.this,ProfileUpdate.class);
                     intentUser.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                     Toast.makeText(this, dataUser.child("userKey").getValue().toString(), Toast.LENGTH_SHORT).show();
@@ -161,28 +156,36 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }else {
 
                     if (dataUser.child("role").getValue().toString().equals("teacher")) {
+<<<<<<< HEAD
+                        Intent intent = new Intent(LoginActivity.this, TeachersActivity.class);
+=======
 
                         Intent intent = new Intent(LoginActivity.this, TeacherTabbedActivity.class);
+>>>>>>> 0370754d7155f3ae4f157467a1d59a59392b31a4
                         intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                         startActivity(intent);
                         Toast.makeText(this, "Welcome To TeachersActivity Page", Toast.LENGTH_SHORT).show();
 
-                    } else if (dataUser.child("role").getValue().toString().equals("parent")) {
 
+<<<<<<< HEAD
+                    } else if (dataUser.child("role").getValue().toString().equals("parent")) {
+                      //  Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
+=======
                         Intent intent = new Intent(LoginActivity.this, ParentTabbedActivity.class);
+>>>>>>> 0370754d7155f3ae4f157467a1d59a59392b31a4
                         intent.putExtra("parent_id", dataUser.child("userIdNumber").getValue().toString());
                         //intent.putExtra("kid_id", dataUser.child("id").getValue().toString());
-
-
                         startActivity(intent);
                         Toast.makeText(this, "Welcome To Parents Page", Toast.LENGTH_SHORT).show();
 
-
-
-
                     } else if (dataUser.child("role").getValue().toString().equals("admin")) {
+<<<<<<< HEAD
+                        Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+=======
 
                         Intent intent = new Intent(LoginActivity.this, Admin.class);
+>>>>>>> 0370754d7155f3ae4f157467a1d59a59392b31a4
                        // intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                         intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                         startActivity(intent);

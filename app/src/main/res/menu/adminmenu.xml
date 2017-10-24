@@ -12,9 +12,17 @@
         app:showAsAction="never" />
 
 
+
     <item
         android:orderInCategory="100"
         android:title="View Kids"
         android:id="@+id/view_Kids"
         app:showAsAction="never" />
+     <item
+
+    android:id="@+id/aboutus"
+       android:icon="@drawable/ic_add_black_24dp"
+    android:orderInCategory="100"
+    android:title="About Us"
+    app:showAsAction="never" />
     </menu>

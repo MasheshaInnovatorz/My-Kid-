@@ -1,19 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
 
-            <android.support.v7.widget.CardView
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:padding="8dp">
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:minHeight="100dp"
                 >
 
-                <RelativeLayout
+
+                <TextView
+                    android:id="@+id/senderid"
+                    android:background="#e0f7fa"
+                    android:textColor="#1976D2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+<<<<<<< HEAD
+                    android:text="mavhungu Phuluso"
+                    android:textAlignment="textStart"
+                     />
+
+                <ImageView
+                    android:id="@+id/imgView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/senderid" />
+
+                <TextView
+                    android:id="@+id/tvImageName"
+                    android:text="picture discription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imgView"
+                     />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>
+
+=======
                     android:minHeight="100dp">
 
                     <TextView
@@ -46,6 +82,7 @@
             </android.support.v7.widget.CardView>
 
         </LinearLayout>
+>>>>>>> 0370754d7155f3ae4f157467a1d59a59392b31a4
 
 
     <!-- set ProfileUpdate pic button -->

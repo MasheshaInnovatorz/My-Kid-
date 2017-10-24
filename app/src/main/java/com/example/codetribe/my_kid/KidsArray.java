@@ -18,6 +18,7 @@ public class KidsArray extends ArrayAdapter<Kids>{
     private Activity context;
     private List<Kids> kidsList;
 
+
     public KidsArray(Activity context, List<Kids> kidsList) {
         super(context, R.layout.list_layout, kidsList);
         this.context = context;

@@ -19,6 +19,29 @@
     <string name="mobileerror">Enter Valid Mobile Number</string>
 
 
+    <string name="text_with_paragraphs">
+        1. How does your app address the issue or problem?
+    -It helps parents be able to know wat their kids
+    are doing throughout the day at de pre school1
+\n
+        \n
+    2. What solution does your app give?
+    -Our App give access to parents to have an overall
+    view of what their kids get up to during the day
+    at the preschool and also give the teacher a glimpse
+    in what the kids get up to when they’re at home.
+\n \n
+    3. If you have multiple goals, prioritize them.
+    Which goals are more important?
+
+    -	The teacher must be able to send kids work to parents
+    -	The parent must be able to upload the kids work so
+    that the teacher can see what the kids is up to at home.
+    </string>
+
+
+
+
     <string-array name="user_role">
         <item>Teacher</item>
         <item>Parent</item>

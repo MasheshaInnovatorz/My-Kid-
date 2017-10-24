@@ -24,7 +24,11 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
         compile 'com.android.support:design:24.2.0'
+
     })
+
+    compile 'com.firebaseui:firebase-ui-database:1.1.1'
+    compile 'com.mikhaellopez:circularimageview:3.0.2'
     compile 'com.android.support:recyclerview-v7:25.2.0'
     compile 'com.android.support:cardview-v7:25.2.0'
     compile 'com.basgeekball:awesome-validation:2.0'
@@ -43,5 +47,8 @@ dependencies {
 
 
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 0370754d7155f3ae4f157467a1d59a59392b31a4
 apply plugin: 'com.google.gms.google-services'

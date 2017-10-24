@@ -1,37 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#29B6F6"
     android:layout_height="wrap_content">
 
+<<<<<<< HEAD
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        >
+=======
+>>>>>>> 0370754d7155f3ae4f157467a1d59a59392b31a4
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <!-- cover_header/top background -->
         <ImageView
             android:id="@+id/header_cover_image"
             android:layout_width="match_parent"
+            android:background="#54abee"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
-            android:background="#80000000"
             android:src="@drawable/mykidicon"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true" />
         <!-- user_profile_photo -->
 
+<<<<<<< HEAD
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+=======
         <ImageView
+>>>>>>> 0370754d7155f3ae4f157467a1d59a59392b31a4
             android:id="@+id/user_profile_photo"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:elevation="5dp"
+<<<<<<< HEAD
+            android:src="@drawable/bag"
+            app:civ_border_color="@android:color/transparent"
+            app:civ_border_width="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="23dp" />
+
+
+
+=======
             android:background="@drawable/profile_circular_border_imageview"
             android:scaleType="fitXY"
             android:src="@drawable/userr"
             android:layout_above="@+id/profile_layout"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="36dp" />
+>>>>>>> 0370754d7155f3ae4f157467a1d59a59392b31a4
 
         <RelativeLayout
             android:id="@+id/profile_layout"
@@ -59,31 +84,21 @@
 
             <TextView
                 android:id="@+id/user_profile_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="name"
                 android:textColor="#fff"
-                android:gravity="center_horizontal"
+                android:gravity="center"
+                android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:layout_marginLeft="15dp"
                 android:layout_below="@+id/editprofile"
                 android:layout_alignParentStart="true"
-               />
+                android:layout_alignParentEnd="true" />
             <!-- set user status -->
 
-        </RelativeLayout>
-
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/profile_layout"
-            android:background="@drawable/timg"
-            android:padding="10dp"
-            android:orientation="vertical">
-            <!-- any info you wanna display using the texViews below-->
             <TextView
+                android:layout_below="@+id/user_profile_name"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -93,6 +108,7 @@
                 android:text="gender" />
 
             <TextView
+                android:layout_below="@+id/gender_view"
                 android:textColor="#FFFFFF"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -102,8 +118,12 @@
                 android:text="phone number"/>
 
             <TextView
+android:layout_below="@+id/gender_view"
                 android:textColor="#FFFFFF"
+<<<<<<< HEAD
+=======
 
+>>>>>>> 0370754d7155f3ae4f157467a1d59a59392b31a4
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -119,6 +139,28 @@
                 android:id="@+id/email_view"
                 android:padding="10dp"
                 android:text="Email" />
+
+        </RelativeLayout>
+
+
+
+        <LinearLayout
+            android:layout_below="@+id/profile_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/timg"
+            android:padding="3dp"
+            android:orientation="vertical"
+            android:id="@+id/linearLayout6">
+
+
+            <!-- any info you wanna display using the texViews below-->
+
         </LinearLayout>
     </RelativeLayout>
+<<<<<<< HEAD
+    </ScrollView>
     </LinearLayout>
+=======
+    </LinearLayout>
+>>>>>>> 0370754d7155f3ae4f157467a1d59a59392b31a4
