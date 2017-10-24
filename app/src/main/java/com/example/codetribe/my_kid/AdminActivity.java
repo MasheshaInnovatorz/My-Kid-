@@ -53,13 +53,7 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
 
         getSupportActionBar().setTitle("Admin");
-<<<<<<< HEAD
 
-        
-
-
-=======
->>>>>>> 8f9c6a95337e3e59e08b89d153206fe5a4b6c04a
 
         listUsers = (ListView) findViewById(R.id.listUser);
         addkid =  (TextView) findViewById(R.id.addkids);

@@ -5,9 +5,6 @@
     android:background="#29B6F6"
     android:layout_height="wrap_content">
 
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,15 +22,6 @@
         <!-- user_profile_photo -->
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/photo_camera_"
-            android:layout_marginBottom="31dp"
-            android:layout_marginEnd="107dp"
-            android:layout_above="@+id/profile_layout"
-            android:layout_alignEnd="@+id/user_profile_photo" />
-
-        <ImageView
             android:id="@+id/user_profile_photo"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -42,7 +30,8 @@
             android:scaleType="fitXY"
             android:src="@drawable/userr"
             android:layout_above="@+id/profile_layout"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="36dp" />
 
         <RelativeLayout
             android:id="@+id/profile_layout"
@@ -52,16 +41,16 @@
             android:elevation="4dp"
             android:paddingBottom="24dp"
             android:layout_below="@+id/header_cover_image"
-            android:layout_alignParentStart="true">
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true">
             <!-- you can delete these buttons wa dira drop whata what..-->
 
             <!-- edit ProfileUpdate button -->
 
             <TextView
                 android:id="@+id/editprofile"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="edit profile"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="16dp"
@@ -99,14 +88,12 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:textColor="#FFFFFF"
-                android:background="@drawable/textviewsstyle"
                 android:id="@+id/gender_view"
                 android:padding="10dp"
                 android:text="gender" />
 
             <TextView
                 android:textColor="#FFFFFF"
-                android:background="@drawable/textviewsstyle"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -116,7 +103,7 @@
 
             <TextView
                 android:textColor="#FFFFFF"
-                android:background="@drawable/textviewsstyle"
+
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -126,7 +113,6 @@
 
             <TextView
                 android:textColor="#FFFFFF"
-                android:background="@drawable/textviewsstyle"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -135,5 +121,4 @@
                 android:text="Email" />
         </LinearLayout>
     </RelativeLayout>
-</ScrollView>
     </LinearLayout>

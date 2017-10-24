@@ -13,12 +13,13 @@
         android:title="View profile"
         android:id="@+id/view_profile"
         app:showAsAction="never" />
+    <!--
     <item
         android:orderInCategory="100"
         android:title="Edit Kid Profile"
         android:id="@+id/editKid"
         app:showAsAction="never" />
-
+-->
     <item
         android:orderInCategory="100"
         android:title="Help"

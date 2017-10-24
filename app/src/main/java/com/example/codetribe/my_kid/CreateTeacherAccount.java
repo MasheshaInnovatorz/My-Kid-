@@ -195,7 +195,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
 
                                     //Storing Information
-                                    TeacherClassAcc teacher = new TeacherClassAcc(userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, task.getResult().getUser().getUid().toString().trim(), task.getResult().getUser().getEmail().toString().trim(), password, role, "verified", orgNames);
+                                    TeacherClassAcc teacher = new TeacherClassAcc(userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, task.getResult().getUser().getUid().toString().trim(), task.getResult().getUser().getEmail().toString().trim(), password, role, "verified", orgNames,"Egret Pretoria");
 
                                     mDatabaseRef.child(task.getResult().getUser().getUid().toString().trim()).setValue(teacher);
 
@@ -248,10 +248,10 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                 return true;
 
-            case R.id.editKid:
+            //case R.id.editKid:
                 //  showHelp();
 
-                return true;
+             //   return true;
             case R.id.view_profile:
 
                 return true;

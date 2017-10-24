@@ -18,9 +18,10 @@ public class TeacherClassAcc {
     private String role;
     private String isVerified;
     private  String orgName;
+    private String userAddress;
 
 
-    public TeacherClassAcc(String userName, String userSurname, String userContact, String teacherClassroom, String userIdNumber, String userGender, String userKey, String emailUser, String passWordUser, String role, String isVerified, String orgName) {
+    public TeacherClassAcc(String userName, String userSurname, String userContact, String teacherClassroom, String userIdNumber, String userGender, String userKey, String emailUser, String passWordUser, String role, String isVerified, String orgName,String userAddress) {
         this.userName = userName;
         this.userSurname = userSurname;
         this.userContact = userContact;
@@ -33,6 +34,12 @@ public class TeacherClassAcc {
         this.role = role;
         this.isVerified = isVerified;
         this.orgName = orgName;
+        this.userAddress = userAddress;
+
+    }
+
+    public String getUserAddress() {
+        return userAddress;
     }
 
     public String getOrgName() {

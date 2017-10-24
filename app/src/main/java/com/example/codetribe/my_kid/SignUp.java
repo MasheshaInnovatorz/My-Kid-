@@ -8,6 +8,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -30,7 +31,6 @@ import java.util.Iterator;
 import java.util.List;
 
 
-
 public class SignUp extends AppCompatActivity {
 
 
@@ -42,11 +42,13 @@ public class SignUp extends AppCompatActivity {
     private Spinner orgNameList;
     private List<String> list;
     private ProgressDialog progressDialog;
-
     private TextInputLayout input_email1;
     //firebase Authentification
     private FirebaseAuth auth;
+    private String strName;
     FirebaseAuth.AuthStateListener mAuthListener;
+
+    String[] spinnerArray;
 
     DatabaseReference mDatabaseRef,mUserCheckData,crecheDataRef;
     @Override
@@ -72,7 +74,24 @@ public class SignUp extends AppCompatActivity {
          orgNameList = (Spinner) findViewById(R.id.orgname);
        // mainNav = (TextView)findViewById(R.id.login);
 
+        orgNameList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                strName = (String) adapterView.getItemAtPosition(i);
+
+                Toast.makeText(SignUp.this, strName, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         list  = new ArrayList<String>();
+
+
 
         input_email1= (TextInputLayout)findViewById(R.id.input_email);
         /*mainNav.setOnClickListener(new View.OnClickListener(){
@@ -85,7 +104,9 @@ public class SignUp extends AppCompatActivity {
             }
         });*/
 
+
         dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list);
+
 
 
 
@@ -129,10 +150,6 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View v) {
 
 
-
-
-
-
                 String email = inputEmail.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
 
@@ -160,30 +177,28 @@ public class SignUp extends AppCompatActivity {
                 userEmailString = inputEmail.getText().toString().trim();
                 userPassString = inputPassword.getText().toString().trim();
 
-
-
-                if(!TextUtils.isEmpty(userEmailString) && !TextUtils.isEmpty(userPassString))
-                {
-                    auth.createUserWithEmailAndPassword(userEmailString,userPassString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+               if(strName != null){
+                if (!TextUtils.isEmpty(userEmailString) && !TextUtils.isEmpty(userPassString)) {
+                    auth.createUserWithEmailAndPassword(userEmailString, userPassString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful())
-                            {
+                            if (task.isSuccessful()) {
                                 String user_id = task.getResult().getUser().getUid();
                                 DatabaseReference mChildDatabase = mDatabaseRef.child("Users").child(user_id);
 
-                               // String key_user = mChildDatabase.getKey();
+                                // String key_user = mChildDatabase.getKey();
 
                                 mChildDatabase.child("isVerified").setValue("unverified");
+                                mChildDatabase.child("orgnName").setValue(strName);
                                 mChildDatabase.child("userKey").setValue(user_id);
                                 mChildDatabase.child("role").setValue("parent");
                                 mChildDatabase.child("emailUser").setValue(userEmailString);
                                 mChildDatabase.child("passWordUser").setValue(userPassString);
                                 Toast.makeText(SignUp.this, "User Account Created", Toast.LENGTH_SHORT).show();
                                 auth.signOut();
-                                startActivity(new Intent(SignUp.this,WelcomeActivity.class));
+                                startActivity(new Intent(SignUp.this, WelcomeActivity.class));
 
-                            }else{
+                            } else {
                                 Toast.makeText(SignUp.this, "User Fialed to login", Toast.LENGTH_SHORT).show();
 
 
@@ -191,6 +206,7 @@ public class SignUp extends AppCompatActivity {
                         }
                     });
                 }
+            }
                 progressDialog.dismiss();
 
 
@@ -198,6 +214,7 @@ public class SignUp extends AppCompatActivity {
             }
         });
             }
+
 
     public void checkUserValidation(DataSnapshot dataSnapshot, String emailForVer){
         Iterator iterator = dataSnapshot.getChildren().iterator();
@@ -244,15 +261,27 @@ public class SignUp extends AppCompatActivity {
 
 
                         dataAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
-
                         //simple_spinner_dropdown_item
                         orgNameList.setAdapter(dataAdapter);
+
+
+
+
+
+
+
+
+
+
+
                     }else{
                         Toast.makeText(SignUp.this, "There is no Creche Registered", Toast.LENGTH_SHORT).show();
                     }
 
 
                 }
+
+
             }
 
             @Override

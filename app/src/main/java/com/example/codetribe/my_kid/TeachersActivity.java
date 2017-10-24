@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -77,7 +76,7 @@ public class TeachersActivity extends AppCompatActivity {
                 teacherRole = dataSnapshot.child("role").getValue(String.class);
 
 
-                Toast.makeText(TeachersActivity.this,teacherRole , Toast.LENGTH_SHORT).show();
+
 
                 kidsRetriveRef.addValueEventListener(new ValueEventListener() {
                     @Override
