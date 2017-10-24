@@ -67,31 +67,12 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
         //get key from upload
 
 
-        //user_role  = intent.getStringExtra("user_role");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
         progressDialog = new ProgressDialog(this);
-
-
-
-
 
         imgList = new ArrayList<>();
         //show progress dialog during list image loading

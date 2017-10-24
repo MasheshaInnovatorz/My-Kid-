@@ -1,5 +1,6 @@
 package com.example.codetribe.my_kid;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ParentTabbedActivity extends AppCompatActivity {
 
@@ -76,12 +79,23 @@ public class ParentTabbedActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.menu_parent_profile) {
+            Intent intent = new Intent(ParentTabbedActivity.this,ViewProfile.class);
+            startActivity(intent);
             return true;
         }
-
+        else if (id == R.id.menu_parent_aboutus) {
+            Intent intent = new Intent(ParentTabbedActivity.this,AboutUs.class);
+            startActivity(intent);
+            return true;
+        }
+        else if (id == R.id.menu_parent_Logout) {
+            logout();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
+
 
 
     /**
@@ -123,5 +137,11 @@ public class ParentTabbedActivity extends AppCompatActivity {
             }
             return null;
         }
+    }
+
+    private void logout() {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(ParentTabbedActivity.this,LoginActivity.class) ;
+        startActivity(intent);
     }
 }

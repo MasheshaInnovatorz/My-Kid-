@@ -120,14 +120,6 @@ public class TeacherFragment extends Fragment {
         });
 
 
-
-
-
-
-
-
-
-
         return rootView;
     }
 }

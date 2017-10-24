@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.codetribe.my_kid.Admin">
+
     <item
         android:id="@+id/menu_about_us"
         android:orderInCategory="100"
@@ -13,4 +14,5 @@
         android:orderInCategory="100"
         android:title="Logout"
         app:showAsAction="never" />
+
 </menu>

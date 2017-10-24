@@ -185,13 +185,8 @@ CreateTeacherAccount extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
 
 
-
-
-
                                 if (task.isSuccessful()) {
                                     //String user_id = task.getResult().getUser().getUid();
-
-
                                     //firebase teacher database table
                                     DatabaseReference mChildDatabase = mDatabaseRef.child("Users");
 

@@ -1,5 +1,6 @@
 package com.example.codetribe.my_kid;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class TeacherTabbedActivity extends AppCompatActivity {
 
@@ -78,12 +81,19 @@ public class TeacherTabbedActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.menu_teacher_profile) {
+            Intent intent = new Intent(TeacherTabbedActivity.this,ViewProfile.class);
+            startActivity(intent);
             return true;
         }
-        else if (id == R.id.menu_teacher_logout) {
+        else if (id == R.id.menu_teacher_aboutus) {
+            Intent intent = new Intent(TeacherTabbedActivity.this,AboutUs.class);
+            startActivity(intent);
             return true;
         }
-
+        else if (id == R.id.menu_teacher_Logout) {
+            logout();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -129,4 +139,10 @@ public class TeacherTabbedActivity extends AppCompatActivity {
             return null;
         }
     }
+    private void logout() {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(TeacherTabbedActivity.this,LoginActivity.class) ;
+        startActivity(intent);
+    }
+
 }

@@ -1,6 +1,4 @@
 package com.example.codetribe.my_kid;
-
-<<<<<<< HEAD
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -84,26 +82,4 @@ public class GroupChat extends AppCompatActivity {
 }
 
 
-=======
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-/**
- * Created by CodeTribe on 10/24/2017.
- */
-
-public class GroupChat extends Fragment {
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_teachers, container, false);
-        return rootView;
-    }
-
-
-}
->>>>>>> 0370754d7155f3ae4f157467a1d59a59392b31a4

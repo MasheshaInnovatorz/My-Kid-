@@ -2,16 +2,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.codetribe.my_kid.TeacherTabbedActivity">
-    <item
-        android:id="@+id/menu_teacher_logout"
-        android:orderInCategory="200"
-        android:title="Logout"
-        app:showAsAction="never" />
 
     <item
         android:id="@+id/menu_teacher_profile"
-        android:orderInCategory="100"
         android:title="Profile"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_teacher_aboutus"
+        android:title="About Us"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_teacher_Logout"
+        android:title="Logout"
         app:showAsAction="never" />
 
 </menu>

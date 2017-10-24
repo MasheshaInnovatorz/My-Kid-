@@ -46,9 +46,8 @@
         <activity android:name=".SignUpOrganisationActivity" />
         <activity android:name=".CreateTeacherAccount" />
         <activity android:name=".AboutUs" />
-<<<<<<< HEAD
+
         <activity android:name=".GroupChat"></activity>
-=======
         <activity
             android:name=".ParentTabbedActivity"
             android:label="@string/title_activity_parent_tabbed"
@@ -63,7 +62,7 @@
             android:name=".Admin"
             android:label="@string/title_activity_admin_tabbed"
             android:theme="@style/AppTheme.NoActionBar"></activity>
->>>>>>> 0370754d7155f3ae4f157467a1d59a59392b31a4
+
     </application>
 
 </manifest>

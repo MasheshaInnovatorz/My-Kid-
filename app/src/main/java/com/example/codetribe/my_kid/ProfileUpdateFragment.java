@@ -51,8 +51,6 @@ public class ProfileUpdateFragment extends Fragment {
 
     String keyUser;
     String userNameString,inputSurnameString,inputCityString,inputAddressString,inputIdnumberString,userContactString,genderString;
-
-
     private RadioButton rdGenders;
 
 
