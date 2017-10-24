@@ -31,7 +31,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import static com.example.codetribe.my_kid.R.id.teacherpassword;
 
-public class CreateTeacherAccount extends AppCompatActivity {
+public class
+
+CreateTeacherAccount extends AppCompatActivity {
 
     TextInputLayout inputLayoutName, inputLayoutsurname, inputLayoutcontact, inputLayoutclassroom, inputLayoutidnumber, inputLayoutemail, inputLayoutpassword;
     String userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, useremailString, userpasswordString;

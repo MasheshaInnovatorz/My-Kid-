@@ -1,14 +1,17 @@
 package com.example.codetribe.my_kid;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -26,15 +29,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.codetribe.my_kid.R.styleable.AlertDialog;
-
-public class AdminActivity extends AppCompatActivity {
+public class AdminActivity extends Fragment {
 
     String userKey;
     //public static final String ARTIST_ID = "artistid";
     private TextView add_Kids;
     private TextView addkid,addteacher;
-
+    Context context = getActivity().getApplicationContext();
 
 
     //initialization for kids
@@ -45,23 +46,20 @@ public class AdminActivity extends AppCompatActivity {
     private FirebaseAuth adminUser;
     //database
     DatabaseReference usersRetriveRef,kidsCreche;
-   TextView sos;
+    TextView sos;
     String Idadmin;
     Spinner spinner;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.activity_admin, container, false);
 
-        getSupportActionBar().setTitle("Admin");
+        listUsers = (ListView) rootView.findViewById(R.id.listUser);
+        addkid =  (TextView) rootView.findViewById(R.id.addkids);
+        addteacher=  (TextView) rootView.findViewById(R.id.addTeacher);
 
-
-        listUsers = (ListView) findViewById(R.id.listUser);
-        addkid =  (TextView) findViewById(R.id.addkids);
-        addteacher=  (TextView) findViewById(R.id.addTeacher);
-
-        Intent intent = getIntent();
+        Intent intent = getActivity().getIntent();
         userKey = intent.getStringExtra("User_KEY");
 
         user = new ArrayList<>();
@@ -75,7 +73,7 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent =  new Intent(AdminActivity.this,CreateTeacherAccount.class);
+                Intent intent =  new Intent(context,CreateTeacherAccount.class);
                 intent.putExtra("User_KEY",userKey);
                 startActivity(intent);
 
@@ -85,7 +83,7 @@ public class AdminActivity extends AppCompatActivity {
         addkid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =  new Intent(AdminActivity.this,KidActivity.class);
+                Intent intent =  new Intent(context,KidActivity.class);
                 intent.putExtra("User_KEY",userKey);
                 startActivity(intent);
 
@@ -101,13 +99,13 @@ public class AdminActivity extends AppCompatActivity {
 
                 //spinner code
 
-                AlertDialog.Builder mBuilder = new AlertDialog.Builder(AdminActivity.this);
-                View mView = getLayoutInflater().inflate(R.layout.dialogue_spinner, null);
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(context);
+                View mView = getActivity().getLayoutInflater().inflate(R.layout.dialogue_spinner, null);
                 mBuilder.setTitle("Change User Role");
 
                 final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
 
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(AdminActivity.this, android.R.layout.simple_spinner_item
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item
                         ,getResources().getStringArray(R.array.user_role));
 
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -130,15 +128,15 @@ public class AdminActivity extends AppCompatActivity {
 
                         switch(text) {
                             case "Teacher":
-                                Intent intent = new Intent(AdminActivity.this, LoginActivity.class);
+                                Intent intent = new Intent(context, LoginActivity.class);
                                 startActivity(intent);
                                 break;
                             case "Parent":
-                                Intent i = new Intent(AdminActivity.this, LoginActivity.class);
+                                Intent i = new Intent(context, LoginActivity.class);
                                 startActivity(i);
                                 break;
                             default:
-                                Toast.makeText(AdminActivity.this, "To continue select an Item ", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "To continue select an Item ", Toast.LENGTH_SHORT).show();
                                 break;
                         }
 
@@ -161,11 +159,11 @@ public class AdminActivity extends AppCompatActivity {
             }
         });
 
-
+        return rootView;
     }
 
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
         Idadmin=  FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -186,7 +184,7 @@ public class AdminActivity extends AppCompatActivity {
                    }
 
                 }
-                UserArray userListAdapter = new UserArray(AdminActivity.this, user);
+                UserArray userListAdapter = new UserArray(getActivity(), user);
                 listUsers.setAdapter(userListAdapter);
             }
 
@@ -197,12 +195,14 @@ public class AdminActivity extends AppCompatActivity {
         });
     }
 
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        MenuInflater inflater = getActivity().getMenuInflater();
         inflater.inflate(R.menu.adminmenu, menu);
-        return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -227,7 +227,7 @@ public class AdminActivity extends AppCompatActivity {
                             }
 
                         }
-                        UserArray userListAdapter = new UserArray(AdminActivity.this, user);
+                        UserArray userListAdapter = new UserArray(getActivity() , user);
                         listUsers.setAdapter(userListAdapter);
                     }
 
@@ -267,7 +267,7 @@ public class AdminActivity extends AppCompatActivity {
                                         }
 
                                     }
-                                    KidsArray userListAdapter = new KidsArray(AdminActivity.this, kidses);
+                                    KidsArray userListAdapter = new KidsArray(getActivity(), kidses);
                                     listUsers.setAdapter(userListAdapter);
                                 }
 
@@ -296,7 +296,7 @@ public class AdminActivity extends AppCompatActivity {
 
     private void logout() {
         FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(AdminActivity.this,LoginActivity.class) ;
+        Intent intent = new Intent(context,LoginActivity.class) ;
         startActivity(intent);
     }
 }
