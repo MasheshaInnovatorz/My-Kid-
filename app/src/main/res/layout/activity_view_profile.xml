@@ -5,11 +5,14 @@
     android:background="#29B6F6"
     android:layout_height="wrap_content">
 
+<<<<<<< HEAD
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         >
+=======
+>>>>>>> 0370754d7155f3ae4f157467a1d59a59392b31a4
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -26,12 +29,17 @@
             android:layout_alignParentStart="true" />
         <!-- user_profile_photo -->
 
+<<<<<<< HEAD
 
         <com.mikhaellopez.circularimageview.CircularImageView
+=======
+        <ImageView
+>>>>>>> 0370754d7155f3ae4f157467a1d59a59392b31a4
             android:id="@+id/user_profile_photo"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:elevation="5dp"
+<<<<<<< HEAD
             android:src="@drawable/bag"
             app:civ_border_color="@android:color/transparent"
             app:civ_border_width="10dp"
@@ -41,6 +49,14 @@
 
 
 
+=======
+            android:background="@drawable/profile_circular_border_imageview"
+            android:scaleType="fitXY"
+            android:src="@drawable/userr"
+            android:layout_above="@+id/profile_layout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="36dp" />
+>>>>>>> 0370754d7155f3ae4f157467a1d59a59392b31a4
 
         <RelativeLayout
             android:id="@+id/profile_layout"
@@ -50,14 +66,15 @@
             android:elevation="4dp"
             android:paddingBottom="24dp"
             android:layout_below="@+id/header_cover_image"
-            android:layout_alignParentStart="true">
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true">
             <!-- you can delete these buttons wa dira drop whata what..-->
 
             <!-- edit ProfileUpdate button -->
 
             <TextView
                 android:id="@+id/editprofile"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="16dp"
@@ -103,6 +120,10 @@
             <TextView
 android:layout_below="@+id/gender_view"
                 android:textColor="#FFFFFF"
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0370754d7155f3ae4f157467a1d59a59392b31a4
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -137,5 +158,9 @@ android:layout_below="@+id/gender_view"
 
         </LinearLayout>
     </RelativeLayout>
+<<<<<<< HEAD
     </ScrollView>
     </LinearLayout>
+=======
+    </LinearLayout>
+>>>>>>> 0370754d7155f3ae4f157467a1d59a59392b31a4

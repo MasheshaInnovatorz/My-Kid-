@@ -31,7 +31,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import static com.example.codetribe.my_kid.R.id.teacherpassword;
 
-public class CreateTeacherAccount extends AppCompatActivity {
+public class
+
+CreateTeacherAccount extends AppCompatActivity {
 
     TextInputLayout inputLayoutName, inputLayoutsurname, inputLayoutcontact, inputLayoutclassroom, inputLayoutidnumber, inputLayoutemail, inputLayoutpassword;
     String userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, useremailString, userpasswordString;
@@ -195,13 +197,13 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
 
                                     //Storing Information
-                                    TeacherClassAcc teacher = new TeacherClassAcc(userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, task.getResult().getUser().getUid().toString().trim(), task.getResult().getUser().getEmail().toString().trim(), password, role, "verified", orgNames);
+                                    TeacherClassAcc teacher = new TeacherClassAcc(userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, task.getResult().getUser().getUid().toString().trim(), task.getResult().getUser().getEmail().toString().trim(), password, role, "verified", orgNames,"Egret Pretoria");
 
                                     mDatabaseRef.child(task.getResult().getUser().getUid().toString().trim()).setValue(teacher);
 
                                     Toast.makeText(CreateTeacherAccount.this, "Teacher Registration Successfull" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
 
-                                    startActivity(new Intent(getApplication(), AdminActivity.class));
+                                    startActivity(new Intent(getApplication(), Admin.class));
 
                                     progressDialog.dismiss();
 
@@ -240,10 +242,10 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                 return true;
 
-            case R.id.editKid:
+            //case R.id.editKid:
                 //  showHelp();
 
-                return true;
+             //   return true;
             case R.id.view_profile:
 
                 return true;

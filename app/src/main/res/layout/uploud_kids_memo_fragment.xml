@@ -14,22 +14,31 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="5dp"
-    android:id="@+id/head"
     android:background="@drawable/timg"
     >
 
-l
+    <TextView
+        android:id="@+id/head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:background="@drawable/textviewsstyle"
+        android:text="Upload kids work here"
+        android:textAlignment="center"
+        android:textSize="30sp" />
+
     <ImageView
         android:id="@+id/imageview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:src="@drawable/photo_camera_"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/head"
         android:scaleType="centerInside"
-        android:layout_above="@+id/entername"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="109dp" />
-
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:id="@+id/entername"
@@ -38,13 +47,13 @@ l
         android:background="@drawable/editextstyle"
         android:backgroundTint="#B3E5FC"
         android:textAlignment="center"
-        android:padding="7dp"
         android:hint="write kids progress update..."
-        android:layout_above="@+id/linearLayout5"
-        android:layout_alignParentStart="true" />
+        android:layout_above="@+id/linearLayout2"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp" />
 
 
-<!--
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,7 +61,6 @@ l
         android:layout_gravity="bottom"
         android:orientation="horizontal"
         android:id="@+id/linearLayout2"
-        android:layout_marginBottom="1dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true">
 
@@ -60,7 +68,6 @@ l
 
         <TextView
             android:id="@+id/txtBrowse_click"
-               android:text="Browse image"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -77,7 +84,6 @@ l
 
         <TextView
             android:id="@+id/txtUpload_click"
-             android:drawableLeft="@drawable/ic_photo_camera_black_24dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -91,59 +97,7 @@ l
 
 
 
-    </LinearLayout>-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="14dp"
-        android:id="@+id/linearLayout5">
-
-        <TextView
-            android:id="@+id/txtBrowse_click"
-            android:text="Browse"
-            android:layout_width="0dp"
-            android:drawableLeft="@drawable/ic_attach_file_black_24dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/angle"
-            android:gravity="center"
-            android:padding="10dp"
-            android:textColor="#fff"
-            android:textSize="16dp" />
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:background="#ADCCE2" />
-
-        <TextView
-            android:id="@+id/txtUpload_click"
-            android:drawableLeft="@drawable/ic_photo_camera_black_24dp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/angle"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Update "
-            android:textColor="#fff"
-            android:textSize="16dp" />
     </LinearLayout>
-
-
 </RelativeLayout>
 </RelativeLayout>
 

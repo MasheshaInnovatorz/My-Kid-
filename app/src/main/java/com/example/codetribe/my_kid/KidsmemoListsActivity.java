@@ -63,7 +63,7 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
 //taskbar
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Child Story");
+        getSupportActionBar().setTitle("Kids Creativity");
         //get key from upload
 
 
