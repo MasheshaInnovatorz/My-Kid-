@@ -162,7 +162,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     if (dataUser.child("role").getValue().toString().equals("teacher")) {
 
-                        Intent intent = new Intent(LoginActivity.this, TeachersActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, TeacherTabbedActivity.class);
                         intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                         startActivity(intent);
                         Toast.makeText(this, "Welcome To TeachersActivity Page", Toast.LENGTH_SHORT).show();
@@ -182,7 +182,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     } else if (dataUser.child("role").getValue().toString().equals("admin")) {
 
-                        Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, Admin.class);
                        // intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                         intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                         startActivity(intent);

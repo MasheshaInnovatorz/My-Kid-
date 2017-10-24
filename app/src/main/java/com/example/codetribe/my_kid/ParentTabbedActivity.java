@@ -117,9 +117,9 @@ public class ParentTabbedActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Share Memories";
+                    return "Shared Creatives";
                 case 1:
-                    return "Profile";
+                    return "Group Chat";
             }
             return null;
         }

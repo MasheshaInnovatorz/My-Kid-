@@ -94,7 +94,7 @@ public class SignUp extends AppCompatActivity {
 
 
         input_email1= (TextInputLayout)findViewById(R.id.input_email);
-<<<<<<< HEAD
+
         /*mainNav.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -106,19 +106,15 @@ public class SignUp extends AppCompatActivity {
         });*/
 
 
-=======
->>>>>>> c4a7b482b17e688fdf5d04d25f6d0108de23f50e
+
         dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list);
 
 
 
-<<<<<<< HEAD
 
 
 
 
-=======
->>>>>>> c4a7b482b17e688fdf5d04d25f6d0108de23f50e
         mAuthListener = new FirebaseAuth.AuthStateListener(){
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -204,14 +200,9 @@ public class SignUp extends AppCompatActivity {
                                 auth.signOut();
                                 startActivity(new Intent(SignUp.this, WelcomeActivity.class));
 
-<<<<<<< HEAD
+
                             } else {
                                 Toast.makeText(SignUp.this, "User Fialed to login", Toast.LENGTH_SHORT).show();
-=======
-                            }else{
-                                Toast.makeText(SignUp.this, "Parent Fialed to Register", Toast.LENGTH_SHORT).show();
->>>>>>> c4a7b482b17e688fdf5d04d25f6d0108de23f50e
-
 
                             }
                         }
