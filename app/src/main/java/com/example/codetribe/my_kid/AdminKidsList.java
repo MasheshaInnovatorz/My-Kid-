@@ -2,6 +2,7 @@ package com.example.codetribe.my_kid;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,7 @@ public class AdminKidsList extends Fragment {
     ListView listUsers;
     List<Kids> kidses;
 
+    String idLoged,parentId,kids_id;
 
     private FirebaseAuth adminUser;
     //database
@@ -41,6 +43,8 @@ public class AdminKidsList extends Fragment {
     TextView sos;
     String Idadmin;
     Spinner spinner;
+
+    private FloatingActionButton fab;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,9 +54,14 @@ public class AdminKidsList extends Fragment {
 
 
         listUsers = (ListView)rootView.findViewById(R.id.listViewkids);
+        fab = (FloatingActionButton) rootView.findViewById(R.id.addTeacher);
 
-        Intent intent =getActivity().getIntent();
-        userKey = intent.getStringExtra("User_KEY");
+        Intent keyId = getActivity().getIntent();
+        idLoged = keyId.getStringExtra("User_KEY");
+        kids_id = keyId.getStringExtra("kid_id");
+
+//r
+        parentId = keyId.getStringExtra("parent_id");
 
         kidses = new ArrayList<>();
 
@@ -108,6 +117,18 @@ public class AdminKidsList extends Fragment {
         });
 
 
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               Intent intent = new Intent(getContext(), UploadKidsMemo.class);
+                intent.putExtra("kid_id",idLoged);
+                intent.putExtra("User_KEY",kids_id);
+                intent.putExtra("parentIdentity",parentId);
+                startActivity(intent);
+            }
+        });
 
 
 
