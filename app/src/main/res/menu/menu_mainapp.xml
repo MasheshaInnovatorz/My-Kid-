@@ -2,11 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.codetribe.my_kid.ParentActivity">
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
 
     <item
         android:orderInCategory="100"
@@ -20,10 +15,11 @@
         app:showAsAction="never" />
 
     <item
-        android:orderInCategory="100"
-        android:title="Help"
-        android:id="@+id/help"
-        app:showAsAction="never" />
+    android:id="@+id/aboutus"
+    android:icon="@drawable/ic_add_black_24dp"
+    android:orderInCategory="100"
+    android:title="About Us"
+    app:showAsAction="never" />
 
     <item
         android:orderInCategory="100"

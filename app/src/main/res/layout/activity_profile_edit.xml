@@ -159,7 +159,7 @@
                     android:textColorHint="#ADCCE2"
                     android:layout_marginLeft="20dp"
                     android:inputType="numberDecimal"
-                    android:maxLength="12"
+                    android:maxLength="13"
                     android:textColor="#ADCCE2"
                     android:background="#0000"
                     android:padding="16dp"

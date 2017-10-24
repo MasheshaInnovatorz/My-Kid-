@@ -51,7 +51,7 @@
             android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/Update_Profile"
+            android:id="@+id/Group_Chat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
@@ -60,7 +60,7 @@
             android:background="@drawable/angle"
             android:gravity="center"
             android:padding="16dp"
-            android:text="Update Profile"
+            android:text="Group Chat"
             android:textColor="#fff"
             android:textSize="16dp" />
     </LinearLayout>

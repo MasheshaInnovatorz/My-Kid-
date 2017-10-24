@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#29B6F6"
-    android:layout_height="wrap_content">
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         >
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <!-- cover_header/top background -->
         <ImageView
             android:id="@+id/header_cover_image"
             android:layout_width="match_parent"
-            android:background="#54abee"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
             android:src="@drawable/mykidicon"
@@ -38,8 +37,6 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="23dp" />
-
-
 
 
         <RelativeLayout
@@ -79,63 +76,58 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true" />
             <!-- set user status -->
-
-            <TextView
-                android:layout_below="@+id/user_profile_name"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:textColor="#FFFFFF"
-                android:id="@+id/gender_view"
-                android:padding="10dp"
-                android:text="gender" />
-
-            <TextView
-                android:layout_below="@+id/gender_view"
-                android:textColor="#FFFFFF"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:id="@+id/phone_view"
-                android:padding="10dp"
-                android:text="phone number"/>
-
-            <TextView
-android:layout_below="@+id/gender_view"
-                android:textColor="#FFFFFF"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                android:id="@+id/address_view"
-                android:text="Home Address" />
-
-            <TextView
-                android:textColor="#FFFFFF"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:id="@+id/email_view"
-                android:padding="10dp"
-                android:text="Email" />
-
         </RelativeLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/timg"
+                android:padding="3dp"
+                android:layout_below="@+id/profile_layout"
+                android:orientation="vertical"
+                android:id="@+id/linearLayout6">
 
 
-        <LinearLayout
-            android:layout_below="@+id/profile_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/timg"
-            android:padding="3dp"
-            android:orientation="vertical"
-            android:id="@+id/linearLayout6">
+                <!-- any info you wanna display using the texViews below-->
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textColor="#FFFFFF"
+                    android:id="@+id/gender_view"
+                    android:padding="10dp"
+                    android:text="gender" />
 
+                <TextView
+                    android:textColor="#FFFFFF"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:id="@+id/phone_view"
+                    android:padding="10dp"
+                    android:text="phone number"/>
 
+                <TextView
+                    android:textColor="#FFFFFF"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:padding="10dp"
+                    android:id="@+id/address_view"
+                    android:text="Home Address" />
+
+                <TextView
+                    android:textColor="#FFFFFF"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:id="@+id/email_view"
+                    android:padding="10dp"
+                    android:text="Email" />
+
+            </LinearLayout>
             <!-- any info you wanna display using the texViews below-->
+        </RelativeLayout>
 
-        </LinearLayout>
-    </RelativeLayout>
-    </ScrollView>
-    </LinearLayout>
+</ScrollView>
+ </RelativeLayout>
