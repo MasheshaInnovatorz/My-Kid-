@@ -35,6 +35,8 @@ package com.example.codetribe.my_kid;
         import java.io.InputStream;
         import java.util.Iterator;
 
+        import static android.app.Activity.RESULT_OK;
+
 public class ViewProfile extends AppCompatActivity {
 
     private Uri imgUri;
@@ -94,7 +96,6 @@ public class ViewProfile extends AppCompatActivity {
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent i=new Intent(ViewProfile.this,ProfileUpdate.class);
                 startActivity(i);
             }
@@ -113,10 +114,11 @@ public class ViewProfile extends AppCompatActivity {
             user_id = "unknown_uid";
         }
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+
+
         photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent photoPickerIntent =  new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 //photoPickerIntent.setType("image/*");
                 startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG);
@@ -160,7 +162,6 @@ public class ViewProfile extends AppCompatActivity {
 
                 Uri selectedImage = intentData.getData();
                 String[] filePathColumn = { MediaStore.Images.Media.DATA };
-
                 // Get the cursor
                 Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
                 // Move to first row
@@ -255,7 +256,6 @@ public class ViewProfile extends AppCompatActivity {
                 phonenumber.setText("  phone number :"+ dataUser.child("userContact").getValue().toString());
                 address.setText("  Lives in :"+ dataUser.child("userAddress").getValue().toString());
                 email.setText("  Email :"+ dataUser.child("emailUser").getValue().toString());
-
             }
 
         }

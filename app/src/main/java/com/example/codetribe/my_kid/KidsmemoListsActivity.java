@@ -133,22 +133,11 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
                         if (dataUser.getKey().equals(kidsIdentity)) {
 
                             imgList.clear();
-
                             for (DataSnapshot snapshot : dataUser.getChildren()) {
-
-
-
                                 MemokidsUpload_class img = snapshot.getValue(MemokidsUpload_class.class);
-
-
                                 imgList.add(img);
-
-
                                 KidsId = kidsUser.child("id").getValue().toString();
-
-
                             }
-
 
                             //init adapter
                             adapter = new KidsmemoListAdapter(getApplicationContext(), imgList);
@@ -313,25 +302,6 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
 
 
 
-
-                                //fetch image from firebase
-                      /*  for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                            //imageupload class require default contractor
-
-                            snapshot.child("parentid").getValue().toString().equals(parentid);
-                             img=snapshot.getValue(MemokidsUpload_class.class);
-                            imgListMemokidsUpload_class.add(img);
-                        }
-                        //init adapter
-                        /*adapter=new KidsmemoListAdapter(KidsmemoListsActivity.this,R.layout.kids_memo_lists_activity,imgList);
-                        iv.setAdapter(adapter);
-*/
-
-                                //init adapter
-                                //    adapter = new KidsmemoListAdapter(KidsmemoListsActivity.this, imgList);
-
-                                //adding adapter to recyclerview
-                                //       recyclerView.setAdapter(adapter);
                             }
 
                             @Override

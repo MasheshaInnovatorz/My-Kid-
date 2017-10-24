@@ -31,7 +31,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import static com.example.codetribe.my_kid.R.id.teacherpassword;
 
-public class CreateTeacherAccount extends AppCompatActivity {
+public class
+
+CreateTeacherAccount extends AppCompatActivity {
 
     TextInputLayout inputLayoutName, inputLayoutsurname, inputLayoutcontact, inputLayoutclassroom, inputLayoutidnumber, inputLayoutemail, inputLayoutpassword;
     String userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, useremailString, userpasswordString;
@@ -208,8 +210,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
                                 }
 
                                 if (!task.isSuccessful()) {
-                                    Toast.makeText(CreateTeacherAccount.this, "Authentication failed." + task.getException(),
-                                            Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(CreateTeacherAccount.this, "Authentication failed." + task.getException(),   Toast.LENGTH_SHORT).show();
                                     progressDialog.dismiss();
                                 } else {
                                     // startActivity(new Intent(Create_Teacher_Account.this, LoginActivity.class));

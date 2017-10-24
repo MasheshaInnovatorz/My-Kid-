@@ -46,7 +46,21 @@
             android:theme="@style/AppTheme.LoginStyle" />
         <activity android:name=".SignUpOrganisationActivity" />
         <activity android:name=".CreateTeacherAccount" />
-        <activity android:name=".AboutUs"></activity>
+        <activity android:name=".AboutUs" />
+        <activity
+            android:name=".ParentTabbedActivity"
+            android:label="@string/title_activity_parent_tabbed"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".KidsMemoListFragment" />
+        <activity android:name=".ProfileUpdateFragment" />
+        <activity
+            android:name=".TeacherTabbedActivity"
+            android:label="@string/title_activity_teacher_tabbed"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AdminTabbedActivity"
+            android:label="@string/title_activity_admin_tabbed"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

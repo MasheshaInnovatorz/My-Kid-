@@ -3,44 +3,42 @@ package com.example.codetribe.my_kid;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import static com.example.codetribe.my_kid.R.id.gender;
 
-public class ProfileUpdate extends AppCompatActivity {
-
-
-      TextView signUpButton;
+public class ProfileUpdateFragment extends Fragment {
+    TextView signUpButton;
     private TextView editprofile;
 
     private EditText inputName,
-                     inputSurname,
-                     inputIdnumber,
-                     inputAddress,
-                     inputCity,
-                     inputCellphoneNumber;
+            inputSurname,
+            inputIdnumber,
+            inputAddress,
+            inputCity,
+            inputCellphoneNumber;
 
 
     //validdation
-    private TextInputLayout
-            inputLayoutName,
-            inputLayoutSurname
-           ,inputLayoutAddress,
+    private TextInputLayout inputLayoutName,
+            inputLayoutSurname,
+            inputLayoutAddress,
             inputLayoutCity,
             inputLayoutIdNumber,
             inputLayoutNumber;
@@ -55,49 +53,38 @@ public class ProfileUpdate extends AppCompatActivity {
     String userNameString,inputSurnameString,inputCityString,inputAddressString,inputIdnumberString,userContactString,genderString;
 
 
-private RadioButton rdGenders;
+    private RadioButton rdGenders;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_edit);
-
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Update Profile Update");
-
-
-
-        //database
-        Intent intent = getIntent();
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.update_profile_fragment, container, false);
+        Intent intent = getActivity().getIntent();
         keyUser =  intent.getStringExtra("User_KEY");
 
 
-String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         //database
-     databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
-
-        //buttons
-       // signupLink = (TextView) findViewById(R.id.back_to_signup);
-        signUpButton = (TextView) findViewById(R.id.btnRegister);
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
+        signUpButton = (TextView) rootView.findViewById(R.id.btnRegister);
 
         //Edit lText
-        inputName = (EditText) findViewById(R.id.reg_fullname);
-        inputSurname = (EditText) findViewById(R.id.reg_Surname);
-        inputAddress = (EditText) findViewById(R.id.reg_address);
-        inputCity = (EditText) findViewById(R.id.reg_city);
-        inputCellphoneNumber = (EditText) findViewById(R.id.reg_phone);
-        radGender = (RadioGroup)findViewById(gender);
-        inputIdnumber= (EditText) findViewById(R.id.reg_idnumber);
+        inputName = (EditText) rootView.findViewById(R.id.reg_fullname);
+        inputSurname = (EditText) rootView.findViewById(R.id.reg_Surname);
+        inputAddress = (EditText) rootView.findViewById(R.id.reg_address);
+        inputCity = (EditText) rootView.findViewById(R.id.reg_city);
+        inputCellphoneNumber = (EditText) rootView.findViewById(R.id.reg_phone);
+        radGender = (RadioGroup) rootView.findViewById(gender);
+        inputIdnumber= (EditText) rootView.findViewById(R.id.reg_idnumber);
 
         //TextLayout
-        inputLayoutName = (TextInputLayout)findViewById(R.id.input_reg_fullname);
-        inputLayoutSurname = (TextInputLayout)findViewById(R.id.input_reg_Surname);
-        inputLayoutAddress = (TextInputLayout)findViewById(R.id.input_reg_address);
-        inputLayoutCity = (TextInputLayout) findViewById(R.id.input_reg_city);
-        inputLayoutIdNumber = (TextInputLayout)findViewById(R.id.input_reg_idNumber);
-        inputLayoutNumber = (TextInputLayout) findViewById(R.id.input_reg_phoneNo);
-
+        inputLayoutName = (TextInputLayout) rootView.findViewById(R.id.input_reg_fullname);
+        inputLayoutSurname = (TextInputLayout) rootView.findViewById(R.id.input_reg_Surname);
+        inputLayoutAddress = (TextInputLayout)rootView.findViewById(R.id.input_reg_address);
+        inputLayoutCity = (TextInputLayout) rootView.findViewById(R.id.input_reg_city);
+        inputLayoutIdNumber = (TextInputLayout)rootView.findViewById(R.id.input_reg_idNumber);
+        inputLayoutNumber = (TextInputLayout) rootView.findViewById(R.id.input_reg_phoneNo);
 
         //watcher
         inputName.addTextChangedListener(new MyInputWatcher(inputName));
@@ -107,7 +94,7 @@ String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         inputIdnumber.addTextChangedListener(new MyInputWatcher(inputIdnumber));
         inputCellphoneNumber.addTextChangedListener(new MyInputWatcher(inputCellphoneNumber));
 
-       signUpButton.setOnClickListener(new View.OnClickListener(){
+        signUpButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
@@ -119,9 +106,10 @@ String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
             }
         });
 
+        return rootView;
     }
 
-    private void saveProfile(){
+    public void saveProfile(){
 
         submitForm();
 
@@ -132,7 +120,7 @@ String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         inputAddressString = inputAddress.getText().toString().trim();
         inputCityString = inputCity.getText().toString().trim();
         int selectedId= radGender.getCheckedRadioButtonId();
-        rdGenders =(RadioButton)findViewById(selectedId);
+        //rdGenders =(RadioButton) rootView.findViewById(selectedId);
         genderString  = rdGenders.getText().toString();
 
 
@@ -141,33 +129,33 @@ String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         //databaseKids.child(id).setValue(kids);
 
-            if(!TextUtils.isEmpty(inputIdnumberString)){
+        if(!TextUtils.isEmpty(inputIdnumberString)){
 
 
-                String isVerified = "verified";
+            String isVerified = "verified";
 
 
-                UserProfile profile = new UserProfile(keyUser, userNameString, inputSurnameString, inputIdnumberString, inputAddressString, inputCityString,userContactString,genderString,isVerified);
+            UserProfile profile = new UserProfile(keyUser, userNameString, inputSurnameString, inputIdnumberString, inputAddressString, inputCityString,userContactString,genderString,isVerified);
 
-        databaseReference.child("userName").setValue(profile.getUserName());
-        databaseReference.child("userSurname").setValue(profile.getUserSurname());
-        databaseReference.child("userIdNumber").setValue(profile.getUserIdNumber());
-        databaseReference.child("userContact").setValue(profile.getUserContact());
-        databaseReference.child("userAddress").setValue(profile.getUserAddress());
-        databaseReference.child("userCity").setValue(profile.getUserCity());
-        databaseReference.child("userGender").setValue(profile.getUserGender());
-        databaseReference.child("isVerified").setValue(profile.getIsVerified());
+            databaseReference.child("userName").setValue(profile.getUserName());
+            databaseReference.child("userSurname").setValue(profile.getUserSurname());
+            databaseReference.child("userIdNumber").setValue(profile.getUserIdNumber());
+            databaseReference.child("userContact").setValue(profile.getUserContact());
+            databaseReference.child("userAddress").setValue(profile.getUserAddress());
+            databaseReference.child("userCity").setValue(profile.getUserCity());
+            databaseReference.child("userGender").setValue(profile.getUserGender());
+            databaseReference.child("isVerified").setValue(profile.getIsVerified());
 
 
 
-             //databaseReference.setValue(ProfileUpdate);
+            //databaseReference.setValue(ProfileUpdate);
 
-                Toast.makeText(ProfileUpdate.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(ProfileUpdate.this, ParentActivity.class));
+            Toast.makeText(getActivity().getApplicationContext(), "User ProfileUpdate Added", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getActivity().getApplicationContext(), ParentTabbedActivity.class));
 
-            }else{
-                Toast.makeText(ProfileUpdate.this, "User Failed to Update Profile", Toast.LENGTH_SHORT).show();
-            }
+        }else{
+            Toast.makeText(getActivity().getApplicationContext(), "User Failed to add ProfileUpdate", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void submitForm() {
@@ -183,7 +171,7 @@ String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
 
-        Toast.makeText(getApplicationContext(), "Thank You!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity().getApplicationContext(), "Thank You!", Toast.LENGTH_SHORT).show();
     }
 
     private boolean validateFullName() {
@@ -230,9 +218,12 @@ String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
 
+
+
+
     private void requestFocus(View view) {
         if (view.requestFocus()) {
-            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+            getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
     }
 
@@ -265,13 +256,13 @@ String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                     validateSurname();
                     break;
 
-            //    case R.id.input_reg_idParents:
-                   // validateIdNumber();
-                   // break;
+                //    case R.id.input_reg_idParents:
+                // validateIdNumber();
+                // break;
 
                 //case R.id.input_reg_idParents:
-                   // validateIdNumber();
-                  //  break;
+                // validateIdNumber();
+                //  break;
 
                /* case R.id.input_reg_email:
                     validateEmail();
@@ -289,10 +280,9 @@ String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         int id = item.getItemId();
         if (id == android.R.id.home) {
 
-            this.finish();
+            getActivity().finish();
         }
         return super.onOptionsItemSelected(item);
     }
-
 
 }

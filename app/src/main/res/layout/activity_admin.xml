@@ -9,6 +9,7 @@
     tools:context="com.example.codetribe.my_kid.AdminActivity">
 
 
+
     <ListView
         android:id="@+id/listUser"
         android:layout_width="match_parent"

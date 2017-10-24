@@ -102,14 +102,6 @@ public class UploadKidsMemo extends AppCompatActivity {
 
 
      uploadedName  = FirebaseDatabase.getInstance().getReference("Users").child(identity);
-
-
-
-
-
-
-
-
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

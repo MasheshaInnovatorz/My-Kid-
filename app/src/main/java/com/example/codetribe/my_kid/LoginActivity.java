@@ -94,10 +94,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     mDatabaseRef.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-
-
-
-
                             checkUserValidation(dataSnapshot,emailForVer);
 
                         }
@@ -173,7 +169,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     } else if (dataUser.child("role").getValue().toString().equals("parent")) {
 
-                        Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, ParentTabbedActivity.class);
                         intent.putExtra("parent_id", dataUser.child("userIdNumber").getValue().toString());
                         //intent.putExtra("kid_id", dataUser.child("id").getValue().toString());
 
