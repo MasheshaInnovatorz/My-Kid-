@@ -130,7 +130,6 @@ public class TeachersActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-
     }
 
     @Override
@@ -144,11 +143,19 @@ public class TeachersActivity extends AppCompatActivity {
         switch (item.getItemId())   {
 
             case R.id.aboutus:
-                //  showHelp();
+                Intent intentUs = new Intent(TeachersActivity.this,AboutUs.class);
+                startActivity(intentUs);
                 return true;
 
             case R.id.logout:
                 logout();
+                return true;
+
+            case R.id.Group_Chat:
+                Intent intentchat = new Intent(TeachersActivity.this,GroupChat.class);
+                // intent.putExtra("User_KEY",userId);
+               // intentchat.putExtra("user_id",idLoged);
+                startActivity(intentchat);
                 return true;
 
 

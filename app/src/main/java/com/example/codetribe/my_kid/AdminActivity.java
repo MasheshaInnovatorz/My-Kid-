@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -41,6 +42,8 @@ public class AdminActivity extends AppCompatActivity {
     ListView listUsers;
     List<UserProfile> user;
     List<Kids> kidses;
+    // Search EditText
+    EditText inputSearch;
 
     private FirebaseAuth adminUser;
     //database
@@ -205,8 +208,6 @@ public class AdminActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-
         switch (item.getItemId())   {
             case R.id.view_teachers:
                 //  showHelp();
@@ -239,9 +240,6 @@ public class AdminActivity extends AppCompatActivity {
                 return true;
 
             case R.id.view_Kids:
-
-
-
                 usersRetriveRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange( final DataSnapshot crecheSnapshot) {
@@ -266,6 +264,7 @@ public class AdminActivity extends AppCompatActivity {
 
                                         }
 
+
                                     }
                                     KidsArray userListAdapter = new KidsArray(AdminActivity.this, kidses);
                                     listUsers.setAdapter(userListAdapter);
@@ -286,10 +285,17 @@ public class AdminActivity extends AppCompatActivity {
                     }
                 });
 
+                return true;
+
+            case R.id.aboutus:
+                Intent intent_kid = new Intent(AdminActivity.this,AboutUs.class);
+                startActivity(intent_kid);
 
                 return true;
 
-
+            case R.id.logout:
+                logout();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

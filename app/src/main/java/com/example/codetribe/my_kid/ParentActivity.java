@@ -35,7 +35,7 @@ public class ParentActivity extends AppCompatActivity {
 
         TextView chat = (TextView) findViewById(R.id.Chat);
         TextView share = (TextView)findViewById(R.id.Share);
-        TextView profilek = (TextView) findViewById(R.id.Update_Profile);
+        TextView groupchat = (TextView) findViewById(R.id.Group_Chat);
 
 
         share.setOnClickListener(new View.OnClickListener() {
@@ -60,11 +60,11 @@ public class ParentActivity extends AppCompatActivity {
             }
         });
 
-        profilek.setOnClickListener(new View.OnClickListener() {
+        groupchat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ParentActivity.this,ProfileUpdate.class);
-                intent.putExtra("kid_id",idLoged);
+                Intent intent = new Intent(ParentActivity.this,GroupChat.class);
+               // intent.putExtra("kid_id",idLoged);
                 startActivity(intent);
             }
         });
@@ -77,15 +77,13 @@ public class ParentActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu_mainapp, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId())   {
-
-            case R.id.action_settings:
-                //();
-                return true;
-            case R.id.help:
-              //  showHelp();
+            case R.id.aboutus:
+                 Intent intentUs = new Intent(ParentActivity.this,AboutUs.class);
+                startActivity(intentUs);
                 return true;
 
             case R.id.logout:

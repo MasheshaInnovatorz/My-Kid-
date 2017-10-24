@@ -46,7 +46,8 @@
             android:theme="@style/AppTheme.LoginStyle" />
         <activity android:name=".SignUpOrganisationActivity" />
         <activity android:name=".CreateTeacherAccount" />
-        <activity android:name=".AboutUs"></activity>
+        <activity android:name=".AboutUs" />
+        <activity android:name=".GroupChat"></activity>
     </application>
 
 </manifest>
