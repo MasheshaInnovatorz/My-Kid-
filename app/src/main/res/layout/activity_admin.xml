@@ -22,6 +22,11 @@
         android:layout_above="@+id/linearLayout5"
         android:layout_below="@+id/inputSearch" />
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> b258313f69ad1b90f0c74d9edb65cacd3307e358
 
 </RelativeLayout>
 

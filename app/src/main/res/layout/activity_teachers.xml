@@ -4,24 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:fitsSystemWindows="true"
+    android:id="@+id/cordinatelayout"
+
     tools:context="com.example.codetribe.my_kid.TeachersActivity">
+
+
+    <ListView
+        android:id="@+id/listViewkids"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/addTeacher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:layout_gravity="end|bottom"
-        android:fitsSystemWindows="true"
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_add_black_24dp"
         />
-
-    <ListView
-        android:id="@+id/listViewkids"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
 
 </android.support.design.widget.CoordinatorLayout>

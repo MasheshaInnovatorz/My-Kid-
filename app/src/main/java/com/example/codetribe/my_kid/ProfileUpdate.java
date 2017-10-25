@@ -77,6 +77,7 @@ String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         //database
      databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
 
+
         //buttons
        // signupLink = (TextView) findViewById(R.id.back_to_signup);
         signUpButton = (TextView) findViewById(R.id.btnRegister);
@@ -99,21 +100,33 @@ String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         inputLayoutNumber = (TextInputLayout) findViewById(R.id.input_reg_phoneNo);
 
 
-        //watcher
-        inputName.addTextChangedListener(new MyInputWatcher(inputName));
-        inputSurname.addTextChangedListener(new MyInputWatcher(inputSurname));
-        inputAddress.addTextChangedListener(new MyInputWatcher(inputAddress));
-        inputCity.addTextChangedListener(new MyInputWatcher(inputCity));
-        inputIdnumber.addTextChangedListener(new MyInputWatcher(inputIdnumber));
-        inputCellphoneNumber.addTextChangedListener(new MyInputWatcher(inputCellphoneNumber));
 
-       signUpButton.setOnClickListener(new View.OnClickListener(){
+
+        inputName.addTextChangedListener(new MyTextWatcher(inputName));
+        inputSurname.addTextChangedListener(new MyTextWatcher(inputSurname));
+
+        inputAddress.addTextChangedListener(new MyTextWatcher(inputAddress));
+        inputCity.addTextChangedListener(new MyTextWatcher(inputCity));
+
+        inputCellphoneNumber.addTextChangedListener(new MyTextWatcher(inputCellphoneNumber));
+        inputIdnumber.addTextChangedListener(new MyTextWatcher(inputIdnumber));
+
+
+
+
+
+
+
+
+        signUpButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
                 //submitForm();
 
-                saveProfile();
+               // saveProfile();
+
+                validateUpdate();
 
 
             }
@@ -123,31 +136,68 @@ String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
     private void saveProfile(){
 
-        submitForm();
-
-        userNameString = inputName.getText().toString().trim();
-        userContactString = inputCellphoneNumber.getText().toString().trim();
-        inputSurnameString = inputSurname.getText().toString().trim();
-        inputIdnumberString = inputIdnumber.getText().toString().trim();
-        inputAddressString = inputAddress.getText().toString().trim();
-        inputCityString = inputCity.getText().toString().trim();
-        int selectedId= radGender.getCheckedRadioButtonId();
-        rdGenders =(RadioButton)findViewById(selectedId);
-        genderString  = rdGenders.getText().toString();
 
 
 
+    }
 
 
-        //databaseKids.child(id).setValue(kids);
+    private void validateUpdate(){
 
-            if(!TextUtils.isEmpty(inputIdnumberString)){
+Boolean boom = true;
+        if (!validateName()) {
+            boom = false;
+            return;
+        }
+
+        if (!validateSurname()) {
+            boom = false;
+            return;
+        }
+
+        if (!validateAddress()) {
+            boom = false;
+            return;
+        }
+
+        if (!validateCity()) {
+            boom = false;
+            return;
+        }
+
+        if (!validatePhone()) {
+            boom = false;
+            return;
+        }
+
+        if (!validateIdNo()) {
+            boom = false;
+            return;
+        }
 
 
-                String isVerified = "verified";
+if(boom == true) {
+
+    userNameString = inputName.getText().toString().trim();
+    userContactString = inputCellphoneNumber.getText().toString().trim();
+    inputSurnameString = inputSurname.getText().toString().trim();
+    inputIdnumberString = inputIdnumber.getText().toString().trim();
+    inputAddressString = inputAddress.getText().toString().trim();
+    inputCityString = inputCity.getText().toString().trim();
+    int selectedId = radGender.getCheckedRadioButtonId();
+    rdGenders = (RadioButton) findViewById(selectedId);
+    genderString = rdGenders.getText().toString();
 
 
-                UserProfile profile = new UserProfile(keyUser, userNameString, inputSurnameString, inputIdnumberString, inputAddressString, inputCityString,userContactString,genderString,isVerified);
+    //databaseKids.child(id).setValue(kids);
+
+    if (!TextUtils.isEmpty(inputIdnumberString)) {
+
+
+        String isVerified = "verified";
+
+
+        UserProfile profile = new UserProfile(keyUser, userNameString, inputSurnameString, inputIdnumberString, inputAddressString, inputCityString, userContactString, genderString, isVerified);
 
         databaseReference.child("userName").setValue(profile.getUserName());
         databaseReference.child("userSurname").setValue(profile.getUserSurname());
@@ -158,90 +208,98 @@ String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         databaseReference.child("userGender").setValue(profile.getUserGender());
         databaseReference.child("isVerified").setValue(profile.getIsVerified());
 
+        //databaseReference.setValue(ProfileUpdate);
 
+        Toast.makeText(ProfileUpdate.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(ProfileUpdate.this, ParentActivity.class));
 
-             //databaseReference.setValue(ProfileUpdate);
-
-                Toast.makeText(ProfileUpdate.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(ProfileUpdate.this, ParentActivity.class));
-
-            }else{
-                Toast.makeText(ProfileUpdate.this, "User Failed to Update Profile", Toast.LENGTH_SHORT).show();
-            }
+    } else {
+        Toast.makeText(ProfileUpdate.this, "User Failed to Update Profile", Toast.LENGTH_SHORT).show();
     }
 
-    private void submitForm() {
-        if (!validateFullName()) {
-            return;
-        }
-        if (!validateSurname()) {
-            return;
-        }
-        if (!validateIdNumber()) {
-            return;
-        }
 
-
-
-        Toast.makeText(getApplicationContext(), "Thank You!", Toast.LENGTH_SHORT).show();
+}
     }
 
-    private boolean validateFullName() {
-        if (inputName.getText().toString().trim().isEmpty()) {
-            if (inputName.getText().toString().length() <=6) {
 
-                inputLayoutName.setError("Your name is too short atleast >6 letters will do");
-                return false;
-            }else{
-                inputLayoutName.setErrorEnabled(false);
-            }
-            inputLayoutName.setError(getString(R.string.err_msg_name));
+    private boolean validateName() {
+        if (inputName.getText().toString().trim().isEmpty() && inputName.getText().length()<6) {
+            inputLayoutName.setError("Enter the number");
             requestFocus(inputName);
             return false;
         } else {
             inputLayoutName.setErrorEnabled(false);
         }
+
         return true;
     }
 
     private boolean validateSurname() {
-        if (inputSurname.getText().toString().trim().isEmpty()) {
-            inputLayoutSurname.setError(getString(R.string.err_msg_surname));
+        if (inputSurname.getText().toString().trim().isEmpty() && inputSurname.getText().length()<6 ) {
+            inputLayoutSurname.setError("Enter Your Surname");
             requestFocus(inputSurname);
             return false;
         } else {
             inputLayoutSurname.setErrorEnabled(false);
         }
+
         return true;
     }
 
-    private boolean validateIdNumber() {
-        if (inputIdnumber.getText().toString().trim().isEmpty()) {
-            if(inputIdnumber.getText().toString().length() <13 || inputIdnumber.getText().toString().length() >13){
-                inputLayoutIdNumber.setError("Identity Number Should be 13 digits");
-            }
-            inputLayoutIdNumber.setError(getString(R.string.err_msg_idnumber));
+    private boolean validateAddress() {
+        if (inputAddress.getText().toString().trim().isEmpty() && inputAddress.getText().length()<6) {
+            inputLayoutAddress.setError("Enter Your Your Address");
+            requestFocus(inputAddress);
+            return false;
+        } else {
+            inputLayoutAddress.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+    private boolean validateCity() {
+        if (inputCity.getText().toString().trim().isEmpty() && inputCity.getText().length() <6) {
+            inputLayoutCity.setError("Enter Your Your Address");
+            requestFocus(inputCity);
+            return false;
+        } else {
+            inputLayoutCity.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+    private boolean validatePhone() {
+        if (inputCellphoneNumber.getText().toString().trim().isEmpty() && inputCellphoneNumber.getText().length()<6) {
+            inputLayoutNumber.setError("Enter Your Your Full Number phone");
+            requestFocus(inputCellphoneNumber);
+            return false;
+        } else {
+            inputLayoutNumber.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+
+    private boolean validateIdNo() {
+        if (inputIdnumber.getText().toString().trim().isEmpty() && inputIdnumber.getText().length()<6) {
+            inputLayoutIdNumber.setError("Enter Your Your Full Id Number phone");
             requestFocus(inputIdnumber);
             return false;
         } else {
             inputLayoutIdNumber.setErrorEnabled(false);
         }
+
         return true;
     }
 
 
-    private void requestFocus(View view) {
-        if (view.requestFocus()) {
-            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-        }
-    }
 
 
+    private class MyTextWatcher implements TextWatcher{
 
-    private class MyInputWatcher implements TextWatcher {
-        private View view;
+        private  View view;
 
-        private MyInputWatcher(View view) {
+        private MyTextWatcher(View view){
             this.view = view;
         }
 
@@ -257,33 +315,50 @@ String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         @Override
         public void afterTextChanged(Editable editable) {
-            switch (view.getId()) {
-                case R.id.input_reg_fullname:
-                    validateFullName();
+
+
+            switch(view.getId()){
+                case R.id.reg_fullname:
+                    validateName();
                     break;
-                case R.id.input_reg_Surname:
+                case R.id.reg_Surname:
                     validateSurname();
                     break;
-
-            //    case R.id.input_reg_idParents:
-                   // validateIdNumber();
-                   // break;
-
-                //case R.id.input_reg_idParents:
-                   // validateIdNumber();
-                  //  break;
-
-               /* case R.id.input_reg_email:
-                    validateEmail();
-                    break;*/
-               /* case R.id.input_reg_password:
-                    validatePassword();
-                    break;*/
-
+                case R.id.reg_address:
+                    validateAddress();
+                    break;
+                case R.id.reg_city:
+                    validateCity();
+                    break;
+                case R.id.reg_phone:
+                    validatePhone();
+                    break;
+                case R.id.reg_idnumber:
+                    validateIdNo();
+                    break;
             }
 
+
+
+        }
+
+    }
+
+
+
+
+
+
+
+    private void requestFocus(View view) {
+        if (view.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
     }
+
+
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();

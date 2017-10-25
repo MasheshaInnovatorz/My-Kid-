@@ -104,13 +104,15 @@ public class ParentTabbedActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    KidsMemoListFragment kidsMemoListFragment = new KidsMemoListFragment();
-                    return kidsMemoListFragment;
+
+                    return new KidsMemoListFragment();
                 case 1:
-                    ProfileUpdateFragment profileUpdateFragment = new ProfileUpdateFragment();
-                    return profileUpdateFragment;
+                    return new  GroupChatFragment();
+
+               default:
+                   return null;
             }
-            return null;
+
         }
 
         @Override
@@ -126,8 +128,10 @@ public class ParentTabbedActivity extends AppCompatActivity {
                     return "Shared Creatives";
                 case 1:
                     return "Group Chat";
+                default:
+                return null;
             }
-            return null;
+
         }
     }
 

@@ -6,6 +6,7 @@
     <color name="colorAccent">#FF4081</color>
 
 
+<<<<<<< HEAD
   <color name="primary">#03A9F4</color>
   <color name="primary_dark">#0288D1</color>
   <color name="primary_light">#B3E5FC</color>
@@ -16,6 +17,17 @@
   <color name="divider">#BDBDBD</color>
 
 <!--
+=======
+    <color name="primary">#2196F3</color>
+    <color name="primary_dark">#1976D2</color>
+    <color name="primary_light">#BBDEFB</color>
+    <color name="accent">#FF5722</color>
+    <color name="primary_text">#ffffff</color>
+    <color name="secondary_text">#757575</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#BDBDBD</color>
+    <color name="editTextColor">#ADCCE2</color>
+>>>>>>> b258313f69ad1b90f0c74d9edb65cacd3307e358
 
       <color name="primary">#2196F3</color>
       <color name="primary_dark">#1976D2</color>

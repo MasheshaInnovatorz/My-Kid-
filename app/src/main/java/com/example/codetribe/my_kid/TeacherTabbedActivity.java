@@ -114,7 +114,11 @@ public class TeacherTabbedActivity extends AppCompatActivity {
                 case 0:
                     return new TeacherFragment();
                 case 1:
+<<<<<<< HEAD
                    // return new GroupChat();
+=======
+                    return new GroupChatFragment();
+>>>>>>> b258313f69ad1b90f0c74d9edb65cacd3307e358
             }
             return null;
             // getItem is called to instantiate the fragment for the given page.

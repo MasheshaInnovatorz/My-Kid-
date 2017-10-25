@@ -25,7 +25,10 @@
                     android:textColor="#1976D2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+<<<<<<< HEAD
 
+=======
+>>>>>>> b258313f69ad1b90f0c74d9edb65cacd3307e358
                     android:text="mavhungu Phuluso"
                     android:textAlignment="textStart"
                      />
@@ -45,7 +48,6 @@
                      />
             </RelativeLayout>
         </android.support.v7.widget.CardView>
-
 
     </LinearLayout>
 
