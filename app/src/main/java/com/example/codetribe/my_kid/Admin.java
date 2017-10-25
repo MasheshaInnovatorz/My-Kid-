@@ -99,9 +99,11 @@ public class Admin extends AppCompatActivity {
 
             switch (position) {
                 case 0:
-                    return new AdminKidsList();
+                    return new AdminTeacherList() ;
                 case 1:
-                    return new AdminTeacherList();
+                    return  new AdminKidsList();
+
+
             }
             return null;
         }

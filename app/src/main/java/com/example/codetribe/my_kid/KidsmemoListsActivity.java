@@ -3,6 +3,7 @@ package com.example.codetribe.my_kid;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -53,6 +54,8 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
     private Button btnparticipate;
     private TextView sendKids;
     String Surname,name;
+FloatingActionButton share;
+
 
 
     @Override
@@ -71,6 +74,7 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        share = (FloatingActionButton)findViewById(R.id.share_add);
 
         progressDialog = new ProgressDialog(this);
 
@@ -241,7 +245,6 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
                                     Infor(kidSnapshot, dataSnapshot, parentid);
 
                                 }else if (userSnapshot.child("role").getValue().toString().equals("teacher")){
-                                    btnparticipate.setText("Share_Activity");
 
                                     InforTeacher(kidSnapshot,dataSnapshot,kidsUserId);
                                 }else{
@@ -255,7 +258,7 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
 
 // senderId.setText(kids);
 
-                                btnparticipate.setOnClickListener(new View.OnClickListener() {
+                                share.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
 

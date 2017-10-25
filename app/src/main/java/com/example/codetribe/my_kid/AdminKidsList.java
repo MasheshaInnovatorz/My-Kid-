@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,20 +45,21 @@ public class AdminKidsList extends Fragment {
     String Idadmin;
     Spinner spinner;
     private CoordinatorLayout coordinatorLayout;
-    private FloatingActionButton fab;
+    private FloatingActionButton kidsFab;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_teachers, container, false);
+        View rootView = inflater.inflate(R.layout.kidaddactivityfrag, container, false);
 
 
 
         listUsers = (ListView)rootView.findViewById(R.id.listViewkids);
-        fab = (FloatingActionButton) rootView.findViewById(R.id.addTeacher);
+      //  fab = (FloatingActionButton) rootView.findViewById(R.id.addTeacher);
 
         coordinatorLayout = (CoordinatorLayout)rootView.findViewById(R.id.cordinatelayout);
 
+        kidsFab = (FloatingActionButton) rootView.findViewById(R.id.add_kids_admin);
         Intent keyId = getActivity().getIntent();
         idLoged = keyId.getStringExtra("User_KEY");
         kids_id = keyId.getStringExtra("kid_id");
@@ -96,10 +96,6 @@ public class AdminKidsList extends Fragment {
                                         Kids kidInf = kidssnapshot.getValue(Kids.class);
                                         kidses.add(kidInf);
 
-                                        Snackbar snackbar = Snackbar
-                                                .make(coordinatorLayout, "Welcome to AndroidHive", Snackbar.LENGTH_LONG);
-
-                                        snackbar.show();
 
                                         kidInf.getId();
 
@@ -128,10 +124,10 @@ public class AdminKidsList extends Fragment {
 
 
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        kidsFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Intent intent = new Intent(getContext(), UploadKidsMemo.class);
+               Intent intent = new Intent(getContext(), KidActivity.class);
                 intent.putExtra("kid_id",idLoged);
                 intent.putExtra("User_KEY",kids_id);
                 intent.putExtra("parentIdentity",parentId);

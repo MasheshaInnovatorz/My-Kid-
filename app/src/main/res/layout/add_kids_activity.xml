@@ -17,10 +17,10 @@
 
 -->
         <LinearLayout
+            android:background="#FBE9E7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:background="@drawable/textviewsstyle"
             android:orientation="vertical"
             android:layout_alignParentBottom="true"
             android:id="@+id/linearLayout">

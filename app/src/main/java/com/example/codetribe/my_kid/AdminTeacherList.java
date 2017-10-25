@@ -1,7 +1,9 @@
 package com.example.codetribe.my_kid;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +45,8 @@ public class AdminTeacherList extends Fragment {
     Spinner spinner;
     private CoordinatorLayout coordinatorLayout;
 
+    private FloatingActionButton userTeacher;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,12 +56,21 @@ public class AdminTeacherList extends Fragment {
         coordinatorLayout = (CoordinatorLayout)rootView.findViewById(R.id.cordinatelayout);
         user = new ArrayList<>();
 
+
+        userTeacher = (FloatingActionButton)rootView.findViewById(R.id.add_teacher_admin);
+
+
+
+
         usersRetriveRef = FirebaseDatabase.getInstance().getReference("Users");
 
 
         listUsers = (ListView)rootView.findViewById(R.id.listViewkids);
 
         Idadmin=  FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
+
 
         usersRetriveRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -86,6 +99,22 @@ public class AdminTeacherList extends Fragment {
             }
         });
 
+
+        userTeacher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =  new Intent(getActivity(),CreateTeacherAccount.class);
+                intent.putExtra("User_KEY",userKey);
+                startActivity(intent);
+            }
+        });
+
         return rootView;
     }
+
+
+
+
+
+
 }

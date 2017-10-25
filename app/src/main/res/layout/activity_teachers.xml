@@ -14,18 +14,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-
-
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/addTeacher"
+        android:id="@+id/add_teacher_admin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_gravity="end|bottom"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_add_black_24dp"
-        />
+        app:srcCompat="@android:drawable/ic_menu_edit"
+        android:layout_marginLeft="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="14dp" />
+
+
 
 
 </android.support.design.widget.CoordinatorLayout>
