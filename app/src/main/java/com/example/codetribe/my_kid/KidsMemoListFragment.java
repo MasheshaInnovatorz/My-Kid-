@@ -3,6 +3,7 @@ package com.example.codetribe.my_kid;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -41,7 +42,7 @@ public class KidsMemoListFragment extends Fragment {
     //list to hold all the uploaded images
     private List<MemokidsUpload_class> imgList;
 
-
+    private FloatingActionButton fab;
     //=================
     //  private List<MemokidsUpload_class> imgList;
     // private ListView iv;
@@ -65,7 +66,7 @@ public class KidsMemoListFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-
+        fab = (FloatingActionButton) rootView.findViewById(R.id.share_add);
         progressDialog = new ProgressDialog(getContext());
 
 
@@ -84,7 +85,7 @@ public class KidsMemoListFragment extends Fragment {
         //   mDatabase = FirebaseDatabase.getInstance().getReference(SyncStateContract.Constants.DATABASE_PATH_UPLOADS);
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(UploadKidsMemo.FB_DATABASE_PATH);
         childRef = FirebaseDatabase.getInstance().getReference("Kids");
-        btnparticipate = (Button) rootView.findViewById(R.id.btnParticipate);
+      //  btnparticipate = (Button) rootView.findViewById(R.id.btnParticipate);
 
 
         Intent intent = getActivity().getIntent();
@@ -134,22 +135,15 @@ public class KidsMemoListFragment extends Fragment {
 
 // senderId.setText(kids);
 
-                                btnparticipate.setOnClickListener(new View.OnClickListener() {
+                                fab.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-
-
-
                                         if(KidsId != null || kidsUserId !=null) {
 
                                             Intent intent = new Intent(getContext(), UploadKidsMemo.class);
                                             intent.putExtra("kid_id", KidsId);
                                             intent.putExtra("kidsTeacherId", kidsUserId);
-
                                             intent.putExtra("User_KEY", userKey);
-
-
-
                                             startActivity(intent);
 
                                         }else{

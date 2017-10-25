@@ -55,7 +55,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_organisation);
 
-        getSupportActionBar().setTitle("Register Creche Account");
+        getSupportActionBar().setTitle("Register Organisation");
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

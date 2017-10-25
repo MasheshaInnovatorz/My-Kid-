@@ -80,6 +80,7 @@ CreateTeacherAccount extends AppCompatActivity {
         useremail = (EditText) findViewById(R.id.teacheremail);
         userpassword = (EditText) findViewById(teacherpassword);
         gender = (RadioGroup) findViewById(R.id.teachergenders);
+
         createteacher = (TextView) findViewById(R.id.Create_Teacher_Account);
 
          //adding validation to edittexts

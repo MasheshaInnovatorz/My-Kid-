@@ -86,7 +86,7 @@ public class KidsmemoListsActivity  extends AppCompatActivity {
         //   mDatabase = FirebaseDatabase.getInstance().getReference(SyncStateContract.Constants.DATABASE_PATH_UPLOADS);
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(UploadKidsMemo.FB_DATABASE_PATH);
         childRef = FirebaseDatabase.getInstance().getReference("Kids");
-        btnparticipate = (Button) findViewById(R.id.btnParticipate);
+      //  btnparticipate = (Button) findViewById(R.id.btnParticipate);
 
     }
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.codetribe.my_kid.KidsmemoListsActivity">
 
     <android.support.v7.widget.RecyclerView
@@ -14,17 +14,18 @@
         android:layout_alignParentStart="true" >
     </android.support.v7.widget.RecyclerView>
 
-    <Button
-        android:id="@+id/btnParticipate"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/share_add"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:background="@drawable/angle"
-        android:drawableLeft="@drawable/ic_edit_black_24dp"
-        android:text="Participate"
-        android:textAlignment="center"
-        android:textColor="#fff"
-        android:layout_marginBottom="123dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        app:srcCompat="@android:drawable/ic_menu_edit"
+        android:layout_marginLeft="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="16dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="14dp" />
+
 
 </RelativeLayout>

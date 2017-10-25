@@ -53,7 +53,7 @@ public class TeacherTabbedActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.share_add);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,7 +114,7 @@ public class TeacherTabbedActivity extends AppCompatActivity {
                 case 0:
                     return new TeacherFragment();
                 case 1:
-                    return new GroupChat();
+                   // return new GroupChat();
             }
             return null;
             // getItem is called to instantiate the fragment for the given page.

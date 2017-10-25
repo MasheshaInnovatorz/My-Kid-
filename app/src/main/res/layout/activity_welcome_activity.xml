@@ -2,13 +2,12 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#29B6F6">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/timg">
+   >
 
         <TextView
             android:id="@+id/sin"
@@ -29,8 +28,8 @@
             android:layout_below="@+id/signup_welcome"
             android:layout_marginTop="27dp"
             android:gravity="center"
+            android:textColor="#54abee"
             android:text="Kids Creatives"
-            android:textColor="@android:color/white"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -41,8 +40,8 @@
             android:layout_above="@id/sin"
             android:gravity="center"
             android:paddingBottom="16dp"
+            android:textColor="#54abee"
             android:text="Already have an account?"
-            android:textColor="@android:color/white"
             android:textSize="16dp" />
 
         <LinearLayout

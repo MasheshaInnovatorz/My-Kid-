@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#29B6F6"
-    android:orientation="vertical"
-    tools:context="com.example.codetribe.my_kid.CreateTeacherAccount">
+    tools:context="com.example.codetribe.my_kid.ProfileUpdate">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/timg">
+        android:layout_alignParentStart="true">
 
 
         <LinearLayout
-            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#FFFF"
             android:layout_alignParentBottom="true"
-            android:orientation="vertical">
+            android:id="@+id/linearLayout">
+
 
 
             <android.support.design.widget.TextInputLayout
@@ -35,23 +34,22 @@
                     android:layout_marginLeft="22dp"
                     android:layout_marginRight="35dp"
                     android:background="#0000"
-                    android:hint="First Name"
+                    android:hint="Firstname"
                     android:inputType="textCapWords"
                     android:padding="16dp"
                     android:textAlignment="center"
-                    android:textColor="@android:color/white"
-                    android:textColorHint="@android:color/white"
-                    android:textAppearance="@android:color/white"
+                    android:textColor="#ADCCE2"
+                    android:textColorHint="#ADCCE2"
                     android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:background="#ADCCE2" />
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="#ADCCE2"/>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/inputteacherSurname"
@@ -59,118 +57,144 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:textSize="16dp"
                     android:id="@+id/teachersurname"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
-                    android:background="#0000"
-                    android:hint="Surname"
-                    android:inputType="textCapWords"
-                    android:padding="16dp"
                     android:textAlignment="center"
-                    android:textColor="#ADCCE2"
+                    android:layout_height="wrap_content"
+                    android:hint="Surname"
                     android:textColorHint="#ADCCE2"
-                    android:textSize="16dp" />
+                    android:layout_marginLeft="22dp"
+                    android:inputType="textCapWords"
+                    android:textColor="#ADCCE2"
+                    android:background="#0000"
+                    android:padding="16dp"
+                    android:layout_marginRight="35dp"/>
             </android.support.design.widget.TextInputLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:background="#ADCCE2" />
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="#ADCCE2"/>
+
+
+
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/inputteacheremail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <EditText
+                    android:textSize="16dp"
                     android:id="@+id/teacheremail"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
-                    android:background="#0000"
-                    android:hint="Email"
-                    android:inputType="textEmailAddress"
-                    android:padding="16dp"
                     android:textAlignment="center"
-                    android:textColor="#ADCCE2"
+                    android:layout_height="wrap_content"
+                    android:hint="Resident Address"
                     android:textColorHint="#ADCCE2"
-                    android:textSize="16dp" />
+                    android:layout_marginLeft="22dp"
+                    android:inputType="textCapWords"
+                    android:textColor="#ADCCE2"
+                    android:background="#0000"
+                    android:padding="16dp"
+                    android:layout_marginRight="35dp"/>
+
             </android.support.design.widget.TextInputLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:background="#ADCCE2" />
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="#ADCCE2"/>
+
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/inputteacherPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <EditText
+                    android:textSize="16dp"
                     android:id="@+id/teacherpassword"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
-                    android:background="#0000"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:padding="16dp"
                     android:textAlignment="center"
-                    android:textColor="#ADCCE2"
+                    android:layout_height="wrap_content"
+                    android:hint="City"
                     android:textColorHint="#ADCCE2"
-                    android:textSize="16dp" />
+                    android:layout_marginLeft="22dp"
+                    android:inputType="textCapWords"
+                    android:textColor="#ADCCE2"
+                    android:background="#0000"
+                    android:padding="16dp"
+                    android:layout_marginRight="35dp"/>
+
             </android.support.design.widget.TextInputLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:background="#ADCCE2" />
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="#ADCCE2"/>
 
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/inputteacherconatct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <EditText
+                    android:textSize="16dp"
                     android:id="@+id/teachercontact"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
-                    android:background="#0000"
-                    android:hint="Phone Number"
-                    android:inputType="phone"
-                    android:maxLength="10"
-                    android:padding="16dp"
                     android:textAlignment="center"
-                    android:textColor="#ADCCE2"
+                    android:layout_height="wrap_content"
+                    android:hint="Id Number"
                     android:textColorHint="#ADCCE2"
-                    android:textSize="16dp" />
+                    android:layout_marginLeft="20dp"
+                    android:inputType="numberDecimal"
+                    android:maxLength="13"
+                    android:textColor="#ADCCE2"
+                    android:background="#0000"
+                    android:padding="16dp"
+                    android:layout_marginRight="35dp"/>
 
             </android.support.design.widget.TextInputLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:background="#ADCCE2" />
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="#ADCCE2"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputteacherclass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:textSize="16dp"
+                    android:id="@+id/teacherclass"
+                    android:layout_width="match_parent"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone Number"
+                    android:textColorHint="#ADCCE2"
+                    android:layout_marginLeft="22dp"
+                    android:inputType="phone"
+                    android:maxLength="12"
+                    android:textColor="#ADCCE2"
+                    android:background="#0000"
+                    android:padding="16dp"
+                    android:layout_marginRight="35dp"/>
+
+            </android.support.design.widget.TextInputLayout>
 
 
             <android.support.design.widget.TextInputLayout
@@ -179,60 +203,29 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:textSize="16dp"
                     android:id="@+id/teacherid"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
-                    android:background="#0000"
-                    android:hint="Teacher's ID Number"
-                    android:inputType="numberDecimal"
-                    android:maxLength="13"
-                    android:padding="16dp"
                     android:textAlignment="center"
-                    android:textColor="#ADCCE2"
-                    android:textColorHint="#ADCCE2"
-                    android:textSize="16dp" />
-            </android.support.design.widget.TextInputLayout>
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:background="#ADCCE2" />
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/inputteacherclass"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/teacherclass"
-                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
-                    android:background="#0000"
-                    android:hint="Teacher's Class"
-                    android:inputType="textCapWords"
-                    android:padding="16dp"
-                    android:textAlignment="center"
-                    android:textColor="#ADCCE2"
+                    android:hint="Phone Number"
                     android:textColorHint="#ADCCE2"
-                    android:textSize="16dp" />
+                    android:layout_marginLeft="22dp"
+                    android:inputType="phone"
+                    android:maxLength="12"
+                    android:textColor="#ADCCE2"
+                    android:background="#0000"
+                    android:padding="16dp"
+                    android:layout_marginRight="35dp"/>
 
             </android.support.design.widget.TextInputLayout>
-
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:background="#ADCCE2" />
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="#ADCCE2"/>
 
 
             <RadioGroup
@@ -262,24 +255,25 @@
             </RadioGroup>
 
 
+
             <TextView
                 android:id="@+id/Create_Teacher_Account"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="28dp"
+                android:background="@drawable/angle"
+                android:text="Create Teacher Account"
+                android:textSize="16dp"
+                android:textColor="#fff"
+                android:gravity="center"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:layout_marginTop="32dp"
-                android:background="@drawable/angle"
-                android:gravity="center"
                 android:padding="16dp"
-                android:text="Create Teacher Account"
-                android:textColor="#fff"
-                android:textSize="16dp" />
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="28dp"
+                android:layout_marginTop="32dp"
+                />
         </LinearLayout>
 
     </ScrollView>
 
-
-</LinearLayout>
+</RelativeLayout>
