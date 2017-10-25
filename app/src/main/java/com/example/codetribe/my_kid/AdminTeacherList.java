@@ -1,6 +1,7 @@
 package com.example.codetribe.my_kid;
 
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +41,7 @@ public class AdminTeacherList extends Fragment {
     TextView sos;
     String Idadmin;
     Spinner spinner;
+    private CoordinatorLayout coordinatorLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,6 +49,7 @@ public class AdminTeacherList extends Fragment {
         View rootView = inflater.inflate(R.layout.activity_teachers, container, false);
 
 
+        coordinatorLayout = (CoordinatorLayout)rootView.findViewById(R.id.cordinatelayout);
         user = new ArrayList<>();
 
         usersRetriveRef = FirebaseDatabase.getInstance().getReference("Users");

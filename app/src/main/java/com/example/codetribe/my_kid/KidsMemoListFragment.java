@@ -84,7 +84,9 @@ public class KidsMemoListFragment extends Fragment {
         //   mDatabase = FirebaseDatabase.getInstance().getReference(SyncStateContract.Constants.DATABASE_PATH_UPLOADS);
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(UploadKidsMemo.FB_DATABASE_PATH);
         childRef = FirebaseDatabase.getInstance().getReference("Kids");
-        btnparticipate = (Button) rootView.findViewById(R.id.btnParticipate);
+
+
+        
 
 
         Intent intent = getActivity().getIntent();

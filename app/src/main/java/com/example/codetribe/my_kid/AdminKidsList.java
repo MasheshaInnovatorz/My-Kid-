@@ -2,7 +2,9 @@ package com.example.codetribe.my_kid;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +45,7 @@ public class AdminKidsList extends Fragment {
     TextView sos;
     String Idadmin;
     Spinner spinner;
-
+    private CoordinatorLayout coordinatorLayout;
     private FloatingActionButton fab;
 
     @Override
@@ -55,6 +57,8 @@ public class AdminKidsList extends Fragment {
 
         listUsers = (ListView)rootView.findViewById(R.id.listViewkids);
         fab = (FloatingActionButton) rootView.findViewById(R.id.addTeacher);
+
+        coordinatorLayout = (CoordinatorLayout)rootView.findViewById(R.id.cordinatelayout);
 
         Intent keyId = getActivity().getIntent();
         idLoged = keyId.getStringExtra("User_KEY");
@@ -91,6 +95,11 @@ public class AdminKidsList extends Fragment {
 
                                         Kids kidInf = kidssnapshot.getValue(Kids.class);
                                         kidses.add(kidInf);
+
+                                        Snackbar snackbar = Snackbar
+                                                .make(coordinatorLayout, "Welcome to AndroidHive", Snackbar.LENGTH_LONG);
+
+                                        snackbar.show();
 
                                         kidInf.getId();
 
