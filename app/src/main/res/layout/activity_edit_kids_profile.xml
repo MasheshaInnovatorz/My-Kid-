@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
     tools:context="com.example.codetribe.my_kid.ProfileUpdate">
 
     <ScrollView
@@ -11,14 +10,13 @@
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/timg">
+     >
 
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FBE9E7"
             android:layout_alignParentBottom="true"
             android:orientation="vertical">
 
