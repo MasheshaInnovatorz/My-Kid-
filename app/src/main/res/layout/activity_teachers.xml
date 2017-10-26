@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:id="@+id/cordinatelayout"
 
     tools:context="com.example.codetribe.my_kid.TeachersActivity">
@@ -12,7 +12,9 @@
     <ListView
         android:id="@+id/listViewkids"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_teacher_admin"
@@ -22,7 +24,7 @@
         app:srcCompat="@android:drawable/ic_menu_edit"
         android:layout_marginLeft="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_margin"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="70dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="14dp" />
