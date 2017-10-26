@@ -75,7 +75,7 @@
          >
 
             <TextView
-                android:text="Name : Miss Talifhani Munwana"
+                android:text="Srum Master : Miss Talifhani Munwana"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:layout_width="match_parent"
@@ -110,7 +110,7 @@
                 android:layout_height="15dp"
                 android:layout_marginLeft="35dp"
                 android:layout_weight="2"
-                android:text="Name:B Nkosi"
+                android:text="Developer :B Nkosi"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 ></TextView>
@@ -121,7 +121,7 @@
                 android:layout_height="15dp"
                 android:layout_marginRight="35dp"
                 android:layout_weight="2"
-                android:text="Name: M Pfariso"
+                android:text="Developer : M Pfariso"
                 android:textAlignment="center"
                 android:textAllCaps="true"/>
         </TableRow>
@@ -160,7 +160,7 @@
                 android:layout_height="15dp"
                 android:layout_marginLeft="35dp"
                 android:layout_weight="2"
-                android:text="Name: M Rudzani"
+                android:text="designer : M Rudzani"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 ></TextView>
@@ -172,7 +172,7 @@
                 android:layout_height="15dp"
                 android:layout_marginRight="35dp"
                 android:layout_weight="2"
-                android:text="Name: K Herbeth"
+                android:text="designer : K Herbeth"
                 android:textAlignment="center"
                 android:textAllCaps="true"/>
         </TableRow>
