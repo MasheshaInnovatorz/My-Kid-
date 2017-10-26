@@ -54,15 +54,7 @@ public class GroupChatFragment extends Fragment {
                 messageSend();
             }
         });
-
         messageRecieved();
-
-
-
-
-
-
-
         return rootView;
     }
 
@@ -77,7 +69,7 @@ public class GroupChatFragment extends Fragment {
             @Override
             protected void populateView(View v, Chat model, int position) {
                 ((TextView) v.findViewById(R.id.msg)).setText(model.getMessage());
-                //  ((TextView) v.findViewById(R.id.sendname)).setText(model.getName());
+                 ((TextView) v.findViewById(R.id.sendname)).setText(model.getName());
                 ((TextView) v.findViewById(R.id.time)).setText(DateFormat.format("dd-MM-yyyy (HH:mm)",
                         model.getTime()));
             }

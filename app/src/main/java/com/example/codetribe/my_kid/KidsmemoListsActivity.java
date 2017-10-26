@@ -109,7 +109,6 @@ FloatingActionButton share;
                 Surname = kidsUser.child("surname").getValue().toString();
                 name = kidsUser.child("name").getValue().toString();
 
-
                 while (iterator.hasNext()) {
                     DataSnapshot dataUser = (DataSnapshot) iterator.next();
 
@@ -231,60 +230,35 @@ FloatingActionButton share;
                 childRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(final DataSnapshot kidSnapshot) {
-
-
                         mDatabaseRef.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-
                                 progressDialog.dismiss();
 
-
                                 if(userSnapshot.child("role").getValue().toString().equals("parent")) {
-
                                     Infor(kidSnapshot, dataSnapshot, parentid);
-
                                 }else if (userSnapshot.child("role").getValue().toString().equals("teacher")){
-
                                     InforTeacher(kidSnapshot,dataSnapshot,kidsUserId);
                                 }else{
                                     Toast.makeText(KidsmemoListsActivity.this, "Ahh you dont belong to any categories", Toast.LENGTH_SHORT).show();
                                 }
 
-
-                                // Toast.makeText(KidsmemoListsActivity.this, parentid, Toast.LENGTH_SHORT).show();
-
-
-
-// senderId.setText(kids);
-
                                 share.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-
-
-
                                         if(KidsId != null || kidsUserId !=null) {
-
                                             Intent intent = new Intent(KidsmemoListsActivity.this, UploadKidsMemo.class);
                                             intent.putExtra("kid_id", KidsId);
                                             intent.putExtra("kidsTeacherId", kidsUserId);
-
                                             intent.putExtra("User_KEY", userKey);
-
-
-
                                             startActivity(intent);
 
                                         }else{
                                             Toast.makeText(KidsmemoListsActivity.this, "You dont have a kids in this creche or maybe made a mistake", Toast.LENGTH_SHORT).show();
                                             return;
                                         }
-
                                     }
                                 });
-
-
 
                             }
 
@@ -307,8 +281,6 @@ FloatingActionButton share;
 
             }
         });
-
-
 
 
     }

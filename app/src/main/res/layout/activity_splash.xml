@@ -6,7 +6,6 @@ android:layout_height="match_parent"
 tools:context="com.example.codetribe.my_kid.Splash">
 
 <RelativeLayout
-    android:background="#FBE9E7"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_alignParentTop="true"

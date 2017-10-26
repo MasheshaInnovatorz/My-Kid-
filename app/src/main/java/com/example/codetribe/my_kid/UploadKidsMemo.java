@@ -240,11 +240,7 @@ public class UploadKidsMemo extends AppCompatActivity {
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-
-
                             double progress = (100 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-
-
                             dialog.setMessage("Uploaded " + (int)progress);
 
                         }
@@ -282,19 +278,7 @@ public class UploadKidsMemo extends AppCompatActivity {
                 return;
             }
 
-               /* name.setText("Name : " + dataUser.child("userName").getValue().toString());
-                surname.setText("Surname : " + dataUser.child("userSurname").getValue().toString());
-                gender.setText("  "+ dataUser.child("userGender").getValue().toString());
-                phonenumber.setText("  "+ dataUser.child("userContact").getValue().toString());
-                address.setText("  "+ dataUser.child("userAddress").getValue().toString());
-                email.setText("  "+ dataUser.child("emailUser").getValue().toString());
 
-
-                //     profilecover.setImageDrawable(dataSnapshot.child("fdsdfs").getRef());
-
-                //Lives in
-
-            }*/
 
 
         }
@@ -302,12 +286,6 @@ public class UploadKidsMemo extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_mainapp, menu);
-        return true;
-    }
 
 
 
