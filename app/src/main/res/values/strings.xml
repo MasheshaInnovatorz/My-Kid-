@@ -17,6 +17,8 @@
     <string name="iderror">Enter Valid Id number</string>
     <string name="classerror">Enter Valid Teacher Class</string>
     <string name="mobileerror">Enter Valid Mobile Number</string>
+    <string name="address">Enter Valid Address</string>
+    <string name="city">Enter Valid City</string>
 
 
     <string name="text_with_paragraphs">

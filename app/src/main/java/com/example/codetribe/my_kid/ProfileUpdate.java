@@ -16,7 +16,12 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+<<<<<<< HEAD
 import com.bumptech.glide.Glide;
+=======
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
+>>>>>>> 954289c337ce93c5ab924085ff27b7174aebaa3e
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,7 +39,13 @@ import static com.example.codetribe.my_kid.R.id.gender;
 public class ProfileUpdate extends AppCompatActivity {
 
 
+<<<<<<< HEAD
     TextView signUpButton;
+=======
+    private AwesomeValidation awesomeValidation;
+
+      TextView signUpButton;
+>>>>>>> 954289c337ce93c5ab924085ff27b7174aebaa3e
     private TextView editprofile;
 
     private EditText inputName,
@@ -75,12 +86,26 @@ public class ProfileUpdate extends AppCompatActivity {
         getSupportActionBar().setTitle("Update Profile Update");
 
 
+<<<<<<< HEAD
         //database
+=======
+        //validation
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+
+
+        //getting intent
+>>>>>>> 954289c337ce93c5ab924085ff27b7174aebaa3e
         Intent intent = getIntent();
         keyUser = intent.getStringExtra("User_KEY");
 
+<<<<<<< HEAD
         user = FirebaseAuth.getInstance().getCurrentUser();
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+=======
+        //getting UserKey
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+>>>>>>> 954289c337ce93c5ab924085ff27b7174aebaa3e
         //database
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
 
@@ -97,6 +122,20 @@ public class ProfileUpdate extends AppCompatActivity {
         radGender = (RadioGroup) findViewById(gender);
         inputIdnumber = (EditText) findViewById(R.id.reg_idnumber);
 
+        //adding validation to edittexts
+        awesomeValidation.addValidation(this, R.id.reg_fullname, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
+        awesomeValidation.addValidation(this, R.id.reg_Surname, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.surnameerror);
+        awesomeValidation.addValidation(this, R.id.reg_address, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.address);
+        awesomeValidation.addValidation(this, R.id.reg_city, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.city);
+        awesomeValidation.addValidation(this, R.id.reg_phone, "^[+]?[0-9]{10,13}$", R.string.contacterror);
+        awesomeValidation.addValidation(this, R.id.reg_idnumber, "^[0-9]{13}$", R.string.err_msg_idnumber);
+
+
+
+
+
+
+
         //TextLayout
         inputLayoutName = (TextInputLayout) findViewById(R.id.input_reg_fullname);
         inputLayoutSurname = (TextInputLayout) findViewById(R.id.input_reg_Surname);
@@ -106,12 +145,21 @@ public class ProfileUpdate extends AppCompatActivity {
         inputLayoutNumber = (TextInputLayout) findViewById(R.id.input_reg_phoneNo);
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+>>>>>>> 954289c337ce93c5ab924085ff27b7174aebaa3e
         inputName.addTextChangedListener(new MyTextWatcher(inputName));
         inputSurname.addTextChangedListener(new MyTextWatcher(inputSurname));
         inputAddress.addTextChangedListener(new MyTextWatcher(inputAddress));
         inputCity.addTextChangedListener(new MyTextWatcher(inputCity));
         inputCellphoneNumber.addTextChangedListener(new MyTextWatcher(inputCellphoneNumber));
         inputIdnumber.addTextChangedListener(new MyTextWatcher(inputIdnumber));
+<<<<<<< HEAD
         signUpButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -163,6 +211,20 @@ public class ProfileUpdate extends AppCompatActivity {
 
 
         if (boom == true) {
+=======
+
+
+
+
+
+
+        signUpButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+if(awesomeValidation.validate()){
+
+>>>>>>> 954289c337ce93c5ab924085ff27b7174aebaa3e
 
             userNameString = inputName.getText().toString().trim();
             userContactString = inputCellphoneNumber.getText().toString().trim();
@@ -175,7 +237,13 @@ public class ProfileUpdate extends AppCompatActivity {
             genderString = rdGenders.getText().toString();
 
 
+<<<<<<< HEAD
             //databaseKids.child(id).setValue(kids);
+=======
+
+
+    //databaseKids.child(id).setValue(kids);
+>>>>>>> 954289c337ce93c5ab924085ff27b7174aebaa3e
 
             if (!TextUtils.isEmpty(inputIdnumberString)) {
 
@@ -204,8 +272,26 @@ public class ProfileUpdate extends AppCompatActivity {
             }
 
 
+<<<<<<< HEAD
         }
+=======
+
+}
+
+
+            }
+        });
+
+>>>>>>> 954289c337ce93c5ab924085ff27b7174aebaa3e
     }
+
+    private void saveProfile(){
+
+
+
+
+    }
+
 
 
 

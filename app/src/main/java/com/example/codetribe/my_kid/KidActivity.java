@@ -14,6 +14,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -56,6 +58,9 @@ public class KidActivity extends AppCompatActivity {
             bodyWeight;
 
 
+    //defining AwesomeValidation object
+    private AwesomeValidation awesomeValidation;
+
     //database
     DatabaseReference databaseKids, adminOrgNameRef;
     Context context;
@@ -71,7 +76,7 @@ public class KidActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Add kid");
 
-
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         //initializing
         kidname = (EditText) findViewById(R.id.editname);
         kidsurname = (EditText) findViewById(R.id.editSurname);
@@ -82,6 +87,17 @@ public class KidActivity extends AppCompatActivity {
         registeredYears = (EditText) findViewById(R.id.editYear);
         radKidGender = (RadioGroup) findViewById(R.id.genders);
         btnCreate = (TextView) findViewById(R.id.btnKidUpdate);
+
+
+        //adding validation to edittexts
+        awesomeValidation.addValidation(this, R.id.editname, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
+        awesomeValidation.addValidation(this, R.id.editSurname, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.surnameerror);
+        awesomeValidation.addValidation(this, R.id.editAdress, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.address);
+        awesomeValidation.addValidation(this, R.id.editkidid, "^^[0-9]{13}$", R.string.iderror);
+        awesomeValidation.addValidation(this, R.id.editParentId, "^^[0-9]{13}$", R.string.iderror);
+        awesomeValidation.addValidation(this, R.id.editYear, "^^[0-9]{4}$", R.string.iderror);
+        awesomeValidation.addValidation(this, R.id.editGrade, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}[0-9]$", R.string.classerror);
+
 
 
         //hint editext
@@ -110,26 +126,31 @@ public class KidActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                adminOrgNameRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (awesomeValidation.validate()) {
+
+                    adminOrgNameRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
 
 
-                        String org_name = dataSnapshot.getValue(String.class);
-                        //Toast.makeText(context,org_name, Toast.LENGTH_LONG).show();
-                        //adminSerach(dataSnapshot,userId);
-                        adminSerach(org_name);
+                            String org_name = dataSnapshot.getValue(String.class);
+                            //Toast.makeText(context,org_name, Toast.LENGTH_LONG).show();
+                            //adminSerach(dataSnapshot,userId);
+                            adminSerach(org_name);
 
 
-                    }
+                        }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
 
-                    }
-                });
+                        }
+                    });
 
+                }
             }
+
         });
 
     }
