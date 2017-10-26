@@ -16,6 +16,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -24,6 +26,8 @@ import static com.example.codetribe.my_kid.R.id.gender;
 
 public class ProfileUpdate extends AppCompatActivity {
 
+
+    private AwesomeValidation awesomeValidation;
 
       TextView signUpButton;
     private TextView editprofile;
@@ -67,13 +71,17 @@ private RadioButton rdGenders;
         getSupportActionBar().setTitle("Update Profile Update");
 
 
+        //validation
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
-        //database
+
+        //getting intent
         Intent intent = getIntent();
         keyUser =  intent.getStringExtra("User_KEY");
 
+        //getting UserKey
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         //database
      databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
 
@@ -91,6 +99,20 @@ String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         radGender = (RadioGroup)findViewById(gender);
         inputIdnumber= (EditText) findViewById(R.id.reg_idnumber);
 
+        //adding validation to edittexts
+        awesomeValidation.addValidation(this, R.id.reg_fullname, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
+        awesomeValidation.addValidation(this, R.id.reg_Surname, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.surnameerror);
+        awesomeValidation.addValidation(this, R.id.reg_address, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.address);
+        awesomeValidation.addValidation(this, R.id.reg_city, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.city);
+        awesomeValidation.addValidation(this, R.id.reg_phone, "^[+]?[0-9]{10,13}$", R.string.contacterror);
+        awesomeValidation.addValidation(this, R.id.reg_idnumber, "^[0-9]{13}$", R.string.err_msg_idnumber);
+
+
+
+
+
+
+
         //TextLayout
         inputLayoutName = (TextInputLayout)findViewById(R.id.input_reg_fullname);
         inputLayoutSurname = (TextInputLayout)findViewById(R.id.input_reg_Surname);
@@ -98,6 +120,9 @@ String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         inputLayoutCity = (TextInputLayout) findViewById(R.id.input_reg_city);
         inputLayoutIdNumber = (TextInputLayout)findViewById(R.id.input_reg_idNumber);
         inputLayoutNumber = (TextInputLayout) findViewById(R.id.input_reg_phoneNo);
+
+
+
 
 
 
@@ -116,67 +141,12 @@ String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
 
-
-
         signUpButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
-                //submitForm();
+if(awesomeValidation.validate()){
 
-               // saveProfile();
-
-                validateUpdate();
-
-
-            }
-        });
-
-    }
-
-    private void saveProfile(){
-
-
-
-
-    }
-
-
-    private void validateUpdate(){
-
-Boolean boom = true;
-        if (!validateName()) {
-            boom = false;
-            return;
-        }
-
-        if (!validateSurname()) {
-            boom = false;
-            return;
-        }
-
-        if (!validateAddress()) {
-            boom = false;
-            return;
-        }
-
-        if (!validateCity()) {
-            boom = false;
-            return;
-        }
-
-        if (!validatePhone()) {
-            boom = false;
-            return;
-        }
-
-        if (!validateIdNo()) {
-            boom = false;
-            return;
-        }
-
-
-if(boom == true) {
 
     userNameString = inputName.getText().toString().trim();
     userContactString = inputCellphoneNumber.getText().toString().trim();
@@ -187,6 +157,8 @@ if(boom == true) {
     int selectedId = radGender.getCheckedRadioButtonId();
     rdGenders = (RadioButton) findViewById(selectedId);
     genderString = rdGenders.getText().toString();
+
+
 
 
     //databaseKids.child(id).setValue(kids);
@@ -218,8 +190,22 @@ if(boom == true) {
     }
 
 
+
 }
+
+
+            }
+        });
+
     }
+
+    private void saveProfile(){
+
+
+
+
+    }
+
 
 
     private boolean validateName() {

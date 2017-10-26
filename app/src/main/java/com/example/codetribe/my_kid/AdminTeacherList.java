@@ -39,7 +39,7 @@ public class AdminTeacherList extends Fragment {
 
     private FirebaseAuth adminUser;
     //database
-    DatabaseReference usersRetriveRef,kidsCreche;
+    DatabaseReference usersRetriveRef,adminCreche;
     TextView sos;
     String Idadmin;
     Spinner spinner;
@@ -62,16 +62,19 @@ public class AdminTeacherList extends Fragment {
 
 
 
-        usersRetriveRef = FirebaseDatabase.getInstance().getReference("Users");
-
 
         listUsers = (ListView)rootView.findViewById(R.id.listViewkids);
 
         Idadmin=  FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
+        usersRetriveRef = FirebaseDatabase.getInstance().getReference("Users");
+        adminCreche = FirebaseDatabase.getInstance().getReference("Users").child(Idadmin);
 
 
+adminCreche.addListenerForSingleValueEvent(new ValueEventListener() {
+    @Override
+    public void onDataChange(final DataSnapshot adminSnapshot) {
         usersRetriveRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -80,11 +83,14 @@ public class AdminTeacherList extends Fragment {
 
 
                     if(kidssnapshot.child("role").getValue().toString().equals("teacher")) {
+                        if(kidssnapshot.child("orgName").getValue().equals(adminSnapshot.child("orgName").getValue().toString()))
+                        {
 
-                        UserProfile kidInf = kidssnapshot.getValue(UserProfile.class);
-                        user.add(kidInf);
+                            UserProfile kidInf = kidssnapshot.getValue(UserProfile.class);
+                            user.add(kidInf);
 
-                        kidInf.getKeyUser();
+                            kidInf.getKeyUser();
+                        }
 
                     }
 
@@ -98,6 +104,16 @@ public class AdminTeacherList extends Fragment {
 
             }
         });
+
+
+
+    }
+
+    @Override
+    public void onCancelled(DatabaseError databaseError) {
+
+    }
+});
 
 
         userTeacher.setOnClickListener(new View.OnClickListener() {

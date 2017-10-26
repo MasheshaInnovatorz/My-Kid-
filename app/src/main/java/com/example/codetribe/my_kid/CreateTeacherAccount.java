@@ -36,8 +36,8 @@ public class
 CreateTeacherAccount extends AppCompatActivity {
 
     TextInputLayout inputLayoutName, inputLayoutsurname, inputLayoutcontact, inputLayoutclassroom, inputLayoutidnumber, inputLayoutemail, inputLayoutpassword;
-    String userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, useremailString, userpasswordString;
-    private EditText name, surname, contact, classroom, idnumber, useremail, userpassword;
+    String userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, useremailString, userpasswordString, userAddressString,userCityString;
+    private EditText name, surname, contact, classroom, idnumber, useremail, userpassword,userAddress,userCity;
     RadioGroup gender;
     String keyTeacher;
     TextView createteacher;
@@ -80,6 +80,9 @@ CreateTeacherAccount extends AppCompatActivity {
         useremail = (EditText) findViewById(R.id.teacheremail);
         userpassword = (EditText) findViewById(teacherpassword);
         gender = (RadioGroup) findViewById(R.id.teachergenders);
+        userAddress = (EditText)findViewById(R.id.teacherAddress);
+        userCity = (EditText)findViewById(R.id.teacherCity);
+
 
         createteacher = (TextView) findViewById(R.id.Create_Teacher_Account);
 
@@ -87,10 +90,13 @@ CreateTeacherAccount extends AppCompatActivity {
         awesomeValidation.addValidation(this, R.id.teachername, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
         awesomeValidation.addValidation(this, R.id.teachersurname, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.surnameerror);
         awesomeValidation.addValidation(this, R.id.teacheremail, Patterns.EMAIL_ADDRESS, R.string.emailerror);
+        awesomeValidation.addValidation(this, R.id.teacherAddress, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.address);
+        awesomeValidation.addValidation(this, R.id.teacherCity, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.city);
         awesomeValidation.addValidation(this, teacherpassword, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.passworderror);
-        awesomeValidation.addValidation(this, R.id.teachercontact, "^[2-9]{2}[0-9]{8}$", R.string.mobileerror);
-       // awesomeValidation.addValidation(this, R.id.teacherid, "^[2-9]{2}[0-13]{11}$", R.string.iderror);
-        awesomeValidation.addValidation(this, R.id.teacherclass, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.classerror);
+        awesomeValidation.addValidation(this, R.id.teachercontact, "^[+]?[0-9]{10,13}$", R.string.mobileerror);
+        awesomeValidation.addValidation(this, R.id.teacherid, "^^[0-9]{13}$", R.string.iderror);
+        awesomeValidation.addValidation(this, R.id.teacherclass, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}[0-9]$", R.string.classerror);
+
 
         //database
         Intent intent = getIntent();
@@ -120,12 +126,16 @@ CreateTeacherAccount extends AppCompatActivity {
 
                         String org_name = dataSnapshot.getValue(String.class);
 
-                        if (!awesomeValidation.validate()) {
-                            Toast.makeText(CreateTeacherAccount.this, "Validating....", Toast.LENGTH_LONG).show();
+                        if (awesomeValidation.validate()) {
+
+
+
+
+                            saveParent(org_name);
                         }
                         else
                         {
-                            saveParent(org_name);
+                            Toast.makeText(CreateTeacherAccount.this, "Please Fix all the edit text", Toast.LENGTH_LONG).show();
 
                         }
 
@@ -163,6 +173,8 @@ CreateTeacherAccount extends AppCompatActivity {
                 usercontactString = contact.getText().toString().trim();
                 userclassroomString = classroom.getText().toString().trim();
                 useridnumberString = idnumber.getText().toString().trim();
+                userAddressString = userAddress.getText().toString().trim();
+                userCityString = userCity.getText().toString().trim();
 
 
 
@@ -177,8 +189,7 @@ CreateTeacherAccount extends AppCompatActivity {
 
                 //        progressBar.setVisibility(View.VISIBLE);
                 //create user
-                progressDialog.setMessage("Wait While Registering Teacher");
-                progressDialog.show();
+
 
                 auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(CreateTeacherAccount.this, new OnCompleteListener<AuthResult>() {
@@ -193,7 +204,7 @@ CreateTeacherAccount extends AppCompatActivity {
 
 
                                     //Storing Information
-                                    TeacherClassAcc teacher = new TeacherClassAcc(userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, task.getResult().getUser().getUid().toString().trim(), task.getResult().getUser().getEmail().toString().trim(), password, role, "verified", orgNames,"Egret Pretoria");
+                                    TeacherClassAcc teacher = new TeacherClassAcc(userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, task.getResult().getUser().getUid().toString().trim(), task.getResult().getUser().getEmail().toString().trim(), password, role, "verified", orgNames,userAddressString,userCityString);
 
                                     mDatabaseRef.child(task.getResult().getUser().getUid().toString().trim()).setValue(teacher);
 
@@ -201,13 +212,12 @@ CreateTeacherAccount extends AppCompatActivity {
 
                                     startActivity(new Intent(getApplication(), Admin.class));
 
-                                    progressDialog.dismiss();
 
                                 }
 
                                 if (!task.isSuccessful()) {
                                     Toast.makeText(CreateTeacherAccount.this, "Authentication failed." + task.getException(),   Toast.LENGTH_SHORT).show();
-                                    progressDialog.dismiss();
+
                                 } else {
                                     // startActivity(new Intent(Create_Teacher_Account.this, LoginActivity.class));
 
