@@ -1,7 +1,9 @@
 package com.example.codetribe.my_kid;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -28,7 +30,8 @@ import static com.example.codetribe.my_kid.R.id.orgCity;
 public class SignUpOrganisationActivity extends AppCompatActivity {
 
     FirebaseAuth.AuthStateListener mAuthListener;
-
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor sharedPrefEditor;
     DatabaseReference mOrganizationRef;
     private TextView signup;
     private EditText orgaEmail,
@@ -59,6 +62,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);//shared
         signup = (TextView) findViewById(R.id.btnRegisterCreche);
         orgAuth = FirebaseAuth.getInstance();
         mOrganizationRef = FirebaseDatabase.getInstance().getReference().child("Creche");
@@ -94,6 +98,9 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                     return;
                 }
 
+                sharedPrefEditor = sharedPreferences.edit();
+                sharedPrefEditor.putString("email",email);
+                sharedPrefEditor.apply();
 
                 final String crechNameOrg, crechAddressOrg, crechCityOrg, crechPhoneNoOrg, adminNameOrg, adminSurnameOrg, adminIdNoOrg, adminGender;
                 crechNameOrg = crechName.getText().toString().trim();

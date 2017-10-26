@@ -2,7 +2,9 @@ package com.example.codetribe.my_kid;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -32,8 +34,8 @@ import java.util.List;
 
 
 public class SignUp extends AppCompatActivity {
-
-
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor sharedPrefEditor;
     private EditText inputEmail, inputPassword;
     //spinner
    private  ArrayAdapter<String> dataAdapter;
@@ -64,6 +66,7 @@ public class SignUp extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         mDatabaseRef  = FirebaseDatabase.getInstance().getReference();
         mUserCheckData = FirebaseDatabase.getInstance().getReference().child("Users");
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);//shared
 
         progressDialog = new ProgressDialog(this);
 
@@ -179,7 +182,12 @@ public class SignUp extends AppCompatActivity {
                 userEmailString = inputEmail.getText().toString().trim();
                 userPassString = inputPassword.getText().toString().trim();
 
-               if(strName != null){
+                sharedPrefEditor = sharedPreferences.edit();
+                sharedPrefEditor.putString("email",userEmailString);
+                sharedPrefEditor.apply();
+
+
+                if(strName != null){
                 if (!TextUtils.isEmpty(userEmailString) && !TextUtils.isEmpty(userPassString)) {
                     auth.createUserWithEmailAndPassword(userEmailString, userPassString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -208,6 +216,7 @@ public class SignUp extends AppCompatActivity {
                         }
                     });
                 }
+
             }
                 progressDialog.dismiss();
 

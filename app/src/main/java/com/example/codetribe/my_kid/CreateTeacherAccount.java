@@ -2,7 +2,9 @@ package com.example.codetribe.my_kid;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -34,7 +36,8 @@ import static com.example.codetribe.my_kid.R.id.teacherpassword;
 public class
 
 CreateTeacherAccount extends AppCompatActivity {
-
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor sharedPrefEditor;
     TextInputLayout inputLayoutName, inputLayoutsurname, inputLayoutcontact, inputLayoutclassroom, inputLayoutidnumber, inputLayoutemail, inputLayoutpassword;
     String userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, useremailString, userpasswordString;
     private EditText name, surname, contact, classroom, idnumber, useremail, userpassword;
@@ -83,6 +86,9 @@ CreateTeacherAccount extends AppCompatActivity {
 
         createteacher = (TextView) findViewById(R.id.Create_Teacher_Account);
 
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String shared_email = sharedPreferences.getString("email","");
+        useremail.setText(shared_email);
          //adding validation to edittexts
         awesomeValidation.addValidation(this, R.id.teachername, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
         awesomeValidation.addValidation(this, R.id.teachersurname, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.surnameerror);

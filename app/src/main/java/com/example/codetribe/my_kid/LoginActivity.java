@@ -2,7 +2,9 @@ package com.example.codetribe.my_kid;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +32,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     TextView login_Button;
  ImageView backtowelcome,icon;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor sharedPrefEditor;
 
    //declaring buttons and textiew
     private FirebaseUser mFirebaseUser;
@@ -56,6 +60,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
 
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String shared_email = sharedPreferences.getString("email","");
 
        // signup= (TextView)findViewById(R.id.sinup);
         editEmail = (EditText)findViewById(R.id.email);
@@ -74,8 +80,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         progressDialog = new ProgressDialog(this);
 
-
-
+        editEmail.setText(shared_email);
 
 
         //database
