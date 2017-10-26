@@ -16,30 +16,35 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+<<<<<<< HEAD
 import com.bumptech.glide.Glide;
 
+=======
+>>>>>>> 48acdef426884f6e4e790c7441e026b450efd7af
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.Iterator;
-
-import static android.R.attr.name;
-import static com.example.codetribe.my_kid.R.id.email;
 import static com.example.codetribe.my_kid.R.id.gender;
 
 public class ProfileUpdate extends AppCompatActivity {
 
 
+<<<<<<< HEAD
+=======
+
+    private AwesomeValidation awesomeValidation;
+>>>>>>> 48acdef426884f6e4e790c7441e026b450efd7af
 
     private AwesomeValidation awesomeValidation;
       TextView signUpButton;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 48acdef426884f6e4e790c7441e026b450efd7af
     private TextView editprofile;
 
     private EditText inputName,
@@ -89,11 +94,17 @@ public class ProfileUpdate extends AppCompatActivity {
         Intent intent = getIntent();
         keyUser = intent.getStringExtra("User_KEY");
 
+<<<<<<< HEAD
         user = FirebaseAuth.getInstance().getCurrentUser();
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         //getting UserKey
        // String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+=======
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+>>>>>>> 48acdef426884f6e4e790c7441e026b450efd7af
 
         //database
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
@@ -134,11 +145,22 @@ public class ProfileUpdate extends AppCompatActivity {
         inputLayoutNumber = (TextInputLayout) findViewById(R.id.input_reg_phoneNo);
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 48acdef426884f6e4e790c7441e026b450efd7af
         inputName.addTextChangedListener(new MyTextWatcher(inputName));
         inputSurname.addTextChangedListener(new MyTextWatcher(inputSurname));
         inputAddress.addTextChangedListener(new MyTextWatcher(inputAddress));
         inputCity.addTextChangedListener(new MyTextWatcher(inputCity));
         inputCellphoneNumber.addTextChangedListener(new MyTextWatcher(inputCellphoneNumber));
+<<<<<<< HEAD
+=======
+        inputIdnumber.addTextChangedListener(new MyTextWatcher(inputIdnumber));
+>>>>>>> 48acdef426884f6e4e790c7441e026b450efd7af
         signUpButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -148,10 +170,6 @@ public class ProfileUpdate extends AppCompatActivity {
         });
     }
 
-    private void saveProfile() {
-
-
-    }
 
 
     private void validateUpdate() {
@@ -189,6 +207,7 @@ public class ProfileUpdate extends AppCompatActivity {
 
 
         if (boom == true) {
+<<<<<<< HEAD
 
 
             signUpButton.setOnClickListener(new View.OnClickListener() {
@@ -220,9 +239,69 @@ public class ProfileUpdate extends AppCompatActivity {
                             databaseReference.child("userCity").setValue(profile.getUserCity());
                             databaseReference.child("userGender").setValue(profile.getUserGender());
                             databaseReference.child("isVerified").setValue(profile.getIsVerified());
+=======
+
+
+            signUpButton.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    if (awesomeValidation.validate()) {
+                        userNameString = inputName.getText().toString().trim();
+                        userContactString = inputCellphoneNumber.getText().toString().trim();
+                        inputSurnameString = inputSurname.getText().toString().trim();
+                        inputIdnumberString = inputIdnumber.getText().toString().trim();
+                        inputAddressString = inputAddress.getText().toString().trim();
+                        inputCityString = inputCity.getText().toString().trim();
+                        int selectedId = radGender.getCheckedRadioButtonId();
+                        rdGenders = (RadioButton) findViewById(selectedId);
+                        genderString = rdGenders.getText().toString();
+>>>>>>> 48acdef426884f6e4e790c7441e026b450efd7af
 
                             //databaseReference.setValue(ProfileUpdate);
 
+<<<<<<< HEAD
+                            Toast.makeText(ProfileUpdate.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
+                            // startActivity(new Intent(ProfileUpdate.this, ParentActivity.class));
+=======
+                        if (!TextUtils.isEmpty(inputIdnumberString)) {
+>>>>>>> 48acdef426884f6e4e790c7441e026b450efd7af
+
+                        } else {
+                            Toast.makeText(ProfileUpdate.this, "User Failed to Update Profile", Toast.LENGTH_SHORT).show();
+                        }
+
+<<<<<<< HEAD
+
+                    }
+=======
+                            String isVerified = "verified";
+
+>>>>>>> 48acdef426884f6e4e790c7441e026b450efd7af
+
+                            UserProfile profile = new UserProfile(keyUser, userNameString, inputSurnameString, inputIdnumberString, inputAddressString, inputCityString, userContactString, genderString, isVerified);
+
+<<<<<<< HEAD
+                }
+=======
+                            databaseReference.child("userName").setValue(profile.getUserName());
+                            databaseReference.child("userSurname").setValue(profile.getUserSurname());
+                            databaseReference.child("userIdNumber").setValue(profile.getUserIdNumber());
+                            databaseReference.child("userContact").setValue(profile.getUserContact());
+                            databaseReference.child("userAddress").setValue(profile.getUserAddress());
+                            databaseReference.child("userCity").setValue(profile.getUserCity());
+                            databaseReference.child("userGender").setValue(profile.getUserGender());
+                            databaseReference.child("isVerified").setValue(profile.getIsVerified());
+>>>>>>> 48acdef426884f6e4e790c7441e026b450efd7af
+
+                            //databaseReference.setValue(ProfileUpdate);
+
+<<<<<<< HEAD
+            });
+
+
+        }}
+=======
                             Toast.makeText(ProfileUpdate.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
                             // startActivity(new Intent(ProfileUpdate.this, ParentActivity.class));
 
@@ -233,14 +312,12 @@ public class ProfileUpdate extends AppCompatActivity {
 
                     }
 
-
                 }
-
-
             });
 
-
-        }}
+        }
+    }
+>>>>>>> 48acdef426884f6e4e790c7441e026b450efd7af
 
 
 
