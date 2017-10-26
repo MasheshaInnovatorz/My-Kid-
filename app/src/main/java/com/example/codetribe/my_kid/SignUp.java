@@ -240,7 +240,7 @@ public class SignUp extends AppCompatActivity {
                     intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                     startActivity(intent);
                 } else {
-                    startActivity(new Intent(SignUp.this, ParentActivity.class));
+              //      startActivity(new Intent(SignUp.this, ParentActivity.class));
                 }
             }
         }

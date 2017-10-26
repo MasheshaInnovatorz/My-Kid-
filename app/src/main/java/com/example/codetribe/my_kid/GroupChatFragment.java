@@ -38,7 +38,7 @@ public class GroupChatFragment extends Fragment {
 
 
         firebaseAuth = FirebaseAuth.getInstance();
-        // log_out = (Button) findViewById(R.id.log_out);
+
         send = (ImageView) rootView.findViewById(R.id.buttonsend);
         messgae = (EditText) rootView.findViewById(R.id.mess_text);
         messagelist = (ListView) rootView.findViewById(R.id.mess_list);

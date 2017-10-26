@@ -26,7 +26,7 @@
             android:layout_below="@+id/icon"
             android:layout_marginBottom="2dp"
             android:textSize="20sp"
-            android:textColor="#000000"
+            android:textColor="#F57C00"
             android:text="Welcome To Kids Creatives"
             android:textAlignment="center"/>
 
@@ -51,6 +51,7 @@
                     android:layout_marginTop="30dp"
                     android:background="#0000"
                     android:hint="Username"
+                    android:text="mr@gmail.com"
                     android:inputType="textEmailAddress"
                     android:padding="16dp"
                     android:textSize="16dp" />
@@ -80,6 +81,7 @@
                     android:layout_marginRight="35dp"
                     android:background="#0000"
                     android:hint="Password"
+                    android:text="000000"
                     android:inputType="textPassword"
                     android:maxLength="12"
                     android:padding="16dp"

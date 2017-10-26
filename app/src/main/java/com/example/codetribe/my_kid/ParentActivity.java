@@ -1,3 +1,4 @@
+/*
 package com.example.codetribe.my_kid;
 
 import android.content.Intent;
@@ -60,14 +61,7 @@ public class ParentActivity extends AppCompatActivity {
             }
         });
 
-        groupchat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ParentActivity.this,GroupChat.class);
-               // intent.putExtra("kid_id",idLoged);
-                startActivity(intent);
-            }
-        });
+
     }
 
 
@@ -95,7 +89,7 @@ public class ParentActivity extends AppCompatActivity {
                intent_kid.putExtra("User_KEY",idLoged);
                 startActivity(intent_kid);
                 return true;
-*/
+
             case R.id.view_profile:
                 Intent intent = new Intent(ParentActivity.this,ViewProfile.class);
                 intent.putExtra("parent_user",idLoged);
@@ -112,3 +106,5 @@ public class ParentActivity extends AppCompatActivity {
     }
 
 }
+
+*/

@@ -151,10 +151,10 @@ public class TeachersActivity extends AppCompatActivity {
                 return true;
 
             case R.id.Group_Chat:
-                Intent intentchat = new Intent(TeachersActivity.this,GroupChat.class);
+              //  Intent intentchat = new Intent(TeachersActivity.this,GroupChat.class);
                 // intent.putExtra("User_KEY",userId);
                // intentchat.putExtra("user_id",idLoged);
-                startActivity(intentchat);
+               // startActivity(intentchat);
                 return true;
 
 

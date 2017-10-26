@@ -68,25 +68,17 @@ public class KidsMemoListFragment extends Fragment {
 
         fab = (FloatingActionButton) rootView.findViewById(R.id.share_add);
         progressDialog = new ProgressDialog(getContext());
-
-
-
-
-
         imgList = new ArrayList<>();
+
         //show progress dialog during list image loading
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Please wait While Loading Kid Memories");
         progressDialog.show();
 
 
-
-
         //   mDatabase = FirebaseDatabase.getInstance().getReference(SyncStateContract.Constants.DATABASE_PATH_UPLOADS);
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(UploadKidsMemo.FB_DATABASE_PATH);
         childRef = FirebaseDatabase.getInstance().getReference("Kids");
-
-
 
         Intent intent = getActivity().getIntent();
         parentid = intent.getStringExtra("parentIdentity");
@@ -96,10 +88,7 @@ public class KidsMemoListFragment extends Fragment {
 
 
         userKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-
         mUserInfor = FirebaseDatabase.getInstance().getReference("Users").child(userKey);
-
         mUserInfor.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange( final DataSnapshot userSnapshot) {
@@ -129,17 +118,11 @@ public class KidsMemoListFragment extends Fragment {
                                 }
 
 
-                                // Toast.makeText(KidsmemoListsActivity.this, parentid, Toast.LENGTH_SHORT).show();
-
-
-
-// senderId.setText(kids);
 
                                 fab.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
                                         if(KidsId != null || kidsUserId !=null) {
-
                                             Intent intent = new Intent(getContext(), UploadKidsMemo.class);
                                             intent.putExtra("kid_id", KidsId);
                                             intent.putExtra("kidsTeacherId", kidsUserId);
@@ -202,7 +185,6 @@ public class KidsMemoListFragment extends Fragment {
                 Surname = kidsUser.child("surname").getValue().toString();
                 name = kidsUser.child("name").getValue().toString();
 
-
                 while (iterator.hasNext()) {
                     DataSnapshot dataUser = (DataSnapshot) iterator.next();
 
@@ -262,15 +244,8 @@ public class KidsMemoListFragment extends Fragment {
 
                         for (DataSnapshot snapshot : dataUser.getChildren()) {
 
-
-                            // Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
-
                             MemokidsUpload_class img = snapshot.getValue(MemokidsUpload_class.class);
-
-
                             imgList.add(img);
-
-
                             KidsId = kidsUser.child("id").getValue().toString();
 
 
@@ -287,8 +262,6 @@ public class KidsMemoListFragment extends Fragment {
                     } else {
                         Toast.makeText(getContext(), "You don't have a kid you are linked with", Toast.LENGTH_SHORT).show();
                     }
-
-
                 }
 
 

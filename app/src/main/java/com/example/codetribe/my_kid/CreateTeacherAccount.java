@@ -231,28 +231,13 @@ CreateTeacherAccount extends AppCompatActivity {
 
     }
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_mainapp, menu);
-        return true;
-    }
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId())   {
-
-            case R.id.logout:
-
-                return true;
-
-            //case R.id.editKid:
-                //  showHelp();
-
-             //   return true;
-            case R.id.view_profile:
-
-                return true;
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            this.finish();
         }
         return super.onOptionsItemSelected(item);
+
     }
 }
 

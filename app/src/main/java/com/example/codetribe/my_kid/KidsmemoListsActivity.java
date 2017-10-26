@@ -86,8 +86,6 @@ FloatingActionButton share;
 
 
 
-
-        //   mDatabase = FirebaseDatabase.getInstance().getReference(SyncStateContract.Constants.DATABASE_PATH_UPLOADS);
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(UploadKidsMemo.FB_DATABASE_PATH);
         childRef = FirebaseDatabase.getInstance().getReference("Kids");
       //  btnparticipate = (Button) findViewById(R.id.btnParticipate);
@@ -128,8 +126,6 @@ FloatingActionButton share;
 
                             //adding adapter to recyclerview
                             recyclerView.setAdapter(adapter);
-
-
                         }
 
 
@@ -148,7 +144,6 @@ FloatingActionButton share;
 
         Iterator kidsIterator = kidSnapshot.getChildren().iterator();
 
-      // DatabaseReference teacher = FirebaseDatabase.getInstance().getReference("Users");
 
         while(kidsIterator.hasNext()) {
             final DataSnapshot kidsUser = (DataSnapshot) kidsIterator.next();
@@ -168,14 +163,10 @@ FloatingActionButton share;
 
                             for (DataSnapshot snapshot : dataUser.getChildren()) {
 
-
                                // Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
 
                                 MemokidsUpload_class img = snapshot.getValue(MemokidsUpload_class.class);
-
-
                                 imgList.add(img);
-
 
                                 KidsId = kidsUser.child("id").getValue().toString();
 
@@ -216,11 +207,7 @@ FloatingActionButton share;
         // userKey = intent.getStringExtra("User_KEY");
         kidsUserId = intent.getStringExtra("kid_id");
 
-
-
         userKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-
         mUserInfor = FirebaseDatabase.getInstance().getReference("Users").child(userKey);
 
         mUserInfor.addValueEventListener(new ValueEventListener() {

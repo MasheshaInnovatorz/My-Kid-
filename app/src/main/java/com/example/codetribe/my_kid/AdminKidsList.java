@@ -8,9 +8,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -53,7 +55,6 @@ public class AdminKidsList extends Fragment {
         View rootView = inflater.inflate(R.layout.kidaddactivityfrag, container, false);
 
 
-
         listUsers = (ListView)rootView.findViewById(R.id.listViewkids);
       //  fab = (FloatingActionButton) rootView.findViewById(R.id.addTeacher);
 
@@ -65,6 +66,20 @@ public class AdminKidsList extends Fragment {
         kids_id = keyId.getStringExtra("kid_id");
 
 //r
+
+
+        listUsers.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                // Kids kido =  kid.get(i);
+                  Intent intent = new Intent(getContext(),ViewProfile.class);
+                // intent.putExtra("kid_id", kido.getId());
+                  startActivity(intent);
+                 //   Toast.makeText(Ge, "hi sir", Toast.LENGTH_SHORT).show();
+                }
+            });
+
         parentId = keyId.getStringExtra("parent_id");
 
         kidses = new ArrayList<>();
@@ -122,8 +137,6 @@ public class AdminKidsList extends Fragment {
         });
 
 
-
-
         kidsFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,14 +147,6 @@ public class AdminKidsList extends Fragment {
                 startActivity(intent);
             }
         });
-
-
-
-
-
-
-
-
 
         return rootView;
     }

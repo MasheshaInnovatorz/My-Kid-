@@ -243,9 +243,6 @@ public class ViewProfile extends AppCompatActivity {
 
         Iterator iterator = dataSnapshot.getChildren().iterator();
 
-// NEW CODE
-
-
         while(iterator.hasNext()) {
             DataSnapshot dataUser = (DataSnapshot) iterator.next();
 

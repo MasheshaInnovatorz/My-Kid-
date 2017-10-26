@@ -16,31 +16,39 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.Iterator;
+
+import static android.R.attr.name;
+import static com.example.codetribe.my_kid.R.id.email;
 import static com.example.codetribe.my_kid.R.id.gender;
 
 public class ProfileUpdate extends AppCompatActivity {
 
 
-      TextView signUpButton;
+    TextView signUpButton;
     private TextView editprofile;
 
     private EditText inputName,
-                     inputSurname,
-                     inputIdnumber,
-                     inputAddress,
-                     inputCity,
-                     inputCellphoneNumber;
+            inputSurname,
+            inputIdnumber,
+            inputAddress,
+            inputCity,
+            inputCellphoneNumber;
 
-
+    FirebaseUser user;
     //validdation
     private TextInputLayout
             inputLayoutName,
-            inputLayoutSurname
-           ,inputLayoutAddress,
+            inputLayoutSurname, inputLayoutAddress,
             inputLayoutCity,
             inputLayoutIdNumber,
             inputLayoutNumber;
@@ -52,10 +60,10 @@ public class ProfileUpdate extends AppCompatActivity {
     private DatabaseReference databaseReference;
 
     String keyUser;
-    String userNameString,inputSurnameString,inputCityString,inputAddressString,inputIdnumberString,userContactString,genderString;
+    String userNameString, inputSurnameString, inputCityString, inputAddressString, inputIdnumberString, userContactString, genderString;
 
 
-private RadioButton rdGenders;
+    private RadioButton rdGenders;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,19 +75,17 @@ private RadioButton rdGenders;
         getSupportActionBar().setTitle("Update Profile Update");
 
 
-
         //database
         Intent intent = getIntent();
-        keyUser =  intent.getStringExtra("User_KEY");
+        keyUser = intent.getStringExtra("User_KEY");
 
-
-String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         //database
-     databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
 
 
-        //buttons
-       // signupLink = (TextView) findViewById(R.id.back_to_signup);
+        // signupLink = (TextView) findViewById(R.id.back_to_signup);
         signUpButton = (TextView) findViewById(R.id.btnRegister);
 
         //Edit lText
@@ -88,63 +94,43 @@ String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         inputAddress = (EditText) findViewById(R.id.reg_address);
         inputCity = (EditText) findViewById(R.id.reg_city);
         inputCellphoneNumber = (EditText) findViewById(R.id.reg_phone);
-        radGender = (RadioGroup)findViewById(gender);
-        inputIdnumber= (EditText) findViewById(R.id.reg_idnumber);
+        radGender = (RadioGroup) findViewById(gender);
+        inputIdnumber = (EditText) findViewById(R.id.reg_idnumber);
 
         //TextLayout
-        inputLayoutName = (TextInputLayout)findViewById(R.id.input_reg_fullname);
-        inputLayoutSurname = (TextInputLayout)findViewById(R.id.input_reg_Surname);
-        inputLayoutAddress = (TextInputLayout)findViewById(R.id.input_reg_address);
+        inputLayoutName = (TextInputLayout) findViewById(R.id.input_reg_fullname);
+        inputLayoutSurname = (TextInputLayout) findViewById(R.id.input_reg_Surname);
+        inputLayoutAddress = (TextInputLayout) findViewById(R.id.input_reg_address);
         inputLayoutCity = (TextInputLayout) findViewById(R.id.input_reg_city);
-        inputLayoutIdNumber = (TextInputLayout)findViewById(R.id.input_reg_idNumber);
+        inputLayoutIdNumber = (TextInputLayout) findViewById(R.id.input_reg_idNumber);
         inputLayoutNumber = (TextInputLayout) findViewById(R.id.input_reg_phoneNo);
-
-
 
 
         inputName.addTextChangedListener(new MyTextWatcher(inputName));
         inputSurname.addTextChangedListener(new MyTextWatcher(inputSurname));
-
         inputAddress.addTextChangedListener(new MyTextWatcher(inputAddress));
         inputCity.addTextChangedListener(new MyTextWatcher(inputCity));
-
         inputCellphoneNumber.addTextChangedListener(new MyTextWatcher(inputCellphoneNumber));
         inputIdnumber.addTextChangedListener(new MyTextWatcher(inputIdnumber));
-
-
-
-
-
-
-
-
-        signUpButton.setOnClickListener(new View.OnClickListener(){
+        signUpButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                //submitForm();
-
-               // saveProfile();
-
                 validateUpdate();
-
-
             }
         });
 
     }
 
-    private void saveProfile(){
-
-
+    private void saveProfile() {
 
 
     }
 
 
-    private void validateUpdate(){
+    private void validateUpdate() {
 
-Boolean boom = true;
+        Boolean boom = true;
         if (!validateName()) {
             boom = false;
             return;
@@ -176,54 +162,56 @@ Boolean boom = true;
         }
 
 
-if(boom == true) {
+        if (boom == true) {
 
-    userNameString = inputName.getText().toString().trim();
-    userContactString = inputCellphoneNumber.getText().toString().trim();
-    inputSurnameString = inputSurname.getText().toString().trim();
-    inputIdnumberString = inputIdnumber.getText().toString().trim();
-    inputAddressString = inputAddress.getText().toString().trim();
-    inputCityString = inputCity.getText().toString().trim();
-    int selectedId = radGender.getCheckedRadioButtonId();
-    rdGenders = (RadioButton) findViewById(selectedId);
-    genderString = rdGenders.getText().toString();
-
-
-    //databaseKids.child(id).setValue(kids);
-
-    if (!TextUtils.isEmpty(inputIdnumberString)) {
+            userNameString = inputName.getText().toString().trim();
+            userContactString = inputCellphoneNumber.getText().toString().trim();
+            inputSurnameString = inputSurname.getText().toString().trim();
+            inputIdnumberString = inputIdnumber.getText().toString().trim();
+            inputAddressString = inputAddress.getText().toString().trim();
+            inputCityString = inputCity.getText().toString().trim();
+            int selectedId = radGender.getCheckedRadioButtonId();
+            rdGenders = (RadioButton) findViewById(selectedId);
+            genderString = rdGenders.getText().toString();
 
 
-        String isVerified = "verified";
+            //databaseKids.child(id).setValue(kids);
+
+            if (!TextUtils.isEmpty(inputIdnumberString)) {
 
 
-        UserProfile profile = new UserProfile(keyUser, userNameString, inputSurnameString, inputIdnumberString, inputAddressString, inputCityString, userContactString, genderString, isVerified);
+                String isVerified = "verified";
 
-        databaseReference.child("userName").setValue(profile.getUserName());
-        databaseReference.child("userSurname").setValue(profile.getUserSurname());
-        databaseReference.child("userIdNumber").setValue(profile.getUserIdNumber());
-        databaseReference.child("userContact").setValue(profile.getUserContact());
-        databaseReference.child("userAddress").setValue(profile.getUserAddress());
-        databaseReference.child("userCity").setValue(profile.getUserCity());
-        databaseReference.child("userGender").setValue(profile.getUserGender());
-        databaseReference.child("isVerified").setValue(profile.getIsVerified());
 
-        //databaseReference.setValue(ProfileUpdate);
+                UserProfile profile = new UserProfile(keyUser, userNameString, inputSurnameString, inputIdnumberString, inputAddressString, inputCityString, userContactString, genderString, isVerified);
 
-        Toast.makeText(ProfileUpdate.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(ProfileUpdate.this, ParentActivity.class));
+                databaseReference.child("userName").setValue(profile.getUserName());
+                databaseReference.child("userSurname").setValue(profile.getUserSurname());
+                databaseReference.child("userIdNumber").setValue(profile.getUserIdNumber());
+                databaseReference.child("userContact").setValue(profile.getUserContact());
+                databaseReference.child("userAddress").setValue(profile.getUserAddress());
+                databaseReference.child("userCity").setValue(profile.getUserCity());
+                databaseReference.child("userGender").setValue(profile.getUserGender());
+                databaseReference.child("isVerified").setValue(profile.getIsVerified());
 
-    } else {
-        Toast.makeText(ProfileUpdate.this, "User Failed to Update Profile", Toast.LENGTH_SHORT).show();
+                //databaseReference.setValue(ProfileUpdate);
+
+                Toast.makeText(ProfileUpdate.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
+                // startActivity(new Intent(ProfileUpdate.this, ParentActivity.class));
+
+            } else {
+                Toast.makeText(ProfileUpdate.this, "User Failed to Update Profile", Toast.LENGTH_SHORT).show();
+            }
+
+
+        }
     }
 
 
-}
-    }
 
 
     private boolean validateName() {
-        if (inputName.getText().toString().trim().isEmpty() && inputName.getText().length()<6) {
+        if (inputName.getText().toString().trim().isEmpty() && inputName.getText().length() < 6) {
             inputLayoutName.setError("Enter the number");
             requestFocus(inputName);
             return false;
@@ -235,7 +223,7 @@ if(boom == true) {
     }
 
     private boolean validateSurname() {
-        if (inputSurname.getText().toString().trim().isEmpty() && inputSurname.getText().length()<6 ) {
+        if (inputSurname.getText().toString().trim().isEmpty() && inputSurname.getText().length() < 6) {
             inputLayoutSurname.setError("Enter Your Surname");
             requestFocus(inputSurname);
             return false;
@@ -247,7 +235,7 @@ if(boom == true) {
     }
 
     private boolean validateAddress() {
-        if (inputAddress.getText().toString().trim().isEmpty() && inputAddress.getText().length()<6) {
+        if (inputAddress.getText().toString().trim().isEmpty() && inputAddress.getText().length() < 6) {
             inputLayoutAddress.setError("Enter Your Your Address");
             requestFocus(inputAddress);
             return false;
@@ -257,8 +245,9 @@ if(boom == true) {
 
         return true;
     }
+
     private boolean validateCity() {
-        if (inputCity.getText().toString().trim().isEmpty() && inputCity.getText().length() <6) {
+        if (inputCity.getText().toString().trim().isEmpty() && inputCity.getText().length() < 6) {
             inputLayoutCity.setError("Enter Your Your Address");
             requestFocus(inputCity);
             return false;
@@ -268,8 +257,9 @@ if(boom == true) {
 
         return true;
     }
+
     private boolean validatePhone() {
-        if (inputCellphoneNumber.getText().toString().trim().isEmpty() && inputCellphoneNumber.getText().length()<6) {
+        if (inputCellphoneNumber.getText().toString().trim().isEmpty() && inputCellphoneNumber.getText().length() < 6) {
             inputLayoutNumber.setError("Enter Your Your Full Number phone");
             requestFocus(inputCellphoneNumber);
             return false;
@@ -281,7 +271,7 @@ if(boom == true) {
     }
 
     private boolean validateIdNo() {
-        if (inputIdnumber.getText().toString().trim().isEmpty() && inputIdnumber.getText().length()<6) {
+        if (inputIdnumber.getText().toString().trim().isEmpty() && inputIdnumber.getText().length() < 6) {
             inputLayoutIdNumber.setError("Enter Your Your Full Id Number phone");
             requestFocus(inputIdnumber);
             return false;
@@ -293,13 +283,11 @@ if(boom == true) {
     }
 
 
+    private class MyTextWatcher implements TextWatcher {
 
+        private View view;
 
-    private class MyTextWatcher implements TextWatcher{
-
-        private  View view;
-
-        private MyTextWatcher(View view){
+        private MyTextWatcher(View view) {
             this.view = view;
         }
 
@@ -317,7 +305,7 @@ if(boom == true) {
         public void afterTextChanged(Editable editable) {
 
 
-            switch(view.getId()){
+            switch (view.getId()) {
                 case R.id.reg_fullname:
                     validateName();
                     break;
@@ -339,15 +327,9 @@ if(boom == true) {
             }
 
 
-
         }
 
     }
-
-
-
-
-
 
 
     private void requestFocus(View view) {
@@ -355,8 +337,6 @@ if(boom == true) {
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
     }
-
-
 
 
     @Override
@@ -370,4 +350,8 @@ if(boom == true) {
     }
 
 
-}
+
+
+
+    }
+
