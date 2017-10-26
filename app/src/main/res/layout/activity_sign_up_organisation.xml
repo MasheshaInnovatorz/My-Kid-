@@ -29,7 +29,7 @@
                 android:textStyle="bold"
                 android:text="Company Information"
                 android:textAlignment="center"
-                android:textColor="#ADCCE2"
+                android:textColor="#448AFF"
                 android:textSize="25sp" />
 
 
@@ -267,7 +267,7 @@
                 android:layout_marginTop="5dp"
                 android:text="Creche Admin"
                 android:textAlignment="center"
-                android:textColor="#ADCCE2"
+                android:textColor="#448AFF"
                 android:textStyle="bold"
                 android:textSize="25sp" />
 
@@ -398,10 +398,6 @@
                     android:textSize="16dp"
                     />
             </android.support.design.widget.TextInputLayout>
-
-
-
-
 
 
 

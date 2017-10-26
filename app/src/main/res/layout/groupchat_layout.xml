@@ -18,7 +18,7 @@
         <TextView
             android:layout_marginLeft="10dp"
             android:id="@+id/sendname"
-            android:textColor="#29B6F6"
+            android:textColor="#448AFF"
             android:text="mudau rudzani"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,6 +48,7 @@
             android:layout_marginRight="10dp"
             android:layout_gravity="right"
             android:layout_marginTop="5dp"
+            android:textColor="@android:color/black"
             android:textSize="11sp" />
 </LinearLayout>
 <!--

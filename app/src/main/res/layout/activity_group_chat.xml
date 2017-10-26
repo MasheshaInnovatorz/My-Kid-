@@ -10,7 +10,7 @@
         android:dividerHeight="2sp"
         android:id="@+id/mess_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_above="@+id/linearLayout7" />
 
@@ -31,6 +31,7 @@
             android:layout_weight="1"
             android:id="@+id/mess_text"
             android:padding="6dp"
+            android:paddingBottom="65dp"
             android:textColorHint="@color/primary"
             android:background="@drawable/editextstyle"
             android:textColor="@color/primary"
@@ -40,6 +41,7 @@
             android:id="@+id/buttonsend"
             android:layout_width="35dp"
             android:layout_height="34dp"
+
             android:background="@drawable/ic_send_black_24dp"
             android:padding="4dp"
 
