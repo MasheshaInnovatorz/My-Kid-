@@ -1,5 +1,6 @@
 package com.example.codetribe.my_kid;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Admin extends AppCompatActivity {
 
@@ -71,14 +74,26 @@ public class Admin extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.menu_about_us) {
+            Intent intent = new Intent(Admin.this,AboutUs.class);
+            startActivity(intent);
             return true;
         }
         else if (id == R.id.menu_admin_logout) {
+            logout();
             return true;
         }
 
+        else if (id == R.id.menu_adimin_profile) {
+            Intent intent = new Intent(Admin.this,ViewProfile.class);
+            startActivity(intent);
+            return true;
+        }
+
+
+
         return super.onOptionsItemSelected(item);
     }
+
 
 
     /**
@@ -124,5 +139,10 @@ public class Admin extends AppCompatActivity {
             }
             return null;
         }
+    }
+    private void logout() {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(Admin.this,LoginActivity.class) ;
+        startActivity(intent);
     }
 }

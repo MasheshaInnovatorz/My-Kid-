@@ -4,6 +4,11 @@
     tools:context="com.example.codetribe.my_kid.Admin">
 
     <item
+        android:id="@+id/menu_adimin_profile"
+        android:title="Profile"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/menu_about_us"
         android:orderInCategory="100"
         android:title="About Us"

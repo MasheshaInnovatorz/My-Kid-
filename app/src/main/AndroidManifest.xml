@@ -38,7 +38,7 @@
         <activity android:name=".TeachersActivity" />
         <activity
             android:name=".WelcomeActivity"
-            android:theme="@style/AppTheme.LoginStyle" />
+          />
         <activity android:name=".KidActivity" />
         <activity
             android:name=".ViewProfile"

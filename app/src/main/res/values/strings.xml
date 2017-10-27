@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My_KId</string>
+    <string name="app_name">Kids Creatives</string>
     <string name="err_msg_name">Enter your full name</string>
     <string name="err_msg_surname">Enter your Surname</string>
     <string name="err_msg_minimumPassword">You have Entered less than 6 character in your pasasword</string>

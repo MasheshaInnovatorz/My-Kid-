@@ -151,7 +151,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             if(dataUser.child("emailUser").getValue().toString().trim().equals(emailForVer))
             {
 
-
                 if(dataUser.child("isVerified").getValue().toString().equals("unverified")){
                     Intent intentUser = new Intent(LoginActivity.this,ProfileUpdate.class);
                     intentUser.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
@@ -239,9 +238,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                             }
                         });
+                    }else{
+                        Toast.makeText(LoginActivity.this, "Either your Email nor Password is Worng or not Registered", Toast.LENGTH_SHORT).show();
                     }
                     progressDialog.dismiss();
-
+                   // progressDialog.setMessage("Faied to Logging In");
                 }
             });
 

@@ -39,7 +39,7 @@ public class KidsArray extends ArrayAdapter<Kids>{
 
         Kids kids = kidsList.get(position);
 
-        textKdName.setText("Class : " + kids.kidsGrade + "\n"+ "Kid Name : " + kids.getName() +" "+ kids.getSurname());
+        textKdName.setText("Class : " + kids.kidsGrade + "\n"+ "Name : " + kids.getName() +" "+ kids.getSurname());
        // surname.setText(kids.getSurname());
 
         return listViewItem;

@@ -260,14 +260,13 @@ public class KidsMemoListFragment extends Fragment {
 
 
                     } else {
-                        Toast.makeText(getContext(), "You don't have a kid you are linked with", Toast.LENGTH_SHORT).show();
+
                     }
                 }
 
 
             }else{
-                Toast.makeText(getContext(), "You dont have a Kid you are linked with from this creche", Toast.LENGTH_SHORT).show();
-            }
+                 }
         }
     }
 
