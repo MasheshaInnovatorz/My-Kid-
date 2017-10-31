@@ -1,13 +1,12 @@
 package com.example.codetribe.my_kid;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,36 +15,35 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class EditKidsProfile extends AppCompatActivity {
 
-    private TextInputLayout h_allergies,h_dietRequirements,h_doctorsRecomendations,h_kidHeight,h_bodyWeight;
+    private TextInputLayout h_allergies, h_dietRequirements, h_doctorsRecomendations, h_kidHeight, h_bodyWeight;
 
- public EditText allergies,
+    public EditText allergies,
             dietRequirements,
             doctorsRecomendations,
-            kidHeight,kidStringparentidS,
+            kidHeight, kidStringparentidS,
             bodyWeight;
-       TextView upDateKid_infors;
+    TextView upDateKid_infors;
 
 
-    String genderString,keyUser;
-    String  s_allergies,
+    String genderString, keyUser;
+    String s_allergies,
             s_dietRequirements,
             s_doctorsRecomendations,
-            s_kidHeight,kidStringparentid,
+            s_kidHeight, kidStringparentid,
             s_bodyWeight;
 
     //database
     DatabaseReference databaseKids;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_kids_profile);
 
 
-
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Adding extra kid information");
-
 
 
         allergies = (EditText) findViewById(R.id.edit_Allergies);
@@ -60,7 +58,7 @@ public class EditKidsProfile extends AppCompatActivity {
 
         Intent intent = getIntent();
         //String id = intent.getStringExtra(TeachersActivity.ARTIST_ID);
-        keyUser =  intent.getStringExtra("User_KEY");
+        keyUser = intent.getStringExtra("User_KEY");
 
         //database
         databaseKids = FirebaseDatabase.getInstance().getReference().child("Kids");
@@ -77,26 +75,27 @@ public class EditKidsProfile extends AppCompatActivity {
 
 
     }
-    private void saveKids(){
+
+    private void saveKids() {
         s_allergies = allergies.getText().toString().trim();
-        s_dietRequirements = dietRequirements .getText().toString().trim();
-        s_doctorsRecomendations= doctorsRecomendations.getText().toString().trim();
+        s_dietRequirements = dietRequirements.getText().toString().trim();
+        s_doctorsRecomendations = doctorsRecomendations.getText().toString().trim();
         s_kidHeight = kidHeight.getText().toString().trim();
-        s_bodyWeight= bodyWeight.getText().toString().trim();
+        s_bodyWeight = bodyWeight.getText().toString().trim();
         kidStringparentid = kidStringparentidS.getText().toString();
 
-        if(!TextUtils.isEmpty(kidStringparentid)){
+        if (!TextUtils.isEmpty(kidStringparentid)) {
             String id = databaseKids.push().getKey();
 
 
-            Kids kids = new Kids(keyUser, s_allergies,s_dietRequirements ,s_doctorsRecomendations,s_kidHeight,s_bodyWeight,kidStringparentid,id);
+            Kids kids = new Kids(keyUser, s_allergies, s_dietRequirements, s_doctorsRecomendations, s_kidHeight, s_bodyWeight, kidStringparentid, id);
 
             databaseKids.child(id).setValue(kids);
 
             Toast.makeText(this, "Kid information added", Toast.LENGTH_SHORT).show();
 
 
-        }else{
+        } else {
             Toast.makeText(this, "Track name should not be empty", Toast.LENGTH_SHORT).show();
         }
     }

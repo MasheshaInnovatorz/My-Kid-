@@ -34,7 +34,7 @@ public class KidsMemoListFragment extends Fragment {
     //adapter object
     private RecyclerView.Adapter adapter;
     //database reference
-    private DatabaseReference mDatabaseRef,childRef, mUserInfor;
+    private DatabaseReference mDatabaseRef, childRef, mUserInfor;
 
     //progress dialog
     private ProgressDialog progressDialog;
@@ -49,11 +49,10 @@ public class KidsMemoListFragment extends Fragment {
 
     //  private KidsmemoListAdapter adapter;
     private String KidsId, kidsUserId;
-    String parentid,userKey, user_roles;
+    String parentid, userKey, user_roles;
     private Button btnparticipate;
     private TextView sendKids;
-    String Surname,name;
-
+    String Surname, name;
 
 
     @Override
@@ -85,13 +84,11 @@ public class KidsMemoListFragment extends Fragment {
         // userKey = intent.getStringExtra("User_KEY");
         kidsUserId = intent.getStringExtra("kid_id");
 
-
-
         userKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
         mUserInfor = FirebaseDatabase.getInstance().getReference("Users").child(userKey);
-        mUserInfor.addValueEventListener(new ValueEventListener() {
+        mUserInfor.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange( final DataSnapshot userSnapshot) {
+            public void onDataChange(final DataSnapshot userSnapshot) {
 
                 childRef.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -105,38 +102,36 @@ public class KidsMemoListFragment extends Fragment {
                                 progressDialog.dismiss();
 
 
-                                if(userSnapshot.child("role").getValue().toString().equals("parent")) {
+                                if (userSnapshot.child("role").getValue().toString().equals("parent")) {
 
                                     Infor(kidSnapshot, dataSnapshot, userSnapshot.child("userIdNumber").getValue().toString());
 
-                                }else if (userSnapshot.child("role").getValue().toString().equals("teacher")){
+                                } else if (userSnapshot.child("role").getValue().toString().equals("teacher")) {
                                     btnparticipate.setText("Share_Activity");
 
-                                    InforTeacher(kidSnapshot,dataSnapshot,kidsUserId);
-                                }else{
+                                    InforTeacher(kidSnapshot, dataSnapshot, kidsUserId);
+                                } else {
                                     Toast.makeText(getContext(), "Ahh you dont belong to any categories", Toast.LENGTH_SHORT).show();
                                 }
-
 
 
                                 fab.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        if(KidsId != null || kidsUserId !=null) {
+                                        if (KidsId != null || kidsUserId != null) {
                                             Intent intent = new Intent(getContext(), UploadKidsMemo.class);
                                             intent.putExtra("kid_id", KidsId);
                                             intent.putExtra("kidsTeacherId", kidsUserId);
                                             intent.putExtra("User_KEY", userKey);
                                             startActivity(intent);
 
-                                        }else{
+                                        } else {
                                             Toast.makeText(getContext(), "You dont have a kids in this creche or maybe made a mistake", Toast.LENGTH_SHORT).show();
                                             return;
                                         }
 
                                     }
                                 });
-
 
 
                             }
@@ -162,26 +157,21 @@ public class KidsMemoListFragment extends Fragment {
         });
 
 
-
-
-
-
-
         return rootView;
     }
 
-    public void InforTeacher(DataSnapshot kidSnapshot, DataSnapshot dataSnapshot, String kidsIdentity){
+    public void InforTeacher(DataSnapshot kidSnapshot, DataSnapshot dataSnapshot, String kidsIdentity) {
 
         Iterator iterator = dataSnapshot.getChildren().iterator();
         Iterator kidsIterator = kidSnapshot.getChildren().iterator();
 
         // DatabaseReference teacher = FirebaseDatabase.getInstance().getReference("Users");
 
-        while(kidsIterator.hasNext()) {
+        while (kidsIterator.hasNext()) {
 
             final DataSnapshot kidsUser = (DataSnapshot) kidsIterator.next();
 
-            if(kidsUser.child("id").getValue().equals(kidsIdentity)) {
+            if (kidsUser.child("id").getValue().equals(kidsIdentity)) {
                 Surname = kidsUser.child("surname").getValue().toString();
                 name = kidsUser.child("name").getValue().toString();
 
@@ -218,7 +208,7 @@ public class KidsMemoListFragment extends Fragment {
     }
 
 
-    private void Infor(DataSnapshot kidSnapshot, DataSnapshot dataSnapshot, String userId){
+    private void Infor(DataSnapshot kidSnapshot, DataSnapshot dataSnapshot, String userId) {
 
         Iterator iterator = dataSnapshot.getChildren().iterator();
 
@@ -226,7 +216,7 @@ public class KidsMemoListFragment extends Fragment {
 
         // DatabaseReference teacher = FirebaseDatabase.getInstance().getReference("Users");
 
-        while(kidsIterator.hasNext()) {
+        while (kidsIterator.hasNext()) {
             final DataSnapshot kidsUser = (DataSnapshot) kidsIterator.next();
 
 
@@ -265,8 +255,8 @@ public class KidsMemoListFragment extends Fragment {
                 }
 
 
-            }else{
-                 }
+            } else {
+            }
         }
     }
 

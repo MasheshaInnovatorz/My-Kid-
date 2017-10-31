@@ -22,11 +22,12 @@
             android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="Parent"/>
+                android:text="Parent"
+                android:textSize="20sp" />
 
         </android.support.v7.widget.Toolbar>
 

@@ -13,15 +13,13 @@ public class Chat {
     long time;
     //String time;
 
-    public Chat(String message,String user, long time)
-    {
-        this.message=message;
-        this.name=user;
+    public Chat(String message, String user, long time) {
+        this.message = message;
+        this.name = user;
         this.time = new Date().getTime();
     }
 
-    Chat()
-    {
+    Chat() {
     }
 
 
@@ -40,6 +38,7 @@ public class Chat {
     public void setName(String name) {
         this.name = name;
     }
+
     public long getTime() {
         return time;
     }

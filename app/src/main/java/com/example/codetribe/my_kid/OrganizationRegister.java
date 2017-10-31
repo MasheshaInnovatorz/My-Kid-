@@ -12,7 +12,7 @@ import java.util.Map;
 
 @IgnoreExtraProperties
 public class OrganizationRegister {
-    public  String uid;
+    public String uid;
     public String orgname;
     public String orgAddress;//add street name and postal code
     public String orgCity;
@@ -20,12 +20,12 @@ public class OrganizationRegister {
     public String orgPhoneNo;
     public String orgPassword;
     public String adminKey;
-    public Map<String,Boolean> stars = new HashMap<>();
+    public Map<String, Boolean> stars = new HashMap<>();
 
     public OrganizationRegister() {
     }
 
-    public OrganizationRegister(String uid, String orgname, String orgAddress, String orgCity, String orgEmail, String orgPhoneNo, String orgPassword,String adminKey) {
+    public OrganizationRegister(String uid, String orgname, String orgAddress, String orgCity, String orgEmail, String orgPhoneNo, String orgPassword, String adminKey) {
         this.uid = uid;
         this.orgname = orgname;
         this.orgAddress = orgAddress;
@@ -71,25 +71,23 @@ public class OrganizationRegister {
     }
 
     @Exclude
-    public Map<String, Object> toMap(){
-        HashMap<String,Object> organizationSave = new HashMap<>();
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> organizationSave = new HashMap<>();
 
         organizationSave.put("orguid", uid);
         organizationSave.put("orgName", orgname);
         organizationSave.put("orgAddres", orgAddress);
         organizationSave.put("orgCity", orgCity);
-        organizationSave.put("emailUser",orgEmail);
+        organizationSave.put("emailUser", orgEmail);
         organizationSave.put("orgPhoneNumber", orgPhoneNo);
-        organizationSave.put("orgPassword",orgPassword);
+        organizationSave.put("orgPassword", orgPassword);
         organizationSave.put("adminKey", adminKey);
         organizationSave.put("isVerified", "verified");
-        organizationSave.put("role","admin");
-
+        organizationSave.put("role", "admin");
 
 
         return organizationSave;
     }
-
 
 
 }

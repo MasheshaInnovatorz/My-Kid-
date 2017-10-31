@@ -16,8 +16,7 @@ public class Splash extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
 
-        new Handler().postDelayed(new Runnable()
-        {
+        new Handler().postDelayed(new Runnable() {
 
             /*
              * Showing splash screen with a timer. This will be useful when you
@@ -28,8 +27,8 @@ public class Splash extends AppCompatActivity {
             public void run() {
                 // This method will be executed once the timer is over
                 // Start your app main activity
-              Intent i = new Intent(Splash.this, WelcomeActivity.class);
-               // Intent i = new Intent(Splash.this, GroupChat.class);
+                Intent i = new Intent(Splash.this, WelcomeActivity.class);
+                // Intent i = new Intent(Splash.this, GroupChat.class);
                 startActivity(i);
 
                 // close this activity

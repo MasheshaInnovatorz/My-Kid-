@@ -24,10 +24,8 @@ import static com.example.codetribe.my_kid.R.id.gender;
 public class ProfileUpdate extends AppCompatActivity {
 
 
-
-
     private AwesomeValidation awesomeValidation;
-      TextView signUpButton;
+    TextView signUpButton;
     private TextView editprofile;
 
     private EditText inputName,
@@ -68,10 +66,9 @@ public class ProfileUpdate extends AppCompatActivity {
         getSupportActionBar().setTitle("Update Profile Update");
 
 
-
         //validation
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
-        
+
         //getting intent
 
         Intent intent = getIntent();
@@ -82,7 +79,7 @@ public class ProfileUpdate extends AppCompatActivity {
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         //getting UserKey
-       // String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        // String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
         //database
@@ -110,11 +107,6 @@ public class ProfileUpdate extends AppCompatActivity {
         awesomeValidation.addValidation(this, R.id.reg_idnumber, "^[0-9]{13}$", R.string.err_msg_idnumber);
 
 
-
-
-
-
-
         //TextLayout
         inputLayoutName = (TextInputLayout) findViewById(R.id.input_reg_fullname);
         inputLayoutSurname = (TextInputLayout) findViewById(R.id.input_reg_Surname);
@@ -124,58 +116,54 @@ public class ProfileUpdate extends AppCompatActivity {
         inputLayoutNumber = (TextInputLayout) findViewById(R.id.input_reg_phoneNo);
 
 
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                if (awesomeValidation.validate()) {
+                    userNameString = inputName.getText().toString().trim();
+                    userContactString = inputCellphoneNumber.getText().toString().trim();
+                    inputSurnameString = inputSurname.getText().toString().trim();
+                    inputIdnumberString = inputIdnumber.getText().toString().trim();
+                    inputAddressString = inputAddress.getText().toString().trim();
+                    inputCityString = inputCity.getText().toString().trim();
+                    int selectedId = radGender.getCheckedRadioButtonId();
+                    rdGenders = (RadioButton) findViewById(selectedId);
+                    genderString = rdGenders.getText().toString();
 
 
-
-            signUpButton.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View view) {
-                    if (awesomeValidation.validate()) {
-                        userNameString = inputName.getText().toString().trim();
-                        userContactString = inputCellphoneNumber.getText().toString().trim();
-                        inputSurnameString = inputSurname.getText().toString().trim();
-                        inputIdnumberString = inputIdnumber.getText().toString().trim();
-                        inputAddressString = inputAddress.getText().toString().trim();
-                        inputCityString = inputCity.getText().toString().trim();
-                        int selectedId = radGender.getCheckedRadioButtonId();
-                        rdGenders = (RadioButton) findViewById(selectedId);
-                        genderString = rdGenders.getText().toString();
+                    if (!TextUtils.isEmpty(inputIdnumberString)) {
 
 
-                        if (!TextUtils.isEmpty(inputIdnumberString)) {
+                        String isVerified = "verified";
+                        UserProfile profile = new UserProfile(keyUser, userNameString, inputSurnameString, inputIdnumberString, inputAddressString, inputCityString, userContactString, genderString, isVerified);
+                        databaseReference.child("userName").setValue(profile.getUserName());
+                        databaseReference.child("userSurname").setValue(profile.getUserSurname());
+                        databaseReference.child("userIdNumber").setValue(profile.getUserIdNumber());
+                        databaseReference.child("userContact").setValue(profile.getUserContact());
+                        databaseReference.child("userAddress").setValue(profile.getUserAddress());
+                        databaseReference.child("userCity").setValue(profile.getUserCity());
+                        databaseReference.child("userGender").setValue(profile.getUserGender());
+                        databaseReference.child("isVerified").setValue(profile.getIsVerified());
 
 
-                            String isVerified = "verified";
-                            UserProfile profile = new UserProfile(keyUser, userNameString, inputSurnameString, inputIdnumberString, inputAddressString, inputCityString, userContactString, genderString, isVerified);
-                            databaseReference.child("userName").setValue(profile.getUserName());
-                            databaseReference.child("userSurname").setValue(profile.getUserSurname());
-                            databaseReference.child("userIdNumber").setValue(profile.getUserIdNumber());
-                            databaseReference.child("userContact").setValue(profile.getUserContact());
-                            databaseReference.child("userAddress").setValue(profile.getUserAddress());
-                            databaseReference.child("userCity").setValue(profile.getUserCity());
-                            databaseReference.child("userGender").setValue(profile.getUserGender());
-                            databaseReference.child("isVerified").setValue(profile.getIsVerified());
+                        Toast.makeText(ProfileUpdate.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
+                        // startActivity(new Intent(ProfileUpdate.this, ParentActivity.class));
 
 
-                            Toast.makeText(ProfileUpdate.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
-                            // startActivity(new Intent(ProfileUpdate.this, ParentActivity.class));
-
-
-                        } else {
-                            Toast.makeText(ProfileUpdate.this, "User Failed to Update Profile", Toast.LENGTH_SHORT).show();
-                        }
-
-
-
+                    } else {
+                        Toast.makeText(ProfileUpdate.this, "User Failed to Update Profile", Toast.LENGTH_SHORT).show();
                     }
+
 
                 }
 
-            });
+            }
+
+        });
 
 
-        }
+    }
 
 }
 

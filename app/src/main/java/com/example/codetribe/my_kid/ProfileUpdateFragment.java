@@ -17,6 +17,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -50,7 +51,7 @@ public class ProfileUpdateFragment extends Fragment {
     private DatabaseReference databaseReference;
 
     String keyUser;
-    String userNameString,inputSurnameString,inputCityString,inputAddressString,inputIdnumberString,userContactString,genderString;
+    String userNameString, inputSurnameString, inputCityString, inputAddressString, inputIdnumberString, userContactString, genderString;
     private RadioButton rdGenders;
 
 
@@ -59,7 +60,7 @@ public class ProfileUpdateFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.update_profile_fragment, container, false);
         Intent intent = getActivity().getIntent();
-        keyUser =  intent.getStringExtra("User_KEY");
+        keyUser = intent.getStringExtra("User_KEY");
 
 
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -74,14 +75,14 @@ public class ProfileUpdateFragment extends Fragment {
         inputCity = (EditText) rootView.findViewById(R.id.reg_city);
         inputCellphoneNumber = (EditText) rootView.findViewById(R.id.reg_phone);
         radGender = (RadioGroup) rootView.findViewById(gender);
-        inputIdnumber= (EditText) rootView.findViewById(R.id.reg_idnumber);
+        inputIdnumber = (EditText) rootView.findViewById(R.id.reg_idnumber);
 
         //TextLayout
         inputLayoutName = (TextInputLayout) rootView.findViewById(R.id.input_reg_fullname);
         inputLayoutSurname = (TextInputLayout) rootView.findViewById(R.id.input_reg_Surname);
-        inputLayoutAddress = (TextInputLayout)rootView.findViewById(R.id.input_reg_address);
+        inputLayoutAddress = (TextInputLayout) rootView.findViewById(R.id.input_reg_address);
         inputLayoutCity = (TextInputLayout) rootView.findViewById(R.id.input_reg_city);
-        inputLayoutIdNumber = (TextInputLayout)rootView.findViewById(R.id.input_reg_idNumber);
+        inputLayoutIdNumber = (TextInputLayout) rootView.findViewById(R.id.input_reg_idNumber);
         inputLayoutNumber = (TextInputLayout) rootView.findViewById(R.id.input_reg_phoneNo);
 
         //watcher
@@ -92,7 +93,7 @@ public class ProfileUpdateFragment extends Fragment {
         inputIdnumber.addTextChangedListener(new MyInputWatcher(inputIdnumber));
         inputCellphoneNumber.addTextChangedListener(new MyInputWatcher(inputCellphoneNumber));
 
-        signUpButton.setOnClickListener(new View.OnClickListener(){
+        signUpButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -107,7 +108,7 @@ public class ProfileUpdateFragment extends Fragment {
         return rootView;
     }
 
-    public void saveProfile(){
+    public void saveProfile() {
 
         submitForm();
 
@@ -117,23 +118,20 @@ public class ProfileUpdateFragment extends Fragment {
         inputIdnumberString = inputIdnumber.getText().toString().trim();
         inputAddressString = inputAddress.getText().toString().trim();
         inputCityString = inputCity.getText().toString().trim();
-        int selectedId= radGender.getCheckedRadioButtonId();
+        int selectedId = radGender.getCheckedRadioButtonId();
         //rdGenders =(RadioButton) rootView.findViewById(selectedId);
-        genderString  = rdGenders.getText().toString();
-
-
-
+        genderString = rdGenders.getText().toString();
 
 
         //databaseKids.child(id).setValue(kids);
 
-        if(!TextUtils.isEmpty(inputIdnumberString)){
+        if (!TextUtils.isEmpty(inputIdnumberString)) {
 
 
             String isVerified = "verified";
 
 
-            UserProfile profile = new UserProfile(keyUser, userNameString, inputSurnameString, inputIdnumberString, inputAddressString, inputCityString,userContactString,genderString,isVerified);
+            UserProfile profile = new UserProfile(keyUser, userNameString, inputSurnameString, inputIdnumberString, inputAddressString, inputCityString, userContactString, genderString, isVerified);
 
             databaseReference.child("userName").setValue(profile.getUserName());
             databaseReference.child("userSurname").setValue(profile.getUserSurname());
@@ -145,13 +143,12 @@ public class ProfileUpdateFragment extends Fragment {
             databaseReference.child("isVerified").setValue(profile.getIsVerified());
 
 
-
             //databaseReference.setValue(ProfileUpdate);
 
             Toast.makeText(getActivity().getApplicationContext(), "User ProfileUpdate Added", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(getActivity().getApplicationContext(), ParentTabbedActivity.class));
 
-        }else{
+        } else {
             Toast.makeText(getActivity().getApplicationContext(), "User Failed to add ProfileUpdate", Toast.LENGTH_SHORT).show();
         }
     }
@@ -168,17 +165,16 @@ public class ProfileUpdateFragment extends Fragment {
         }
 
 
-
         Toast.makeText(getActivity().getApplicationContext(), "Thank You!", Toast.LENGTH_SHORT).show();
     }
 
     private boolean validateFullName() {
         if (inputName.getText().toString().trim().isEmpty()) {
-            if (inputName.getText().toString().length() <=6) {
+            if (inputName.getText().toString().length() <= 6) {
 
                 inputLayoutName.setError("Your name is too short atleast >6 letters will do");
                 return false;
-            }else{
+            } else {
                 inputLayoutName.setErrorEnabled(false);
             }
             inputLayoutName.setError(getString(R.string.err_msg_name));
@@ -203,7 +199,7 @@ public class ProfileUpdateFragment extends Fragment {
 
     private boolean validateIdNumber() {
         if (inputIdnumber.getText().toString().trim().isEmpty()) {
-            if(inputIdnumber.getText().toString().length() <13 || inputIdnumber.getText().toString().length() >13){
+            if (inputIdnumber.getText().toString().length() < 13 || inputIdnumber.getText().toString().length() > 13) {
                 inputLayoutIdNumber.setError("Identity Number Should be 13 digits");
             }
             inputLayoutIdNumber.setError(getString(R.string.err_msg_idnumber));
@@ -216,15 +212,11 @@ public class ProfileUpdateFragment extends Fragment {
     }
 
 
-
-
-
     private void requestFocus(View view) {
         if (view.requestFocus()) {
             getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
     }
-
 
 
     private class MyInputWatcher implements TextWatcher {
@@ -273,6 +265,7 @@ public class ProfileUpdateFragment extends Fragment {
 
         }
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();

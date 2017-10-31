@@ -68,7 +68,6 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         mOrganizationRef = FirebaseDatabase.getInstance().getReference().child("Creche");
 
 
-
         orgaEmail = (EditText) findViewById(R.id.orgEmail);
         orgPassword = (EditText) findViewById(R.id.orgPassword);
         crechName = (EditText) findViewById(R.id.orgName);
@@ -99,7 +98,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                 }
 
                 sharedPrefEditor = sharedPreferences.edit();
-                sharedPrefEditor.putString("email",email);
+                sharedPrefEditor.putString("email", email);
                 sharedPrefEditor.apply();
 
                 final String crechNameOrg, crechAddressOrg, crechCityOrg, crechPhoneNoOrg, adminNameOrg, adminSurnameOrg, adminIdNoOrg, adminGender;
@@ -130,10 +129,9 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                                 String userI = task.getResult().getUser().getUid();
 
 
+                                OrganizationRegister orgReg = new OrganizationRegister(key, crechNameOrg, crechAddressOrg, crechCityOrg, email, crechPhoneNoOrg, password, key);
 
-                                OrganizationRegister orgReg = new OrganizationRegister(key, crechNameOrg, crechAddressOrg, crechCityOrg, email, crechPhoneNoOrg, password,key);
-
-                                CrecheOnwer_Class adminReg = new CrecheOnwer_Class(userI, adminNameOrg, adminSurnameOrg, adminIdNoOrg, adminGender, adminRole, email, crechNameOrg,crechPhoneNoOrg);
+                                CrecheOnwer_Class adminReg = new CrecheOnwer_Class(userI, adminNameOrg, adminSurnameOrg, adminIdNoOrg, adminGender, adminRole, email, crechNameOrg, crechPhoneNoOrg);
 
 
                                 //Map
@@ -158,8 +156,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                                 //Toast.makeText(SignUpOrganisationActivity.this, key, Toast.LENGTH_SHORT).show();
                                 Toast.makeText(SignUpOrganisationActivity.this, "Organization Sccessfully Created", Toast.LENGTH_SHORT).show();
 
-                                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
-
+                                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
 
 
                             } else {

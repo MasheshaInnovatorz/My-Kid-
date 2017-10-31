@@ -5,186 +5,181 @@
     android:layout_height="match_parent"
     tools:context="com.example.codetribe.my_kid.AboutUs">
 
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:id="@+id/scrum"
-    android:layout_height="wrap_content">
-
-   <TextView
-    android:id="@+id/head"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text=" Mashesha Digital innovators team"
-    android:textAlignment="center"
-    android:textSize="19sp"
-       android:textStyle="bold"
-       android:textColor="#448AFF"
-    android:textAllCaps="true"
-       android:layout_alignParentTop="true"
-       android:layout_alignParentStart="true"></TextView>
-
-
-    <TextView
-        android:id="@+id/decription"
-        android:padding="10dp"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="textStart"
-        android:text="@string/text_with_paragraphs"
-        android:layout_below="@+id/head"
-        android:layout_alignParentStart="true" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_below="@+id/decription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TEaM MEmbers"
-        android:textAlignment="center"
-        android:textSize="19sp"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        android:textColor="#448AFF"
-        ></TextView>
-
-
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_below="@+id/decription"
-        android:layout_alignParentStart="true">
-
-
-
-        <TableRow
+        <RelativeLayout
+            android:id="@+id/scrum"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp">
-
-            <ImageView
-                android:id="@+id/dffdfd"
-                android:layout_width="match_parent"
-                android:layout_height="90dp"
-                android:layout_weight="2"
-                android:src="@drawable/talipic" />
-
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-         >
+            android:layout_height="wrap_content">
 
             <TextView
-                android:text="Srum Master : Miss Talifhani Munwana"
-                android:textAlignment="center"
-                android:textAllCaps="true"
+                android:id="@+id/head"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                ></TextView>
-
-        </TableRow>
-
-        <TableRow>
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="0dp"
-                android:layout_height="90dp"
-                android:layout_marginLeft="35dp"
-                android:layout_weight="2"
-                android:src="@drawable/benipic" />
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="0dp"
-                android:layout_height="90dp"
-                android:layout_marginRight="35dp"
-                android:layout_weight="2"
-                android:src="@drawable/pfarisopic" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="15dp"
-                android:layout_marginLeft="35dp"
-                android:layout_weight="2"
-                android:text="Developer :B Nkosi"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text=" Mashesha Digital innovators team"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                ></TextView>
-
-            <TextView
-
-                android:layout_width="0dp"
-                android:layout_height="15dp"
-                android:layout_marginRight="35dp"
-                android:layout_weight="2"
-                android:text="Developer : M Pfariso"
-                android:textAlignment="center"
-                android:textAllCaps="true"/>
-        </TableRow>
-
-        <TableRow>
-
-            <ImageView
-
-                android:id="@+id/imageView4"
-                android:layout_width="0dp"
-                android:layout_height="90dp"
-                android:layout_marginLeft="35dp"
-                android:layout_marginTop="14dp"
-                android:layout_weight="1"
-                android:src="@drawable/rudzypic"/>
-
-
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="0dp"
-                android:layout_height="90dp"
-                android:layout_marginRight="35dp"
-                android:layout_marginTop="14dp"
-                android:layout_weight="1"
-                android:src="@drawable/hebetpic"/>
-
-
-
-        </TableRow>
-
-        <TableRow>
+                android:textColor="#448AFF"
+                android:textSize="19sp"
+                android:textStyle="bold"></TextView>
 
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="15dp"
-                android:layout_marginLeft="35dp"
-                android:layout_weight="2"
-                android:text="designer : M Rudzani"
+                android:id="@+id/decription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/head"
+                android:padding="10dp"
+                android:text="@string/text_with_paragraphs"
+                android:textAlignment="textStart" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/decription"
+                android:text="TEaM MEmbers"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                ></TextView>
+                android:textColor="#448AFF"
+                android:textSize="19sp"
+                android:textStyle="bold"></TextView>
 
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="0dp"
-                android:layout_height="15dp"
-                android:layout_marginRight="35dp"
-                android:layout_weight="2"
-                android:text="designer : K Herbeth"
-                android:textAlignment="center"
-                android:textAllCaps="true"/>
-        </TableRow>
-    </TableLayout>
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/decription"
+                android:layout_marginTop="24dp">
 
 
-</RelativeLayout>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp">
 
-</ScrollView>
+                    <ImageView
+                        android:id="@+id/dffdfd"
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/talipic" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Srum Master : Miss Talifhani Munwana"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"></TextView>
+
+                </TableRow>
+
+                <TableRow>
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="0dp"
+                        android:layout_height="90dp"
+                        android:layout_marginLeft="35dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/benipic" />
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="0dp"
+                        android:layout_height="90dp"
+                        android:layout_marginRight="35dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/pfarisopic" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="35dp"
+                        android:layout_weight="2"
+                        android:text="Developer :B Nkosi"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"></TextView>
+
+                    <TextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="15dp"
+                        android:layout_marginRight="35dp"
+                        android:layout_weight="2"
+                        android:text="Developer : M Pfariso"
+                        android:textAlignment="center"
+                        android:textAllCaps="true" />
+                </TableRow>
+
+                <TableRow>
+
+                    <ImageView
+
+                        android:id="@+id/imageView4"
+                        android:layout_width="0dp"
+                        android:layout_height="90dp"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/rudzypic" />
+
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="0dp"
+                        android:layout_height="90dp"
+                        android:layout_marginRight="35dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/hebetpic" />
+
+
+                </TableRow>
+
+                <TableRow>
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="35dp"
+                        android:layout_weight="2"
+                        android:text="designer : M Rudzani"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"></TextView>
+
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="0dp"
+                        android:layout_height="15dp"
+                        android:layout_marginRight="35dp"
+                        android:layout_weight="2"
+                        android:text="designer : K Herbeth"
+                        android:textAlignment="center"
+                        android:textAllCaps="true" />
+                </TableRow>
+            </TableLayout>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

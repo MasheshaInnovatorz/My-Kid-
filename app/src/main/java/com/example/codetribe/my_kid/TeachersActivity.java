@@ -32,10 +32,10 @@ public class TeachersActivity extends AppCompatActivity {
     List<Kids> kid;
 
     String org_name;
-    String userId,idLoged;
+    String userId, idLoged;
     FirebaseAuth fireAuth;
     //database
-    DatabaseReference kidsRetriveRef,creachRef,orgNameReference,roleRefer;
+    DatabaseReference kidsRetriveRef, creachRef, orgNameReference, roleRefer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +44,12 @@ public class TeachersActivity extends AppCompatActivity {
 
 
         getSupportActionBar().setTitle("Teacher");
-        listViewKids  = (ListView)findViewById(R.id.listViewkids);
-        fireAuth =  FirebaseAuth.getInstance();
+        listViewKids = (ListView) findViewById(R.id.listViewkids);
+        fireAuth = FirebaseAuth.getInstance();
 
         Intent intent = getIntent();
         //String id = intent.getStringExtra(TeachersActivity.ARTIST_ID);
         //userKey =  intent.getStringExtra("User_KEY");
-
 
 
         kid = new ArrayList<>();
@@ -76,24 +75,22 @@ public class TeachersActivity extends AppCompatActivity {
                 teacherRole = dataSnapshot.child("role").getValue(String.class);
 
 
-
-
                 kidsRetriveRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         kid.clear();
 
-                        for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()){
-                            if(kidssnapshot.child("kidsGrade").getValue().toString().equals(org_name)) {
+                        for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()) {
+                            if (kidssnapshot.child("kidsGrade").getValue().toString().equals(org_name)) {
                                 Kids kidInf = kidssnapshot.getValue(Kids.class);
                                 kid.add(kidInf);
-                            //    Toast.makeText(TeachersActivity.this,kidInf.getId(), Toast.LENGTH_SHORT).show();
+                                //    Toast.makeText(TeachersActivity.this,kidInf.getId(), Toast.LENGTH_SHORT).show();
 
-                            }else{
+                            } else {
 
                             }
                         }
-                        KidsArray trackListAdapter = new KidsArray(TeachersActivity.this,kid);
+                        KidsArray trackListAdapter = new KidsArray(TeachersActivity.this, kid);
                         listViewKids.setAdapter(trackListAdapter);
                     }
 
@@ -111,12 +108,12 @@ public class TeachersActivity extends AppCompatActivity {
         });
 
 
-        listViewKids.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        listViewKids.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Kids kido =  kid.get(i);
-                Intent intent = new Intent(getApplicationContext(),KidsmemoListsActivity.class);
+                Kids kido = kid.get(i);
+                Intent intent = new Intent(getApplicationContext(), KidsmemoListsActivity.class);
                 intent.putExtra("kid_id", kido.getId());
                 intent.putExtra("user_role", teacherRole);
                 startActivity(intent);
@@ -137,12 +134,13 @@ public class TeachersActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menuteacher, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId())   {
+        switch (item.getItemId()) {
 
             case R.id.aboutus:
-                Intent intentUs = new Intent(TeachersActivity.this,AboutUs.class);
+                Intent intentUs = new Intent(TeachersActivity.this, AboutUs.class);
                 startActivity(intentUs);
                 return true;
 
@@ -151,17 +149,17 @@ public class TeachersActivity extends AppCompatActivity {
                 return true;
 
             case R.id.Group_Chat:
-              //  Intent intentchat = new Intent(TeachersActivity.this,GroupChat.class);
+                //  Intent intentchat = new Intent(TeachersActivity.this,GroupChat.class);
                 // intent.putExtra("User_KEY",userId);
-               // intentchat.putExtra("user_id",idLoged);
-               // startActivity(intentchat);
+                // intentchat.putExtra("user_id",idLoged);
+                // startActivity(intentchat);
                 return true;
 
 
             case R.id.view_profile:
-                Intent intent = new Intent(TeachersActivity.this,ViewProfile.class);
+                Intent intent = new Intent(TeachersActivity.this, ViewProfile.class);
                 // intent.putExtra("User_KEY",userId);
-                intent.putExtra("user_id",idLoged);
+                intent.putExtra("user_id", idLoged);
                 startActivity(intent);
                 return true;
         }
@@ -170,7 +168,7 @@ public class TeachersActivity extends AppCompatActivity {
 
     private void logout() {
         FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(TeachersActivity.this,LoginActivity.class) ;
+        Intent intent = new Intent(TeachersActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 
