@@ -14,7 +14,7 @@ import java.util.List;
  * Created by CodeTribe on 9/15/2017.
  */
 
-public class KidsArray extends ArrayAdapter<Kids>{
+public class KidsArray extends ArrayAdapter<Kids> {
     private Activity context;
     private List<Kids> kidsList;
 
@@ -27,20 +27,20 @@ public class KidsArray extends ArrayAdapter<Kids>{
 
     @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
 
-        View listViewItem = inflater.inflate(R.layout.admin_and_kids_list,null,true);
+        View listViewItem = inflater.inflate(R.layout.admin_and_kids_list, null, true);
 
         TextView textKdName = (TextView) listViewItem.findViewById(R.id.textKidsName);
 
-       // TextView surname = (TextView) listViewItem.findViewById(R.id.textKidsSurname);
+        // TextView surname = (TextView) listViewItem.findViewById(R.id.textKidsSurname);
 
 
         Kids kids = kidsList.get(position);
 
-        textKdName.setText("Class : " + kids.kidsGrade + "\n"+ "Kid Name : " + kids.getName() +" "+ kids.getSurname());
-       // surname.setText(kids.getSurname());
+        textKdName.setText("Class : " + kids.kidsGrade + "\n" + "Name : " + kids.getName() + " " + kids.getSurname());
+        // surname.setText(kids.getSurname());
 
         return listViewItem;
     }

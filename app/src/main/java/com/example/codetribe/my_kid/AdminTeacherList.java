@@ -31,7 +31,7 @@ public class AdminTeacherList extends Fragment {
     String userKey;
     //public static final String ARTIST_ID = "artistid";
     private TextView add_Kids;
-    private TextView addkid,addteacher;
+    private TextView addkid, addteacher;
     //initialization for kids
     ListView listUsers;
     List<UserProfile> user;
@@ -39,7 +39,7 @@ public class AdminTeacherList extends Fragment {
 
     private FirebaseAuth adminUser;
     //database
-    DatabaseReference usersRetriveRef,adminCreche;
+    DatabaseReference usersRetriveRef, adminCreche;
     TextView sos;
     String Idadmin;
     Spinner spinner;
@@ -53,50 +53,55 @@ public class AdminTeacherList extends Fragment {
         View rootView = inflater.inflate(R.layout.activity_teachers, container, false);
 
 
-        coordinatorLayout = (CoordinatorLayout)rootView.findViewById(R.id.cordinatelayout);
+        coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.cordinatelayout);
         user = new ArrayList<>();
 
 
-        userTeacher = (FloatingActionButton)rootView.findViewById(R.id.add_teacher_admin);
+        userTeacher = (FloatingActionButton) rootView.findViewById(R.id.add_teacher_admin);
 
 
+        listUsers = (ListView) rootView.findViewById(R.id.listViewkids);
 
-
-
-        listUsers = (ListView)rootView.findViewById(R.id.listViewkids);
-
-        Idadmin=  FirebaseAuth.getInstance().getCurrentUser().getUid();
+        Idadmin = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
         usersRetriveRef = FirebaseDatabase.getInstance().getReference("Users");
         adminCreche = FirebaseDatabase.getInstance().getReference("Users").child(Idadmin);
 
 
-adminCreche.addListenerForSingleValueEvent(new ValueEventListener() {
-    @Override
-    public void onDataChange(final DataSnapshot adminSnapshot) {
-        usersRetriveRef.addValueEventListener(new ValueEventListener() {
+        adminCreche.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                user.clear();
-                for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()) {
+            public void onDataChange(final DataSnapshot adminSnapshot) {
+                usersRetriveRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        user.clear();
+                        for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()) {
 
 
-                    if(kidssnapshot.child("role").getValue().toString().equals("teacher")) {
-                        if(kidssnapshot.child("orgName").getValue().equals(adminSnapshot.child("orgName").getValue().toString()))
-                        {
+                            if (kidssnapshot.child("role").getValue().toString().equals("teacher")) {
+                                if (kidssnapshot.child("orgName").getValue().equals(adminSnapshot.child("orgName").getValue().toString())) {
 
-                            UserProfile kidInf = kidssnapshot.getValue(UserProfile.class);
-                            user.add(kidInf);
+                                    UserProfile kidInf = kidssnapshot.getValue(UserProfile.class);
+                                    user.add(kidInf);
 
-                            kidInf.getKeyUser();
+                                    kidInf.getKeyUser();
+                                }
+
+                            }
+
                         }
-
+                        UserArray userListAdapter = new UserArray(getActivity(), user);
+                        listUsers.setAdapter(userListAdapter);
                     }
 
-                }
-                UserArray userListAdapter = new UserArray(getActivity(), user);
-                listUsers.setAdapter(userListAdapter);
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+
             }
 
             @Override
@@ -106,31 +111,17 @@ adminCreche.addListenerForSingleValueEvent(new ValueEventListener() {
         });
 
 
-
-    }
-
-    @Override
-    public void onCancelled(DatabaseError databaseError) {
-
-    }
-});
-
-
         userTeacher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =  new Intent(getActivity(),CreateTeacherAccount.class);
-                intent.putExtra("User_KEY",userKey);
+                Intent intent = new Intent(getActivity(), CreateTeacherAccount.class);
+                intent.putExtra("User_KEY", userKey);
                 startActivity(intent);
             }
         });
 
         return rootView;
     }
-
-
-
-
 
 
 }

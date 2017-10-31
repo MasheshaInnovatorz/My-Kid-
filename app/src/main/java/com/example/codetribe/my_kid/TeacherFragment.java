@@ -35,10 +35,10 @@ public class TeacherFragment extends Fragment {
     List<Kids> kid;
 
     String org_name;
-    String userId,idLoged;
+    String userId, idLoged;
     FirebaseAuth fireAuth;
     //database
-    DatabaseReference kidsRetriveRef,creachRef,orgNameReference,roleRefer;
+    DatabaseReference kidsRetriveRef, creachRef, orgNameReference, roleRefer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,9 +46,8 @@ public class TeacherFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.activity_teachers, container, false);
 
 
-
-        listViewKids  = (ListView)rootView.findViewById(R.id.listViewkids);
-        fireAuth =  FirebaseAuth.getInstance();
+        listViewKids = (ListView) rootView.findViewById(R.id.listViewkids);
+        fireAuth = FirebaseAuth.getInstance();
 
         kid = new ArrayList<>();
 
@@ -73,24 +72,22 @@ public class TeacherFragment extends Fragment {
                 teacherRole = dataSnapshot.child("role").getValue(String.class);
 
 
-
-
                 kidsRetriveRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         kid.clear();
 
-                        for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()){
-                            if(kidssnapshot.child("kidsGrade").getValue().toString().equals(org_name)) {
+                        for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()) {
+                            if (kidssnapshot.child("kidsGrade").getValue().toString().equals(org_name)) {
                                 Kids kidInf = kidssnapshot.getValue(Kids.class);
                                 kid.add(kidInf);
                                 //    Toast.makeText(TeachersActivity.this,kidInf.getId(), Toast.LENGTH_SHORT).show();
 
-                            }else{
+                            } else {
 
                             }
                         }
-                        KidsArray trackListAdapter = new KidsArray(getActivity(),kid);
+                        KidsArray trackListAdapter = new KidsArray(getActivity(), kid);
                         listViewKids.setAdapter(trackListAdapter);
                     }
 
@@ -107,12 +104,12 @@ public class TeacherFragment extends Fragment {
             }
         });
 
-        listViewKids.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        listViewKids.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Kids kido =  kid.get(i);
-                Intent intent = new Intent(getContext(),KidsmemoListsActivity.class);
+                Kids kido = kid.get(i);
+                Intent intent = new Intent(getContext(), KidsmemoListsActivity.class);
                 intent.putExtra("kid_id", kido.getId());
                 intent.putExtra("user_role", teacherRole);
                 startActivity(intent);

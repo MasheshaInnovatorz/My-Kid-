@@ -100,7 +100,6 @@ public class KidActivity extends AppCompatActivity {
         awesomeValidation.addValidation(this, R.id.editGrade, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}[0-9]$", R.string.classerror);
 
 
-
         //hint editext
         hintname = (TextInputLayout) findViewById(R.id.hname);
         hintsurname = (TextInputLayout) findViewById(R.id.hSurname);
@@ -179,8 +178,7 @@ public class KidActivity extends AppCompatActivity {
             String id = databaseKids.push().getKey();
 
 
-
-            Kids kids = new Kids(id, kidStringname, kidStringsurname, kidStringaddress, kididStringNumber, kidStringparentid, kidsKidsAllocated, kidsYearRegistered,genderString,orgName);
+            Kids kids = new Kids(id, kidStringname, kidStringsurname, kidStringaddress, kididStringNumber, kidStringparentid, kidsKidsAllocated, kidsYearRegistered, genderString, orgName);
 
             databaseKids.child(id).setValue(kids);
 

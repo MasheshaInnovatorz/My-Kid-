@@ -31,16 +31,17 @@ public class AdminKidsList extends Fragment {
     String userKey;
     //public static final String ARTIST_ID = "artistid";
     private TextView add_Kids;
-    private TextView addkid,addteacher;
+    private TextView addkid, addteacher;
     //initialization for kids
     ListView listUsers;
+    String KidssKey;
     List<Kids> kidses;
 
-    String idLoged,parentId,kids_id;
+    String idLoged, parentId, kids_id;
 
     private FirebaseAuth adminUser;
     //database
-    DatabaseReference usersRetriveRef,kidsCreche;
+    DatabaseReference usersRetriveRef, kidsCreche;
     TextView sos;
     String Idadmin;
     Spinner spinner;
@@ -53,16 +54,17 @@ public class AdminKidsList extends Fragment {
         View rootView = inflater.inflate(R.layout.kidaddactivityfrag, container, false);
 
 
-        listUsers = (ListView)rootView.findViewById(R.id.listViewkids);
-      //  fab = (FloatingActionButton) rootView.findViewById(R.id.addTeacher);
+        listUsers = (ListView) rootView.findViewById(R.id.listViewkids);
+        //  fab = (FloatingActionButton) rootView.findViewById(R.id.addTeacher);
 
-        coordinatorLayout = (CoordinatorLayout)rootView.findViewById(R.id.cordinatelayout);
+        coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.cordinatelayout);
 
         kidsFab = (FloatingActionButton) rootView.findViewById(R.id.add_kids_admin);
         Intent keyId = getActivity().getIntent();
         idLoged = keyId.getStringExtra("User_KEY");
         kids_id = keyId.getStringExtra("kid_id");
 
+<<<<<<< HEAD
 //r
 /*
 
@@ -80,6 +82,10 @@ public class AdminKidsList extends Fragment {
 
         */
 
+=======
+
+
+>>>>>>> 7049439f0af4f0a7a5090f6ff105ba8d86b09ee5
         parentId = keyId.getStringExtra("parent_id");
 
         kidses = new ArrayList<>();
@@ -88,12 +94,12 @@ public class AdminKidsList extends Fragment {
         kidsCreche = FirebaseDatabase.getInstance().getReference("Kids");
         usersRetriveRef = FirebaseDatabase.getInstance().getReference("Users");
 
-        Idadmin=  FirebaseAuth.getInstance().getCurrentUser().getUid();
+        Idadmin = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
         usersRetriveRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange( final DataSnapshot crecheSnapshot) {
+            public void onDataChange(final DataSnapshot crecheSnapshot) {
 
                 for (final DataSnapshot adminSnap : crecheSnapshot.getChildren()) {
 
@@ -112,12 +118,12 @@ public class AdminKidsList extends Fragment {
                                         kidses.add(kidInf);
 
 
-                                        kidInf.getId();
+                                        KidssKey = kidInf.getId();
 
                                     }
 
                                 }
-                                KidsArray userListAdapter = new KidsArray(getActivity(),kidses);
+                                KidsArray userListAdapter = new KidsArray(getActivity(), kidses);
                                 listUsers.setAdapter(userListAdapter);
                             }
 
@@ -136,14 +142,26 @@ public class AdminKidsList extends Fragment {
             }
         });
 
+      /*  listUsers.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                // Kids kido =  kid.get(i);
+                Intent intent = new Intent(getContext(),ViewProfile.class);
+                intent.putExtra("kid_id", KidssKey);
+                startActivity(intent);
+                //   Toast.makeText(Ge, "hi sir", Toast.LENGTH_SHORT).show();
+            }
+        });*/
+
 
         kidsFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Intent intent = new Intent(getContext(), KidActivity.class);
-                intent.putExtra("kid_id",idLoged);
-                intent.putExtra("User_KEY",kids_id);
-                intent.putExtra("parentIdentity",parentId);
+                Intent intent = new Intent(getContext(), KidActivity.class);
+                intent.putExtra("kid_id", idLoged);
+                intent.putExtra("User_KEY", kids_id);
+                intent.putExtra("parentIdentity", parentId);
                 startActivity(intent);
             }
         });

@@ -22,11 +22,12 @@
             android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="Teacher"/>
+                android:text="Teacher"
+                android:textSize="20sp" />
 
         </android.support.v7.widget.Toolbar>
 
@@ -42,7 +43,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
 
 
 </android.support.design.widget.CoordinatorLayout>

@@ -1,48 +1,51 @@
 package com.example.codetribe.my_kid;
-        import android.content.Intent;
-        import android.database.Cursor;
-        import android.net.Uri;
-        import android.os.Bundle;
-        import android.provider.MediaStore;
-        import android.support.annotation.NonNull;
-        import android.support.v7.app.AppCompatActivity;
-        import android.util.Log;
-        import android.view.View;
-        import android.widget.ImageView;
-        import android.widget.TextView;
-        import android.widget.Toast;
 
-        import com.bumptech.glide.Glide;
-        import com.google.android.gms.tasks.OnCompleteListener;
-        import com.google.android.gms.tasks.OnFailureListener;
-        import com.google.android.gms.tasks.OnSuccessListener;
-        import com.google.android.gms.tasks.Task;
-        import com.google.firebase.auth.FirebaseAuth;
-        import com.google.firebase.auth.FirebaseUser;
-        import com.google.firebase.auth.UserProfileChangeRequest;
-        import com.google.firebase.database.DataSnapshot;
-        import com.google.firebase.database.DatabaseError;
-        import com.google.firebase.database.DatabaseReference;
-        import com.google.firebase.database.FirebaseDatabase;
-        import com.google.firebase.database.ValueEventListener;
-        import com.google.firebase.storage.FirebaseStorage;
-        import com.google.firebase.storage.StorageReference;
-        import com.google.firebase.storage.UploadTask;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import java.io.File;
-        import java.io.FileInputStream;
-        import java.io.FileNotFoundException;
-        import java.io.InputStream;
-        import java.util.Iterator;
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
-        import static android.app.Activity.RESULT_OK;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.Iterator;
 
 public class ViewProfile extends AppCompatActivity {
 
     private Uri imgUri;
 
 
+<<<<<<< HEAD
     TextView name,surname,city,gender,phonenumber,address,email,editprofile;
+=======
+    TextView name, surname, gender, phonenumber, address, email, editprofile;
+>>>>>>> 7049439f0af4f0a7a5090f6ff105ba8d86b09ee5
     String iduser;
     String image_url;
 
@@ -54,7 +57,7 @@ public class ViewProfile extends AppCompatActivity {
     FirebaseStorage storage;
     private DatabaseReference databaseReference;
 
-    StorageReference storageRef,imagesRef,userProfileRef,callImage;
+    StorageReference storageRef, imagesRef, userProfileRef, callImage;
 
     String user_id;
 
@@ -62,25 +65,32 @@ public class ViewProfile extends AppCompatActivity {
     ImageView profilecover;
     String idLoged;
 
-    String nameString,surnameString;
+    String nameString, surnameString;
     FirebaseUser user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_profile);
 
         //Profile_Update edit
-        editprofile=(TextView)findViewById(R.id.editprofile);
+        editprofile = (TextView) findViewById(R.id.editprofile);
         //initialize
         name = (TextView) findViewById(R.id.user_profile_name);
-       // surname= (TextView)findViewById(R.id.user_profile_status);
+        // surname= (TextView)findViewById(R.id.user_profile_status);
         gender = (TextView) findViewById(R.id.gender_view);
+<<<<<<< HEAD
         phonenumber= (TextView)findViewById(R.id.phone_view);
         address= (TextView)findViewById(R.id.address_view);
         city= (TextView)findViewById(R.id.city_view);
         email= (TextView)findViewById(R.id.email_view);
+=======
+        phonenumber = (TextView) findViewById(R.id.phone_view);
+        address = (TextView) findViewById(R.id.address_view);
+        email = (TextView) findViewById(R.id.email_view);
+>>>>>>> 7049439f0af4f0a7a5090f6ff105ba8d86b09ee5
         photo = (ImageView) findViewById(R.id.user_profile_photo);
-        profilecover=(ImageView) findViewById(R.id.header_cover_image);
+        profilecover = (ImageView) findViewById(R.id.header_cover_image);
 
 
         storage = FirebaseStorage.getInstance();
@@ -89,23 +99,23 @@ public class ViewProfile extends AppCompatActivity {
 
 
         imagesRef = storageRef.child("images");
-        userProfileRef = storageRef.child("images/"+user.getUid()+".jpg");
-
-
+        userProfileRef = storageRef.child("images/" + user.getUid() + ".jpg");
 
 
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+<<<<<<< HEAD
                 Intent i=new Intent(ViewProfile.this,CreateParentProfile.class);
+=======
+                Intent i = new Intent(ViewProfile.this, ProfileUpdate.class);
+>>>>>>> 7049439f0af4f0a7a5090f6ff105ba8d86b09ee5
                 startActivity(i);
             }
         });
 
 
-
-
-        if ( user != null) {
+        if (user != null) {
             user_id = user.getUid();
             if (user.getPhotoUrl() != null) {
                 String profile_pic = user.getPhotoUrl().toString();
@@ -120,18 +130,17 @@ public class ViewProfile extends AppCompatActivity {
         photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent photoPickerIntent =  new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 //photoPickerIntent.setType("image/*");
                 startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG);
             }
         });
 
 
-
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Infor(dataSnapshot,user.getUid());
+                Infor(dataSnapshot, user.getUid());
             }
 
             @Override
@@ -140,11 +149,15 @@ public class ViewProfile extends AppCompatActivity {
             }
         });
 
-        TextView editprofile=(TextView) findViewById(R.id.editprofile);
+        TextView editprofile = (TextView) findViewById(R.id.editprofile);
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+<<<<<<< HEAD
                 Intent intent = new Intent(ViewProfile.this,UpdateProfile.class) ;
+=======
+                Intent intent = new Intent(ViewProfile.this, ProfileUpdate.class);
+>>>>>>> 7049439f0af4f0a7a5090f6ff105ba8d86b09ee5
                 startActivity(intent);
             }
 
@@ -162,7 +175,7 @@ public class ViewProfile extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
 
                 Uri selectedImage = intentData.getData();
-                String[] filePathColumn = { MediaStore.Images.Media.DATA };
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
                 // Get the cursor
                 Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
                 // Move to first row
@@ -205,7 +218,7 @@ public class ViewProfile extends AppCompatActivity {
                                     .setPhotoUri(downloadUrl)
                                     .build();
 
-                            if ( user != null ) {
+                            if (user != null) {
                                 user.updateProfile(profileUpdates)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
@@ -240,13 +253,14 @@ public class ViewProfile extends AppCompatActivity {
         Glide.with(getApplicationContext()).load(image_url).into(profilecover);
     }
 
-    private void Infor(DataSnapshot dataSnapshot, String userId){
+    private void Infor(DataSnapshot dataSnapshot, String userId) {
 
         Iterator iterator = dataSnapshot.getChildren().iterator();
 
-        while(iterator.hasNext()) {
+        while (iterator.hasNext()) {
             DataSnapshot dataUser = (DataSnapshot) iterator.next();
 
+<<<<<<< HEAD
             if (dataUser.child("userKey").getValue().toString().equals(userId))
             {
                 name.setText(dataUser.child("userName").getValue().toString() +  " " + dataUser.child("userSurname").getValue().toString());
@@ -256,6 +270,14 @@ public class ViewProfile extends AppCompatActivity {
                 city.setText("  City :"+ dataUser.child("userCity").getValue().toString());
                 email.setText("  Email :"+ dataUser.child("emailUser").getValue().toString());
              //   City.setText(dataSnapshot.child("userCity").getValue().toString());
+=======
+            if (dataUser.child("userKey").getValue().toString().equals(userId)) {
+                name.setText(dataUser.child("userName").getValue().toString() + " " + dataUser.child("userSurname").getValue().toString());
+                gender.setText(" Gender :" + dataUser.child("userGender").getValue().toString());
+                phonenumber.setText("  phone number :" + dataUser.child("userContact").getValue().toString());
+                address.setText("  Lives in :" + dataUser.child("userAddress").getValue().toString());
+                email.setText("  Email :" + dataUser.child("emailUser").getValue().toString());
+>>>>>>> 7049439f0af4f0a7a5090f6ff105ba8d86b09ee5
             }
 
         }

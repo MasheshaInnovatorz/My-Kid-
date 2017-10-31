@@ -13,10 +13,10 @@ import java.util.Map;
 @IgnoreExtraProperties
 public class CrecheOnwer_Class {
     public String adminUid;
-    public  String admiName;
+    public String admiName;
     public String adminSurname;
     public String adminIdNo;
-    public  String adminGender;
+    public String adminGender;
     public String adminContact;
     public String adminRole;
     public String email;
@@ -26,7 +26,7 @@ public class CrecheOnwer_Class {
     public CrecheOnwer_Class() {
     }
 
-    public CrecheOnwer_Class(String adminUid, String admiName, String adminSurname, String adminIdNo, String adminGender,String adminRole,String email,String orgName,String adminContact) {
+    public CrecheOnwer_Class(String adminUid, String admiName, String adminSurname, String adminIdNo, String adminGender, String adminRole, String email, String orgName, String adminContact) {
         this.adminUid = adminUid;
         this.admiName = admiName;
         this.adminSurname = adminSurname;
@@ -52,7 +52,6 @@ public class CrecheOnwer_Class {
      */
 
 
-
     public String getAdminUid() {
         return adminUid;
     }
@@ -68,6 +67,7 @@ public class CrecheOnwer_Class {
     public String getAdminIdNo() {
         return adminIdNo;
     }
+
 
     public String getAdminGender() {
         return adminGender;
@@ -86,22 +86,20 @@ public class CrecheOnwer_Class {
     }
 
     @Exclude
-    public Map<String, Object> toMap(){
-        HashMap<String,Object> adminSave = new HashMap<>();
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> adminSave = new HashMap<>();
 
         adminSave.put("userKey", adminUid);
         adminSave.put("userName", admiName);
         adminSave.put("userSurname", adminSurname);
         adminSave.put("userIdNumber", adminIdNo);
-        adminSave.put("userGender",adminGender);
+        adminSave.put("userGender", adminGender);
         adminSave.put("role", adminRole);
-        adminSave.put("emailUser",email);
-        adminSave.put("orgName",orgName);
+        adminSave.put("emailUser", email);
+        adminSave.put("orgName", orgName);
         adminSave.put("userContact", adminContact);
         adminSave.put("isVerified", "verified");
         adminSave.put("userAddress", "Egret");
-
-
 
 
         return adminSave;

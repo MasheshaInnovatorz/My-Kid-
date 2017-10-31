@@ -30,8 +30,7 @@ public class Kids {
     }
 
 
-
-    public Kids(String id,String name, String surname, String address, String idNumber,String parentid,String kidsGrade,String kidsRegistered, String gender, String orgName) {
+    public Kids(String id, String name, String surname, String address, String idNumber, String parentid, String kidsGrade, String kidsRegistered, String gender, String orgName) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -46,15 +45,14 @@ public class Kids {
     }
 
 
-
-    public Kids(String id,String teachersId, String name, String surname, String address, String idNumber, String parentid, String gender) {
+    public Kids(String id, String teachersId, String name, String surname, String address, String idNumber, String parentid, String gender) {
         this.id = id;
 
         this.name = name;
         this.surname = surname;
         this.address = address;
         this.idNumber = idNumber;
-        this.teachersId=teachersId;
+        this.teachersId = teachersId;
         this.parentid = parentid;
         this.gender = gender;
     }
@@ -114,7 +112,7 @@ public class Kids {
 
     {
         this.allergies = allergies;
-        this.dietRequirements=dietRequirements;
+        this.dietRequirements = dietRequirements;
         this.doctorsRecomendations = doctorsRecomendations;
         this.bodyWeight = bodyWeight;
         this.kidHeight = kidHeight;
@@ -129,12 +127,15 @@ public class Kids {
     public String getDietRequirements() {
         return dietRequirements;
     }
+
     public String getDoctorsRecomendations() {
         return doctorsRecomendations;
     }
+
     public int getkidHeight() {
         return kidHeight;
     }
+
     public double getBodyWeight() {
         return bodyWeight;
     }

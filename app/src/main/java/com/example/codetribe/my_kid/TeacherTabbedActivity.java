@@ -70,16 +70,14 @@ public class TeacherTabbedActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.menu_teacher_profile) {
-            Intent intent = new Intent(TeacherTabbedActivity.this,ViewProfile.class);
+            Intent intent = new Intent(TeacherTabbedActivity.this, ViewProfile.class);
             startActivity(intent);
             return true;
-        }
-        else if (id == R.id.menu_teacher_aboutus) {
-            Intent intent = new Intent(TeacherTabbedActivity.this,AboutUs.class);
+        } else if (id == R.id.menu_teacher_aboutus) {
+            Intent intent = new Intent(TeacherTabbedActivity.this, AboutUs.class);
             startActivity(intent);
             return true;
-        }
-        else if (id == R.id.menu_teacher_Logout) {
+        } else if (id == R.id.menu_teacher_Logout) {
             logout();
             return true;
         }
@@ -130,9 +128,10 @@ public class TeacherTabbedActivity extends AppCompatActivity {
             return null;
         }
     }
+
     private void logout() {
         FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(TeacherTabbedActivity.this,LoginActivity.class) ;
+        Intent intent = new Intent(TeacherTabbedActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 

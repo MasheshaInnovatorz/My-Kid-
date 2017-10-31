@@ -17,7 +17,7 @@ import java.util.List;
  * Created by CodeTribe on 9/26/2017.
  */
 
-public class UserArray extends ArrayAdapter<UserProfile>{
+public class UserArray extends ArrayAdapter<UserProfile> {
 
     private Activity context;
     private List<UserProfile> userList;
@@ -32,21 +32,17 @@ public class UserArray extends ArrayAdapter<UserProfile>{
 
     @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
 
 
-
-
-
-        View listViewItem = inflater.inflate(R.layout.admin_and_kids_list,null,true);
+        View listViewItem = inflater.inflate(R.layout.admin_and_kids_list, null, true);
         TextView textKdName = (TextView) listViewItem.findViewById(R.id.textKidsName);
-        ImageView imageProf = (ImageView)listViewItem.findViewById(R.id.image);
-       // TextView surname = (TextView) listViewItem.findViewById(R.id.textKidsSurname);
+        ImageView imageProf = (ImageView) listViewItem.findViewById(R.id.image);
+        // TextView surname = (TextView) listViewItem.findViewById(R.id.textKidsSurname);
 
 
         UserProfile kids = userList.get(position);
-
 
 
         textKdName.setText(kids.getUserSurname() + " " + kids.getUserName());

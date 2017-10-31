@@ -12,22 +12,20 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/mykidicon"
-        />
-
+            android:src="@drawable/mykidicon" />
 
 
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/user_profile_photo"
             android:layout_width="120dp"
             android:layout_height="120dp"
+            android:layout_above="@+id/profile_layout"
+            android:layout_centerHorizontal="true"
             android:background="@drawable/profile_circular_border_imageview"
             android:elevation="5dp"
             android:padding="20dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/bag"
-            android:layout_above="@+id/profile_layout"
-            android:layout_centerHorizontal="true" />
+            android:src="@drawable/bag" />
 
 
         <RelativeLayout
@@ -45,9 +43,24 @@
                 android:id="@+id/editprofile"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+<<<<<<< HEAD
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
                 android:drawableStart="@drawable/ic_edit_black_24dp" />
+=======
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_toLeftOf="@+id/drop_down_option_menu"
+                android:drawableStart="@drawable/ic_edit_black_24dp" />
+
+            <ImageView
+                android:id="@+id/drop_down_option_menu"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp" />
+>>>>>>> 7049439f0af4f0a7a5090f6ff105ba8d86b09ee5
 
 
             <TextView
@@ -81,19 +94,17 @@
             android:orientation="vertical">
 
             <TextView
-                android:text="gender"
+                android:id="@+id/gender_view"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:background="#fff"
                 android:clickable="true"
-                android:id="@+id/gender_view"
                 android:elevation="4dp"
                 android:padding="20dp"
-                />
+                android:text="gender" />
 
             <TextView
-                android:text="phone number"
                 android:id="@+id/phone_view"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -104,7 +115,7 @@
                 android:clickable="true"
                 android:elevation="4dp"
                 android:padding="20dp"
-                 />
+                android:text="phone number" />
 
 
             <TextView
@@ -119,7 +130,7 @@
                 android:elevation="4dp"
                 android:text="Email"
                 android:padding="20dp"
-               />
+                android:text="Home Address" />
 
             <TextView
                 android:id="@+id/city_view"
@@ -131,8 +142,12 @@
                 android:text="Home Address"
                 android:elevation="4dp"
                 android:padding="20dp"
+<<<<<<< HEAD
                 />
 
+=======
+                android:text="Email" />
+>>>>>>> 7049439f0af4f0a7a5090f6ff105ba8d86b09ee5
 
             <TextView
                 android:id="@+id/address_view"
@@ -143,8 +158,12 @@
                 android:clickable="true"
                 android:text="Home Address"
                 android:elevation="4dp"
+<<<<<<< HEAD
                 android:padding="20dp"
                 />
+=======
+                android:padding="20dp" />
+>>>>>>> 7049439f0af4f0a7a5090f6ff105ba8d86b09ee5
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>

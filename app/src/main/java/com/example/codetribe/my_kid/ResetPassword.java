@@ -1,6 +1,5 @@
 package com.example.codetribe.my_kid;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -33,7 +32,7 @@ public class ResetPassword extends AppCompatActivity {
         setContentView(R.layout.activity_reset_password);
 
 
-      //  getSupportActionBar().setTitle("Reset Password");
+        //  getSupportActionBar().setTitle("Reset Password");
 
 
         inputEmail = (EditText) findViewById(R.id.email);
@@ -41,8 +40,6 @@ public class ResetPassword extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         auth = FirebaseAuth.getInstance();
-
-
 
 
         btnReset.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +53,7 @@ public class ResetPassword extends AppCompatActivity {
                     return;
                 }
 
-              //  progressBar.setVisibility(View.VISIBLE);
+                //  progressBar.setVisibility(View.VISIBLE);
                 auth.sendPasswordResetEmail(email)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
@@ -67,7 +64,7 @@ public class ResetPassword extends AppCompatActivity {
                                     Toast.makeText(ResetPassword.this, "You Dont Have Account To Reset !", Toast.LENGTH_SHORT).show();
                                 }
 
-                            //    progressBar.setVisibility(View.GONE);
+                                //    progressBar.setVisibility(View.GONE);
                             }
                         });
             }
@@ -81,7 +78,6 @@ public class ResetPassword extends AppCompatActivity {
         inflater.inflate(R.menu.menu_mainapp, menu);
         return true;
     }
-
 
 
     @Override

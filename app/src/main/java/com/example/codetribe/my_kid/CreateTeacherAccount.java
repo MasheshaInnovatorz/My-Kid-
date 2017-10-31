@@ -9,8 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Patterns;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -33,14 +31,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import static com.example.codetribe.my_kid.R.id.teacherpassword;
 
-public class
-
-CreateTeacherAccount extends AppCompatActivity {
+public class CreateTeacherAccount extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor sharedPrefEditor;
     TextInputLayout inputLayoutName, inputLayoutsurname, inputLayoutcontact, inputLayoutclassroom, inputLayoutidnumber, inputLayoutemail, inputLayoutpassword;
-    String userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, useremailString, userpasswordString, userAddressString,userCityString;
-    private EditText name, surname, contact, classroom, idnumber, useremail, userpassword,userAddress,userCity;
+    String userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, useremailString, userpasswordString, userAddressString, userCityString;
+    private EditText name, surname, contact, classroom, idnumber, useremail, userpassword, userAddress, userCity;
     RadioGroup gender;
     String keyTeacher;
     TextView createteacher;
@@ -83,16 +79,16 @@ CreateTeacherAccount extends AppCompatActivity {
         useremail = (EditText) findViewById(R.id.teacheremail);
         userpassword = (EditText) findViewById(teacherpassword);
         gender = (RadioGroup) findViewById(R.id.teachergenders);
-        userAddress = (EditText)findViewById(R.id.teacherAddress);
-        userCity = (EditText)findViewById(R.id.teacherCity);
+        userAddress = (EditText) findViewById(R.id.teacherAddress);
+        userCity = (EditText) findViewById(R.id.teacherCity);
 
 
         createteacher = (TextView) findViewById(R.id.Create_Teacher_Account);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String shared_email = sharedPreferences.getString("email","");
+        String shared_email = sharedPreferences.getString("email", "");
         useremail.setText(shared_email);
-         //adding validation to edittexts
+        //adding validation to edittexts
         awesomeValidation.addValidation(this, R.id.teachername, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
         awesomeValidation.addValidation(this, R.id.teachersurname, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.surnameerror);
         awesomeValidation.addValidation(this, R.id.teacheremail, Patterns.EMAIL_ADDRESS, R.string.emailerror);
@@ -135,12 +131,8 @@ CreateTeacherAccount extends AppCompatActivity {
                         if (awesomeValidation.validate()) {
 
 
-
-
                             saveParent(org_name);
-                        }
-                        else
-                        {
+                        } else {
                             Toast.makeText(CreateTeacherAccount.this, "Please Fix all the edit text", Toast.LENGTH_LONG).show();
 
                         }
@@ -183,12 +175,9 @@ CreateTeacherAccount extends AppCompatActivity {
                 userCityString = userCity.getText().toString().trim();
 
 
-
                 int selectedId = gender.getCheckedRadioButtonId();
                 gnrteacher = (RadioButton) findViewById(selectedId);
                 usergenderString = gnrteacher.getText().toString().trim();
-
-
 
 
                 //process the data further
@@ -210,7 +199,7 @@ CreateTeacherAccount extends AppCompatActivity {
 
 
                                     //Storing Information
-                                    TeacherClassAcc teacher = new TeacherClassAcc(userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, task.getResult().getUser().getUid().toString().trim(), task.getResult().getUser().getEmail().toString().trim(), password, role, "verified", orgNames,userAddressString,userCityString);
+                                    TeacherClassAcc teacher = new TeacherClassAcc(userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, task.getResult().getUser().getUid().toString().trim(), task.getResult().getUser().getEmail().toString().trim(), password, role, "verified", orgNames, userAddressString, userCityString);
 
                                     mDatabaseRef.child(task.getResult().getUser().getUid().toString().trim()).setValue(teacher);
 
@@ -222,7 +211,7 @@ CreateTeacherAccount extends AppCompatActivity {
                                 }
 
                                 if (!task.isSuccessful()) {
-                                    Toast.makeText(CreateTeacherAccount.this, "Authentication failed." + task.getException(),   Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(CreateTeacherAccount.this, "Authentication failed." + task.getException(), Toast.LENGTH_SHORT).show();
 
                                 } else {
                                     // startActivity(new Intent(Create_Teacher_Account.this, LoginActivity.class));
@@ -232,6 +221,7 @@ CreateTeacherAccount extends AppCompatActivity {
                             }
                         });
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -240,6 +230,7 @@ CreateTeacherAccount extends AppCompatActivity {
 
 
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();

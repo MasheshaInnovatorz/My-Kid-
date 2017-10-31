@@ -44,7 +44,7 @@ public class KidsmemoListAdapter extends RecyclerView.Adapter<KidsmemoListAdapte
 
 
         holder.textviewSenderid.setText(upload.getPersonUploaded());
-      holder.textViewName.setText(upload.getName());
+        holder.textViewName.setText(upload.getName());
         Glide.with(context).load(upload.getUri()).into(holder.imageView);
     }
 

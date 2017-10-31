@@ -37,7 +37,6 @@ public class Admin extends AppCompatActivity {
         setContentView(R.layout.activity_admin_tabbed2);
 
 
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Admin");
 
@@ -74,6 +73,7 @@ public class Admin extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.menu_about_us) {
+<<<<<<< HEAD
             Intent intent = new Intent(Admin.this,AboutUs.class);
             startActivity(intent);
             return true;
@@ -85,12 +85,25 @@ public class Admin extends AppCompatActivity {
 
         else if (id == R.id.menu_adimin_profile) {
             Intent intent = new Intent(Admin.this,ViewProfile.class);
+=======
+            Intent intent = new Intent(Admin.this, AboutUs.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.menu_admin_logout) {
+            logout();
+            return true;
+        } else if (id == R.id.menu_adimin_profile) {
+            Intent intent = new Intent(Admin.this, ViewProfile.class);
+>>>>>>> 7049439f0af4f0a7a5090f6ff105ba8d86b09ee5
             startActivity(intent);
             return true;
         }
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7049439f0af4f0a7a5090f6ff105ba8d86b09ee5
         return super.onOptionsItemSelected(item);
     }
 
@@ -114,9 +127,9 @@ public class Admin extends AppCompatActivity {
 
             switch (position) {
                 case 0:
-                    return new AdminTeacherList() ;
+                    return new AdminTeacherList();
                 case 1:
-                    return  new AdminKidsList();
+                    return new AdminKidsList();
 
 
             }
@@ -140,9 +153,16 @@ public class Admin extends AppCompatActivity {
             return null;
         }
     }
+<<<<<<< HEAD
     private void logout() {
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(Admin.this,LoginActivity.class) ;
+=======
+
+    private void logout() {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(Admin.this, LoginActivity.class);
+>>>>>>> 7049439f0af4f0a7a5090f6ff105ba8d86b09ee5
         startActivity(intent);
     }
 }
