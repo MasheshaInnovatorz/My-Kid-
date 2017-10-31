@@ -30,7 +30,6 @@ public class WelcomeActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
 
-
                             AlertDialog.Builder mBuilder = new AlertDialog.Builder(WelcomeActivity.this);
                             View mView = getLayoutInflater().inflate(R.layout.dialogue_spinner, null);
                             mBuilder.setTitle("Select an option to create Account?");
@@ -50,10 +49,6 @@ public class WelcomeActivity extends AppCompatActivity {
                                 public void onClick(DialogInterface dialogInterface, int which) {
 
                                     if (mSpinner.getSelectedItem().toString().equalsIgnoreCase("Choose Sign-Up Option")) {
-                                        //Toast.makeText(LoginActivity.this,
-                                        // m = Spinner.getSelectedItem().toString(),
-                                        //Toast.LENGTH_SHORT).show();
-
                                         dialogInterface.dismiss();
                                     }
                                     final String text = mSpinner.getSelectedItem().toString();

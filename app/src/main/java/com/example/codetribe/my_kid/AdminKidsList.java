@@ -8,11 +8,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -66,7 +64,7 @@ public class AdminKidsList extends Fragment {
         kids_id = keyId.getStringExtra("kid_id");
 
 //r
-
+/*
 
         listUsers.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
@@ -79,6 +77,8 @@ public class AdminKidsList extends Fragment {
                  //   Toast.makeText(Ge, "hi sir", Toast.LENGTH_SHORT).show();
                 }
             });
+
+        */
 
         parentId = keyId.getStringExtra("parent_id");
 

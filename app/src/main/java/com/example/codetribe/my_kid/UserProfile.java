@@ -32,6 +32,40 @@ public class UserProfile {
     }
 
 
+
+    public UserProfile(String keyUser, String userName, String userSurname, String userAddress, String userCity, String userContact) {
+        this.keyUser = keyUser;
+        this.userName = userName;
+        this.userSurname = userSurname;
+        this.userAddress = userAddress;
+        this.userCity = userCity;
+        this.userContact = userContact;
+    }
+
+    public void setKeyUser(String keyUser) {
+        this.keyUser = keyUser;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setUserSurname(String userSurname) {
+        this.userSurname = userSurname;
+    }
+
+    public void setUserAddress(String userAddress) {
+        this.userAddress = userAddress;
+    }
+
+    public void setUserCity(String userCity) {
+        this.userCity = userCity;
+    }
+
+    public void setUserContact(String userContact) {
+        this.userContact = userContact;
+    }
+
     public String getKeyUser() {
         return keyUser;
     }

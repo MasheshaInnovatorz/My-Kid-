@@ -151,9 +151,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             if(dataUser.child("emailUser").getValue().toString().trim().equals(emailForVer))
             {
 
-
                 if(dataUser.child("isVerified").getValue().toString().equals("unverified")){
-                    Intent intentUser = new Intent(LoginActivity.this,ProfileUpdate.class);
+                    Intent intentUser = new Intent(LoginActivity.this,CreateParentProfile.class);
                     intentUser.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                     Toast.makeText(this, dataUser.child("userKey").getValue().toString(), Toast.LENGTH_SHORT).show();
                     startActivity(intentUser);
@@ -241,7 +240,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         });
                     }
                     progressDialog.dismiss();
-
+                   // progressDialog.setMessage("Faied to Logging In");
                 }
             });
 

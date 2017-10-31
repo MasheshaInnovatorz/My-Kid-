@@ -31,7 +31,7 @@
         <activity
             android:name=".ResetPassword"
             android:theme="@style/AppTheme.LoginStyle" />
-        <activity android:name=".ProfileUpdate" />
+        <activity android:name=".CreateParentProfile" />
         <activity android:name=".KidsmemoListsActivity" />
         <activity android:name=".UploadKidsMemo" />
         <activity android:name=".ParentActivity" />
@@ -46,8 +46,7 @@
         <activity android:name=".SignUpOrganisationActivity" />
         <activity android:name=".CreateTeacherAccount" />
         <activity android:name=".AboutUs" />
-
-        <activity android:name=".GroupChat"></activity>
+        <activity android:name=".GroupChat" />
         <activity
             android:name=".ParentTabbedActivity"
             android:label="@string/title_activity_parent_tabbed"
@@ -61,8 +60,8 @@
         <activity
             android:name=".Admin"
             android:label="@string/title_activity_admin_tabbed"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".UpdateProfile"></activity>
     </application>
 
 </manifest>

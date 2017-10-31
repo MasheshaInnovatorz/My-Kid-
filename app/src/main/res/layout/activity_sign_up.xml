@@ -7,24 +7,34 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-  >
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="180dp"
             android:layout_height="180dp"
+            android:layout_marginTop="17dp"
             android:background="@drawable/kidlogo"
-            android:layout_marginTop="29dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select a creache"
+            android:textAlignment="center"
+            android:textColor="#448AFF"
+            android:textSize="17sp"
+            android:id="@+id/textView"
+            android:layout_below="@+id/imageView2"
+            android:layout_alignParentStart="true" />
+
         <LinearLayout
+            android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:orientation="vertical"
-            android:id="@+id/linearLayout3">
+            android:orientation="vertical">
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_email"
@@ -109,12 +119,9 @@
             android:id="@+id/orgname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/imageView2"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="28dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-          />
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 </FrameLayout>

@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import static com.example.codetribe.my_kid.R.id.gender;
 
-public class ProfileUpdate extends AppCompatActivity {
+public class CreateParentProfile extends AppCompatActivity {
 
 
 
@@ -61,11 +61,11 @@ public class ProfileUpdate extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_edit);
+        setContentView(R.layout.createparentprofile);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Update Profile Update");
+        getSupportActionBar().setTitle("Register Profile Update");
 
 
 
@@ -80,9 +80,6 @@ public class ProfileUpdate extends AppCompatActivity {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-        //getting UserKey
-       // String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
         //database
@@ -158,12 +155,12 @@ public class ProfileUpdate extends AppCompatActivity {
                             databaseReference.child("isVerified").setValue(profile.getIsVerified());
 
 
-                            Toast.makeText(ProfileUpdate.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
-                            // startActivity(new Intent(ProfileUpdate.this, ParentActivity.class));
+                            Toast.makeText(CreateParentProfile.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
+                            // startActivity(new Intent(CreateParentProfile.this, ParentActivity.class));
 
 
                         } else {
-                            Toast.makeText(ProfileUpdate.this, "User Failed to Update Profile", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CreateParentProfile.this, "User Failed to Update Profile", Toast.LENGTH_SHORT).show();
                         }
 
 

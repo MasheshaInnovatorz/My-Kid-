@@ -42,7 +42,7 @@ public class ViewProfile extends AppCompatActivity {
     private Uri imgUri;
 
 
-    TextView name,surname,gender,phonenumber,address,email,editprofile;
+    TextView name,surname,city,gender,phonenumber,address,email,editprofile;
     String iduser;
     String image_url;
 
@@ -77,6 +77,7 @@ public class ViewProfile extends AppCompatActivity {
         gender = (TextView) findViewById(R.id.gender_view);
         phonenumber= (TextView)findViewById(R.id.phone_view);
         address= (TextView)findViewById(R.id.address_view);
+        city= (TextView)findViewById(R.id.city_view);
         email= (TextView)findViewById(R.id.email_view);
         photo = (ImageView) findViewById(R.id.user_profile_photo);
         profilecover=(ImageView) findViewById(R.id.header_cover_image);
@@ -96,7 +97,7 @@ public class ViewProfile extends AppCompatActivity {
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(ViewProfile.this,ProfileUpdate.class);
+                Intent i=new Intent(ViewProfile.this,CreateParentProfile.class);
                 startActivity(i);
             }
         });
@@ -143,7 +144,7 @@ public class ViewProfile extends AppCompatActivity {
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ViewProfile.this,ProfileUpdate.class) ;
+                Intent intent = new Intent(ViewProfile.this,UpdateProfile.class) ;
                 startActivity(intent);
             }
 
@@ -252,7 +253,9 @@ public class ViewProfile extends AppCompatActivity {
                 gender.setText(" Gender :"+ dataUser.child("userGender").getValue().toString());
                 phonenumber.setText("  phone number :"+ dataUser.child("userContact").getValue().toString());
                 address.setText("  Lives in :"+ dataUser.child("userAddress").getValue().toString());
+                city.setText("  City :"+ dataUser.child("userCity").getValue().toString());
                 email.setText("  Email :"+ dataUser.child("emailUser").getValue().toString());
+             //   City.setText(dataSnapshot.child("userCity").getValue().toString());
             }
 
         }

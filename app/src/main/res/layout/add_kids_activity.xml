@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:background="@android:color/white"
     android:layout_height="match_parent"
-    tools:context="com.example.codetribe.my_kid.ProfileUpdate">
+    tools:context="com.example.codetribe.my_kid.CreateParentProfile">
 
 
     <ScrollView
@@ -222,7 +222,7 @@
                     android:hint="Current Year"
                     android:textColorHint="#ADCCE2"
                     android:layout_marginLeft="22dp"
-                    android:inputType="number"
+                    android:inputType="date"
                     android:maxLength="4"
                     android:textColor="#ADCCE2"
                     android:background="#0000"

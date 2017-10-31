@@ -170,7 +170,6 @@ FloatingActionButton share;
 
                                 KidsId = kidsUser.child("id").getValue().toString();
 
-
                             }
 
 
@@ -199,9 +198,6 @@ FloatingActionButton share;
     @Override
     protected void onStart() {
         super.onStart();
-
-
-
         Intent intent = getIntent();
         parentid = intent.getStringExtra("parentIdentity");
         // userKey = intent.getStringExtra("User_KEY");

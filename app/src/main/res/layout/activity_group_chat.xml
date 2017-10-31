@@ -21,7 +21,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:gravity="bottom"
-        android:background="@drawable/editextstyle"
         android:orientation="horizontal"
         android:id="@+id/linearLayout7">
 
@@ -31,17 +30,21 @@
             android:layout_weight="1"
             android:id="@+id/mess_text"
             android:padding="6dp"
+            android:layout_marginTop="45dp"
             android:paddingBottom="65dp"
             android:textColorHint="@color/primary"
             android:background="@drawable/editextstyle"
             android:textColor="@color/primary"
             android:hint="Write a message" />
 
+
+
+
         <ImageView
             android:id="@+id/buttonsend"
             android:layout_width="35dp"
             android:layout_height="34dp"
-
+android:layout_gravity="top"
             android:background="@drawable/ic_send_black_24dp"
             android:padding="4dp"
 

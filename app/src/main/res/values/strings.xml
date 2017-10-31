@@ -42,8 +42,6 @@
     </string>
 
 
-
-
     <string-array name="user_role">
         <item>Teacher</item>
         <item>Parent</item>

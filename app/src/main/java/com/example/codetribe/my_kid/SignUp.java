@@ -98,18 +98,6 @@ public class SignUp extends AppCompatActivity {
 
         input_email1= (TextInputLayout)findViewById(R.id.input_email);
 
-        /*mainNav.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-
-                startActivity(new Intent(SignUp.this, LoginActivity.class));
-                finish();
-            }
-        });*/
-
-
-
         dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list);
 
 
@@ -153,8 +141,6 @@ public class SignUp extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 String email = inputEmail.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
 
@@ -210,7 +196,7 @@ public class SignUp extends AppCompatActivity {
 
 
                             } else {
-                                Toast.makeText(SignUp.this, "User Fialed to login", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUp.this, "User Fialed to Creating an Account", Toast.LENGTH_SHORT).show();
 
                             }
                         }
@@ -272,15 +258,6 @@ public class SignUp extends AppCompatActivity {
                         dataAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
                         //simple_spinner_dropdown_item
                         orgNameList.setAdapter(dataAdapter);
-
-
-
-
-
-
-
-
-
 
 
                     }else{
