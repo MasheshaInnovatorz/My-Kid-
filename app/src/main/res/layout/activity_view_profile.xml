@@ -43,11 +43,8 @@
                 android:id="@+id/editprofile"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-<<<<<<< HEAD
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
-                android:drawableStart="@drawable/ic_edit_black_24dp" />
-=======
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_toLeftOf="@+id/drop_down_option_menu"
@@ -60,7 +57,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp" />
->>>>>>> 7049439f0af4f0a7a5090f6ff105ba8d86b09ee5
 
 
             <TextView
@@ -129,8 +125,7 @@
                 android:clickable="true"
                 android:elevation="4dp"
                 android:text="Email"
-                android:padding="20dp"
-                android:text="Home Address" />
+                android:padding="20dp"/>
 
             <TextView
                 android:id="@+id/city_view"
@@ -142,12 +137,8 @@
                 android:text="Home Address"
                 android:elevation="4dp"
                 android:padding="20dp"
-<<<<<<< HEAD
                 />
 
-=======
-                android:text="Email" />
->>>>>>> 7049439f0af4f0a7a5090f6ff105ba8d86b09ee5
 
             <TextView
                 android:id="@+id/address_view"
@@ -158,12 +149,8 @@
                 android:clickable="true"
                 android:text="Home Address"
                 android:elevation="4dp"
-<<<<<<< HEAD
                 android:padding="20dp"
                 />
-=======
-                android:padding="20dp" />
->>>>>>> 7049439f0af4f0a7a5090f6ff105ba8d86b09ee5
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>

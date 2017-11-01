@@ -64,7 +64,6 @@ public class AdminKidsList extends Fragment {
         idLoged = keyId.getStringExtra("User_KEY");
         kids_id = keyId.getStringExtra("kid_id");
 
-<<<<<<< HEAD
 //r
 /*
 
@@ -82,10 +81,6 @@ public class AdminKidsList extends Fragment {
 
         */
 
-=======
-
-
->>>>>>> 7049439f0af4f0a7a5090f6ff105ba8d86b09ee5
         parentId = keyId.getStringExtra("parent_id");
 
         kidses = new ArrayList<>();

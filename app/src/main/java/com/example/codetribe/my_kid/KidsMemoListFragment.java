@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -55,6 +56,7 @@ public class KidsMemoListFragment extends Fragment {
     String Surname, name;
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -63,7 +65,9 @@ public class KidsMemoListFragment extends Fragment {
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        int number=2;
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),number));
+
 
         fab = (FloatingActionButton) rootView.findViewById(R.id.share_add);
         progressDialog = new ProgressDialog(getContext());

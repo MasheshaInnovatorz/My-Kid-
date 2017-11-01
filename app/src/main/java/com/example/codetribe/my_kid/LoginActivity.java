@@ -9,12 +9,16 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -31,18 +35,20 @@ import java.util.Iterator;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView login_Button;
- ImageView backtowelcome,icon;
+    ImageView backtowelcome, icon;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor sharedPrefEditor;
 
-   //declaring buttons and textiew
+    //declaring buttons and textiew
     private FirebaseUser mFirebaseUser;
-    private EditText editEmail,editPassword;
+    private EditText editEmail, editPassword;
 
     //firebase Authentification
     private FirebaseAuth mFirebaseAuth;
     FirebaseAuth.AuthStateListener mAuthListener;
     DatabaseReference mDatabaseRef;
+
+    private AwesomeValidation awesomeValidation;
 
     private ProgressDialog progressDialog;
     private TextView forgot;
@@ -61,21 +67,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.login_activity);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String shared_email = sharedPreferences.getString("email","");
+        String shared_email = sharedPreferences.getString("email", "");
 
-       // signup= (TextView)findViewById(R.id.sinup);
-        editEmail = (EditText)findViewById(R.id.email);
-        editPassword= (EditText)findViewById(R.id.password);
-        forgot = (TextView)findViewById(R.id.forget_password) ;
+
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+        // signup= (TextView)findViewById(R.id.sinup);
+        editEmail = (EditText) findViewById(R.id.email);
+        editPassword = (EditText) findViewById(R.id.password);
+        forgot = (TextView) findViewById(R.id.forget_password);
         login_Button = (TextView) findViewById(R.id.login);
 
-        input_email= (TextInputLayout)findViewById(R.id.input_reg_fullname);
+        input_email = (TextInputLayout) findViewById(R.id.input_reg_fullname);
 
+
+        awesomeValidation.addValidation(this, R.id.password, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.passworderror);
+        awesomeValidation.addValidation(this, R.id.email, Patterns.EMAIL_ADDRESS, R.string.emailerror);
 
         //firebase
-        mDatabaseRef  = FirebaseDatabase.getInstance().getReference("Users");
 
-        mFirebaseAuth  = FirebaseAuth.getInstance();
+        mFirebaseAuth = FirebaseAuth.getInstance();
 
 
         progressDialog = new ProgressDialog(this);
@@ -84,22 +94,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         //database
-        mAuthListener = new FirebaseAuth.AuthStateListener(){
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
 
             @Override
             public void onAuthStateChanged(@NonNull final FirebaseAuth firebaseAuth) {
-                FirebaseUser  user = firebaseAuth.getCurrentUser();
+                FirebaseUser user = firebaseAuth.getCurrentUser();
 
-               //final String keyId = firebaseAuth.getCurrentUser().getEmail();
-                if(user != null){
+                //final String keyId = firebaseAuth.getCurrentUser().getEmail();
+                if (user != null) {
 
                     //final String emailForVer = user.getEmail();
+                    mDatabaseRef = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
 
                     final String emailForVer = user.getEmail().toString();
                     mDatabaseRef.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            checkUserValidation(dataSnapshot,emailForVer);
+                            Log.i("Ygritte", dataSnapshot.toString());
+                            checkUserValidation(dataSnapshot, emailForVer);
 
                         }
 
@@ -110,142 +122,147 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     });
 
 
-                }else{
+                } else {
 
 
                 }
             }
         };
 
-       //setOnclick
-      login_Button.setOnClickListener(this);
+        //setOnclick
+        login_Button.setOnClickListener(this);
         //signup.setOnClickListener(this);
         forgot.setOnClickListener(this);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mFirebaseAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mFirebaseAuth.removeAuthStateListener(mAuthListener);
+    }
 
     @Override
     public void onClick(View view) {
-   if(view ==login_Button){
-       userLogin();
+        if (view == login_Button) {
 
-   }
+            if (awesomeValidation.validate()) {
+                userLogin();
+            }
 
-   if(view == forgot){
-       finish();
-      // startActivity(new Intent(this, UploadKidsMemo.class));
-       Intent i=new Intent(LoginActivity.this,ResetPassword.class);
-       startActivity(i);
 
-         }
+        }
+
+        if (view == forgot) {
+            finish();
+            // startActivity(new Intent(this, UploadKidsMemo.class));
+            Intent i = new Intent(LoginActivity.this, ResetPassword.class);
+            startActivity(i);
+
+        }
     }
 
-    private void checkUserValidation(DataSnapshot dataSnapshot, String emailForVer){
+    private void checkUserValidation(DataSnapshot dataUser, String emailForVer) {
 
-        Iterator iterator = dataSnapshot.getChildren().iterator();
+        //Iterator iterator = dataSnapshot.getChildren().iterator();
 
-        while(iterator.hasNext())
-        {
-            DataSnapshot dataUser  = (DataSnapshot) iterator.next();
+        //while (iterator.hasNext()) {
+          //  DataSnapshot dataUser = (DataSnapshot) iterator.next();
 
-            if(dataUser.child("emailUser").getValue().toString().trim().equals(emailForVer))
-            {
+            if (dataUser.child("isVerified").getValue().toString().equals("unverified")) {
+                Intent intentUser = new Intent(LoginActivity.this, CreateParentProfile.class);
 
-                if(dataUser.child("isVerified").getValue().toString().equals("unverified")){
-                    Intent intentUser = new Intent(LoginActivity.this,CreateParentProfile.class);
-                    intentUser.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
-                    Toast.makeText(this, dataUser.child("userKey").getValue().toString(), Toast.LENGTH_SHORT).show();
-                    startActivity(intentUser);
+                //if (dataUser.child("emailUser").getValue().toString().trim().equals(emailForVer)) {
 
-                }else {
+                    //if (dataUser.child("isVerified").getValue().toString().equals("unverified")) {
+                        //Intent intentUser = new Intent(LoginActivity.this, CreateParentProfile.class);
+                        intentUser.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
+                        Toast.makeText(this, dataUser.child("userKey").getValue().toString(), Toast.LENGTH_SHORT).show();
+                        startActivity(intentUser);
 
-                    if (dataUser.child("role").getValue().toString().equals("teacher")) {
-                        Intent intent = new Intent(LoginActivity.this, TeacherTabbedActivity.class);
+                   // }
+                //}
 
-                        intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
-                        startActivity(intent);
-                        Toast.makeText(this, "Welcome To TeachersActivity Page", Toast.LENGTH_SHORT).show();
+            } else {
+                if (dataUser.child("role").getValue().toString().equals("teacher")) {
+                    Intent intent = new Intent(LoginActivity.this, TeacherTabbedActivity.class);
+                    intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
+                    startActivity(intent);
+                    Toast.makeText(this, "Welcome To TeachersActivity Page", Toast.LENGTH_SHORT).show();
 
 
+                } else if (dataUser.child("role").getValue().toString().equals("parent")) {
+                    //  Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
+                    //Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, ParentTabbedActivity.class);
+                    intent.putExtra("parent_id", dataUser.child("userIdNumber").getValue().toString());
+                    //intent.putExtra("kid_id", dataUser.child("id").getValue().toString());
+                    startActivity(intent);
+                    Toast.makeText(this, "Welcome To Parents Page", Toast.LENGTH_SHORT).show();
 
-                    } else if (dataUser.child("role").getValue().toString().equals("parent")) {
-                      //  Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
-                        //Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
-                        Intent intent = new Intent(LoginActivity.this, ParentTabbedActivity.class);
+                } else if (dataUser.child("role").getValue().toString().equals("admin")) {
 
-                        intent.putExtra("parent_id", dataUser.child("userIdNumber").getValue().toString());
-                        //intent.putExtra("kid_id", dataUser.child("id").getValue().toString());
-                        startActivity(intent);
-                        Toast.makeText(this, "Welcome To Parents Page", Toast.LENGTH_SHORT).show();
+                    // Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, Admin.class);
 
-                    } else if (dataUser.child("role").getValue().toString().equals("admin")) {
+                    // intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
+                    intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
+                    startActivity(intent);
+                    Toast.makeText(this, "Welcome To AdminActivity Page", Toast.LENGTH_SHORT).show();
+                } else {
 
-                       // Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
-                        Intent intent = new Intent(LoginActivity.this, Admin.class);
-
-                       // intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
-                        intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
-                        startActivity(intent);
-                        Toast.makeText(this, "Welcome To AdminActivity Page", Toast.LENGTH_SHORT).show();
-                    }else {
-
-                        Toast.makeText(this, dataUser.child("role").getValue().toString(), Toast.LENGTH_SHORT).show();
-                        Toast.makeText(LoginActivity.this, "Please Contact A heard Master To Assign you A Role", Toast.LENGTH_SHORT).show();
-                    }
-
+                    Toast.makeText(this, dataUser.child("role").getValue().toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Please Contact A heard Master To Assign you A Role", Toast.LENGTH_SHORT).show();
                 }
 
             }
 
-        }
-
+        //}
     }
-    private void userLogin(){
+
+    private void userLogin() {
         final String userEmailString, userPasswordString;
 
-        userEmailString  = editEmail.getText().toString().trim();
+        userEmailString = editEmail.getText().toString().trim();
         userPasswordString = editPassword.getText().toString().trim();
 
-        if (TextUtils.isEmpty((userEmailString))) {
-            Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if(TextUtils.isEmpty(userPasswordString)){
-            Toast.makeText(this, "Please enter password", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-    
         progressDialog.setMessage("Wait While Logging In");
         progressDialog.show();
 
 
+        if (!TextUtils.isEmpty(userEmailString) && !TextUtils.isEmpty(userPasswordString)) {
 
-        if(!TextUtils.isEmpty(userEmailString) && !TextUtils.isEmpty(userPasswordString)){
-
-            mFirebaseAuth.signInWithEmailAndPassword(userEmailString,userPasswordString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            mFirebaseAuth.signInWithEmailAndPassword(userEmailString, userPasswordString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
-
+                    if (task.isSuccessful()) {
+                        /*
                         mDatabaseRef.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 checkUserValidation(dataSnapshot, userEmailString);
                             }
+
                             @Override
                             public void onCancelled(DatabaseError databaseError) {
 
                             }
                         });
+                        */
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Either your Email nor Password is Worng or not Registered", Toast.LENGTH_SHORT).show();
                     }
                     progressDialog.dismiss();
-                   // progressDialog.setMessage("Faied to Logging In");
+
                 }
             });
 
         }
-
 
 
     }

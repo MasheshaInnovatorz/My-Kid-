@@ -180,11 +180,6 @@ public class CreateTeacherAccount extends AppCompatActivity {
                 usergenderString = gnrteacher.getText().toString().trim();
 
 
-                //process the data further
-
-                //        progressBar.setVisibility(View.VISIBLE);
-                //create user
-
 
                 auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(CreateTeacherAccount.this, new OnCompleteListener<AuthResult>() {
