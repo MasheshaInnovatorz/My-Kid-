@@ -78,12 +78,6 @@ public class CreateParentProfile extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/CreateParentProfile.java
-=======
-        //getting UserKey
-        // String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
->>>>>>> 7049439f0af4f0a7a5090f6ff105ba8d86b09ee5:app/src/main/java/com/example/codetribe/my_kid/ProfileUpdate.java
 
         //database
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
@@ -149,38 +143,12 @@ public class CreateParentProfile extends AppCompatActivity {
                         databaseReference.child("userGender").setValue(profile.getUserGender());
                         databaseReference.child("isVerified").setValue(profile.getIsVerified());
 
-<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/CreateParentProfile.java
-                        if (!TextUtils.isEmpty(inputIdnumberString)) {
-
-
-                            String isVerified = "verified";
-                            UserProfile profile = new UserProfile(keyUser, userNameString, inputSurnameString, inputIdnumberString, inputAddressString, inputCityString, userContactString, genderString, isVerified);
-                            databaseReference.child("userName").setValue(profile.getUserName());
-                            databaseReference.child("userSurname").setValue(profile.getUserSurname());
-                            databaseReference.child("userIdNumber").setValue(profile.getUserIdNumber());
-                            databaseReference.child("userContact").setValue(profile.getUserContact());
-                            databaseReference.child("userAddress").setValue(profile.getUserAddress());
-                            databaseReference.child("userCity").setValue(profile.getUserCity());
-                            databaseReference.child("userGender").setValue(profile.getUserGender());
-                            databaseReference.child("isVerified").setValue(profile.getIsVerified());
-
-
-                            Toast.makeText(CreateParentProfile.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
-                            // startActivity(new Intent(CreateParentProfile.this, ParentActivity.class));
-
-
-                        } else {
-                            Toast.makeText(CreateParentProfile.this, "User Failed to Update Profile", Toast.LENGTH_SHORT).show();
-                        }
-=======
->>>>>>> 7049439f0af4f0a7a5090f6ff105ba8d86b09ee5:app/src/main/java/com/example/codetribe/my_kid/ProfileUpdate.java
-
-                        Toast.makeText(ProfileUpdate.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreateParentProfile.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
                         // startActivity(new Intent(ProfileUpdate.this, ParentActivity.class));
 
 
                     } else {
-                        Toast.makeText(ProfileUpdate.this, "User Failed to Update Profile", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreateParentProfile.this, "User Failed to Update Profile", Toast.LENGTH_SHORT).show();
                     }
 
 

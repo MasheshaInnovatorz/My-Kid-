@@ -41,11 +41,9 @@ public class ViewProfile extends AppCompatActivity {
     private Uri imgUri;
 
 
-<<<<<<< HEAD
-    TextView name,surname,city,gender,phonenumber,address,email,editprofile;
-=======
-    TextView name, surname, gender, phonenumber, address, email, editprofile;
->>>>>>> 7049439f0af4f0a7a5090f6ff105ba8d86b09ee5
+
+    TextView name, surname, gender,city, phonenumber, address, email, editprofile;
+
     String iduser;
     String image_url;
 
@@ -79,16 +77,11 @@ public class ViewProfile extends AppCompatActivity {
         name = (TextView) findViewById(R.id.user_profile_name);
         // surname= (TextView)findViewById(R.id.user_profile_status);
         gender = (TextView) findViewById(R.id.gender_view);
-<<<<<<< HEAD
+
         phonenumber= (TextView)findViewById(R.id.phone_view);
         address= (TextView)findViewById(R.id.address_view);
         city= (TextView)findViewById(R.id.city_view);
         email= (TextView)findViewById(R.id.email_view);
-=======
-        phonenumber = (TextView) findViewById(R.id.phone_view);
-        address = (TextView) findViewById(R.id.address_view);
-        email = (TextView) findViewById(R.id.email_view);
->>>>>>> 7049439f0af4f0a7a5090f6ff105ba8d86b09ee5
         photo = (ImageView) findViewById(R.id.user_profile_photo);
         profilecover = (ImageView) findViewById(R.id.header_cover_image);
 
@@ -105,11 +98,11 @@ public class ViewProfile extends AppCompatActivity {
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-<<<<<<< HEAD
+
                 Intent i=new Intent(ViewProfile.this,CreateParentProfile.class);
-=======
-                Intent i = new Intent(ViewProfile.this, ProfileUpdate.class);
->>>>>>> 7049439f0af4f0a7a5090f6ff105ba8d86b09ee5
+
+
+
                 startActivity(i);
             }
         });
@@ -153,11 +146,9 @@ public class ViewProfile extends AppCompatActivity {
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-<<<<<<< HEAD
+
                 Intent intent = new Intent(ViewProfile.this,UpdateProfile.class) ;
-=======
-                Intent intent = new Intent(ViewProfile.this, ProfileUpdate.class);
->>>>>>> 7049439f0af4f0a7a5090f6ff105ba8d86b09ee5
+
                 startActivity(intent);
             }
 
@@ -260,7 +251,7 @@ public class ViewProfile extends AppCompatActivity {
         while (iterator.hasNext()) {
             DataSnapshot dataUser = (DataSnapshot) iterator.next();
 
-<<<<<<< HEAD
+
             if (dataUser.child("userKey").getValue().toString().equals(userId))
             {
                 name.setText(dataUser.child("userName").getValue().toString() +  " " + dataUser.child("userSurname").getValue().toString());
@@ -270,14 +261,7 @@ public class ViewProfile extends AppCompatActivity {
                 city.setText("  City :"+ dataUser.child("userCity").getValue().toString());
                 email.setText("  Email :"+ dataUser.child("emailUser").getValue().toString());
              //   City.setText(dataSnapshot.child("userCity").getValue().toString());
-=======
-            if (dataUser.child("userKey").getValue().toString().equals(userId)) {
-                name.setText(dataUser.child("userName").getValue().toString() + " " + dataUser.child("userSurname").getValue().toString());
-                gender.setText(" Gender :" + dataUser.child("userGender").getValue().toString());
-                phonenumber.setText("  phone number :" + dataUser.child("userContact").getValue().toString());
-                address.setText("  Lives in :" + dataUser.child("userAddress").getValue().toString());
-                email.setText("  Email :" + dataUser.child("emailUser").getValue().toString());
->>>>>>> 7049439f0af4f0a7a5090f6ff105ba8d86b09ee5
+
             }
 
         }
