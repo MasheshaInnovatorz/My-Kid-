@@ -78,12 +78,10 @@ public class CreateParentProfile extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-<<<<<<< HEAD
+
         //getting UserKey
         // String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-=======
->>>>>>> ba7c3e35d67ad8f37df586ee6022366054dd9c41
 
         //database
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
@@ -149,15 +147,13 @@ public class CreateParentProfile extends AppCompatActivity {
                         databaseReference.child("userGender").setValue(profile.getUserGender());
                         databaseReference.child("isVerified").setValue(profile.getIsVerified());
 
-<<<<<<< HEAD
 
-                            Toast.makeText(CreateParentProfile.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
                              startActivity(new Intent(CreateParentProfile.this, ParentTabbedActivity.class));
 
-=======
+
                         Toast.makeText(CreateParentProfile.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
                         // startActivity(new Intent(ProfileUpdate.this, ParentActivity.class));
->>>>>>> ba7c3e35d67ad8f37df586ee6022366054dd9c41
+
 
 
                     } else {

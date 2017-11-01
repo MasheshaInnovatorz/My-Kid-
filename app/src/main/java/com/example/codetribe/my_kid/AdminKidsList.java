@@ -64,8 +64,7 @@ public class AdminKidsList extends Fragment {
         idLoged = keyId.getStringExtra("User_KEY");
         kids_id = keyId.getStringExtra("kid_id");
 
-<<<<<<< HEAD
-//r
+
 /*
 
         listUsers.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -82,10 +81,7 @@ public class AdminKidsList extends Fragment {
 
         */
 
-=======
 
-
->>>>>>> ba7c3e35d67ad8f37df586ee6022366054dd9c41
         parentId = keyId.getStringExtra("parent_id");
 
         kidses = new ArrayList<>();

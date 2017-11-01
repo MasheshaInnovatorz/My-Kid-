@@ -73,10 +73,7 @@ public class Admin extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.menu_about_us) {
-<<<<<<< HEAD
 
-=======
->>>>>>> ba7c3e35d67ad8f37df586ee6022366054dd9c41
             Intent intent = new Intent(Admin.this,AboutUs.class);
             startActivity(intent);
             return true;
@@ -99,10 +96,7 @@ public class Admin extends AppCompatActivity {
             return true;
         }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> ba7c3e35d67ad8f37df586ee6022366054dd9c41
         return super.onOptionsItemSelected(item);
     }
 
@@ -152,11 +146,9 @@ public class Admin extends AppCompatActivity {
             return null;
         }
     }
-<<<<<<< HEAD
-    private void logout() {
-=======
 
->>>>>>> ba7c3e35d67ad8f37df586ee6022366054dd9c41
+    private void logout() {
+
 
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(Admin.this, LoginActivity.class);
