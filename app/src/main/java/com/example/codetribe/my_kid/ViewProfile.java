@@ -42,13 +42,12 @@ public class ViewProfile extends AppCompatActivity {
 
 
 
-<<<<<<< HEAD
-    TextView name,surname,city,gender,phonenumber,address,email,editprofile;
-    //TextView name, surname, gender, phonenumber, address, email, editprofile;
-=======
-    TextView name, surname, gender,city, phonenumber, address, email, editprofile;
 
->>>>>>> ba7c3e35d67ad8f37df586ee6022366054dd9c41
+    TextView name,surname,city,gender,phonenumber,address,email,editprofile;
+
+
+
+
     String iduser;
     String image_url;
 
@@ -82,10 +81,7 @@ public class ViewProfile extends AppCompatActivity {
         name = (TextView) findViewById(R.id.user_profile_name);
         // surname= (TextView)findViewById(R.id.user_profile_status);
         gender = (TextView) findViewById(R.id.gender_view);
-<<<<<<< HEAD
-=======
 
->>>>>>> ba7c3e35d67ad8f37df586ee6022366054dd9c41
         phonenumber= (TextView)findViewById(R.id.phone_view);
         address= (TextView)findViewById(R.id.address_view);
         city= (TextView)findViewById(R.id.city_view);
@@ -108,13 +104,7 @@ public class ViewProfile extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent i=new Intent(ViewProfile.this,CreateParentProfile.class);
-<<<<<<< HEAD
-                //Intent i = new Intent(ViewProfile.this, ProfileUpdate.class);
-=======
 
-
-
->>>>>>> ba7c3e35d67ad8f37df586ee6022366054dd9c41
                 startActivity(i);
             }
         });
@@ -160,11 +150,7 @@ public class ViewProfile extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent(ViewProfile.this,UpdateProfile.class) ;
-<<<<<<< HEAD
-//                Intent intent = new Intent(ViewProfile.this, ProfileUpdate.class);
-=======
 
->>>>>>> ba7c3e35d67ad8f37df586ee6022366054dd9c41
                 startActivity(intent);
             }
 
@@ -267,7 +253,7 @@ public class ViewProfile extends AppCompatActivity {
         while (iterator.hasNext()) {
             DataSnapshot dataUser = (DataSnapshot) iterator.next();
 
-<<<<<<< HEAD
+
             if (dataUser.child("userKey").getValue().toString().equals(userId)) {
                 name.setText(dataUser.child("userName").getValue().toString() + " " + dataUser.child("userSurname").getValue().toString());
                 gender.setText(" Gender :" + dataUser.child("userGender").getValue().toString());
@@ -284,19 +270,6 @@ public class ViewProfile extends AppCompatActivity {
                 address.setText("  Lives in :" + dataUser.child("userAddress").getValue().toString());
                 email.setText("  Email :" + dataUser.child("emailUser").getValue().toString());
             }*/
-=======
-
-            if (dataUser.child("userKey").getValue().toString().equals(userId))
-            {
-                name.setText(dataUser.child("userName").getValue().toString() +  " " + dataUser.child("userSurname").getValue().toString());
-                gender.setText(" Gender :"+ dataUser.child("userGender").getValue().toString());
-                phonenumber.setText("  phone number :"+ dataUser.child("userContact").getValue().toString());
-                address.setText("  Lives in :"+ dataUser.child("userAddress").getValue().toString());
-                city.setText("  City :"+ dataUser.child("userCity").getValue().toString());
-                email.setText("  Email :"+ dataUser.child("emailUser").getValue().toString());
-             //   City.setText(dataSnapshot.child("userCity").getValue().toString());
-
->>>>>>> ba7c3e35d67ad8f37df586ee6022366054dd9c41
             }
 
         }

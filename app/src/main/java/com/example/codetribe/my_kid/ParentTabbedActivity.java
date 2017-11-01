@@ -72,6 +72,10 @@ public class ParentTabbedActivity extends AppCompatActivity {
             Intent intent = new Intent(ParentTabbedActivity.this, ViewProfile.class);
             startActivity(intent);
             return true;
+        } else if (id == R.id.menu_kids_profile) {
+            Intent intent = new Intent(ParentTabbedActivity.this, KidsViewProfile.class);
+            startActivity(intent);
+            return true;
         } else if (id == R.id.menu_parent_aboutus) {
             Intent intent = new Intent(ParentTabbedActivity.this, AboutUs.class);
             startActivity(intent);
