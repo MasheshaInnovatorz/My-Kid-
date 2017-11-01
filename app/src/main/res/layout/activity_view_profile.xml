@@ -49,16 +49,9 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_toLeftOf="@+id/drop_down_option_menu"
-<<<<<<< HEAD
+
                 android:drawableStart="@drawable/ic_edit_black_24dp" />
-=======
-                android:drawableStart="@drawable/ic_edit_black_24dp"
 
- />
-
-
-
->>>>>>> db88969c93edd90fe369bd9d82805e8d03460927
 
             <ImageView
                 android:id="@+id/drop_down_option_menu"
@@ -68,10 +61,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp" />
 
-<<<<<<< HEAD
-=======
 
->>>>>>> db88969c93edd90fe369bd9d82805e8d03460927
 
             <TextView
                 android:id="@+id/user_profile_name"
@@ -139,12 +129,7 @@
                 android:clickable="true"
                 android:elevation="4dp"
                 android:text="Email"
-<<<<<<< HEAD
-                android:padding="20dp"/>
-=======
-                android:padding="20dp"
-></TextView>
->>>>>>> db88969c93edd90fe369bd9d82805e8d03460927
+                  android:padding="20dp"/>
 
             <TextView
                 android:id="@+id/city_view"
@@ -158,10 +143,7 @@
                 android:padding="20dp"
                 />
 
-<<<<<<< HEAD
-=======
 
->>>>>>> db88969c93edd90fe369bd9d82805e8d03460927
 
             <TextView
                 android:id="@+id/address_view"
@@ -172,10 +154,6 @@
                 android:clickable="true"
                 android:text="Home Address"
                 android:elevation="4dp"
-<<<<<<< HEAD
-=======
-
->>>>>>> db88969c93edd90fe369bd9d82805e8d03460927
                 android:padding="20dp"
                 />
 
