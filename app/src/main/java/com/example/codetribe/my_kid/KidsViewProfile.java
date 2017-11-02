@@ -43,10 +43,6 @@ public class KidsViewProfile extends AppCompatActivity {
         Toast.makeText(this, fireAuthorization.getUid(), Toast.LENGTH_SHORT).show();
 
 
-
-
-
-
     }
 
     @Override
@@ -57,7 +53,6 @@ public class KidsViewProfile extends AppCompatActivity {
         userDataRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot userSnapshot) {
-
 
 
                 kidsDataProf.addValueEventListener(new ValueEventListener() {
