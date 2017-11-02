@@ -65,21 +65,6 @@ public class AdminKidsList extends Fragment {
         kids_id = keyId.getStringExtra("kid_id");
 
 
-/*
-
-        listUsers.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                // Kids kido =  kid.get(i);
-                  Intent intent = new Intent(getContext(),ViewProfile.class);
-                // intent.putExtra("kid_id", kido.getId());
-                  startActivity(intent);
-                 //   Toast.makeText(Ge, "hi sir", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-        */
 
 
         parentId = keyId.getStringExtra("parent_id");

@@ -7,6 +7,10 @@
         android:id="@+id/menu_parent_profile"
         android:title="Profile"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_kids_profile"
+        android:title="Kid Profile"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/menu_parent_aboutus"

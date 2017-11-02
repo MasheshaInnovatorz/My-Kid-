@@ -37,9 +37,7 @@
         <activity android:name=".UploadKidsMemo" />
         <activity android:name=".ParentActivity" />
         <activity android:name=".TeachersActivity" />
-        <activity
-            android:name=".WelcomeActivity"
-          />
+        <activity android:name=".WelcomeActivity" />
         <activity android:name=".KidActivity" />
         <activity
             android:name=".ViewProfile"
@@ -62,7 +60,8 @@
             android:name=".AdminTabbedActivity"
             android:label="@string/title_activity_admin_tabbed"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".UpdateProfile"></activity>
+        <activity android:name=".UpdateProfile" />
+        <activity android:name=".KidsViewProfile"></activity>
     </application>
 
 </manifest>

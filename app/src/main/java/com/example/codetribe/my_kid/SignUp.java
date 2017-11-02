@@ -190,7 +190,7 @@ public class SignUp extends AppCompatActivity {
                                                 // String key_user = mChildDatabase.getKey();
 
                                                 mChildDatabase.child("isVerified").setValue("unverified");
-                                                mChildDatabase.child("orgnName").setValue(strName);
+                                                mChildDatabase.child("orgName").setValue(strName);
                                                 mChildDatabase.child("userKey").setValue(user_id);
                                                 mChildDatabase.child("role").setValue("parent");
                                                 mChildDatabase.child("emailUser").setValue(userEmailString);

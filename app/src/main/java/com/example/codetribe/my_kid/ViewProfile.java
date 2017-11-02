@@ -40,8 +40,6 @@ public class ViewProfile extends AppCompatActivity {
 
     private Uri imgUri;
 
-  //  TextView name,surname,city,gender,phonenumber,address,email,editprofile;
-    //TextView name, surname, gender, phonenumber, address, email, editprofile;
 
     TextView name, surname, gender,city, phonenumber, address, email, editprofile;
 
@@ -79,6 +77,7 @@ public class ViewProfile extends AppCompatActivity {
         name = (TextView) findViewById(R.id.user_profile_name);
         // surname= (TextView)findViewById(R.id.user_profile_status);
         gender = (TextView) findViewById(R.id.gender_view);
+
         phonenumber= (TextView)findViewById(R.id.phone_view);
         address= (TextView)findViewById(R.id.address_view);
         city= (TextView)findViewById(R.id.city_view);
@@ -100,6 +99,7 @@ public class ViewProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(ViewProfile.this,CreateParentProfile.class);
+
                 startActivity(i);
             }
         });
@@ -145,6 +145,7 @@ public class ViewProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ViewProfile.this,UpdateProfile.class) ;
+
                 startActivity(intent);
             }
 
@@ -255,8 +256,11 @@ public class ViewProfile extends AppCompatActivity {
                 city.setText("  City :" + dataUser.child("userCity").getValue().toString());
                 email.setText("  Email :" + dataUser.child("emailUser").getValue().toString());
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ea8c677060db23be30094200f0d8dc08faa790b3
             }
 
         }
