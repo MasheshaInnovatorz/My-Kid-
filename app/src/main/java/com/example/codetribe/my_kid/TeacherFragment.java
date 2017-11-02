@@ -53,7 +53,6 @@ public class TeacherFragment extends Fragment {
 
 
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        //orgNameReference = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("teacherClassroom");
         orgNameReference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
         //roleRefer = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("role");
 

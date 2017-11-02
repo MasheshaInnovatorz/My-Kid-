@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -52,7 +54,7 @@ public class KidsmemoListsActivity extends AppCompatActivity {
     private String KidsId, kidsUserId;
     String parentid, userKey, user_roles;
     private Button btnparticipate;
-    private TextView sendKids;
+    private TextView sendKids,getTime;
     String Surname, name;
     FloatingActionButton share;
 
@@ -74,7 +76,7 @@ public class KidsmemoListsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         share = (FloatingActionButton) findViewById(R.id.share_add);
-
+        //getTime=(TextView) findViewById(R.id.memories_time);
         progressDialog = new ProgressDialog(this);
 
         imgList = new ArrayList<>();
@@ -86,8 +88,6 @@ public class KidsmemoListsActivity extends AppCompatActivity {
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(UploadKidsMemo.FB_DATABASE_PATH);
         childRef = FirebaseDatabase.getInstance().getReference("Kids");
-        //  btnparticipate = (Button) findViewById(R.id.btnParticipate);
-
     }
 
     public void InforTeacher(DataSnapshot kidSnapshot, DataSnapshot dataSnapshot, String kidsIdentity) {
@@ -95,7 +95,6 @@ public class KidsmemoListsActivity extends AppCompatActivity {
         Iterator iterator = dataSnapshot.getChildren().iterator();
         Iterator kidsIterator = kidSnapshot.getChildren().iterator();
 
-        // DatabaseReference teacher = FirebaseDatabase.getInstance().getReference("Users");
 
         while (kidsIterator.hasNext()) {
 
@@ -121,7 +120,6 @@ public class KidsmemoListsActivity extends AppCompatActivity {
 
                             //init adapter
                             adapter = new KidsmemoListAdapter(getApplicationContext(), imgList);
-
                             //adding adapter to recyclerview
                             recyclerView.setAdapter(adapter);
                         }
@@ -139,9 +137,7 @@ public class KidsmemoListsActivity extends AppCompatActivity {
     private void Infor(DataSnapshot kidSnapshot, DataSnapshot dataSnapshot, String userId) {
 
         Iterator iterator = dataSnapshot.getChildren().iterator();
-
         Iterator kidsIterator = kidSnapshot.getChildren().iterator();
-
 
         while (kidsIterator.hasNext()) {
             final DataSnapshot kidsUser = (DataSnapshot) kidsIterator.next();
@@ -152,22 +148,18 @@ public class KidsmemoListsActivity extends AppCompatActivity {
                 Surname = kidsUser.child("surname").getValue().toString();
                 name = kidsUser.child("name").getValue().toString();
 
-
                 while (iterator.hasNext()) {
                     DataSnapshot dataUser = (DataSnapshot) iterator.next();
 
                     if (kidsUser.child("id").getValue().toString().equals(dataUser.getKey())) {
                         imgList.clear();
-
                         for (DataSnapshot snapshot : dataUser.getChildren()) {
-
 
                             MemokidsUpload_class img = snapshot.getValue(MemokidsUpload_class.class);
                             imgList.add(img);
                             KidsId = kidsUser.child("id").getValue().toString();
 
                         }
-
 
                         //init adapter
                         adapter = new KidsmemoListAdapter(getApplicationContext(), imgList);
@@ -179,17 +171,12 @@ public class KidsmemoListsActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(this, "You don't have a kid you are linked with", Toast.LENGTH_SHORT).show();
                     }
-
-
                 }
-
-
             } else {
                 Toast.makeText(KidsmemoListsActivity.this, "You dont have a Kid you are linked with from this creche", Toast.LENGTH_SHORT).show();
             }
         }
     }
-
 
     @Override
     protected void onStart() {
@@ -280,4 +267,5 @@ public class KidsmemoListsActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu_mainapp, menu);
         return true;
     }
+
 }
