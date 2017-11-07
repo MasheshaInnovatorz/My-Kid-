@@ -20,10 +20,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:text=" Mashesha Digital innovators team"
+                android:text=" Mashesha Digital innovators"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:textColor="#448AFF"
+                android:textColor="#000000"
                 android:textSize="19sp"
                 android:textStyle="bold"></TextView>
 
@@ -45,7 +45,7 @@
                 android:text="TEaM MEmbers"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:textColor="#448AFF"
+                android:textColor="#000000"
                 android:textSize="19sp"
                 android:textStyle="bold"></TextView>
 
@@ -82,6 +82,7 @@
                         android:layout_weight="2"
                         android:text="Srum Master : Miss Talifhani Munwana"
                         android:textAlignment="center"
+                        android:textColor="#000000"
                         android:textAllCaps="true"></TextView>
 
                 </TableRow>
@@ -114,6 +115,7 @@
                         android:layout_weight="2"
                         android:text="Developer :B Nkosi"
                         android:textAlignment="center"
+                        android:textColor="#000000"
                         android:textAllCaps="true"></TextView>
 
                     <TextView
@@ -124,6 +126,7 @@
                         android:layout_weight="2"
                         android:text="Developer : M Pfariso"
                         android:textAlignment="center"
+                        android:textColor="#000000"
                         android:textAllCaps="true" />
                 </TableRow>
 
@@ -162,6 +165,7 @@
                         android:layout_weight="2"
                         android:text="designer : M Rudzani"
                         android:textAlignment="center"
+                        android:textColor="#000000"
                         android:textAllCaps="true"></TextView>
 
 
@@ -173,6 +177,7 @@
                         android:layout_weight="2"
                         android:text="designer : K Herbeth"
                         android:textAlignment="center"
+                        android:textColor="#000000"
                         android:textAllCaps="true" />
                 </TableRow>
             </TableLayout>

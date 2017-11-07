@@ -55,7 +55,7 @@
                 android:drawableStart="@drawable/ic_edit_black_24dp" />
 
             <ImageView
-                android:id="@+id/drop_down_option_menu"
+                android:id="@+id/editKids_profile"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"

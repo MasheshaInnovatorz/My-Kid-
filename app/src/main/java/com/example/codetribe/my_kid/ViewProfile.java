@@ -237,8 +237,8 @@ public class ViewProfile extends AppCompatActivity {
     }
 
     public void showProfilePic(String image_url) {
-        Glide.with(getApplicationContext()).load(image_url).into(photo);
-        Glide.with(getApplicationContext()).load(image_url).into(profilecover);
+        Glide.with(getApplicationContext()).load(image_url).centerCrop().into(photo);
+        Glide.with(getApplicationContext()).load(image_url).centerCrop().into(profilecover);
     }
 
     private void Infor(DataSnapshot dataSnapshot, String userId) {

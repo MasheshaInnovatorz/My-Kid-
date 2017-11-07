@@ -71,6 +71,7 @@ public class KidsmemoListsActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
+        int number=2;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         share = (FloatingActionButton) findViewById(R.id.share_add);

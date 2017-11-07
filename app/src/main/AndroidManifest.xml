@@ -45,7 +45,6 @@
         <activity android:name=".SignUpOrganisationActivity" />
         <activity android:name=".CreateTeacherAccount" />
         <activity android:name=".AboutUs" />
-        <activity android:name=".GroupChat" />
         <activity
             android:name=".ParentTabbedActivity"
             android:label="@string/title_activity_parent_tabbed"
@@ -62,6 +61,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".UpdateProfile" />
         <activity android:name=".KidsViewProfile"></activity>
+        <activity android:name=".EditKidsProfile"></activity>
+
     </application>
 
 </manifest>

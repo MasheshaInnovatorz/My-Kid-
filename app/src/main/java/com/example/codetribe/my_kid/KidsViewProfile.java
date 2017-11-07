@@ -1,7 +1,10 @@
 package com.example.codetribe.my_kid;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +20,9 @@ public class KidsViewProfile extends AppCompatActivity {
 
     DatabaseReference kidsDataProf, userDataRef;
     FirebaseUser fireAuthorization;
+    ImageView editProfile;
+
+    String id_Key;
 
     TextView kidsUser, parentName, kidsGender, phonenumber, parentEmail, city, homeAddress;
 
@@ -39,12 +45,21 @@ public class KidsViewProfile extends AppCompatActivity {
         parentEmail = (TextView) findViewById(R.id.kids_email_view);
         city = (TextView) findViewById(R.id.kids_city_view);
         homeAddress = (TextView) findViewById(R.id.kids_address_view);
+        editProfile = (ImageView) findViewById(R.id.editKids_profile);
 
         Toast.makeText(this, fireAuthorization.getUid(), Toast.LENGTH_SHORT).show();
 
 
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                Intent intent = new Intent(getApplication(),EditKidsProfile.class);
+                    intent.putExtra("kidId",id_Key);
 
+                startActivity(intent);
+            }
+        });
 
 
     }
@@ -76,6 +91,8 @@ public class KidsViewProfile extends AppCompatActivity {
                                     parentName.setText(userSnapshot.child("userName").getValue().toString() + " " + userSnapshot.child("userName").getValue().toString());
                                     phonenumber.setText(userSnapshot.child("userContact").getValue().toString());
                                     parentEmail.setText(userSnapshot.child("emailUser").getValue().toString());
+
+                                    id_Key = kidSnapshot.child("id").getValue().toString();
 
                                     kidsUser.setText(kidSnapshot.child("surname").getValue().toString() + " " + kidSnapshot.child("name").getValue().toString());
                                     kidsGender.setText(kidSnapshot.child("gender").getValue().toString());
