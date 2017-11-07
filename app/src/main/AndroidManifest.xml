@@ -35,7 +35,6 @@
         <activity android:name=".CreateParentProfile" />
         <activity android:name=".KidsmemoListsActivity" />
         <activity android:name=".UploadKidsMemo" />
-        <activity android:name=".ParentActivity" />
         <activity android:name=".TeachersActivity" />
         <activity
             android:name=".WelcomeActivity"
@@ -47,7 +46,7 @@
         <activity android:name=".SignUpOrganisationActivity" />
         <activity android:name=".CreateTeacherAccount" />
         <activity android:name=".AboutUs" />
-        <activity android:name=".GroupChat" />
+
         <activity
             android:name=".ParentTabbedActivity"
             android:label="@string/title_activity_parent_tabbed"

@@ -30,8 +30,8 @@
                     android:id="@+id/reg_fullname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
                     android:background="#0000"
                     android:hint="Firstname"
                     android:inputType="textCapWords"
@@ -44,8 +44,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
                 android:background="#ADCCE2"/>
@@ -63,23 +63,22 @@
                     android:layout_height="wrap_content"
                     android:hint="Surname"
                     android:textColorHint="#ADCCE2"
-                    android:layout_marginLeft="22dp"
                     android:inputType="textCapWords"
                     android:textColor="#ADCCE2"
                     android:background="#0000"
-
                     android:padding="16dp"
-                    android:layout_marginRight="35dp"/>
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"/>
+
             </android.support.design.widget.TextInputLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
                 android:background="#ADCCE2"/>
-
 
 
 
@@ -95,19 +94,20 @@
                     android:layout_height="wrap_content"
                     android:hint="Resident Address"
                     android:textColorHint="#ADCCE2"
-                    android:layout_marginLeft="22dp"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
                     android:inputType="textCapWords"
                     android:textColor="#ADCCE2"
                     android:background="#0000"
                     android:padding="16dp"
-                    android:layout_marginRight="35dp"/>
+              />
 
             </android.support.design.widget.TextInputLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
                 android:background="#ADCCE2"/>
@@ -125,19 +125,20 @@
                     android:layout_height="wrap_content"
                     android:hint="City"
                     android:textColorHint="#ADCCE2"
-                    android:layout_marginLeft="22dp"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
                     android:inputType="textCapWords"
                     android:textColor="#ADCCE2"
                     android:background="#0000"
                     android:padding="16dp"
-                    android:layout_marginRight="35dp"/>
+                />
 
             </android.support.design.widget.TextInputLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
                 android:background="#ADCCE2"/>
@@ -185,20 +186,20 @@
                     android:layout_height="wrap_content"
                     android:hint="Phone Number"
                     android:textColorHint="#ADCCE2"
-                    android:layout_marginLeft="22dp"
                     android:inputType="phone"
                     android:maxLength="12"
                     android:textColor="#ADCCE2"
                     android:background="#0000"
                     android:padding="16dp"
-                    android:layout_marginRight="35dp"/>
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"/>
 
             </android.support.design.widget.TextInputLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
                 android:background="#ADCCE2"/>
@@ -240,8 +241,8 @@
                 android:textSize="16dp"
                 android:textColor="#fff"
                 android:gravity="center"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:padding="16dp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="28dp"

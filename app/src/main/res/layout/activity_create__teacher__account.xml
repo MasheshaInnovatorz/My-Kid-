@@ -30,10 +30,9 @@
                     android:id="@+id/teachername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
                     android:background="#0000"
-
                     android:hint="Firstname"
                     android:inputType="textCapWords"
                     android:padding="16dp"
@@ -47,8 +46,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:background="#ADCCE2" />
 
             <android.support.design.widget.TextInputLayout
@@ -60,8 +59,8 @@
                     android:id="@+id/teachersurname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
                     android:background="#0000"
                     android:hint="Surname"
                     android:inputType="textCapWords"
@@ -76,8 +75,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:background="#ADCCE2" />
 
 
@@ -90,8 +89,8 @@
                     android:id="@+id/teacheremail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
                     android:background="#0000"
                     android:hint="Email Address"
                     android:inputType="textCapWords"
@@ -107,8 +106,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:background="#ADCCE2" />
 
             <android.support.design.widget.TextInputLayout
@@ -124,8 +123,8 @@
                     android:id="@+id/teacherpassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
                     android:background="#0000"
                     android:hint="Password"
                     android:inputType="textPassword"
@@ -143,8 +142,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:background="#ADCCE2" />
 
 
@@ -161,8 +160,8 @@
                     android:id="@+id/teachercontact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="35dp"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
                     android:background="#0000"
                     android:hint="Phone Number"
                     android:inputType="numberDecimal"
@@ -179,8 +178,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:background="#ADCCE2" />
 
             <android.support.design.widget.TextInputLayout
@@ -192,8 +191,8 @@
                     android:id="@+id/teacherAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="35dp"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
                     android:background="#0000"
                     android:hint="Address"
                     android:inputType="textCapWords"
@@ -210,8 +209,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:background="#ADCCE2" />
 
             <android.support.design.widget.TextInputLayout
@@ -223,8 +222,8 @@
                     android:id="@+id/teacherCity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="35dp"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
                     android:background="#0000"
                     android:hint="City"
                     android:inputType="textCapWords"
@@ -241,8 +240,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:background="#ADCCE2" />
 
 
@@ -255,8 +254,8 @@
                     android:id="@+id/teacherclass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
                     android:background="#0000"
                     android:hint="Class"
                     android:inputType="textCapWords"
@@ -279,8 +278,8 @@
                     android:id="@+id/teacherid"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
                     android:background="#0000"
                     android:hint="Identity Number"
                     android:inputType="number"
@@ -297,8 +296,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:background="#ADCCE2" />
 
 
@@ -335,8 +334,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="28dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:layout_marginTop="32dp"
                 android:background="@drawable/angle"
                 android:gravity="center"

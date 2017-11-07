@@ -201,7 +201,6 @@ public class UploadKidsMemo extends AppCompatActivity {
                             surname = dataSnapshot.child("userSurname").getValue().toString();
                             results = name + " " + surname;
 
-
                             MemokidsUpload_class imageUpload = new MemokidsUpload_class(txtImageName.getText().toString(), taskSnapshot.getDownloadUrl().toString(), results);
 
 
