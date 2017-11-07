@@ -185,7 +185,7 @@ public class KidActivity extends AppCompatActivity {
             Toast.makeText(this, "Kids saved successfully", Toast.LENGTH_SHORT).show();
 
 
-            startActivity(new Intent(getApplication(), Admin.class));
+            startActivity(new Intent(getApplication(), AdminTabbedActivity.class));
 
         } else {
             Toast.makeText(this, "Kid name should not be empty", Toast.LENGTH_SHORT).show();

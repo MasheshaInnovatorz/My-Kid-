@@ -56,7 +56,7 @@
             android:label="@string/title_activity_teacher_tabbed"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Admin"
+            android:name=".AdminTabbedActivity"
             android:label="@string/title_activity_admin_tabbed"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".UpdateProfile" />

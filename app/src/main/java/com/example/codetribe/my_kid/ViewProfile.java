@@ -256,6 +256,7 @@ public class ViewProfile extends AppCompatActivity {
                 city.setText("  City :" + dataUser.child("userCity").getValue().toString());
                 email.setText("  Email :" + dataUser.child("emailUser").getValue().toString());
 
+
             }
 
         }
