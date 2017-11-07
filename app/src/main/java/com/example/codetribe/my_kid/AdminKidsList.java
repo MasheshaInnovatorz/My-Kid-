@@ -91,8 +91,6 @@ public class AdminKidsList extends Fragment {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 kidses.clear();
                                 for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()) {
-
-
                                     if (kidssnapshot.child("orgName").getValue().toString().equals(adminSnap.child("orgName").getValue().toString())) {
 
                                         Kids kidInf = kidssnapshot.getValue(Kids.class);

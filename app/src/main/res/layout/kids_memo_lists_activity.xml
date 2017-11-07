@@ -22,9 +22,11 @@
     >
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:layout_height="match_parent"
+        >
 
         <TextView
             android:id="@+id/senderid"
@@ -37,13 +39,31 @@
             tools:text="Mavhungu Phuluso" />
         <ImageView
             android:id="@+id/imgView"
+<<<<<<< HEAD
             android:layout_width="360dp"
             android:layout_height="360dp"
+=======
+<<<<<<< HEAD
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+=======
+<<<<<<< HEAD
+            android:layout_width="360dp"
+            android:layout_height="360dp"
+=======
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:gravity="center_vertical"
+            android:src="@drawable/photo_camera_"
+>>>>>>> 6ff658d52501eeeaafa17900e11436cd728d15e9
+>>>>>>> 2b9eec729c8f2df2028f87a8a5754a9e303cf198
+>>>>>>> 3e1c929be270c57b56846cc035c6cc9631ce87f6
             android:scaleType="centerCrop"
             android:layout_gravity="center"
             android:contentDescription="TODO"
             android:background="#EEEEEE"
             />
+
 
 
 
@@ -60,6 +80,7 @@
 
 
     </LinearLayout>
+
 </android.support.v7.widget.CardView>
     </LinearLayout>
 

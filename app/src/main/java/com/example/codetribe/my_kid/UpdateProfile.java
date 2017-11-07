@@ -87,6 +87,7 @@ public class UpdateProfile extends AppCompatActivity {
 
         //database
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
+		
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

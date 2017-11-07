@@ -257,6 +257,10 @@ public class ViewProfile extends AppCompatActivity {
                 email.setText("  Email :" + dataUser.child("emailUser").getValue().toString());
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 2b9eec729c8f2df2028f87a8a5754a9e303cf198
             }
 
         }

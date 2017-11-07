@@ -43,8 +43,8 @@
                     android:id="@+id/orgName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
                     android:background="#0000"
                     android:hint="Name"
                     android:inputType="textPersonName"
@@ -61,8 +61,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:background="#ADCCE2" />
 
 
@@ -75,9 +75,9 @@
                     android:id="@+id/orgRegNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
-                    android:background="#0000"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
+                    android:background="#FF5722"
                     android:hint="Registration Number"
                     android:inputType="phone"
                     android:maxLength="10"
@@ -94,8 +94,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:background="#ADCCE2" />
 
 
@@ -108,8 +108,8 @@
                     android:id="@+id/orgStrName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
                     android:background="#0000"
                     android:hint="Street Name"
                     android:inputType="textCapWords"
@@ -126,8 +126,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:background="#ADCCE2" />
 
 
@@ -140,8 +140,8 @@
                     android:id="@+id/orgCity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
                     android:background="#0000"
                     android:hint="City"
                     android:inputType="textCapWords"
@@ -158,8 +158,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:background="#ADCCE2" />
 
 
@@ -172,9 +172,9 @@
                     android:id="@+id/orgPostalCode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
-                    android:background="#0000"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
+                    android:background="#FF5722"
                     android:hint="Postal Code"
                     android:inputType="number"
                     android:maxLength="5"
@@ -191,8 +191,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:background="#ADCCE2" />
 
 
@@ -205,8 +205,8 @@
                     android:id="@+id/orgEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
                     android:background="#0000"
                     android:hint="Email Address"
                     android:inputType="textEmailAddress"
@@ -223,8 +223,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:background="#ADCCE2" />
 
 
@@ -237,8 +237,8 @@
                     android:id="@+id/orgTelNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
                     android:background="#0000"
                     android:hint="Telephone Number"
                     android:inputType="phone"
@@ -256,8 +256,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:background="#ADCCE2" />
 
             <TextView
@@ -282,8 +282,8 @@
                     android:id="@+id/orgAdminName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
                     android:background="#0000"
                     android:hint="Name"
                     android:inputType="textPersonName"
@@ -302,8 +302,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:background="#ADCCE2" />
 
             <android.support.design.widget.TextInputLayout
@@ -315,8 +315,8 @@
                     android:id="@+id/orgAdminSurname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
                     android:background="#0000"
                     android:hint="Surname"
                     android:inputType="textPersonName"
@@ -333,8 +333,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:background="#ADCCE2" />
 
 
@@ -347,8 +347,8 @@
                     android:id="@+id/orgAdminIDNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
                     android:background="#0000"
                     android:hint="ID Number"
                     android:inputType="phone"
@@ -366,8 +366,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:background="#ADCCE2" />
 
 
@@ -384,8 +384,8 @@
                     android:id="@+id/orgPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="35dp"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
                     android:background="#0000"
                     android:hint="Set Password"
                     android:inputType="textPassword"
@@ -402,8 +402,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:background="#ADCCE2" />
 
             <RadioGroup
@@ -440,8 +440,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="28dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
                 android:layout_marginTop="32dp"
                 android:background="@drawable/angle"
                 android:gravity="center"

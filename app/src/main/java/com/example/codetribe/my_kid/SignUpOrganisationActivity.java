@@ -1,5 +1,6 @@
 package com.example.codetribe.my_kid;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,6 +8,8 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Patterns;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -14,6 +17,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -25,6 +30,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.example.codetribe.my_kid.R.id.orgCity;
+import static com.example.codetribe.my_kid.R.id.teacherpassword;
 
 
 public class SignUpOrganisationActivity extends AppCompatActivity {
@@ -47,6 +53,10 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
     private RadioButton radGender;
 
 
+    private ProgressDialog progressDialog;
+
+    //defining AwesomeValidation object
+    private AwesomeValidation awesomeValidation;
     private RadioButton genderMale, genderFemale;
 
     private RadioGroup gender;
@@ -62,6 +72,8 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+        progressDialog = new ProgressDialog(this);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);//shared
         signup = (TextView) findViewById(R.id.btnRegisterCreche);
         orgAuth = FirebaseAuth.getInstance();
@@ -79,6 +91,18 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         adminIdNo = (EditText) findViewById(R.id.orgAdminIDNumber);
         gender = (RadioGroup) findViewById(R.id.AdminGender);
 
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+        //adding validation to edittexts
+        awesomeValidation.addValidation(this, R.id.orgEmail, Patterns.EMAIL_ADDRESS, R.string.emailerror);
+        awesomeValidation.addValidation(this,R.id. orgPassword, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.passworderror);
+        awesomeValidation.addValidation(this, R.id.orgName, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
+        awesomeValidation.addValidation(this, R.id.orgStrName, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
+        awesomeValidation.addValidation(this, R.id.orgCity, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.city);
+        awesomeValidation.addValidation(this, R.id.orgTelNumber, "^[+]?[0-9]{10,13}$", R.string.mobileerror);
+        awesomeValidation.addValidation(this, R.id.orgAdminName, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
+        awesomeValidation.addValidation(this, R.id.orgAdminSurname, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.surnameerror);
+        awesomeValidation.addValidation(this, R.id.orgAdminIDNumber, "^^[0-9]{13}$", R.string.iderror);
+
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +111,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                 final String email = orgaEmail.getText().toString().trim();
                 final String password = orgPassword.getText().toString().trim();
 
+                /*
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
                     return;
@@ -96,6 +121,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                */
 
                 sharedPrefEditor = sharedPreferences.edit();
                 sharedPrefEditor.putString("email", email);
@@ -115,10 +141,17 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                 adminGender = radGender.getText().toString().trim();
 
 
-                if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
+
+                if (awesomeValidation.validate()) {
+
+                    progressDialog.setMessage("Wait While Creating Organisation ");
+                    progressDialog.show();
+            //    if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
                     orgAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+
+
                             if (task.isSuccessful()) {
                                 // String user_id = task.getResult().getUser().getUid();
                                 String adminRole = "admin";
@@ -144,7 +177,6 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                                 Map<String, Object> postingAdmin = adminReg.toMap();
                                 Map<String, Object> adminUpdate = new HashMap<>();
 
-
                                 adminUpdate.put(userI, postingAdmin);
 
 
@@ -156,21 +188,39 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                                 //Toast.makeText(SignUpOrganisationActivity.this, key, Toast.LENGTH_SHORT).show();
                                 Toast.makeText(SignUpOrganisationActivity.this, "Organization Sccessfully Created", Toast.LENGTH_SHORT).show();
 
-                                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                                startActivity(new Intent(getApplicationContext(), Admin.class));
 
 
                             } else {
                                 Toast.makeText(SignUpOrganisationActivity.this, "Organizational Failed to SignUp", Toast.LENGTH_SHORT).show();
-
-
                             }
+                            progressDialog.dismiss();
                         }
                     });
+
+
                     orgAuth.signOut();
+               // }
+
+
+                } else {
+                    Toast.makeText(SignUpOrganisationActivity.this, "Please Fix all the edit text", Toast.LENGTH_LONG).show();
                 }
+                //---
+
+
 
             }
         });
-    }
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            this.finish();
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
 }
