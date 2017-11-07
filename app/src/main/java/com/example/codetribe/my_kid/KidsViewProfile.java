@@ -50,7 +50,7 @@ public class KidsViewProfile extends AppCompatActivity {
         Toast.makeText(this, fireAuthorization.getUid(), Toast.LENGTH_SHORT).show();
 
 
-<<<<<<< HEAD
+
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,8 +63,7 @@ public class KidsViewProfile extends AppCompatActivity {
         });
 
 
-=======
->>>>>>> 6ff658d52501eeeaafa17900e11436cd728d15e9
+
     }
 
     @Override
