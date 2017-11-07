@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,7 +29,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.example.codetribe.my_kid.R.id.orgCity;
-import static com.example.codetribe.my_kid.R.id.teacherpassword;
 
 
 public class SignUpOrganisationActivity extends AppCompatActivity {
@@ -188,7 +186,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                                 //Toast.makeText(SignUpOrganisationActivity.this, key, Toast.LENGTH_SHORT).show();
                                 Toast.makeText(SignUpOrganisationActivity.this, "Organization Sccessfully Created", Toast.LENGTH_SHORT).show();
 
-                                startActivity(new Intent(getApplicationContext(), Admin.class));
+                                startActivity(new Intent(getApplicationContext(), AdminTabbedActivity.class));
 
 
                             } else {

@@ -145,10 +145,7 @@ public class CreateParentProfile extends AppCompatActivity {
 
 
                              startActivity(new Intent(CreateParentProfile.this, ParentTabbedActivity.class));
-<<<<<<< HEAD
-=======
 
->>>>>>> 2b9eec729c8f2df2028f87a8a5754a9e303cf198
                         Toast.makeText(CreateParentProfile.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
 
                     } else {

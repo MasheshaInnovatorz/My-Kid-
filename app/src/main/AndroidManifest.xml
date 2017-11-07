@@ -44,10 +44,8 @@
         <activity android:name=".SignUpOrganisationActivity" />
         <activity android:name=".CreateTeacherAccount" />
         <activity android:name=".AboutUs" />
-<<<<<<< HEAD
 
-=======
->>>>>>> 2b9eec729c8f2df2028f87a8a5754a9e303cf198
+
         <activity
             android:name=".ParentTabbedActivity"
             android:label="@string/title_activity_parent_tabbed"

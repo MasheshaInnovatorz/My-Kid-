@@ -7,7 +7,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,7 +15,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -77,11 +75,7 @@ public class KidsmemoListsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         share = (FloatingActionButton) findViewById(R.id.share_add);
-<<<<<<< HEAD
-       // getTime=(TextView) findViewById(R.id.memories_time);
-=======
-        //getTime=(TextView) findViewById(R.id.memories_time);
->>>>>>> 2b9eec729c8f2df2028f87a8a5754a9e303cf198
+
         progressDialog = new ProgressDialog(this);
 
         imgList = new ArrayList<>();
