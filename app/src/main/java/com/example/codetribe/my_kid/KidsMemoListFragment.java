@@ -68,7 +68,6 @@ public class KidsMemoListFragment extends Fragment {
         int number=2;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),number));
 
-
         fab = (FloatingActionButton) rootView.findViewById(R.id.share_add);
         progressDialog = new ProgressDialog(getContext());
         imgList = new ArrayList<>();

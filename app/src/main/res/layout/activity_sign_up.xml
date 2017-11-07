@@ -21,11 +21,20 @@
 
         <ImageView
             android:id="@+id/imageView2"
+<<<<<<< HEAD
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:background="@drawable/mykidicon" />
+=======
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="17dp"
+            android:background="@drawable/kidlogo" />
+>>>>>>> 2b9eec729c8f2df2028f87a8a5754a9e303cf198
 
         <TextView
             android:layout_width="match_parent"
@@ -144,6 +153,26 @@
                 android:background="#ADCCE2" />
 
 
+<<<<<<< HEAD
+=======
+            <TextView
+                android:id="@+id/sinup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/angle"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="Create Account"
+                android:textColor="#fff"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+>>>>>>> 2b9eec729c8f2df2028f87a8a5754a9e303cf198
         <TextView
             android:id="@+id/sinup"
             android:layout_width="match_parent"
@@ -160,6 +189,7 @@
             android:textColor="#fff"
             android:textSize="16dp" />
 
+<<<<<<< HEAD
 
 
 
@@ -167,3 +197,15 @@
     </LinearLayout>
     </ScrollView>
 </RelativeLayout>
+=======
+        <Spinner
+            android:id="@+id/orgname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="35dp" />
+    </RelativeLayout>
+</FrameLayout>
+>>>>>>> 2b9eec729c8f2df2028f87a8a5754a9e303cf198

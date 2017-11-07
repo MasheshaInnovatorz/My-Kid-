@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -78,11 +79,6 @@ public class CreateParentProfile extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-
-        //getting UserKey
-        // String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-
         //database
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
 
@@ -149,6 +145,10 @@ public class CreateParentProfile extends AppCompatActivity {
 
 
                              startActivity(new Intent(CreateParentProfile.this, ParentTabbedActivity.class));
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2b9eec729c8f2df2028f87a8a5754a9e303cf198
                         Toast.makeText(CreateParentProfile.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
 
                     } else {
@@ -162,6 +162,16 @@ public class CreateParentProfile extends AppCompatActivity {
 
         });
 
+
+    }
+    //back button
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            this.finish();
+        }
+        return super.onOptionsItemSelected(item);
 
     }
 

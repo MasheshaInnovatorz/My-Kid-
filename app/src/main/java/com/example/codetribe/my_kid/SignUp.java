@@ -75,9 +75,12 @@ public class SignUp extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference();
         mUserCheckData = FirebaseDatabase.getInstance().getReference().child("Users");
-        KidDataRef = FirebaseDatabase.getInstance().getReference("Kids");
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);//shared
 
+        crecheDataRef = FirebaseDatabase.getInstance().getReference("Creche");
+        KidDataRef = FirebaseDatabase.getInstance().getReference("Kids");
+
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);//shared
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
@@ -196,7 +199,7 @@ public class SignUp extends AppCompatActivity {
                                                 // String key_user = mChildDatabase.getKey();
 
                                                 mChildDatabase.child("isVerified").setValue("unverified");
-                                                mChildDatabase.child("orgnName").setValue(strName);
+                                                mChildDatabase.child("orgName").setValue(strName);
                                                 mChildDatabase.child("userKey").setValue(user_id);
                                                 mChildDatabase.child("role").setValue("parent");
                                                 mChildDatabase.child("emailUser").setValue(userEmailString);
@@ -216,7 +219,7 @@ public class SignUp extends AppCompatActivity {
 
                                 } else {
 
-                                    Toast.makeText(SignUp.this, "You dont have a kids on this Creche,Please contact an Admin", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignUp.this, "You dont have a kids on this Creche,Please contact an AdminTabbedActivity", Toast.LENGTH_SHORT).show();
                                 }
 
                             }
@@ -258,26 +261,22 @@ public class SignUp extends AppCompatActivity {
 
     }
 
-    public void searchForCreacheName() {
-
-    }
-
     @Override
     protected void onStart() {
         super.onStart();
 
-        //  Toast.makeText(this, "Ellow Chivhedzelele", Toast.LENGTH_SHORT).show();
 
-        crecheDataRef = FirebaseDatabase.getInstance().getReference("Creche");
 
         crecheDataRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
+                Toast.makeText(SignUp.this, "Yey", Toast.LENGTH_SHORT).show();
                 for (DataSnapshot checheSnapshot : dataSnapshot.getChildren()) {
 
                     if (!checheSnapshot.child("orgName").getValue().toString().equals(" ")) {
                         list.add(checheSnapshot.child("orgName").getValue().toString());
+
 
 
                         dataAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);

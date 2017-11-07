@@ -259,7 +259,7 @@
                     android:background="#0000"
                     android:hint="Class"
                     android:inputType="textCapWords"
-                    android:maxLength="3"
+                    android:maxLength="6"
                     android:padding="16dp"
                     android:textAlignment="center"
                     android:textColor="#ADCCE2"

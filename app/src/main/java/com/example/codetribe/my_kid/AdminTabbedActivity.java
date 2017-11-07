@@ -14,7 +14,7 @@ import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Admin extends AppCompatActivity {
+public class AdminTabbedActivity extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -38,7 +38,7 @@ public class Admin extends AppCompatActivity {
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Admin");
+        toolbar.setTitle("AdminTabbedActivity");
 
         setSupportActionBar(toolbar);
 
@@ -74,7 +74,7 @@ public class Admin extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.menu_about_us) {
 
-            Intent intent = new Intent(Admin.this,AboutUs.class);
+            Intent intent = new Intent(AdminTabbedActivity.this,AboutUs.class);
             startActivity(intent);
             return true;
         }
@@ -84,14 +84,14 @@ public class Admin extends AppCompatActivity {
         }
 
         else if (id == R.id.menu_adimin_profile) {
-            Intent intent = new Intent(Admin.this,ViewProfile.class);
+            Intent intent = new Intent(AdminTabbedActivity.this,ViewProfile.class);
             startActivity(intent);
             return true;
         } else if (id == R.id.menu_admin_logout) {
             logout();
             return true;
         } else if (id == R.id.menu_adimin_profile) {
-            Intent intent = new Intent(Admin.this, ViewProfile.class);
+            Intent intent = new Intent(AdminTabbedActivity.this, ViewProfile.class);
             startActivity(intent);
             return true;
         }
@@ -151,7 +151,7 @@ public class Admin extends AppCompatActivity {
 
 
         FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(Admin.this, LoginActivity.class);
+        Intent intent = new Intent(AdminTabbedActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 }

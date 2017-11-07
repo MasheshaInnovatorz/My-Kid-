@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
@@ -42,10 +43,11 @@ public class KidsmemoListAdapter extends RecyclerView.Adapter<KidsmemoListAdapte
     public void onBindViewHolder(ViewHolder holder, int position) {
         MemokidsUpload_class upload = uploads.get(position);
 
-
-        holder.textviewSenderid.setText(upload.getPersonUploaded());
+        holder.textviewSenderid.setText("Uploaded by:" + " " + upload.getPersonUploaded());
         holder.textViewName.setText(upload.getName());
-        Glide.with(context).load(upload.getUri()).into(holder.imageView);
+        Glide.with(context).load(upload.getUri())
+                                    .thumbnail(0.5f).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL)
+                                    .into(holder.imageView);
     }
 
     @Override
@@ -61,11 +63,13 @@ public class KidsmemoListAdapter extends RecyclerView.Adapter<KidsmemoListAdapte
         public ViewHolder(View itemView) {
             super(itemView);
 
-            textViewName = (TextView) itemView.findViewById(R.id.tvImageName);
-            textviewSenderid = (TextView) itemView.findViewById(R.id.senderid);
+           textViewName = (TextView) itemView.findViewById(R.id.tvImageName);
+           textviewSenderid = (TextView) itemView.findViewById(R.id.senderid);
+
             imageView = (ImageView) itemView.findViewById(R.id.imgView);
 
-            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+
         }
     }
 }

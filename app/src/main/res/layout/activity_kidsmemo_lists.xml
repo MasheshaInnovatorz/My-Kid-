@@ -24,6 +24,7 @@
         android:layout_margin="@dimen/fab_margin"
         android:background="#FF5722"
         fab:fab_shadow="true"
+
         fab:fab_type="normal"
         fab:layout_anchor="recyclerView"
         fab:layout_anchorGravity="bottom|end"

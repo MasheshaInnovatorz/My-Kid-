@@ -197,7 +197,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                                     Toast.makeText(CreateTeacherAccount.this, "Teacher Registration Successfull" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
 
-                                    startActivity(new Intent(getApplication(), Admin.class));
+                                    startActivity(new Intent(getApplication(), AdminTabbedActivity.class));
 
 
                                 }

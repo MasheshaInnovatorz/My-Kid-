@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.codetribe.my_kid.Admin">
+    tools:context="com.example.codetribe.my_kid.AdminTabbedActivity">
 
     <item
         android:id="@+id/menu_adimin_profile"

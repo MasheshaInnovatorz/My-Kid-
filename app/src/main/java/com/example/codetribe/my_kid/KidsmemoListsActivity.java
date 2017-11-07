@@ -73,10 +73,15 @@ public class KidsmemoListsActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
+        int number=2;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         share = (FloatingActionButton) findViewById(R.id.share_add);
+<<<<<<< HEAD
        // getTime=(TextView) findViewById(R.id.memories_time);
+=======
+        //getTime=(TextView) findViewById(R.id.memories_time);
+>>>>>>> 2b9eec729c8f2df2028f87a8a5754a9e303cf198
         progressDialog = new ProgressDialog(this);
 
         imgList = new ArrayList<>();
@@ -88,8 +93,6 @@ public class KidsmemoListsActivity extends AppCompatActivity {
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(UploadKidsMemo.FB_DATABASE_PATH);
         childRef = FirebaseDatabase.getInstance().getReference("Kids");
-        //  btnparticipate = (Button) findViewById(R.id.btnParticipate);
-
     }
 
     public void InforTeacher(DataSnapshot kidSnapshot, DataSnapshot dataSnapshot, String kidsIdentity) {
@@ -97,7 +100,6 @@ public class KidsmemoListsActivity extends AppCompatActivity {
         Iterator iterator = dataSnapshot.getChildren().iterator();
         Iterator kidsIterator = kidSnapshot.getChildren().iterator();
 
-        // DatabaseReference teacher = FirebaseDatabase.getInstance().getReference("Users");
 
         while (kidsIterator.hasNext()) {
 
@@ -123,7 +125,6 @@ public class KidsmemoListsActivity extends AppCompatActivity {
 
                             //init adapter
                             adapter = new KidsmemoListAdapter(getApplicationContext(), imgList);
-
                             //adding adapter to recyclerview
                             recyclerView.setAdapter(adapter);
                         }
