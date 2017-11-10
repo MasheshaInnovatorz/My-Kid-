@@ -1,5 +1,6 @@
 package com.example.codetribe.my_kid;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -57,8 +58,9 @@ public class ViewProfile extends AppCompatActivity {
 
     StorageReference storageRef, imagesRef, userProfileRef, callImage;
 
-    String user_id;
 
+    String user_id;
+    private ProgressDialog progressDialog;
 
     ImageView profilecover;
     String idLoged;
@@ -85,7 +87,7 @@ public class ViewProfile extends AppCompatActivity {
         photo = (ImageView) findViewById(R.id.user_profile_photo);
         profilecover = (ImageView) findViewById(R.id.header_cover_image);
 
-
+        progressDialog = new ProgressDialog(this);
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -161,7 +163,8 @@ public class ViewProfile extends AppCompatActivity {
         if (requestCode == RESULT_LOAD_IMG) {
 
             if (resultCode == RESULT_OK) {
-
+                progressDialog.setMessage("Wait Updating Your Profile Picture");
+                progressDialog.show();
                 Uri selectedImage = intentData.getData();
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
                 // Get the cursor
@@ -207,11 +210,14 @@ public class ViewProfile extends AppCompatActivity {
                                     .build();
 
                             if (user != null) {
+
                                 user.updateProfile(profileUpdates)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
+
                                                 if (task.isSuccessful()) {
+                                                    progressDialog.dismiss();
                                                     Log.d("Profile Updated ", "User profile updated.");
                                                     Toast.makeText(getApplication(), "Profile Picture Updated", Toast.LENGTH_SHORT).show();
                                                 }

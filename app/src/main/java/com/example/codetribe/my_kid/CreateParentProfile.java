@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -64,7 +64,7 @@ public class CreateParentProfile extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Register Profile Update");
+        getSupportActionBar().setTitle(" Parent Profile Update");
 
 
         //validation
@@ -81,10 +81,6 @@ public class CreateParentProfile extends AppCompatActivity {
 
         //database
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
-
-
-        // signupLink = (TextView) findViewById(R.id.back_to_signup);
-        signUpButton = (TextView) findViewById(R.id.btnRegister);
 
         //Edit lText
         inputName = (EditText) findViewById(R.id.reg_fullname);
@@ -113,18 +109,49 @@ public class CreateParentProfile extends AppCompatActivity {
         inputLayoutNumber = (TextInputLayout) findViewById(R.id.input_reg_phoneNo);
 
 
-        signUpButton.setOnClickListener(new View.OnClickListener() {
+    }
 
-            @Override
-            public void onClick(View view) {
-                if (awesomeValidation.validate()) {
+    /*
+    //back button
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            this.finish();
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+
+*/
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.save, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.profile_save) {
+
+            int selectedId = radGender.getCheckedRadioButtonId();
+
+            if (awesomeValidation.validate()) {
+                if (selectedId != -1) {
                     userNameString = inputName.getText().toString().trim();
                     userContactString = inputCellphoneNumber.getText().toString().trim();
                     inputSurnameString = inputSurname.getText().toString().trim();
                     inputIdnumberString = inputIdnumber.getText().toString().trim();
                     inputAddressString = inputAddress.getText().toString().trim();
                     inputCityString = inputCity.getText().toString().trim();
-                    int selectedId = radGender.getCheckedRadioButtonId();
+
                     rdGenders = (RadioButton) findViewById(selectedId);
                     genderString = rdGenders.getText().toString();
 
@@ -144,37 +171,27 @@ public class CreateParentProfile extends AppCompatActivity {
                         databaseReference.child("isVerified").setValue(profile.getIsVerified());
 
 
-                             startActivity(new Intent(CreateParentProfile.this, ParentTabbedActivity.class));
+                        startActivity(new Intent(CreateParentProfile.this, ParentTabbedActivity.class));
 
                         Toast.makeText(CreateParentProfile.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
 
                     } else {
                         Toast.makeText(CreateParentProfile.this, "User Failed to Update Profile", Toast.LENGTH_SHORT).show();
                     }
-
-
+                } else {
+                    Toast.makeText(CreateParentProfile.this, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
                 }
-
+            } else {
+                Toast.makeText(CreateParentProfile.this, "Make sure you fix all the error shown in your input space", Toast.LENGTH_LONG).show();
             }
 
-        });
 
-
-    }
-    //back button
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-            this.finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
-
     }
 
 }
-
-
 
 
 

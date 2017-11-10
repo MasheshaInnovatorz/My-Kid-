@@ -82,31 +82,6 @@ public class EditKidsProfile extends AppCompatActivity {
         s_bodyWeight = bodyWeight.getText().toString().trim();
         kidStringparentid = kidStringparentidS.getText().toString();
 
-      /*  if (!TextUtils.isEmpty(kidStringparentid)) {
-            String id = databaseKids.push().getKey();
-
-
-            Kids kids = new Kids(keyUser, s_allergies, s_dietRequirements, s_doctorsRecomendations, s_kidHeight, s_bodyWeight, kidStringparentid, id);
-
-            databaseKids.child(id).setValue(kids);
-
-            Toast.makeText(this, "Kid information added", Toast.LENGTH_SHORT).show();
-
-
-        } else {
-            Toast.makeText(this, "Track name should not be empty", Toast.LENGTH_SHORT).show();
-        }*/
-
-       /*Kids kids = new Kids(s_allergies, s_dietRequirements, s_doctorsRecomendations, s_kidHeight, s_bodyWeight);
-
-        Map<String,Object> postInfor = kids.toMap();
-
-        Map<String, Object> childUpdates = new HashMap<>();
-
-        childUpdates.put(keyUser,postInfor);
-
-        databaseKids.updateChildren(childUpdates);*/
-
         databaseKids.child("allergies").setValue(s_allergies);
         databaseKids.child("bodyWeight").setValue(s_bodyWeight );
         databaseKids.child("dietRequirements").setValue(s_dietRequirements);

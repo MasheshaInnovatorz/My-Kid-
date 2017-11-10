@@ -51,15 +51,16 @@ public class AdminKidsList extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.kidaddactivityfrag, container, false);
+        View rootView = inflater.inflate(R.layout.activity_kids , container, false);
 
 
-        listUsers = (ListView) rootView.findViewById(R.id.listViewkids);
+        listUsers = (ListView) rootView.findViewById(R.id.listViewkidss);
         //  fab = (FloatingActionButton) rootView.findViewById(R.id.addTeacher);
 
         coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.cordinatelayout);
 
         kidsFab = (FloatingActionButton) rootView.findViewById(R.id.add_kids_admin);
+
         Intent keyId = getActivity().getIntent();
         idLoged = keyId.getStringExtra("User_KEY");
         kids_id = keyId.getStringExtra("kid_id");
@@ -70,14 +71,22 @@ public class AdminKidsList extends Fragment {
         parentId = keyId.getStringExtra("parent_id");
 
         kidses = new ArrayList<>();
+        kidsFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), KidActivity.class);
+                intent.putExtra("kid_id", idLoged);
+                intent.putExtra("User_KEY", kids_id);
+                intent.putExtra("parentIdentity", parentId);
+                startActivity(intent);
+            }
+        });
 
 
         kidsCreche = FirebaseDatabase.getInstance().getReference("Kids");
         usersRetriveRef = FirebaseDatabase.getInstance().getReference("Users");
 
         Idadmin = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-
         usersRetriveRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot crecheSnapshot) {
@@ -98,6 +107,9 @@ public class AdminKidsList extends Fragment {
 
 
                                         KidssKey = kidInf.getId();
+
+
+
 
                                     }
 
@@ -123,16 +135,7 @@ public class AdminKidsList extends Fragment {
 
 
 
-        kidsFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), KidActivity.class);
-                intent.putExtra("kid_id", idLoged);
-                intent.putExtra("User_KEY", kids_id);
-                intent.putExtra("parentIdentity", parentId);
-                startActivity(intent);
-            }
-        });
+
 
         return rootView;
     }

@@ -34,7 +34,7 @@ public class TeacherFragment extends Fragment {
     ListView listViewKids;
     List<Kids> kid;
 
-    String org_name;
+    String org_name,orgname;
     String userId, idLoged;
     FirebaseAuth fireAuth;
     //database
@@ -43,10 +43,10 @@ public class TeacherFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_teachers, container, false);
+        View rootView = inflater.inflate(R.layout.activity_kids, container, false);
 
 
-        listViewKids = (ListView) rootView.findViewById(R.id.listViewkids);
+        listViewKids = (ListView) rootView.findViewById(R.id.listViewkidss);
         fireAuth = FirebaseAuth.getInstance();
 
         kid = new ArrayList<>();
@@ -68,6 +68,7 @@ public class TeacherFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 org_name = dataSnapshot.child("teacherClassroom").getValue(String.class);
+                orgname = dataSnapshot.child("orgName").getValue(String.class);
                 teacherRole = dataSnapshot.child("role").getValue(String.class);
 
 
@@ -78,10 +79,11 @@ public class TeacherFragment extends Fragment {
 
                         for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()) {
                             if (kidssnapshot.child("kidsGrade").getValue().toString().equals(org_name)) {
-                                Kids kidInf = kidssnapshot.getValue(Kids.class);
-                                kid.add(kidInf);
-                                //    Toast.makeText(TeachersActivity.this,kidInf.getId(), Toast.LENGTH_SHORT).show();
-
+                                if(kidssnapshot.child("orgName").getValue().toString().equals(orgname)) {
+                                    Kids kidInf = kidssnapshot.getValue(Kids.class);
+                                    kid.add(kidInf);
+                                    //    Toast.makeText(TeachersActivity.this,kidInf.getId(), Toast.LENGTH_SHORT).show();
+                                }
                             } else {
 
                             }

@@ -19,7 +19,8 @@
     <string name="mobileerror">Enter Valid Mobile Number</string>
     <string name="address">Enter Valid Address</string>
     <string name="city">Enter Valid City</string>
-
+    <string name="regNo">Enter Valid Registration Number</string>
+    <string name="postalCode">Enter Valid Code</string>
 
     <string name="text_with_paragraphs">
         1. How does your app address the issue or problem?

@@ -94,7 +94,7 @@ public class SignUp extends AppCompatActivity {
         orgNameList = (Spinner) findViewById(R.id.orgname);
         // mainNav = (TextView)findViewById(R.id.login);
 
-        awesomeValidation.addValidation(this, R.id.signupPassword, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.passworderror);
+        //awesomeValidation.addValidation(this, R.id.signupPassword, "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\\\d])(?=.*[~`!@#\\\\$%\\\\^&\\\\*\\\\(\\\\)\\\\-_\\\\+=\\\\{\\\\}\\\\[\\\\]\\\\|\\\\;:\\\"<>,./\\\\?]).{8,}", R.string.passworderror);
         awesomeValidation.addValidation(this, R.id.email, Patterns.EMAIL_ADDRESS, R.string.emailerror);
         awesomeValidation.addValidation(this, R.id.KidIdNumber, "^^[0-9]{13}$", R.string.iderror);
 
@@ -196,8 +196,6 @@ public class SignUp extends AppCompatActivity {
                                                 String user_id = task.getResult().getUser().getUid();
                                                 DatabaseReference mChildDatabase = mDatabaseRef.child("Users").child(user_id);
 
-                                                // String key_user = mChildDatabase.getKey();
-
                                                 mChildDatabase.child("isVerified").setValue("unverified");
                                                 mChildDatabase.child("orgName").setValue(strName);
                                                 mChildDatabase.child("userKey").setValue(user_id);
@@ -206,7 +204,7 @@ public class SignUp extends AppCompatActivity {
                                                 mChildDatabase.child("passWordUser").setValue(userPassString);
                                                 Toast.makeText(SignUp.this, "User Account Created", Toast.LENGTH_SHORT).show();
                                                 auth.signOut();
-                                                startActivity(new Intent(SignUp.this, WelcomeActivity.class));
+                                                startActivity(new Intent(SignUp.this, LoginActivity.class));
 
 
                                             } else {
@@ -219,7 +217,7 @@ public class SignUp extends AppCompatActivity {
 
                                 } else {
 
-                                    Toast.makeText(SignUp.this, "You dont have a kids on this Creche,Please contact an AdminTabbedActivity", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignUp.this, "You dont have a kids on this Creche,Please contact an Admin Creshe", Toast.LENGTH_SHORT).show();
                                 }
 
                             }
@@ -271,7 +269,7 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                Toast.makeText(SignUp.this, "Yey", Toast.LENGTH_SHORT).show();
+
                 for (DataSnapshot checheSnapshot : dataSnapshot.getChildren()) {
 
                     if (!checheSnapshot.child("orgName").getValue().toString().equals(" ")) {

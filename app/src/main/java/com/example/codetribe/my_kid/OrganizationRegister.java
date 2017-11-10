@@ -20,12 +20,15 @@ public class OrganizationRegister {
     public String orgPhoneNo;
     public String orgPassword;
     public String adminKey;
+    public String orgRegNumber;
+    public String orgPostalCode;
+
     public Map<String, Boolean> stars = new HashMap<>();
 
     public OrganizationRegister() {
     }
 
-    public OrganizationRegister(String uid, String orgname, String orgAddress, String orgCity, String orgEmail, String orgPhoneNo, String orgPassword, String adminKey) {
+    public OrganizationRegister(String uid, String orgname, String orgAddress, String orgCity, String orgEmail, String orgPhoneNo, String orgPassword,String  orgRegNumber , String orgPostalCode, String adminKey) {
         this.uid = uid;
         this.orgname = orgname;
         this.orgAddress = orgAddress;
@@ -33,6 +36,8 @@ public class OrganizationRegister {
         this.orgEmail = orgEmail;
         this.orgPhoneNo = orgPhoneNo;
         this.orgPassword = orgPassword;
+        this.orgRegNumber =orgRegNumber;
+        this.orgPostalCode=orgPostalCode;
         this.adminKey = adminKey;
 
     }
@@ -66,6 +71,11 @@ public class OrganizationRegister {
         return orgPassword;
     }
 
+    public String getorgRegNumber() {   return orgRegNumber;}
+
+    public String getorgPostalCode() {   return orgPostalCode;}
+
+
     public String getAdminKey() {
         return adminKey;
     }
@@ -81,6 +91,8 @@ public class OrganizationRegister {
         organizationSave.put("emailUser", orgEmail);
         organizationSave.put("orgPhoneNumber", orgPhoneNo);
         organizationSave.put("orgPassword", orgPassword);
+        organizationSave.put("orgRegNumber", orgRegNumber);
+        organizationSave.put("orgPostalCode", orgPostalCode);
         organizationSave.put("adminKey", adminKey);
         organizationSave.put("isVerified", "verified");
         organizationSave.put("role", "admin");

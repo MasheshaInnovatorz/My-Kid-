@@ -6,9 +6,6 @@
     android:layout_height="match_parent">
 
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
 
 
@@ -20,9 +17,9 @@
 
         <ImageView
             android:id="@+id/imageView2"
-
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:background="@drawable/mykidicon" />
@@ -33,7 +30,7 @@
             android:layout_marginTop="15dp"
             android:text="Select a creache"
             android:textAlignment="center"
-            android:textColor="#448AFF"
+            android:textColor="#212121"
             android:layout_marginLeft="@dimen/text_left"
             android:layout_marginRight="@dimen/text_right"
             android:textSize="17sp" />
@@ -64,9 +61,9 @@
                     android:background="#0000"
                     android:hint="Email Address"
                     android:inputType="textEmailAddress"
-                    android:padding="16dp"
-                    android:textColor="#ADCCE2"
-                    android:textColorHint="#ADCCE2"
+                    android:padding="@dimen/text_padding"
+                    android:textColor="#212121"
+                    android:textColorHint="#212121"
                     android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
@@ -75,7 +72,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="@dimen/text_left"
                 android:layout_marginRight="@dimen/text_right"
-                android:background="#ADCCE2" />
+                android:background="#212121" />
 
 
             <android.support.design.widget.TextInputLayout
@@ -84,7 +81,7 @@
                 app:passwordToggleContentDescription="ruuu"
                 app:passwordToggleDrawable="@drawable/ic_remove_red_eye_black_24dp"
                 app:passwordToggleEnabled="true"
-                app:passwordToggleTint="#ADCCE2">
+                app:passwordToggleTint="#212121">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/signupPassword"
@@ -96,9 +93,9 @@
                     android:hint="Password"
                     android:inputType="textPassword"
                     android:maxLength="12"
-                    android:padding="16dp"
-                    android:textColor="#ADCCE2"
-                    android:textColorHint="#ADCCE2"
+                    android:padding="@dimen/text_padding"
+                    android:textColor="#212121"
+                    android:textColorHint="#212121"
                     android:textSize="16dp"
 
                     />
@@ -108,10 +105,9 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="@dimen/text_left"
                 android:layout_marginRight="@dimen/text_right"
-                android:background="#ADCCE2" />
+                android:background="#212121" />
 
 
 
@@ -130,9 +126,9 @@
                     android:hint="Kid ID Number"
                     android:maxLength="13"
                     android:inputType="number"
-                    android:padding="16dp"
-                    android:textColor="#ADCCE2"
-                    android:textColorHint="#ADCCE2"
+                    android:padding="@dimen/text_padding"
+                    android:textColor="#212121"
+                    android:textColorHint="#212121"
                     android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
@@ -141,8 +137,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="@dimen/text_left"
                 android:layout_marginRight="@dimen/text_right"
-                android:background="#ADCCE2" />
-
+                android:background="#212121" />
 
 
         <TextView
@@ -150,7 +145,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="28dp"
             android:layout_marginLeft="@dimen/text_left"
             android:layout_marginRight="@dimen/text_right"
             android:layout_marginTop="32dp"
@@ -165,6 +160,5 @@
 
 
     </LinearLayout>
-    </ScrollView>
 </RelativeLayout>
 

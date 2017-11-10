@@ -23,9 +23,8 @@
                 android:text=" Mashesha Digital innovators"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:textColor="#000000"
-                android:textSize="19sp"
-                android:textStyle="bold"></TextView>
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="#000000"></TextView>
 
 
             <TextView
@@ -41,13 +40,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
                 android:layout_below="@+id/decription"
-                android:text="TEaM MEmbers"
+                android:text="KIDS CREATIVES DEVELOPERS"
                 android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textColor="#000000"
-                android:textSize="19sp"
-                android:textStyle="bold"></TextView>
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="#000000"></TextView>
 
 
             <TableLayout
@@ -56,37 +54,11 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/decription"
                 android:layout_marginBottom="20dp"
-                android:layout_marginTop="24dp">
+                android:layout_marginTop="24dp"
+                android:id="@+id/tableLayout">
 
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp">
 
-                    <ImageView
-                        android:id="@+id/dffdfd"
-                        android:layout_width="match_parent"
-                        android:layout_height="90dp"
-                        android:layout_weight="2"
-                        android:src="@drawable/talipic" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="Srum Master \n Miss Talifhani Munwana"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textAllCaps="true"></TextView>
-
-                </TableRow>
 
                 <TableRow>
 
@@ -112,27 +84,51 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="15dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginStart="42dp"
-                        android:layout_marginTop="90dp"
                         android:layout_weight="2"
-                        android:text="Developer \n Beni Nkosi"
+                        android:text="Benny Nkosi"
                         android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textAllCaps="true"></TextView>
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textColor="#000000"></TextView>
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="15dp"
                         android:layout_marginRight="35dp"
                         android:layout_weight="2"
-                        android:text="Developer \n Mr Mavhungu Pfariso"
+                        android:text="Mavhungu Pfariso"
                         android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textAllCaps="true" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textColor="#000000" />
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:id="@+id/dffdfd"
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:layout_alignTop="@+id/tableLayout"
+                        android:layout_centerHorizontal="true"
+                        android:layout_weight="2"
+                        android:src="@drawable/talipic" />
+
                 </TableRow>
 
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Munwana Talifhani"
+                        android:textAlignment="center"
+                        android:textColor="#000000"></TextView>
+
+                </TableRow>
                 <TableRow>
 
                     <ImageView
@@ -166,22 +162,23 @@
                         android:layout_height="15dp"
                         android:layout_marginLeft="35dp"
                         android:layout_weight="2"
-                        android:text="designer \n Mr Mudau Rudzani"
+                        android:text="Mudau Rudzani"
                         android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textAllCaps="true"></TextView>
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textColor="#000000"></TextView>
 
 
                     <TextView
                         android:id="@+id/textView2"
                         android:layout_width="0dp"
                         android:layout_height="15dp"
+                        android:layout_marginBottom="20dp"
                         android:layout_marginRight="35dp"
                         android:layout_weight="2"
-                        android:text="designer \n Mr K Herbeth"
+                        android:text="Kgabi Matjila"
                         android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textAllCaps="true" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textColor="#000000" />
                 </TableRow>
             </TableLayout>
 
