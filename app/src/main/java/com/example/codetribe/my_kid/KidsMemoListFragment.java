@@ -55,7 +55,6 @@ public class KidsMemoListFragment extends Fragment {
     String Surname, name;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -83,7 +82,7 @@ public class KidsMemoListFragment extends Fragment {
         Intent intent = getActivity().getIntent();
         parentid = intent.getStringExtra("parentIdentity");
         // userKey = intent.getStringExtra("User_KEY");
-         kidsUserId = intent.getStringExtra("kid_id");
+        kidsUserId = intent.getStringExtra("kid_id");
 
         userKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
         mUserInfor = FirebaseDatabase.getInstance().getReference("Users").child(userKey);
@@ -102,11 +101,9 @@ public class KidsMemoListFragment extends Fragment {
 
                                 progressDialog.dismiss();
 
-
                                 if (userSnapshot.child("role").getValue().toString().equals("parent")) {
 
-                                    Infor(kidSnapshot, dataSnapshot, userSnapshot.child("userIdNumber").getValue().toString());
-
+                                    Infor(kidSnapshot, dataSnapshot,userSnapshot);
                                 }
 
                                 if (userSnapshot.child("role").getValue().toString().equals("teacher")) {
@@ -149,6 +146,7 @@ public class KidsMemoListFragment extends Fragment {
                     startActivity(intent);
 
                 } else {
+
                     Toast.makeText(getContext(), "You dont have a kids in this creche or maybe made a mistake", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -178,27 +176,23 @@ public class KidsMemoListFragment extends Fragment {
                     DataSnapshot dataUser = (DataSnapshot) iterator.next();
 
 
+                    imgList.clear();
+                    for (DataSnapshot snapshot : dataUser.getChildren()) {
 
-
-                            imgList.clear();
-                            for (DataSnapshot snapshot : dataUser.getChildren()) {
-
-                                if (kidsUser.child("id").getValue().equals(snapshot.getKey())) {
-                                    if (snapshot.getKey().equals(kidsIdentity)) {
-                               if( kidsUser.child("orgName").getValue().toString().equals(snapshot.child("orgName").getValue().toString()))
-                                {
+                        if (kidsUser.child("id").getValue().equals(snapshot.getKey())) {
+                            if (snapshot.getKey().equals(kidsIdentity)) {
+                                if (kidsUser.child("orgName").getValue().toString().equals(snapshot.child("orgName").getValue().toString())) {
 
                                     MemokidsUpload_class img = snapshot.getValue(MemokidsUpload_class.class);
                                     imgList.add(img);
                                     KidsId = kidsUser.child("id").getValue().toString();
 
 
+                                    //init adapter
+                                    adapter = new KidsmemoListAdapter(getContext(), imgList);
 
-                                //init adapter
-                                adapter = new KidsmemoListAdapter(getContext(), imgList);
-
-                                //adding adapter to recyclerview
-                                recyclerView.setAdapter(adapter);
+                                    //adding adapter to recyclerview
+                                    recyclerView.setAdapter(adapter);
                                 }
                             }
 
@@ -214,58 +208,48 @@ public class KidsMemoListFragment extends Fragment {
     }
 
 
-    private void Infor(DataSnapshot kidSnapshot, DataSnapshot dataSnapshot, String userId) {
-
-        Iterator iterator = dataSnapshot.getChildren().iterator();
-
-        Iterator kidsIterator = kidSnapshot.getChildren().iterator();
-
-        // DatabaseReference teacher = FirebaseDatabase.getInstance().getReference("Users");
-
-        while (kidsIterator.hasNext()) {
-            final DataSnapshot kidsUser = (DataSnapshot) kidsIterator.next();
+    private void Infor(DataSnapshot kidSnapshot, DataSnapshot dataSnapshot, DataSnapshot userSnapshot) {
 
 
-            if (kidsUser.child("parentid").getValue().toString().equals(userId)) {
+        for (DataSnapshot kids : kidSnapshot.getChildren()) {
+
+            if (kids.child("parentid").getValue().toString().equals(userSnapshot.child("userIdNumber").getValue().toString())) {
+                if (userSnapshot.child("orgName").getValue().toString().equals(userSnapshot.child("orgName").getValue().toString())) {
+
+                    KidsId = kids.child("id").getValue().toString();
+                    Surname = userSnapshot.child("userSurname").getValue().toString();
+                    name = userSnapshot.child("userName").getValue().toString();
 
 
-
-                Surname = kidsUser.child("surname").getValue().toString();
-                name = kidsUser.child("name").getValue().toString();
+                    for (DataSnapshot imageFire : dataSnapshot.getChildren()) {
 
 
-                while (iterator.hasNext()) {
-                    DataSnapshot dataUser = (DataSnapshot) iterator.next();
+                        if (kids.child("id").getValue().toString().equals(imageFire.getKey())) {
 
-                    if (kidsUser.child("id").getValue().toString().equals(dataUser.getKey())) {
-                        imgList.clear();
+                            imgList.clear();
+                            for(DataSnapshot retrieveimage : imageFire.getChildren()) {
 
-                        for (DataSnapshot snapshot : dataUser.getChildren()) {
+                                MemokidsUpload_class img = retrieveimage.getValue(MemokidsUpload_class.class);
+                                imgList.add(img);
 
-                            MemokidsUpload_class img = snapshot.getValue(MemokidsUpload_class.class);
-                            imgList.add(img);
-                            KidsId = kidsUser.child("id").getValue().toString();
+                                //init adapter
+                                adapter = new KidsmemoListAdapter(getContext(), imgList);
 
+                                //adding adapter to recyclerview
+                                recyclerView.setAdapter(adapter);
 
+                            }
                         }
 
 
-                        //init adapter
-                        adapter = new KidsmemoListAdapter(getContext(), imgList);
-
-                        //adding adapter to recyclerview
-                        recyclerView.setAdapter(adapter);
-
-
-                    } else {
 
                     }
+
                 }
-
-
-            } else {
             }
+
         }
+
     }
 
 
