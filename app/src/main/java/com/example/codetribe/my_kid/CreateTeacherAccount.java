@@ -89,10 +89,8 @@ public class CreateTeacherAccount extends AppCompatActivity {
         String shared_email = sharedPreferences.getString("email", "");
         useremail.setText(shared_email);
 
-<<<<<<< HEAD
-=======
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
->>>>>>> 5671587ce22131a6d479062213a6eb554d70adc2
+
         //adding validation to edittexts
         awesomeValidation.addValidation(this, R.id.teachername, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
         awesomeValidation.addValidation(this, R.id.teachersurname, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.surnameerror);
@@ -133,12 +131,9 @@ public class CreateTeacherAccount extends AppCompatActivity {
                         if (awesomeValidation.validate()) {
                             saveParent(org_name);
                         } else {
-<<<<<<< HEAD
-                            Toast.makeText(CreateTeacherAccount.this, "Please Fix all the edit text", Toast.LENGTH_LONG).show();
-=======
+
                             Toast.makeText(CreateTeacherAccount.this, "Make sure you fix all the error shown in your input space", Toast.LENGTH_LONG).show();
->>>>>>> 5671587ce22131a6d479062213a6eb554d70adc2
-                        }
+ }
                     }
 
                     @Override
@@ -223,17 +218,12 @@ public class CreateTeacherAccount extends AppCompatActivity {
                                     }
                                     progressDialog.dismiss();
                                 }
-<<<<<<< HEAD
-								        progressDialog.dismiss();
-                            }
-                        });
-=======
+
                             });
 
                 } else {
                     Toast.makeText(CreateTeacherAccount.this, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
                 }
->>>>>>> 5671587ce22131a6d479062213a6eb554d70adc2
             }
 
             @Override

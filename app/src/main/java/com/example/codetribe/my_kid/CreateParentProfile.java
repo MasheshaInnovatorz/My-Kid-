@@ -170,12 +170,9 @@ public class CreateParentProfile extends AppCompatActivity {
                         databaseReference.child("isVerified").setValue(profile.getIsVerified());
 
 
-<<<<<<< HEAD
-                             startActivity(new Intent(CreateParentProfile.this, ParentTabbedActivity.class));
-=======
+
                         startActivity(new Intent(CreateParentProfile.this, ParentTabbedActivity.class));
 
->>>>>>> 5671587ce22131a6d479062213a6eb554d70adc2
                         Toast.makeText(CreateParentProfile.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
 
                     } else {

@@ -7,11 +7,10 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-<<<<<<< HEAD
+
 import android.text.TextUtils;
-=======
 import android.util.Patterns;
->>>>>>> 5671587ce22131a6d479062213a6eb554d70adc2
+
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;

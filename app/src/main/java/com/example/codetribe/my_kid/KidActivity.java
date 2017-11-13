@@ -172,13 +172,6 @@ public class KidActivity extends AppCompatActivity {
         int selectedId = radKidGender.getCheckedRadioButtonId();
 
 
-<<<<<<< HEAD
-
-
-        if (!TextUtils.isEmpty(kidStringparentid)) {
-=======
->>>>>>> 5671587ce22131a6d479062213a6eb554d70adc2
-
 
         if (selectedId != -1) {
 
