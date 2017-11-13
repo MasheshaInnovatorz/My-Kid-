@@ -6,83 +6,60 @@
     android:orientation="vertical">
 
 
-
-<android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginLeft="7dp"
-    android:layout_marginRight="7dp"
-    android:layout_marginTop="6dp"
-    android:layout_marginBottom="10dp"
-    card_view:cardCornerRadius="4dp"
-    card_view:cardElevation="2dp"
-    card_view:cardUseCompatPadding="true"
-    >
-
-    <LinearLayout
-        android:orientation="vertical"
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="6dp"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="2dp"
+        card_view:cardUseCompatPadding="true">
 
-        <TextView
-            android:id="@+id/senderid"
-            style="@style/TextAppearance.AppCompat.Headline"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:textSize="18sp"
-            android:background="#FF9301"
-            tools:text="Mavhungu Phuluso" />
-        <ImageView
-            android:id="@+id/imgView"
-<<<<<<< HEAD
-            android:layout_width="360dp"
-            android:layout_height="360dp"
-=======
-<<<<<<< HEAD
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-=======
-<<<<<<< HEAD
-            android:layout_width="360dp"
-            android:layout_height="360dp"
-=======
-            android:layout_width="match_parent"
-            android:layout_height="350dp"
-            android:gravity="center_vertical"
-            android:src="@drawable/photo_camera_"
->>>>>>> 6ff658d52501eeeaafa17900e11436cd728d15e9
->>>>>>> 2b9eec729c8f2df2028f87a8a5754a9e303cf198
->>>>>>> 3e1c929be270c57b56846cc035c6cc9631ce87f6
-            android:scaleType="centerCrop"
-            android:layout_gravity="center"
-            android:contentDescription="TODO"
-            android:background="#EEEEEE"
-            />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/senderid"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FF9301"
+                android:gravity="center"
+                android:textSize="18sp"
+                tools:text="Mavhungu Phuluso" />
+
+            <ImageView
+                android:id="@+id/imgView"
+                android:layout_width="match_parent"
+                android:layout_height="360dp"
+                android:layout_gravity="center"
+                android:background="#EEEEEE"
+                android:contentDescription="TODO"
+                android:gravity="center_vertical"
+                android:scaleType="centerCrop"
+                android:src="@drawable/photo_camera_" />
 
 
+            <TextView
+                android:id="@+id/tvImageName"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                tools:text="Picture Desscription" />
 
 
+        </LinearLayout>
 
-
-        <TextView
-            android:id="@+id/tvImageName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="18sp"
-            style="@style/TextAppearance.AppCompat.Body1"
-            tools:text="Picture Desscription" />
-
-
-
-    </LinearLayout>
-
-</android.support.v7.widget.CardView>
-    </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
 
 
 

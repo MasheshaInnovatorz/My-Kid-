@@ -77,11 +77,9 @@ public class KidsmemoListsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         share = (FloatingActionButton) findViewById(R.id.share_add);
-<<<<<<< HEAD
-       // getTime=(TextView) findViewById(R.id.memories_time);
-=======
-        //getTime=(TextView) findViewById(R.id.memories_time);
->>>>>>> 2b9eec729c8f2df2028f87a8a5754a9e303cf198
+
+
+
         progressDialog = new ProgressDialog(this);
 
         imgList = new ArrayList<>();

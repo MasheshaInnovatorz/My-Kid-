@@ -1,5 +1,6 @@
+/*
 package com.example.codetribe.my_kid;
-
+/*
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -259,7 +260,7 @@ public class ProfileUpdateFragment extends Fragment {
                     break;*/
                /* case R.id.input_reg_password:
                     validatePassword();
-                    break;*/
+                    break;
 
             }
 
@@ -277,3 +278,4 @@ public class ProfileUpdateFragment extends Fragment {
     }
 
 }
+*/

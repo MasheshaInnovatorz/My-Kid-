@@ -1,62 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-        <ImageView
-            android:id="@+id/imageView2"
-<<<<<<< HEAD
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/mykidicon" />
-=======
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="17dp"
-            android:background="@drawable/kidlogo" />
->>>>>>> 2b9eec729c8f2df2028f87a8a5754a9e303cf198
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Select a creache"
-            android:textAlignment="center"
-            android:textColor="#448AFF"
-            android:layout_marginLeft="@dimen/text_left"
-            android:layout_marginRight="@dimen/text_right"
-            android:textSize="17sp" />
+            android:orientation="vertical">
 
-        <Spinner
-            android:layout_marginTop="15dp"
-            android:id="@+id/orgname"
-            android:layout_marginBottom="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:spinnerMode="dialog"
-            android:layout_marginLeft="@dimen/text_left"
-            android:layout_marginRight="@dimen/text_right"/>
 
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+        android:layout_gravity="center"
+                android:layout_marginTop="17dp"
+                android:background="@drawable/kidlogo" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
+                android:layout_marginTop="15dp"
+                android:text="Select a creache"
+                android:textAlignment="center"
+                android:textColor="#448AFF"
+                android:textSize="17sp" />
+
+            <Spinner
+                android:id="@+id/orgname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
+                android:layout_marginTop="15dp"
+                android:spinnerMode="dialog" />
 
 
             <android.support.design.widget.TextInputLayout
@@ -123,7 +109,6 @@
                 android:background="#ADCCE2" />
 
 
-
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_KidIdNumber"
                 android:layout_width="match_parent"
@@ -137,8 +122,8 @@
                     android:layout_marginRight="@dimen/text_right"
                     android:background="#0000"
                     android:hint="Kid ID Number"
-                    android:maxLength="13"
                     android:inputType="number"
+                    android:maxLength="13"
                     android:padding="16dp"
                     android:textColor="#ADCCE2"
                     android:textColorHint="#ADCCE2"
@@ -153,8 +138,6 @@
                 android:background="#ADCCE2" />
 
 
-<<<<<<< HEAD
-=======
             <TextView
                 android:id="@+id/sinup"
                 android:layout_width="match_parent"
@@ -171,41 +154,7 @@
                 android:textColor="#fff"
                 android:textSize="16dp" />
         </LinearLayout>
-
->>>>>>> 2b9eec729c8f2df2028f87a8a5754a9e303cf198
-        <TextView
-            android:id="@+id/sinup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="@dimen/text_left"
-            android:layout_marginRight="@dimen/text_right"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/angle"
-            android:gravity="center"
-            android:padding="16dp"
-            android:text="Create Account"
-            android:textColor="#fff"
-            android:textSize="16dp" />
-
-<<<<<<< HEAD
-
-
-
-
-    </LinearLayout>
     </ScrollView>
 </RelativeLayout>
-=======
-        <Spinner
-            android:id="@+id/orgname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="22dp"
-            android:layout_marginRight="35dp" />
-    </RelativeLayout>
-</FrameLayout>
->>>>>>> 2b9eec729c8f2df2028f87a8a5754a9e303cf198
+
+

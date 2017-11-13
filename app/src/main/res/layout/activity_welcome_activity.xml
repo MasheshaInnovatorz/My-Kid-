@@ -8,6 +8,35 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/Create_Teacher_Account1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/Create_Teacher_Account"
+            android:layout_alignStart="@+id/Create_Teacher_Account"
+            android:background="@drawable/angle"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="Create Teacher Account"
+            android:textColor="#fff"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/Create_Teacher_Account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="28dp"
+            android:layout_marginLeft="@dimen/text_left"
+            android:layout_marginRight="@dimen/text_right"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/angle"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="Create Teacher Account"
+            android:textColor="#fff"
+            android:textSize="16dp" />
+
+        <TextView
             android:id="@+id/sin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,7 +64,9 @@
             android:id="@+id/account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/sin"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/imac"
+            android:layout_marginTop="44dp"
             android:gravity="center"
             android:paddingBottom="16dp"
             android:text="Already have an account?"
