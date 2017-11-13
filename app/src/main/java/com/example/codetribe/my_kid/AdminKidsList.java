@@ -51,48 +51,42 @@ public class AdminKidsList extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.kidaddactivityfrag, container, false);
+        View rootView = inflater.inflate(R.layout.activity_kids , container, false);
 
 
-        listUsers = (ListView) rootView.findViewById(R.id.listViewkids);
+        listUsers = (ListView) rootView.findViewById(R.id.listViewkidss);
         //  fab = (FloatingActionButton) rootView.findViewById(R.id.addTeacher);
 
         coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.cordinatelayout);
 
         kidsFab = (FloatingActionButton) rootView.findViewById(R.id.add_kids_admin);
+
         Intent keyId = getActivity().getIntent();
         idLoged = keyId.getStringExtra("User_KEY");
         kids_id = keyId.getStringExtra("kid_id");
 
 
-/*
-
-        listUsers.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                // Kids kido =  kid.get(i);
-                  Intent intent = new Intent(getContext(),ViewProfile.class);
-                // intent.putExtra("kid_id", kido.getId());
-                  startActivity(intent);
-                 //   Toast.makeText(Ge, "hi sir", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-        */
 
 
         parentId = keyId.getStringExtra("parent_id");
 
         kidses = new ArrayList<>();
+        kidsFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), KidActivity.class);
+                intent.putExtra("kid_id", idLoged);
+                intent.putExtra("User_KEY", kids_id);
+                intent.putExtra("parentIdentity", parentId);
+                startActivity(intent);
+            }
+        });
 
 
         kidsCreche = FirebaseDatabase.getInstance().getReference("Kids");
         usersRetriveRef = FirebaseDatabase.getInstance().getReference("Users");
 
         Idadmin = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-
         usersRetriveRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot crecheSnapshot) {
@@ -106,8 +100,6 @@ public class AdminKidsList extends Fragment {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 kidses.clear();
                                 for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()) {
-
-
                                     if (kidssnapshot.child("orgName").getValue().toString().equals(adminSnap.child("orgName").getValue().toString())) {
 
                                         Kids kidInf = kidssnapshot.getValue(Kids.class);
@@ -115,6 +107,9 @@ public class AdminKidsList extends Fragment {
 
 
                                         KidssKey = kidInf.getId();
+
+
+
 
                                     }
 
@@ -140,16 +135,7 @@ public class AdminKidsList extends Fragment {
 
 
 
-        kidsFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), KidActivity.class);
-                intent.putExtra("kid_id", idLoged);
-                intent.putExtra("User_KEY", kids_id);
-                intent.putExtra("parentIdentity", parentId);
-                startActivity(intent);
-            }
-        });
+
 
         return rootView;
     }

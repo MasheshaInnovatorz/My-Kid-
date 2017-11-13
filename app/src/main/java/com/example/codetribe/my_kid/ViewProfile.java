@@ -1,5 +1,6 @@
 package com.example.codetribe.my_kid;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -40,8 +41,6 @@ public class ViewProfile extends AppCompatActivity {
 
     private Uri imgUri;
 
-  //  TextView name,surname,city,gender,phonenumber,address,email,editprofile;
-    //TextView name, surname, gender, phonenumber, address, email, editprofile;
 
     TextView name, surname, gender,city, phonenumber, address, email, editprofile;
 
@@ -59,8 +58,9 @@ public class ViewProfile extends AppCompatActivity {
 
     StorageReference storageRef, imagesRef, userProfileRef, callImage;
 
-    String user_id;
 
+    String user_id;
+    private ProgressDialog progressDialog;
 
     ImageView profilecover;
     String idLoged;
@@ -79,6 +79,7 @@ public class ViewProfile extends AppCompatActivity {
         name = (TextView) findViewById(R.id.user_profile_name);
         // surname= (TextView)findViewById(R.id.user_profile_status);
         gender = (TextView) findViewById(R.id.gender_view);
+
         phonenumber= (TextView)findViewById(R.id.phone_view);
         address= (TextView)findViewById(R.id.address_view);
         city= (TextView)findViewById(R.id.city_view);
@@ -86,7 +87,7 @@ public class ViewProfile extends AppCompatActivity {
         photo = (ImageView) findViewById(R.id.user_profile_photo);
         profilecover = (ImageView) findViewById(R.id.header_cover_image);
 
-
+        progressDialog = new ProgressDialog(this);
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -100,6 +101,7 @@ public class ViewProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(ViewProfile.this,CreateParentProfile.class);
+
                 startActivity(i);
             }
         });
@@ -145,6 +147,7 @@ public class ViewProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ViewProfile.this,UpdateProfile.class) ;
+
                 startActivity(intent);
             }
 
@@ -160,7 +163,8 @@ public class ViewProfile extends AppCompatActivity {
         if (requestCode == RESULT_LOAD_IMG) {
 
             if (resultCode == RESULT_OK) {
-
+                progressDialog.setMessage("Wait Updating Your Profile Picture");
+                progressDialog.show();
                 Uri selectedImage = intentData.getData();
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
                 // Get the cursor
@@ -206,11 +210,14 @@ public class ViewProfile extends AppCompatActivity {
                                     .build();
 
                             if (user != null) {
+
                                 user.updateProfile(profileUpdates)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
+
                                                 if (task.isSuccessful()) {
+                                                    progressDialog.dismiss();
                                                     Log.d("Profile Updated ", "User profile updated.");
                                                     Toast.makeText(getApplication(), "Profile Picture Updated", Toast.LENGTH_SHORT).show();
                                                 }
@@ -236,8 +243,8 @@ public class ViewProfile extends AppCompatActivity {
     }
 
     public void showProfilePic(String image_url) {
-        Glide.with(getApplicationContext()).load(image_url).into(photo);
-        Glide.with(getApplicationContext()).load(image_url).into(profilecover);
+        Glide.with(getApplicationContext()).load(image_url).centerCrop().into(photo);
+        Glide.with(getApplicationContext()).load(image_url).centerCrop().into(profilecover);
     }
 
     private void Infor(DataSnapshot dataSnapshot, String userId) {
@@ -255,8 +262,11 @@ public class ViewProfile extends AppCompatActivity {
                 city.setText("  City :" + dataUser.child("userCity").getValue().toString());
                 email.setText("  Email :" + dataUser.child("emailUser").getValue().toString());
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 5671587ce22131a6d479062213a6eb554d70adc2
             }
 
         }

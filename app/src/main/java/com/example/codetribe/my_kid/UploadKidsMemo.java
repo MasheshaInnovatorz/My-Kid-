@@ -80,7 +80,7 @@ public class UploadKidsMemo extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                //   Infor(dataSnapshot,identity);
+                   //Infor(dataSnapshot,identity);
 
                 //Toast.makeText(Uploud_kids_memo.this, userId, Toast.LENGTH_SHORT).show();
             }
@@ -98,7 +98,7 @@ public class UploadKidsMemo extends AppCompatActivity {
         // intent.putExtra("parentIdentity",parentId);
 
 
-        uploadedName = FirebaseDatabase.getInstance().getReference("Users").child(identity);
+        uploadedName = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -107,7 +107,8 @@ public class UploadKidsMemo extends AppCompatActivity {
 
                 if (idKid != null) {
                     passingValue(idKid);
-                } else if (kidTeacherId != null) {
+                }
+                if (kidTeacherId != null) {
                     passingValue(kidTeacherId);
                 }
 
@@ -270,11 +271,7 @@ public class UploadKidsMemo extends AppCompatActivity {
                 name = dataUser.child("userName").getValue().toString();
                 surname = dataUser.child("userSurname").getValue().toString();
                 results = name + " " + surname;
-            } else {
-                Toast.makeText(UploadKidsMemo.this, "You dont have a Kid you are linked with from this creche", Toast.LENGTH_SHORT).show();
-                return;
             }
-
 
         }
 

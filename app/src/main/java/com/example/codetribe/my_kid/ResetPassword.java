@@ -3,7 +3,7 @@ package com.example.codetribe.my_kid;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,6 +14,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,6 +27,8 @@ public class ResetPassword extends AppCompatActivity {
     private ImageView btnBack;
     private FirebaseAuth auth;
     private ProgressBar progressBar;
+    //defining AwesomeValidation object
+    private AwesomeValidation awesomeValidation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,18 +41,24 @@ public class ResetPassword extends AppCompatActivity {
 
         inputEmail = (EditText) findViewById(R.id.email);
         btnReset = (TextView) findViewById(R.id.btn_reset_password);
+
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
         auth = FirebaseAuth.getInstance();
 
+        awesomeValidation.addValidation(this, R.id.email, Patterns.EMAIL_ADDRESS, R.string.emailerror);
 
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+
+
                 String email = inputEmail.getText().toString().trim();
 
-                if (TextUtils.isEmpty(email)) {
+                if (!awesomeValidation.validate()) {
                     Toast.makeText(getApplication(), "Enter your registered email id", Toast.LENGTH_SHORT).show();
                     return;
                 }

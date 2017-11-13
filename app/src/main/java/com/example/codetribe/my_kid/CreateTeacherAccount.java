@@ -62,7 +62,6 @@ public class CreateTeacherAccount extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
         inputLayoutName = (TextInputLayout) findViewById(R.id.inputteacherfullname);
         inputLayoutsurname = (TextInputLayout) findViewById(R.id.inputteacherSurname);
@@ -90,13 +89,17 @@ public class CreateTeacherAccount extends AppCompatActivity {
         String shared_email = sharedPreferences.getString("email", "");
         useremail.setText(shared_email);
 
+<<<<<<< HEAD
+=======
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+>>>>>>> 5671587ce22131a6d479062213a6eb554d70adc2
         //adding validation to edittexts
         awesomeValidation.addValidation(this, R.id.teachername, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
         awesomeValidation.addValidation(this, R.id.teachersurname, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.surnameerror);
         awesomeValidation.addValidation(this, R.id.teacheremail, Patterns.EMAIL_ADDRESS, R.string.emailerror);
         awesomeValidation.addValidation(this, R.id.teacherAddress, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.address);
         awesomeValidation.addValidation(this, R.id.teacherCity, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.city);
-        awesomeValidation.addValidation(this, teacherpassword, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.passworderror);
+        //  awesomeValidation.addValidation(this, teacherpassword, "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\\\d])(?=.*[~`!@#\\\\$%\\\\^&\\\\*\\\\(\\\\)\\\\-_\\\\+=\\\\{\\\\}\\\\[\\\\]\\\\|\\\\;:\\\"<>,./\\\\?]).{8,}", R.string.passworderror);
         awesomeValidation.addValidation(this, R.id.teachercontact, "^[+]?[0-9]{10,13}$", R.string.mobileerror);
         awesomeValidation.addValidation(this, R.id.teacherid, "^^[0-9]{13}$", R.string.iderror);
         awesomeValidation.addValidation(this, R.id.teacherclass, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}[0-9]$", R.string.classerror);
@@ -130,7 +133,11 @@ public class CreateTeacherAccount extends AppCompatActivity {
                         if (awesomeValidation.validate()) {
                             saveParent(org_name);
                         } else {
+<<<<<<< HEAD
                             Toast.makeText(CreateTeacherAccount.this, "Please Fix all the edit text", Toast.LENGTH_LONG).show();
+=======
+                            Toast.makeText(CreateTeacherAccount.this, "Make sure you fix all the error shown in your input space", Toast.LENGTH_LONG).show();
+>>>>>>> 5671587ce22131a6d479062213a6eb554d70adc2
                         }
                     }
 
@@ -170,48 +177,63 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
 
                 int selectedId = gender.getCheckedRadioButtonId();
-                gnrteacher = (RadioButton) findViewById(selectedId);
-                usergenderString = gnrteacher.getText().toString().trim();
 
                 progressDialog.setMessage("Wait While Adding Teacher");
                 progressDialog.show();
 
+                if (selectedId != -1) {
 
-                auth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(CreateTeacherAccount.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
+                    progressDialog.setMessage("Wait While Adding Teacher");
+                    progressDialog.show();
 
+                    gnrteacher = (RadioButton) findViewById(selectedId);
+                    usergenderString = gnrteacher.getText().toString().trim();
 
-                                if (task.isSuccessful()) {
-                                    //String user_id = task.getResult().getUser().getUid();
-                                    //firebase teacher database table
-                                    DatabaseReference mChildDatabase = mDatabaseRef.child("Users");
-
-
-                                    //Storing Information
-                                    TeacherClassAcc teacher = new TeacherClassAcc(userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, task.getResult().getUser().getUid().toString().trim(), task.getResult().getUser().getEmail().toString().trim(), password, role, "verified", orgNames, userAddressString, userCityString);
-
-                                    mDatabaseRef.child(task.getResult().getUser().getUid().toString().trim()).setValue(teacher);
-
-                                    Toast.makeText(CreateTeacherAccount.this, "Teacher Registration Successfull" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
-
-                                    startActivity(new Intent(getApplication(), Admin.class));
+                    auth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(CreateTeacherAccount.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
 
 
+                                    if (task.isSuccessful()) {
+                                        //String user_id = task.getResult().getUser().getUid();
+                                        //firebase teacher database table
+                                        DatabaseReference mChildDatabase = mDatabaseRef.child("Users");
+
+
+                                        //Storing Information
+                                        TeacherClassAcc teacher = new TeacherClassAcc(userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, task.getResult().getUser().getUid().toString().trim(), task.getResult().getUser().getEmail().toString().trim(), password, role, "verified", orgNames, userAddressString, userCityString);
+
+                                        mDatabaseRef.child(task.getResult().getUser().getUid().toString().trim()).setValue(teacher);
+
+                                        Toast.makeText(CreateTeacherAccount.this, "Teacher Registration Successfull" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+
+                                        startActivity(new Intent(getApplication(), AdminTabbedActivity.class));
+
+
+                                    }
+
+                                    if (!task.isSuccessful()) {
+                                        Toast.makeText(CreateTeacherAccount.this, "Authentication failed." + task.getException(), Toast.LENGTH_SHORT).show();
+
+                                    } else {
+                                        // startActivity(new Intent(Create_Teacher_Account.this, LoginActivity.class));
+
+                                        finish();
+                                    }
+                                    progressDialog.dismiss();
                                 }
-
-                                if (!task.isSuccessful()) {
-                                    Toast.makeText(CreateTeacherAccount.this, "Authentication failed." + task.getException(), Toast.LENGTH_SHORT).show();
-
-                                } else {
-                                    // startActivity(new Intent(Create_Teacher_Account.this, LoginActivity.class));
-
-                                    finish();
-                                }
+<<<<<<< HEAD
 								        progressDialog.dismiss();
                             }
                         });
+=======
+                            });
+
+                } else {
+                    Toast.makeText(CreateTeacherAccount.this, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
+                }
+>>>>>>> 5671587ce22131a6d479062213a6eb554d70adc2
             }
 
             @Override

@@ -26,7 +26,6 @@
             android:id="@+id/mess_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
             android:layout_weight="1"
             android:background="@drawable/editextstyle"
             android:hint="Write a message"
@@ -44,4 +43,5 @@
             android:background="@drawable/ic_send_black_24dp"
             android:padding="4dp" />
     </LinearLayout>
+
 </RelativeLayout>

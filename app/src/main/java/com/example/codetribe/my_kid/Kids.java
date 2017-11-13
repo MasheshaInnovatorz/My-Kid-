@@ -1,5 +1,10 @@
 package com.example.codetribe.my_kid;
 
+import com.google.firebase.database.Exclude;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by CodeTribe on 9/14/2017.
  */
@@ -22,8 +27,8 @@ public class Kids {
     String allergies;
     String dietRequirements;
     String doctorsRecomendations;
-    int kidHeight;
-    double bodyWeight;
+    String kidHeight;
+    String bodyWeight;
 
 
     public Kids() {
@@ -108,7 +113,7 @@ public class Kids {
 
     // new constractor for medical information
 
-    //public Kids(String allergies,String dietRequirements,String doctorsRecomendations,int kidHeight,double bodyWeight,String parentid,String id)
+    public Kids(String allergies,String dietRequirements,String doctorsRecomendations,String kidHeight,String bodyWeight)
 
     {
         this.allergies = allergies;
@@ -119,6 +124,39 @@ public class Kids {
         this.parentid = parentid;
     }
 
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+
+        result.put("allergies", allergies);
+        result.put("dietRequirements", dietRequirements);
+        result.put("doctorsRecomendations", doctorsRecomendations);
+        result.put("bodyWeight", bodyWeight);
+        result.put("kidHeight", kidHeight);
+        result.put("parentid", parentid);
+
+        return result;
+    }
+
+    public void setAllergies(String allergies) {
+        this.allergies = allergies;
+    }
+
+    public void setDietRequirements(String dietRequirements) {
+        this.dietRequirements = dietRequirements;
+    }
+
+    public void setDoctorsRecomendations(String doctorsRecomendations) {
+        this.doctorsRecomendations = doctorsRecomendations;
+    }
+
+    public void setKidHeight(String kidHeight) {
+        this.kidHeight = kidHeight;
+    }
+
+    public void setBodyWeight(String bodyWeight) {
+        this.bodyWeight = bodyWeight;
+    }
 
     public String getAllergies() {
         return allergies;
@@ -132,11 +170,11 @@ public class Kids {
         return doctorsRecomendations;
     }
 
-    public int getkidHeight() {
+    public String getkidHeight() {
         return kidHeight;
     }
 
-    public double getBodyWeight() {
+    public String getBodyWeight() {
         return bodyWeight;
     }
 

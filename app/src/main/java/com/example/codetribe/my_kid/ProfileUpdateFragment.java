@@ -1,30 +1,6 @@
 package com.example.codetribe.my_kid;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import static com.example.codetribe.my_kid.R.id.gender;
-
-public class ProfileUpdateFragment extends Fragment {
+/*public class ProfileUpdateFragment extends Fragment {
     TextView signUpButton;
     private TextView editprofile;
 
@@ -261,11 +237,12 @@ public class ProfileUpdateFragment extends Fragment {
                     validatePassword();
                     break;*/
 
-            }
+//            }
+//
+       // }
+  //  }
 
-        }
-    }
-
+/*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -277,3 +254,4 @@ public class ProfileUpdateFragment extends Fragment {
     }
 
 }
+*/

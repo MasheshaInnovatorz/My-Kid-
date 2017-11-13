@@ -1,21 +1,17 @@
 package com.example.codetribe.my_kid;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.TextUtils;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
-import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,26 +20,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Iterator;
-
-import static com.example.codetribe.my_kid.R.id.gender;
-
 public class UpdateProfile extends AppCompatActivity {
-
-
 
 
     private AwesomeValidation awesomeValidation;
 
-
-     TextView update;
-
     private EditText
-           Name,
+            Name,
             Surname,
             Address,
-             City,
-             phoneNumber;
+            City,
+            phoneNumber;
 
     FirebaseUser user;
 
@@ -56,11 +43,12 @@ public class UpdateProfile extends AppCompatActivity {
             inputLayoutNumber;
 
     //Firebase
-    private DatabaseReference databaseReference,mdatabaseReference;
+    private DatabaseReference databaseReference, mdatabaseReference;
 
     String keyUser;
     String userNameString, inputSurnameString, inputCityString, inputAddressString, userContactString;
 
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +64,7 @@ public class UpdateProfile extends AppCompatActivity {
         //validation
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
+        progressDialog = new ProgressDialog(this);
         //getting intent
 
         Intent intent = getIntent();
@@ -87,7 +76,11 @@ public class UpdateProfile extends AppCompatActivity {
 
         //database
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> 5671587ce22131a6d479062213a6eb554d70adc2
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -96,7 +89,7 @@ public class UpdateProfile extends AppCompatActivity {
                 Name.setText(dataSnapshot.child("userName").getValue().toString());
                 Surname.setText(dataSnapshot.child("userSurname").getValue().toString());
                 phoneNumber.setText(dataSnapshot.child("userContact").getValue().toString());
-                Address.setText( dataSnapshot.child("userAddress").getValue().toString());
+                Address.setText(dataSnapshot.child("userAddress").getValue().toString());
                 City.setText(dataSnapshot.child("userCity").getValue().toString());
             }
 
@@ -106,17 +99,12 @@ public class UpdateProfile extends AppCompatActivity {
             }
         });
 
-        // signupLink = (TextView) findViewById(R.id.back_to_signup);
-        update = (TextView) findViewById(R.id.btn_update);
-
         //Edit lText
         Name = (EditText) findViewById(R.id.update_fullname);
         Surname = (EditText) findViewById(R.id.update_Surname);
         Address = (EditText) findViewById(R.id.update_address);
         City = (EditText) findViewById(R.id.update_city);
         phoneNumber = (EditText) findViewById(R.id.update_phone);
-
-
 
 
         //adding validation to edittexts
@@ -133,55 +121,86 @@ public class UpdateProfile extends AppCompatActivity {
         inputLayoutCity = (TextInputLayout) findViewById(R.id.input_update_city);
         inputLayoutNumber = (TextInputLayout) findViewById(R.id.input_update_phoneNo);
 
-        update.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View view) {
-                if (awesomeValidation.validate())
-                {
-                    userNameString = Name.getText().toString().trim();
-                    userContactString = phoneNumber.getText().toString().trim();
-                    inputSurnameString = Surname.getText().toString().trim();
-                    inputAddressString = Address.getText().toString().trim();
-                    inputCityString = City.getText().toString().trim();
-
-                    UserProfile update = new UserProfile();
-                    update.setKeyUser(keyUser);
-                    update.setUserName(userNameString);
-                    update.setUserSurname(inputSurnameString);
-                    update.setUserContact(userContactString);
-                    update.setUserAddress(inputAddressString);
-                    update.setUserCity(inputCityString);
-
-                        databaseReference.child("userName").setValue(update.getUserName());
-                        databaseReference.child("userSurname").setValue(update.getUserSurname());
-                        databaseReference.child("userContact").setValue(update.getUserContact());
-                        databaseReference.child("userAddress").setValue(update.getUserAddress());
-                        databaseReference.child("userCity").setValue(update.getUserCity());
-
-                        Toast.makeText(UpdateProfile.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(UpdateProfile.this,ViewProfile.class);
-                    startActivity(intent);
-                    } else {
-                        Toast.makeText(UpdateProfile.this, "User Failed to Update Profile", Toast.LENGTH_SHORT).show();
-                    }
-                }
-        });
 
     }
+
     @Override
     protected void onStart() {
         super.onStart();
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.save, menu);
+
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == android.R.id.home) {
-            this.finish();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.profile_save) {
+            if (awesomeValidation.validate()) {
+
+                progressDialog.setMessage("Wait Updating Your Profile");
+                progressDialog.show();
+
+                userNameString = Name.getText().toString().trim();
+                userContactString = phoneNumber.getText().toString().trim();
+                inputSurnameString = Surname.getText().toString().trim();
+                inputAddressString = Address.getText().toString().trim();
+                inputCityString = City.getText().toString().trim();
+
+
+                UserProfile update = new UserProfile();
+                update.setKeyUser(keyUser);
+                update.setUserName(userNameString);
+                update.setUserSurname(inputSurnameString);
+                update.setUserContact(userContactString);
+                update.setUserAddress(inputAddressString);
+                update.setUserCity(inputCityString);
+
+                databaseReference.child("userName").setValue(update.getUserName());
+                databaseReference.child("userSurname").setValue(update.getUserSurname());
+                databaseReference.child("userContact").setValue(update.getUserContact());
+                databaseReference.child("userAddress").setValue(update.getUserAddress());
+                databaseReference.child("userCity").setValue(update.getUserCity());
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            progressDialog.dismiss();
+                        }else{
+                            Toast.makeText(UpdateProfile.this, "Infor you are trying to upload doesnt exist", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+
+
+                Toast.makeText(UpdateProfile.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(UpdateProfile.this, ViewProfile.class);
+                startActivity(intent);
+            } else {
+                Toast.makeText(UpdateProfile.this, "User Failed to Update Profile", Toast.LENGTH_SHORT).show();
+            }
+            return true;
         }
         return super.onOptionsItemSelected(item);
-
     }
 
 }

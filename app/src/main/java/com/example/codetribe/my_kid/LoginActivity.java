@@ -30,8 +30,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Iterator;
-
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView login_Button;
@@ -80,7 +78,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         input_email = (TextInputLayout) findViewById(R.id.input_reg_fullname);
 
 
-        awesomeValidation.addValidation(this, R.id.password, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.passworderror);
+       // awesomeValidation.addValidation(this, R.id.password, "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\\\d])(?=.*[~`!@#\\\\$%\\\\^&\\\\*\\\\(\\\\)\\\\-_\\\\+=\\\\{\\\\}\\\\[\\\\]\\\\|\\\\;:\\\"<>,./\\\\?]).{8,}", R.string.passworderror);
         awesomeValidation.addValidation(this, R.id.email, Patterns.EMAIL_ADDRESS, R.string.emailerror);
 
         //firebase
@@ -208,7 +206,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 } else if (dataUser.child("role").getValue().toString().equals("admin")) {
 
                     // Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
-                    Intent intent = new Intent(LoginActivity.this, Admin.class);
+                    Intent intent = new Intent(LoginActivity.this, AdminTabbedActivity.class);
 
                     // intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                     intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());

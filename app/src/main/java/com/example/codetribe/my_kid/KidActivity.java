@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -76,7 +75,7 @@ public class KidActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Add kid");
+        getSupportActionBar().setTitle("Register kid");
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         //initializing
@@ -149,6 +148,8 @@ public class KidActivity extends AppCompatActivity {
                         }
                     });
 
+                }else{
+                    Toast.makeText(context, "Make sure you fix all the error shown in your input space", Toast.LENGTH_SHORT).show();
                 }
                 progressDialog.dismiss();
             }
@@ -169,15 +170,20 @@ public class KidActivity extends AppCompatActivity {
         kidsYearRegistered = registeredYears.getText().toString().trim();
 
         int selectedId = radKidGender.getCheckedRadioButtonId();
-        radGender = (RadioButton) findViewById(selectedId);
-        genderString = radGender.getText().toString();
 
-        Toast.makeText(this, orgName, Toast.LENGTH_SHORT).show();
 
+<<<<<<< HEAD
 
 
         if (!TextUtils.isEmpty(kidStringparentid)) {
+=======
+>>>>>>> 5671587ce22131a6d479062213a6eb554d70adc2
 
+
+        if (selectedId != -1) {
+
+            radGender = (RadioButton) findViewById(selectedId);
+            genderString = radGender.getText().toString();
 
             String id = databaseKids.push().getKey();
 
@@ -189,12 +195,11 @@ public class KidActivity extends AppCompatActivity {
             Toast.makeText(this, "Kids saved successfully", Toast.LENGTH_SHORT).show();
 
 
-            startActivity(new Intent(getApplication(), Admin.class));
+            startActivity(new Intent(getApplication(), AdminTabbedActivity.class));
 
         } else {
-            Toast.makeText(this, "Kid name should not be empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
         }
-
 
     }
 

@@ -120,7 +120,6 @@ public class KidsmemoListsActivity extends AppCompatActivity {
                                 imgList.add(img);
                                 KidsId = kidsUser.child("id").getValue().toString();
                             }
-
                             //init adapter
                             adapter = new KidsmemoListAdapter(getApplicationContext(), imgList);
 

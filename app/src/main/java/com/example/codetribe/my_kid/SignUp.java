@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Patterns;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -63,15 +64,23 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
 
-        //  getSupportActionBar().setTitle("SignUp");
+       // getSupportActionBar().setDisplayShowHomeEnabled(true);
+      //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setTitle("Sign Up");
+      //  getSupportActionBar().setSubtitle("Parent");
 
-        //Get Firebase auth instance
+
+
+    //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference();
         mUserCheckData = FirebaseDatabase.getInstance().getReference().child("Users");
-        KidDataRef = FirebaseDatabase.getInstance().getReference("Kids");
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);//shared
 
+        crecheDataRef = FirebaseDatabase.getInstance().getReference("Creche");
+        KidDataRef = FirebaseDatabase.getInstance().getReference("Kids");
+
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);//shared
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
@@ -85,7 +94,7 @@ public class SignUp extends AppCompatActivity {
         orgNameList = (Spinner) findViewById(R.id.orgname);
         // mainNav = (TextView)findViewById(R.id.login);
 
-        awesomeValidation.addValidation(this, R.id.signupPassword, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.passworderror);
+        //awesomeValidation.addValidation(this, R.id.signupPassword, "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\\\d])(?=.*[~`!@#\\\\$%\\\\^&\\\\*\\\\(\\\\)\\\\-_\\\\+=\\\\{\\\\}\\\\[\\\\]\\\\|\\\\;:\\\"<>,./\\\\?]).{8,}", R.string.passworderror);
         awesomeValidation.addValidation(this, R.id.email, Patterns.EMAIL_ADDRESS, R.string.emailerror);
         awesomeValidation.addValidation(this, R.id.KidIdNumber, "^^[0-9]{13}$", R.string.iderror);
 
@@ -187,17 +196,15 @@ public class SignUp extends AppCompatActivity {
                                                 String user_id = task.getResult().getUser().getUid();
                                                 DatabaseReference mChildDatabase = mDatabaseRef.child("Users").child(user_id);
 
-                                                // String key_user = mChildDatabase.getKey();
-
                                                 mChildDatabase.child("isVerified").setValue("unverified");
-                                                mChildDatabase.child("orgnName").setValue(strName);
+                                                mChildDatabase.child("orgName").setValue(strName);
                                                 mChildDatabase.child("userKey").setValue(user_id);
                                                 mChildDatabase.child("role").setValue("parent");
                                                 mChildDatabase.child("emailUser").setValue(userEmailString);
                                                 mChildDatabase.child("passWordUser").setValue(userPassString);
                                                 Toast.makeText(SignUp.this, "User Account Created", Toast.LENGTH_SHORT).show();
                                                 auth.signOut();
-                                                startActivity(new Intent(SignUp.this, WelcomeActivity.class));
+                                                startActivity(new Intent(SignUp.this, LoginActivity.class));
 
 
                                             } else {
@@ -210,7 +217,7 @@ public class SignUp extends AppCompatActivity {
 
                                 } else {
 
-                                    Toast.makeText(SignUp.this, "You dont have a kids on this Creche,Please contact an Admin", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignUp.this, "You dont have a kids on this Creche,Please contact an Admin Creshe", Toast.LENGTH_SHORT).show();
                                 }
 
                             }
@@ -252,21 +259,16 @@ public class SignUp extends AppCompatActivity {
 
     }
 
-    public void searchForCreacheName() {
-
-    }
-
     @Override
     protected void onStart() {
         super.onStart();
 
-        //  Toast.makeText(this, "Ellow Chivhedzelele", Toast.LENGTH_SHORT).show();
 
-        crecheDataRef = FirebaseDatabase.getInstance().getReference("Creche");
 
         crecheDataRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
 
                 for (DataSnapshot checheSnapshot : dataSnapshot.getChildren()) {
 
@@ -274,11 +276,10 @@ public class SignUp extends AppCompatActivity {
                         list.add(checheSnapshot.child("orgName").getValue().toString());
 
 
+
                         dataAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
                         //simple_spinner_dropdown_item
                         orgNameList.setAdapter(dataAdapter);
-
-
 
 
                     } else {
@@ -295,5 +296,15 @@ public class SignUp extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            this.finish();
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+
 }
 
