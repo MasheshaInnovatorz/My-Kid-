@@ -152,7 +152,13 @@ public class UploadKidsMemo extends AppCompatActivity {
         });
 
     }
-
+	/*
+//camera upload
+	public void btnClick(View view){
+		Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		onActivityResult(intent,CAMERA_REQUEST);
+	}
+	*/
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -200,7 +206,6 @@ public class UploadKidsMemo extends AppCompatActivity {
                             name = dataSnapshot.child("userName").getValue().toString();
                             surname = dataSnapshot.child("userSurname").getValue().toString();
                             results = name + " " + surname;
-
 
                             MemokidsUpload_class imageUpload = new MemokidsUpload_class(txtImageName.getText().toString(), taskSnapshot.getDownloadUrl().toString(), results);
 

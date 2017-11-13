@@ -70,7 +70,6 @@ public class CreateParentProfile extends AppCompatActivity {
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
         //getting intent
-
         Intent intent = getIntent();
         keyUser = intent.getStringExtra("User_KEY");
 
@@ -149,12 +148,7 @@ public class CreateParentProfile extends AppCompatActivity {
 
 
                              startActivity(new Intent(CreateParentProfile.this, ParentTabbedActivity.class));
-
-
                         Toast.makeText(CreateParentProfile.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
-                        // startActivity(new Intent(ProfileUpdate.this, ParentActivity.class));
-
-
 
                     } else {
                         Toast.makeText(CreateParentProfile.this, "User Failed to Update Profile", Toast.LENGTH_SHORT).show();

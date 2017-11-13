@@ -241,30 +241,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        /*
-                        mDatabaseRef.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                checkUserValidation(dataSnapshot, userEmailString);
-                            }
 
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-
-                            }
-                        });
-                        */
                     } else {
                         Toast.makeText(LoginActivity.this, "Either your Email nor Password is Worng or not Registered", Toast.LENGTH_SHORT).show();
                     }
                     progressDialog.dismiss();
-
                 }
             });
-
         }
-
-
     }
-
 }

@@ -1,3 +1,5 @@
+
+/*
 package com.example.codetribe.my_kid;
 
 import android.content.Intent;
@@ -82,4 +84,4 @@ public class GroupChat extends AppCompatActivity {
 }
 
 
-
+*/

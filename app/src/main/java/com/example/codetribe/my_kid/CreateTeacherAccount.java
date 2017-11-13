@@ -42,7 +42,8 @@ public class CreateTeacherAccount extends AppCompatActivity {
     TextView createteacher;
     String role = "teacher";
     private FirebaseAuth auth;
-    //private ProgressBar progressBar;
+
+
     private ProgressDialog progressDialog;
     //Firebase
     private DatabaseReference teacherReference, mDatabaseRef, mCrecheRef, orgNameReference;
@@ -82,12 +83,13 @@ public class CreateTeacherAccount extends AppCompatActivity {
         userAddress = (EditText) findViewById(R.id.teacherAddress);
         userCity = (EditText) findViewById(R.id.teacherCity);
 
-
+        progressDialog = new ProgressDialog(this);
         createteacher = (TextView) findViewById(R.id.Create_Teacher_Account);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String shared_email = sharedPreferences.getString("email", "");
         useremail.setText(shared_email);
+
         //adding validation to edittexts
         awesomeValidation.addValidation(this, R.id.teachername, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
         awesomeValidation.addValidation(this, R.id.teachersurname, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.surnameerror);
@@ -121,23 +123,15 @@ public class CreateTeacherAccount extends AppCompatActivity {
         createteacher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 orgNameReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-
                         String org_name = dataSnapshot.getValue(String.class);
-
                         if (awesomeValidation.validate()) {
-
-
                             saveParent(org_name);
                         } else {
                             Toast.makeText(CreateTeacherAccount.this, "Please Fix all the edit text", Toast.LENGTH_LONG).show();
-
                         }
-
-
                     }
 
                     @Override
@@ -179,6 +173,8 @@ public class CreateTeacherAccount extends AppCompatActivity {
                 gnrteacher = (RadioButton) findViewById(selectedId);
                 usergenderString = gnrteacher.getText().toString().trim();
 
+                progressDialog.setMessage("Wait While Adding Teacher");
+                progressDialog.show();
 
 
                 auth.createUserWithEmailAndPassword(email, password)
@@ -213,6 +209,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                                     finish();
                                 }
+								        progressDialog.dismiss();
                             }
                         });
             }

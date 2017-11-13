@@ -20,6 +20,7 @@ public class MemokidsUpload_class {
 
 
     public MemokidsUpload_class() {
+
         this.name = name;
         this.uri = uri;
         this.personUploaded = personUploaded;

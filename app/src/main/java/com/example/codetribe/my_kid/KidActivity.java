@@ -1,5 +1,6 @@
 package com.example.codetribe.my_kid;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -58,7 +59,7 @@ public class KidActivity extends AppCompatActivity {
             inkidHeight,
             bodyWeight;
 
-
+    private ProgressDialog progressDialog;
     //defining AwesomeValidation object
     private AwesomeValidation awesomeValidation;
 
@@ -115,6 +116,7 @@ public class KidActivity extends AppCompatActivity {
         //String id = intent.getStringExtra(Teachers_activity.ARTIST_ID);
         keyUser = intent.getStringExtra("User_KEY");
 
+        progressDialog = new ProgressDialog(this);
         //database
         databaseKids = FirebaseDatabase.getInstance().getReference().child("Kids");
         final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -125,14 +127,13 @@ public class KidActivity extends AppCompatActivity {
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 if (awesomeValidation.validate()) {
 
+                    progressDialog.setMessage("Wait While Adding Kid");
+                    progressDialog.show();
                     adminOrgNameRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-
 
                             String org_name = dataSnapshot.getValue(String.class);
                             //Toast.makeText(context,org_name, Toast.LENGTH_LONG).show();
@@ -149,6 +150,7 @@ public class KidActivity extends AppCompatActivity {
                     });
 
                 }
+                progressDialog.dismiss();
             }
 
         });
@@ -171,6 +173,8 @@ public class KidActivity extends AppCompatActivity {
         genderString = radGender.getText().toString();
 
         Toast.makeText(this, orgName, Toast.LENGTH_SHORT).show();
+
+
 
         if (!TextUtils.isEmpty(kidStringparentid)) {
 
