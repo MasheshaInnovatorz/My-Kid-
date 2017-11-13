@@ -31,8 +31,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:text="Mavhungu Phuluso"
                 android:background="@android:color/white"
                 android:textSize="18sp"
+                tools:text="Mavhungu Phuluso" />
+
+            <TextView
+                android:id="@+id/timeupload"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:gravity="center"
+                android:text="time"
+                android:textAlignment="textEnd"
+                android:textColor="@android:color/holo_blue_light"
+                android:background="@android:color/white"
+                android:textSize="12sp"
                 tools:text="Mavhungu Phuluso" />
 
             <ImageView
@@ -53,6 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textSize="18sp"
+                android:text="playing time"
                 android:background="@android:color/white"
                 tools:text="Picture Desscription" />
 

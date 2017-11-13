@@ -9,13 +9,15 @@ public class MemokidsUpload_class {
     public String name;
     public String uri;
     public String personUploaded;
+    public long timeUploaded;
 
 
-    public MemokidsUpload_class( String name, String uri, String personUploaded) {
+    public MemokidsUpload_class( String name, String uri, String personUploaded, long timeUploaded) {
 
         this.name = name;
         this.uri = uri;
         this.personUploaded = personUploaded;
+        this.timeUploaded =timeUploaded;
 
     }
 
@@ -25,6 +27,7 @@ public class MemokidsUpload_class {
         this.name = name;
         this.uri = uri;
         this.personUploaded = personUploaded;
+        this.timeUploaded = timeUploaded;
 
     }
 
@@ -41,4 +44,7 @@ public class MemokidsUpload_class {
         return personUploaded;
     }
 
+    public long getTimeUploaded() {
+        return timeUploaded;
+    }
 }
