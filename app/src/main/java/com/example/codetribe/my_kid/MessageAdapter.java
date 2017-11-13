@@ -1,4 +1,4 @@
-package com.example.codetribe.my_kid;
+/*package com.example.codetribe.my_kid;
 
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -16,7 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
  * Created by mudau on 11/9/2017.
  */
 
-public class MessageAdapter  extends FirebaseListAdapter<ChatMessage> {
+/*public class MessageAdapter  extends FirebaseListAdapter<ChatMessage> {
 
     private MessageAdapter activity;
 
@@ -100,4 +100,4 @@ public class MessageAdapter  extends FirebaseListAdapter<ChatMessage> {
             }
         }
     });
-}
+}*/
