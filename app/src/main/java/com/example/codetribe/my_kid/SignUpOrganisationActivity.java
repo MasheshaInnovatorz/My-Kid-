@@ -197,7 +197,11 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                                 //Toast.makeText(SignUpOrganisationActivity.this, key, Toast.LENGTH_SHORT).show();
                                 Toast.makeText(SignUpOrganisationActivity.this, "Organization Sccessfully Created", Toast.LENGTH_SHORT).show();
 
+<<<<<<< HEAD
+                                startActivity(new Intent(getApplicationContext(), AdminTabbedActivity.class));
+=======
                                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+>>>>>>> d9a1e52cf1b8769abaeae9db0c81acbe7a0b5cd7
 
 
                             } else {

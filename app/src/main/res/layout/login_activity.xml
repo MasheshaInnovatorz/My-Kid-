@@ -14,11 +14,17 @@
 
         <ImageView
             android:id="@+id/imageView2"
+<<<<<<< HEAD
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+=======
             android:layout_width="250dp"
             android:layout_height="250dp"
             android:layout_above="@+id/textView"
+>>>>>>> d9a1e52cf1b8769abaeae9db0c81acbe7a0b5cd7
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="48dp"
             android:background="@drawable/mykidicon" />
 
         <TextView
