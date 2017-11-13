@@ -28,13 +28,14 @@
                 android:layout_marginTop="3dp"
                 android:text="Creche Information"
                 android:textAlignment="center"
-                android:textColor="#448AFF"
+                android:textColor="#000000"
                 android:textSize="25sp"
-                android:textStyle="bold" />
+                />
 
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/inputOrgName"
+                android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -48,22 +49,21 @@
                     android:background="#0000"
                     android:hint="Name"
                     android:inputType="textPersonName"
-                    android:padding="16dp"
+                    android:padding="@dimen/text_padding"
                     android:textAlignment="center"
-                    android:textColor="#ADCCE2"
-                    android:textColorHint="#ADCCE2"
+                    android:textColor="#212121"
+                    android:textColorHint="#212121"
                     android:textSize="16dp"
-                    android:textStyle="bold" />
+                   />
 
             </android.support.design.widget.TextInputLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="@dimen/text_left"
                 android:layout_marginRight="@dimen/text_right"
-                android:background="#ADCCE2" />
+                android:background="#212121" />
 
 
             <android.support.design.widget.TextInputLayout
@@ -77,26 +77,25 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/text_left"
                     android:layout_marginRight="@dimen/text_right"
-                    android:background="#FF5722"
+                    android:background="#0000"
                     android:hint="Registration Number"
                     android:inputType="phone"
                     android:maxLength="10"
-                    android:padding="16dp"
+                    android:padding="@dimen/text_padding"
                     android:textAlignment="center"
-                    android:textColor="#ADCCE2"
-                    android:textColorHint="#ADCCE2"
+                    android:textColor="#212121"
+                    android:textColorHint="#212121"
                     android:textSize="16dp"
-                    android:textStyle="bold" />
+                    />
 
             </android.support.design.widget.TextInputLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="@dimen/text_left"
                 android:layout_marginRight="@dimen/text_right"
-                android:background="#ADCCE2" />
+                android:background="#212121" />
 
 
             <android.support.design.widget.TextInputLayout
@@ -113,22 +112,21 @@
                     android:background="#0000"
                     android:hint="Street Name"
                     android:inputType="textCapWords"
-                    android:padding="16dp"
+                    android:padding="@dimen/text_padding"
                     android:textAlignment="center"
-                    android:textColor="#ADCCE2"
-                    android:textColorHint="#ADCCE2"
+                    android:textColor="#212121"
+                    android:textColorHint="#212121"
                     android:textSize="16dp"
-                    android:textStyle="bold" />
+                     />
 
             </android.support.design.widget.TextInputLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="@dimen/text_left"
                 android:layout_marginRight="@dimen/text_right"
-                android:background="#ADCCE2" />
+                android:background="#212121" />
 
 
             <android.support.design.widget.TextInputLayout
@@ -145,22 +143,21 @@
                     android:background="#0000"
                     android:hint="City"
                     android:inputType="textCapWords"
-                    android:padding="16dp"
+                    android:padding="@dimen/text_padding"
                     android:textAlignment="center"
-                    android:textColor="#ADCCE2"
-                    android:textColorHint="#ADCCE2"
+                    android:textColor="#212121"
+                    android:textColorHint="#212121"
                     android:textSize="16dp"
-                    android:textStyle="bold" />
+                    />
 
             </android.support.design.widget.TextInputLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="@dimen/text_left"
                 android:layout_marginRight="@dimen/text_right"
-                android:background="#ADCCE2" />
+                android:background="#212121" />
 
 
             <android.support.design.widget.TextInputLayout
@@ -174,26 +171,25 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/text_left"
                     android:layout_marginRight="@dimen/text_right"
-                    android:background="#FF5722"
+                    android:background="#0000"
                     android:hint="Postal Code"
                     android:inputType="number"
                     android:maxLength="5"
-                    android:padding="16dp"
+                    android:padding="@dimen/text_padding"
                     android:textAlignment="center"
-                    android:textColor="#ADCCE2"
-                    android:textColorHint="#ADCCE2"
+                    android:textColor="#212121"
+                    android:textColorHint="#212121"
                     android:textSize="16dp"
-                    android:textStyle="bold" />
+                    />
 
             </android.support.design.widget.TextInputLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="@dimen/text_left"
                 android:layout_marginRight="@dimen/text_right"
-                android:background="#ADCCE2" />
+                android:background="#212121" />
 
 
             <android.support.design.widget.TextInputLayout
@@ -210,22 +206,21 @@
                     android:background="#0000"
                     android:hint="Email Address"
                     android:inputType="textEmailAddress"
-                    android:padding="16dp"
+                    android:padding="@dimen/text_padding"
                     android:textAlignment="center"
-                    android:textColor="#ADCCE2"
-                    android:textColorHint="#ADCCE2"
+                    android:textColor="#212121"
+                    android:textColorHint="#212121"
                     android:textSize="16dp"
-                    android:textStyle="bold" />
+                     />
 
             </android.support.design.widget.TextInputLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="@dimen/text_left"
                 android:layout_marginRight="@dimen/text_right"
-                android:background="#ADCCE2" />
+                android:background="#212121" />
 
 
             <android.support.design.widget.TextInputLayout
@@ -243,34 +238,33 @@
                     android:hint="Telephone Number"
                     android:inputType="phone"
                     android:maxLength="10"
-                    android:padding="16dp"
+                    android:padding="@dimen/text_padding"
                     android:textAlignment="center"
-                    android:textColor="#ADCCE2"
-                    android:textColorHint="#ADCCE2"
+                    android:textColor="#212121"
+                    android:textColorHint="#212121"
                     android:textSize="16dp"
-                    android:textStyle="bold" />
+                     />
 
             </android.support.design.widget.TextInputLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="@dimen/text_left"
                 android:layout_marginRight="@dimen/text_right"
-                android:background="#ADCCE2" />
+                android:background="#212121" />
 
             <TextView
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
                 android:text="Creche Admin"
                 android:textAlignment="center"
-                android:textColor="#448AFF"
+                android:textColor="#000000"
                 android:textSize="25sp"
-                android:textStyle="bold" />
+                />
 
 
             <android.support.design.widget.TextInputLayout
@@ -287,13 +281,12 @@
                     android:background="#0000"
                     android:hint="Name"
                     android:inputType="textPersonName"
-                    android:padding="16dp"
+                    android:padding="@dimen/text_padding"
                     android:textAlignment="center"
-                    android:textColor="#ADCCE2"
-                    android:textColorHint="#ADCCE2"
-
+                    android:textColor="#212121"
+                    android:textColorHint="#212121"
                     android:textSize="16dp"
-                    android:textStyle="bold" />
+                    />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -301,10 +294,9 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="@dimen/text_left"
                 android:layout_marginRight="@dimen/text_right"
-                android:background="#ADCCE2" />
+                android:background="#212121" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_admin_surname"
@@ -320,22 +312,21 @@
                     android:background="#0000"
                     android:hint="Surname"
                     android:inputType="textPersonName"
-                    android:padding="16dp"
+                    android:padding="@dimen/text_padding"
                     android:textAlignment="center"
-                    android:textColor="#ADCCE2"
-                    android:textColorHint="#ADCCE2"
+                    android:textColor="#212121"
+                    android:textColorHint="#212121"
                     android:textSize="16dp"
-                    android:textStyle="bold" />
+                    />
 
             </android.support.design.widget.TextInputLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="@dimen/text_left"
                 android:layout_marginRight="@dimen/text_right"
-                android:background="#ADCCE2" />
+                android:background="#212121" />
 
 
             <android.support.design.widget.TextInputLayout
@@ -353,22 +344,21 @@
                     android:hint="ID Number"
                     android:inputType="phone"
                     android:maxLength="13"
-                    android:padding="16dp"
+                    android:padding="@dimen/text_padding"
                     android:textAlignment="center"
-                    android:textColor="#ADCCE2"
-                    android:textColorHint="#ADCCE2"
+                    android:textColor="#212121"
+                    android:textColorHint="#212121"
                     android:textSize="16dp"
-                    android:textStyle="bold" />
+                 />
 
             </android.support.design.widget.TextInputLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="@dimen/text_left"
                 android:layout_marginRight="@dimen/text_right"
-                android:background="#ADCCE2" />
+                android:background="#212121" />
 
 
             <android.support.design.widget.TextInputLayout
@@ -378,7 +368,7 @@
                 app:passwordToggleContentDescription="ruuu"
                 app:passwordToggleDrawable="@drawable/ic_remove_red_eye_black_24dp"
                 app:passwordToggleEnabled="true"
-                app:passwordToggleTint="#ADCCE2">
+                app:passwordToggleTint="#212121">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/orgPassword"
@@ -387,24 +377,25 @@
                     android:layout_marginLeft="@dimen/text_left"
                     android:layout_marginRight="@dimen/text_right"
                     android:background="#0000"
+                    android:textAlignment="center"
                     android:hint="Set Password"
                     android:inputType="textPassword"
                     android:maxLength="12"
-                    android:padding="16dp"
-                    android:textColor="#ADCCE2"
-                    android:textColorHint="#ADCCE2"
+                    android:padding="@dimen/text_padding"
+                    android:textColor="#212121"
+                    android:textColorHint="#212121"
                     android:textSize="16dp"
-                    android:textStyle="bold" />
+                    />
             </android.support.design.widget.TextInputLayout>
 
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="20dp"
                 android:layout_marginLeft="@dimen/text_left"
                 android:layout_marginRight="@dimen/text_right"
-                android:background="#ADCCE2" />
+                android:background="#212121" />
 
             <RadioGroup
                 android:id="@+id/AdminGender"

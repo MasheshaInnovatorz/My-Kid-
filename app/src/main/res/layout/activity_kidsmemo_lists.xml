@@ -28,6 +28,6 @@
         fab:fab_type="normal"
         fab:layout_anchor="recyclerView"
         fab:layout_anchorGravity="bottom|end"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
+        android:src="@drawable/ic_mode_edit_white_24dp" />
 </android.support.design.widget.CoordinatorLayout>
 

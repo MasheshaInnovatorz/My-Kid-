@@ -38,7 +38,7 @@ public class AdminTabbedActivity extends AppCompatActivity {
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("AdminTabbedActivity");
+        toolbar.setTitle("Admin");
 
         setSupportActionBar(toolbar);
 

@@ -4,30 +4,39 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-      >
+        >
 
         <ImageView
             android:id="@+id/imageView2"
+<<<<<<< HEAD
             android:layout_width="150dp"
             android:layout_height="150dp"
+=======
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_above="@+id/textView"
+>>>>>>> d9a1e52cf1b8769abaeae9db0c81acbe7a0b5cd7
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="48dp"
             android:background="@drawable/mykidicon" />
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imageView2"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="22dp"
+            android:layout_above="@+id/linearLayout4"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="21dp"
             android:text="Welcome To Kids Creatives"
             android:textAlignment="center"
-            android:textColor="#448AFF"
+            android:textColor="#212121"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -51,27 +60,24 @@
                     android:layout_marginTop="30dp"
                     android:background="#0000"
                     android:hint="Username"
-                    android:text="mr@gmail.com"
                     android:inputType="textEmailAddress"
-                    android:padding="16dp"
+                    android:padding="@dimen/text_padding"
                     android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="@dimen/text_left"
                 android:layout_marginRight="@dimen/text_right"
-                android:background="#ADCCE2" />
+                android:background="#212121" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:passwordToggleContentDescription="ruuu"
                 app:passwordToggleDrawable="@drawable/ic_remove_red_eye_black_24dp"
-                app:passwordToggleEnabled="true"
-              >
+                app:passwordToggleEnabled="true">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/password"
@@ -81,10 +87,9 @@
                     android:layout_marginRight="@dimen/text_right"
                     android:background="#0000"
                     android:hint="Password"
-                    android:text="000000"
                     android:inputType="textPassword"
                     android:maxLength="12"
-                    android:padding="16dp"
+                    android:padding="@dimen/text_padding"
                     android:textSize="16dp"
 
                     />
@@ -97,15 +102,15 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="@dimen/text_left"
                 android:layout_marginRight="@dimen/text_right"
-                android:background="#ADCCE2" />
+                android:background="#212121" />
 
             <TextView
                 android:id="@+id/forget_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginLeft="@dimen/text_left"
                 android:layout_marginRight="@dimen/text_right"
+                android:gravity="center"
                 android:text="Forget Password?"
                 android:textColor="#000000" />
 
@@ -126,4 +131,5 @@
                 android:textSize="16dp" />
         </LinearLayout>
     </RelativeLayout>
+
 </FrameLayout>

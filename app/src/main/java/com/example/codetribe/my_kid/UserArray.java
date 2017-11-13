@@ -39,7 +39,7 @@ public class UserArray extends ArrayAdapter<UserProfile> {
         View listViewItem = inflater.inflate(R.layout.admin_and_kids_list, null, true);
         TextView textKdName = (TextView) listViewItem.findViewById(R.id.textKidsName);
         ImageView imageProf = (ImageView) listViewItem.findViewById(R.id.image);
-        // TextView surname = (TextView) listViewItem.findViewById(R.id.textKidsSurname);
+
 
 
         UserProfile kids = userList.get(position);

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -56,7 +55,6 @@ public class KidsMemoListFragment extends Fragment {
     String Surname, name;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,8 +63,7 @@ public class KidsMemoListFragment extends Fragment {
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
-        int number=2;
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),number));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         fab = (FloatingActionButton) rootView.findViewById(R.id.share_add);
         progressDialog = new ProgressDialog(getContext());
@@ -104,37 +101,16 @@ public class KidsMemoListFragment extends Fragment {
 
                                 progressDialog.dismiss();
 
-
                                 if (userSnapshot.child("role").getValue().toString().equals("parent")) {
 
-                                    Infor(kidSnapshot, dataSnapshot, userSnapshot.child("userIdNumber").getValue().toString());
+                                    Infor(kidSnapshot, dataSnapshot,userSnapshot);
+                                }
 
-                                } else if (userSnapshot.child("role").getValue().toString().equals("teacher")) {
+                                if (userSnapshot.child("role").getValue().toString().equals("teacher")) {
                                     btnparticipate.setText("Share_Activity");
 
                                     InforTeacher(kidSnapshot, dataSnapshot, kidsUserId);
-                                } else {
-                                    Toast.makeText(getContext(), "Ahh you dont belong to any categories", Toast.LENGTH_SHORT).show();
                                 }
-
-
-                                fab.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        if (KidsId != null || kidsUserId != null) {
-                                            Intent intent = new Intent(getContext(), UploadKidsMemo.class);
-                                            intent.putExtra("kid_id", KidsId);
-                                            intent.putExtra("kidsTeacherId", kidsUserId);
-                                            intent.putExtra("User_KEY", userKey);
-                                            startActivity(intent);
-
-                                        } else {
-                                            Toast.makeText(getContext(), "You dont have a kids in this creche or maybe made a mistake", Toast.LENGTH_SHORT).show();
-                                            return;
-                                        }
-
-                                    }
-                                });
 
 
                             }
@@ -159,6 +135,24 @@ public class KidsMemoListFragment extends Fragment {
             }
         });
 
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (KidsId != null || kidsUserId != null) {
+                    Intent intent = new Intent(getContext(), UploadKidsMemo.class);
+                    intent.putExtra("kid_id", KidsId);
+                    intent.putExtra("kidsTeacherId", kidsUserId);
+                    intent.putExtra("User_KEY", userKey);
+                    startActivity(intent);
+
+                } else {
+
+                    Toast.makeText(getContext(), "You dont have a kids in this creche or maybe made a mistake", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+            }
+        });
 
         return rootView;
     }
@@ -182,22 +176,25 @@ public class KidsMemoListFragment extends Fragment {
                     DataSnapshot dataUser = (DataSnapshot) iterator.next();
 
 
-                    if (kidsUser.child("id").getValue().equals(dataUser.getKey())) {
-                        if (dataUser.getKey().equals(kidsIdentity)) {
+                    imgList.clear();
+                    for (DataSnapshot snapshot : dataUser.getChildren()) {
 
-                            imgList.clear();
-                            for (DataSnapshot snapshot : dataUser.getChildren()) {
-                                MemokidsUpload_class img = snapshot.getValue(MemokidsUpload_class.class);
-                                imgList.add(img);
-                                KidsId = kidsUser.child("id").getValue().toString();
+                        if (kidsUser.child("id").getValue().equals(snapshot.getKey())) {
+                            if (snapshot.getKey().equals(kidsIdentity)) {
+                                if (kidsUser.child("orgName").getValue().toString().equals(snapshot.child("orgName").getValue().toString())) {
+
+                                    MemokidsUpload_class img = snapshot.getValue(MemokidsUpload_class.class);
+                                    imgList.add(img);
+                                    KidsId = kidsUser.child("id").getValue().toString();
+
+
+                                    //init adapter
+                                    adapter = new KidsmemoListAdapter(getContext(), imgList);
+
+                                    //adding adapter to recyclerview
+                                    recyclerView.setAdapter(adapter);
+                                }
                             }
-
-                            //init adapter
-                            adapter = new KidsmemoListAdapter(getContext(), imgList);
-
-                            //adding adapter to recyclerview
-                            recyclerView.setAdapter(adapter);
-
 
                         }
 
@@ -211,56 +208,48 @@ public class KidsMemoListFragment extends Fragment {
     }
 
 
-    private void Infor(DataSnapshot kidSnapshot, DataSnapshot dataSnapshot, String userId) {
-
-        Iterator iterator = dataSnapshot.getChildren().iterator();
-
-        Iterator kidsIterator = kidSnapshot.getChildren().iterator();
-
-        // DatabaseReference teacher = FirebaseDatabase.getInstance().getReference("Users");
-
-        while (kidsIterator.hasNext()) {
-            final DataSnapshot kidsUser = (DataSnapshot) kidsIterator.next();
+    private void Infor(DataSnapshot kidSnapshot, DataSnapshot dataSnapshot, DataSnapshot userSnapshot) {
 
 
-            if (kidsUser.child("parentid").getValue().toString().equals(userId)) {
+        for (DataSnapshot kids : kidSnapshot.getChildren()) {
 
-                Surname = kidsUser.child("surname").getValue().toString();
-                name = kidsUser.child("name").getValue().toString();
+            if (kids.child("parentid").getValue().toString().equals(userSnapshot.child("userIdNumber").getValue().toString())) {
+                if (userSnapshot.child("orgName").getValue().toString().equals(userSnapshot.child("orgName").getValue().toString())) {
 
-
-                while (iterator.hasNext()) {
-                    DataSnapshot dataUser = (DataSnapshot) iterator.next();
-
-                    if (kidsUser.child("id").getValue().toString().equals(dataUser.getKey())) {
-                        imgList.clear();
-
-                        for (DataSnapshot snapshot : dataUser.getChildren()) {
-
-                            MemokidsUpload_class img = snapshot.getValue(MemokidsUpload_class.class);
-                            imgList.add(img);
-                            KidsId = kidsUser.child("id").getValue().toString();
+                    KidsId = kids.child("id").getValue().toString();
+                    Surname = userSnapshot.child("userSurname").getValue().toString();
+                    name = userSnapshot.child("userName").getValue().toString();
 
 
+                    for (DataSnapshot imageFire : dataSnapshot.getChildren()) {
+
+
+                        if (kids.child("id").getValue().toString().equals(imageFire.getKey())) {
+
+                            imgList.clear();
+                            for(DataSnapshot retrieveimage : imageFire.getChildren()) {
+
+                                MemokidsUpload_class img = retrieveimage.getValue(MemokidsUpload_class.class);
+                                imgList.add(img);
+
+                                //init adapter
+                                adapter = new KidsmemoListAdapter(getContext(), imgList);
+
+                                //adding adapter to recyclerview
+                                recyclerView.setAdapter(adapter);
+
+                            }
                         }
 
 
-                        //init adapter
-                        adapter = new KidsmemoListAdapter(getContext(), imgList);
-
-                        //adding adapter to recyclerview
-                        recyclerView.setAdapter(adapter);
-
-
-                    } else {
 
                     }
+
                 }
-
-
-            } else {
             }
+
         }
+
     }
 
 

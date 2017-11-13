@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -31,7 +32,7 @@ public class TeachersActivity extends AppCompatActivity {
     ListView listViewKids;
     List<Kids> kid;
 
-    String org_name;
+    String org_name,orgname;
     String userId, idLoged;
     FirebaseAuth fireAuth;
     //database
@@ -73,7 +74,7 @@ public class TeachersActivity extends AppCompatActivity {
 
                 org_name = dataSnapshot.child("teacherClassroom").getValue(String.class);
                 teacherRole = dataSnapshot.child("role").getValue(String.class);
-
+                orgname = dataSnapshot.child("orgName").getValue(String.class);
 
                 kidsRetriveRef.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -81,15 +82,26 @@ public class TeachersActivity extends AppCompatActivity {
                         kid.clear();
 
                         for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()) {
-                            if (kidssnapshot.child("kidsGrade").getValue().toString().equals(org_name)) {
-                                Kids kidInf = kidssnapshot.getValue(Kids.class);
-                                kid.add(kidInf);
-                                //    Toast.makeText(TeachersActivity.this,kidInf.getId(), Toast.LENGTH_SHORT).show();
 
-                            } else {
+                            if(kidssnapshot.exists()) {
+                                if (kidssnapshot.child("orgName").getValue().toString().equals(orgname)) {
+                                    if (kidssnapshot.child("kidsGrade").getValue().toString().equals(org_name)) {
+                                        Kids kidInf = kidssnapshot.getValue(Kids.class);
+                                        kid.add(kidInf);
+                                        //    Toast.makeText(TeachersActivity.this,kidInf.getId(), Toast.LENGTH_SHORT).show();
 
+                                    } else {
+                                        Toast.makeText(TeachersActivity.this, "You are not assigned kids yet", Toast.LENGTH_LONG).show();
+                                    }
+                                } else {
+                                    Toast.makeText(TeachersActivity.this, "You are not assigned kids yet", Toast.LENGTH_LONG).show();
+                                }
+                            }else
+                            {
+                                Toast.makeText(TeachersActivity.this, "You dont have data", Toast.LENGTH_SHORT).show();
                             }
                         }
+
                         KidsArray trackListAdapter = new KidsArray(TeachersActivity.this, kid);
                         listViewKids.setAdapter(trackListAdapter);
                     }

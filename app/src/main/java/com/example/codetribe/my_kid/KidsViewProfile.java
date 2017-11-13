@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +19,7 @@ public class KidsViewProfile extends AppCompatActivity {
 
     DatabaseReference kidsDataProf, userDataRef;
     FirebaseUser fireAuthorization;
-    ImageView editProfile;
+    TextView editProfile;
 
     String id_Key;
 
@@ -38,6 +37,7 @@ public class KidsViewProfile extends AppCompatActivity {
 
         userDataRef = FirebaseDatabase.getInstance().getReference("Users").child(fireAuthorization.getUid());
 
+        editProfile = (TextView)findViewById(R.id.editprofile);
         kidsUser = (TextView) findViewById(R.id.kids_profile_name);
         parentName = (TextView) findViewById(R.id.parentName);
         kidsGender = (TextView) findViewById(R.id.kids_gender_view);
@@ -45,7 +45,7 @@ public class KidsViewProfile extends AppCompatActivity {
         parentEmail = (TextView) findViewById(R.id.kids_email_view);
         city = (TextView) findViewById(R.id.kids_city_view);
         homeAddress = (TextView) findViewById(R.id.kids_address_view);
-        editProfile = (ImageView) findViewById(R.id.editKids_profile);
+
 
         Toast.makeText(this, fireAuthorization.getUid(), Toast.LENGTH_SHORT).show();
 
@@ -96,9 +96,9 @@ public class KidsViewProfile extends AppCompatActivity {
                                     id_Key = kidSnapshot.child("id").getValue().toString();
 
                                     kidsUser.setText(kidSnapshot.child("surname").getValue().toString() + " " + kidSnapshot.child("name").getValue().toString());
-                                    kidsGender.setText(kidSnapshot.child("gender").getValue().toString());
-                                    city.setText(kidSnapshot.child("kidsGrade").getValue().toString());
-                                    homeAddress.setText(kidSnapshot.child("address").getValue().toString());
+                                    kidsGender.setText("Gender " + kidSnapshot.child("gender").getValue().toString());
+                                    city.setText("Class " +kidSnapshot.child("kidsGrade").getValue().toString());
+                                    homeAddress.setText("Address " +kidSnapshot.child("address").getValue().toString());
 
                                 }
                             }

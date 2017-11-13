@@ -1,5 +1,6 @@
 /*
 package com.example.codetribe.my_kid;
+<<<<<<< HEAD
 /*
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +27,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import static com.example.codetribe.my_kid.R.id.gender;
 
 public class ProfileUpdateFragment extends Fragment {
+=======
+
+/*public class ProfileUpdateFragment extends Fragment {
+>>>>>>> d9a1e52cf1b8769abaeae9db0c81acbe7a0b5cd7
     TextView signUpButton;
     private TextView editprofile;
 
@@ -262,11 +267,12 @@ public class ProfileUpdateFragment extends Fragment {
                     validatePassword();
                     break;
 
-            }
+//            }
+//
+       // }
+  //  }
 
-        }
-    }
-
+/*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
