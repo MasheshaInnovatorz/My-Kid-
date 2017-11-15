@@ -9,6 +9,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -17,34 +18,28 @@ import android.widget.Toast;
 
 public class WelcomeActivity extends AppCompatActivity {
 
-    TextView sin;
-    LinearLayout sign_up;
+    TextView sin,sign_up;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_welcome_activity);
 
 
-        sign_up = (LinearLayout) findViewById(R.id.signup_welcome);
+     sign_up = (TextView) findViewById(R.id.signupforfree);
         sin = (TextView) findViewById(R.id.sin);
 
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(WelcomeActivity.this);
                 View mView = getLayoutInflater().inflate(R.layout.dialogue_spinner, null);
                 mBuilder.setTitle("Select an option to create Account?");
 
                 final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
-                /*
-                AlertDialog.Builder mBuilder = new AlertDialog.Builder(WelcomeActivity.this);
-                View mView = getLayoutInflater().inflate(R.layout.dialogue_spinner, null);
-                mBuilder.setTitle("Select an option to create Account?");
-                */
-               // final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
 
 
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(WelcomeActivity.this, android.R.layout.simple_spinner_item

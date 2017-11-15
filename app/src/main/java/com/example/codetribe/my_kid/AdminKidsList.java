@@ -87,6 +87,7 @@ public class AdminKidsList extends Fragment {
         usersRetriveRef = FirebaseDatabase.getInstance().getReference("Users");
 
         Idadmin = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         usersRetriveRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot crecheSnapshot) {
@@ -107,9 +108,6 @@ public class AdminKidsList extends Fragment {
 
 
                                         KidssKey = kidInf.getId();
-
-
-
 
                                     }
 
@@ -132,10 +130,6 @@ public class AdminKidsList extends Fragment {
 
             }
         });
-
-
-
-
 
         return rootView;
     }

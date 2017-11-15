@@ -30,8 +30,6 @@ public class KidsMemoListFragment extends Fragment {
     private RecyclerView recyclerView;
 
     //adapter object
-    //  private RecyclerView.Adapter iv;
-    //adapter object
     private RecyclerView.Adapter adapter;
     //database reference
     private DatabaseReference mDatabaseRef, childRef, mUserInfor;
@@ -43,9 +41,6 @@ public class KidsMemoListFragment extends Fragment {
     private List<MemokidsUpload_class> imgList;
 
     private FloatingActionButton fab;
-    //=================
-    //  private List<MemokidsUpload_class> imgList;
-    // private ListView iv;
 
     //  private KidsmemoListAdapter adapter;
     private String KidsId, kidsUserId;

@@ -32,8 +32,7 @@ public class KidsmemoListsActivity extends AppCompatActivity {
     //recyclerview object
     private RecyclerView recyclerView;
 
-    //adapter object
-    //  private RecyclerView.Adapter iv;
+
     //adapter object
     private RecyclerView.Adapter adapter;
     //database reference
@@ -46,9 +45,6 @@ public class KidsmemoListsActivity extends AppCompatActivity {
     private List<MemokidsUpload_class> imgList;
 
 
-    //=================
-    //  private List<MemokidsUpload_class> imgList;
-    // private ListView iv;
 
     //  private KidsmemoListAdapter adapter;
     private String KidsId, kidsUserId;
@@ -264,11 +260,6 @@ public class KidsmemoListsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_mainapp, menu);
-        return true;
-    }
+
 
 }

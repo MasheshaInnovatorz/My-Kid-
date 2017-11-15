@@ -13,9 +13,12 @@ import android.util.Patterns;
 
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +34,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.codetribe.my_kid.R.id.orgCity;
 
 
 public class SignUpOrganisationActivity extends AppCompatActivity {
@@ -47,15 +49,17 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
     orgPassword,
             crechName,
             crechAddress,
-            crechCity,
+           // crechCity,
             crechPhoneNo,
             adminName,
             adminSurname,
             adminIdNo;
     private RadioButton radGender;
 
-
+    private Spinner spinnerCity;
     private ProgressDialog progressDialog;
+
+    String crechCity;
 
     //defining AwesomeValidation object
     private AwesomeValidation awesomeValidation;
@@ -82,12 +86,18 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         mOrganizationRef = FirebaseDatabase.getInstance().getReference().child("Creche");
 
 
+
         orgaEmail = (EditText) findViewById(R.id.orgEmail);
         orgPassword = (EditText) findViewById(R.id.orgPassword);
         crechName = (EditText) findViewById(R.id.orgName);
         crechAddress = (EditText) findViewById(R.id.orgStrName);
-        crechCity = (EditText) findViewById(orgCity);
         crechPhoneNo = (EditText) findViewById(R.id.orgTelNumber);
+        spinnerCity = (Spinner)findViewById(R.id.orgCitySpinner);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item  , getResources().getStringArray(R.array.city_list));
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCity.setAdapter(adapter);
+
 
 
         crechRefNo = (EditText) findViewById(R.id.orgRegNumber);
@@ -106,13 +116,30 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
        // awesomeValidation.addValidation(this,R.id. orgPassword, "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\\\d])(?=.*[~`!@#\\\\$%\\\\^&\\\\*\\\\(\\\\)\\\\-_\\\\+=\\\\{\\\\}\\\\[\\\\]\\\\|\\\\;:\\\"<>,./\\\\?]).{8,}", R.string.passworderror);
         awesomeValidation.addValidation(this, R.id.orgName, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
         awesomeValidation.addValidation(this, R.id.orgStrName, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
-        awesomeValidation.addValidation(this, R.id.orgCity, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.city);
+        //awesomeValidation.addValidation(this, R.id.orgCity, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.city);
         awesomeValidation.addValidation(this, R.id.orgTelNumber, "^[+]?[0-9]{10,13}$", R.string.mobileerror);
         awesomeValidation.addValidation(this, R.id.orgAdminName, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
         awesomeValidation.addValidation(this, R.id.orgAdminSurname, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.surnameerror);
         awesomeValidation.addValidation(this, R.id.orgAdminIDNumber, "^^[0-9]{13}$", R.string.iderror);
        // awesomeValidation.addValidation(this, R.id.orgPostalCode, "^[+]?[0-3]{10,13}$", R.string.postalCode);
         awesomeValidation.addValidation(this, R.id.orgRegNumber, "^[+]?[0-9]{10,13}$", R.string.regNo);
+
+
+        spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,   int position, long id) {
+
+                // TODO Auto-generated method stub
+                crechCity = getResources().getStringArray(R.array.city_list)[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+                Toast.makeText(SignUpOrganisationActivity.this, "Please Select City", Toast.LENGTH_SHORT).show();
+            }
+
+        });
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,26 +148,17 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                 final String email = orgaEmail.getText().toString().trim();
                 final String password = orgPassword.getText().toString().trim();
 
-                /*
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                */
 
                 sharedPrefEditor = sharedPreferences.edit();
                 sharedPrefEditor.putString("email", email);
                 sharedPrefEditor.apply();
 
-                final String crechNameOrg, crechAddressOrg, crechCityOrg, crechPhoneNoOrg, adminNameOrg, adminSurnameOrg, adminIdNoOrg,crechRefNumberOrg,crechPostalCodeOrg, adminGender;
+                final String crechNameOrg, crechAddressOrg, cityInfor, crechPhoneNoOrg, adminNameOrg, adminSurnameOrg, adminIdNoOrg,crechRefNumberOrg,crechPostalCodeOrg, adminGender;
                 crechNameOrg = crechName.getText().toString().trim();
                 crechAddressOrg = crechAddress.getText().toString().trim();
-                crechCityOrg = crechCity.getText().toString().trim();
+
+                //spinner
+                cityInfor = crechCity.trim();
                 crechPhoneNoOrg = crechPhoneNo.getText().toString().trim();
                 adminNameOrg = adminName.getText().toString().trim();
                 adminSurnameOrg = adminSurname.getText().toString().trim();
@@ -176,9 +194,9 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                                 String userI = task.getResult().getUser().getUid();
 
 
-                                OrganizationRegister orgReg = new OrganizationRegister(key, crechNameOrg, crechAddressOrg, crechCityOrg, email, crechPhoneNoOrg, password,crechRefNumberOrg,crechPostalCodeOrg, key);
+                                OrganizationRegister orgReg = new OrganizationRegister(key, crechNameOrg, crechAddressOrg, cityInfor, email, crechPhoneNoOrg, password,crechRefNumberOrg,crechPostalCodeOrg, key);
 
-                                CrecheOnwer_Class adminReg = new CrecheOnwer_Class(userI, adminNameOrg, adminSurnameOrg, adminIdNoOrg, adminGender, adminRole, email, crechNameOrg, crechPhoneNoOrg, crechCityOrg);
+                                CrecheOnwer_Class adminReg = new CrecheOnwer_Class(userI, adminNameOrg, adminSurnameOrg, adminIdNoOrg, adminGender, adminRole, email, crechNameOrg, crechPhoneNoOrg, cityInfor);
 
                                 Map<String, Object> postingOrg = orgReg.toMap();
                                 Map<String, Object> organizationUpdate = new HashMap<>();

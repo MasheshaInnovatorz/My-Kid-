@@ -120,13 +120,13 @@ public class SignUp extends AppCompatActivity {
 
         dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list);
 
-        list = new ArrayList<String>();
+       // list = new ArrayList<String>();
 
 
         input_email1 = (TextInputLayout) findViewById(R.id.input_email);
 
 
-        dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
+        //dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
 
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -263,31 +263,21 @@ public class SignUp extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-
-
         crecheDataRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-
                 for (DataSnapshot checheSnapshot : dataSnapshot.getChildren()) {
 
                     if (!checheSnapshot.child("orgName").getValue().toString().equals(" ")) {
                         list.add(checheSnapshot.child("orgName").getValue().toString());
 
-
-
                         dataAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
                         //simple_spinner_dropdown_item
                         orgNameList.setAdapter(dataAdapter);
-
-
                     } else {
                         Toast.makeText(SignUp.this, "There is no Creche Registered", Toast.LENGTH_SHORT).show();
                     }
                 }
-
-
             }
 
             @Override

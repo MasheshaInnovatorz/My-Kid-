@@ -54,6 +54,7 @@ public class UploadKidsMemo extends AppCompatActivity {
 
     String idKid, userId, kidTeacherId, identity;
 
+    private static final int CAMERA_REQUEST=123;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,9 +81,6 @@ public class UploadKidsMemo extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                   //Infor(dataSnapshot,identity);
-
-                //Toast.makeText(Uploud_kids_memo.this, userId, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -153,6 +151,7 @@ public class UploadKidsMemo extends AppCompatActivity {
         });
 
     }
+
 	/*
 //camera upload
 	public void btnClick(View view){
@@ -229,10 +228,7 @@ public class UploadKidsMemo extends AppCompatActivity {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-
-
                             dialog.dismiss();
-
                             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
 
                         }
@@ -251,9 +247,7 @@ public class UploadKidsMemo extends AppCompatActivity {
         }
     }
 
-    public void btnShowListImage_Click(View v) {
 
-    }
 
     private void passingValue(String IdNumber) {
 

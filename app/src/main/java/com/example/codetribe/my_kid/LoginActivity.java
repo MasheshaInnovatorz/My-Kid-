@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,7 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView login_Button;
+    Button login_Button;
     ImageView backtowelcome, icon;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor sharedPrefEditor;
@@ -67,13 +68,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String shared_email = sharedPreferences.getString("email", "");
 
-
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
-        // signup= (TextView)findViewById(R.id.sinup);
+
         editEmail = (EditText) findViewById(R.id.email);
         editPassword = (EditText) findViewById(R.id.password);
         forgot = (TextView) findViewById(R.id.forget_password);
-        login_Button = (TextView) findViewById(R.id.login);
+        login_Button = (Button) findViewById(R.id.login);
 
         input_email = (TextInputLayout) findViewById(R.id.input_reg_fullname);
 

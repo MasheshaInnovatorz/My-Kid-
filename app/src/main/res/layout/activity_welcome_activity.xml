@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
         <TextView
-            android:id="@+id/Create_Teacher_Account1"
+            android:id="@+id/signupforfree"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/Create_Teacher_Account"
-            android:layout_alignStart="@+id/Create_Teacher_Account"
+            android:layout_alignBottom="@+id/sin"
+            android:layout_alignEnd="@+id/sin"
+            android:layout_alignStart="@+id/sin"
+            android:layout_marginBottom="73dp"
             android:background="@drawable/angle"
             android:gravity="center"
             android:padding="16dp"
-            android:text="Create Teacher Account"
+            android:text="Sign Up"
             android:textColor="#fff"
             android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/Create_Teacher_Account"
+            android:id="@+id/sin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -32,47 +30,38 @@
             android:background="@drawable/angle"
             android:gravity="center"
             android:padding="16dp"
-            android:text="Create Teacher Account"
+            android:text="Log In"
             android:textColor="#fff"
             android:textSize="16dp" />
 
-        <TextView
-            android:id="@+id/sin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="45dp"
-            android:gravity="center"
-            android:text="Sign In"
-            android:textColor="#448AFF"
-            android:textSize="25dp" />
 
         <TextView
             android:id="@+id/imac"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/signup_welcome"
-            android:layout_marginTop="27dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="60dp"
             android:gravity="center"
             android:text="Kids Creatives"
             android:textColor="#448AFF"
             android:textSize="22sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/account"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/imac"
-            android:layout_marginTop="44dp"
-            android:gravity="center"
-            android:paddingBottom="16dp"
-            android:text="Already have an account?"
-            android:textColor="#448AFF"
-            android:textSize="16dp" />
+            android:layout_marginTop="20dp"
+            android:src="@drawable/mykidicon" />
 
+    </RelativeLayout>
+
+
+
+
+        <!--
         <LinearLayout
             android:id="@+id/signup_welcome"
             android:layout_width="match_parent"
@@ -100,7 +89,7 @@
             </FrameLayout>
 
             <TextView
-                android:id="@+id/signupforfree"
+                android:id="@+id/signupforfree1"
                 android:layout_width="167dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -109,5 +98,5 @@
                 android:textColor="#fff"
                 android:textSize="22dp" />
         </LinearLayout>
-    </RelativeLayout>
-</FrameLayout>
+
+        -->

@@ -57,7 +57,7 @@ public class AdminTeacherList extends Fragment {
         user = new ArrayList<>();
 
 
-        userTeacher = (FloatingActionButton) rootView.findViewById(R.id.add_teacher_admin);
+     //   userTeacher = (FloatingActionButton) rootView.findViewById(R.id.add_teacher_admin);
 
 
         listUsers = (ListView) rootView.findViewById(R.id.listViewkids);

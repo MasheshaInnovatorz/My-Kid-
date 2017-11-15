@@ -44,13 +44,12 @@
         <activity android:name=".SignUpOrganisationActivity" />
         <activity android:name=".CreateTeacherAccount" />
         <activity android:name=".AboutUs" />
-
         <activity
             android:name=".ParentTabbedActivity"
             android:label="@string/title_activity_parent_tabbed"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".KidsMemoListFragment" />
-        <activity android:name=".ProfileUpdateFragment" />
+
         <activity
             android:name=".TeacherTabbedActivity"
             android:label="@string/title_activity_teacher_tabbed"
@@ -60,9 +59,8 @@
             android:label="@string/title_activity_admin_tabbed"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".UpdateProfile" />
-        <activity android:name=".KidsViewProfile"></activity>
-        <activity android:name=".EditKidsProfile"></activity>
-
+        <activity android:name=".KidsViewProfile" />
+        <activity android:name=".EditKidsProfile" />
     </application>
 
 </manifest>

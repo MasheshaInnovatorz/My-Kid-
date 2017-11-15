@@ -53,8 +53,44 @@
         <item>None</item>
         <item>Organization</item>
         <item>Parent</item>
-
     </string-array>
+
+    <string-array name="city_list">
+        <item>Select City</item>
+        <item> Giyani</item>
+        <item>Lebowakgomo</item>
+        <item>Musina</item>
+        <item>Phalaborwa</item>
+        <item>Polokwane</item>
+        <item>Seshego</item>
+        <item>Sibasa</item>
+        <item>Thabazimbi</item>
+        <item>Thohoyandou</item>
+        <item>Benoni</item>
+        <item>Johannesburg</item>
+        <item>Parent</item>
+        <item>Soweto</item>
+        <item>Boksburg</item>
+        <item>Pretoria</item>
+        <item>Germiston</item>
+        <item>Randburg</item>
+        <item>Cape Town</item>
+        <item>Stellenbosch</item>
+        <item>Krugersdorp</item>
+        <item>George</item>
+    </string-array>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <string name="title_activity_mainapp">Mainapp</string>
