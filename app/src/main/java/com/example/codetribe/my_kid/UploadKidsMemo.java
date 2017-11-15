@@ -32,6 +32,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Iterator;
 
 //import static com.example.codetribe.my_kid.R.id.parentId;
@@ -53,8 +54,12 @@ public class UploadKidsMemo extends AppCompatActivity {
     public static final int REQUEST_CODE = 1234;
 
     String idKid, userId, kidTeacherId, identity;
+<<<<<<< HEAD
 
     private static final int CAMERA_REQUEST=123;
+=======
+    long time;
+>>>>>>> 52d60e75a42546d5d8f146fe247ecabd35d79e32
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +86,12 @@ public class UploadKidsMemo extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
+<<<<<<< HEAD
+=======
+                //Infor(dataSnapshot,identity);
+
+                //Toast.makeText(Uploud_kids_memo.this, userId, Toast.LENGTH_SHORT).show();
+>>>>>>> 52d60e75a42546d5d8f146fe247ecabd35d79e32
             }
 
             @Override
@@ -151,8 +162,12 @@ public class UploadKidsMemo extends AppCompatActivity {
         });
 
     }
+<<<<<<< HEAD
 
 	/*
+=======
+    /*
+>>>>>>> 52d60e75a42546d5d8f146fe247ecabd35d79e32
 //camera upload
 	public void btnClick(View view){
 		Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -207,7 +222,7 @@ public class UploadKidsMemo extends AppCompatActivity {
                             surname = dataSnapshot.child("userSurname").getValue().toString();
                             results = name + " " + surname;
 
-                            MemokidsUpload_class imageUpload = new MemokidsUpload_class(txtImageName.getText().toString(), taskSnapshot.getDownloadUrl().toString(), results);
+                            MemokidsUpload_class imageUpload = new MemokidsUpload_class(txtImageName.getText().toString(), taskSnapshot.getDownloadUrl().toString(), results,  new Date().getTime());
 
 
                             //save image infor in to firebase database

@@ -6,6 +6,7 @@ package com.example.codetribe.my_kid;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +44,10 @@ public class KidsmemoListAdapter extends RecyclerView.Adapter<KidsmemoListAdapte
     public void onBindViewHolder(ViewHolder holder, int position) {
         MemokidsUpload_class upload = uploads.get(position);
 
-        holder.textviewSenderid.setText("Uploaded by:" + " " + upload.getPersonUploaded());
+        holder.textviewSenderid.setText("Uploaded by: " + upload.getName());
+        holder.textViewTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm)",
+                upload.getTimeUploaded()));
+
         holder.textViewName.setText(upload.getName());
         Glide.with(context).load(upload.getUri())
                                     .thumbnail(0.5f).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -57,7 +61,7 @@ public class KidsmemoListAdapter extends RecyclerView.Adapter<KidsmemoListAdapte
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView textviewSenderid, textViewName;
+        public TextView textviewSenderid, textViewName,textViewTime;
         public ImageView imageView;
 
         public ViewHolder(View itemView) {
@@ -65,6 +69,8 @@ public class KidsmemoListAdapter extends RecyclerView.Adapter<KidsmemoListAdapte
 
            textViewName = (TextView) itemView.findViewById(R.id.tvImageName);
            textviewSenderid = (TextView) itemView.findViewById(R.id.senderid);
+           textViewTime = (TextView) itemView.findViewById(R.id.timeupload);
+
 
             imageView = (ImageView) itemView.findViewById(R.id.imgView);
 
