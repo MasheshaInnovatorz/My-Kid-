@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Splash"
+            android:name=".account_Activities.Splash"
             android:theme="@style/AppTheme.LoginStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,43 +24,43 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".account_Activities.LoginActivity"
             android:theme="@style/AppTheme.LoginStyle" />
         <activity
-            android:name=".SignUp"
+            android:name=".account_Activities.SignUp"
             android:theme="@style/AppTheme.LoginStyle" />
         <activity
-            android:name=".ResetPassword"
+            android:name=".account_Activities.ResetPassword"
             android:theme="@style/AppTheme.LoginStyle" />
-        <activity android:name=".CreateParentProfile" />
-        <activity android:name=".KidsmemoListsActivity" />
-        <activity android:name=".UploadKidsMemo" />
-        <activity android:name=".TeachersActivity" />
-        <activity android:name=".WelcomeActivity" />
-        <activity android:name=".KidActivity" />
+        <activity android:name=".parent_Activities.CreateParentProfile" />
+        <activity android:name=".kids_Activities.KidsmemoListsActivity" />
+        <activity android:name=".kids_Activities.UploadKidsMemo" />
+        <activity android:name=".teachers_Activities.TeachersActivity" />
+        <activity android:name=".account_Activities.WelcomeActivity" />
+        <activity android:name=".kids_Activities.KidActivity" />
         <activity
-            android:name=".ViewProfile"
+            android:name=".account_Activities.ViewProfile"
             android:theme="@style/AppTheme.LoginStyle" />
-        <activity android:name=".SignUpOrganisationActivity" />
-        <activity android:name=".CreateTeacherAccount" />
-        <activity android:name=".AboutUs" />
+        <activity android:name=".organization_Activities.SignUpOrganisationActivity" />
+        <activity android:name=".teachers_Activities.CreateTeacherAccount" />
+        <activity android:name=".aboutUs_Activity.AboutUs" />
         <activity
-            android:name=".ParentTabbedActivity"
+            android:name=".parent_Activities.ParentTabbedActivity"
             android:label="@string/title_activity_parent_tabbed"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".KidsMemoListFragment" />
+        <activity android:name=".kids_Activities.KidsMemoListFragment" />
 
         <activity
-            android:name=".TeacherTabbedActivity"
+            android:name=".teachers_Activities.TeacherTabbedActivity"
             android:label="@string/title_activity_teacher_tabbed"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AdminTabbedActivity"
+            android:name=".admin_Activities.AdminTabbedActivity"
             android:label="@string/title_activity_admin_tabbed"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".UpdateProfile" />
-        <activity android:name=".KidsViewProfile" />
-        <activity android:name=".EditKidsProfile" />
+        <activity android:name=".account_Activities.UpdateProfile" />
+        <activity android:name=".kids_Activities.KidsViewProfile" />
+        <activity android:name=".groupChat_Activities.EditKidsProfile" />
     </application>
 
 </manifest>

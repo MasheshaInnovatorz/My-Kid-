@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     xmlns:fab="http://schemas.android.com/tools"
-    tools:context="com.example.codetribe.my_kid.KidsmemoListsActivity">
+    tools:context="com.example.codetribe.my_kid.kids_Activities.KidsmemoListsActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"

@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.codetribe.my_kid.KidsMemoListFragment">
+    tools:context="com.example.codetribe.my_kid.kids_Activities.KidsMemoListFragment">
 
 </android.support.constraint.ConstraintLayout>

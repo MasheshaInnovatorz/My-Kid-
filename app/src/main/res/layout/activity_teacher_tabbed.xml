@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.codetribe.my_kid.TeacherTabbedActivity">
+    tools:context="com.example.codetribe.my_kid.teachers_Activities.TeacherTabbedActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
