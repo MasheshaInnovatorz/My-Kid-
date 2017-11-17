@@ -155,13 +155,14 @@ public class UploadKidsMemo extends AppCompatActivity {
         });
 
     }
-
-
-	/*
+<<<<<<< HEAD
 =======
-    /*
->>>>>>> 52d60e75a42546d5d8f146fe247ecabd35d79e32
+
+>>>>>>> f9ca56ef38f7b0fb6eaf5f63edade0a3a37639d3
+
 //camera upload
+
+    /*
 	public void btnClick(View view){
 		Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		onActivityResult(intent,CAMERA_REQUEST);

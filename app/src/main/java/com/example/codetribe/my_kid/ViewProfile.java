@@ -110,6 +110,7 @@ public class ViewProfile extends AppCompatActivity {
             if (user.getPhotoUrl() != null) {
                 String profile_pic = user.getPhotoUrl().toString();
                 showProfilePic(profile_pic);
+
             }
         } else {
             user_id = "unknown_uid";
