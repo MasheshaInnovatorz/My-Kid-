@@ -95,7 +95,7 @@ public class KidsViewProfile extends AppCompatActivity {
             }
         });
 
-<<<<<<< HEAD
+
 
         kidsImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,8 +173,7 @@ public class KidsViewProfile extends AppCompatActivity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent,"Select Picture"),PICK_IMAGE_REQUEST);
-=======
->>>>>>> f9ca56ef38f7b0fb6eaf5f63edade0a3a37639d3
+
     }
 
     @Override
@@ -204,12 +203,10 @@ public class KidsViewProfile extends AppCompatActivity {
                                     //kids names
                                     kidsUser.setText(kidSnapshot.child("surname").getValue().toString() + " " + kidSnapshot.child("name").getValue().toString());
 
-<<<<<<< HEAD
 
 
                                     id_Key = kidSnapshot.child("id").getValue().toString();
-=======
->>>>>>> f9ca56ef38f7b0fb6eaf5f63edade0a3a37639d3
+
 
                                     kidsGender.setText("Gender :" + kidSnapshot.child("gender").getValue().toString());
                                     phonenumber.setText("Parent Contact :"+ userSnapshot.child("userContact").getValue().toString());
