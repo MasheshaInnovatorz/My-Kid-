@@ -96,7 +96,10 @@ public class KidsViewProfile extends AppCompatActivity {
             }
         });
 
+<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/KidsViewProfile.java
+=======
 
+>>>>>>> d8217efee17a141fb6d74e031be3f03ae15add54:app/src/main/java/com/example/codetribe/my_kid/kids_Activities/KidsViewProfile.java
 
         kidsImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +127,7 @@ public class KidsViewProfile extends AppCompatActivity {
                 kidsImage.setImageBitmap(bitmap);
 
                 final ProgressDialog pressDialog = new ProgressDialog(this);
-                pressDialog.setTitle("Uploading...");
+                pressDialog.setTitle("Uploading Kid Profile...");
                 pressDialog.show();
 
                 StorageReference ref = mStorage.child("images/"+ id_Key);
@@ -138,8 +141,7 @@ public class KidsViewProfile extends AppCompatActivity {
 
                                 kidsppic.child(id_Key).child("profilePic").setValue(taskSnapshot.getDownloadUrl().toString());
 
-                                Toast.makeText(KidsViewProfile.this, "Uploaded", Toast.LENGTH_SHORT).show();
-
+                                Toast.makeText(KidsViewProfile.this, "Kid Profile Picture Uploaded", Toast.LENGTH_SHORT).show();
 
                             }
                         })

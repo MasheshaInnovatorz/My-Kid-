@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import com.example.codetribe.my_kid.R;
 
 public class AboutUs extends AppCompatActivity {
-
+//About
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
