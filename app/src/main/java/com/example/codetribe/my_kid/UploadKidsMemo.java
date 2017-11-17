@@ -155,10 +155,7 @@ public class UploadKidsMemo extends AppCompatActivity {
         });
 
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> f9ca56ef38f7b0fb6eaf5f63edade0a3a37639d3
 
 //camera upload
 
