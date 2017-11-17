@@ -54,12 +54,12 @@ public class UploadKidsMemo extends AppCompatActivity {
     public static final int REQUEST_CODE = 1234;
 
     String idKid, userId, kidTeacherId, identity;
-<<<<<<< HEAD
+
 
     private static final int CAMERA_REQUEST=123;
-=======
+
     long time;
->>>>>>> 52d60e75a42546d5d8f146fe247ecabd35d79e32
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,12 +86,6 @@ public class UploadKidsMemo extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-<<<<<<< HEAD
-=======
-                //Infor(dataSnapshot,identity);
-
-                //Toast.makeText(Uploud_kids_memo.this, userId, Toast.LENGTH_SHORT).show();
->>>>>>> 52d60e75a42546d5d8f146fe247ecabd35d79e32
             }
 
             @Override
@@ -162,13 +156,10 @@ public class UploadKidsMemo extends AppCompatActivity {
         });
 
     }
-<<<<<<< HEAD
 
-	/*
-=======
-    /*
->>>>>>> 52d60e75a42546d5d8f146fe247ecabd35d79e32
 //camera upload
+
+    /*
 	public void btnClick(View view){
 		Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		onActivityResult(intent,CAMERA_REQUEST);
