@@ -58,7 +58,7 @@
                 android:contentDescription="TODO"
                 android:gravity="center_vertical"
                 android:scaleType="centerCrop"
-                android:src="@drawable/photo_camera_" />
+                android:src="@drawable/ic_insert_photo_black_24dp" />
 
 
             <TextView

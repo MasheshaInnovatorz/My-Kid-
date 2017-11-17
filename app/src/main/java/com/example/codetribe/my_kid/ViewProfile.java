@@ -47,9 +47,7 @@ public class ViewProfile extends AppCompatActivity {
 
     String iduser;
     String image_url;
-
     ImageView photo;
-
     int RESULT_LOAD_IMG = 1;
 
     //database

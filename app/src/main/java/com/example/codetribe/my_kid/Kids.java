@@ -46,6 +46,11 @@ public class Kids {
         this.kidsGrade = kidsGrade;
         this.orgName = orgName;
         this.kidsRegistered = kidsRegistered;
+        this.allergies="";
+        this. dietRequirements="";
+        this .doctorsRecomendations="";
+        this. kidHeight="";
+        this. bodyWeight="";
 
     }
 
@@ -60,6 +65,11 @@ public class Kids {
         this.teachersId = teachersId;
         this.parentid = parentid;
         this.gender = gender;
+        this.allergies="";
+        this. dietRequirements="";
+        this .doctorsRecomendations="";
+        this. kidHeight="";
+        this. bodyWeight="";
     }
 
     public String getOrgName() {
@@ -112,7 +122,6 @@ public class Kids {
 
 
     // new constractor for medical information
-
     public Kids(String allergies,String dietRequirements,String doctorsRecomendations,String kidHeight,String bodyWeight)
 
     {

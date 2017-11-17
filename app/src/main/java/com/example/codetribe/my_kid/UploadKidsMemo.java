@@ -54,12 +54,12 @@ public class UploadKidsMemo extends AppCompatActivity {
     public static final int REQUEST_CODE = 1234;
 
     String idKid, userId, kidTeacherId, identity;
-<<<<<<< HEAD
+
 
     private static final int CAMERA_REQUEST=123;
-=======
+
     long time;
->>>>>>> 52d60e75a42546d5d8f146fe247ecabd35d79e32
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,12 +86,6 @@ public class UploadKidsMemo extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-<<<<<<< HEAD
-=======
-                //Infor(dataSnapshot,identity);
-
-                //Toast.makeText(Uploud_kids_memo.this, userId, Toast.LENGTH_SHORT).show();
->>>>>>> 52d60e75a42546d5d8f146fe247ecabd35d79e32
             }
 
             @Override
@@ -104,7 +98,6 @@ public class UploadKidsMemo extends AppCompatActivity {
 
 
         mRef = FirebaseDatabase.getInstance().getReference("Users").child(identity).child("userIdNumber");
-        // intent.putExtra("parentIdentity",parentId);
 
 
         uploadedName = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
@@ -162,7 +155,7 @@ public class UploadKidsMemo extends AppCompatActivity {
         });
 
     }
-<<<<<<< HEAD
+
 
 	/*
 =======
@@ -201,7 +194,7 @@ public class UploadKidsMemo extends AppCompatActivity {
     public void upload() {
         if (imgUri != null) {
             final ProgressDialog dialog = new ProgressDialog(this);
-            dialog.setTitle("Uploading image");
+            dialog.setTitle("Uploading Kids Memories");
             dialog.show();
             //get the storage reference
             StorageReference ref = mStorageRef.child(FB_STORAGE_PATH + System.currentTimeMillis() + "." + getImageExt(imgUri));
@@ -212,8 +205,11 @@ public class UploadKidsMemo extends AppCompatActivity {
 
                     dialog.dismiss();
 
-                    Toast.makeText(getApplicationContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Memory Uploaded", Toast.LENGTH_SHORT).show();
+                  // startActivity(new Intent(this,UploadKidsMemo.this,KidsmemoListsActivity.class));
 
+                   // Intent i = new Intent(UploadKidsMemo.this, KidsMemoListFragment.class);
+                   // startActivity(i);
 
                     uploadedName.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -252,7 +248,7 @@ public class UploadKidsMemo extends AppCompatActivity {
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                            dialog.setMessage("Uploaded " + (int) progress);
+                            dialog.setMessage("Uploaded " + (int) progress + "%");
 
                         }
                     });
@@ -281,7 +277,6 @@ public class UploadKidsMemo extends AppCompatActivity {
                 surname = dataUser.child("userSurname").getValue().toString();
                 results = name + " " + surname;
             }
-
         }
 
     }

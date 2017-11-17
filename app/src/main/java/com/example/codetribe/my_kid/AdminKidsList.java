@@ -58,8 +58,7 @@ public class AdminKidsList extends Fragment {
         //  fab = (FloatingActionButton) rootView.findViewById(R.id.addTeacher);
 
         coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.cordinatelayout);
-
-        kidsFab = (FloatingActionButton) rootView.findViewById(R.id.add_kids_admin);
+       kidsFab = (FloatingActionButton) rootView.findViewById(R.id.add_kids_admin);
 
         Intent keyId = getActivity().getIntent();
         idLoged = keyId.getStringExtra("User_KEY");
@@ -69,8 +68,9 @@ public class AdminKidsList extends Fragment {
 
 
         parentId = keyId.getStringExtra("parent_id");
-
         kidses = new ArrayList<>();
+
+
         kidsFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,8 +105,6 @@ public class AdminKidsList extends Fragment {
 
                                         Kids kidInf = kidssnapshot.getValue(Kids.class);
                                         kidses.add(kidInf);
-
-
                                         KidssKey = kidInf.getId();
 
                                     }

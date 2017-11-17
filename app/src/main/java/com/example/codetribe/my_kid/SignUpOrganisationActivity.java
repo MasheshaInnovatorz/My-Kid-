@@ -130,12 +130,16 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> arg0, View arg1,   int position, long id) {
 
                 // TODO Auto-generated method stub
-                crechCity = getResources().getStringArray(R.array.city_list)[position];
+              //  if (getResources().getStringArray(R.array.city_list)[position] != "Select City") {
+                    crechCity = getResources().getStringArray(R.array.city_list)[position];
+
+
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
                 // TODO Auto-generated method stub
+
                 Toast.makeText(SignUpOrganisationActivity.this, "Please Select City", Toast.LENGTH_SHORT).show();
             }
 
@@ -182,7 +186,6 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                     orgAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-
 
                             if (task.isSuccessful()) {
                                 // String user_id = task.getResult().getUser().getUid();

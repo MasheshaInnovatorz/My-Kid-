@@ -23,7 +23,7 @@
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_reg_fullname"
                 android:layout_width="match_parent"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:layout_height="wrap_content">
 
                 <EditText
@@ -32,7 +32,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/text_left"
                     android:layout_marginRight="@dimen/text_right"
-                    android:background="#0000"
                     android:hint="Firstname"
                     android:inputType="textCapWords"
                     android:padding="@dimen/text_padding"
@@ -42,12 +41,6 @@
                     android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/text_left"
-                android:layout_marginRight="@dimen/text_right"
-                android:background="#212121" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_reg_Surname"
@@ -60,7 +53,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/text_left"
                     android:layout_marginRight="@dimen/text_right"
-                    android:background="#0000"
                     android:hint="Surname"
                     android:inputType="textCapWords"
                     android:padding="@dimen/text_padding"
@@ -70,12 +62,7 @@
                     android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/text_left"
-                android:layout_marginRight="@dimen/text_right"
-                android:background="#212121" />
+
 
 
             <android.support.design.widget.TextInputLayout
@@ -89,7 +76,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/text_left"
                     android:layout_marginRight="@dimen/text_right"
-                    android:background="#0000"
                     android:hint="Resident Address"
                     android:inputType="textCapWords"
                     android:padding="@dimen/text_padding"
@@ -100,12 +86,7 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/text_left"
-                android:layout_marginRight="@dimen/text_right"
-                android:background="#212121" />
+
 
 
             <android.support.design.widget.TextInputLayout
@@ -119,7 +100,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/text_left"
                     android:layout_marginRight="@dimen/text_right"
-                    android:background="#0000"
                     android:hint="City"
                     android:inputType="textCapWords"
                     android:padding="@dimen/text_padding"
@@ -130,12 +110,6 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/text_left"
-                android:layout_marginRight="@dimen/text_right"
-                android:background="#212121" />
 
 
             <android.support.design.widget.TextInputLayout
@@ -149,7 +123,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/text_left"
                     android:layout_marginRight="@dimen/text_right"
-                    android:background="#0000"
                     android:hint="Id Number"
                     android:inputType="number"
                     android:maxLength="13"
@@ -161,12 +134,6 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/text_left"
-                android:layout_marginRight="@dimen/text_right"
-                android:background="#212121" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_reg_phoneNo"
@@ -179,7 +146,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/text_left"
                     android:layout_marginRight="@dimen/text_right"
-                    android:background="#0000"
                     android:hint="Phone Number"
                     android:inputType="number"
                     android:maxLength="10"
@@ -191,12 +157,6 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/text_left"
-                android:layout_marginRight="@dimen/text_right"
-                android:background="#212121" />
 
 
             <RadioGroup
@@ -225,7 +185,7 @@
                     android:text="Female" />
 
             </RadioGroup>
-
+<!--
 
             <TextView
                 android:id="@+id/btnRegister"
@@ -242,6 +202,8 @@
                 android:text="Create Profile"
                 android:textColor="#fff"
                 android:textSize="16dp" />
+
+                -->
         </LinearLayout>
 
     </ScrollView>

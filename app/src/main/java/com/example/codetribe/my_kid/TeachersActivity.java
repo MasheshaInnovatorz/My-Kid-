@@ -149,34 +149,31 @@ public class TeachersActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-
-            case R.id.aboutus:
-                Intent intentUs = new Intent(TeachersActivity.this, AboutUs.class);
-                startActivity(intentUs);
-                return true;
-
-            case R.id.logout:
-                logout();
-                return true;
-
-            case R.id.Group_Chat:
-                //  Intent intentchat = new Intent(TeachersActivity.this,GroupChat.class);
-                // intent.putExtra("User_KEY",userId);
-                // intentchat.putExtra("user_id",idLoged);
-                // startActivity(intentchat);
-                return true;
-
-
-            case R.id.view_profile:
-                Intent intent = new Intent(TeachersActivity.this, ViewProfile.class);
-                // intent.putExtra("User_KEY",userId);
-                intent.putExtra("user_id", idLoged);
-                startActivity(intent);
-                return true;
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            this.finish();
         }
-        return super.onOptionsItemSelected(item);
-    }
+            switch (item.getItemId()) {
+
+                case R.id.aboutus:
+                    Intent intentUs = new Intent(TeachersActivity.this, AboutUs.class);
+                    startActivity(intentUs);
+                    return true;
+
+                case R.id.logout:
+                    logout();
+                    return true;
+
+
+                case R.id.view_profile:
+                    Intent intent = new Intent(TeachersActivity.this, ViewProfile.class);
+                    // intent.putExtra("User_KEY",userId);
+                    intent.putExtra("user_id", idLoged);
+                    startActivity(intent);
+                    return true;
+            }
+            return super.onOptionsItemSelected(item);
+        }
 
     private void logout() {
         FirebaseAuth.getInstance().signOut();

@@ -62,8 +62,6 @@ public class KidsViewProfile extends AppCompatActivity {
             }
         });
 
-
-
     }
 
     @Override
@@ -88,17 +86,18 @@ public class KidsViewProfile extends AppCompatActivity {
 
                                 if (userSnapshot.child("orgName").getValue().toString().equals(kidSnapshot.child("orgName").getValue().toString())) {
 
-
+                                  //parent name
                                     parentName.setText(userSnapshot.child("userName").getValue().toString() + " " + userSnapshot.child("userName").getValue().toString());
-                                    phonenumber.setText(userSnapshot.child("userContact").getValue().toString());
-                                    parentEmail.setText(userSnapshot.child("emailUser").getValue().toString());
-
-                                    id_Key = kidSnapshot.child("id").getValue().toString();
-
+                                    //kids names
                                     kidsUser.setText(kidSnapshot.child("surname").getValue().toString() + " " + kidSnapshot.child("name").getValue().toString());
-                                    kidsGender.setText("Gender " + kidSnapshot.child("gender").getValue().toString());
-                                    city.setText("Class " +kidSnapshot.child("kidsGrade").getValue().toString());
-                                    homeAddress.setText("Address " +kidSnapshot.child("address").getValue().toString());
+
+
+                                    kidsGender.setText("Gender :" + kidSnapshot.child("gender").getValue().toString());
+                                    phonenumber.setText("Parent Contact :"+ userSnapshot.child("userContact").getValue().toString());
+                                    parentEmail.setText("Parent Email :"+ userSnapshot.child("emailUser").getValue().toString());
+                                    id_Key = kidSnapshot.child("id").getValue().toString();
+                                    city.setText("Class :" +kidSnapshot.child("kidsGrade").getValue().toString());
+                                    homeAddress.setText("Address :" +kidSnapshot.child("address").getValue().toString());
 
                                 }
                             }
@@ -112,7 +111,6 @@ public class KidsViewProfile extends AppCompatActivity {
 
                     }
                 });
-
 
             }
 
