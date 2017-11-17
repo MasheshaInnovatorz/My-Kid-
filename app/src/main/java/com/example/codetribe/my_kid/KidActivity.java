@@ -135,11 +135,7 @@ public class KidActivity extends AppCompatActivity {
                         public void onDataChange(DataSnapshot dataSnapshot) {
 
                             String org_name = dataSnapshot.getValue(String.class);
-                            //Toast.makeText(context,org_name, Toast.LENGTH_LONG).show();
-                            //adminSerach(dataSnapshot,userId);
                             adminSerach(org_name);
-
-
                         }
 
                         @Override
@@ -184,9 +180,6 @@ public class KidActivity extends AppCompatActivity {
             Kids kids = new Kids(id, kidStringname, kidStringsurname, kidStringaddress, kididStringNumber, kidStringparentid, kidsKidsAllocated, kidsYearRegistered, genderString, orgName);
 
             databaseKids.child(id).setValue(kids);
-
-            Toast.makeText(this, "Kids saved successfully", Toast.LENGTH_SHORT).show();
-
 
             startActivity(new Intent(getApplication(), AdminTabbedActivity.class));
 

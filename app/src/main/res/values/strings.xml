@@ -22,6 +22,18 @@
     <string name="regNo">Enter Valid Registration Number</string>
     <string name="postalCode">Enter Valid Code</string>
 
+    <string name="allergies_error">Enter Valid allergies</string>
+    <string name="dietRequirements_error">Enter Valid dietRequirements</string>
+    <string name="doctorsRecomendations_error">Enter Valid doctorsRecomendations</string>
+    <string name="kidHeight_error">Enter Valid kidHeight</string>
+    <string name="bodyWeight_error">Enter Valid bodyWeight</string>
+
+
+
+
+
+    this. bodyWeight="";
+
     <string name="text_with_paragraphs">
         1. How does your app address the issue or problem?
     -It helps parents be able to know wat their kids
@@ -68,7 +80,6 @@
         <item>Thohoyandou</item>
         <item>Benoni</item>
         <item>Johannesburg</item>
-        <item>Parent</item>
         <item>Soweto</item>
         <item>Boksburg</item>
         <item>Pretoria</item>

@@ -110,19 +110,7 @@ public class CreateParentProfile extends AppCompatActivity {
 
     }
 
-    /*
-    //back button
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-            this.finish();
-        }
-        return super.onOptionsItemSelected(item);
 
-    }
-
-*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -136,7 +124,9 @@ public class CreateParentProfile extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        if (id == android.R.id.home) {
+            this.finish();
+        }
         //noinspection SimplifiableIfStatement
         if (id == R.id.profile_save) {
 

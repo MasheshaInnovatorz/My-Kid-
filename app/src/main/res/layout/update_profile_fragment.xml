@@ -229,7 +229,7 @@
 
             </RadioGroup>
 
-
+<!--
 
             <TextView
                 android:id="@+id/btnRegister"
@@ -247,6 +247,8 @@
                 android:layout_marginBottom="28dp"
                 android:layout_marginTop="32dp"
                 />
+
+            -->
         </LinearLayout>
 
 </ScrollView>

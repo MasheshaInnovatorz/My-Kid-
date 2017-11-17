@@ -95,6 +95,7 @@ public class KidsViewProfile extends AppCompatActivity {
             }
         });
 
+<<<<<<< HEAD
 
         kidsImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,6 +173,8 @@ public class KidsViewProfile extends AppCompatActivity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent,"Select Picture"),PICK_IMAGE_REQUEST);
+=======
+>>>>>>> f9ca56ef38f7b0fb6eaf5f63edade0a3a37639d3
     }
 
     @Override
@@ -196,19 +199,24 @@ public class KidsViewProfile extends AppCompatActivity {
 
                                 if (userSnapshot.child("orgName").getValue().toString().equals(kidSnapshot.child("orgName").getValue().toString())) {
 
-
+                                  //parent name
                                     parentName.setText(userSnapshot.child("userName").getValue().toString() + " " + userSnapshot.child("userName").getValue().toString());
-                                    phonenumber.setText(userSnapshot.child("userContact").getValue().toString());
-                                    parentEmail.setText(userSnapshot.child("emailUser").getValue().toString());
+                                    //kids names
+                                    kidsUser.setText(kidSnapshot.child("surname").getValue().toString() + " " + kidSnapshot.child("name").getValue().toString());
 
+<<<<<<< HEAD
 
 
                                     id_Key = kidSnapshot.child("id").getValue().toString();
+=======
+>>>>>>> f9ca56ef38f7b0fb6eaf5f63edade0a3a37639d3
 
-                                    kidsUser.setText(kidSnapshot.child("surname").getValue().toString() + " " + kidSnapshot.child("name").getValue().toString());
-                                    kidsGender.setText("Gender " + kidSnapshot.child("gender").getValue().toString());
-                                    city.setText("Class " +kidSnapshot.child("kidsGrade").getValue().toString());
-                                    homeAddress.setText("Address " +kidSnapshot.child("address").getValue().toString());
+                                    kidsGender.setText("Gender :" + kidSnapshot.child("gender").getValue().toString());
+                                    phonenumber.setText("Parent Contact :"+ userSnapshot.child("userContact").getValue().toString());
+                                    parentEmail.setText("Parent Email :"+ userSnapshot.child("emailUser").getValue().toString());
+                                    id_Key = kidSnapshot.child("id").getValue().toString();
+                                    city.setText("Class :" +kidSnapshot.child("kidsGrade").getValue().toString());
+                                    homeAddress.setText("Address :" +kidSnapshot.child("address").getValue().toString());
 
                                     Glide.with(getApplicationContext()).load(kidSnapshot.child("profilePic").getValue().toString()).centerCrop().into(kidsImage);
 
@@ -224,7 +232,6 @@ public class KidsViewProfile extends AppCompatActivity {
 
                     }
                 });
-
 
             }
 

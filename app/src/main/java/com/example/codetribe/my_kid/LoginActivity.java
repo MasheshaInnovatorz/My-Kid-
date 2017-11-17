@@ -33,7 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button login_Button;
+    TextView login_Button;
     ImageView backtowelcome, icon;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor sharedPrefEditor;
@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editEmail = (EditText) findViewById(R.id.email);
         editPassword = (EditText) findViewById(R.id.password);
         forgot = (TextView) findViewById(R.id.forget_password);
-        login_Button = (Button) findViewById(R.id.login);
+        login_Button = (TextView) findViewById(R.id.login);
 
         input_email = (TextInputLayout) findViewById(R.id.input_reg_fullname);
 

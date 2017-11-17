@@ -43,7 +43,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="60dp"
             android:gravity="center"
-            android:text="Kids Creatives"
+            android:text="Welcome to Kids Creatives"
             android:textColor="#448AFF"
             android:textSize="22sp"
             android:textStyle="bold" />

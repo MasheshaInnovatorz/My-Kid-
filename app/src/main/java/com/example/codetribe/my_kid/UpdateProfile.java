@@ -139,7 +139,9 @@ public class UpdateProfile extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        if (id == android.R.id.home) {
+            this.finish();
+        }
         //noinspection SimplifiableIfStatement
         if (id == R.id.profile_save) {
             if (awesomeValidation.validate()) {
@@ -184,8 +186,6 @@ public class UpdateProfile extends AppCompatActivity {
 
                     }
                 });
-
-
 
                 Toast.makeText(UpdateProfile.this, "User Profile Updated", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(UpdateProfile.this, ViewProfile.class);

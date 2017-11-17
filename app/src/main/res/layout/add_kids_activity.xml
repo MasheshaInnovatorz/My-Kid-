@@ -37,7 +37,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/text_left"
                     android:layout_marginRight="@dimen/text_right"
-                    android:background="#0000"
                     android:hint="Firstname"
                     android:inputType="textCapWords"
                     android:maxLength="12"
@@ -48,12 +47,7 @@
                     android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/text_left"
-                android:layout_marginRight="@dimen/text_right"
-                android:background="#212121" />
+
 
 
             <android.support.design.widget.TextInputLayout
@@ -67,7 +61,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/text_left"
                     android:layout_marginRight="@dimen/text_right"
-                    android:background="#0000"
                     android:hint="Surname"
                     android:inputType="textCapWords"
                     android:maxLength="12"
@@ -78,12 +71,7 @@
                     android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/text_left"
-                android:layout_marginRight="@dimen/text_right"
-                android:background="#212121" />
+
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/hAdress"
@@ -96,7 +84,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/text_left"
                     android:layout_marginRight="@dimen/text_right"
-                    android:background="#0000"
                     android:hint="Resident Address"
                     android:inputType="textCapWords"
                     android:maxLength="12"
@@ -107,12 +94,7 @@
                     android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/text_left"
-                android:layout_marginRight="@dimen/text_right"
-                android:background="#212121" />
+
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/hkidid"
@@ -120,7 +102,6 @@
                 android:layout_height="wrap_content"
                 android:text="Kid ID number"
                 android:textSize="20dp"
-
                 >
 
                 <EditText
@@ -129,7 +110,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/text_left"
                     android:layout_marginRight="@dimen/text_right"
-                    android:background="#0000"
                     android:hint="kid id"
                     android:inputType="number"
                     android:maxLength="13"
@@ -140,13 +120,6 @@
                     android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-
-                android:layout_marginLeft="@dimen/text_left"
-                android:layout_marginRight="@dimen/text_right"
-                android:background="#212121" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/hpid"
@@ -159,7 +132,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/text_left"
                     android:layout_marginRight="@dimen/text_right"
-                    android:background="#0000"
                     android:hint="Parent id"
                     android:inputType="number"
                     android:maxLength="13"
@@ -171,12 +143,7 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/text_left"
-                android:layout_marginRight="@dimen/text_right"
-                android:background="#212121" />
+
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/hpgrade"
@@ -189,7 +156,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/text_left"
                     android:layout_marginRight="@dimen/text_right"
-                    android:background="#0000"
                     android:hint="Class Allocated"
                     android:inputType="textCapWords"
                     android:maxLength="12"
@@ -201,12 +167,7 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/text_left"
-                android:layout_marginRight="@dimen/text_right"
-                android:background="#212121" />
+
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/hpYear"
@@ -222,7 +183,6 @@
                     android:inputType="date"
                     android:maxLength="4"
                     android:textColor="#212121"
-                    android:background="#0000"
                     android:hint="Current Year"
                     android:padding="@dimen/text_padding"
                     android:textAlignment="center"
@@ -232,12 +192,7 @@
             </android.support.design.widget.TextInputLayout>
 
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/text_left"
-                android:layout_marginRight="@dimen/text_right"
-                android:background="#212121" />
+
 
 
             <RadioGroup
