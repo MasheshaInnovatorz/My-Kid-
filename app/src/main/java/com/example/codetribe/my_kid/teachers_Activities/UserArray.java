@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.codetribe.my_kid.R;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -47,7 +48,11 @@ public class UserArray extends ArrayAdapter<TeacherClassAcc> {
         TeacherClassAcc users = userList.get(position);
 
         if(users.getUserProfilePic() !=null) {
-            Glide.with(getContext()).load(users.getUserProfilePic()).centerCrop().into(imageProf);
+
+            Glide.with(context).load(users.getUserProfilePic())
+                    .thumbnail(0.5f).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(imageProf);
+
         }
         textKdName.setText(users.getUserSurname() + " " + users.getUserName());
         //surname.setText(kids.getUserSurname());

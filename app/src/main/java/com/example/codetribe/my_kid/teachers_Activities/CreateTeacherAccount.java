@@ -20,7 +20,6 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.codetribe.my_kid.R;
-import com.example.codetribe.my_kid.admin_Activities.AdminTabbedActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -175,8 +174,8 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                 int selectedId = gender.getCheckedRadioButtonId();
 
-                progressDialog.setMessage("Wait While Adding Teacher");
-                progressDialog.show();
+                /*progressDialog.setMessage("Wait While Adding Teacher");
+                progressDialog.show();*/
 
                 if (selectedId != -1) {
 
@@ -205,7 +204,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                                         Toast.makeText(CreateTeacherAccount.this, "Teacher Registration Successfull" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
 
-                                        startActivity(new Intent(getApplication(), AdminTabbedActivity.class));
+                                       // startActivity(new Intent(getApplication(), AdminTabbedActivity.class));
 
 
                                     }
