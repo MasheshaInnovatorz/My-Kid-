@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="1dp"
-    tools:context="com.example.codetribe.my_kid.UploadKidsMemo">
+    tools:context="com.example.codetribe.my_kid.kids_Activities.UploadKidsMemo">
 
     
 <RelativeLayout
