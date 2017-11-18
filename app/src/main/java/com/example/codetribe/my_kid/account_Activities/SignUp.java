@@ -38,13 +38,13 @@ import java.util.List;
 
 
 public class SignUp extends AppCompatActivity {
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor sharedPrefEditor;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor sharedPrefEditor;
     private EditText inputEmail, inputPassword,kidsIdno;
     //spinner
     private ArrayAdapter<String> dataAdapter;
     // private Button
-    TextView mainNav, btnSignUp;
+    private TextView mainNav, btnSignUp;
     private Spinner orgNameList;
     private List<String> list;
     private ProgressDialog progressDialog;
@@ -53,11 +53,11 @@ public class SignUp extends AppCompatActivity {
     private FirebaseAuth auth;
     private AwesomeValidation awesomeValidation;
     private String strName;
-    FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
-    String[] spinnerArray;
+    private String[] spinnerArray;
 
-    DatabaseReference mDatabaseRef, mUserCheckData, crecheDataRef,KidDataRef;
+    private DatabaseReference mDatabaseRef, mUserCheckData, crecheDataRef,KidDataRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

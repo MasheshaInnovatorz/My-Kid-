@@ -12,16 +12,16 @@ import java.util.Map;
 
 @IgnoreExtraProperties
 public class CrecheOnwer_Class {
-    public String adminUid;
-    public String admiName;
-    public String adminSurname;
-    public String adminIdNo;
-    public String adminGender;
-    public String adminContact;
-    public String adminRole;
-    public String email;
-    public String orgName;
-    public String userCity;
+    private String adminUid;
+    private String admiName;
+    private String adminSurname;
+    private String adminIdNo;
+    private String adminGender;
+    private String adminContact;
+    private String adminRole;
+    private String email;
+    private String orgName;
+    private String userCity;
 
 
     public CrecheOnwer_Class() {
@@ -53,44 +53,44 @@ public class CrecheOnwer_Class {
     String grade;
      */
 
-    public String getAdminUid() {
+    private String getAdminUid() {
         return adminUid;
     }
 
-    public String getAdmiName() {
+    private String getAdmiName() {
         return admiName;
     }
 
-    public String getAdminSurname() {
+    private String getAdminSurname() {
         return adminSurname;
     }
 
-    public String getAdminIdNo() {
+    private String getAdminIdNo() {
         return adminIdNo;
     }
 
 
-    public String getAdminGender() {
+    private String getAdminGender() {
         return adminGender;
     }
 
-    public String getAdminRole() {
+    private String getAdminRole() {
         return adminRole;
     }
 
-    public String getEmail() {
+    private String getEmail() {
         return email;
     }
 
-    public String getOrgName() {
+    private String getOrgName() {
         return orgName;
     }
 
-    public String getAdminContact() {
+    private String getAdminContact() {
         return adminContact;
     }
 
-    public String getUserCity() {
+    private String getUserCity() {
         return userCity;
     }
 

@@ -20,7 +20,7 @@ import com.example.codetribe.my_kid.organization_Activities.SignUpOrganisationAc
 
 public class WelcomeActivity extends AppCompatActivity {
 
-    TextView sin,sign_up;
+    private TextView sin,sign_up;
 
 
     @Override

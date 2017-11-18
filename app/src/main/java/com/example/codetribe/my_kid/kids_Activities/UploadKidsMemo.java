@@ -54,7 +54,7 @@ public class UploadKidsMemo extends AppCompatActivity {
     public static final String FB_DATABASE_PATH = "image";
     public static final int REQUEST_CODE = 1234;
 
-    String idKid, userId, kidTeacherId, identity;
+    private  String idKid, userId, kidTeacherId, identity;
 
 
     private static final int CAMERA_REQUEST=123;

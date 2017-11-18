@@ -33,15 +33,15 @@ import com.google.firebase.database.ValueEventListener;
 import static com.example.codetribe.my_kid.R.id.teacherpassword;
 
 public class CreateTeacherAccount extends AppCompatActivity {
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor sharedPrefEditor;
-    TextInputLayout inputLayoutName, inputLayoutsurname, inputLayoutcontact, inputLayoutclassroom, inputLayoutidnumber, inputLayoutemail, inputLayoutpassword;
-    String userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, useremailString, userpasswordString, userAddressString, userCityString;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor sharedPrefEditor;
+    private TextInputLayout inputLayoutName, inputLayoutsurname, inputLayoutcontact, inputLayoutclassroom, inputLayoutidnumber, inputLayoutemail, inputLayoutpassword;
+    private String userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, useremailString, userpasswordString, userAddressString, userCityString;
     private EditText name, surname, contact, classroom, idnumber, useremail, userpassword, userAddress, userCity;
-    RadioGroup gender;
-    String keyTeacher;
-    TextView createteacher;
-    String role = "teacher";
+    private RadioGroup gender;
+    private String keyTeacher;
+    private TextView createteacher;
+    private String role = "teacher";
     private FirebaseAuth auth;
 
 
@@ -134,7 +134,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
                         } else {
 
                             Toast.makeText(CreateTeacherAccount.this, "Make sure you fix all the error shown in your input space", Toast.LENGTH_LONG).show();
- }
+                        }
                     }
 
                     @Override
@@ -204,7 +204,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                                         Toast.makeText(CreateTeacherAccount.this, "Teacher Registration Successfull" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
 
-                                       // startActivity(new Intent(getApplication(), AdminTabbedActivity.class));
+                                        // startActivity(new Intent(getApplication(), AdminTabbedActivity.class));
 
 
                                     }

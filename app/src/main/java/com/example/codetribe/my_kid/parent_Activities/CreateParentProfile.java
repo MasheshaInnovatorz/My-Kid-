@@ -28,7 +28,7 @@ public class CreateParentProfile extends AppCompatActivity {
 
 
     private AwesomeValidation awesomeValidation;
-    TextView signUpButton;
+    private TextView signUpButton;
     private TextView editprofile;
 
     private EditText inputName,
@@ -38,7 +38,7 @@ public class CreateParentProfile extends AppCompatActivity {
             inputCity,
             inputCellphoneNumber;
 
-    FirebaseUser user;
+    private FirebaseUser user;
     //validdation
     private TextInputLayout
             inputLayoutName,
@@ -48,13 +48,13 @@ public class CreateParentProfile extends AppCompatActivity {
             inputLayoutNumber;
 
     //private Button signUpButton;
-    RadioGroup radGender;
+    private RadioGroup radGender;
 
     //Firebase
     private DatabaseReference databaseReference;
 
-    String keyUser;
-    String userNameString, inputSurnameString, inputCityString, inputAddressString, inputIdnumberString, userContactString, genderString;
+    private String keyUser;
+    private String userNameString, inputSurnameString, inputCityString, inputAddressString, inputIdnumberString, userContactString, genderString;
 
 
     private RadioButton rdGenders;

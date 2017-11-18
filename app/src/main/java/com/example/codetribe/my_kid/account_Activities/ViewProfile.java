@@ -41,32 +41,27 @@ import java.util.Iterator;
 
 public class ViewProfile extends AppCompatActivity {
 
-    private Uri imgUri;
-
-
-    TextView name, surname, gender,city, phonenumber, address, email, editprofile;
-
-
-    String iduser;
-    String image_url;
-    ImageView photo;
-    int RESULT_LOAD_IMG = 1;
-
     //database
-    FirebaseStorage storage;
-    private DatabaseReference databaseReference, callImage;;
+    private FirebaseStorage storage;
+    private DatabaseReference databaseReference, callImage;
+    ;
+    private StorageReference storageRef, imagesRef, userProfileRef;
+    private FirebaseUser user;
 
-    StorageReference storageRef, imagesRef, userProfileRef;
+    private String user_id;
+    private ImageView profilecover;
+    private String idLoged;
+    private String nameString, surnameString;
 
+    private Uri imgUri;
+    private TextView name, surname, gender, city, phonenumber, address, email, editprofile;
+    private String iduser;
+    private String image_url;
+    private ImageView photo;
+    private int RESULT_LOAD_IMG = 1;
 
-    String user_id;
     private ProgressDialog progressDialog;
 
-    ImageView profilecover;
-    String idLoged;
-
-    String nameString, surnameString;
-    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,10 +75,10 @@ public class ViewProfile extends AppCompatActivity {
         // surname= (TextView)findViewById(R.id.user_profile_status);
         gender = (TextView) findViewById(R.id.gender_view);
 
-        phonenumber= (TextView)findViewById(R.id.phone_view);
-        address= (TextView)findViewById(R.id.address_view);
-        city= (TextView)findViewById(R.id.city_view);
-        email= (TextView)findViewById(R.id.email_view);
+        phonenumber = (TextView) findViewById(R.id.phone_view);
+        address = (TextView) findViewById(R.id.address_view);
+        city = (TextView) findViewById(R.id.city_view);
+        email = (TextView) findViewById(R.id.email_view);
         photo = (ImageView) findViewById(R.id.user_profile_photo);
         profilecover = (ImageView) findViewById(R.id.header_cover_image);
 
@@ -92,7 +87,6 @@ public class ViewProfile extends AppCompatActivity {
         storageRef = storage.getReference();
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-        callImage = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
 
         imagesRef = storageRef.child("images");
         userProfileRef = storageRef.child("images/" + user.getUid() + ".jpg");
@@ -101,7 +95,7 @@ public class ViewProfile extends AppCompatActivity {
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(ViewProfile.this,CreateParentProfile.class);
+                Intent i = new Intent(ViewProfile.this, CreateParentProfile.class);
 
                 startActivity(i);
             }
@@ -118,7 +112,7 @@ public class ViewProfile extends AppCompatActivity {
         } else {
             user_id = "unknown_uid";
         }
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
 
 
         photo.setOnClickListener(new View.OnClickListener() {
@@ -131,7 +125,7 @@ public class ViewProfile extends AppCompatActivity {
         });
 
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Infor(dataSnapshot, user.getUid());
@@ -148,7 +142,7 @@ public class ViewProfile extends AppCompatActivity {
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ViewProfile.this,UpdateProfile.class) ;
+                Intent intent = new Intent(ViewProfile.this, UpdateProfile.class);
 
                 startActivity(intent);
             }
@@ -205,8 +199,6 @@ public class ViewProfile extends AppCompatActivity {
                             image_url = downloadUrl.toString();
 
 
-
-
                             //listImage.get(position).getUri()).into(img)
                             showProfilePic(image_url);
 
@@ -222,6 +214,7 @@ public class ViewProfile extends AppCompatActivity {
                                             public void onComplete(@NonNull Task<Void> task) {
 
                                                 if (task.isSuccessful()) {
+
                                                     progressDialog.dismiss();
                                                     dataProfile(image_url);
 
@@ -244,6 +237,7 @@ public class ViewProfile extends AppCompatActivity {
     }
 
     private void dataProfile(String image_url) {
+        callImage = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid());
         callImage.child("userProfilePic").setValue(image_url);
     }
 
@@ -261,21 +255,17 @@ public class ViewProfile extends AppCompatActivity {
 
     private void Infor(DataSnapshot dataSnapshot, String userId) {
 
-        Iterator iterator = dataSnapshot.getChildren().iterator();
 
-        while (iterator.hasNext()) {
-            DataSnapshot dataUser = (DataSnapshot) iterator.next();
-
-            if (dataUser.child("userKey").getValue().toString().equals(userId)) {
-                name.setText(dataUser.child("userName").getValue().toString() + " " + dataUser.child("userSurname").getValue().toString());
-                gender.setText(" Gender :" + dataUser.child("userGender").getValue().toString());
-                phonenumber.setText("  phone number :" + dataUser.child("userContact").getValue().toString());
-                address.setText("  Lives in :" + dataUser.child("userAddress").getValue().toString());
-                city.setText("  City :" + dataUser.child("userCity").getValue().toString());
-                email.setText("  Email :" + dataUser.child("emailUser").getValue().toString());
-
-            }
+        if (dataSnapshot.child("userKey").getValue().toString().equals(userId)) {
+            name.setText(dataSnapshot.child("userName").getValue().toString() + " " + dataSnapshot.child("userSurname").getValue().toString());
+            gender.setText(" Gender :" + dataSnapshot.child("userGender").getValue().toString());
+            phonenumber.setText("  phone number :" + dataSnapshot.child("userContact").getValue().toString());
+            address.setText("  Lives in :" + dataSnapshot.child("userAddress").getValue().toString());
+            city.setText("  City :" + dataSnapshot.child("userCity").getValue().toString());
+            email.setText("  Email :" + dataSnapshot.child("emailUser").getValue().toString());
 
         }
-    }}
 
+    }
+
+}

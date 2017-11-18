@@ -45,10 +45,10 @@ public class KidsMemoListFragment extends Fragment {
 
     //  private KidsmemoListAdapter adapter;
     private String KidsId, kidsUserId;
-    String parentid, userKey, user_roles;
+    private String parentid, userKey, user_roles;
     private Button btnparticipate;
     private TextView sendKids;
-    String Surname, name;
+    private String Surname, name;
 
 
     @Override

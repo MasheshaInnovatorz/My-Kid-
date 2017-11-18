@@ -37,10 +37,10 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView login_Button;
-    ImageView backtowelcome, icon;
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor sharedPrefEditor;
+    private TextView login_Button;
+    private ImageView backtowelcome, icon;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor sharedPrefEditor;
 
     //declaring buttons and textiew
     private FirebaseUser mFirebaseUser;
@@ -48,8 +48,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     //firebase Authentification
     private FirebaseAuth mFirebaseAuth;
-    FirebaseAuth.AuthStateListener mAuthListener;
-    DatabaseReference mDatabaseRef;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private DatabaseReference mDatabaseRef;
 
     private AwesomeValidation awesomeValidation;
 
@@ -59,9 +59,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public static final String usersurname = "userSurname";
 
 
-    TextInputLayout passwordLayout;
-    TextInputLayout emailLayout;
-    String uid = "some-uid";
+    private TextInputLayout passwordLayout;
+    private TextInputLayout emailLayout;
+    private String uid = "some-uid";
     private TextInputLayout input_email;
 
     @Override

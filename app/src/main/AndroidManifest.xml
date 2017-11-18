@@ -25,10 +25,10 @@
         </activity>
         <activity
             android:name=".account_Activities.LoginActivity"
-            android:theme="@style/AppTheme.LoginStyle" />
+            />
         <activity
             android:name=".account_Activities.SignUp"
-            android:theme="@style/AppTheme.LoginStyle" />
+             />
         <activity
             android:name=".account_Activities.ResetPassword"
             android:theme="@style/AppTheme.LoginStyle" />

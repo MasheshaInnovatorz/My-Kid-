@@ -32,25 +32,19 @@ import java.util.List;
 
 public class AdminKidsList extends Fragment {
 
-    String userKey;
-    //public static final String ARTIST_ID = "artistid";
-    private TextView add_Kids;
-    private TextView addkid, addteacher;
     //initialization for kids
-    ListView listUsers;
-    String KidssKey;
-    List<Kids> kidses;
-
-    String idLoged, parentId, kids_id;
-
-    private FirebaseAuth adminUser;
-    //database
-    DatabaseReference usersRetriveRef, kidsCreche;
-    TextView sos;
-    String Idadmin;
-    Spinner spinner;
+    private ListView listUsers;
+    private String KidssKey;
+    private List<Kids> kidses;
+    private String Idadmin;
+    private Spinner spinner;
     private CoordinatorLayout coordinatorLayout;
     private FloatingActionButton kidsFab;
+    private String idLoged, parentId, kids_id;
+
+    //database
+    private DatabaseReference usersRetriveRef, kidsCreche;
+    private FirebaseAuth adminUser;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -33,7 +33,7 @@ public class UpdateProfile extends AppCompatActivity {
             City,
             phoneNumber;
 
-    FirebaseUser user;
+    private FirebaseUser user;
 
     //validdation
     private TextInputLayout

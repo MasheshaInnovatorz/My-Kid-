@@ -32,24 +32,20 @@ import java.util.List;
 
 public class AdminTeacherList extends Fragment {
 
-    String userKey;
-    //public static final String ARTIST_ID = "artistid";
+    private String userKey;
     private TextView add_Kids;
     private TextView addkid, addteacher;
     //initialization for kids
-    ListView listUsers;
-    List<TeacherClassAcc> user;
-
-
-    private FirebaseAuth adminUser;
-    //database
-    DatabaseReference usersRetriveRef, adminCreche;
-    TextView sos;
-    String Idadmin;
-    Spinner spinner;
+    private ListView listUsers;
+    private List<TeacherClassAcc> user;
+    private String Idadmin;
+    private Spinner spinner;
     private CoordinatorLayout coordinatorLayout;
-
     private FloatingActionButton userTeacher;
+
+    //database
+    private DatabaseReference usersRetriveRef, adminCreche;
+    private FirebaseAuth adminUser;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

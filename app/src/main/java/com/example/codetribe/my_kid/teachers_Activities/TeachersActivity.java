@@ -31,19 +31,19 @@ import java.util.List;
 
 public class TeachersActivity extends AppCompatActivity {
 
-    String userKey, teacherRole;
+    private String userKey, teacherRole;
     //public static final String ARTIST_ID = "artistid";
     private TextView add_Kids;
 
     //initialization for kids
-    ListView listViewKids;
-    List<Kids> kid;
+    private ListView listViewKids;
+    private List<Kids> kid;
 
-    String org_name,orgname;
-    String userId, idLoged;
-    FirebaseAuth fireAuth;
+    private String org_name,orgname;
+    private String userId, idLoged;
+    private FirebaseAuth fireAuth;
     //database
-    DatabaseReference kidsRetriveRef, creachRef, orgNameReference, roleRefer;
+    private DatabaseReference kidsRetriveRef, creachRef, orgNameReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

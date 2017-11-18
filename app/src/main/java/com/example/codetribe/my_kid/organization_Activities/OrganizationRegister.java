@@ -12,16 +12,16 @@ import java.util.Map;
 
 @IgnoreExtraProperties
 public class OrganizationRegister {
-    public String uid;
-    public String orgname;
-    public String orgAddress;//add street name and postal code
-    public String orgCity;
-    public String orgEmail;
-    public String orgPhoneNo;
-    public String orgPassword;
-    public String adminKey;
-    public String orgRegNumber;
-    public String orgPostalCode;
+    private String uid;
+    private String orgname;
+    private String orgAddress;//add street name and postal code
+    private String orgCity;
+    private String orgEmail;
+    private String orgPhoneNo;
+    private String orgPassword;
+    private String adminKey;
+    private String orgRegNumber;
+    private String orgPostalCode;
 
     public Map<String, Boolean> stars = new HashMap<>();
 
@@ -43,40 +43,40 @@ public class OrganizationRegister {
     }
 
 
-    public String getUid() {
+    private String getUid() {
         return uid;
     }
 
-    public String getOrgname() {
+    private String getOrgname() {
         return orgname;
     }
 
-    public String getOrgAddress() {
+    private String getOrgAddress() {
         return orgAddress;
     }
 
-    public String getOrgCity() {
+    private String getOrgCity() {
         return orgCity;
     }
 
-    public String getOrgEmail() {
+    private String getOrgEmail() {
         return orgEmail;
     }
 
-    public String getOrgPhoneNo() {
+    private String getOrgPhoneNo() {
         return orgPhoneNo;
     }
 
-    public String getOrgPassword() {
+    private String getOrgPassword() {
         return orgPassword;
     }
 
-    public String getorgRegNumber() {   return orgRegNumber;}
+    private String getorgRegNumber() {   return orgRegNumber;}
 
-    public String getorgPostalCode() {   return orgPostalCode;}
+    private String getorgPostalCode() {   return orgPostalCode;}
 
 
-    public String getAdminKey() {
+    private String getAdminKey() {
         return adminKey;
     }
 

@@ -26,12 +26,13 @@ import java.util.Iterator;
 import java.util.List;
 
 public class KidsmemoListsActivity extends AppCompatActivity {
+
     //recyclerview object
     private RecyclerView recyclerView;
 
-
     //adapter object
     private RecyclerView.Adapter adapter;
+
     //database reference
     private DatabaseReference mDatabaseRef, childRef, mUserInfor;
 
@@ -41,15 +42,13 @@ public class KidsmemoListsActivity extends AppCompatActivity {
     //list to hold all the uploaded images
     private List<MemokidsUpload_class> imgList;
 
-
-
     //  private KidsmemoListAdapter adapter;
     private String KidsId, kidsUserId;
-    String parentid, userKey, user_roles;
+    private String parentid, userKey, user_roles;
     private Button btnparticipate;
     private TextView sendKids,getTime;
-    String Surname, name;
-    FloatingActionButton share;
+    private String Surname, name;
+    private FloatingActionButton share;
 
 
     @Override

@@ -31,7 +31,7 @@ public class KidActivity extends AppCompatActivity {
 
     // private EditText;
     private TextInputLayout hintname, hintsurname, hintkidid, hintpid, hintParentId, hintGradeAllocated, hintYear;
-    EditText kidname,
+    private EditText kidname,
             kidsurname,
             kidaddress,
             kididNumber,
@@ -39,13 +39,13 @@ public class KidActivity extends AppCompatActivity {
             kidAllocated,
             registeredYears;
 
-    ImageView imagepic;
-    RadioGroup radKidGender;
-    RadioButton radGender;
-    TextView btnCreate;
+    private ImageView imagepic;
+    private RadioGroup radKidGender;
+    private RadioButton radGender;
+    private TextView btnCreate;
 
-    String genderString, keyUser;
-    String kidStringname,
+    private String genderString, keyUser;
+    private String kidStringname,
             kidStringsurname,
             kidStringaddress,
             kididStringNumber,
@@ -53,12 +53,6 @@ public class KidActivity extends AppCompatActivity {
             kidsKidsAllocated,
             kidsYearRegistered;
 
-    // additional medical information
-    EditText allergies,
-            dietRequirements,
-            doctorsRecomendations,
-            inkidHeight,
-            bodyWeight;
 
     private ProgressDialog progressDialog;
     //defining AwesomeValidation object
@@ -146,7 +140,7 @@ public class KidActivity extends AppCompatActivity {
                         }
                     });
 
-                }else{
+                } else {
                     Toast.makeText(context, "Make sure you fix all the error shown in your input space", Toast.LENGTH_SHORT).show();
                 }
                 progressDialog.dismiss();
@@ -168,7 +162,6 @@ public class KidActivity extends AppCompatActivity {
         kidsYearRegistered = registeredYears.getText().toString().trim();
 
         int selectedId = radKidGender.getCheckedRadioButtonId();
-
 
 
         if (selectedId != -1) {

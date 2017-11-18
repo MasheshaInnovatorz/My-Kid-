@@ -96,10 +96,7 @@ public class KidsViewProfile extends AppCompatActivity {
             }
         });
 
-<<<<<<< HEAD:app/src/main/java/com/example/codetribe/my_kid/KidsViewProfile.java
-=======
 
->>>>>>> d8217efee17a141fb6d74e031be3f03ae15add54:app/src/main/java/com/example/codetribe/my_kid/kids_Activities/KidsViewProfile.java
 
         kidsImage.setOnClickListener(new View.OnClickListener() {
             @Override
