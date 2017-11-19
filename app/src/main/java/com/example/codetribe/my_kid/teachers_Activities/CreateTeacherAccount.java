@@ -115,9 +115,8 @@ public class CreateTeacherAccount extends AppCompatActivity {
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
         //database
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Users");
-        keyTeacher = auth.getCurrentUser().getUid();
-        teacherReference = FirebaseDatabase.getInstance().getReference("Users");
+       keyTeacher = auth.getCurrentUser().getUid();
+
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         orgNameReference = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("orgName");
 
@@ -155,6 +154,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
         final String adminEmail = auth.getCurrentUser().getEmail();
 
         final String orgNames = orgName;
+        teacherReference = FirebaseDatabase.getInstance().getReference("Users");
 
         teacherReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -179,8 +179,8 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                 if (selectedId != -1) {
 
-                    progressDialog.setMessage("Wait While Adding Teacher");
-                    progressDialog.show();
+                   // progressDialog.setMessage("Wait While Adding Teacher");
+                   // progressDialog.show();
 
                     gnrteacher = (RadioButton) findViewById(selectedId);
                     usergenderString = gnrteacher.getText().toString().trim();
@@ -194,7 +194,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         //String user_id = task.getResult().getUser().getUid();
                                         //firebase teacher database table
-                                        DatabaseReference mChildDatabase = mDatabaseRef.child("Users");
+                                        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Users");
 
 
                                         //Storing Information
@@ -204,6 +204,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                                         Toast.makeText(CreateTeacherAccount.this, "Teacher Registration Successfull" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
 
+                                        auth.signOut();
                                         // startActivity(new Intent(getApplication(), AdminTabbedActivity.class));
 
 
@@ -217,7 +218,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                                         finish();
                                     }
-                                    progressDialog.dismiss();
+                                   // progressDialog.dismiss();
                                 }
 
                             });

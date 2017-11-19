@@ -41,6 +41,7 @@ public class UserArray extends ArrayAdapter<TeacherClassAcc> {
 
         View listViewItem = inflater.inflate(R.layout.admin_and_kids_list, null, true);
         TextView textKdName = (TextView) listViewItem.findViewById(R.id.textKidsName);
+        TextView userClass = (TextView) listViewItem.findViewById(R.id.textClass);
         ImageView imageProf = (ImageView) listViewItem.findViewById(R.id.adminTeacher_Pic);
 
 
@@ -56,6 +57,7 @@ public class UserArray extends ArrayAdapter<TeacherClassAcc> {
         }
         textKdName.setText(users.getUserSurname() + " " + users.getUserName());
         //surname.setText(kids.getUserSurname());
+        userClass.setText(users.getTeacherClassroom());
 
         return listViewItem;
     }

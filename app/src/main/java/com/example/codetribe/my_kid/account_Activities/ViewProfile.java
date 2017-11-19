@@ -82,6 +82,8 @@ public class ViewProfile extends AppCompatActivity {
         photo = (ImageView) findViewById(R.id.user_profile_photo);
         profilecover = (ImageView) findViewById(R.id.header_cover_image);
 
+
+
         progressDialog = new ProgressDialog(this);
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
@@ -102,16 +104,7 @@ public class ViewProfile extends AppCompatActivity {
         });
 
 
-        if (user != null) {
-            user_id = user.getUid();
-            if (user.getPhotoUrl() != null) {
-                String profile_pic = user.getPhotoUrl().toString();
-                showProfilePic(profile_pic);
 
-            }
-        } else {
-            user_id = "unknown_uid";
-        }
         databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
 
 
@@ -230,26 +223,34 @@ public class ViewProfile extends AppCompatActivity {
                     e.printStackTrace();
                     Log.i("Ygritte", e.getMessage());
                 }
-
-
             }
         }
     }
 
     private void dataProfile(String image_url) {
-        callImage = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid());
+        callImage = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
         callImage.child("userProfilePic").setValue(image_url);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
+        if (user != null) {
+            user_id = user.getUid();
+            if (user.getPhotoUrl() != null) {
+                String profile_pic = user.getPhotoUrl().toString();
+                showProfilePic(profile_pic);
+
+            }
+        } else {
+            user_id = "unknown_uid";
+        }
     }
 
     public void showProfilePic(String image_url) {
-
-        Glide.with(getApplicationContext()).load(image_url).centerCrop().into(photo);
-        Glide.with(getApplicationContext()).load(image_url).centerCrop().into(profilecover);
+        Glide.with(ViewProfile.this).load(image_url).centerCrop().into(photo);
+        Glide.with(ViewProfile.this).load(image_url).centerCrop().into(profilecover);
 
     }
 

@@ -5,12 +5,16 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.codetribe.my_kid.R;
 import com.example.codetribe.my_kid.kids_Activities.KidActivity;
@@ -22,6 +26,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +52,7 @@ public class AdminKidsList extends Fragment {
     private DatabaseReference usersRetriveRef, kidsCreche;
     private FirebaseAuth adminUser;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -67,6 +74,17 @@ public class AdminKidsList extends Fragment {
 
         parentId = keyId.getStringExtra("parent_id");
         kidses = new ArrayList<>();
+
+
+
+       /* listUsers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l){
+                registerForContextMenu(listUsers);
+                Toast.makeText(getContext(), kidses.get(i).getAddress(), Toast.LENGTH_SHORT).show();
+            }
+        });*/
+
 
 
         kidsFab.setOnClickListener(new View.OnClickListener() {
@@ -127,10 +145,32 @@ public class AdminKidsList extends Fragment {
 
             }
         });
+        registerForContextMenu(listUsers);
 
         return rootView;
     }
 
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.setHeaderTitle("???");
+        menu.add(0,v.getId(),0,"Kids Information");
+        menu.add(0,v.getId(),0,"Parent Information");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if (item.getTitle() == "Kids Information") {
+
+            Toast.makeText(getContext(), "Eloow", Toast.LENGTH_SHORT).show();
+        } else if (item.getTitle() == "Parent Information") {
+            Toast.makeText(getContext(), "Parent Information", Toast.LENGTH_SHORT).show();
+        } else {
+            return false;
+        }
+        return true;
+    }
 
 }
 

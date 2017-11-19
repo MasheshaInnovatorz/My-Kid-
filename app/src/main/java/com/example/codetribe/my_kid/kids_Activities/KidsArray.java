@@ -24,7 +24,7 @@ public class KidsArray extends ArrayAdapter<Kids> {
 
 
     public KidsArray(Activity context, List<Kids> kidsList) {
-        super(context, R.layout.list_layout, kidsList);
+        super(context, R.layout.admin_and_kids_list, kidsList);
         this.context = context;
         this.kidsList = kidsList;
     }
@@ -38,16 +38,18 @@ public class KidsArray extends ArrayAdapter<Kids> {
 
         TextView textKdName = (TextView) listViewItem.findViewById(R.id.textKidsName);
 
+        TextView textClass = (TextView) listViewItem.findViewById(R.id.textClass);
         ImageView kidsImage = (ImageView) listViewItem.findViewById(R.id.adminTeacher_Pic);
 
 
         Kids kids = kidsList.get(position);
 
-        if (kids.getProfilepic() != "") {
-            Glide.with(getContext()).load(kids.getProfilepic()).centerCrop().into(kidsImage);
+        if (kids.getProfilePic() != "") {
+            Glide.with(getContext()).load(kids.getProfilePic()).centerCrop().into(kidsImage);
         }
-        textKdName.setText("Class : " + kids.kidsGrade + "\n" + "Name : " + kids.getName() + " " + kids.getSurname());
+        textKdName.setText(kids.getName() + " " + kids.getSurname());
         // surname.setText(kids.getSurname());
+        textClass.setText(kids.getKidsGrade());
 
         return listViewItem;
     }

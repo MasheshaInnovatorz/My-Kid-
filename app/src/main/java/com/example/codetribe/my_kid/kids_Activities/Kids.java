@@ -47,10 +47,10 @@ public class Kids {
         this.orgName = orgName;
         this.kidsRegistered = kidsRegistered;
         this.allergies="";
-        this. dietRequirements="";
-        this .doctorsRecomendations="";
-        this. kidHeight="";
-        this. bodyWeight="";
+        this.dietRequirements="";
+        this.doctorsRecomendations="";
+        this.kidHeight="";
+        this.bodyWeight="";
         this.profilePic = "";
 
     }
@@ -78,14 +78,6 @@ public class Kids {
         return orgName;
     }
 
-    public String getKidsGrade() {
-        return kidsGrade;
-    }
-
-    public String getKidsRegistered() {
-        return kidsRegistered;
-    }
-
     public String getId() {
         return id;
     }
@@ -102,17 +94,6 @@ public class Kids {
         return address;
     }
 
-    public String getIdNumber() {
-        return idNumber;
-    }
-
-    public String getParentid() {
-        return parentid;
-    }
-
-    public String getProfilepic() {
-        return profilePic;
-    }
 
     public String getGender() {
         return gender;
@@ -122,6 +103,25 @@ public class Kids {
         return teachersId;
     }
 
+    public String getIdNumber() {
+        return idNumber;
+    }
+
+    public String getParentid() {
+        return parentid;
+    }
+
+    public String getKidsGrade() {
+        return kidsGrade;
+    }
+
+    public String getKidsRegistered() {
+        return kidsRegistered;
+    }
+
+    public String getProfilePic() {
+        return profilePic;
+    }
 
     // new constractor for medical information
     public Kids(String allergies,String dietRequirements,String doctorsRecomendations,String kidHeight,String bodyWeight)
@@ -133,6 +133,26 @@ public class Kids {
         this.bodyWeight = bodyWeight;
         this.kidHeight = kidHeight;
         this.parentid = parentid;
+    }
+
+    public String getAllergies() {
+        return allergies;
+    }
+
+    public String getDietRequirements() {
+        return dietRequirements;
+    }
+
+    public String getDoctorsRecomendations() {
+        return doctorsRecomendations;
+    }
+
+    public String getKidHeight() {
+        return kidHeight;
+    }
+
+    public String getBodyWeight() {
+        return bodyWeight;
     }
 
     @Exclude
@@ -150,44 +170,5 @@ public class Kids {
     }
 
 
-    public void setAllergies(String allergies) {
-        this.allergies = allergies;
-    }
-
-    public void setDietRequirements(String dietRequirements) {
-        this.dietRequirements = dietRequirements;
-    }
-
-    public void setDoctorsRecomendations(String doctorsRecomendations) {
-        this.doctorsRecomendations = doctorsRecomendations;
-    }
-
-    public void setKidHeight(String kidHeight) {
-        this.kidHeight = kidHeight;
-    }
-
-    public void setBodyWeight(String bodyWeight) {
-        this.bodyWeight = bodyWeight;
-    }
-
-    public String getAllergies() {
-        return allergies;
-    }
-
-    public String getDietRequirements() {
-        return dietRequirements;
-    }
-
-    public String getDoctorsRecomendations() {
-        return doctorsRecomendations;
-    }
-
-    public String getkidHeight() {
-        return kidHeight;
-    }
-
-    public String getBodyWeight() {
-        return bodyWeight;
-    }
 
 }

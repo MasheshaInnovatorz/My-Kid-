@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.codetribe.my_kid.teachers_Activities.CreateTeacherAccount;
 import com.example.codetribe.my_kid.R;
@@ -121,9 +124,30 @@ public class AdminTeacherList extends Fragment {
                 startActivity(intent);
             }
         });
-
+        registerForContextMenu(listUsers);
         return rootView;
     }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.setHeaderTitle("???");
+        menu.add(0,v.getId(),0,"Kids Information");
+        menu.add(0,v.getId(),0,"Parent Information");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if (item.getTitle() == "Kids Information") {
+            Toast.makeText(getContext(), "KidsProfile Information", Toast.LENGTH_SHORT).show();
+        } else if (item.getTitle() == "Parent Information") {
+            Toast.makeText(getContext(), "Parent Information", Toast.LENGTH_SHORT).show();
+        } else {
+            return false;
+        }
+        return true;
+    }
+
 
 
 }

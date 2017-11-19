@@ -31,8 +31,8 @@
             android:hint="Write a message"
             android:padding="6dp"
             android:paddingBottom="65dp"
-            android:textColor="@color/primary"
-            android:textColorHint="@color/primary" />
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary" />
 
 
         <ImageView
