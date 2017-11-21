@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout   xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+   >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,92 +18,45 @@
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-        android:layout_gravity="center"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="17dp"
                 android:background="@drawable/kidlogo" />
 
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginLeft="@dimen/text_left"
                 android:layout_marginRight="@dimen/text_right"
-                android:layout_marginTop="15dp"
-                android:text="Select a creache"
-                android:textAlignment="center"
-                android:textColor="#448AFF"
-                android:textSize="17sp" />
-
-            <Spinner
-                android:id="@+id/orgname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="@dimen/text_left"
-                android:layout_marginRight="@dimen/text_right"
-                android:layout_marginTop="15dp"
-                android:spinnerMode="dialog" />
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_email"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/email"
+                <TextView
+                    android:text="Select a creache"
+                    android:layout_marginLeft="9dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <Spinner
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/orgname"
                     android:layout_width="match_parent"
+                    android:textAlignment="center"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/text_left"
                     android:layout_marginRight="@dimen/text_right"
-                    android:background="#0000"
-                    android:hint="Email Address"
-                    android:inputType="textEmailAddress"
                     android:padding="@dimen/text_padding"
-                    android:textColor="#212121"
-                    android:textColorHint="#212121"
-                    android:textSize="16dp" />
-            </android.support.design.widget.TextInputLayout>
+                    android:spinnerMode="dialog" />
+
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/text_left"
-                android:layout_marginRight="@dimen/text_right"
-                android:background="#212121" />
-
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:passwordToggleContentDescription="ruuu"
-                app:passwordToggleDrawable="@drawable/ic_remove_red_eye_black_24dp"
-                app:passwordToggleEnabled="true"
-                app:passwordToggleTint="#212121">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/signupPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/text_left"
-                    android:layout_marginRight="@dimen/text_right"
-                    android:background="#0000"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:maxLength="12"
-                    android:padding="@dimen/text_padding"
-                    android:textColor="#212121"
-                    android:textColorHint="#212121"
-                    android:textSize="16dp"
-
-                    />
-            </android.support.design.widget.TextInputLayout>
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginLeft="@dimen/text_left"
                 android:layout_marginRight="@dimen/text_right"
                 android:background="#212121" />
@@ -118,22 +73,66 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/text_left"
                     android:layout_marginRight="@dimen/text_right"
-                    android:background="#0000"
                     android:hint="Kid ID Number"
                     android:inputType="number"
                     android:maxLength="13"
                     android:padding="@dimen/text_padding"
+                    android:textAlignment="center"
                     android:textColor="#212121"
                     android:textColorHint="#212121"
-                 android:textSize="16dp" />
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
-            <View
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_email"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/text_left"
-                android:layout_marginRight="@dimen/text_right"
-                android:background="#212121" />
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
+                    android:hint="Email Address"
+                    android:inputType="textEmailAddress"
+                    android:padding="@dimen/text_padding"
+                    android:textColor="#212121"
+                    android:textColorHint="#212121"
+                    android:textAlignment="center"
+                    android:textSize="16dp" />
+            </android.support.design.widget.TextInputLayout>
+
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleContentDescription="ruuu"
+                app:passwordToggleDrawable="@drawable/ic_remove_red_eye_black_24dp"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="#212121">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/signupPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:maxLength="12"
+                    android:textAlignment="center"
+                    android:padding="@dimen/text_padding"
+                    android:textColor="#212121"
+                    android:textColorHint="#212121"
+                    android:textSize="16dp"
+
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+
 
 
             <TextView
@@ -141,16 +140,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginBottom="28dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
+                android:layout_marginTop="32dp"
                 android:background="@drawable/angle"
                 android:gravity="center"
-                android:padding="16dp"
+                android:padding="10dp"
                 android:text="Create Account"
                 android:textColor="#fff"
                 android:textSize="16dp" />
+
         </LinearLayout>
     </ScrollView>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/send"
+        android:src="@drawable/ic_insert_photo_black_24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/fab_margin"
+        android:background="#FF5722"
+        />
+
+
 </RelativeLayout>

@@ -58,9 +58,7 @@ public class AdminKidsList extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_kids , container, false);
 
-
         listUsers = (ListView) rootView.findViewById(R.id.listViewkidss);
-        //  fab = (FloatingActionButton) rootView.findViewById(R.id.addTeacher);
 
         coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.cordinatelayout);
        kidsFab = (FloatingActionButton) rootView.findViewById(R.id.add_kids_admin);
@@ -74,16 +72,6 @@ public class AdminKidsList extends Fragment {
 
         parentId = keyId.getStringExtra("parent_id");
         kidses = new ArrayList<>();
-
-
-
-       /* listUsers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l){
-                registerForContextMenu(listUsers);
-                Toast.makeText(getContext(), kidses.get(i).getAddress(), Toast.LENGTH_SHORT).show();
-            }
-        });*/
 
 
 
@@ -162,7 +150,6 @@ public class AdminKidsList extends Fragment {
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         if (item.getTitle() == "Kids Information") {
-
             Toast.makeText(getContext(), "Eloow", Toast.LENGTH_SHORT).show();
         } else if (item.getTitle() == "Parent Information") {
             Toast.makeText(getContext(), "Parent Information", Toast.LENGTH_SHORT).show();
