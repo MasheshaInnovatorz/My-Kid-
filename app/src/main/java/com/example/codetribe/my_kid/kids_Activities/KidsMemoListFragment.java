@@ -228,6 +228,7 @@ public class KidsMemoListFragment extends Fragment {
                                 MemokidsUpload_class img = retrieveimage.getValue(MemokidsUpload_class.class);
                                 imgList.add(img);
 
+
                                 //init adapter
                                 adapter = new KidsmemoListAdapter(getContext(), imgList);
 

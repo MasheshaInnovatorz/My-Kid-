@@ -204,7 +204,6 @@ public class SignUp extends AppCompatActivity {
                                                 mChildDatabase.child("emailUser").setValue(userEmailString);
                                                 mChildDatabase.child("passWordUser").setValue(userPassString);
                                                 Toast.makeText(SignUp.this, "User Account Created", Toast.LENGTH_SHORT).show();
-                                                auth.signOut();
                                                 startActivity(new Intent(SignUp.this, LoginActivity.class));
 
 
