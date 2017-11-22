@@ -37,7 +37,7 @@ public class ResetPassword extends AppCompatActivity {
         setContentView(R.layout.activity_reset_password);
 
 
-        //  getSupportActionBar().setTitle("Reset Password");
+         getSupportActionBar().setTitle("Reset Password");
 
 
         inputEmail = (EditText) findViewById(R.id.email);

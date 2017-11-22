@@ -37,7 +37,7 @@ public class GroupChatFragment extends Fragment {
     EditText messgae;
     ListView messagelist;
     FirebaseListAdapter<Chat> firebaseListAdapter;
-
+    int i=0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -77,7 +77,7 @@ public class GroupChatFragment extends Fragment {
     }
 
     void messageRecieved() {
-        
+
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot userSnapshot) {
@@ -89,7 +89,14 @@ public class GroupChatFragment extends Fragment {
                         for (DataSnapshot owhsom : dataSnapshot.getChildren()) {
 
                             if (userSnapshot.child("emailUser").getValue().equals(owhsom.child("name").getValue().toString())) {
+                                i = 1;
 
+
+                            }else{
+                                i=0;
+                            }
+
+                            if(i==1){
                                 firebaseListAdapter = new FirebaseListAdapter<Chat>(getActivity(), Chat.class, R.layout.item_chat_right, databaseReference) {
                                     @Override
                                     protected void populateView(View v, Chat model, int position) {
@@ -103,10 +110,9 @@ public class GroupChatFragment extends Fragment {
                                 messagelist.setAdapter(firebaseListAdapter);
                                 messagelist.setTranscriptMode(ListView.TRANSCRIPT_MODE_NORMAL);
                                 messagelist.setStackFromBottom(true);
+                            }else {
 
-                            }
 
-                            /*if(!userSnapshot.child("emailUser").getValue().equals(owhsom.child("name").getValue().toString())){
                                 firebaseListAdapter = new FirebaseListAdapter<Chat>(getActivity(), Chat.class, R.layout.item_chat_left, databaseReference) {
                                     @Override
                                     protected void populateView(View v, Chat model, int position) {
@@ -121,9 +127,16 @@ public class GroupChatFragment extends Fragment {
                                 messagelist.setTranscriptMode(ListView.TRANSCRIPT_MODE_NORMAL);
                                 messagelist.setStackFromBottom(true);
 
-                            }*/
+
+                            }
+
+
                         }
+
+
+
                     }
+
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {

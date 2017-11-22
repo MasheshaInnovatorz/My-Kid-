@@ -30,6 +30,7 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome_activity);
 
 
+
      sign_up = (TextView) findViewById(R.id.signupforfree);
         sin = (TextView) findViewById(R.id.sin);
 

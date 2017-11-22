@@ -3,9 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="15dp">
+>
 
 <RelativeLayout
+    android:id="@+id/log"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -26,6 +27,7 @@
 
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -85,7 +87,7 @@
             android:layout_gravity="right"
             android:layout_marginLeft="@dimen/text_left"
             android:layout_marginRight="@dimen/text_right"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/forget_password"
             android:text="Forgot Password?"
             android:textColor="#212121"
@@ -100,7 +102,7 @@
             android:layout_marginBottom="28dp"
             android:layout_marginLeft="@dimen/text_left"
             android:layout_marginRight="@dimen/text_right"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/angle"
             android:gravity="center"
             android:padding="16dp"
