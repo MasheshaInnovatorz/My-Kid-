@@ -45,7 +45,7 @@ public class KidsmemoListAdapter extends RecyclerView.Adapter<KidsmemoListAdapte
     public void onBindViewHolder(ViewHolder holder, int position) {
         MemokidsUpload_class upload = uploads.get(position);
 
-        holder.textviewSenderid.setText("Uploaded by: " + upload.getName());
+        holder.textviewSenderid.setText("Uploaded by: " + upload.getPersonUploaded());
         holder.textViewTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm)",
                 upload.getTimeUploaded()));
 
