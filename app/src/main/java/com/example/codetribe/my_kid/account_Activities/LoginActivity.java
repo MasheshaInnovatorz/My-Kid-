@@ -75,8 +75,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
-        editEmail = (EditText) findViewById(R.id.email);
-        editPassword = (EditText) findViewById(R.id.password);
+        editEmail = (EditText) findViewById(R.id.login_email);
+        editPassword = (EditText) findViewById(R.id.login_password);
         forgot = (TextView) findViewById(R.id.forget_password);
         login_Button = (TextView) findViewById(R.id.login);
 
@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         // awesomeValidation.addValidation(this, R.id.password, "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\\\d])(?=.*[~`!@#\\\\$%\\\\^&\\\\*\\\\(\\\\)\\\\-_\\\\+=\\\\{\\\\}\\\\[\\\\]\\\\|\\\\;:\\\"<>,./\\\\?]).{8,}", R.string.passworderror);
-        awesomeValidation.addValidation(this, R.id.email, Patterns.EMAIL_ADDRESS, R.string.emailerror);
+        awesomeValidation.addValidation(this, R.id.login_email, Patterns.EMAIL_ADDRESS, R.string.emailerror);
 
         //firebase
 

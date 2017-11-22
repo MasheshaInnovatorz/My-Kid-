@@ -87,7 +87,7 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
         progressDialog = new ProgressDialog(this);
 
         btnSignUp = (TextView) findViewById(R.id.sinup);
-        inputEmail = (EditText) findViewById(R.id.email);
+        inputEmail = (EditText) findViewById(R.id.sign_up_email);
         inputPassword = (EditText) findViewById(R.id.signupPassword);
         kidsIdno = (EditText)findViewById(R.id.KidIdNumber);
 
@@ -95,7 +95,7 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
         // mainNav = (TextView)findViewById(R.id.login);
 
         //awesomeValidation.addValidation(this, R.id.signupPassword, "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\\\d])(?=.*[~`!@#\\\\$%\\\\^&\\\\*\\\\(\\\\)\\\\-_\\\\+=\\\\{\\\\}\\\\[\\\\]\\\\|\\\\;:\\\"<>,./\\\\?]).{8,}", R.string.passworderror);
-        awesomeValidation.addValidation(this, R.id.email, Patterns.EMAIL_ADDRESS, R.string.emailerror);
+        awesomeValidation.addValidation(this, R.id.sign_up_email, Patterns.EMAIL_ADDRESS, R.string.emailerror);
         awesomeValidation.addValidation(this, R.id.KidIdNumber, "^^[0-9]{13}$", R.string.iderror);
 
         orgNameList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

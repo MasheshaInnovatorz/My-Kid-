@@ -31,7 +31,8 @@
              />
         <activity
             android:name=".account_Activities.ResetPassword"
-            android:theme="@style/AppTheme.LoginStyle" />
+    />
+
         <activity android:name=".parent_Activities.CreateParentProfile" />
         <activity android:name=".kids_Activities.KidsmemoListsActivity" />
         <activity android:name=".kids_Activities.UploadKidsMemo" />

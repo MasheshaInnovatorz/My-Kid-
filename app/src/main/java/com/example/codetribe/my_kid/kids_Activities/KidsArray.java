@@ -38,7 +38,7 @@ public class KidsArray extends ArrayAdapter<Kids> {
 
         TextView textKdName = (TextView) listViewItem.findViewById(R.id.textKidsName);
 
-        TextView textClass = (TextView) listViewItem.findViewById(R.id.textClass);
+      //  TextView textClass = (TextView) listViewItem.findViewById(R.id.textClass);
         ImageView kidsImage = (ImageView) listViewItem.findViewById(R.id.adminTeacher_Pic);
 
 
@@ -47,9 +47,12 @@ public class KidsArray extends ArrayAdapter<Kids> {
         if (kids.getProfilePic() != "") {
             Glide.with(getContext()).load(kids.getProfilePic()).centerCrop().into(kidsImage);
         }
-        textKdName.setText(kids.getName() + " " + kids.getSurname());
+        else {
+            kidsImage.setImageResource(R.drawable.ic_person_black_24dp);
+        }
+        textKdName.setText(kids.getName() + " " + kids.getSurname() );
         // surname.setText(kids.getSurname());
-        textClass.setText(kids.getKidsGrade());
+       // textClass.setText(kids.getKidsGrade());
 
         return listViewItem;
     }
