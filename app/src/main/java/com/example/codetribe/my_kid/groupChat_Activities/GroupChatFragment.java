@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.codetribe.my_kid.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -72,7 +73,12 @@ public class GroupChatFragment extends Fragment {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                messageSend();
+                if (messageArea.getText().toString().trim().equals("")) {
+                    Toast.makeText(getContext(), "Please input some text...", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    messageSend();
+                }
             }
         });
 

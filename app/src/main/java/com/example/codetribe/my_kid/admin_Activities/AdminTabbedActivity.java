@@ -9,9 +9,13 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.codetribe.my_kid.R;
+import com.example.codetribe.my_kid.aboutUs_Activity.AboutUs;
 import com.example.codetribe.my_kid.account_Activities.LoginActivity;
+import com.example.codetribe.my_kid.account_Activities.ViewProfile;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class AdminTabbedActivity extends AppCompatActivity {
@@ -47,7 +51,7 @@ public class AdminTabbedActivity extends AppCompatActivity {
     }
 
 
-   /* @Override
+ @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_admin_tabbed, menu);
@@ -79,17 +83,10 @@ public class AdminTabbedActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.menu_admin_logout) {
             logout();
-            return true;
-        } else if (id == R.id.menu_adimin_profile) {
-            Intent intent = new Intent(AdminTabbedActivity.this, ViewProfile.class);
-            startActivity(intent);
-            return true;
         }
-
-
         return super.onOptionsItemSelected(item);
     }
-*/
+
 
 
     /**

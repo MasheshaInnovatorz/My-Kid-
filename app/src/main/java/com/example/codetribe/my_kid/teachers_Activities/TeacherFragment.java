@@ -17,6 +17,7 @@ import com.example.codetribe.my_kid.R;
 import com.example.codetribe.my_kid.kids_Activities.Kids;
 import com.example.codetribe.my_kid.kids_Activities.KidsArray;
 import com.example.codetribe.my_kid.kids_Activities.KidsmemoListsActivity;
+import com.google.common.cache.AbstractCache;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,10 +40,11 @@ public class TeacherFragment extends Fragment {
     //initialization for kids
     private ListView listViewKids;
     private List<Kids> kid;
-
+    private int counter = 0;
     private String org_name,orgname;
     private String userId, idLoged;
     private FirebaseAuth fireAuth;
+    private TextView countnumber;
 
     //database
     private DatabaseReference kidsRetriveRef, creachRef, orgNameReference, roleRefer;
@@ -52,6 +54,7 @@ public class TeacherFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_teachers, container, false);
 
+        countnumber  =(TextView) rootView.findViewById(R.id.totalkids);
 
         listViewKids = (ListView) rootView.findViewById(R.id.listViewkids);
         fireAuth = FirebaseAuth.getInstance();
@@ -83,6 +86,7 @@ public class TeacherFragment extends Fragment {
                         for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()) {
                             if (kidssnapshot.child("kidsGrade").getValue().toString().equals(org_name)) {
                                 if(kidssnapshot.child("orgName").getValue().toString().equals(orgname)) {
+                                   counter++;
                                     Kids kidInf = kidssnapshot.getValue(Kids.class);
                                     kid.add(kidInf);
                                     //    Toast.makeText(TeachersActivity.this,kidInf.getId(), Toast.LENGTH_SHORT).show();
@@ -91,6 +95,7 @@ public class TeacherFragment extends Fragment {
 
                             }
                         }
+                        countnumber.setText("Total kids : " + counter);
                         KidsArray trackListAdapter = new KidsArray(getActivity(), kid);
                         listViewKids.setAdapter(trackListAdapter);
                     }
