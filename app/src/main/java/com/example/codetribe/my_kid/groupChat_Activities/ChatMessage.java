@@ -20,7 +20,6 @@ public class ChatMessage {
         this.message = message;
         this.name = name;
         this.userId = userId;
-
         this.time = new Date().getTime();
 
     }

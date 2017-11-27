@@ -2,6 +2,7 @@ package com.example.codetribe.my_kid.groupChat_Activities;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -91,10 +92,10 @@ public class GroupChatFragment extends Fragment {
 
 
                             if (owhsom.child("userId").getValue().toString().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
-                                addMessageBox(chatFax.getName().toString() + "\n" + chatFax.getMessage(), 1);
+                                addMessageBox(chatFax.getName().toString() + "\n" + chatFax.getMessage(), 1,chatFax);
 
                             } else {
-                                addMessageBox(chatFax.getName().toString() + "\n" + chatFax.getMessage(), 2);
+                                addMessageBox(chatFax.getName().toString() + "\n" + chatFax.getMessage(), 2,chatFax);
                             }
 
 
@@ -159,13 +160,8 @@ public class GroupChatFragment extends Fragment {
 
     public void messageSend() {
 
-        ChatMessage chatMessage = new ChatMessage();
+        ChatMessage chatMessage = new ChatMessage(messageArea.getText().toString(),FirebaseAuth.getInstance().getCurrentUser().getEmail(),0,FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-
-        chatMessage.setMessage(messageArea.getText().toString());
-        chatMessage.setName(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-        chatMessage.setTime(0);
-        chatMessage.setUserId(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
 
         databaseReference.push().setValue(chatMessage);
@@ -173,19 +169,25 @@ public class GroupChatFragment extends Fragment {
 
 
     }
-    public void addMessageBox(String message, int type){
+    public void addMessageBox(String message, int type, ChatMessage chat){
         TextView textView = new TextView(getActivity());
-        textView.setText(message);
+
+
+        textView.setText(DateFormat.format("dd-MM-yyyy (HH:mm)",chat.getTime()) +"\n" + message );
+
+
 
         LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         lp2.weight = 1.0f;
 
         if(type == 1) {
             lp2.gravity = Gravity.LEFT;
+
             textView.setBackgroundResource(R.drawable.bubble_in);
         }
         else{
             lp2.gravity = Gravity.RIGHT;
+
             textView.setBackgroundResource(R.drawable.bubble_out);
         }
         textView.setLayoutParams(lp2);
