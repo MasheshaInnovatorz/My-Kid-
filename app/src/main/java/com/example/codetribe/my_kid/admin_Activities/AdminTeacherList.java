@@ -53,7 +53,7 @@ public class AdminTeacherList extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_teachers, container, false);
+        View rootView = inflater.inflate(R.layout.activityteacherslist, container, false);
 
 
         coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.cordinatelayout);
@@ -63,7 +63,7 @@ public class AdminTeacherList extends Fragment {
       userTeacher = (FloatingActionButton) rootView.findViewById(R.id.add_teacher_admin);
 
 
-        listUsers = (ListView) rootView.findViewById(R.id.listViewkids);
+        listUsers = (ListView) rootView.findViewById(R.id.teacherlistView);
 
         Idadmin = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -141,10 +141,6 @@ public class AdminTeacherList extends Fragment {
         if (item.getTitle() == "Teacher Information") {
             Toast.makeText(getContext(), "Teacher Information", Toast.LENGTH_SHORT).show();
         }
-
-       // else if (item.getTitle() == "Parent Information") {
-       //     Toast.makeText(getContext(), "Parent Information", Toast.LENGTH_SHORT).show();
-       // }
 
         else {
             return false;

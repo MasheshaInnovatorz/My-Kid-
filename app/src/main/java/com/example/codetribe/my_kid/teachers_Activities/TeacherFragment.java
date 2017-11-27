@@ -31,7 +31,6 @@ import java.util.List;
 public class TeacherFragment extends Fragment {
 
     private String userKey, teacherRole;
-    //public static final String ARTIST_ID = "artistid";
     private TextView add_Kids;
 
     //initialization for kids
@@ -41,16 +40,17 @@ public class TeacherFragment extends Fragment {
     private String org_name,orgname;
     private String userId, idLoged;
     private FirebaseAuth fireAuth;
+
     //database
     private DatabaseReference kidsRetriveRef, creachRef, orgNameReference, roleRefer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_kids, container, false);
+        View rootView = inflater.inflate(R.layout.activity_teachers, container, false);
 
 
-        listViewKids = (ListView) rootView.findViewById(R.id.listViewkidss);
+        listViewKids = (ListView) rootView.findViewById(R.id.listViewkids);
         fireAuth = FirebaseAuth.getInstance();
 
         kid = new ArrayList<>();
@@ -58,11 +58,7 @@ public class TeacherFragment extends Fragment {
 
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         orgNameReference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
-        //roleRefer = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("role");
 
-        //kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Kids").child(userKey);
-
-        //kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Kids");
         creachRef = FirebaseDatabase.getInstance().getReference().child("Creche");
 
         kidsRetriveRef = FirebaseDatabase.getInstance().getReference("Kids");
@@ -111,6 +107,7 @@ public class TeacherFragment extends Fragment {
 
        // registerForContextMenu(listViewKids);
 
+<<<<<<< HEAD
         listViewKids.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -123,6 +120,8 @@ public class TeacherFragment extends Fragment {
             }
         });
 
+=======
+>>>>>>> 83eaabf26f6e851cdf5b47a3bc670dfd7937547f
 
         return rootView;
     }

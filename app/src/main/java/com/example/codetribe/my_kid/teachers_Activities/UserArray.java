@@ -26,6 +26,7 @@ public class UserArray extends ArrayAdapter<TeacherClassAcc> {
     private List<TeacherClassAcc> userList;
     private FirebaseUser user;
 
+    ImageView imageProf;
 
     public UserArray(Activity context, List<TeacherClassAcc> userList) {
         super(context, R.layout.list_layout, userList);
@@ -41,23 +42,25 @@ public class UserArray extends ArrayAdapter<TeacherClassAcc> {
 
         View listViewItem = inflater.inflate(R.layout.admin_and_kids_list, null, true);
         TextView textKdName = (TextView) listViewItem.findViewById(R.id.textKidsName);
-        TextView userClass = (TextView) listViewItem.findViewById(R.id.textClass);
-        ImageView imageProf = (ImageView) listViewItem.findViewById(R.id.adminTeacher_Pic);
+       // TextView userClass = (TextView) listViewItem.findViewById(R.id.textClass);
+        imageProf = (ImageView) listViewItem.findViewById(R.id.adminTeacher_Pic);
 
 
 
         TeacherClassAcc users = userList.get(position);
 
         if(users.getUserProfilePic() !=null) {
-
             Glide.with(context).load(users.getUserProfilePic())
                     .thumbnail(0.5f).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imageProf);
-
         }
+        else {
+            imageProf.setImageResource(R.drawable.ic_person_black_24dp);
+        }
+
         textKdName.setText(users.getUserSurname() + " " + users.getUserName());
         //surname.setText(kids.getUserSurname());
-        userClass.setText(users.getTeacherClassroom());
+      //  userClass.setText(users.getTeacherClassroom());
 
         return listViewItem;
     }

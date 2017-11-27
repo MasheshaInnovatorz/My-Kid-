@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/email"
+                    android:id="@+id/sign_up_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/text_left"
@@ -143,10 +143,10 @@
                 android:layout_marginBottom="28dp"
                 android:layout_marginLeft="@dimen/text_left"
                 android:layout_marginRight="@dimen/text_right"
+                android:padding="@dimen/button_padding"
                 android:layout_marginTop="32dp"
                 android:background="@drawable/angle"
                 android:gravity="center"
-                android:padding="10dp"
                 android:text="Create Account"
                 android:textColor="#fff"
                 android:textSize="16dp" />
@@ -154,19 +154,6 @@
         </LinearLayout>
     </ScrollView>
 
-
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/send"
-        android:src="@drawable/ic_insert_photo_black_24dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="@dimen/fab_margin"
-        android:background="#FF5722"
-        />
 
 
 </RelativeLayout>

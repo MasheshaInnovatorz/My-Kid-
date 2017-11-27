@@ -109,9 +109,6 @@ public class CreateTeacherAccount extends AppCompatActivity {
         keyTeacher = intent.getStringExtra("User_KEY");
 
 
-        // useremail = (EditText) findViewById(R.id.teacheremail);
-        //  userpassword = (EditText) findViewById(R.id.teacherpassword);
-        //createteacher = (TextView) findViewById(R.id.Create_Teacher_Account);
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
         //database
@@ -129,13 +126,16 @@ public class CreateTeacherAccount extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         String org_name = dataSnapshot.getValue(String.class);
                         if (awesomeValidation.validate()) {
+
+                          //   progressDialog.setMessage("Wait While Adding Teacher");
+                            // progressDialog.show();
                             saveParent(org_name);
+                             //progressDialog.dismiss();
                         } else {
 
                             Toast.makeText(CreateTeacherAccount.this, "Make sure you fix all the error shown in your input space", Toast.LENGTH_LONG).show();
                         }
                     }
-
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
 
@@ -174,13 +174,11 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                 int selectedId = gender.getCheckedRadioButtonId();
 
-                /*progressDialog.setMessage("Wait While Adding Teacher");
-                progressDialog.show();*/
+
 
                 if (selectedId != -1) {
 
-                   // progressDialog.setMessage("Wait While Adding Teacher");
-                   // progressDialog.show();
+
 
                     gnrteacher = (RadioButton) findViewById(selectedId);
                     usergenderString = gnrteacher.getText().toString().trim();
@@ -202,23 +200,19 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                                         mDatabaseRef.child(task.getResult().getUser().getUid().toString().trim()).setValue(teacher);
 
-                                        Toast.makeText(CreateTeacherAccount.this, "Teacher Registration Successfull" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
-
-                                        auth.signOut();
-                                        // startActivity(new Intent(getApplication(), AdminTabbedActivity.class));
-
+                                     //   Toast.makeText(CreateTeacherAccount.this, "Teacher Registration Successfull" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
 
                                     }
 
                                     if (!task.isSuccessful()) {
-                                        Toast.makeText(CreateTeacherAccount.this, "Authentication failed." + task.getException(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(CreateTeacherAccount.this, "Authentication failed." , Toast.LENGTH_SHORT).show();
 
                                     } else {
                                         // startActivity(new Intent(Create_Teacher_Account.this, LoginActivity.class));
-
+                                        Toast.makeText(CreateTeacherAccount.this, "Teacher Registration Successfull" , Toast.LENGTH_SHORT).show();
                                         finish();
                                     }
-                                   // progressDialog.dismiss();
+
                                 }
 
                             });

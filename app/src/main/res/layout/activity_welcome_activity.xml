@@ -3,100 +3,61 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <TextView
-            android:id="@+id/signupforfree"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/sin"
-            android:layout_alignEnd="@+id/sin"
-            android:layout_alignStart="@+id/sin"
-            android:layout_marginBottom="73dp"
-            android:background="@drawable/angle"
-            android:gravity="center"
-            android:padding="16dp"
-            android:text="Sign Up"
-            android:textColor="#fff"
-            android:textSize="16dp" />
+    <TextView
+        android:id="@+id/signupforfree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/sin"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="54dp"
+        android:background="@drawable/angle"
+        android:gravity="center"
+        android:padding="@dimen/button_padding"
+        android:layout_marginLeft="@dimen/text_left"
+        android:layout_marginRight="@dimen/text_right"
+        android:text="Sign Up"
+        android:textColor="#fff"
+        android:textSize="16dp" />
 
-        <TextView
-            android:id="@+id/sin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="28dp"
-            android:layout_marginLeft="@dimen/text_left"
-            android:layout_marginRight="@dimen/text_right"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/angle"
-            android:gravity="center"
-            android:padding="16dp"
-            android:text="Log In"
-            android:textColor="#fff"
-            android:textSize="16dp" />
+    <TextView
+        android:id="@+id/sin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/angle"
+        android:gravity="center"
+        android:layout_marginLeft="@dimen/text_left"
+        android:layout_marginRight="@dimen/text_right"
+        android:text="Log In"
+        android:padding="@dimen/button_padding"
+        android:textColor="#fff"
+        android:textSize="16dp" />
 
 
-        <TextView
-            android:id="@+id/imac"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="60dp"
-            android:gravity="center"
-            android:text="Welcome to Kids Creatives"
-            android:textColor="#448AFF"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/imac"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="23dp"
+        android:gravity="center"
+        android:text="Welcome to Kids Creatives"
+        android:textColor="#448AFF"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="160dp"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/imac"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/mykidicon" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imac"
+        android:src="@drawable/mykidicon" />
 
     </RelativeLayout>
 
 
 
 
-        <!--
-        <LinearLayout
-            android:id="@+id/signup_welcome"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="68dp"
-            android:background="@drawable/circleangle"
-            android:orientation="horizontal"
-            android:padding="16dp">
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="1dp">
-
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:paddingLeft="3dp"
-                    android:src="@drawable/kidlogo" />
-            </FrameLayout>
-
-            <TextView
-                android:id="@+id/signupforfree1"
-                android:layout_width="167dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="16dp"
-                android:text="Sign Up "
-                android:textColor="#fff"
-                android:textSize="22dp" />
-        </LinearLayout>
-
-        -->

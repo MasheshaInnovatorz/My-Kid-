@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -74,16 +75,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
-        editEmail = (EditText) findViewById(R.id.email);
-        editPassword = (EditText) findViewById(R.id.password);
+        editEmail = (EditText) findViewById(R.id.login_email);
+        editPassword = (EditText) findViewById(R.id.login_password);
         forgot = (TextView) findViewById(R.id.forget_password);
         login_Button = (TextView) findViewById(R.id.login);
 
         input_email = (TextInputLayout) findViewById(R.id.input_reg_fullname);
 
 
-       // awesomeValidation.addValidation(this, R.id.password, "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\\\d])(?=.*[~`!@#\\\\$%\\\\^&\\\\*\\\\(\\\\)\\\\-_\\\\+=\\\\{\\\\}\\\\[\\\\]\\\\|\\\\;:\\\"<>,./\\\\?]).{8,}", R.string.passworderror);
-        awesomeValidation.addValidation(this, R.id.email, Patterns.EMAIL_ADDRESS, R.string.emailerror);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Log In");
+
+
+        // awesomeValidation.addValidation(this, R.id.password, "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\\\d])(?=.*[~`!@#\\\\$%\\\\^&\\\\*\\\\(\\\\)\\\\-_\\\\+=\\\\{\\\\}\\\\[\\\\]\\\\|\\\\;:\\\"<>,./\\\\?]).{8,}", R.string.passworderror);
+        awesomeValidation.addValidation(this, R.id.login_email, Patterns.EMAIL_ADDRESS, R.string.emailerror);
 
         //firebase
 
@@ -251,5 +257,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
             });
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+
+            this.finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
