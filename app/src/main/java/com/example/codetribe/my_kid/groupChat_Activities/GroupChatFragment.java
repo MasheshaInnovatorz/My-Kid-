@@ -1,5 +1,6 @@
 package com.example.codetribe.my_kid.groupChat_Activities;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.format.DateFormat;
@@ -33,13 +34,14 @@ public class GroupChatFragment extends Fragment {
     FirebaseAuth firebaseAuth;
     private FirebaseUser user;
     DatabaseReference databaseReference, userRef, userReference;
-    LinearLayout layout;
-    RelativeLayout layout_2;
+    LinearLayout chat_right;
+    RelativeLayout chat_left;
     ImageView sendButton;
     EditText messageArea;
     ScrollView scrollView;
 
-
+    //progress dialog
+    private ProgressDialog progressDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,21 +50,24 @@ public class GroupChatFragment extends Fragment {
 
 
         firebaseAuth = FirebaseAuth.getInstance();
-
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
+        progressDialog = new ProgressDialog(getContext());
 
-        layout = (LinearLayout) rootView.findViewById(R.id.layout1);
-        layout_2 = (RelativeLayout) rootView.findViewById(R.id.layout2);
+        chat_right = (LinearLayout) rootView.findViewById(R.id.chat_right);
+        chat_left = (RelativeLayout) rootView.findViewById(R.id.chat_left);
+
         sendButton = (ImageView) rootView.findViewById(R.id.sendButton);
         messageArea = (EditText) rootView.findViewById(R.id.messageArea);
         scrollView = (ScrollView) rootView.findViewById(R.id.scrollView);
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("groupChat");
-        userReference = FirebaseDatabase.getInstance().getReference().child("groupChat");
-
         userRef = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseAuth.getCurrentUser().getUid());
+
+
+
+
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +85,10 @@ public class GroupChatFragment extends Fragment {
 
     void messageRecieved() {
 
+        //load msgs
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Please wait While Loading Chat messages");
+        progressDialog.show();
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -108,90 +117,37 @@ public class GroupChatFragment extends Fragment {
                     }
                 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-       /* messagelist = (ListView) rootView.findViewById(R.id.mess_list);
-        btnSend = (ImageView) rootView.findViewById(R.id.buttonsend);
-        editText = (EditText) rootView.findViewById(R.id.mess_text);
-
-        // databaseReference = FirebaseDatabase.getInstance().getReference().child("groupChatnw");
-        //set ListView adapter first
-        adapter = new MessageAdapter(getActivity(), R.layout.item_chat_left, chatMessages);
-        messagelist.setAdapter(adapter);
-
-        //event for button SEND
-        btnSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (editText.getText().toString().trim().equals("")) {
-                    Toast.makeText(getContext(), "Please input some text...", Toast.LENGTH_SHORT).show();
-                } else {
-                    //add message to list
-
-
-                    adapter.notifyDataSetChanged();
-                    editText.setText("");
-                    if (isMine) {
-                        isMine = false;
-                    } else {
-                        isMine = true;
-                    }
-                }
-            }
-        });
-*/
-
-
+        progressDialog.dismiss();
     }
 
 
     public void messageSend() {
 
         ChatMessage chatMessage = new ChatMessage(messageArea.getText().toString(),FirebaseAuth.getInstance().getCurrentUser().getEmail(),0,FirebaseAuth.getInstance().getCurrentUser().getUid());
-
-
-
         databaseReference.push().setValue(chatMessage);
-
-
 
     }
     public void addMessageBox(String message, int type, ChatMessage chat){
-        TextView textView = new TextView(getActivity());
-
-
-        textView.setText(DateFormat.format("dd-MM-yyyy (HH:mm)",chat.getTime()) +"\n" + message );
+        TextView msg = new TextView(getActivity());
+        msg.setText(DateFormat.format("dd-MM-yyyy (HH:mm)",chat.getTime()) +"\n" + message );
 
 
 
-        LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        lp2.weight = 1.0f;
+        LinearLayout.LayoutParams textmsg = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        textmsg.weight = 1.0f;
 
         if(type == 1) {
-            lp2.gravity = Gravity.LEFT;
+            textmsg.gravity = Gravity.LEFT;
 
-            textView.setBackgroundResource(R.drawable.bubble_in);
+            msg.setBackgroundResource(R.drawable.bubble_in);
         }
         else{
-            lp2.gravity = Gravity.RIGHT;
+            textmsg.gravity = Gravity.RIGHT;
 
-            textView.setBackgroundResource(R.drawable.bubble_out);
+            msg.setBackgroundResource(R.drawable.bubble_out);
         }
-        textView.setLayoutParams(lp2);
-        layout.addView(textView);
+        msg.setLayoutParams(textmsg);
+        chat_right.addView(msg);
         scrollView.fullScroll(View.FOCUS_DOWN);
     }
 
