@@ -6,11 +6,7 @@
     android:gravity="bottom"
     android:orientation="horizontal"
     >
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> 46b5b1547efabd236c8e77fcb8f02f1473d4bfa9
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/linearLayout7"
         android:layout_width="match_parent"
