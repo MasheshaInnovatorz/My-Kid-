@@ -3,15 +3,12 @@ package com.example.codetribe.my_kid.teachers_Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.codetribe.my_kid.R;
 import com.example.codetribe.my_kid.kids_Activities.Kids;
@@ -108,9 +105,27 @@ public class TeacherFragment extends Fragment {
             }
         });
 
-        registerForContextMenu(listViewKids);
+       // registerForContextMenu(listViewKids);
 
+<<<<<<< HEAD
         listViewKids.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+=======
+<<<<<<< HEAD
+        listViewKids.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Kids kido = kid.get(i);
+                Intent intent = new Intent(getContext(), KidsmemoListsActivity.class);
+                intent.putExtra("kid_id", kido.getId());
+                intent.putExtra("user_role", teacherRole);
+                startActivity(intent);
+            }
+        });
+
+=======
+>>>>>>> 83eaabf26f6e851cdf5b47a3bc670dfd7937547f
+>>>>>>> 1d4bf809acfb3392a0fae065ff21260dfe63c6bc
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -125,8 +140,12 @@ public class TeacherFragment extends Fragment {
     }
 
 
+<<<<<<< HEAD
 
     @Override
+=======
+  /*  @Override
+>>>>>>> 1d4bf809acfb3392a0fae065ff21260dfe63c6bc
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         menu.setHeaderTitle("???");
@@ -144,6 +163,6 @@ public class TeacherFragment extends Fragment {
             return false;
         }
         return true;
-    }
+    }*/
 
 }

@@ -1,56 +1,68 @@
 package com.example.codetribe.my_kid.groupChat_Activities;
 
+import java.util.Date;
+
 /**
  * Created by mudau on 11/9/2017.
  */
-import java.util.Date;
-
 public class ChatMessage {
-    private String messageText;
-    private String messageUser;
-    private String messageUserId;
-    private long messageTime;
 
-    public ChatMessage(String messageText, String messageUser, String messageUserId) {
-        this.messageText = messageText;
-        this.messageUser = messageUser;
-        messageTime = new Date().getTime();
-        this.messageUserId = messageUserId;
+    String message;
+    String name;
+    long time;
+    Boolean btn;
+    String userId;
+
+    public ChatMessage() {
     }
 
-    public ChatMessage(){
+    public ChatMessage(String message, String name, long time, String userId) {
+        this.message = message;
+        this.name = name;
+        this.userId = userId;
+
+        this.time = new Date().getTime();
 
     }
 
-    public String getMessageUserId() {
-        return messageUserId;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setMessageUserId(String messageUserId) {
-        this.messageUserId = messageUserId;
+    public String getMessage() {
+        return message;
     }
 
-    public String getMessageText() {
-        return messageText;
+    public String getName() {
+        return name;
     }
 
-    public void setMessageText(String messageText) {
-        this.messageText = messageText;
+    public long getTime() {
+        return time;
     }
 
-    public String getMessageUser() {
-        return messageUser;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public void setMessageUser(String messageUser) {
-        this.messageUser = messageUser;
+    public void setIsmne(Boolean v) {
+        btn = v;
     }
 
-    public long getMessageTime() {
-        return messageTime;
+    public Boolean isMine() {
+
+        return btn;
     }
 
-    public void setMessageTime(long messageTime) {
-        this.messageTime = messageTime;
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
     }
 }
