@@ -2,12 +2,7 @@ package com.example.codetribe.my_kid.groupChat_Activities;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-<<<<<<< HEAD
-import android.text.format.DateFormat;
-import android.util.Log;
-=======
 import android.view.Gravity;
->>>>>>> 1d4bf809acfb3392a0fae065ff21260dfe63c6bc
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 /**
  * Created by CodeTribe on 10/24/2017.
  */
@@ -44,21 +40,6 @@ public class GroupChatFragment extends Fragment {
 
 
 
-<<<<<<< HEAD
-=======
-=======
-    ImageView send;
-    EditText messgae;
-    ListView messagelist;
-    FirebaseListAdapter<Chat> firebaseListAdapter;
-<<<<<<< HEAD
-    int i = 0;
-
-=======
-    int i=0;
->>>>>>> 83eaabf26f6e851cdf5b47a3bc670dfd7937547f
->>>>>>> 1d4bf809acfb3392a0fae065ff21260dfe63c6bc
->>>>>>> 15a04d8e3f5e3bbd69e1c1cd79afd1c1a3c25345
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -67,16 +48,9 @@ public class GroupChatFragment extends Fragment {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-<<<<<<< HEAD
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
-        send = (ImageView) rootView.findViewById(R.id.buttonsend);
-        // send = (Button) rootView.findViewById(R.id.buttonsend);
-        messgae = (EditText) rootView.findViewById(R.id.mess_text);
-        messagelist = (ListView) rootView.findViewById(R.id.mess_list);
-=======
->>>>>>> 1d4bf809acfb3392a0fae065ff21260dfe63c6bc
 
         layout = (LinearLayout) rootView.findViewById(R.id.layout1);
         layout_2 = (RelativeLayout) rootView.findViewById(R.id.layout2);
@@ -96,57 +70,26 @@ public class GroupChatFragment extends Fragment {
             }
         });
 
-<<<<<<< HEAD
         messageRecieved();
         return rootView;
     }
 
 
-    void messageSend() {
-        databaseReference.push().setValue(new Chat(messgae.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(), 0,FirebaseAuth.getInstance().getCurrentUser().getUid()));
-        messgae.setText(" ");
-=======
-        //messageRecieved();
-
-        return rootView;
-
-
-<<<<<<< HEAD
-    }
-
-    public void messageRecieved() {
-
-
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 1d4bf809acfb3392a0fae065ff21260dfe63c6bc
-    }
 
 
     void messageRecieved() {
 
-        firebaseListAdapter = new FirebaseListAdapter<Chat>(getActivity(), Chat.class, R.layout.item_chat_right, databaseReference) {
-            @Override
-<<<<<<< HEAD
-            protected void populateView(View v, Chat model, int position) {
-                if(model.getName() == "lufuno@gmail.com") {
-=======
-            public void onDataChange(final DataSnapshot userSnapshot) {
->>>>>>> 83eaabf26f6e851cdf5b47a3bc670dfd7937547f
->>>>>>> 15a04d8e3f5e3bbd69e1c1cd79afd1c1a3c25345
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-
 
                         for (DataSnapshot owhsom : dataSnapshot.getChildren()) {
 
 
                             ChatMessage chatFax = owhsom.getValue(ChatMessage.class);
 
-<<<<<<< HEAD
+
                             if (owhsom.child("userId").getValue().toString().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
                                 addMessageBox(chatFax.getName().toString() + "\n" + chatFax.getMessage(), 1);
 
@@ -157,88 +100,22 @@ public class GroupChatFragment extends Fragment {
 
                         }
                     }
-=======
-                            }else{
-                                i=0;
-                            }
 
-                            if(i==1){
-                                firebaseListAdapter = new FirebaseListAdapter<Chat>(getActivity(), Chat.class, R.layout.item_chat_right, databaseReference) {
-                                    @Override
-                                    protected void populateView(View v, Chat model, int position) {
-                                        ((TextView) v.findViewById(R.id.msg)).setText(model.getMessage());
-                                        // ((TextView) v.findViewById(R.id.sendname)).setText(model.getName());
-                                        //  ((TextView) v.findViewById(R.id.time)).setText(DateFormat.format("dd-MM-yyyy (HH:mm)",
-                                        //    model.getTime()));
-                                    }
-                                };
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
-                                messagelist.setAdapter(firebaseListAdapter);
-                                messagelist.setTranscriptMode(ListView.TRANSCRIPT_MODE_NORMAL);
-                                messagelist.setStackFromBottom(true);
-                            }else {
->>>>>>> 83eaabf26f6e851cdf5b47a3bc670dfd7937547f
->>>>>>> 1d4bf809acfb3392a0fae065ff21260dfe63c6bc
-
-                    ((TextView) v.findViewById(R.id.msg)).setText(model.getMessage());
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-                                firebaseListAdapter = new FirebaseListAdapter<Chat>(getActivity(), Chat.class, R.layout.item_chat_left, databaseReference) {
-                                    @Override
-                                    protected void populateView(View v, Chat model, int position) {
-                                        ((TextView) v.findViewById(R.id.msg)).setText(model.getMessage());
-                                        // ((TextView) v.findViewById(R.id.sendname)).setText(model.getName());
-                                        //  ((TextView) v.findViewById(R.id.time)).setText(DateFormat.format("dd-MM-yyyy (HH:mm)",
-                                        //    model.getTime()));
-                                    }
-                                };
->>>>>>> 1d4bf809acfb3392a0fae065ff21260dfe63c6bc
-
-                }else
-                {
-                  position = R.layout.item_chat_left;
-                    ((TextView) v.findViewById(R.id.msg)).setText(model.getMessage());
-
-                }
-
-            }
-        };
-/*
-        firebaseListAdapter = new FirebaseListAdapter<Chat>(getActivity(), Chat.class, R.layout.item_chat_left, databaseReference) {
-            @Override
-            protected void populateView(View v, Chat model, int position) {
-                if(!model.getName().equals("lufuno@gmail.com"))
-                    ((TextView) v.findViewById(R.id.msg)).setText(model.getMessage());
-                // ((TextView) v.findViewById(R.id.sendname)).setText(model.getName());
-                //  ((TextView) v.findViewById(R.id.time)).setText(DateFormat.format("dd-MM-yyyy (HH:mm)",
-                //    model.getTime()));
-            }
-        };*/
-
-
->>>>>>> 83eaabf26f6e851cdf5b47a3bc670dfd7937547f
-
-
-        messagelist.setAdapter(firebaseListAdapter);
-        messagelist.setTranscriptMode(ListView.TRANSCRIPT_MODE_NORMAL);
-        messagelist.setStackFromBottom(true);
-
-      /*  messagelist.setAdapter(firebaseListAdapter);
-        messagelist.setTranscriptMode(ListView.TRANSCRIPT_MODE_NORMAL);
-        messagelist.setStackFromBottom(true);*/
->>>>>>> 15a04d8e3f5e3bbd69e1c1cd79afd1c1a3c25345
-
-<<<<<<< HEAD
-    }
-
-
-
-=======
                     }
                 });
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -315,7 +192,7 @@ public class GroupChatFragment extends Fragment {
         layout.addView(textView);
         scrollView.fullScroll(View.FOCUS_DOWN);
     }
->>>>>>> 1d4bf809acfb3392a0fae065ff21260dfe63c6bc
+
 }
 
 
