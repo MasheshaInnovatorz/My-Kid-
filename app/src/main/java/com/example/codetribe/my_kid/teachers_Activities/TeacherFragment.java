@@ -110,9 +110,20 @@ public class TeacherFragment extends Fragment {
 
         registerForContextMenu(listViewKids);
 
+        listViewKids.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Kids kido = kid.get(i);
+                Intent intent = new Intent(getContext(), KidsmemoListsActivity.class);
+                intent.putExtra("kid_id", kido.getId());
+                intent.putExtra("user_role", teacherRole);
+                startActivity(intent);
+            }
+        });
         return rootView;
     }
+
 
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.codetribe.my_kid.groupChat_Activities;
+package com.example.codetribe.my_kid.kids_Activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;

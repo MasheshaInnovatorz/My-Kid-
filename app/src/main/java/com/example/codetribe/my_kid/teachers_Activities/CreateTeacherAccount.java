@@ -127,10 +127,12 @@ public class CreateTeacherAccount extends AppCompatActivity {
                         String org_name = dataSnapshot.getValue(String.class);
                         if (awesomeValidation.validate()) {
 
-                          //   progressDialog.setMessage("Wait While Adding Teacher");
-                            // progressDialog.show();
+                           progressDialog.setMessage("Wait While Adding Teacher");
+                            progressDialog.show();
                             saveParent(org_name);
-                             //progressDialog.dismiss();
+                             progressDialog.dismiss();
+
+                            Toast.makeText(CreateTeacherAccount.this, "Teacher added", Toast.LENGTH_LONG).show();
                         } else {
 
                             Toast.makeText(CreateTeacherAccount.this, "Make sure you fix all the error shown in your input space", Toast.LENGTH_LONG).show();
@@ -178,8 +180,6 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                 if (selectedId != -1) {
 
-
-
                     gnrteacher = (RadioButton) findViewById(selectedId);
                     usergenderString = gnrteacher.getText().toString().trim();
 
@@ -188,19 +188,13 @@ public class CreateTeacherAccount extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
 
-
                                     if (task.isSuccessful()) {
-                                        //String user_id = task.getResult().getUser().getUid();
-                                        //firebase teacher database table
                                         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Users");
-
 
                                         //Storing Information
                                         TeacherClassAcc teacher = new TeacherClassAcc(userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, task.getResult().getUser().getUid().toString().trim(), task.getResult().getUser().getEmail().toString().trim(), password, role, "verified", orgNames, userAddressString, userCityString);
 
                                         mDatabaseRef.child(task.getResult().getUser().getUid().toString().trim()).setValue(teacher);
-
-                                     //   Toast.makeText(CreateTeacherAccount.this, "Teacher Registration Successfull" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
 
                                     }
 

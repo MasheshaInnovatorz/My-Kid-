@@ -146,7 +146,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onStart() {
         super.onStart();
+        progressDialog.setMessage("Wait While Logging In");
+        progressDialog.show();
         mFirebaseAuth.addAuthStateListener(mAuthListener);
+        progressDialog.dismiss();
     }
 
     @Override
