@@ -61,7 +61,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".account_Activities.UpdateProfile" />
         <activity android:name=".kids_Activities.KidsViewProfile" />
-        <activity android:name=".groupChat_Activities.EditKidsProfile" />
+        <activity android:name=".kids_Activities.EditKidsProfile" />
     </application>
 
 </manifest>

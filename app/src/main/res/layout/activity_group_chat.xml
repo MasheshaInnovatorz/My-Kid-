@@ -3,12 +3,16 @@
     android:id="@+id/activity_profile_acrivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
+    android:padding="5dp"
+=======
     android:background="#ffffff"
     android:paddingBottom="16dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     android:orientation="vertical"
+>>>>>>> 1d4bf809acfb3392a0fae065ff21260dfe63c6bc
     >
 
     <ScrollView

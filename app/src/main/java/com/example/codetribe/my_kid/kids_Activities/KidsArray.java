@@ -50,7 +50,7 @@ public class KidsArray extends ArrayAdapter<Kids> {
         else {
             kidsImage.setImageResource(R.drawable.ic_person_black_24dp);
         }
-        textKdName.setText(kids.getName() + " " + kids.getSurname() );
+        textKdName.setText(kids.getSurname()  + " " + kids.getName() +"\n" + "Class "+ kids.getKidsGrade()  );
         // surname.setText(kids.getSurname());
        // textClass.setText(kids.getKidsGrade());
 

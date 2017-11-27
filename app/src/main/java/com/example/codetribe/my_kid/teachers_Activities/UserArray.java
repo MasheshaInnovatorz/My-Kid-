@@ -27,9 +27,9 @@ public class UserArray extends ArrayAdapter<TeacherClassAcc> {
     private FirebaseUser user;
 
     ImageView imageProf;
-
+//changes layout
     public UserArray(Activity context, List<TeacherClassAcc> userList) {
-        super(context, R.layout.list_layout, userList);
+        super(context, R.layout.activityteacherslist, userList);
         this.context = context;
         this.userList = userList;
     }
@@ -58,8 +58,8 @@ public class UserArray extends ArrayAdapter<TeacherClassAcc> {
             imageProf.setImageResource(R.drawable.ic_person_black_24dp);
         }
 
-        textKdName.setText(users.getUserSurname() + " " + users.getUserName());
-        //surname.setText(kids.getUserSurname());
+        textKdName.setText(users.getUserSurname() + " " + users.getUserName() +"\n" + "Class "+ users.getTeacherClassroom());
+        //surname.setText(kids.getUserSurname());'
       //  userClass.setText(users.getTeacherClassroom());
 
         return listViewItem;

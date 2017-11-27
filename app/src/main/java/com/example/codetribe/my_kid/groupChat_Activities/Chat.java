@@ -8,20 +8,25 @@ import java.util.Date;
 
 public class Chat {
 
+    String userId;
     String message;
     String name;
     long time;
     //String time;
 
-    public Chat(String message, String user, long time) {
+    public Chat(String message, String user, long time,String userId) {
         this.message = message;
         this.name = user;
+        this.userId = userId;
         this.time = new Date().getTime();
     }
 
     Chat() {
     }
 
+    public String getUserId() {
+        return userId;
+    }
 
     public String getMessage() {
         return message;

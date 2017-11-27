@@ -132,6 +132,8 @@ public class KidActivity extends AppCompatActivity {
 
                             String org_name = dataSnapshot.getValue(String.class);
                             adminSerach(org_name);
+                            Toast.makeText(context, "Kid added", Toast.LENGTH_SHORT).show();
+
                         }
 
                         @Override

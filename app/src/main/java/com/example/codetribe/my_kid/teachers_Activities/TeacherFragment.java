@@ -112,6 +112,9 @@ public class TeacherFragment extends Fragment {
 
 
         listViewKids.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+=======
+<<<<<<< HEAD
+        listViewKids.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -123,13 +126,37 @@ public class TeacherFragment extends Fragment {
             }
         });
 
+<<<<<<< HEAD
 
+=======
+=======
+>>>>>>> 83eaabf26f6e851cdf5b47a3bc670dfd7937547f
+>>>>>>> 1d4bf809acfb3392a0fae065ff21260dfe63c6bc
+>>>>>>> 15a04d8e3f5e3bbd69e1c1cd79afd1c1a3c25345
 
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Kids kido = kid.get(i);
+                Intent intent = new Intent(getContext(), KidsmemoListsActivity.class);
+                intent.putExtra("kid_id", kido.getId());
+                intent.putExtra("user_role", teacherRole);
+                startActivity(intent);
+            }
+        });
         return rootView;
     }
 
 
+<<<<<<< HEAD
    @Override
+=======
+<<<<<<< HEAD
+
+    @Override
+=======
+  /*  @Override
+>>>>>>> 1d4bf809acfb3392a0fae065ff21260dfe63c6bc
+>>>>>>> 15a04d8e3f5e3bbd69e1c1cd79afd1c1a3c25345
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         menu.setHeaderTitle("???");
