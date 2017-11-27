@@ -3,19 +3,14 @@ package com.example.codetribe.my_kid.teachers_Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.codetribe.my_kid.aboutUs_Activity.AboutUs;
-import com.example.codetribe.my_kid.account_Activities.LoginActivity;
 import com.example.codetribe.my_kid.R;
-import com.example.codetribe.my_kid.account_Activities.ViewProfile;
+import com.example.codetribe.my_kid.account_Activities.LoginActivity;
 import com.example.codetribe.my_kid.kids_Activities.Kids;
 import com.example.codetribe.my_kid.kids_Activities.KidsArray;
 import com.example.codetribe.my_kid.kids_Activities.KidsmemoListsActivity;
@@ -147,7 +142,7 @@ public class TeachersActivity extends AppCompatActivity {
 
     }
 
-    @Override
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menuteacher, menu);
@@ -180,7 +175,7 @@ public class TeachersActivity extends AppCompatActivity {
                     return true;
             }
             return super.onOptionsItemSelected(item);
-        }
+        }*/
 
     private void logout() {
         FirebaseAuth.getInstance().signOut();

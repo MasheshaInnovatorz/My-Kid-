@@ -3,15 +3,12 @@ package com.example.codetribe.my_kid.teachers_Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.codetribe.my_kid.R;
 import com.example.codetribe.my_kid.kids_Activities.Kids;
@@ -112,9 +109,9 @@ public class TeacherFragment extends Fragment {
             }
         });
 
-        registerForContextMenu(listViewKids);
+       // registerForContextMenu(listViewKids);
 
-        /*listViewKids.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listViewKids.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -124,14 +121,14 @@ public class TeacherFragment extends Fragment {
                 intent.putExtra("user_role", teacherRole);
                 startActivity(intent);
             }
-        });*/
+        });
 
 
         return rootView;
     }
 
 
-    @Override
+  /*  @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         menu.setHeaderTitle("???");
@@ -149,6 +146,6 @@ public class TeacherFragment extends Fragment {
             return false;
         }
         return true;
-    }
+    }*/
 
 }

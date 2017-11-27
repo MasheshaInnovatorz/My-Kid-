@@ -1,49 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_profile_acrivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:orientation="vertical"
     >
 
-
-    <ListView
-        android:id="@+id/mess_list"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/linearLayout7"
-        android:layout_alignParentStart="true"
-        android:divider="@null"
-        android:listSelector="@android:color/transparent"
-        android:transcriptMode="alwaysScroll" />
+        android:layout_weight="20"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView">
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/layout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/layout1">
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
 
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/linearLayout7"
+    <include
+        layout="@layout/sendmessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:gravity="bottom"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/mess_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/editextstyle"
-            android:hint="Write a message"
-            android:padding="6dp"
-            android:paddingBottom="65dp"
-           />
+        android:layout_marginTop="5dp"/>
 
 
-        <ImageView
-            android:id="@+id/buttonsend"
-            android:layout_width="35dp"
-            android:layout_height="34dp"
-            android:layout_gravity="top"
-            android:background="@drawable/ic_send_black_24dp"
-            android:padding="4dp" />
-    </LinearLayout>
 
-</RelativeLayout>
+
+</LinearLayout>

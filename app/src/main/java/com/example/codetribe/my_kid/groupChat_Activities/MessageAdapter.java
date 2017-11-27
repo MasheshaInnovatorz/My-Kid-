@@ -1,59 +1,70 @@
-/*package com.example.codetribe.my_kid;
+package com.example.codetribe.my_kid.groupChat_Activities;
 
-import android.text.format.DateFormat;
-import android.util.Log;
+
+import android.app.Activity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.firebase.ui.database.FirebaseListAdapter;
+import com.example.codetribe.my_kid.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-/**
- * Created by mudau on 11/9/2017.
- */
+import java.util.List;
 
-/*public class MessageAdapter  extends FirebaseListAdapter<ChatMessage> {
+public class MessageAdapter extends ArrayAdapter<ChatMessage> {
 
-    private MessageAdapter activity;
+    private Activity activity;
+    private List<ChatMessage> messages;
+    private boolean isMine = true;
+    private DatabaseReference dataRef;
+    private FirebaseAuth fire;
+    private String userId;
 
+    public MessageAdapter(Activity context, int resource, List<ChatMessage> objects) {
+        super(context, resource, objects);
+        this.activity = context;
+        this.messages = objects;
 
-    FirebaseAuth firebaseAuth;
-    DatabaseReference databaseReference;
-
-    public MessageAdapter(MessageAdapter activity, Class<ChatMessage> modelClass, int modelLayout, DatabaseReference ref) {
-        super(activity, modelClass, modelLayout, ref);
-        this.activity = activity;
     }
 
     @Override
-    protected void populateView(View v, ChatMessage model, int position) {
-        TextView messageText = (TextView) v.findViewById(R.id.message_text);
-        TextView messageUser = (TextView) v.findViewById(R.id.message_user);
-        TextView messageTime = (TextView) v.findViewById(R.id.message_time);
+    public View getView(int position, View convertView, ViewGroup parent) {
+        final ViewHolder holder;
+        LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 
-        messageText.setText(model.getMessageText());
-        messageUser.setText(model.getMessageUser());
-
-        // Format the date before showing it
-        messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
-    }
-
-    @Override
-    public View getView(int position, View view, ViewGroup viewGroup) {
+        fire = FirebaseAuth.getInstance();
+        int layoutResource = 0; // determined by view type
         ChatMessage chatMessage = getItem(position);
-        if (chatMessage.getMessageUserId().equals(activity.getLoggedInUserName()))
-            view = activity.getLayoutInflater().inflate(R.layout.item_out_message, viewGroup, false);
-        else
-            view = activity.getLayoutInflater().inflate(R.layout.item_in_message, viewGroup, false);
+        int viewType = getItemViewType(position);
+        String idnum = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String userD = chatMessage.getUserId();
 
-        //generating view
-        populateView(view, chatMessage, position);
 
-        return view;
+
+
+       if(chatMessage.isMine() == true) {
+
+           layoutResource = R.layout.item_chat_right;
+       }else {
+           layoutResource = R.layout.item_chat_left;
+
+       }
+
+        if (convertView != null) {
+            holder = (ViewHolder) convertView.getTag();
+        } else {
+            convertView = inflater.inflate(layoutResource, parent, false);
+            holder = new ViewHolder(convertView);
+            convertView.setTag(holder);
+        }
+
+        //set message content
+        holder.msg.setText(chatMessage.getMessage());
+
+        return convertView;
     }
 
     @Override
@@ -69,35 +80,11 @@ import com.google.firebase.database.FirebaseDatabase;
         return position % 2;
     }
 
-    private String loggedInUserName = "";
-    private void showAllOldMessages() {
-        loggedInUserName = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        Log.d("Main", "user id: " + loggedInUserName);
+    private class ViewHolder {
+        private TextView msg;
 
-        adapter = new MessageAdapter(this, ChatMessage.class, R.layout.item_in_message,
-                FirebaseDatabase.getInstance().getReference());
-        listView.setAdapter(adapter);
-    }
-
-    public String getLoggedInUserName() {
-        return loggedInUserName;
-    }
-
-    fab.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            if (input.getText().toString().trim().equals("")) {
-                Toast.makeText(MainActivity.this, "Please enter some texts!", Toast.LENGTH_SHORT).show();
-            } else {
-                FirebaseDatabase.getInstance()
-                        .getReference()
-                        .push()
-                        .setValue(new ChatMessage(input.getText().toString(),
-                                FirebaseAuth.getInstance().getCurrentUser().getDisplayName(),
-                                FirebaseAuth.getInstance().getCurrentUser().getUid())
-                        );
-                input.setText("");
-            }
+        public ViewHolder(View v) {
+            msg = (TextView) v.findViewById(R.id.msg);
         }
-    });
-}*/
+    }
+}
