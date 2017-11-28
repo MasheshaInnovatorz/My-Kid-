@@ -113,17 +113,7 @@ public class TeacherFragment extends Fragment {
 
 
 
-        listViewKids.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Kids kido = kid.get(i);
-                Intent intent = new Intent(getContext(), KidsmemoListsActivity.class);
-                intent.putExtra("kid_id", kido.getId());
-                intent.putExtra("user_role", teacherRole);
-                startActivity(intent);
-            }
-        });
 
         return rootView;
     }
@@ -140,7 +130,7 @@ public class TeacherFragment extends Fragment {
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         if (item.getTitle() == "Kids Information") {
-            Toast.makeText(getContext(), "KidsProfile Information", Toast.LENGTH_SHORT).show();
+            Obc();
         } else if (item.getTitle() == "Parent Information") {
             Toast.makeText(getContext(), "Parent Information", Toast.LENGTH_SHORT).show();
         } else {
@@ -149,4 +139,17 @@ public class TeacherFragment extends Fragment {
         return true;
     }
 
+    public void Obc(){
+        listViewKids.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Kids kido = kid.get(i);
+                Intent intent = new Intent(getContext(), KidsmemoListsActivity.class);
+                intent.putExtra("kid_id", kido.getId());
+                intent.putExtra("user_role", teacherRole);
+                startActivity(intent);
+            }
+        });
+    }
 }

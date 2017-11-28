@@ -138,8 +138,9 @@ public class GroupChatFragment extends Fragment {
 
         if(type == 1) {
             textmsg.gravity = Gravity.LEFT;
-
+            msg.setMaxWidth(300);
             msg.setBackgroundResource(R.drawable.bubble_in);
+
         }
         else{
             textmsg.gravity = Gravity.RIGHT;

@@ -10,10 +10,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.codetribe.my_kid.R;
@@ -26,8 +24,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,7 +87,6 @@ public class AdminKidsList extends Fragment {
         usersRetriveRef = FirebaseDatabase.getInstance().getReference("Users");
 
         Idadmin = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
         usersRetriveRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot crecheSnapshot) {
@@ -133,6 +128,7 @@ public class AdminKidsList extends Fragment {
 
             }
         });
+
         registerForContextMenu(listUsers);
 
         return rootView;
@@ -150,13 +146,18 @@ public class AdminKidsList extends Fragment {
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         if (item.getTitle() == "Kids Information") {
-            Toast.makeText(getContext(), "Eloow", Toast.LENGTH_SHORT).show();
+            Show();
+
         } else if (item.getTitle() == "Parent Information") {
             Toast.makeText(getContext(), "Parent Information", Toast.LENGTH_SHORT).show();
         } else {
             return false;
         }
         return true;
+    }
+
+    public void Show(){
+
     }
 
 }
