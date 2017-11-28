@@ -51,7 +51,11 @@ public class AdminTabbedActivity extends AppCompatActivity {
     }
 
 
+<<<<<<< HEAD
    @Override
+=======
+ @Override
+>>>>>>> 32c10935c75d9a58c68be3a7171d429c545f9468
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_admin_tabbed, menu);
@@ -83,14 +87,7 @@ public class AdminTabbedActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.menu_admin_logout) {
             logout();
-            return true;
-        } else if (id == R.id.menu_adimin_profile) {
-            Intent intent = new Intent(AdminTabbedActivity.this, ViewProfile.class);
-            startActivity(intent);
-            return true;
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 

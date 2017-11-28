@@ -38,11 +38,13 @@ public class AdminKidsList extends Fragment {
     private ListView listUsers;
     private String KidssKey;
     private List<Kids> kidses;
+    private int counter = 0;
     private String Idadmin;
     private Spinner spinner;
     private CoordinatorLayout coordinatorLayout;
     private FloatingActionButton kidsFab;
     private String idLoged, parentId, kids_id;
+    private  TextView admintotalkids;
 
     //database
     private DatabaseReference usersRetriveRef, kidsCreche;
@@ -58,6 +60,7 @@ public class AdminKidsList extends Fragment {
 
         coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.cordinatelayout);
        kidsFab = (FloatingActionButton) rootView.findViewById(R.id.add_kids_admin);
+        admintotalkids=(TextView)rootView.findViewById(R.id.admintotalkids);
 
         Intent keyId = getActivity().getIntent();
         idLoged = keyId.getStringExtra("User_KEY");
@@ -101,7 +104,7 @@ public class AdminKidsList extends Fragment {
                                 kidses.clear();
                                 for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()) {
                                     if (kidssnapshot.child("orgName").getValue().toString().equals(adminSnap.child("orgName").getValue().toString())) {
-
+                                        counter++;
                                         Kids kidInf = kidssnapshot.getValue(Kids.class);
                                         kidses.add(kidInf);
 
@@ -110,6 +113,7 @@ public class AdminKidsList extends Fragment {
                                     }
 
                                 }
+                                admintotalkids.setText("You have "+ counter +" kids in your cresh");
                                 KidsArray userListAdapter = new KidsArray(getActivity(), kidses);
                                 listUsers.setAdapter(userListAdapter);
                             }

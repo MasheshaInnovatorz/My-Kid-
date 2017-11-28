@@ -36,10 +36,11 @@ import java.util.List;
 public class AdminTeacherList extends Fragment {
 
     private String userKey;
-    private TextView add_Kids;
+    private TextView add_Kids ,totalteachercount;
     private TextView addkid, addteacher;
     //initialization for kids
     private ListView listUsers;
+    private int counter = 0;
     private List<TeacherClassAcc> user;
     private String Idadmin;
     private Spinner spinner;
@@ -55,7 +56,7 @@ public class AdminTeacherList extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activityteacherslist, container, false);
 
-
+       totalteachercount=(TextView) rootView.findViewById(R.id.admintotalteacher);
         coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.cordinatelayout);
         user = new ArrayList<>();
 
@@ -84,7 +85,7 @@ public class AdminTeacherList extends Fragment {
 
                             if (kidssnapshot.child("role").getValue().toString().equals("teacher")) {
                                 if (kidssnapshot.child("orgName").getValue().equals(adminSnapshot.child("orgName").getValue().toString())) {
-
+                                    counter++;
                                     TeacherClassAcc kidInf = kidssnapshot.getValue(TeacherClassAcc.class);
                                     user.add(kidInf);
 
@@ -96,6 +97,8 @@ public class AdminTeacherList extends Fragment {
                             }
 
                         }
+                        totalteachercount.setText(  "You have "+ counter +" kids in your class");
+
                         UserArray userListAdapter = new UserArray(getActivity(), user);
                         listUsers.setAdapter(userListAdapter);
                     }

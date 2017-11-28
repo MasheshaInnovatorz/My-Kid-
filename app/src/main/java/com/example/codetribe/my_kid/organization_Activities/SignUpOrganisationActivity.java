@@ -44,7 +44,6 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
     private DatabaseReference mOrganizationRef;
     private TextView signup;
     private EditText orgaEmail,
-            crechRefNo,
             crechPostalCode,
             orgPassword,
             crechName,
@@ -96,9 +95,8 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         spinnerCity.setAdapter(adapter);
 
 
-        crechRefNo = (EditText) findViewById(R.id.orgRegNumber);
-        crechPostalCode = (EditText) findViewById(R.id.orgPostalCode);
 
+        crechPostalCode = (EditText) findViewById(R.id.orgPostalCode);
 
         adminName = (EditText) findViewById(R.id.orgAdminName);
         adminSurname = (EditText) findViewById(R.id.orgAdminSurname);
@@ -118,7 +116,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         awesomeValidation.addValidation(this, R.id.orgAdminSurname, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.surnameerror);
         awesomeValidation.addValidation(this, R.id.orgAdminIDNumber, "^^[0-9]{13}$", R.string.iderror);
         // awesomeValidation.addValidation(this, R.id.orgPostalCode, "^[+]?[0-3]{10,13}$", R.string.postalCode);
-        awesomeValidation.addValidation(this, R.id.orgRegNumber, "^[+]?[0-9]{10,13}$", R.string.regNo);
+      //  awesomeValidation.addValidation(this, R.id.orgRegNumber, "^[+]?[0-9]{10,13}$", R.string.regNo);
 
 
         spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -164,7 +162,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                 adminSurnameOrg = adminSurname.getText().toString().trim();
                 adminIdNoOrg = adminIdNo.getText().toString().trim();
 
-                crechRefNumberOrg = crechRefNo.getText().toString().trim();
+               // crechRefNumberOrg = crechRefNo.getText().toString().trim();
                 crechPostalCodeOrg = crechPostalCode.getText().toString().trim();
 
                 int selectedId = gender.getCheckedRadioButtonId();
@@ -193,7 +191,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                                     String userI = task.getResult().getUser().getUid();
 
 
-                                    OrganizationRegister orgReg = new OrganizationRegister(key, crechNameOrg, crechAddressOrg, cityInfor, email, crechPhoneNoOrg, password, crechRefNumberOrg, crechPostalCodeOrg, key);
+                                    OrganizationRegister orgReg = new OrganizationRegister(key, crechNameOrg, crechAddressOrg, cityInfor, email, crechPhoneNoOrg, password, crechPostalCodeOrg, key);
 
                                     CrecheOnwer_Class adminReg = new CrecheOnwer_Class(userI, adminNameOrg, adminSurnameOrg, adminIdNoOrg, adminGender, adminRole, email, crechNameOrg, crechPhoneNoOrg, cityInfor);
 
@@ -212,7 +210,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                                     mChildDatabase.updateChildren(organizationUpdate);
 
                                     //Toast.makeText(SignUpOrganisationActivity.this, key, Toast.LENGTH_SHORT).show();
-                                    Toast.makeText(SignUpOrganisationActivity.this, "Organization Sccessfully Created", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignUpOrganisationActivity.this, "Organization Successfully Created", Toast.LENGTH_SHORT).show();
 
                                     startActivity(new Intent(getApplicationContext(), AdminTabbedActivity.class));
 
