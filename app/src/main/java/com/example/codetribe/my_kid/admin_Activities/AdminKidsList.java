@@ -118,7 +118,7 @@ public class AdminKidsList extends Fragment {
                                     }
 
                                 }
-                                admintotalkids.setText("Total kids : "+ counter);
+                                admintotalkids.setText("You have "+ counter +" kids in your cresh");
                                 KidsArray userListAdapter = new KidsArray(getActivity(), kidses);
                                 listUsers.setAdapter(userListAdapter);
                             }

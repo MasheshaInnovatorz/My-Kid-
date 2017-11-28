@@ -20,7 +20,7 @@ public class OrganizationRegister {
     private String orgPhoneNo;
     private String orgPassword;
     private String adminKey;
-    private String orgRegNumber;
+   // private String orgRegNumber;
     private String orgPostalCode;
 
     public Map<String, Boolean> stars = new HashMap<>();
@@ -28,7 +28,7 @@ public class OrganizationRegister {
     public OrganizationRegister() {
     }
 
-    public OrganizationRegister(String uid, String orgname, String orgAddress, String orgCity, String orgEmail, String orgPhoneNo, String orgPassword,String  orgRegNumber , String orgPostalCode, String adminKey) {
+    public OrganizationRegister(String uid, String orgname, String orgAddress, String orgCity, String orgEmail, String orgPhoneNo, String orgPassword , String orgPostalCode, String adminKey) {
         this.uid = uid;
         this.orgname = orgname;
         this.orgAddress = orgAddress;
@@ -36,7 +36,7 @@ public class OrganizationRegister {
         this.orgEmail = orgEmail;
         this.orgPhoneNo = orgPhoneNo;
         this.orgPassword = orgPassword;
-        this.orgRegNumber =orgRegNumber;
+      //  this.orgRegNumber =orgRegNumber;
         this.orgPostalCode=orgPostalCode;
         this.adminKey = adminKey;
 
@@ -71,7 +71,7 @@ public class OrganizationRegister {
         return orgPassword;
     }
 
-    private String getorgRegNumber() {   return orgRegNumber;}
+  //  private String getorgRegNumber() {   return orgRegNumber;}
 
     private String getorgPostalCode() {   return orgPostalCode;}
 
@@ -91,7 +91,7 @@ public class OrganizationRegister {
         organizationSave.put("emailUser", orgEmail);
         organizationSave.put("orgPhoneNumber", orgPhoneNo);
         organizationSave.put("orgPassword", orgPassword);
-        organizationSave.put("orgRegNumber", orgRegNumber);
+       // organizationSave.put("orgRegNumber", orgRegNumber);
         organizationSave.put("orgPostalCode", orgPostalCode);
         organizationSave.put("adminKey", adminKey);
         organizationSave.put("isVerified", "verified");

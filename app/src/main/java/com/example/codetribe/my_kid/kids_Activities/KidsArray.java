@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.codetribe.my_kid.R;
 
 import java.util.List;
@@ -45,7 +46,12 @@ public class KidsArray extends ArrayAdapter<Kids> {
         Kids kids = kidsList.get(position);
 
         if (kids.getProfilePic() != "") {
-            Glide.with(getContext()).load(kids.getProfilePic()).centerCrop().into(kidsImage);
+          //  Glide.with(getContext()).load(kids.getProfilePic()).centerCrop().into(kidsImage);
+
+            Glide.with(context).load(kids.getProfilePic())
+                    .thumbnail(0.5f).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(kidsImage);
+
         }
         else {
             kidsImage.setImageResource(R.drawable.ic_person_black_24dp);

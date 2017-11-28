@@ -38,7 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView login_Button;
+    private TextView login_Button,loginsignup_;
     private ImageView backtowelcome, icon;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPrefEditor;
@@ -75,6 +75,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
+        loginsignup_=(TextView) findViewById(R.id.loginsignup);
         editEmail = (EditText) findViewById(R.id.login_email);
         editPassword = (EditText) findViewById(R.id.login_password);
         forgot = (TextView) findViewById(R.id.forget_password);
@@ -100,6 +101,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         editEmail.setText(shared_email);
 
+        loginsignup_.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it = new Intent(LoginActivity.this, SignUp.class);
+                startActivity(it);
+
+            }
+        });
 
         //database
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -252,7 +261,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-
+                       // Toast.makeText(LoginActivity.this, "Parent Account Created", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(LoginActivity.this, "Either your Email nor Password is Worng or not Registered", Toast.LENGTH_SHORT).show();
                     }

@@ -50,9 +50,14 @@ public class UserArray extends ArrayAdapter<TeacherClassAcc> {
         TeacherClassAcc users = userList.get(position);
 
         if(users.getUserProfilePic() !=null) {
-            Glide.with(context).load(users.getUserProfilePic())
+         //   Glide.with(getContext()).load(users.getUserProfilePic()).centerCrop().into(imageProf);
+
+           Glide.with(context).load(users.getUserProfilePic())
                     .thumbnail(0.5f).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imageProf);
+
+
+
         }
         else {
             imageProf.setImageResource(R.drawable.ic_person_black_24dp);

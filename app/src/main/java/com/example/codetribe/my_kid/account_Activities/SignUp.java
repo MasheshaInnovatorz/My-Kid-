@@ -120,13 +120,9 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list);
 
-       // list = new ArrayList<String>();
 
 
         input_email1 = (TextInputLayout) findViewById(R.id.input_email);
-
-
-        //dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
 
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -167,9 +163,6 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
                 String password = inputPassword.getText().toString().trim();
 
 
-                progressDialog.setMessage("Wait While Creating an Account");
-                progressDialog.show();
-
                 final String userEmailString, userPassString;
 
                 userEmailString = inputEmail.getText().toString().trim();
@@ -186,8 +179,11 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             for (DataSnapshot kidsSnapshot : dataSnapshot.getChildren()) {
 
+                                progressDialog.setMessage("Wait While Creating an Parent Account");
+                                progressDialog.show();
 
                                 if (kidsSnapshot.child("orgName").getValue().toString().equals(strName) && kidsSnapshot.child("idNumber").getValue().toString().equals(kidsIdno.getText().toString())) {
+
 
                                     auth.createUserWithEmailAndPassword(userEmailString, userPassString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                         @Override
@@ -202,18 +198,18 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
                                                 mChildDatabase.child("role").setValue("parent");
                                                 mChildDatabase.child("emailUser").setValue(userEmailString);
                                                 mChildDatabase.child("passWordUser").setValue(userPassString);
-                                                Toast.makeText(SignUp.this, "User Account Created", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(SignUp.this, "Parent Account Created Successfully", Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(SignUp.this, LoginActivity.class));
 
 
                                             } else {
-                                                Toast.makeText(SignUp.this, "User Fialed to Creating an Account", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(SignUp.this, "Parent Fialed to Creating an Account", Toast.LENGTH_SHORT).show();
 
                                             }
                                         }
                                     });
 
-
+progressDialog.dismiss();
                                 } else {
 
                                     Toast.makeText(SignUp.this, "You dont have a kids on this Creche,Please contact an Admin Creshe", Toast.LENGTH_SHORT).show();
@@ -231,7 +227,7 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
                     });
 
                 }
-                progressDialog.dismiss();
+           //     progressDialog.dismiss();
 
 
             }
@@ -258,22 +254,33 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
 
     }
 
+
     @Override
     protected void onStart() {
         super.onStart();
 
+        progressDialog.setMessage("Wait While searching for creches..");
+        progressDialog.show();
+
         crecheDataRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
+
                 for (DataSnapshot checheSnapshot : dataSnapshot.getChildren()) {
 
                     if (!checheSnapshot.child("orgName").getValue().toString().equals(" ")) {
+
                         list.add(checheSnapshot.child("orgName").getValue().toString());
 
                         dataAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
                         //simple_spinner_dropdown_item
+
                         orgNameList.setAdapter(dataAdapter);
-                    } else {
+                        progressDialog.dismiss();
+                    }
+
+                    else {
                         Toast.makeText(SignUp.this, "There is no Creche Registered", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -283,7 +290,9 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
             public void onCancelled(DatabaseError databaseError) {
 
             }
+
         });
+
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
