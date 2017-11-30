@@ -52,7 +52,11 @@ public class AdminTabbedActivity extends AppCompatActivity {
 
 
 
+<<<<<<< HEAD
  @Override
+=======
+    @Override
+>>>>>>> 41f4d5c6297e27e898c407f51eff68b4ed199194
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_admin_tabbed, menu);
