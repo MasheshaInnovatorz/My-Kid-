@@ -67,6 +67,50 @@
         <item>Parent</item>
     </string-array>
 
+    <string-array name="city_Province">
+      <item>Select Province</item>
+
+        <item>Northern Cape</item>
+        <item>Eastern Cape</item>
+        <item>Free State</item>
+        <item>Western Cape</item>
+        <item>Limpopo</item>
+        <item>North West</item>
+        <item>KwaZulu-Natal</item>
+        <item>Mpumalanga</item>
+        <item>Gauteng</item>
+    </string-array>
+
+    <string-array name="city_limpopo">
+    <item>Select City</item>
+    <item> Giyani</item>
+    <item>Lebowakgomo</item>
+    <item>Musina</item>
+    <item>Phalaborwa</item>
+    <item>Polokwane</item>
+    <item>Seshego</item>
+    <item>Sibasa</item>
+    <item>Thabazimbi</item>
+    <item>Thohoyandou</item>
+    </string-array>
+
+    <string-array name="city_gauteng">
+    <item>Benoni</item>
+    <item>Johannesburg</item>
+    <item>Soweto</item>
+    <item>Boksburg</item>
+    <item>Pretoria</item>
+    <item>Germiston</item>
+    <item>Randburg</item>
+    </string-array>
+
+    <string-array name="city_western_cape">
+    <item>Cape Town</item>
+    <item>Stellenbosch</item>
+    <item>Krugersdorp</item>
+    <item>George</item>
+    </string-array>
+
     <string-array name="city_list">
         <item>Select City</item>
         <item> Giyani</item>
@@ -78,13 +122,6 @@
         <item>Sibasa</item>
         <item>Thabazimbi</item>
         <item>Thohoyandou</item>
-        <item>Benoni</item>
-        <item>Johannesburg</item>
-        <item>Soweto</item>
-        <item>Boksburg</item>
-        <item>Pretoria</item>
-        <item>Germiston</item>
-        <item>Randburg</item>
         <item>Cape Town</item>
         <item>Stellenbosch</item>
         <item>Krugersdorp</item>

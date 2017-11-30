@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.codetribe.my_kid.R;
@@ -44,7 +45,7 @@ public class AdminKidsList extends Fragment {
     private CoordinatorLayout coordinatorLayout;
     private FloatingActionButton kidsFab;
     private String idLoged, parentId, kids_id;
-    private  TextView admintotalkids;
+    private TextView admintotalkids;
 
     //database
     private DatabaseReference usersRetriveRef, kidsCreche;

@@ -95,7 +95,7 @@ public class TeacherFragment extends Fragment {
 
                             }
                         }
-                        countnumber.setText("Total kids : " + counter);
+                        countnumber.setText(  "You have "+ counter +" kids in your class");
                         KidsArray trackListAdapter = new KidsArray(getActivity(), kid);
                         listViewKids.setAdapter(trackListAdapter);
                     }

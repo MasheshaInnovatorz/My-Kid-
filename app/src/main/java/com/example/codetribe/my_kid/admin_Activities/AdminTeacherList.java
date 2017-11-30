@@ -97,7 +97,7 @@ public class AdminTeacherList extends Fragment {
                             }
 
                         }
-                        totalteachercount.setText(  "You have "+ counter +" kids in your class");
+                        totalteachercount.setText(  "You have "+ counter +" teachers in your cresh");
 
                         UserArray userListAdapter = new UserArray(getActivity(), user);
                         listUsers.setAdapter(userListAdapter);

@@ -53,7 +53,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
             adminSurname,
             adminIdNo;
     private RadioButton radGender;
-    private Spinner spinnerCity;
+    private Spinner spinnerCity,spinnerProvinces;
     private ProgressDialog progressDialog;
 
     private String crechCity;
@@ -88,16 +88,25 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         crechName = (EditText) findViewById(R.id.orgName);
         crechAddress = (EditText) findViewById(R.id.orgStrName);
         crechPhoneNo = (EditText) findViewById(R.id.orgTelNumber);
-        spinnerCity = (Spinner) findViewById(R.id.orgCitySpinner);
 
+
+
+        //cities
+        spinnerCity = (Spinner) findViewById(R.id.orgCitySpinner);
+        /*
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_list));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCity.setAdapter(adapter);
+        */
 
+        //provinces
+        spinnerProvinces= (Spinner) findViewById(R.id.orgProvinces);
+        ArrayAdapter<String> provincesadapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_Province));
+        provincesadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCity.setAdapter(provincesadapter);
 
 
         crechPostalCode = (EditText) findViewById(R.id.orgPostalCode);
-
         adminName = (EditText) findViewById(R.id.orgAdminName);
         adminSurname = (EditText) findViewById(R.id.orgAdminSurname);
         adminIdNo = (EditText) findViewById(R.id.orgAdminIDNumber);
@@ -107,6 +116,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         //adding validation to edittexts
         awesomeValidation.addValidation(this, R.id.orgEmail, Patterns.EMAIL_ADDRESS, R.string.emailerror);
+        awesomeValidation.addValidation(this, R.id.orgPassword, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.passworderror);
         // awesomeValidation.addValidation(this,R.id. orgPassword, "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\\\d])(?=.*[~`!@#\\\\$%\\\\^&\\\\*\\\\(\\\\)\\\\-_\\\\+=\\\\{\\\\}\\\\[\\\\]\\\\|\\\\;:\\\"<>,./\\\\?]).{8,}", R.string.passworderror);
         awesomeValidation.addValidation(this, R.id.orgName, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
         awesomeValidation.addValidation(this, R.id.orgStrName, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
@@ -118,14 +128,42 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         // awesomeValidation.addValidation(this, R.id.orgPostalCode, "^[+]?[0-3]{10,13}$", R.string.postalCode);
       //  awesomeValidation.addValidation(this, R.id.orgRegNumber, "^[+]?[0-9]{10,13}$", R.string.regNo);
 
+        //province
+        spinnerProvinces.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
 
+                // TODO Auto-generated method stub
+                if (getResources().getStringArray(R.array.city_Province)[position] == "Limpopo") {
+                    ArrayAdapter<String> citiesadapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_limpopo));
+                    citiesadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinnerProvinces.setAdapter(citiesadapter);
+                }
+                    else if (getResources().getStringArray(R.array.city_Province)[position] == "gauteng") {
+                    ArrayAdapter<String> citiesadapter  = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_gauteng));
+                    citiesadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinnerProvinces.setAdapter(citiesadapter);
+
+                }}
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+
+                Toast.makeText(SignUpOrganisationActivity.this, "Please Select City", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
+
+//cities
         spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
 
                 // TODO Auto-generated method stub
-                //  if (getResources().getStringArray(R.array.city_list)[position] != "Select City") {
-                crechCity = getResources().getStringArray(R.array.city_list)[position];
+
+               crechCity = getResources().getStringArray(R.array.city_list)[position];
 
 
             }
@@ -138,6 +176,9 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
             }
 
         });
+
+
+
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,8 +209,9 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                 int selectedId = gender.getCheckedRadioButtonId();
 
 
-                if (awesomeValidation.validate()) {
 
+                if (awesomeValidation.validate()) {
+                    if (!spinnerCity.getSelectedItem().toString().trim().equals("Select City")) {
                     if (selectedId != -1) {
                         radGender = (RadioButton) findViewById(selectedId);
                         adminGender = radGender.getText().toString().trim();
@@ -225,11 +267,18 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                         orgAuth.signOut();
                         // }
 
-                    } else {
+                    } else
+                        {
                         Toast.makeText(SignUpOrganisationActivity.this, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
                     }
 
-                } else {
+                }
+else{
+
+
+                        Toast.makeText(SignUpOrganisationActivity.this, "Please Select City", Toast.LENGTH_SHORT).show();
+                    }}
+                else {
                     Toast.makeText(SignUpOrganisationActivity.this, "Make sure you fix all the error shown in your input space", Toast.LENGTH_LONG).show();
                 }
                 //---

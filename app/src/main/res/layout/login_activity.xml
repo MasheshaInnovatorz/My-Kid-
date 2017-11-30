@@ -75,6 +75,26 @@
 
 
 
+
+
+        <TextView
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+
+            android:layout_marginLeft="@dimen/text_left"
+            android:layout_marginRight="@dimen/text_right"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/angle"
+            android:gravity="center"
+            android:padding="@dimen/button_padding"
+            android:text="Log In"
+            android:textSize="16sp"
+            android:textColor="#fff"
+          />
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -86,24 +106,6 @@
             android:text="Forgot Password?"
             android:textColor="#212121"
             android:textSize="16sp" />
-
-
-        <TextView
-            android:id="@+id/login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-
-            android:layout_marginLeft="@dimen/text_left"
-            android:layout_marginRight="@dimen/text_right"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/angle"
-            android:gravity="center"
-            android:padding="@dimen/button_padding"
-            android:text="Log In"
-            android:textSize="16sp"
-            android:textColor="#fff"
-          />
 <TextView
     android:id="@+id/loginsignup"
     android:layout_width="wrap_content"

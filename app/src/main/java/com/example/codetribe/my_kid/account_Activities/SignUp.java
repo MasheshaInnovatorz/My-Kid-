@@ -94,6 +94,7 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
         orgNameList = (Spinner) findViewById(R.id.orgname);
         // mainNav = (TextView)findViewById(R.id.login);
 
+        awesomeValidation.addValidation(this, R.id.signupPassword, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.passworderror);
         //awesomeValidation.addValidation(this, R.id.signupPassword, "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\\\d])(?=.*[~`!@#\\\\$%\\\\^&\\\\*\\\\(\\\\)\\\\-_\\\\+=\\\\{\\\\}\\\\[\\\\]\\\\|\\\\;:\\\"<>,./\\\\?]).{8,}", R.string.passworderror);
         awesomeValidation.addValidation(this, R.id.sign_up_email, Patterns.EMAIL_ADDRESS, R.string.emailerror);
         awesomeValidation.addValidation(this, R.id.KidIdNumber, "^^[0-9]{13}$", R.string.iderror);
@@ -209,7 +210,7 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
                                         }
                                     });
 
-progressDialog.dismiss();
+                                     progressDialog.dismiss();
                                 } else {
 
                                     Toast.makeText(SignUp.this, "You dont have a kids on this Creche,Please contact an Admin Creshe", Toast.LENGTH_SHORT).show();

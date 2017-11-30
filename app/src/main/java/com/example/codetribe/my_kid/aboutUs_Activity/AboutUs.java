@@ -18,6 +18,7 @@ public class AboutUs extends AppCompatActivity {
         getSupportActionBar().setTitle("About Us");
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();

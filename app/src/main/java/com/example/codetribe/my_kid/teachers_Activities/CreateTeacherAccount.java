@@ -78,7 +78,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
         classroom = (EditText) findViewById(R.id.teacherclass);
         idnumber = (EditText) findViewById(R.id.teacherid);
         useremail = (EditText) findViewById(R.id.teacheremail);
-        userpassword = (EditText) findViewById(teacherpassword);
+        userpassword = (EditText) findViewById(R.id.teacherpassword);
         gender = (RadioGroup) findViewById(R.id.teachergenders);
         userAddress = (EditText) findViewById(R.id.teacherAddress);
         userCity = (EditText) findViewById(R.id.teacherCity);
@@ -93,12 +93,12 @@ public class CreateTeacherAccount extends AppCompatActivity {
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
         //adding validation to edittexts
+        awesomeValidation.addValidation(this, R.id.teacherpassword, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.passworderror);
         awesomeValidation.addValidation(this, R.id.teachername, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
         awesomeValidation.addValidation(this, R.id.teachersurname, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.surnameerror);
         awesomeValidation.addValidation(this, R.id.teacheremail, Patterns.EMAIL_ADDRESS, R.string.emailerror);
         awesomeValidation.addValidation(this, R.id.teacherAddress, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.address);
         awesomeValidation.addValidation(this, R.id.teacherCity, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.city);
-        //  awesomeValidation.addValidation(this, teacherpassword, "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\\\d])(?=.*[~`!@#\\\\$%\\\\^&\\\\*\\\\(\\\\)\\\\-_\\\\+=\\\\{\\\\}\\\\[\\\\]\\\\|\\\\;:\\\"<>,./\\\\?]).{8,}", R.string.passworderror);
         awesomeValidation.addValidation(this, R.id.teachercontact, "^[+]?[0-9]{10,13}$", R.string.mobileerror);
         awesomeValidation.addValidation(this, R.id.teacherid, "^^[0-9]{13}$", R.string.iderror);
         awesomeValidation.addValidation(this, R.id.teacherclass, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}[0-9]$", R.string.classerror);

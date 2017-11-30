@@ -79,6 +79,40 @@
 
             </android.support.design.widget.TextInputLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Provinces"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <Spinner
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/orgProvinces"
+                    android:layout_width="match_parent"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/text_left"
+                    android:layout_marginRight="@dimen/text_right"
+                    android:padding="@dimen/text_padding"
+                    android:spinnerMode="dialog" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/text_left"
+                android:layout_marginRight="@dimen/text_right"
+                android:background="#212121" />
+
 <LinearLayout
     android:layout_width="match_parent"
     android:orientation="horizontal"
@@ -87,7 +121,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:text="City"
+        android:text="Citys"
         android:layout_marginLeft="10dp"
         android:layout_gravity="center_vertical"
         android:layout_width="wrap_content"
@@ -112,6 +146,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginLeft="@dimen/text_left"
                 android:layout_marginRight="@dimen/text_right"
                 android:background="#212121" />

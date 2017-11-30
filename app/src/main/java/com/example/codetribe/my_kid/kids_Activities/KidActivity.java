@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -17,8 +18,13 @@ import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.example.codetribe.my_kid.account_Activities.LoginActivity;
+import com.example.codetribe.my_kid.account_Activities.SignUp;
 import com.example.codetribe.my_kid.admin_Activities.AdminTabbedActivity;
 import com.example.codetribe.my_kid.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,6 +50,8 @@ public class KidActivity extends AppCompatActivity {
     private RadioButton radGender;
     private TextView btnCreate;
 
+    boolean pfari;
+
     private String genderString, keyUser;
     private String kidStringname,
             kidStringsurname,
@@ -59,7 +67,7 @@ public class KidActivity extends AppCompatActivity {
     private AwesomeValidation awesomeValidation;
 
     //database
-    DatabaseReference databaseKids, adminOrgNameRef;
+    DatabaseReference databaseKids, addKidsDataBase,adminOrgNameRef;
     Context context;
 
     @Override
@@ -119,6 +127,7 @@ public class KidActivity extends AppCompatActivity {
         adminOrgNameRef = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("orgName");
         //databaseKids = FirebaseDatabase.getInstance().getReference().child("Kids").child(keyUser);
 
+
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,7 +140,7 @@ public class KidActivity extends AppCompatActivity {
                         public void onDataChange(DataSnapshot dataSnapshot) {
 
                             String org_name = dataSnapshot.getValue(String.class);
-                            adminSerach(org_name);
+                            addkids(org_name);
                             Toast.makeText(context, "Kid added", Toast.LENGTH_SHORT).show();
 
                         }
@@ -152,8 +161,13 @@ public class KidActivity extends AppCompatActivity {
 
     }
 
-    public void adminSerach(String orgName) {
 
+
+
+
+
+
+    public void addkids(String orgName) {
 
         kidStringname = kidname.getText().toString().trim();
         kidStringsurname = kidsurname.getText().toString().trim();
@@ -163,28 +177,67 @@ public class KidActivity extends AppCompatActivity {
         kidsKidsAllocated = kidAllocated.getText().toString().trim();
         kidsYearRegistered = registeredYears.getText().toString().trim();
 
-        int selectedId = radKidGender.getCheckedRadioButtonId();
+        final String mbanzhe = orgName;
+      final  int selectedId = radKidGender.getCheckedRadioButtonId();
 
-
+        if (!kididStringNumber.matches(kidStringparentid)) {
         if (selectedId != -1) {
+            databaseKids.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot dataKids:dataSnapshot.getChildren()) {
 
-            radGender = (RadioButton) findViewById(selectedId);
-            genderString = radGender.getText().toString();
+                        if(dataKids.exists()) {
+                            if (!dataKids.child("idNumber").getValue().toString().equals(kididStringNumber)) {
 
-            String id = databaseKids.push().getKey();
+                                pfari = true;
+
+                            } else {
+                                pfari=false;
 
 
-            Kids kids = new Kids(id, kidStringname, kidStringsurname, kidStringaddress, kididStringNumber, kidStringparentid, kidsKidsAllocated, kidsYearRegistered, genderString, orgName);
+                            }
+                        }else{
 
-            databaseKids.child(id).setValue(kids);
+                        }
+                    }
 
-            startActivity(new Intent(getApplication(), AdminTabbedActivity.class));
+                }
 
-        } else {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            if(pfari==true){
+                radGender = (RadioButton) findViewById(selectedId);
+                genderString = radGender.getText().toString();
+
+                String id = databaseKids.push().getKey();
+
+
+                Kids kids = new Kids(id, kidStringname, kidStringsurname, kidStringaddress, kididStringNumber, kidStringparentid, kidsKidsAllocated, kidsYearRegistered, genderString, mbanzhe);
+
+                databaseKids.child(id).setValue(kids);
+                // Toast.makeText(context, "Kid added ", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplication(), AdminTabbedActivity.class));
+            }else {
+                Toast.makeText(context, "There is a kid who already exist", Toast.LENGTH_SHORT).show();
+            }
+
+
+             }
+        else {
             Toast.makeText(this, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
         }
 
-    }
+        }
+        else {
+            Toast.makeText(this, "Kid id cant be the same as parent", Toast.LENGTH_SHORT).show();
+        }
+
+        }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
