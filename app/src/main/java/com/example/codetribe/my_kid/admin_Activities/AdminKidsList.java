@@ -17,10 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-<<<<<<< HEAD
-import android.widget.Toast;
-=======
->>>>>>> 41f4d5c6297e27e898c407f51eff68b4ed199194
+
 
 import com.example.codetribe.my_kid.R;
 import com.example.codetribe.my_kid.kids_Activities.KidActivity;
@@ -54,11 +51,9 @@ public class AdminKidsList extends Fragment {
     private FloatingActionButton kidsFab;
     private String idLoged, parentId, kids_id;
     private TextView admintotalkids;
-<<<<<<< HEAD
 
-=======
     private Kids listKidsSelect;
->>>>>>> 41f4d5c6297e27e898c407f51eff68b4ed199194
+
     //database
     private DatabaseReference usersRetriveRef, kidsCreche;
     private FirebaseAuth adminUser;
