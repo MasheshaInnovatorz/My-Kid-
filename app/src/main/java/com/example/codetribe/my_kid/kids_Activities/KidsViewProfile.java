@@ -217,6 +217,22 @@ public class KidsViewProfile extends AppCompatActivity {
                                     Glide.with(getApplicationContext()).load(kidSnapshot.child("profilePic").getValue().toString()).centerCrop().into(kidsImage);
 
                                 }
+                            }else if(userSnapshot.child("role").getValue().toString().equals("teacher")){
+                                Intent intent = getIntent();
+                               String idsKid= intent.getStringExtra("nwana");
+
+                                if(kidSnapshot.child("id").getValue().toString().equals(idsKid)){
+
+
+                                    kidsGender.setText("Gender :" + kidSnapshot.child("gender").getValue().toString());
+                                    phonenumber.setText("Parent Contact :"+ userSnapshot.child("userContact").getValue().toString());
+                                    parentEmail.setText("Parent Email :"+ userSnapshot.child("emailUser").getValue().toString());
+                                    id_Key = kidSnapshot.child("id").getValue().toString();
+                                    city.setText("Class :" +kidSnapshot.child("kidsGrade").getValue().toString());
+                                    homeAddress.setText("Address :" +kidSnapshot.child("address").getValue().toString());
+
+                                    Glide.with(getApplicationContext()).load(kidSnapshot.child("profilePic").getValue().toString()).centerCrop().into(kidsImage);
+                                }
                             }
                         }
 
