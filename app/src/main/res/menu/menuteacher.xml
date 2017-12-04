@@ -21,7 +21,6 @@
         android:id="@+id/aboutus"
         app:showAsAction="never" />
 
-
     <item
         android:orderInCategory="100"
         android:title="Logout"

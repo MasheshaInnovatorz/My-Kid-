@@ -4,11 +4,11 @@
 
     <item
         android:id="@+id/kidsActivities"
-        android:title="Kids Activity">
+        android:title="Kid Memories">
     </item>
     <item
         android:id="@+id/kidsProfile"
-        android:title="Kids Profile">
+        android:title="Kid Profile">
 
     </item>
 
