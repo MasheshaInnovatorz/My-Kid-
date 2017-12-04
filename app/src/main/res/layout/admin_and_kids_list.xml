@@ -15,7 +15,6 @@
         android:padding="2dp"
         tools:context="com.example.android.miwok.Itemlist">
 
-
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/adminTeacher_Pic"
             android:layout_width="75dp"

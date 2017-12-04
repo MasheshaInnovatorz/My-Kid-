@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.example.codetribe.my_kid.R;
 
 import java.util.List;
@@ -45,16 +46,20 @@ public class KidsArray extends ArrayAdapter<Kids> {
 
         Kids kids = kidsList.get(position);
 
-        if (kids.getProfilePic() != "") {
+        if (kids.getProfilePic().equals("")) {
           //  Glide.with(getContext()).load(kids.getProfilePic()).centerCrop().into(kidsImage);
+            GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(kidsImage);
+            Glide.with(getContext()).load(R.drawable.ic_person_black_24dp).into(imageViewTarget);
+
+        }
+        else if(!kids.getProfilePic().equals("")) {
 
             Glide.with(context).load(kids.getProfilePic())
                     .thumbnail(0.5f).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(kidsImage);
 
-        }
-        else {
-            kidsImage.setImageResource(R.drawable.ic_person_black_24dp);
+
+            //kidsImage.setImageResource(R.drawable.ic_person_black_24dp);
         }
         textKdName.setText(kids.getSurname()  + " " + kids.getName() +"\n" + "Class "+ kids.getKidsGrade()  );
         // surname.setText(kids.getSurname());
