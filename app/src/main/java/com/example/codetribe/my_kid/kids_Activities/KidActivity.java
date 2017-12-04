@@ -50,8 +50,6 @@ public class KidActivity extends AppCompatActivity {
     private RadioButton radGender;
     private TextView btnCreate;
 
-    boolean pfari;
-
     private String genderString, keyUser;
     private String kidStringname,
             kidStringsurname,
@@ -177,57 +175,23 @@ public class KidActivity extends AppCompatActivity {
         kidsKidsAllocated = kidAllocated.getText().toString().trim();
         kidsYearRegistered = registeredYears.getText().toString().trim();
 
-        final String mbanzhe = orgName;
-      final  int selectedId = radKidGender.getCheckedRadioButtonId();
+        int selectedId = radKidGender.getCheckedRadioButtonId();
 
         if (!kididStringNumber.matches(kidStringparentid)) {
         if (selectedId != -1) {
-            databaseKids.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot dataKids:dataSnapshot.getChildren()) {
 
-                        if(dataKids.exists()) {
-                            if (!dataKids.child("idNumber").getValue().toString().equals(kididStringNumber)) {
+            radGender = (RadioButton) findViewById(selectedId);
+            genderString = radGender.getText().toString();
 
-                                pfari = true;
-
-                            } else {
-                                pfari=false;
+            String id = databaseKids.push().getKey();
 
 
-                            }
-                        }else{
+            Kids kids = new Kids(id, kidStringname, kidStringsurname, kidStringaddress, kididStringNumber, kidStringparentid, kidsKidsAllocated, kidsYearRegistered, genderString, orgName);
 
-                        }
-                    }
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-
-            if(pfari==true){
-                radGender = (RadioButton) findViewById(selectedId);
-                genderString = radGender.getText().toString();
-
-                String id = databaseKids.push().getKey();
-
-
-                Kids kids = new Kids(id, kidStringname, kidStringsurname, kidStringaddress, kididStringNumber, kidStringparentid, kidsKidsAllocated, kidsYearRegistered, genderString, mbanzhe);
-
-                databaseKids.child(id).setValue(kids);
-                // Toast.makeText(context, "Kid added ", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplication(), AdminTabbedActivity.class));
-            }else {
-                Toast.makeText(context, "There is a kid who already exist", Toast.LENGTH_SHORT).show();
-            }
-
-
-             }
+            databaseKids.child(id).setValue(kids);
+           // Toast.makeText(context, "Kid added ", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getApplication(), AdminTabbedActivity.class));
+        }
         else {
             Toast.makeText(this, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
         }
