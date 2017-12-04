@@ -20,9 +20,11 @@ import android.widget.TextView;
 
 
 import com.example.codetribe.my_kid.R;
+import com.example.codetribe.my_kid.kids_Activities.AdminKidsInformatin;
 import com.example.codetribe.my_kid.kids_Activities.KidActivity;
 import com.example.codetribe.my_kid.kids_Activities.Kids;
 import com.example.codetribe.my_kid.kids_Activities.KidsArray;
+import com.example.codetribe.my_kid.kids_Activities.KidsmemoListsActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -95,6 +97,7 @@ public class AdminKidsList extends Fragment {
             }
         });
 
+
         listUsers.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -163,14 +166,75 @@ public class AdminKidsList extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
 
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo infor = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        return super.onContextItemSelected(item);
+    }
+
+    private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
+        @Override
+        public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+            //actionMode.setTitle(listKidsSelect.getName());
+            MenuInflater inflater = actionMode.getMenuInflater();
+
+
+            inflater.inflate(R.menu.kid_admin_info, menu);
+            return true;
+        }
+
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+            return false;
+        }
+        @Override
+        public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+            switch (menuItem.getItemId()) {
+                case R.id.kidsActivities:
+
+                    Intent intent = new Intent(getContext(), KidsmemoListsActivity.class);
+                    intent.putExtra("kid_id", listKidsSelect.getId());
+                    startActivity(intent);
+
+                    mActionMode = null;
+                    return true;
+                case R.id.kidsProfile:
+                    Intent intent2 = new Intent(getContext(), AdminKidsInformatin.class);
+                    intent2.putExtra("nwana", listKidsSelect.getId());
+                    intent2.putExtra("User_KEY", kids_id);
+                    intent2.putExtra("parentIdentity", parentId);
+                    startActivity(intent2);
+                    mActionMode = null;
+                    return true;
+                default:
+                    return false;
+            }
+
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode actionMode) {
+
+            mActionMode = null;
+        }
+    };
+
+
+/*
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         //super.onCreateContextMenu(menu, v, menuInfo);
         //
-        // getMenuInflate().inflate(R.menu.kids_menu,menu);
+        // getMenuInflate().inflate(R.menu.kids_menu_infor,menu);
 
-       // getActivity().getMenuInflater().inflate(R.menu.kids_menu, menu);
+       // getActivity().getMenuInflater().inflate(R.menu.kids_menu_infor, menu);
     }
 
     @Override
@@ -181,7 +245,7 @@ public class AdminKidsList extends Fragment {
             case R.id.kidsActivities:
 
 
-        }*/
+
 
         return super.onContextItemSelected(item);
     }
@@ -193,7 +257,7 @@ public class AdminKidsList extends Fragment {
             MenuInflater inflater = actionMode.getMenuInflater();
 
 
-            inflater.inflate(R.menu.kids_menu, menu);
+            inflater.inflate(R.menu.kids_menu_infor, menu);
             return true;
         }
 
@@ -222,7 +286,7 @@ public class AdminKidsList extends Fragment {
             mActionMode = null;
         }
     };
-
+*/
 
 }
 

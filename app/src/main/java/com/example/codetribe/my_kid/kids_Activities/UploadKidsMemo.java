@@ -204,7 +204,7 @@ public class UploadKidsMemo extends AppCompatActivity {
 
                     dialog.dismiss();
 
-                    Toast.makeText(getApplicationContext(), "Memory Uploaded", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Kid Memory Uploaded", Toast.LENGTH_SHORT).show();
                   // startActivity(new Intent(this,UploadKidsMemo.this,KidsmemoListsActivity.class));
 
                    // Intent i = new Intent(UploadKidsMemo.this, KidsMemoListFragment.class);
