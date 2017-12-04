@@ -43,6 +43,8 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
     private SharedPreferences.Editor sharedPrefEditor;
     private DatabaseReference mOrganizationRef;
     private TextView signup;
+
+
     private EditText orgaEmail,
             crechPostalCode,
             orgPassword,

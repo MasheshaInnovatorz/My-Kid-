@@ -37,7 +37,6 @@
         <activity android:name=".kids_Activities.KidsmemoListsActivity" />
         <activity android:name=".kids_Activities.UploadKidsMemo" />
         <activity android:name=".account_Activities.WelcomeActivity" />
-        <activity android:name=".kids_Activities.KidActivity" />
         <activity
             android:name=".account_Activities.ViewProfile"
             android:theme="@style/AppTheme.LoginStyle" />

@@ -96,18 +96,19 @@
 
 
         <TextView
+            android:text="Not a member? Sign up now."
+            android:id="@+id/loginsignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_marginLeft="@dimen/text_left"
             android:layout_marginRight="@dimen/text_right"
             android:layout_marginTop="5dp"
-            android:id="@+id/forget_password"
-            android:text="Forgot Password?"
             android:textColor="#212121"
             android:textSize="16sp" />
 <TextView
-    android:id="@+id/loginsignup"
+    android:id="@+id/forget_password"
+    android:text="Forgot Password?"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="right"
@@ -117,7 +118,7 @@
     android:textColor="#212121"
     android:textSize="16sp"
     android:layout_marginBottom="28dp"
-    android:text="Not a member? Sign up now."
+
  />
     </LinearLayout>
 </RelativeLayout>
