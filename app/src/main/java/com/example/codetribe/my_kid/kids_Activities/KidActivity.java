@@ -44,6 +44,8 @@ public class KidActivity extends AppCompatActivity {
     private RadioButton radGender;
     private TextView btnCreate;
 
+    Boolean pfari;
+
     private String genderString, keyUser;
     private String kidStringname,
             kidStringsurname,
@@ -193,7 +195,7 @@ public class KidActivity extends AppCompatActivity {
         kidsKidsAllocated = kidAllocated.getText().toString().trim();
         kidsYearRegistered = registeredYears.getText().toString().trim();
 
-<<<<<<< HEAD
+
         final String mbanzhe = orgName;
         final int selectedId = radKidGender.getCheckedRadioButtonId();
 
@@ -217,28 +219,6 @@ public class KidActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
             }
-=======
-        int selectedId = radKidGender.getCheckedRadioButtonId();
-
-        if (!kididStringNumber.matches(kidStringparentid)) {
-        if (selectedId != -1) {
-
-            radGender = (RadioButton) findViewById(selectedId);
-            genderString = radGender.getText().toString();
-
-            String id = databaseKids.push().getKey();
-
-
-            Kids kids = new Kids(id, kidStringname, kidStringsurname, kidStringaddress, kididStringNumber, kidStringparentid, kidsKidsAllocated, kidsYearRegistered, genderString, orgName);
-
-            databaseKids.child(id).setValue(kids);
-           // Toast.makeText(context, "Kid added ", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getApplication(), AdminTabbedActivity.class));
-        }
-        else {
-            Toast.makeText(this, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
-        }
->>>>>>> b9cb9cd87d5740ec2ac2348559a1a3d4f056b221
 
         } else {
             Toast.makeText(this, "Kid id cant be the same as parent", Toast.LENGTH_SHORT).show();
