@@ -44,7 +44,7 @@ public class KidActivity extends AppCompatActivity {
     private RadioButton radGender;
     private TextView btnCreate;
 
-    Boolean pfari;
+    int counter = 0;
 
     private String genderString, keyUser;
     private String kidStringname,
@@ -54,7 +54,7 @@ public class KidActivity extends AppCompatActivity {
             kidStringparentid,
             kidsKidsAllocated,
             kidsYearRegistered;
-
+    String org_name;
 
     private ProgressDialog progressDialog;
     //defining AwesomeValidation object
@@ -116,7 +116,7 @@ public class KidActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         //database
         databaseKids = FirebaseDatabase.getInstance().getReference().child("Kids");
-        addKidsDataBase  =  FirebaseDatabase.getInstance().getReference().child("Kids");
+        addKidsDataBase = FirebaseDatabase.getInstance().getReference().child("Kids");
         final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         adminOrgNameRef = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("orgName");
@@ -128,44 +128,18 @@ public class KidActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (awesomeValidation.validate()) {
 
-                    progressDialog.setMessage("Wait While Adding Kid");
+                   progressDialog.setMessage("Wait While Adding Kid");
                     progressDialog.show();
 
-                            databaseKids.addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                    for (DataSnapshot dataKids : dataSnapshot.getChildren()) {
-
-                                        if (dataKids.exists()) {
-                                            if (!dataKids.child("idNumber").getValue().toString().equals(kididStringNumber)) {
-
-                                              pfari = true;
-                                            }
 
 
-                                        }
-                                    }
-
-                                }
-
-                                @Override
-                                public void onCancelled(DatabaseError databaseError) {
-
-                                }
-                            });
                     adminOrgNameRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(final DataSnapshot kdataSnapshot) {
 
-                            if (pfari == true) {
-                                String org_name = kdataSnapshot.getValue(String.class);
-                                addkids(org_name);
-                                Toast.makeText(context, "Kid added", Toast.LENGTH_SHORT).show();
+                                org_name = kdataSnapshot.getValue(String.class);
+                                addkids(org_name, counter);
 
-
-                            }else{
-                                Toast.makeText(context, "Kids Duplicated", Toast.LENGTH_SHORT).show();
-                            }
                         }
 
                         @Override
@@ -185,7 +159,7 @@ public class KidActivity extends AppCompatActivity {
     }
 
 
-    public void addkids(String orgName) {
+    public void addkids(String orgName,int Counter) {
 
         kidStringname = kidname.getText().toString().trim();
         kidStringsurname = kidsurname.getText().toString().trim();
