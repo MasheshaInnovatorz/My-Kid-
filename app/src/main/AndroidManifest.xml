@@ -23,16 +23,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".account_Activities.LoginActivity"
-            />
-        <activity
-            android:name=".account_Activities.SignUp"
-             />
-        <activity
-            android:name=".account_Activities.ResetPassword"
-    />
-
+        <activity android:name=".account_Activities.LoginActivity" />
+        <activity android:name=".account_Activities.SignUp" />
+        <activity android:name=".account_Activities.ResetPassword" />
         <activity android:name=".parent_Activities.CreateParentProfile" />
         <activity android:name=".kids_Activities.KidsmemoListsActivity" />
         <activity android:name=".kids_Activities.UploadKidsMemo" />
@@ -49,7 +42,6 @@
             android:label="@string/title_activity_parent_tabbed"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".kids_Activities.KidsMemoListFragment" />
-
         <activity
             android:name=".teachers_Activities.TeacherTabbedActivity"
             android:label="@string/title_activity_teacher_tabbed"
@@ -61,6 +53,7 @@
         <activity android:name=".account_Activities.UpdateProfile" />
         <activity android:name=".kids_Activities.KidsViewProfile" />
         <activity android:name=".kids_Activities.EditKidsProfile" />
+        <activity android:name=".kids_Activities.AdminKidsInformatin"></activity>
     </application>
 
 </manifest>

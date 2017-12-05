@@ -29,7 +29,7 @@ public class Splash extends AppCompatActivity {
             public void run() {
                 // This method will be executed once the timer is over
                 // Start your app main activity
-                Intent i = new Intent(Splash.this, WelcomeActivity.class);
+                Intent i = new Intent(Splash.this, LoginActivity.class);
                 // Intent i = new Intent(Splash.this, GroupChat.class);
                 startActivity(i);
 

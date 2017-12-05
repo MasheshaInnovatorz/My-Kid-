@@ -29,9 +29,6 @@
     <string name="bodyWeight_error">Enter Valid bodyWeight</string>
 
 
-
-
-
     this. bodyWeight="";
 
     <string name="text_with_paragraphs">
@@ -68,7 +65,7 @@
     </string-array>
 
     <string-array name="city_Province">
-      <item>Select Province</item>
+        <item>Select Province</item>
 
         <item>Northern Cape</item>
         <item>Eastern Cape</item>
@@ -82,33 +79,33 @@
     </string-array>
 
     <string-array name="city_limpopo">
-    <item>Select City</item>
-    <item> Giyani</item>
-    <item>Lebowakgomo</item>
-    <item>Musina</item>
-    <item>Phalaborwa</item>
-    <item>Polokwane</item>
-    <item>Seshego</item>
-    <item>Sibasa</item>
-    <item>Thabazimbi</item>
-    <item>Thohoyandou</item>
+        <item>Select City</item>
+        <item> Giyani</item>
+        <item>Lebowakgomo</item>
+        <item>Musina</item>
+        <item>Phalaborwa</item>
+        <item>Polokwane</item>
+        <item>Seshego</item>
+        <item>Sibasa</item>
+        <item>Thabazimbi</item>
+        <item>Thohoyandou</item>
     </string-array>
 
     <string-array name="city_gauteng">
-    <item>Benoni</item>
-    <item>Johannesburg</item>
-    <item>Soweto</item>
-    <item>Boksburg</item>
-    <item>Pretoria</item>
-    <item>Germiston</item>
-    <item>Randburg</item>
+        <item>Benoni</item>
+        <item>Johannesburg</item>
+        <item>Soweto</item>
+        <item>Boksburg</item>
+        <item>Pretoria</item>
+        <item>Germiston</item>
+        <item>Randburg</item>
     </string-array>
 
     <string-array name="city_western_cape">
-    <item>Cape Town</item>
-    <item>Stellenbosch</item>
-    <item>Krugersdorp</item>
-    <item>George</item>
+        <item>Cape Town</item>
+        <item>Stellenbosch</item>
+        <item>Krugersdorp</item>
+        <item>George</item>
     </string-array>
 
     <string-array name="city_list">

@@ -1,8 +1,13 @@
 package com.example.codetribe.my_kid.account_Activities;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -13,8 +18,10 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +29,7 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.codetribe.my_kid.R;
 import com.example.codetribe.my_kid.admin_Activities.AdminTabbedActivity;
+import com.example.codetribe.my_kid.organization_Activities.SignUpOrganisationActivity;
 import com.example.codetribe.my_kid.parent_Activities.CreateParentProfile;
 import com.example.codetribe.my_kid.parent_Activities.ParentTabbedActivity;
 import com.example.codetribe.my_kid.teachers_Activities.TeacherTabbedActivity;
@@ -102,14 +110,77 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         editEmail.setText(shared_email);
 
+        //user registration
         loginsignup_.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent it = new Intent(LoginActivity.this, SignUp.class);
-                startActivity(it);
+
+              //  Intent it = new Intent(LoginActivity.this, SignUp.class);
+              //  startActivity(it);
+
+
+                        AlertDialog.Builder mBuilder = new AlertDialog.Builder(LoginActivity.this);
+                        View mView = getLayoutInflater().inflate(R.layout.dialogue_spinner, null);
+                        mBuilder.setTitle("Select an option to create Account?");
+
+                        final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
+
+
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(LoginActivity.this, android.R.layout.simple_spinner_item
+                                , getResources().getStringArray(R.array.signUp_Options));
+
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        mSpinner.setAdapter(adapter);
+
+                        if (mSpinner.getSelectedItem().toString().equalsIgnoreCase("Choose Sign-Up Option")) {
+                            //dialogInterface.dismiss();
+                        }
+                        final String text = mSpinner.getSelectedItem().toString();
+
+                        mBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int which) {
+
+                                if (mSpinner.getSelectedItem().toString().equalsIgnoreCase("Choose Sign-Up Option")) {
+                                    dialogInterface.dismiss();
+                                }
+                                final String text = mSpinner.getSelectedItem().toString();
+
+                                switch (text) {
+                                    case "Parent":
+                                        Intent it = new Intent(LoginActivity.this, SignUp.class);
+                                        startActivity(it);
+
+                                        break;
+                                    case "Organization":
+                                        Intent i = new Intent(LoginActivity.this, SignUpOrganisationActivity.class);
+                                        startActivity(i);
+                                        break;
+                                    default:
+                                        Toast.makeText(LoginActivity.this, "Choose an option to sign-Up", Toast.LENGTH_SHORT).show();
+                                        break;
+                                }
+
+                    }
+        });
+                mBuilder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                mBuilder.setView(mView);
+                AlertDialog dialog = mBuilder.create();
+                dialog.show();
+
 
             }
         });
+
+
+
+
 
         //database
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -156,11 +227,36 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onStart() {
         super.onStart();
+        if(haveNetworkConnection() ==false){
+            Toast.makeText(this, "Please Confirm if You bundle is ", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "You  are connected to internet", Toast.LENGTH_SHORT).show();
+        }
         progressDialog.setMessage("Wait While Logging In");
         progressDialog.show();
         mFirebaseAuth.addAuthStateListener(mAuthListener);
         progressDialog.dismiss();
     }
+
+    //check if there is internet connnection or not
+    private boolean haveNetworkConnection() {
+        boolean haveConnectedWifi = false;
+        boolean haveConnectedMobile = false;
+
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+        for (NetworkInfo ni : netInfo) {
+            if (ni.getTypeName().equalsIgnoreCase("WIFI")) {
+                if (ni.isConnected())
+                    haveConnectedWifi = true;
+            }
+            if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+                if (ni.isConnected())
+                    haveConnectedMobile = true;
+        }
+        return haveConnectedWifi || haveConnectedMobile;
+    }
+
 
     @Override
     protected void onStop() {
@@ -271,6 +367,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             });
         }
     }
+
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

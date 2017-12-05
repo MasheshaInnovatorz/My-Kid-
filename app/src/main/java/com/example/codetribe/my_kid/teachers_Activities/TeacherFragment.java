@@ -16,9 +16,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.codetribe.my_kid.R;
+import com.example.codetribe.my_kid.kids_Activities.AdminKidsInformatin;
 import com.example.codetribe.my_kid.kids_Activities.Kids;
 import com.example.codetribe.my_kid.kids_Activities.KidsArray;
-import com.example.codetribe.my_kid.kids_Activities.KidsViewProfile;
 import com.example.codetribe.my_kid.kids_Activities.KidsmemoListsActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -146,22 +146,12 @@ public class TeacherFragment extends Fragment {
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        //super.onCreateContextMenu(menu, v, menuInfo);
-        //
-        // getMenuInflate().inflate(R.menu.kids_menu,menu);
 
-        // getActivity().getMenuInflater().inflate(R.menu.kids_menu, menu);
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo infor = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-
-     /*   switch (item.getItemId()) {
-            case R.id.kidsActivities:
-
-
-        }*/
 
         return super.onContextItemSelected(item);
     }
@@ -173,7 +163,7 @@ public class TeacherFragment extends Fragment {
             MenuInflater inflater = actionMode.getMenuInflater();
 
 
-            inflater.inflate(R.menu.kids_menu, menu);
+            inflater.inflate(R.menu.kids_menu_infor, menu);
             return true;
         }
 
@@ -181,7 +171,6 @@ public class TeacherFragment extends Fragment {
         public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
             return false;
         }
-
         @Override
         public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
             switch (menuItem.getItemId()) {
@@ -195,7 +184,7 @@ public class TeacherFragment extends Fragment {
                     return true;
                 case R.id.kidsProfile:
 
-                    Intent intent2 = new Intent(getContext(), KidsViewProfile.class);
+                    Intent intent2 = new Intent(getContext(), AdminKidsInformatin.class);
                     intent2.putExtra("nwana", listKidsSelect.getId());
                     startActivity(intent2);
                     mActionMode = null;
