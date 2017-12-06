@@ -50,6 +50,11 @@ public class KidActivity extends AppCompatActivity {
     private RadioButton radGender;
     private TextView btnCreate;
 
+<<<<<<< HEAD
+=======
+    int counter = 0;
+
+>>>>>>> 59d11e60beef390c4984dc2b22e35ed0e855242f
     private String genderString, keyUser;
     private String kidStringname,
             kidStringsurname,
@@ -58,7 +63,7 @@ public class KidActivity extends AppCompatActivity {
             kidStringparentid,
             kidsKidsAllocated,
             kidsYearRegistered;
-
+    String org_name;
 
     private ProgressDialog progressDialog;
     //defining AwesomeValidation object
@@ -120,6 +125,10 @@ public class KidActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         //database
         databaseKids = FirebaseDatabase.getInstance().getReference().child("Kids");
+<<<<<<< HEAD
+=======
+        addKidsDataBase = FirebaseDatabase.getInstance().getReference().child("Kids");
+>>>>>>> 59d11e60beef390c4984dc2b22e35ed0e855242f
         final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         adminOrgNameRef = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("orgName");
@@ -131,15 +140,26 @@ public class KidActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (awesomeValidation.validate()) {
 
-                    progressDialog.setMessage("Wait While Adding Kid");
+                   progressDialog.setMessage("Wait While Adding Kid");
                     progressDialog.show();
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 59d11e60beef390c4984dc2b22e35ed0e855242f
                     adminOrgNameRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
 
+<<<<<<< HEAD
                             String org_name = dataSnapshot.getValue(String.class);
                             addkids(org_name);
                             Toast.makeText(context, "Kid added", Toast.LENGTH_SHORT).show();
+=======
+                                org_name = kdataSnapshot.getValue(String.class);
+                                addkids(org_name, counter);
+>>>>>>> 59d11e60beef390c4984dc2b22e35ed0e855242f
 
                         }
 
@@ -160,12 +180,16 @@ public class KidActivity extends AppCompatActivity {
     }
 
 
+<<<<<<< HEAD
 
 
 
 
 
     public void addkids(String orgName) {
+=======
+    public void addkids(String orgName,int Counter) {
+>>>>>>> 59d11e60beef390c4984dc2b22e35ed0e855242f
 
         kidStringname = kidname.getText().toString().trim();
         kidStringsurname = kidsurname.getText().toString().trim();
