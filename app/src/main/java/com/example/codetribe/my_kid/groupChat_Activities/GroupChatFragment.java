@@ -133,7 +133,7 @@ public class GroupChatFragment extends Fragment {
         ChatMessage chatMessage = new ChatMessage(messageArea.getText().toString(),FirebaseAuth.getInstance().getCurrentUser().getEmail(),0,FirebaseAuth.getInstance().getCurrentUser().getUid());
         databaseReference.push().setValue(chatMessage);
         messageArea.setText("");
-        
+
 
     }
     public void addMessageBox(String message, int type, ChatMessage chat){

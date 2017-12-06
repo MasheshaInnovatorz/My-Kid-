@@ -29,7 +29,6 @@
         <activity android:name=".parent_Activities.CreateParentProfile" />
         <activity android:name=".kids_Activities.KidsmemoListsActivity" />
         <activity android:name=".kids_Activities.UploadKidsMemo" />
-        <activity android:name=".kids_Activities.KidActivity" />
 
         <activity
             android:name=".account_Activities.ViewProfile"
