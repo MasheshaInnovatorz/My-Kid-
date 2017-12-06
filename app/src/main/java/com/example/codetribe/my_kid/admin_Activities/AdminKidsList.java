@@ -288,6 +288,11 @@ public class AdminKidsList extends Fragment {
     };
 */
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        counter = 0;
+    }
 }
 
 

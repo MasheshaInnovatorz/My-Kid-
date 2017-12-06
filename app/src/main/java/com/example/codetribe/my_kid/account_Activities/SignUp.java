@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.codetribe.my_kid.R;
+import com.example.codetribe.my_kid.organization_Activities.SignUpOrganisationActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -99,6 +100,7 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
         awesomeValidation.addValidation(this, R.id.sign_up_email, Patterns.EMAIL_ADDRESS, R.string.emailerror);
         awesomeValidation.addValidation(this, R.id.KidIdNumber, "^^[0-9]{13}$", R.string.iderror);
 
+
         orgNameList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -113,9 +115,8 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
         });
 
 
+
         list  = new ArrayList<String>();
-
-
 
         input_email1= (TextInputLayout)findViewById(R.id.input_email);
 
@@ -124,6 +125,8 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
         input_email1 = (TextInputLayout) findViewById(R.id.input_email);
+
+
 
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -173,8 +176,9 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
                 sharedPrefEditor.putString("email", userEmailString);
                 sharedPrefEditor.apply();
 
+                //
                 if (awesomeValidation.validate()) {
-
+                    if(!orgNameList.getSelectedItem().toString().trim().equals("Select Creshe")){
                     KidDataRef.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -210,7 +214,7 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
                                         }
                                     });
 
-                                     progressDialog.dismiss();
+                                    progressDialog.dismiss();
                                 } else {
 
                                     Toast.makeText(SignUp.this, "You dont have a kids on this Creche,Please contact an Admin Creshe", Toast.LENGTH_SHORT).show();
@@ -228,8 +232,12 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
                     });
 
                 }
-           //     progressDialog.dismiss();
+                    else{
 
+                        Toast.makeText(SignUp.this, "Please Select a Creshe that your kid registerd at", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
 
             }
         });
@@ -260,7 +268,7 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
     protected void onStart() {
         super.onStart();
 
-        progressDialog.setMessage("Wait While searching for creches..");
+        progressDialog.setMessage("Wait While searching for creches list..");
         progressDialog.show();
 
         crecheDataRef.addValueEventListener(new ValueEventListener() {
@@ -304,6 +312,5 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
         return super.onOptionsItemSelected(item);
 
     }
-
 }
 

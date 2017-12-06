@@ -129,7 +129,66 @@
                     android:text="Home Address" />
 
 
+                <TextView
+                    android:id="@+id/kids_Allergies_view"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="#fff"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:padding="20dp"
+                    android:text="Allergies" />
+
+                <TextView
+                    android:id="@+id/kids_diet_Requirements_view"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="#fff"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:padding="20dp"
+                    android:text=" diet_Requirements" />
+
+
+
+                <TextView
+                    android:id="@+id/kids_BodyWeight_view"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="#fff"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:padding="20dp"
+                    android:text="BodyWeight" />
+
+
+                <TextView
+                    android:id="@+id/kids_height_view"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="#fff"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:padding="20dp"
+                    android:text="Bodyheight" />
+
+
+                <TextView
+                    android:id="@+id/kids_doctorsRequirements_view"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="#fff"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:padding="20dp"
+                    android:text="doctorsRequirements" />
+
+
             </LinearLayout>
-        </RelativeLayout
->
+        </RelativeLayout>
     </ScrollView>

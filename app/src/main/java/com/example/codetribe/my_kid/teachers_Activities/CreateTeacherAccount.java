@@ -132,7 +132,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
                             saveParent(org_name);
                              progressDialog.dismiss();
 
-                            Toast.makeText(CreateTeacherAccount.this, "Teacher added", Toast.LENGTH_LONG).show();
+                          //  Toast.makeText(CreateTeacherAccount.this, "Teacher added", Toast.LENGTH_LONG).show();
                         } else {
 
                             Toast.makeText(CreateTeacherAccount.this, "Make sure you fix all the error shown in your input space", Toast.LENGTH_LONG).show();

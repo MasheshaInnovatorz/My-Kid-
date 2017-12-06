@@ -115,6 +115,7 @@ public class GroupChatFragment extends Fragment {
 
 
                         }
+
                     }
 
                     @Override
@@ -131,6 +132,8 @@ public class GroupChatFragment extends Fragment {
 
         ChatMessage chatMessage = new ChatMessage(messageArea.getText().toString(),FirebaseAuth.getInstance().getCurrentUser().getEmail(),0,FirebaseAuth.getInstance().getCurrentUser().getUid());
         databaseReference.push().setValue(chatMessage);
+        messageArea.setText("");
+        
 
     }
     public void addMessageBox(String message, int type, ChatMessage chat){
@@ -138,13 +141,10 @@ public class GroupChatFragment extends Fragment {
         msg.setText(DateFormat.format("dd-MM-yyyy (HH:mm)",chat.getTime()) +"\n" + message );
 
 
-
         LinearLayout.LayoutParams textmsg = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        textmsg.weight = 1.0f;
 
         if(type == 1) {
             textmsg.gravity = Gravity.LEFT;
-            msg.setMaxWidth(300);
             msg.setBackgroundResource(R.drawable.bubble_in);
 
         }

@@ -30,7 +30,7 @@
         <activity android:name=".kids_Activities.KidsmemoListsActivity" />
         <activity android:name=".kids_Activities.UploadKidsMemo" />
         <activity android:name=".kids_Activities.KidActivity" />
-        <activity android:name=".account_Activities.WelcomeActivity" />
+
         <activity
             android:name=".account_Activities.ViewProfile"
             android:theme="@style/AppTheme.LoginStyle" />
@@ -51,9 +51,10 @@
             android:label="@string/title_activity_admin_tabbed"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".account_Activities.UpdateProfile" />
-        <activity android:name=".kids_Activities.KidsViewProfile" />
+        <activity android:name=".kids_Activities.KidsViewProfile"    android:theme="@style/AppTheme.LoginStyle" />
         <activity android:name=".kids_Activities.EditKidsProfile" />
-        <activity android:name=".kids_Activities.AdminKidsInformatin"></activity>
+        <activity android:name=".kids_Activities.AdminKidsInformatin"
+        android:theme="@style/AppTheme.LoginStyle" />
     </application>
 
 </manifest>
