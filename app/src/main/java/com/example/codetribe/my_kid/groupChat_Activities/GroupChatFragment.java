@@ -153,17 +153,12 @@ public class GroupChatFragment extends Fragment {
                     addMessageBox(chatFax.getName().toString() + "\n" + chatFax.getMessage(), 1, chatFax);
 
 
-<<<<<<< HEAD
                 } else {
 
                     addMessageBox(chatFax.getName().toString() + "\n" + chatFax.getMessage(), 2, chatFax);
                 }
             }
-=======
-                        }
 
-                    }
->>>>>>> f238a3a54646ab921b84254627748cd4bdf0601e
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
@@ -193,13 +188,7 @@ public class GroupChatFragment extends Fragment {
 
     /* public void messageSend() {
 
-<<<<<<< HEAD
-=======
-        ChatMessage chatMessage = new ChatMessage(messageArea.getText().toString(),FirebaseAuth.getInstance().getCurrentUser().getEmail(),0,FirebaseAuth.getInstance().getCurrentUser().getUid());
-        databaseReference.push().setValue(chatMessage);
-        messageArea.setText("");
 
->>>>>>> f238a3a54646ab921b84254627748cd4bdf0601e
 
          ChatMessage chatMessage = new ChatMessage(messageArea.getText().toString(),FirebaseAuth.getInstance().getCurrentUser().getEmail(),0,FirebaseAuth.getInstance().getCurrentUser().getUid(),"");
          databaseReference.push().setValue(chatMessage);

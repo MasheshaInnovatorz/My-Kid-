@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -18,13 +17,8 @@ import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
-import com.example.codetribe.my_kid.account_Activities.LoginActivity;
-import com.example.codetribe.my_kid.account_Activities.SignUp;
-import com.example.codetribe.my_kid.admin_Activities.AdminTabbedActivity;
 import com.example.codetribe.my_kid.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import com.example.codetribe.my_kid.admin_Activities.AdminTabbedActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,6 +39,7 @@ public class KidActivity extends AppCompatActivity {
             kidAllocated,
             registeredYears;
 
+    int counter = 0;
     private ImageView imagepic;
     private RadioGroup radKidGender;
     private RadioButton radGender;
@@ -133,15 +128,20 @@ public class KidActivity extends AppCompatActivity {
 
                     progressDialog.setMessage("Wait While Adding Kid");
                     progressDialog.show();
-<<<<<<< HEAD
+
 
 
                     adminOrgNameRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(final DataSnapshot kdataSnapshot) {
                             if (counter != 1) {
-                                org_name = kdataSnapshot.getValue(String.class);
-                                addkids(org_name, counter);
+
+
+
+                                        String org_name = kdataSnapshot.getValue(String.class);
+                                        addkids(org_name);
+                                        Toast.makeText(context, "Kid added", Toast.LENGTH_SHORT).show();
+
                             }
                         }
 
@@ -165,15 +165,6 @@ public class KidActivity extends AppCompatActivity {
                                     Toast.makeText(context, "Successfully Registered", Toast.LENGTH_SHORT).show();
                                 }
 
-=======
-                    adminOrgNameRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-
-                            String org_name = dataSnapshot.getValue(String.class);
-                            addkids(org_name);
-                            Toast.makeText(context, "Kid added", Toast.LENGTH_SHORT).show();
->>>>>>> f238a3a54646ab921b84254627748cd4bdf0601e
 
                             }
                         }
@@ -195,16 +186,8 @@ public class KidActivity extends AppCompatActivity {
     }
 
 
-<<<<<<< HEAD
-    public void addkids(String orgName, int Counter) {
-=======
-
-
-
-
-
     public void addkids(String orgName) {
->>>>>>> f238a3a54646ab921b84254627748cd4bdf0601e
+
 
         kidStringname = kidname.getText().toString().trim();
         kidStringsurname = kidsurname.getText().toString().trim();

@@ -35,6 +35,7 @@
             android:theme="@style/AppTheme.LoginStyle" />
         <activity android:name=".organization_Activities.SignUpOrganisationActivity" />
         <activity android:name=".teachers_Activities.CreateTeacherAccount" />
+
         <activity android:name=".aboutUs_Activity.AboutUs" />
         <activity
             android:name=".parent_Activities.ParentTabbedActivity"
@@ -52,6 +53,7 @@
         <activity android:name=".account_Activities.UpdateProfile" />
         <activity android:name=".kids_Activities.KidsViewProfile"    android:theme="@style/AppTheme.LoginStyle" />
         <activity android:name=".kids_Activities.EditKidsProfile" />
+        <activity android:name=".kids_Activities.KidActivity"/>
         <activity android:name=".kids_Activities.AdminKidsInformatin"
         android:theme="@style/AppTheme.LoginStyle" />
     </application>
