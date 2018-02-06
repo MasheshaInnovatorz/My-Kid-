@@ -46,7 +46,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView login_Button,loginsignup_;
+    private TextView login_Button, loginsignup_;
     private ImageView backtowelcome, icon;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPrefEditor;
@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
 
-        loginsignup_=(TextView) findViewById(R.id.loginsignup);
+        loginsignup_ = (TextView) findViewById(R.id.loginsignup);
         editEmail = (EditText) findViewById(R.id.login_email);
         editPassword = (EditText) findViewById(R.id.login_password);
         forgot = (TextView) findViewById(R.id.forget_password);
@@ -115,55 +115,63 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View view) {
 
-              //  Intent it = new Intent(LoginActivity.this, SignUp.class);
-              //  startActivity(it);
+                //  Intent it = new Intent(LoginActivity.this, SignUp.class);
+                //  startActivity(it);
 
 
-                        AlertDialog.Builder mBuilder = new AlertDialog.Builder(LoginActivity.this);
-                        View mView = getLayoutInflater().inflate(R.layout.dialogue_spinner, null);
-                        mBuilder.setTitle("Select an option to create Account?");
 
-                        final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
+                /*
+                else {
+                    passwordText.setError(null);
+                    startActivity(new Intent(RegistrationActivity.this,MainActivity.class));
+                }
+*/
+
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(LoginActivity.this);
+                View mView = getLayoutInflater().inflate(R.layout.dialogue_spinner, null);
+                mBuilder.setTitle("Select an option to create Account?");
+
+                final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
 
 
-                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(LoginActivity.this, android.R.layout.simple_spinner_item
-                                , getResources().getStringArray(R.array.signUp_Options));
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(LoginActivity.this, android.R.layout.simple_spinner_item
+                        , getResources().getStringArray(R.array.signUp_Options));
 
-                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        mSpinner.setAdapter(adapter);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                mSpinner.setAdapter(adapter);
+
+                if (mSpinner.getSelectedItem().toString().equalsIgnoreCase("Choose Sign-Up Option")) {
+                    //dialogInterface.dismiss();
+                }
+                final String text = mSpinner.getSelectedItem().toString();
+
+                mBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
 
                         if (mSpinner.getSelectedItem().toString().equalsIgnoreCase("Choose Sign-Up Option")) {
-                            //dialogInterface.dismiss();
+                            dialogInterface.dismiss();
                         }
                         final String text = mSpinner.getSelectedItem().toString();
 
-                        mBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        switch (text) {
+                            case "Parent":
+                                Intent it = new Intent(LoginActivity.this, SignUp.class);
+                                startActivity(it);
 
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int which) {
-
-                                if (mSpinner.getSelectedItem().toString().equalsIgnoreCase("Choose Sign-Up Option")) {
-                                    dialogInterface.dismiss();
-                                }
-                                final String text = mSpinner.getSelectedItem().toString();
-
-                                switch (text) {
-                                    case "Parent":
-                                        Intent it = new Intent(LoginActivity.this, SignUp.class);
-                                        startActivity(it);
-
-                                        break;
-                                    case "Organization":
-                                        Intent i = new Intent(LoginActivity.this, SignUpOrganisationActivity.class);
-                                        startActivity(i);
-                                        break;
-                                    default:
-                                        Toast.makeText(LoginActivity.this, "Choose an option to sign-Up", Toast.LENGTH_SHORT).show();
-                                        break;
-                                }
+                                break;
+                            case "Organization":
+                                Intent i = new Intent(LoginActivity.this, SignUpOrganisationActivity.class);
+                                startActivity(i);
+                                break;
+                            default:
+                                Toast.makeText(LoginActivity.this, "Choose an option to sign-Up", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
 
                     }
-        });
+                });
                 mBuilder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
@@ -177,9 +185,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             }
         });
-
-
-
 
 
         //database
@@ -227,9 +232,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onStart() {
         super.onStart();
-        if(haveNetworkConnection() ==false){
+        if (haveNetworkConnection() == false) {
             Toast.makeText(this, "Please Confirm if You bundle is ", Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
             Toast.makeText(this, "You  are connected to internet", Toast.LENGTH_SHORT).show();
         }
         progressDialog.setMessage("Wait While Logging In");
@@ -289,55 +294,55 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //Iterator iterator = dataSnapshot.getChildren().iterator();
 
         //while (iterator.hasNext()) {
-          //  DataSnapshot dataUser = (DataSnapshot) iterator.next();
+        //  DataSnapshot dataUser = (DataSnapshot) iterator.next();
 
-            if (dataUser.child("isVerified").getValue().toString().equals("unverified")) {
-                Intent intentUser = new Intent(LoginActivity.this, CreateParentProfile.class);
+        if (dataUser.child("isVerified").getValue().toString().equals("unverified")) {
+            Intent intentUser = new Intent(LoginActivity.this, CreateParentProfile.class);
 
-                //if (dataUser.child("emailUser").getValue().toString().trim().equals(emailForVer)) {
+            //if (dataUser.child("emailUser").getValue().toString().trim().equals(emailForVer)) {
 
-                    //if (dataUser.child("isVerified").getValue().toString().equals("unverified")) {
-                        //Intent intentUser = new Intent(LoginActivity.this, CreateParentProfile.class);
-                        intentUser.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
-                        Toast.makeText(this, dataUser.child("userKey").getValue().toString(), Toast.LENGTH_SHORT).show();
-                        startActivity(intentUser);
+            //if (dataUser.child("isVerified").getValue().toString().equals("unverified")) {
+            //Intent intentUser = new Intent(LoginActivity.this, CreateParentProfile.class);
+            intentUser.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
+            Toast.makeText(this, dataUser.child("userKey").getValue().toString(), Toast.LENGTH_SHORT).show();
+            startActivity(intentUser);
 
-                   // }
-                //}
+            // }
+            //}
 
+        } else {
+            if (dataUser.child("role").getValue().toString().equals("teacher")) {
+                Intent intent = new Intent(LoginActivity.this, TeacherTabbedActivity.class);
+                intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
+                startActivity(intent);
+                Toast.makeText(this, "Welcome To TeachersActivity Page", Toast.LENGTH_SHORT).show();
+
+
+            } else if (dataUser.child("role").getValue().toString().equals("parent")) {
+                //  Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
+                //Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
+                Intent intent = new Intent(LoginActivity.this, ParentTabbedActivity.class);
+                intent.putExtra("parent_id", dataUser.child("userIdNumber").getValue().toString());
+                //intent.putExtra("kid_id", dataUser.child("id").getValue().toString());
+                startActivity(intent);
+                Toast.makeText(this, "Welcome To Parents Page", Toast.LENGTH_SHORT).show();
+
+            } else if (dataUser.child("role").getValue().toString().equals("admin")) {
+
+                // Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                Intent intent = new Intent(LoginActivity.this, AdminTabbedActivity.class);
+
+                // intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
+                intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
+                startActivity(intent);
+                Toast.makeText(this, "Welcome To AdminActivity Page", Toast.LENGTH_SHORT).show();
             } else {
-                if (dataUser.child("role").getValue().toString().equals("teacher")) {
-                    Intent intent = new Intent(LoginActivity.this, TeacherTabbedActivity.class);
-                    intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
-                    startActivity(intent);
-                    Toast.makeText(this, "Welcome To TeachersActivity Page", Toast.LENGTH_SHORT).show();
 
-
-                } else if (dataUser.child("role").getValue().toString().equals("parent")) {
-                    //  Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
-                    //Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
-                    Intent intent = new Intent(LoginActivity.this, ParentTabbedActivity.class);
-                    intent.putExtra("parent_id", dataUser.child("userIdNumber").getValue().toString());
-                    //intent.putExtra("kid_id", dataUser.child("id").getValue().toString());
-                    startActivity(intent);
-                    Toast.makeText(this, "Welcome To Parents Page", Toast.LENGTH_SHORT).show();
-
-                } else if (dataUser.child("role").getValue().toString().equals("admin")) {
-
-                    // Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
-                    Intent intent = new Intent(LoginActivity.this, AdminTabbedActivity.class);
-
-                    // intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
-                    intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
-                    startActivity(intent);
-                    Toast.makeText(this, "Welcome To AdminActivity Page", Toast.LENGTH_SHORT).show();
-                } else {
-
-                    Toast.makeText(this, dataUser.child("role").getValue().toString(), Toast.LENGTH_SHORT).show();
-                    Toast.makeText(LoginActivity.this, "Please Contact A heard Master To Assign you A Role", Toast.LENGTH_SHORT).show();
-                }
-
+                Toast.makeText(this, dataUser.child("role").getValue().toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Please Contact A heard Master To Assign you A Role", Toast.LENGTH_SHORT).show();
             }
+
+        }
 
         //}
     }
@@ -348,28 +353,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         userEmailString = editEmail.getText().toString().trim();
         userPasswordString = editPassword.getText().toString().trim();
 
-        progressDialog.setMessage("Wait While Logging In");
-        progressDialog.show();
+
+        if (userPasswordString.isEmpty() || userPasswordString.length() < 6) {
+            editPassword.setError("Password cannot be less than 6 characters!");
+
+        } else {
+
+            progressDialog.setMessage("Wait While Logging In");
+            progressDialog.show();
 
 
-        if (!TextUtils.isEmpty(userEmailString) && !TextUtils.isEmpty(userPasswordString)) {
+            if (!TextUtils.isEmpty(userEmailString) && !TextUtils.isEmpty(userPasswordString)) {
 
-            mFirebaseAuth.signInWithEmailAndPassword(userEmailString, userPasswordString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                       // Toast.makeText(LoginActivity.this, "Parent Account Created", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Either your Email nor Password is Worng or not Registered", Toast.LENGTH_SHORT).show();
+                mFirebaseAuth.signInWithEmailAndPassword(userEmailString, userPasswordString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Toast.makeText(LoginActivity.this, "Parent Account Created", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Either your Email nor Password is Worng or not Registered", Toast.LENGTH_SHORT).show();
+                        }
+                        progressDialog.dismiss();
                     }
-                    progressDialog.dismiss();
-                }
-            });
+                });
+            }
         }
     }
-
-
-
 
 
     @Override
