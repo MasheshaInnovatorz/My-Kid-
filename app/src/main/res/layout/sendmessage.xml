@@ -1,39 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="bottom"
     android:orientation="horizontal"
     >
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/linearLayout7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:gravity="bottom"
-        android:padding="5dp"
-        android:orientation="horizontal">
+        android:padding="5dp">
 
         <EditText
             android:id="@+id/messageArea"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toStartOf="@+id/sendButton"
             android:layout_weight="1"
             android:background="@drawable/editextstyle"
             android:hint="Write a message"
             android:padding="6dp"
-            android:paddingBottom="65dp"
-            />
+            android:paddingBottom="65dp" />
 
 
         <ImageView
             android:id="@+id/sendButton"
             android:layout_width="35dp"
             android:layout_height="34dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
             android:layout_gravity="top"
             android:background="@drawable/ic_send_black_24dp"
             android:padding="4dp" />
-    </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/imageAttachement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/sendButton"
+            android:layout_toStartOf="@+id/sendButton"
+            app:srcCompat="@drawable/attachment" />
+    </RelativeLayout>
 </LinearLayout>

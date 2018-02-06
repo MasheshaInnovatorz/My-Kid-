@@ -128,18 +128,41 @@ public class KidActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (awesomeValidation.validate()) {
 
-                   progressDialog.setMessage("Wait While Adding Kid");
+                    progressDialog.setMessage("Wait While Adding Kid");
                     progressDialog.show();
-
 
 
                     adminOrgNameRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(final DataSnapshot kdataSnapshot) {
-
+                            if (counter != 1) {
                                 org_name = kdataSnapshot.getValue(String.class);
                                 addkids(org_name, counter);
+                            }
+                        }
 
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    databaseKids.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            for (DataSnapshot dataSnap : dataSnapshot.getChildren()) {
+
+                                if (dataSnap.child("idNumber").getValue().toString().equals(kididNumber)) {
+                                    counter = 1;
+                                } else {
+
+
+                                    Toast.makeText(context, "Successfully Registered", Toast.LENGTH_SHORT).show();
+                                }
+
+
+                            }
                         }
 
                         @Override
@@ -159,7 +182,7 @@ public class KidActivity extends AppCompatActivity {
     }
 
 
-    public void addkids(String orgName,int Counter) {
+    public void addkids(String orgName, int Counter) {
 
         kidStringname = kidname.getText().toString().trim();
         kidStringsurname = kidsurname.getText().toString().trim();

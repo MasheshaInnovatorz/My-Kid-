@@ -214,6 +214,7 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
                                 } else {
 
                                     Toast.makeText(SignUp.this, "You dont have a kids on this Creche,Please contact an Admin Creshe", Toast.LENGTH_SHORT).show();
+
                                 }
 
                             }

@@ -12,15 +12,17 @@ public class ChatMessage {
     long time;
     Boolean btn;
     String userId;
+    String imageURL;
 
     public ChatMessage() {
     }
 
-    public ChatMessage(String message, String name, long time, String userId) {
+    public ChatMessage(String message, String name, long time, String userId,String imageURL) {
         this.message = message;
         this.name = name;
         this.userId = userId;
         this.time = new Date().getTime();
+        this.imageURL = imageURL;
 
     }
 
@@ -30,6 +32,14 @@ public class ChatMessage {
 
     public String getMessage() {
         return message;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     public String getName() {
