@@ -41,7 +41,7 @@ import java.util.List;
 public class SignUp extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPrefEditor;
-    private EditText inputEmail, inputPassword,kidsIdno;
+    private EditText inputEmail, inputPassword, kidsIdno;
     //spinner
     private ArrayAdapter<String> dataAdapter;
     // private Button
@@ -58,21 +58,20 @@ public class SignUp extends AppCompatActivity {
 
     private String[] spinnerArray;
 
-    private DatabaseReference mDatabaseRef, mUserCheckData, crecheDataRef,KidDataRef;
+    private DatabaseReference mDatabaseRef, mUserCheckData, crecheDataRef, KidDataRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-getSupportActionBar().setDisplayShowHomeEnabled(true);
-      getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-     getSupportActionBar().setTitle("Sign Up");
-   // getSupportActionBar().setSubtitle("Parent");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Sign Up");
+        // getSupportActionBar().setSubtitle("Parent");
 
 
-
-    //Get Firebase auth instance
+        //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference();
         mUserCheckData = FirebaseDatabase.getInstance().getReference().child("Users");
@@ -90,7 +89,7 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
         btnSignUp = (TextView) findViewById(R.id.sinup);
         inputEmail = (EditText) findViewById(R.id.sign_up_email);
         inputPassword = (EditText) findViewById(R.id.signupPassword);
-        kidsIdno = (EditText)findViewById(R.id.KidIdNumber);
+        kidsIdno = (EditText) findViewById(R.id.KidIdNumber);
 
         orgNameList = (Spinner) findViewById(R.id.orgname);
         // mainNav = (TextView)findViewById(R.id.login);
@@ -115,18 +114,14 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
         });
 
 
-
-        list  = new ArrayList<String>();
-
-        input_email1= (TextInputLayout)findViewById(R.id.input_email);
-
-        dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list);
-
-
+        list = new ArrayList<String>();
 
         input_email1 = (TextInputLayout) findViewById(R.id.input_email);
 
+        dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
 
+
+        input_email1 = (TextInputLayout) findViewById(R.id.input_email);
 
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -176,68 +171,71 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
                 sharedPrefEditor.putString("email", userEmailString);
                 sharedPrefEditor.apply();
 
-                //
-                if (awesomeValidation.validate()) {
-                    if(!orgNameList.getSelectedItem().toString().trim().equals("Select Creshe")){
-                    KidDataRef.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            for (DataSnapshot kidsSnapshot : dataSnapshot.getChildren()) {
+                if (password.isEmpty() || password.length() < 6) {
+                    Toast.makeText(SignUp.this, "Password cannot be less than 6 characters!", Toast.LENGTH_SHORT).show();
+                } else {
+                    //
+                    if (awesomeValidation.validate()) {
+                        if (!orgNameList.getSelectedItem().toString().trim().equals("Select Creshe")) {
+                            KidDataRef.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    for (DataSnapshot kidsSnapshot : dataSnapshot.getChildren()) {
 
-                                progressDialog.setMessage("Wait While Creating an Parent Account");
-                                progressDialog.show();
+                                        progressDialog.setMessage("Wait While Creating an Parent Account");
+                                        progressDialog.show();
 
-                                if (kidsSnapshot.child("orgName").getValue().toString().equals(strName) && kidsSnapshot.child("idNumber").getValue().toString().equals(kidsIdno.getText().toString())) {
-
-
-                                    auth.createUserWithEmailAndPassword(userEmailString, userPassString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<AuthResult> task) {
-                                            if (task.isSuccessful()) {
-                                                String user_id = task.getResult().getUser().getUid();
-                                                DatabaseReference mChildDatabase = mDatabaseRef.child("Users").child(user_id);
-
-                                                mChildDatabase.child("isVerified").setValue("unverified");
-                                                mChildDatabase.child("orgName").setValue(strName);
-                                                mChildDatabase.child("userKey").setValue(user_id);
-                                                mChildDatabase.child("role").setValue("parent");
-                                                mChildDatabase.child("emailUser").setValue(userEmailString);
-                                                mChildDatabase.child("passWordUser").setValue(userPassString);
-                                                Toast.makeText(SignUp.this, "Parent Account Created Successfully", Toast.LENGTH_SHORT).show();
-                                                startActivity(new Intent(SignUp.this, LoginActivity.class));
+                                        if (kidsSnapshot.child("orgName").getValue().toString().equals(strName) && kidsSnapshot.child("idNumber").getValue().toString().equals(kidsIdno.getText().toString())) {
 
 
-                                            } else {
-                                                Toast.makeText(SignUp.this, "Parent Fialed to Creating an Account", Toast.LENGTH_SHORT).show();
+                                            auth.createUserWithEmailAndPassword(userEmailString, userPassString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                                    if (task.isSuccessful()) {
+                                                        String user_id = task.getResult().getUser().getUid();
+                                                        DatabaseReference mChildDatabase = mDatabaseRef.child("Users").child(user_id);
 
-                                            }
+                                                        mChildDatabase.child("isVerified").setValue("unverified");
+                                                        mChildDatabase.child("orgName").setValue(strName);
+                                                        mChildDatabase.child("userKey").setValue(user_id);
+                                                        mChildDatabase.child("role").setValue("parent");
+                                                        mChildDatabase.child("emailUser").setValue(userEmailString);
+                                                        mChildDatabase.child("passWordUser").setValue(userPassString);
+                                                        Toast.makeText(SignUp.this, "Parent Account Created Successfully", Toast.LENGTH_SHORT).show();
+                                                        startActivity(new Intent(SignUp.this, LoginActivity.class));
+
+
+                                                    } else {
+                                                        Toast.makeText(SignUp.this, "Parent Fialed to Creating an Account", Toast.LENGTH_SHORT).show();
+
+                                                    }
+                                                }
+                                            });
+
+                                            progressDialog.dismiss();
+                                        } else {
+
+                                            Toast.makeText(SignUp.this, "You dont have a kids on this Creche,Please contact an Admin Creshe", Toast.LENGTH_SHORT).show();
+
                                         }
-                                    });
 
-                                    progressDialog.dismiss();
-                                } else {
+                                    }
 
-                                    Toast.makeText(SignUp.this, "You dont have a kids on this Creche,Please contact an Admin Creshe", Toast.LENGTH_SHORT).show();
 
                                 }
 
-                            }
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
 
+                                }
+                            });
 
+                        } else {
+
+                            Toast.makeText(SignUp.this, "Please Select a Creshe that your kid registerd at", Toast.LENGTH_SHORT).show();
                         }
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-
-                }
-                    else{
-
-                        Toast.makeText(SignUp.this, "Please Select a Creshe that your kid registerd at", Toast.LENGTH_SHORT).show();
                     }
-
                 }
 
             }
@@ -288,9 +286,7 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
 
                         orgNameList.setAdapter(dataAdapter);
                         progressDialog.dismiss();
-                    }
-
-                    else {
+                    } else {
                         Toast.makeText(SignUp.this, "There is no Creche Registered", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -304,6 +300,7 @@ getSupportActionBar().setDisplayShowHomeEnabled(true);
         });
 
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();

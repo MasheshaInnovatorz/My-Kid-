@@ -258,7 +258,7 @@ public class GroupChatFragment extends Fragment {
     public void upload() {
         if (imgUri != null) {
             final ProgressDialog dialog = new ProgressDialog(getActivity());
-            dialog.setTitle("Uploading Kids Memories");
+            dialog.setTitle("Sending chat Message");
             dialog.show();
             //get the storage reference
             StorageReference ref = mStorageRef.child("ChatImage/" + System.currentTimeMillis() + "." + getImageExt(imgUri));
@@ -270,7 +270,7 @@ public class GroupChatFragment extends Fragment {
                     dialog.dismiss();
 
 
-                    Toast.makeText(getContext(), "Kid Memory Uploaded", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Sent", Toast.LENGTH_SHORT).show();
                     // startActivity(new Intent(this,UploadKidsMemo.this,KidsmemoListsActivity.class));
 
                     // Intent i = new Intent(UploadKidsMemo.this, KidsMemoListFragment.class);

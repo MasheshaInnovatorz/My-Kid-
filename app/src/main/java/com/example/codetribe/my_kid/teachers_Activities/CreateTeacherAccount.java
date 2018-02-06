@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.codetribe.my_kid.R;
+import com.example.codetribe.my_kid.organization_Activities.SignUpOrganisationActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -176,7 +177,10 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                 int selectedId = gender.getCheckedRadioButtonId();
 
-
+                if (password.isEmpty() || password.length() < 6) {
+                    Toast.makeText(CreateTeacherAccount.this, "Password cannot be less than 6 characters!", Toast.LENGTH_SHORT).show();
+                }
+                else{
 
                 if (selectedId != -1) {
 
@@ -213,7 +217,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                 } else {
                     Toast.makeText(CreateTeacherAccount.this, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
-                }
+                }}
             }
 
             @Override

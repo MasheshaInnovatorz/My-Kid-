@@ -213,7 +213,10 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
                 int selectedId = gender.getCheckedRadioButtonId();
 
-
+                if (password.isEmpty() || password.length() < 6) {
+                    Toast.makeText(SignUpOrganisationActivity.this, "Password cannot be less than 6 characters!", Toast.LENGTH_SHORT).show();
+                }
+                else {
 
                 if (awesomeValidation.validate()) {
                     if (!spinnerCity.getSelectedItem().toString().trim().equals("Select City")) {
@@ -285,7 +288,7 @@ else{
                     }}
                 else {
                     Toast.makeText(SignUpOrganisationActivity.this, "Make sure you fix all the error shown in your input space", Toast.LENGTH_LONG).show();
-                }
+                }}
                 //---
 
 
