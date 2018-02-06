@@ -210,9 +210,8 @@ public class GroupChatFragment extends Fragment {
             msg.setBackgroundResource(R.drawable.bubble_in);
             msg.setLayoutParams(textmsg);
             image.layout(100,100,100,100);
-            image.setMaxWidth(20);
-            image.setMaxHeight(20);
-            image.setScaleType(ImageView.ScaleType.FIT_XY);
+
+            image.setScaleType(ImageView.ScaleType.FIT_CENTER);
             image.setBackgroundResource(R.drawable.bubble_in);
             image.setLayoutParams(textmsg);
 
@@ -221,10 +220,8 @@ public class GroupChatFragment extends Fragment {
             msg.setLayoutParams(textmsg);
             msg.setBackgroundResource(R.drawable.bubble_out);
 
-            image.layout(100,100,100,100);
-            image.setMaxWidth(20);
-            image.setMaxHeight(20);
-            image.setScaleType(ImageView.ScaleType.FIT_XY);
+            image.layout(100,100,100,100);;
+            image.setScaleType(ImageView.ScaleType.FIT_CENTER);
             image.setBackgroundResource(R.drawable.bubble_out);
             image.setLayoutParams(textmsg);
         }
@@ -249,7 +246,7 @@ public class GroupChatFragment extends Fragment {
 
             try {
                 Bitmap bm = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imgUri);
-                image.setImageBitmap(bm);
+//                image.setImageBitmap(bm);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
