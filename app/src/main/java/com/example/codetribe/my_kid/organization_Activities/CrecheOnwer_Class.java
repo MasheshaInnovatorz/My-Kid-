@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Created by CodeTribe on 10/11/2017.
  */
-
+//"Select Creshe"
 @IgnoreExtraProperties
 public class CrecheOnwer_Class {
     private String adminUid;
@@ -28,6 +28,8 @@ public class CrecheOnwer_Class {
     }
 
     public CrecheOnwer_Class(String adminUid, String admiName, String adminSurname, String adminIdNo, String adminGender, String adminRole, String email, String orgName, String adminContact,String userCity) {
+
+
         this.adminUid = adminUid;
         this.admiName = admiName;
         this.adminSurname = adminSurname;
@@ -52,6 +54,7 @@ public class CrecheOnwer_Class {
     String gender;
     String grade;
      */
+
 
     private String getAdminUid() {
         return adminUid;
@@ -97,6 +100,7 @@ public class CrecheOnwer_Class {
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> adminSave = new HashMap<>();
+
 
         adminSave.put("userKey", adminUid);
         adminSave.put("userName", admiName);

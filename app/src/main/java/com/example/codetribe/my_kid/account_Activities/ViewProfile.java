@@ -54,10 +54,10 @@ public class ViewProfile extends AppCompatActivity {
     private String nameString, surnameString;
 
     private Uri imgUri;
-    private TextView name, surname, gender, city, phonenumber, address, email, editprofile;
+    private TextView name, surname, gender, city, phonenumber, address, email, editprofile,upload;
     private String iduser;
     private String image_url;
-    private ImageView photo;
+ //   private ImageView ;
     private int RESULT_LOAD_IMG = 1;
 
     private ProgressDialog progressDialog;
@@ -79,7 +79,7 @@ public class ViewProfile extends AppCompatActivity {
         address = (TextView) findViewById(R.id.address_view);
         city = (TextView) findViewById(R.id.city_view);
         email = (TextView) findViewById(R.id.email_view);
-        photo = (ImageView) findViewById(R.id.user_profile_photo);
+        upload = (TextView) findViewById(R.id.uploadpic);
         profilecover = (ImageView) findViewById(R.id.header_cover_image);
 
 
@@ -108,7 +108,7 @@ public class ViewProfile extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
 
 
-        photo.setOnClickListener(new View.OnClickListener() {
+        upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent photoPickerIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -249,7 +249,7 @@ public class ViewProfile extends AppCompatActivity {
     }
 
     public void showProfilePic(String image_url) {
-        Glide.with(ViewProfile.this).load(image_url).centerCrop().into(photo);
+       // Glide.with(ViewProfile.this).load(image_url).centerCrop().into(photo);
         Glide.with(ViewProfile.this).load(image_url).centerCrop().into(profilecover);
 
     }

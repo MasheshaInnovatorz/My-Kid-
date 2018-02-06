@@ -85,6 +85,19 @@ public class TeacherFragment extends Fragment {
                 teacherRole = dataSnapshot.child("role").getValue(String.class);
 
 
+                //one click
+                /*
+                listViewKids.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getContext(), KidsmemoListsActivity.class);
+                       // intent.putExtra("kid_id", listKidsSelect.getId());
+                        intent.putExtra("user_role", teacherRole);
+                        startActivity(intent);
+                    }
+                });
+*/
+                //long click
                 listViewKids.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                     @Override
                     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {

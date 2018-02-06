@@ -35,7 +35,7 @@ public class KidsViewProfile extends AppCompatActivity {
 
     private DatabaseReference kidsDataProf, userDataRef,kidsppic;
     private FirebaseUser fireAuthorization;
-    private TextView editProfile;
+    private TextView editProfile,kiduploadpic;
     private ImageView kidsImage;
     private Uri filePath;
     private final int PICK_IMAGE_REQUEST = 71;
@@ -66,7 +66,8 @@ public class KidsViewProfile extends AppCompatActivity {
         mStorage =storage.getReference();
 
 
-
+        kiduploadpic =(TextView) findViewById(R.id.uploadkidpic);
+       // user_kids_photo
         editProfile = (TextView)findViewById(R.id.editprofile);
         kidsUser = (TextView) findViewById(R.id.kids_profile_name);
         parentName = (TextView) findViewById(R.id.parentName);
@@ -77,7 +78,7 @@ public class KidsViewProfile extends AppCompatActivity {
         homeAddress = (TextView) findViewById(R.id.kids_address_view);
 
         //profilePic
-        kidsImage =(ImageView)findViewById(R.id.user_kids_photo);
+        kidsImage =(ImageView)findViewById(R.id.header_cover_image);
 
 
         Toast.makeText(this, fireAuthorization.getUid(), Toast.LENGTH_SHORT).show();
@@ -96,7 +97,7 @@ public class KidsViewProfile extends AppCompatActivity {
 
 
 
-        kidsImage.setOnClickListener(new View.OnClickListener() {
+        kiduploadpic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

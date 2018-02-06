@@ -153,7 +153,9 @@ public class AdminTeacherList extends Fragment {
     }
 
 
-
-
-
+    @Override
+    public void onStop() {
+        super.onStop();
+        counter = 0;
+    }
 }

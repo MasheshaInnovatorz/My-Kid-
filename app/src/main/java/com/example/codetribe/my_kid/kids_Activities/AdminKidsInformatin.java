@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,8 +36,14 @@ public class AdminKidsInformatin extends AppCompatActivity {
 
     private DatabaseReference kidsDataProf, userDataRef,kidsppic;
     private FirebaseUser fireAuthorization;
-    private TextView editProfile;
+    private TextView editProfile,allergies,
+            dietRequirements,
+            doctorsRecomendations,
+            kidHeight,
+            bodyWeight;
+
     private ImageView kidsImage;
+
 
 
 
@@ -69,6 +76,13 @@ public class AdminKidsInformatin extends AppCompatActivity {
         city = (TextView) findViewById(R.id.kids_city_view);
         homeAddress = (TextView) findViewById(R.id.kids_address_view);
 
+        //extra information
+        allergies = (TextView) findViewById(R.id.kids_Allergies_view);
+        dietRequirements = (TextView) findViewById(R.id.kids_diet_Requirements_view);
+        doctorsRecomendations = (TextView) findViewById(R.id.kids_doctorsRequirements_view);
+        kidHeight = (TextView) findViewById(R.id.kids_height_view);
+        bodyWeight = (TextView) findViewById(R.id.kids_BodyWeight_view);
+
         //profilePic
         kidsImage =(ImageView)findViewById(R.id.kid_header_cover_image);
 
@@ -80,7 +94,39 @@ public class AdminKidsInformatin extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        //extra kid info
+/*
+        kidsDataProf.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
+                //kid profile
+
+                //extra kid info
+                if (dataSnapshot.child("allergies").getValue().toString() != " ")
+                    allergies.setText(dataSnapshot.child("allergies").getValue().toString());
+
+                if (dataSnapshot.child("dietRequirements").getValue().toString() != " ")
+                    dietRequirements.setText(dataSnapshot.child("dietRequirements").getValue().toString());
+
+                if (dataSnapshot.child("doctorsRecomendations").getValue().toString() != " ")
+                    doctorsRecomendations.setText(dataSnapshot.child("doctorsRecomendations").getValue().toString());
+
+                if (dataSnapshot.child("kidHeight").getValue().toString() != " ")
+                    kidHeight.setText(dataSnapshot.child("kidHeight").getValue().toString());
+
+                if (dataSnapshot.child("bodyWeight").getValue().toString() != " ")
+                    bodyWeight.setText(dataSnapshot.child("bodyWeight").getValue().toString());
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+*/
         userDataRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot userSnapshot) {

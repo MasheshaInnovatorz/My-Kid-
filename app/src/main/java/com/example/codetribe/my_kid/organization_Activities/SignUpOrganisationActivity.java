@@ -95,18 +95,17 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
         //cities
         spinnerCity = (Spinner) findViewById(R.id.orgCitySpinner);
-        /*
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_list));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCity.setAdapter(adapter);
-        */
 
+/*
         //provinces
         spinnerProvinces= (Spinner) findViewById(R.id.orgProvinces);
         ArrayAdapter<String> provincesadapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_Province));
         provincesadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCity.setAdapter(provincesadapter);
-
+*/
 
         crechPostalCode = (EditText) findViewById(R.id.orgPostalCode);
         adminName = (EditText) findViewById(R.id.orgAdminName);
@@ -131,9 +130,12 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
       //  awesomeValidation.addValidation(this, R.id.orgRegNumber, "^[+]?[0-9]{10,13}$", R.string.regNo);
 
         //province
+          /*
         spinnerProvinces.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
+
+
 
                 // TODO Auto-generated method stub
                 if (getResources().getStringArray(R.array.city_Province)[position] == "Limpopo") {
@@ -146,7 +148,8 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                     citiesadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinnerProvinces.setAdapter(citiesadapter);
 
-                }}
+                }
+        }
 
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
@@ -157,7 +160,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
         });
 
-
+*/
 //cities
         spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -189,12 +192,12 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                 final String email = orgaEmail.getText().toString().trim();
                 final String password = orgPassword.getText().toString().trim();
 
-
+/*
                 sharedPrefEditor = sharedPreferences.edit();
                 sharedPrefEditor.putString("email", email);
                 sharedPrefEditor.apply();
-
-                final String crechNameOrg, crechAddressOrg, cityInfor, crechPhoneNoOrg, adminNameOrg, adminSurnameOrg, adminIdNoOrg, crechRefNumberOrg, crechPostalCodeOrg, adminGender;
+*/
+                final String creshes ,crechNameOrg, crechAddressOrg, cityInfor, crechPhoneNoOrg, adminNameOrg, adminSurnameOrg, adminIdNoOrg, crechRefNumberOrg, crechPostalCodeOrg, adminGender;
                 crechNameOrg = crechName.getText().toString().trim();
                 crechAddressOrg = crechAddress.getText().toString().trim();
 
@@ -237,7 +240,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
                                     OrganizationRegister orgReg = new OrganizationRegister(key, crechNameOrg, crechAddressOrg, cityInfor, email, crechPhoneNoOrg, password, crechPostalCodeOrg, key);
 
-                                    CrecheOnwer_Class adminReg = new CrecheOnwer_Class(userI, adminNameOrg, adminSurnameOrg, adminIdNoOrg, adminGender, adminRole, email, crechNameOrg, crechPhoneNoOrg, cityInfor);
+                                    CrecheOnwer_Class adminReg = new CrecheOnwer_Class(userI,adminNameOrg, adminSurnameOrg, adminIdNoOrg, adminGender, adminRole, email, crechNameOrg, crechPhoneNoOrg, cityInfor);
 
                                     Map<String, Object> postingOrg = orgReg.toMap();
                                     Map<String, Object> organizationUpdate = new HashMap<>();

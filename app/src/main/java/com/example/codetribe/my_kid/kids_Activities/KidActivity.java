@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -17,8 +18,13 @@ import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
-import com.example.codetribe.my_kid.R;
+import com.example.codetribe.my_kid.account_Activities.LoginActivity;
+import com.example.codetribe.my_kid.account_Activities.SignUp;
 import com.example.codetribe.my_kid.admin_Activities.AdminTabbedActivity;
+import com.example.codetribe.my_kid.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,8 +50,6 @@ public class KidActivity extends AppCompatActivity {
     private RadioButton radGender;
     private TextView btnCreate;
 
-    int counter = 0;
-
     private String genderString, keyUser;
     private String kidStringname,
             kidStringsurname,
@@ -54,14 +58,14 @@ public class KidActivity extends AppCompatActivity {
             kidStringparentid,
             kidsKidsAllocated,
             kidsYearRegistered;
-    String org_name;
+
 
     private ProgressDialog progressDialog;
     //defining AwesomeValidation object
     private AwesomeValidation awesomeValidation;
 
     //database
-    DatabaseReference databaseKids, addKidsDataBase, adminOrgNameRef;
+    DatabaseReference databaseKids, addKidsDataBase,adminOrgNameRef;
     Context context;
 
     @Override
@@ -116,7 +120,6 @@ public class KidActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         //database
         databaseKids = FirebaseDatabase.getInstance().getReference().child("Kids");
-        addKidsDataBase = FirebaseDatabase.getInstance().getReference().child("Kids");
         final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         adminOrgNameRef = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("orgName");
@@ -130,6 +133,7 @@ public class KidActivity extends AppCompatActivity {
 
                     progressDialog.setMessage("Wait While Adding Kid");
                     progressDialog.show();
+<<<<<<< HEAD
 
 
                     adminOrgNameRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -161,6 +165,15 @@ public class KidActivity extends AppCompatActivity {
                                     Toast.makeText(context, "Successfully Registered", Toast.LENGTH_SHORT).show();
                                 }
 
+=======
+                    adminOrgNameRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            String org_name = dataSnapshot.getValue(String.class);
+                            addkids(org_name);
+                            Toast.makeText(context, "Kid added", Toast.LENGTH_SHORT).show();
+>>>>>>> f238a3a54646ab921b84254627748cd4bdf0601e
 
                             }
                         }
@@ -182,7 +195,16 @@ public class KidActivity extends AppCompatActivity {
     }
 
 
+<<<<<<< HEAD
     public void addkids(String orgName, int Counter) {
+=======
+
+
+
+
+
+    public void addkids(String orgName) {
+>>>>>>> f238a3a54646ab921b84254627748cd4bdf0601e
 
         kidStringname = kidname.getText().toString().trim();
         kidStringsurname = kidsurname.getText().toString().trim();
@@ -192,36 +214,33 @@ public class KidActivity extends AppCompatActivity {
         kidsKidsAllocated = kidAllocated.getText().toString().trim();
         kidsYearRegistered = registeredYears.getText().toString().trim();
 
-
-        final String mbanzhe = orgName;
-        final int selectedId = radKidGender.getCheckedRadioButtonId();
+        int selectedId = radKidGender.getCheckedRadioButtonId();
 
         if (!kididStringNumber.matches(kidStringparentid)) {
-            if (selectedId != -1) {
+        if (selectedId != -1) {
+
+            radGender = (RadioButton) findViewById(selectedId);
+            genderString = radGender.getText().toString();
+
+            String id = databaseKids.push().getKey();
 
 
-                radGender = (RadioButton) findViewById(selectedId);
-                genderString = radGender.getText().toString();
+            Kids kids = new Kids(id, kidStringname, kidStringsurname, kidStringaddress, kididStringNumber, kidStringparentid, kidsKidsAllocated, kidsYearRegistered, genderString, orgName);
 
-                String id = addKidsDataBase.push().getKey();
+            databaseKids.child(id).setValue(kids);
+           // Toast.makeText(context, "Kid added ", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getApplication(), AdminTabbedActivity.class));
+        }
+        else {
+            Toast.makeText(this, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
+        }
 
-
-                Kids kids = new Kids(id, kidStringname, kidStringsurname, kidStringaddress, kididStringNumber, kidStringparentid, kidsKidsAllocated, kidsYearRegistered, genderString, mbanzhe);
-
-                addKidsDataBase.child(id).setValue(kids);
-                // Toast.makeText(context, "Kid added ", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplication(), AdminTabbedActivity.class));
-
-
-            } else {
-                Toast.makeText(this, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
-            }
-
-        } else {
+        }
+        else {
             Toast.makeText(this, "Kid id cant be the same as parent", Toast.LENGTH_SHORT).show();
         }
 
-    }
+        }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
