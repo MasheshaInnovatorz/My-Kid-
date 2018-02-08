@@ -44,7 +44,11 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
     private DatabaseReference mOrganizationRef;
     private TextView signup;
 
+    private int positions;
+    private String province = "";
 
+
+    private  ArrayAdapter<String> adapter;
     private EditText orgaEmail,
             crechPostalCode,
             orgPassword,
@@ -55,7 +59,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
             adminSurname,
             adminIdNo;
     private RadioButton radGender;
-    private Spinner spinnerCity,spinnerProvinces;
+    private Spinner spinnerCity, spinnerProvinces;
     private ProgressDialog progressDialog;
 
     private String crechCity;
@@ -92,20 +96,18 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         crechPhoneNo = (EditText) findViewById(R.id.orgTelNumber);
 
 
+        //provinces
+        spinnerProvinces = (Spinner) findViewById(R.id.orgProvinces);
+        ArrayAdapter<String> provincesadapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_Province));
+        provincesadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerProvinces.setAdapter(provincesadapter);
 
         //cities
         spinnerCity = (Spinner) findViewById(R.id.orgCitySpinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_list));
+        /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_list));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerCity.setAdapter(adapter);
+        spinnerCity.setAdapter(adapter);*/
 
-/*
-        //provinces
-        spinnerProvinces= (Spinner) findViewById(R.id.orgProvinces);
-        ArrayAdapter<String> provincesadapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_Province));
-        provincesadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerCity.setAdapter(provincesadapter);
-*/
 
         crechPostalCode = (EditText) findViewById(R.id.orgPostalCode);
         adminName = (EditText) findViewById(R.id.orgAdminName);
@@ -127,29 +129,84 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         awesomeValidation.addValidation(this, R.id.orgAdminSurname, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.surnameerror);
         awesomeValidation.addValidation(this, R.id.orgAdminIDNumber, "^^[0-9]{13}$", R.string.iderror);
         // awesomeValidation.addValidation(this, R.id.orgPostalCode, "^[+]?[0-3]{10,13}$", R.string.postalCode);
-      //  awesomeValidation.addValidation(this, R.id.orgRegNumber, "^[+]?[0-9]{10,13}$", R.string.regNo);
+        //  awesomeValidation.addValidation(this, R.id.orgRegNumber, "^[+]?[0-9]{10,13}$", R.string.regNo);
 
         //province
-          /*
+
         spinnerProvinces.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
 
 
+                positions = position;
 
                 // TODO Auto-generated method stub
-                if (getResources().getStringArray(R.array.city_Province)[position] == "Limpopo") {
-                    ArrayAdapter<String> citiesadapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_limpopo));
-                    citiesadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerProvinces.setAdapter(citiesadapter);
-                }
-                    else if (getResources().getStringArray(R.array.city_Province)[position] == "gauteng") {
-                    ArrayAdapter<String> citiesadapter  = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_gauteng));
-                    citiesadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerProvinces.setAdapter(citiesadapter);
+             /*   switch (getResources().getStringArray(R.array.city_Province)[position]){
+                    case "Limpopo":
+                      citiesadapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_limpopo));
+                        citiesadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerProvinces.setAdapter(citiesadapter);
 
+                        break;
+                    case "Gauteng":
+                       citiesadapter  = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_gauteng));
+                        citiesadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerProvinces.setAdapter(citiesadapter);
+                        break;
+                }*/
+
+                switch (getResources().getStringArray(R.array.city_Province)[positions]) {
+                    case "Limpopo":
+
+                        adapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_limpopo));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerCity.setAdapter(adapter);
+
+                        break;
+                    case "Gauteng":
+
+                        adapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_gauteng));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerCity.setAdapter(adapter);
+                        break;
+                    case "Western Cape":
+
+                        adapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_western_cape));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerCity.setAdapter(adapter);
+                        break;
+                    case "Northern Cape":
+
+                        adapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_Northern_Cape));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerCity.setAdapter(adapter);
+                        break;
+                    case "Eastern Cape":
+
+                        adapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_eastern_Cape));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerCity.setAdapter(adapter);
+                        break;
+                    case "Free State":
+                        adapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_free_state));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerCity.setAdapter(adapter);
+                        break;
+
+                    case "KwaZulu-Natal":
+                        adapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_Kwazulu_Natal));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerCity.setAdapter(adapter);
+                        break;
+                    default:
+                        Toast.makeText(SignUpOrganisationActivity.this, "PLease select one of the provinces", Toast.LENGTH_SHORT).show();
+                        break;
                 }
-        }
+
+                province  = getResources().getStringArray(R.array.city_Province)[position];
+
+
+            }
 
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
@@ -160,15 +217,16 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
         });
 
-*/
-//cities
+
+        //cities
         spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
+            public void onItemSelected(AdapterView<?> arg1, View arg2, int position1, long id1) {
 
                 // TODO Auto-generated method stub
 
-               crechCity = getResources().getStringArray(R.array.city_list)[position];
+                crechCity = getResources().getStringArray(R.array.city_list)[position1];
+
 
 
             }
@@ -181,9 +239,6 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
             }
 
         });
-
-
-
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -197,98 +252,97 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                 sharedPrefEditor.putString("email", email);
                 sharedPrefEditor.apply();
 */
-                final String creshes ,crechNameOrg, crechAddressOrg, cityInfor, crechPhoneNoOrg, adminNameOrg, adminSurnameOrg, adminIdNoOrg, crechRefNumberOrg, crechPostalCodeOrg, adminGender;
+                final String creshes, crechNameOrg, provinceorg,crechAddressOrg, cityInfor, crechPhoneNoOrg, adminNameOrg, adminSurnameOrg, adminIdNoOrg, crechRefNumberOrg, crechPostalCodeOrg, adminGender;
                 crechNameOrg = crechName.getText().toString().trim();
                 crechAddressOrg = crechAddress.getText().toString().trim();
 
                 //spinner
                 cityInfor = crechCity.trim();
+                provinceorg = province.trim();
                 crechPhoneNoOrg = crechPhoneNo.getText().toString().trim();
                 adminNameOrg = adminName.getText().toString().trim();
                 adminSurnameOrg = adminSurname.getText().toString().trim();
                 adminIdNoOrg = adminIdNo.getText().toString().trim();
 
-               // crechRefNumberOrg = crechRefNo.getText().toString().trim();
+                // crechRefNumberOrg = crechRefNo.getText().toString().trim();
                 crechPostalCodeOrg = crechPostalCode.getText().toString().trim();
 
                 int selectedId = gender.getCheckedRadioButtonId();
 
                 if (password.isEmpty() || password.length() < 6) {
                     Toast.makeText(SignUpOrganisationActivity.this, "Password cannot be less than 6 characters!", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
 
-                if (awesomeValidation.validate()) {
-                    if (!spinnerCity.getSelectedItem().toString().trim().equals("Select City")) {
-                    if (selectedId != -1) {
-                        radGender = (RadioButton) findViewById(selectedId);
-                        adminGender = radGender.getText().toString().trim();
+                    if (awesomeValidation.validate()) {
+                        if (!spinnerCity.getSelectedItem().toString().trim().equals("Select City")) {
+                            if (selectedId != -1) {
+                                radGender = (RadioButton) findViewById(selectedId);
+                                adminGender = radGender.getText().toString().trim();
 
-                        progressDialog.setMessage("Wait While Creating Organisation ");
-                        progressDialog.show();
-                        //    if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
-                        orgAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                progressDialog.setMessage("Wait While Creating Organisation ");
+                                progressDialog.show();
+                                //    if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
+                                orgAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
 
-                                if (task.isSuccessful()) {
-                                    // String user_id = task.getResult().getUser().getUid();
-                                    String adminRole = "admin";
-                                    String key = mOrganizationRef.push().getKey();
+                                        if (task.isSuccessful()) {
+                                            // String user_id = task.getResult().getUser().getUid();
+                                            String adminRole = "admin";
+                                            String key = mOrganizationRef.push().getKey();
 
-                                    DatabaseReference mChildDatabase = mOrganizationRef;
-                                    DatabaseReference mAdminRef = FirebaseDatabase.getInstance().getReference().child("Users");
-                                    String userI = task.getResult().getUser().getUid();
-
-
-                                    OrganizationRegister orgReg = new OrganizationRegister(key, crechNameOrg, crechAddressOrg, cityInfor, email, crechPhoneNoOrg, password, crechPostalCodeOrg, key);
-
-                                    CrecheOnwer_Class adminReg = new CrecheOnwer_Class(userI,adminNameOrg, adminSurnameOrg, adminIdNoOrg, adminGender, adminRole, email, crechNameOrg, crechPhoneNoOrg, cityInfor);
-
-                                    Map<String, Object> postingOrg = orgReg.toMap();
-                                    Map<String, Object> organizationUpdate = new HashMap<>();
-                                    organizationUpdate.put(key, postingOrg);
-                                    Map<String, Object> postingAdmin = adminReg.toMap();
-                                    Map<String, Object> adminUpdate = new HashMap<>();
-
-                                    adminUpdate.put(userI, postingAdmin);
+                                            DatabaseReference mChildDatabase = mOrganizationRef;
+                                            DatabaseReference mAdminRef = FirebaseDatabase.getInstance().getReference().child("Users");
+                                            String userI = task.getResult().getUser().getUid();
 
 
-                                    //Updating Messages
-                                    mAdminRef.updateChildren(adminUpdate);
+                                            OrganizationRegister orgReg = new OrganizationRegister(key, crechNameOrg, crechAddressOrg, cityInfor,provinceorg, email, crechPhoneNoOrg, password, crechPostalCodeOrg, key);
 
-                                    mChildDatabase.updateChildren(organizationUpdate);
+                                            CrecheOnwer_Class adminReg = new CrecheOnwer_Class(userI, adminNameOrg, adminSurnameOrg, adminIdNoOrg, adminGender, adminRole, email, crechNameOrg, crechPhoneNoOrg, cityInfor);
 
-                                    //Toast.makeText(SignUpOrganisationActivity.this, key, Toast.LENGTH_SHORT).show();
-                                    Toast.makeText(SignUpOrganisationActivity.this, "Organization Successfully Created", Toast.LENGTH_SHORT).show();
+                                            Map<String, Object> postingOrg = orgReg.toMap();
+                                            Map<String, Object> organizationUpdate = new HashMap<>();
+                                            organizationUpdate.put(key, postingOrg);
+                                            Map<String, Object> postingAdmin = adminReg.toMap();
+                                            Map<String, Object> adminUpdate = new HashMap<>();
 
-                                    startActivity(new Intent(getApplicationContext(), AdminTabbedActivity.class));
+                                            adminUpdate.put(userI, postingAdmin);
 
-                                } else {
-                                    Toast.makeText(SignUpOrganisationActivity.this, "Organizational Failed to SignUp", Toast.LENGTH_SHORT).show();
-                                }
-                                progressDialog.dismiss();
+
+                                            //Updating Messages
+                                            mAdminRef.updateChildren(adminUpdate);
+
+                                            mChildDatabase.updateChildren(organizationUpdate);
+
+                                            //Toast.makeText(SignUpOrganisationActivity.this, key, Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(SignUpOrganisationActivity.this, "Organization Successfully Created", Toast.LENGTH_SHORT).show();
+
+                                            startActivity(new Intent(getApplicationContext(), AdminTabbedActivity.class));
+
+                                        } else {
+                                            Toast.makeText(SignUpOrganisationActivity.this, "Organizational Failed to SignUp", Toast.LENGTH_SHORT).show();
+                                        }
+                                        progressDialog.dismiss();
+                                    }
+                                });
+
+
+                                orgAuth.signOut();
+                                // }
+
+                            } else {
+                                Toast.makeText(SignUpOrganisationActivity.this, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
                             }
-                        });
+
+                        } else {
 
 
-                        orgAuth.signOut();
-                        // }
-
-                    } else
-                        {
-                        Toast.makeText(SignUpOrganisationActivity.this, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpOrganisationActivity.this, "Please Select City", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(SignUpOrganisationActivity.this, "Make sure you fix all the error shown in your input space", Toast.LENGTH_LONG).show();
                     }
-
                 }
-else{
-
-
-                        Toast.makeText(SignUpOrganisationActivity.this, "Please Select City", Toast.LENGTH_SHORT).show();
-                    }}
-                else {
-                    Toast.makeText(SignUpOrganisationActivity.this, "Make sure you fix all the error shown in your input space", Toast.LENGTH_LONG).show();
-                }}
                 //---
 
 

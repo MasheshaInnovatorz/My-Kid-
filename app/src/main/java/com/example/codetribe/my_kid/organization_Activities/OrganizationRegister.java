@@ -16,6 +16,7 @@ public class OrganizationRegister {
     private String orgname;
     private String orgAddress;//add street name and postal code
     private String orgCity;
+    private String orgProvince;
     private String orgEmail;
     private String orgPhoneNo;
     private String orgPassword;
@@ -28,11 +29,12 @@ public class OrganizationRegister {
     public OrganizationRegister() {
     }
 
-    public OrganizationRegister(String uid, String orgname, String orgAddress, String orgCity, String orgEmail, String orgPhoneNo, String orgPassword , String orgPostalCode, String adminKey) {
+    public OrganizationRegister(String uid, String orgname, String orgAddress, String orgCity, String orgProvince, String orgEmail, String orgPhoneNo, String orgPassword , String orgPostalCode, String adminKey) {
         this.uid = uid;
         this.orgname = orgname;
         this.orgAddress = orgAddress;
         this.orgCity = orgCity;
+        this.orgProvince  =orgProvince;
         this.orgEmail = orgEmail;
         this.orgPhoneNo = orgPhoneNo;
         this.orgPassword = orgPassword;
@@ -42,6 +44,9 @@ public class OrganizationRegister {
 
     }
 
+    public String getOrgProvince() {
+        return orgProvince;
+    }
 
     private String getUid() {
         return uid;
@@ -88,6 +93,7 @@ public class OrganizationRegister {
         organizationSave.put("orgName", orgname);
         organizationSave.put("orgAddres", orgAddress);
         organizationSave.put("orgCity", orgCity);
+        organizationSave.put("orgProvince", orgProvince);
         organizationSave.put("emailUser", orgEmail);
         organizationSave.put("orgPhoneNumber", orgPhoneNo);
         organizationSave.put("orgPassword", orgPassword);
