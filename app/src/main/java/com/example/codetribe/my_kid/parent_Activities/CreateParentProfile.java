@@ -35,7 +35,6 @@ public class CreateParentProfile extends AppCompatActivity {
             inputSurname,
             inputIdnumber,
             inputAddress,
-            inputCity,
             inputCellphoneNumber;
 
     private FirebaseUser user;
@@ -87,7 +86,7 @@ public class CreateParentProfile extends AppCompatActivity {
         inputName = (EditText) findViewById(R.id.reg_fullname);
         inputSurname = (EditText) findViewById(R.id.reg_Surname);
         inputAddress = (EditText) findViewById(R.id.reg_address);
-        inputCity = (EditText) findViewById(R.id.reg_city);
+     //   inputCity = (EditText) findViewById(R.id.reg_city);
         inputCellphoneNumber = (EditText) findViewById(R.id.reg_phone);
         radGender = (RadioGroup) findViewById(gender);
         inputIdnumber = (EditText) findViewById(R.id.reg_idnumber);
@@ -141,7 +140,7 @@ public class CreateParentProfile extends AppCompatActivity {
                     inputSurnameString = inputSurname.getText().toString().trim();
                     inputIdnumberString = inputIdnumber.getText().toString().trim();
                     inputAddressString = inputAddress.getText().toString().trim();
-                    inputCityString = inputCity.getText().toString().trim();
+                 //   inputCityString = inputCity.getText().toString().trim();
 
                     rdGenders = (RadioButton) findViewById(selectedId);
                     genderString = rdGenders.getText().toString();
@@ -151,13 +150,13 @@ public class CreateParentProfile extends AppCompatActivity {
 
 
                         String isVerified = "verified";
-                        UserProfile profile = new UserProfile(keyUser, userNameString, inputSurnameString, inputIdnumberString, inputAddressString, inputCityString, userContactString, genderString, isVerified);
+                        UserProfile profile = new UserProfile(keyUser, userNameString, inputSurnameString, inputIdnumberString, inputAddressString, userContactString, genderString, isVerified);
                         databaseReference.child("userName").setValue(profile.getUserName());
                         databaseReference.child("userSurname").setValue(profile.getUserSurname());
                         databaseReference.child("userIdNumber").setValue(profile.getUserIdNumber());
                         databaseReference.child("userContact").setValue(profile.getUserContact());
                         databaseReference.child("userAddress").setValue(profile.getUserAddress());
-                        databaseReference.child("userCity").setValue(profile.getUserCity());
+                        //databaseReference.child("userCity").setValue(profile.getUserCity());
                         databaseReference.child("userGender").setValue(profile.getUserGender());
                         databaseReference.child("isVerified").setValue(profile.getIsVerified());
 

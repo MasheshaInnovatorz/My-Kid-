@@ -13,12 +13,12 @@
 
 
         <ImageView
-
             android:id="@+id/header_cover_image"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/mykidicon" />
+            android:background="#8000"
+            />
 
 
         <RelativeLayout
