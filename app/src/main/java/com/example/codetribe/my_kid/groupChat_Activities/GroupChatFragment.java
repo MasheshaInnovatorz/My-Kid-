@@ -209,9 +209,9 @@ public class GroupChatFragment extends Fragment {
             textmsg.gravity = Gravity.LEFT;
             msg.setBackgroundResource(R.drawable.bubble_in);
             msg.setLayoutParams(textmsg);
-            image.layout(100,100,100,100);
 
-            image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            image.layout(100,100,100,100);
+            image.setScaleType(ImageView.ScaleType.FIT_XY);
             image.setBackgroundResource(R.drawable.bubble_in);
             image.setLayoutParams(textmsg);
 
@@ -221,7 +221,7 @@ public class GroupChatFragment extends Fragment {
             msg.setBackgroundResource(R.drawable.bubble_out);
 
             image.layout(100,100,100,100);;
-            image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            image.setScaleType(ImageView.ScaleType.FIT_XY);
             image.setBackgroundResource(R.drawable.bubble_out);
             image.setLayoutParams(textmsg);
         }
@@ -282,7 +282,6 @@ public class GroupChatFragment extends Fragment {
                         ChatMessage chatMessage = new ChatMessage(messageArea.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(), 0, FirebaseAuth.getInstance().getCurrentUser().getUid(), taskSnapshot.getDownloadUrl().toString());
                         databaseReference.push().setValue(chatMessage);
 
-                        Toast.makeText(getContext(), "I am here", Toast.LENGTH_SHORT).show();
 
                         //save image infor in to firebase database
                        /* String uploadId = databaseReference.push().getKey();
@@ -317,7 +316,8 @@ public class GroupChatFragment extends Fragment {
                     });
 
         } else {
-            Toast.makeText(getContext(), "Please select image", Toast.LENGTH_SHORT).show();
+            ChatMessage chatMessage = new ChatMessage(messageArea.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(), 0, FirebaseAuth.getInstance().getCurrentUser().getUid(), "");
+            databaseReference.push().setValue(chatMessage);
         }
     }
 

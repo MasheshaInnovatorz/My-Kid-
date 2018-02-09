@@ -92,6 +92,7 @@
     </string-array>
 
     <string-array name="city_gauteng">
+        <item>Select City</item>
         <item>Benoni</item>
         <item>Johannesburg</item>
         <item>Soweto</item>
@@ -101,12 +102,67 @@
         <item>Randburg</item>
     </string-array>
 
+    <string-array name="city_Northern_Cape">
+        <item>Select City</item>
+        <item>Diamond Fields</item>
+        <item>Green Kalahari</item>
+        <item>Namaqualand</item>
+        <item>Upper Karoo</item>
+     </string-array>
+
+    <string-array name="city_North_West">
+        <item>Select City</item>
+        <item>Disaneng</item>
+        <item>Mahikeng</item>
+        <item>Slurry</item>
+        <item>Bakerville</item>
+        <item>Ottoshoop</item>
+
+    </string-array>
+
+    <string-array name="city_eastern_Cape">
+        <item>Select City</item>
+        <item>The Amatola Region</item>
+        <item>The Western Region</item>
+        <item>The Wild Coast</item>
+    </string-array>
+
+    <string-array name="city_Kwazulu_Natal">
+        <item>Select City</item>
+        <item>Amajuba</item>
+        <item>eThekwini</item>
+        <item>iLembe</item>
+        <item>Sisonke</item>
+        <item>Ugu</item>
+        <item>uMgungundlovu</item>
+        <item>UMkhanyakude</item>
+        <item>Umzinyathi</item>
+        <item>uThukela</item>
+        <item>Uthungulu</item>
+        <item>Zululand</item>
+
+    </string-array>
+
+    <string-array name="city_free_state">
+        <item>Select City</item>
+        <item>Lejweleputswa</item>
+        <item>Transgariep</item>
+        <item>Eastern Free State</item>
+        <item>Northern Free State</item>
+
+
+
+    </string-array>
+
     <string-array name="city_western_cape">
+        <item>Select City</item>
         <item>Cape Town</item>
         <item>Stellenbosch</item>
         <item>Krugersdorp</item>
         <item>George</item>
     </string-array>
+
+
 
     <string-array name="city_list">
         <item>Select City</item>

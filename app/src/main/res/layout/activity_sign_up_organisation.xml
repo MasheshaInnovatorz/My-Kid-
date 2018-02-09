@@ -78,7 +78,7 @@
                      />
 
             </android.support.design.widget.TextInputLayout>
-<!--
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
@@ -112,7 +112,7 @@
                 android:layout_marginLeft="@dimen/text_left"
                 android:layout_marginRight="@dimen/text_right"
                 android:background="#212121" />
--->
+
 <LinearLayout
     android:layout_width="match_parent"
     android:orientation="horizontal"

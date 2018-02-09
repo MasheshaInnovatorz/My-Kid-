@@ -21,7 +21,6 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.codetribe.my_kid.R;
-import com.example.codetribe.my_kid.organization_Activities.SignUpOrganisationActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -198,9 +197,18 @@ public class SignUp extends AppCompatActivity {
                                                         mChildDatabase.child("isVerified").setValue("unverified");
                                                         mChildDatabase.child("orgName").setValue(strName);
                                                         mChildDatabase.child("userKey").setValue(user_id);
+                                                        mChildDatabase.child("userAddress").setValue("");
+                                                        mChildDatabase.child("userCity").setValue("");
+                                                        mChildDatabase.child("userContact").setValue("");
+                                                        mChildDatabase.child("userGender").setValue("");
+                                                        mChildDatabase.child("userIdNumber").setValue("");
                                                         mChildDatabase.child("role").setValue("parent");
                                                         mChildDatabase.child("emailUser").setValue(userEmailString);
                                                         mChildDatabase.child("passWordUser").setValue(userPassString);
+                                                        mChildDatabase.child("userName").setValue("");
+                                                        mChildDatabase.child("userSurname").setValue("");
+
+
                                                         Toast.makeText(SignUp.this, "Parent Account Created Successfully", Toast.LENGTH_SHORT).show();
                                                         startActivity(new Intent(SignUp.this, LoginActivity.class));
 
