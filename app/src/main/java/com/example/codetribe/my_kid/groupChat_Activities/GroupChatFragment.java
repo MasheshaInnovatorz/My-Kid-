@@ -211,7 +211,7 @@ public class GroupChatFragment extends Fragment {
             msg.setLayoutParams(textmsg);
 
             image.layout(100,100,100,100);
-            image.setScaleType(ImageView.ScaleType.MATRIX);
+            image.setScaleType(ImageView.ScaleType.FIT_XY);
             image.setBackgroundResource(R.drawable.bubble_in);
             image.setLayoutParams(textmsg);
 
@@ -221,7 +221,7 @@ public class GroupChatFragment extends Fragment {
             msg.setBackgroundResource(R.drawable.bubble_out);
 
             image.layout(100,100,100,100);;
-            image.setScaleType(ImageView.ScaleType.MATRIX);
+            image.setScaleType(ImageView.ScaleType.FIT_XY);
             image.setBackgroundResource(R.drawable.bubble_out);
             image.setLayoutParams(textmsg);
         }
