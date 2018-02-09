@@ -188,7 +188,6 @@
                     android:textAlignment="center"
                     android:textColorHint="#212121"
                     android:textSize="16dp" />
-
             </android.support.design.widget.TextInputLayout>
 
 

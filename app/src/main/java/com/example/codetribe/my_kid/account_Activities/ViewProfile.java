@@ -262,7 +262,7 @@ public class ViewProfile extends AppCompatActivity {
             gender.setText(" Gender :" + dataSnapshot.child("userGender").getValue().toString());
             phonenumber.setText("  phone number :" + dataSnapshot.child("userContact").getValue().toString());
             address.setText("  Lives in :" + dataSnapshot.child("userAddress").getValue().toString());
-            city.setText("  City :" + dataSnapshot.child("userCity").getValue().toString());
+      //      city.setText("  City :" + dataSnapshot.child("userCity").getValue().toString());
             email.setText("  Email :" + dataSnapshot.child("emailUser").getValue().toString());
 
         }
