@@ -19,12 +19,13 @@ public class TeacherClassAcc {
     private String isVerified;
     private String orgName;
     private String userAddress;
-  //  private String userCity;
+    private String userProvince;
+     private String userCity;
     private String userProfilePic;
 
 
 
-    public TeacherClassAcc(String userName, String userSurname, String userContact, String teacherClassroom, String userIdNumber, String userGender, String userKey, String emailUser, String passWordUser, String role, String isVerified, String orgName, String userAddress) {
+    public TeacherClassAcc(String userName, String userSurname, String userContact, String teacherClassroom, String userIdNumber, String userGender, String userKey, String emailUser, String passWordUser, String role, String isVerified, String orgName,String userAddress, String userProvince,String userCity) {
         this.userName = userName;
         this.userSurname = userSurname;
         this.userContact = userContact;
@@ -38,7 +39,8 @@ public class TeacherClassAcc {
         this.isVerified = isVerified;
         this.orgName = orgName;
         this.userAddress = userAddress;
-      //  this.userCity = userCity;
+       this.userCity = userCity;
+       this.userProvince=userProvince;
         this.userProfilePic = "";
 
     }
@@ -46,9 +48,14 @@ public class TeacherClassAcc {
     public TeacherClassAcc() {
     }
 
-   // public String getUserCity() {
-       // return userCity;
-  //  }
+
+    public String getuserProvince() {
+        return userProvince;
+    }
+
+  public String getUserCity() {
+      return userCity;
+ }
 
     public String getUserAddress() {
         return userAddress;
