@@ -130,7 +130,7 @@
 
                 <Spinner
                     android:layout_gravity="center_vertical"
-                    android:id="@+id/teacherProvincesSpinner"
+                    android:id="@+id/parentProvincesSpinner"
                     android:layout_width="match_parent"
                     android:textAlignment="center"
                     android:layout_height="wrap_content"
@@ -164,7 +164,7 @@
 
                 <Spinner
                     android:layout_gravity="center_vertical"
-                    android:id="@+id/teacherCitySpinner"
+                    android:id="@+id/parentCitySpinner"
                     android:layout_width="match_parent"
                     android:textAlignment="center"
                     android:layout_height="wrap_content"

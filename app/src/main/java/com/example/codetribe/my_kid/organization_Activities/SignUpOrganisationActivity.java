@@ -254,6 +254,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                 crechAddressOrg = crechAddress.getText().toString().trim();
 
                 //spinner
+
                 cityInfor = crechCity.trim();
                 provinceorg = province.trim();
                 crechPhoneNoOrg = crechPhoneNo.getText().toString().trim();

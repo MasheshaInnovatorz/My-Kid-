@@ -161,13 +161,13 @@ public class UpdateProfile extends AppCompatActivity {
                 update.setUserSurname(inputSurnameString);
                 update.setUserContact(userContactString);
                 update.setUserAddress(inputAddressString);
-                //update.setUserCity(inputCityString);
+                update.setUserCity(inputCityString);
 
                 databaseReference.child("userName").setValue(update.getUserName());
                 databaseReference.child("userSurname").setValue(update.getUserSurname());
                 databaseReference.child("userContact").setValue(update.getUserContact());
                 databaseReference.child("userAddress").setValue(update.getUserAddress());
-            //    databaseReference.child("userCity").setValue(update.getUserCity());
+                databaseReference.child("userCity").setValue(update.getUserCity());
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override

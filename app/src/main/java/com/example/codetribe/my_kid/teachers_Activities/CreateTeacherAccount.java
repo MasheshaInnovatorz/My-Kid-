@@ -23,7 +23,6 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.codetribe.my_kid.R;
-import com.example.codetribe.my_kid.organization_Activities.SignUpOrganisationActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -33,8 +32,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import static com.example.codetribe.my_kid.R.id.teacherpassword;
 
 public class CreateTeacherAccount extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
@@ -212,6 +209,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
             }
 
         });
+
         //database
         Intent intent = getIntent();
         keyTeacher = intent.getStringExtra("User_KEY");
