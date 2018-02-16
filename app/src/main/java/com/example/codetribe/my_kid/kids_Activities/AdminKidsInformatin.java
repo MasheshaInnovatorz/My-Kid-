@@ -34,9 +34,9 @@ import java.io.IOException;
 
 public class AdminKidsInformatin extends AppCompatActivity {
 
-    private DatabaseReference kidsDataProf, userDataRef,kidsppic;
+    private DatabaseReference kidsDataProf, userDataRef, kidsppic,parentDatabase;
     private FirebaseUser fireAuthorization;
-    private TextView editProfile,allergies,
+    private TextView editProfile, allergies,
             dietRequirements,
             doctorsRecomendations,
             kidHeight,
@@ -44,7 +44,7 @@ public class AdminKidsInformatin extends AppCompatActivity {
 
     private ImageView kidsImage;
 
-
+    private String idsKid;
 
 
     private String id_Key;
@@ -56,18 +56,23 @@ public class AdminKidsInformatin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_kids_informatin);
 
+
+        Intent intent = getIntent();
+        idsKid = intent.getStringExtra("nwana");
+
         //Initialization
         fireAuthorization = FirebaseAuth.getInstance().getCurrentUser();
 
-        kidsDataProf = FirebaseDatabase.getInstance().getReference("Kids");
+        kidsDataProf = FirebaseDatabase.getInstance().getReference("Kids").child(idsKid);
 
-        userDataRef = FirebaseDatabase.getInstance().getReference("Users").child(fireAuthorization.getUid());
+        userDataRef = FirebaseDatabase.getInstance().getReference("Users");
+
+        parentDatabase = FirebaseDatabase.getInstance().getReference("Users");
 
         kidsppic = FirebaseDatabase.getInstance().getReference().child("Kids");
 
 
-
-        editProfile = (TextView)findViewById(R.id.editprofile);
+        editProfile = (TextView) findViewById(R.id.editprofile);
         kidsUser = (TextView) findViewById(R.id.kids_profile_name);
         parentName = (TextView) findViewById(R.id.parentName);
         kidsGender = (TextView) findViewById(R.id.kids_gender_view);
@@ -84,7 +89,7 @@ public class AdminKidsInformatin extends AppCompatActivity {
         bodyWeight = (TextView) findViewById(R.id.kids_BodyWeight_view);
 
         //profilePic
-        kidsImage =(ImageView)findViewById(R.id.kid_header_cover_image);
+        kidsImage = (ImageView) findViewById(R.id.kid_header_cover_image);
 
         Toast.makeText(this, fireAuthorization.getUid(), Toast.LENGTH_SHORT).show();
     }
@@ -127,61 +132,67 @@ public class AdminKidsInformatin extends AppCompatActivity {
         });
 
 */
-        userDataRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(final DataSnapshot userSnapshot) {
 
 
-                kidsDataProf.addValueEventListener(new ValueEventListener() {
+
+                kidsDataProf.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+                    public void onDataChange(final DataSnapshot kidSnapshot) {
+
+                        userDataRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot userSnapshot) {
+
+                         for (DataSnapshot parentInfor : userSnapshot.getChildren()) {
 
 
-                        for (DataSnapshot kidSnapshot : dataSnapshot.getChildren()) {
+                             if (kidSnapshot.child("parentid").getValue().toString().equals(parentInfor.child("userIdNumber").getValue().toString())) {
+
+                                     if (parentInfor.child("orgName").getValue().toString().equals(kidSnapshot.child("orgName").getValue().toString())) {
+
+                                         //parent name
+                                         parentName.setText(parentInfor.child("userSurname").getValue().toString() + " " + parentInfor.child("userName").getValue().toString());
+                                         //kids names
+                                         kidsUser.setText(kidSnapshot.child("surname").getValue().toString() + " " + kidSnapshot.child("name").getValue().toString());
 
 
-                            if (userSnapshot.child("userIdNumber").getValue().toString().equals(kidSnapshot.child("parentid").getValue().toString())) {
-
-                                if (userSnapshot.child("orgName").getValue().toString().equals(kidSnapshot.child("orgName").getValue().toString())) {
-
-                                    //parent name
-                                    parentName.setText(userSnapshot.child("userName").getValue().toString() + " " + userSnapshot.child("userName").getValue().toString());
-                                    //kids names
-                                    kidsUser.setText(kidSnapshot.child("surname").getValue().toString() + " " + kidSnapshot.child("name").getValue().toString());
+                                         id_Key = kidSnapshot.child("id").getValue().toString();
 
 
+                                         kidsGender.setText("Gender :" + kidSnapshot.child("gender").getValue().toString());
+                                         phonenumber.setText("Parent Contact :" + parentInfor.child("userContact").getValue().toString());
+                                         parentEmail.setText("Parent Email :" + parentInfor.child("emailUser").getValue().toString());
+                                         id_Key = kidSnapshot.child("id").getValue().toString();
+                                         city.setText("Class :" + kidSnapshot.child("kidsGrade").getValue().toString());
+                                         homeAddress.setText("Address :" + kidSnapshot.child("address").getValue().toString());
 
-                                    id_Key = kidSnapshot.child("id").getValue().toString();
+                                         Glide.with(getApplicationContext()).load(kidSnapshot.child("profilePic").getValue().toString()).centerCrop().into(kidsImage);
 
-
-                                    kidsGender.setText("Gender :" + kidSnapshot.child("gender").getValue().toString());
-                                    phonenumber.setText("Parent Contact :"+ userSnapshot.child("userContact").getValue().toString());
-                                    parentEmail.setText("Parent Email :"+ userSnapshot.child("emailUser").getValue().toString());
-                                    id_Key = kidSnapshot.child("id").getValue().toString();
-                                    city.setText("Class :" +kidSnapshot.child("kidsGrade").getValue().toString());
-                                    homeAddress.setText("Address :" +kidSnapshot.child("address").getValue().toString());
-
-                                    Glide.with(getApplicationContext()).load(kidSnapshot.child("profilePic").getValue().toString()).centerCrop().into(kidsImage);
-
-                                }
-                            }else if(userSnapshot.child("role").getValue().toString().equals("teacher")){
-                                Intent intent = getIntent();
-                                String idsKid= intent.getStringExtra("nwana");
-
-                                if(kidSnapshot.child("id").getValue().toString().equals(idsKid)){
+                                         parentName.setText(parentInfor.child("userName").getValue().toString() + " " + parentInfor.child("userName").getValue().toString());
+                                         phonenumber.setText("Parent Contact :" + parentInfor.child("userContact").getValue().toString());
+                                         parentEmail.setText("Parent Email :" + parentInfor.child("emailUser").getValue().toString());
 
 
-                                    kidsGender.setText("Gender :" + kidSnapshot.child("gender").getValue().toString());
-                                    phonenumber.setText("Parent Contact :"+ userSnapshot.child("userContact").getValue().toString());
-                                    parentEmail.setText("Parent Email :"+ userSnapshot.child("emailUser").getValue().toString());
-                                    id_Key = kidSnapshot.child("id").getValue().toString();
-                                    city.setText("Class :" +kidSnapshot.child("kidsGrade").getValue().toString());
-                                    homeAddress.setText("Address :" +kidSnapshot.child("address").getValue().toString());
+                                         //}
 
-                                    Glide.with(getApplicationContext()).load(kidSnapshot.child("profilePic").getValue().toString()).centerCrop().into(kidsImage);
-                                }
-                            }
-                        }
+
+                                         //if (kidSnapshot.child("id").getValue().toString().equals(idsKid)) {
+
+                                         //kids names
+                                         kidsUser.setText(kidSnapshot.child("surname").getValue().toString() + " " + kidSnapshot.child("name").getValue().toString());
+                                         kidsGender.setText("Gender :" + kidSnapshot.child("gender").getValue().toString());
+                                         id_Key = kidSnapshot.child("id").getValue().toString();
+                                         city.setText("Class :" + kidSnapshot.child("kidsGrade").getValue().toString());
+                                         homeAddress.setText("Address :" + kidSnapshot.child("address").getValue().toString());
+                                         Glide.with(getApplicationContext()).load(kidSnapshot.child("profilePic").getValue().toString()).centerCrop().into(kidsImage);
+                                     }
+                                 }
+
+                             }
+
+
+                           // }
+                       // }
 
                     }
 
