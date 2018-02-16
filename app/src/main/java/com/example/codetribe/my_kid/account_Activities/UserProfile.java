@@ -11,7 +11,8 @@ public class UserProfile {
     private String userSurname;
     private String userIdNumber;
     private String userAddress;
-  //  private String userCity;
+    private String userprovince;
+   private String userCity;
     private String userContact;
     private String userGender;
     private String isVerified;
@@ -20,13 +21,14 @@ public class UserProfile {
     public UserProfile() {
     }
 
-    public UserProfile(String keyUser, String userName, String userSurname, String userIdNumber, String userAddress, String userContact, String userGender, String isVerified) {
+    public UserProfile(String keyUser, String userName, String userSurname, String userIdNumber, String userAddress,String userContact,String userGender,String userCity,String userprovince,  String isVerified) {
         this.keyUser = keyUser;
         this.userName = userName;
         this.userSurname = userSurname;
         this.userIdNumber = userIdNumber;
         this.userAddress = userAddress;
-       // this.userCity = userCity;
+        this.userCity = userCity;
+        this.userprovince=userprovince;
         this.userContact = userContact;
         this.userGender = userGender;
         this.isVerified = isVerified;
@@ -40,7 +42,7 @@ public class UserProfile {
         this.userName = userName;
         this.userSurname = userSurname;
         this.userAddress = userAddress;
-      //  this.userCity = userCity;
+   this.userCity = userCity;
         this.userContact = userContact;
         this.userProfilePic = "";
     }
@@ -61,9 +63,15 @@ public class UserProfile {
         this.userAddress = userAddress;
     }
 
-  //  public void setUserCity(String userCity) {
-     //   this.userCity = userCity;
-    //}
+    public void setuserprovince(String userprovince) {
+        this.userprovince = userprovince;
+    }
+
+  public void setUserCity(String userCity) {
+        this.userCity = userCity;
+    }
+
+
 
     public void setUserContact(String userContact) {
         this.userContact = userContact;
@@ -88,10 +96,14 @@ public class UserProfile {
     public String getUserAddress() {
         return userAddress;
     }
+    public String getuserprovince() {
+        return userprovince;
+    }
 
-  //  public String getUserCity() {
-     //   return userCity;
-   // }
+
+   public String getUserCity() {
+        return userCity;
+   }
 
     public String getUserContact() {
         return userContact;

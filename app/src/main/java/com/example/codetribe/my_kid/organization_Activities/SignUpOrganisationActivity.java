@@ -104,9 +104,6 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
         //cities
         spinnerCity = (Spinner) findViewById(R.id.orgCitySpinner);
-        /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_list));
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerCity.setAdapter(adapter);*/
 
 
         crechPostalCode = (EditText) findViewById(R.id.orgPostalCode);
@@ -257,6 +254,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                 crechAddressOrg = crechAddress.getText().toString().trim();
 
                 //spinner
+
                 cityInfor = crechCity.trim();
                 provinceorg = province.trim();
                 crechPhoneNoOrg = crechPhoneNo.getText().toString().trim();

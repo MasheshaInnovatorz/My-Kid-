@@ -11,16 +11,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.codetribe.my_kid.R;
-import com.example.codetribe.my_kid.organization_Activities.SignUpOrganisationActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -31,13 +33,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import static com.example.codetribe.my_kid.R.id.teacherpassword;
-
 public class CreateTeacherAccount extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPrefEditor;
     private TextInputLayout inputLayoutName, inputLayoutsurname, inputLayoutcontact, inputLayoutclassroom, inputLayoutidnumber, inputLayoutemail, inputLayoutpassword;
-    private String userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, useremailString, userpasswordString, userAddressString, userCityString;
+    private String userNameString, userSurnameString, usercontactString, userprovinceString,userclassroomString, useridnumberString, usergenderString, useremailString, userpasswordString, userAddressString, userCityString;
     private EditText name, surname, contact, classroom, idnumber, useremail, userpassword, userAddress, userCity;
     private RadioGroup gender;
     private String keyTeacher;
@@ -45,6 +45,12 @@ public class CreateTeacherAccount extends AppCompatActivity {
     private String role = "teacher";
     private FirebaseAuth auth;
 
+    //city and province
+    private  ArrayAdapter<String> adapter;
+    private int positions;
+    private String crechCity;
+    private String province = "";
+    private Spinner spinnerCity, spinnerProvinces;
 
     private ProgressDialog progressDialog;
     //Firebase
@@ -104,6 +110,105 @@ public class CreateTeacherAccount extends AppCompatActivity {
         awesomeValidation.addValidation(this, R.id.teacherid, "^^[0-9]{13}$", R.string.iderror);
         awesomeValidation.addValidation(this, R.id.teacherclass, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}[0-9]$", R.string.classerror);
 
+        //provinces
+        spinnerProvinces = (Spinner) findViewById(R.id.teacherProvincesSpinner);
+        ArrayAdapter<String> provincesadapter = new ArrayAdapter<String>(CreateTeacherAccount.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_Province));
+        provincesadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerProvinces.setAdapter(provincesadapter);
+
+        //cities
+        spinnerCity = (Spinner) findViewById(R.id.teacherCitySpinner);
+        spinnerProvinces.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
+
+
+                positions = position;
+
+                switch (getResources().getStringArray(R.array.city_Province)[positions]) {
+                    case "Limpopo":
+
+                        adapter = new ArrayAdapter<String>(CreateTeacherAccount.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_limpopo));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerCity.setAdapter(adapter);
+
+                        break;
+                    case "Gauteng":
+
+                        adapter = new ArrayAdapter<String>(CreateTeacherAccount.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_gauteng));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerCity.setAdapter(adapter);
+                        break;
+                    case "Western Cape":
+
+                        adapter = new ArrayAdapter<String>(CreateTeacherAccount.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_western_cape));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerCity.setAdapter(adapter);
+                        break;
+                    case "Northern Cape":
+
+                        adapter = new ArrayAdapter<String>(CreateTeacherAccount.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_Northern_Cape));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerCity.setAdapter(adapter);
+                        break;
+                    case "Eastern Cape":
+
+                        adapter = new ArrayAdapter<String>(CreateTeacherAccount.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_eastern_Cape));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerCity.setAdapter(adapter);
+                        break;
+                    case "Free State":
+                        adapter = new ArrayAdapter<String>(CreateTeacherAccount.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_free_state));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerCity.setAdapter(adapter);
+                        break;
+
+                    case "KwaZulu-Natal":
+                        adapter = new ArrayAdapter<String>(CreateTeacherAccount.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_Kwazulu_Natal));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerCity.setAdapter(adapter);
+                        break;
+                    default:
+                        Toast.makeText(CreateTeacherAccount.this, "PLease select one of the provinces", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+
+                province  = getResources().getStringArray(R.array.city_Province)[position];
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+
+                Toast.makeText(CreateTeacherAccount.this, "Please Select City", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
+
+        //cities
+        spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg1, View arg2, int position1, long id1) {
+
+                // TODO Auto-generated method stub
+
+                crechCity = getResources().getStringArray(R.array.city_list)[position1];
+
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+
+                Toast.makeText(CreateTeacherAccount.this, "Please Select City", Toast.LENGTH_SHORT).show();
+            }
+
+        });
 
         //database
         Intent intent = getIntent();
@@ -174,6 +279,9 @@ public class CreateTeacherAccount extends AppCompatActivity {
                 userAddressString = userAddress.getText().toString().trim();
                // userCityString = userCity.getText().toString().trim();
 
+                userCityString = crechCity.trim();
+                userprovinceString= province.trim();
+
 
                 int selectedId = gender.getCheckedRadioButtonId();
 
@@ -196,7 +304,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
                                         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Users");
 
                                         //Storing Information
-                                        TeacherClassAcc teacher = new TeacherClassAcc(userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, task.getResult().getUser().getUid().toString().trim(), task.getResult().getUser().getEmail().toString().trim(), password, role, "verified", orgNames, userAddressString);
+                                        TeacherClassAcc teacher = new TeacherClassAcc(userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, task.getResult().getUser().getUid().toString().trim(), task.getResult().getUser().getEmail().toString().trim(), password, role, "verified", orgNames, userAddressString,userprovinceString ,userCityString);
 
                                         mDatabaseRef.child(task.getResult().getUser().getUid().toString().trim()).setValue(teacher);
 

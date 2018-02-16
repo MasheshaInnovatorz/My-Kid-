@@ -7,9 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +40,13 @@ public class CreateParentProfile extends AppCompatActivity {
             inputIdnumber,
             inputAddress,
             inputCellphoneNumber;
+
+    //city and province
+    private ArrayAdapter<String> adapter;
+    private int positions;
+    private String crechCity,  userCityString,userprovinceString;
+    private String province = "";
+    private Spinner spinnerCity, spinnerProvinces;
 
     private FirebaseUser user;
     //validdation
@@ -109,7 +120,109 @@ public class CreateParentProfile extends AppCompatActivity {
         inputLayoutNumber = (TextInputLayout) findViewById(R.id.input_reg_phoneNo);
 
 
+        //provinces
+        spinnerProvinces = (Spinner) findViewById(R.id.parentProvincesSpinner);
+        ArrayAdapter<String> provincesadapter = new ArrayAdapter<String>(CreateParentProfile.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_Province));
+        provincesadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerProvinces.setAdapter(provincesadapter);
+
+        //cities
+        spinnerCity = (Spinner) findViewById(R.id.parentCitySpinner);
+        spinnerProvinces.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
+
+
+                positions = position;
+
+                switch (getResources().getStringArray(R.array.city_Province)[positions]) {
+                    case "Limpopo":
+
+                        adapter = new ArrayAdapter<String>(CreateParentProfile.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_limpopo));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerCity.setAdapter(adapter);
+
+                        break;
+                    case "Gauteng":
+
+                        adapter = new ArrayAdapter<String>(CreateParentProfile.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_gauteng));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerCity.setAdapter(adapter);
+                        break;
+                    case "Western Cape":
+
+                        adapter = new ArrayAdapter<String>(CreateParentProfile.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_western_cape));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerCity.setAdapter(adapter);
+                        break;
+                    case "Northern Cape":
+
+                        adapter = new ArrayAdapter<String>(CreateParentProfile.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_Northern_Cape));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerCity.setAdapter(adapter);
+                        break;
+                    case "Eastern Cape":
+
+                        adapter = new ArrayAdapter<String>(CreateParentProfile.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_eastern_Cape));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerCity.setAdapter(adapter);
+                        break;
+                    case "Free State":
+                        adapter = new ArrayAdapter<String>(CreateParentProfile.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_free_state));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerCity.setAdapter(adapter);
+                        break;
+
+                    case "KwaZulu-Natal":
+                        adapter = new ArrayAdapter<String>(CreateParentProfile.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_Kwazulu_Natal));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerCity.setAdapter(adapter);
+                        break;
+                    default:
+                        Toast.makeText(CreateParentProfile.this, "PLease select one of the provinces", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+
+                province  = getResources().getStringArray(R.array.city_Province)[position];
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+
+                Toast.makeText(CreateParentProfile.this, "Please Select City", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
+
+        //cities
+        spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg1, View arg2, int position1, long id1) {
+
+                // TODO Auto-generated method stub
+
+                crechCity = getResources().getStringArray(R.array.city_list)[position1];
+
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+
+                Toast.makeText(CreateParentProfile.this, "Please Select City", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
     }
+
+
 
 
     @Override
@@ -121,9 +234,7 @@ public class CreateParentProfile extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
         if (id == android.R.id.home) {
             this.finish();
@@ -141,6 +252,8 @@ public class CreateParentProfile extends AppCompatActivity {
                     inputIdnumberString = inputIdnumber.getText().toString().trim();
                     inputAddressString = inputAddress.getText().toString().trim();
                  //   inputCityString = inputCity.getText().toString().trim();
+                    userCityString = crechCity.trim();
+                    userprovinceString= province.trim();
 
                     rdGenders = (RadioButton) findViewById(selectedId);
                     genderString = rdGenders.getText().toString();
@@ -148,15 +261,16 @@ public class CreateParentProfile extends AppCompatActivity {
 
                     if (!TextUtils.isEmpty(inputIdnumberString)) {
 
-
+                        //(String keyUser, String userName, String userSurname, String userIdNumber, String userAddress,String userContact,String userGender,String userCity,String userprovince,  String isVerified) {
                         String isVerified = "verified";
-                        UserProfile profile = new UserProfile(keyUser, userNameString, inputSurnameString, inputIdnumberString, inputAddressString, userContactString, genderString, isVerified);
+                        UserProfile profile = new UserProfile(keyUser, userNameString, inputSurnameString, inputIdnumberString, inputAddressString, userContactString, genderString,userCityString,userprovinceString,isVerified);
                         databaseReference.child("userName").setValue(profile.getUserName());
                         databaseReference.child("userSurname").setValue(profile.getUserSurname());
                         databaseReference.child("userIdNumber").setValue(profile.getUserIdNumber());
                         databaseReference.child("userContact").setValue(profile.getUserContact());
                         databaseReference.child("userAddress").setValue(profile.getUserAddress());
-                        //databaseReference.child("userCity").setValue(profile.getUserCity());
+                        databaseReference.child("userprovince").setValue(profile.getuserprovince());
+                        databaseReference.child("userCity").setValue(profile.getUserCity());
                         databaseReference.child("userGender").setValue(profile.getUserGender());
                         databaseReference.child("isVerified").setValue(profile.getIsVerified());
 
