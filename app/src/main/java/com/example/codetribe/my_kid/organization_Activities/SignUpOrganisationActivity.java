@@ -29,8 +29,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,14 +44,15 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPrefEditor;
-    private DatabaseReference mOrganizationRef;
+    private DatabaseReference mOrganizationRef, orgValidationRef;
     private TextView signup;
-
+    private boolean valName = false;
     private int positions;
     private String province = "";
 
+    private  String name;
 
-    private  ArrayAdapter<String> adapter;
+    private ArrayAdapter<String> adapter;
     private EditText orgaEmail,
             crechPostalCode,
             orgPassword,
@@ -87,6 +91,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         signup = (TextView) findViewById(R.id.btnRegisterCreche);
         orgAuth = FirebaseAuth.getInstance();
         mOrganizationRef = FirebaseDatabase.getInstance().getReference().child("Creche");
+        orgValidationRef = FirebaseDatabase.getInstance().getReference().child("Creche");
 
 
         orgaEmail = (EditText) findViewById(R.id.orgEmail);
@@ -200,7 +205,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                         break;
                 }
 
-                province  = getResources().getStringArray(R.array.city_Province)[position];
+                province = getResources().getStringArray(R.array.city_Province)[position];
 
 
             }
@@ -223,7 +228,6 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                 // TODO Auto-generated method stub
 
                 crechCity = getResources().getStringArray(R.array.city_list)[position1];
-
 
 
             }
@@ -249,7 +253,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                 sharedPrefEditor.putString("email", email);
                 sharedPrefEditor.apply();
 */
-                final String creshes, crechNameOrg, provinceorg,crechAddressOrg, cityInfor, crechPhoneNoOrg, adminNameOrg, adminSurnameOrg, adminIdNoOrg, crechRefNumberOrg, crechPostalCodeOrg, adminGender;
+                final String creshes, crechNameOrg, provinceorg, crechAddressOrg, cityInfor, crechPhoneNoOrg, adminNameOrg, adminSurnameOrg, adminIdNoOrg, crechRefNumberOrg, crechPostalCodeOrg, adminGender;
                 crechNameOrg = crechName.getText().toString().trim();
                 crechAddressOrg = crechAddress.getText().toString().trim();
 
@@ -277,85 +281,125 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                                 radGender = (RadioButton) findViewById(selectedId);
                                 adminGender = radGender.getText().toString().trim();
 
+
                                 progressDialog.setMessage("Wait While Creating Organisation ");
                                 progressDialog.show();
                                 //    if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
-                                orgAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
 
-                                        if (task.isSuccessful()) {
-                                            // String user_id = task.getResult().getUser().getUid();
-                                            String adminRole = "admin";
-                                            String key = mOrganizationRef.push().getKey();
+                                //organization validation
 
-                                            DatabaseReference mChildDatabase = mOrganizationRef;
-                                            DatabaseReference mAdminRef = FirebaseDatabase.getInstance().getReference().child("Users");
-                                            String userI = task.getResult().getUser().getUid();
+                                if (orgNameValidation(crechNameOrg)) {
+                                    orgAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
 
+                                            if (task.isSuccessful()) {
+                                                // String user_id = task.getResult().getUser().getUid();
+                                                String adminRole = "admin";
+                                                String key = mOrganizationRef.push().getKey();
 
-                                            OrganizationRegister orgReg = new OrganizationRegister(key, crechNameOrg, crechAddressOrg, cityInfor,provinceorg, email, crechPhoneNoOrg, password, crechPostalCodeOrg, key);
-
-                                            CrecheOnwer_Class adminReg = new CrecheOnwer_Class(userI, adminNameOrg, adminSurnameOrg, adminIdNoOrg, adminGender, adminRole, email, crechNameOrg, crechPhoneNoOrg, cityInfor);
-
-                                            Map<String, Object> postingOrg = orgReg.toMap();
-                                            Map<String, Object> organizationUpdate = new HashMap<>();
-                                            organizationUpdate.put(key, postingOrg);
-                                            Map<String, Object> postingAdmin = adminReg.toMap();
-                                            Map<String, Object> adminUpdate = new HashMap<>();
-
-                                            adminUpdate.put(userI, postingAdmin);
+                                                DatabaseReference mChildDatabase = mOrganizationRef;
+                                                DatabaseReference mAdminRef = FirebaseDatabase.getInstance().getReference().child("Users");
+                                                String userI = task.getResult().getUser().getUid();
 
 
-                                            //Updating Messages
-                                            mAdminRef.updateChildren(adminUpdate);
+                                                OrganizationRegister orgReg = new OrganizationRegister(key, crechNameOrg, crechAddressOrg, cityInfor, provinceorg, email, crechPhoneNoOrg, password, crechPostalCodeOrg, key);
 
-                                            mChildDatabase.updateChildren(organizationUpdate);
+                                                CrecheOnwer_Class adminReg = new CrecheOnwer_Class(userI, adminNameOrg, adminSurnameOrg, adminIdNoOrg, adminGender, adminRole, email, crechNameOrg, crechPhoneNoOrg, cityInfor);
 
-                                            //Toast.makeText(SignUpOrganisationActivity.this, key, Toast.LENGTH_SHORT).show();
-                                            Toast.makeText(SignUpOrganisationActivity.this, "Organization Successfully Created", Toast.LENGTH_SHORT).show();
+                                                Map<String, Object> postingOrg = orgReg.toMap();
+                                                Map<String, Object> organizationUpdate = new HashMap<>();
+                                                organizationUpdate.put(key, postingOrg);
+                                                Map<String, Object> postingAdmin = adminReg.toMap();
+                                                Map<String, Object> adminUpdate = new HashMap<>();
 
-                                            startActivity(new Intent(getApplicationContext(), AdminTabbedActivity.class));
+                                                adminUpdate.put(userI, postingAdmin);
 
-                                        } else {
-                                            Toast.makeText(SignUpOrganisationActivity.this, "Organizational Failed to SignUp", Toast.LENGTH_SHORT).show();
+
+                                                //Updating Messages
+                                                mAdminRef.updateChildren(adminUpdate);
+
+                                                mChildDatabase.updateChildren(organizationUpdate);
+
+                                                //Toast.makeText(SignUpOrganisationActivity.this, key, Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(SignUpOrganisationActivity.this, "Organization Successfully Created", Toast.LENGTH_SHORT).show();
+
+                                                startActivity(new Intent(getApplicationContext(), AdminTabbedActivity.class));
+
+                                            } else {
+
+
+                                                Toast.makeText(SignUpOrganisationActivity.this, "Organizational Failed to SignUp", Toast.LENGTH_SHORT).show();
+
+                                            }
+                                            progressDialog.dismiss();
                                         }
-                                        progressDialog.dismiss();
-                                    }
-                                });
+                                    });
 
+                                }else{
+                                    progressDialog.dismiss();
+                                    Toast.makeText(SignUpOrganisationActivity.this, "Name Already Exist", Toast.LENGTH_SHORT).show();
+                                }
+                                    orgAuth.signOut();
+                                    // }
 
-                                orgAuth.signOut();
-                                // }
+                                } else {
+                                    Toast.makeText(SignUpOrganisationActivity.this, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
+                                }
 
                             } else {
-                                Toast.makeText(SignUpOrganisationActivity.this, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
+
+
+                                Toast.makeText(SignUpOrganisationActivity.this, "Please Select City", Toast.LENGTH_SHORT).show();
                             }
-
                         } else {
-
-
-                            Toast.makeText(SignUpOrganisationActivity.this, "Please Select City", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpOrganisationActivity.this, "Make sure you fix all the error shown in your input space", Toast.LENGTH_LONG).show();
                         }
-                    } else {
-                        Toast.makeText(SignUpOrganisationActivity.this, "Make sure you fix all the error shown in your input space", Toast.LENGTH_LONG).show();
                     }
-                }
-                //---
+                    //---
 
+
+                }
+            });
+
+        }
+
+        @Override
+        public boolean onOptionsItemSelected (MenuItem item){
+            int id = item.getItemId();
+            if (id == android.R.id.home) {
+                this.finish();
+            }
+            return super.onOptionsItemSelected(item);
+
+        }
+
+    public boolean orgNameValidation(String nameOfOrg) {
+
+        orgValidationRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                for (DataSnapshot orgSnapShot : dataSnapshot.getChildren()) {
+
+                  name = orgSnapShot.child("orgName").getValue().toString();
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
             }
         });
 
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-            this.finish();
+        if (name  == nameOfOrg) {
+            valName = true;
         }
-        return super.onOptionsItemSelected(item);
 
+
+        return valName;
     }
 }
