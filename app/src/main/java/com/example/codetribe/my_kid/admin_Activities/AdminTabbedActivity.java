@@ -1,5 +1,7 @@
 package com.example.codetribe.my_kid.admin_Activities;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -7,10 +9,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 import com.example.codetribe.my_kid.R;
 import com.example.codetribe.my_kid.aboutUs_Activity.AboutUs;
@@ -22,8 +28,10 @@ public class AdminTabbedActivity extends AppCompatActivity {
 
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
+    private AlertDialog.Builder alertDialogBuilder;
     private ViewPager mViewPager;
+
+    final Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +55,21 @@ public class AdminTabbedActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
+        //dialogBogs
+        LayoutInflater li = LayoutInflater.from(context);
+        View promptsView = li.inflate(R.layout.prompts, null);
+        alertDialogBuilder = new AlertDialog.Builder(
+                context);
+        alertDialogBuilder.setTitle("Add Class");
+        alertDialogBuilder.setView(promptsView);
 
+        final EditText userInput = (EditText) promptsView
+                .findViewById(R.id.editClassAdd);
+        userInput.setHint("Add Class");
     }
 
 
-
- @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_admin_tabbed, menu);
@@ -69,25 +86,46 @@ public class AdminTabbedActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.menu_about_us) {
 
-            Intent intent = new Intent(AdminTabbedActivity.this,AboutUs.class);
-            startActivity(intent);
-            return true;
-        }
-        else if (id == R.id.menu_admin_logout) {
-            logout();
-            return true;
-        }
-
-        else if (id == R.id.menu_adimin_profile) {
-            Intent intent = new Intent(AdminTabbedActivity.this,ViewProfile.class);
+            Intent intent = new Intent(AdminTabbedActivity.this, AboutUs.class);
             startActivity(intent);
             return true;
         } else if (id == R.id.menu_admin_logout) {
             logout();
+            return true;
+        } else if (id == R.id.menu_adimin_profile) {
+            Intent intent = new Intent(AdminTabbedActivity.this, ViewProfile.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.menu_admin_logout) {
+            logout();
+        } else if (id == R.id.menu_admin_addclass) {
+            // set dialog message
+            alertDialogBuilder
+                    .setCancelable(false)
+                    .setPositiveButton("Add",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,int id) {
+                                    // get user input and set it to result
+                                    // edit text
+                                   // result.setText(userInput.getText());
+                                }
+                            })
+                    .setNegativeButton("Cancel",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,int id) {
+                                    dialog.cancel();
+                                }
+                            });
+
+            // create alert dialog
+            AlertDialog alertDialog = alertDialogBuilder.create();
+
+            // show it
+            alertDialog.show();
+
         }
         return super.onOptionsItemSelected(item);
     }
-
 
 
     /**
