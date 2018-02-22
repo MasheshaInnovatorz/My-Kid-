@@ -16,7 +16,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -93,8 +92,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         input_email = (TextInputLayout) findViewById(R.id.input_reg_fullname);
 
 
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+     //   getSupportActionBar().setDisplayShowHomeEnabled(true);
+     //   getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Log In");
 
 
@@ -115,17 +114,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View view) {
 
-                //  Intent it = new Intent(LoginActivity.this, SignUp.class);
-                //  startActivity(it);
 
-
-
-                /*
-                else {
-                    passwordText.setError(null);
-                    startActivity(new Intent(RegistrationActivity.this,MainActivity.class));
-                }
-*/
 
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(LoginActivity.this);
                 View mView = getLayoutInflater().inflate(R.layout.dialogue_spinner, null);
@@ -380,7 +369,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-
+/*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -390,4 +379,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
         return super.onOptionsItemSelected(item);
     }
+    */
 }
