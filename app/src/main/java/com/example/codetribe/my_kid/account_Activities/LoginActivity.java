@@ -79,7 +79,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String shared_email = sharedPreferences.getString("email", "");
-
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
 
