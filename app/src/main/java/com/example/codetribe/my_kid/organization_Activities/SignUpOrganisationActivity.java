@@ -46,11 +46,11 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
     private SharedPreferences.Editor sharedPrefEditor;
     private DatabaseReference mOrganizationRef, orgValidationRef;
     private TextView signup;
-    private boolean valName = false;
+    private boolean valName;
     private int positions;
     private String province = "";
 
-    private  String name;
+    private String name;
 
     private ArrayAdapter<String> adapter;
     private EditText orgaEmail,
@@ -288,7 +288,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
                                 //organization validation
 
-                                if (orgNameValidation(crechNameOrg)) {
+                                if (!orgNameValidation(crechNameOrg)) {
                                     orgAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                         @Override
                                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -336,55 +336,64 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                                         }
                                     });
 
-                                }else{
+                                } else {
                                     progressDialog.dismiss();
                                     Toast.makeText(SignUpOrganisationActivity.this, "Name Already Exist", Toast.LENGTH_SHORT).show();
                                 }
-                                    orgAuth.signOut();
-                                    // }
-
-                                } else {
-                                    Toast.makeText(SignUpOrganisationActivity.this, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
-                                }
+                                orgAuth.signOut();
+                                // }
 
                             } else {
-
-
-                                Toast.makeText(SignUpOrganisationActivity.this, "Please Select City", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpOrganisationActivity.this, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
                             }
+
                         } else {
-                            Toast.makeText(SignUpOrganisationActivity.this, "Make sure you fix all the error shown in your input space", Toast.LENGTH_LONG).show();
+
+
+                            Toast.makeText(SignUpOrganisationActivity.this, "Please Select City", Toast.LENGTH_SHORT).show();
                         }
+                    } else {
+                        Toast.makeText(SignUpOrganisationActivity.this, "Make sure you fix all the error shown in your input space", Toast.LENGTH_LONG).show();
                     }
-                    //---
-
-
                 }
-            });
+                //---
 
-        }
 
-        @Override
-        public boolean onOptionsItemSelected (MenuItem item){
-            int id = item.getItemId();
-            if (id == android.R.id.home) {
-                this.finish();
             }
-            return super.onOptionsItemSelected(item);
+        });
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            this.finish();
         }
+        return super.onOptionsItemSelected(item);
 
-    public boolean orgNameValidation(String nameOfOrg) {
+    }
+
+    public boolean orgNameValidation(final String nameOfOrg) {
 
         orgValidationRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
+                if (dataSnapshot.getChildren() != null) {
+                    for (DataSnapshot orgSnapShot : dataSnapshot.getChildren()) {
 
-                for (DataSnapshot orgSnapShot : dataSnapshot.getChildren()) {
+                        name = orgSnapShot.child("orgName").getValue().toString();
 
-                  name = orgSnapShot.child("orgName").getValue().toString();
+                    }
 
+                    if (name == nameOfOrg) {
+                        valName = true;
+                    } else {
+                        valName = false;
+                    }
+                }else{
+                    valName = false;
                 }
 
             }
@@ -393,11 +402,9 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
 
-        if (name  == nameOfOrg) {
-            valName = true;
-        }
+
+        });
 
 
         return valName;
