@@ -66,7 +66,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
     private Spinner spinnerCity, spinnerProvinces;
     private ProgressDialog progressDialog;
 
-    private String crechCity;
+    private String crechCity="";
 
     //defining AwesomeValidation object
     private AwesomeValidation awesomeValidation;
@@ -142,20 +142,6 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
                 positions = position;
 
-                // TODO Auto-generated method stub
-             /*   switch (getResources().getStringArray(R.array.city_Province)[position]){
-                    case "Limpopo":
-                      citiesadapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_limpopo));
-                        citiesadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinnerProvinces.setAdapter(citiesadapter);
-
-                        break;
-                    case "Gauteng":
-                       citiesadapter  = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_gauteng));
-                        citiesadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinnerProvinces.setAdapter(citiesadapter);
-                        break;
-                }*/
 
                 switch (getResources().getStringArray(R.array.city_Province)[positions]) {
                     case "Limpopo":
@@ -214,7 +200,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> arg0) {
                 // TODO Auto-generated method stub
 
-                Toast.makeText(SignUpOrganisationActivity.this, "Please Select City", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignUpOrganisationActivity.this, "Please Select Province", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -268,7 +254,11 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
                 // crechRefNumberOrg = crechRefNo.getText().toString().trim();
                 crechPostalCodeOrg = crechPostalCode.getText().toString().trim();
-
+/*
+                if (spinnerProvinces.getSelectedItem().toString().trim().equals("Select Province")) {
+                    Toast.makeText(SignUpOrganisationActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                }
+                */
                 int selectedId = gender.getCheckedRadioButtonId();
 
                 if (password.isEmpty() || password.length() < 6) {
@@ -276,7 +266,8 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                 } else {
 
                     if (awesomeValidation.validate()) {
-                        if (!spinnerCity.getSelectedItem().toString().trim().equals("Select City")) {
+                        if (!spinnerProvinces.getSelectedItem().toString().trim().equals("Select Province"))  {
+
                             if (selectedId != -1) {
                                 radGender = (RadioButton) findViewById(selectedId);
                                 adminGender = radGender.getText().toString().trim();
