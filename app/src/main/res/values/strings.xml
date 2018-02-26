@@ -9,6 +9,7 @@
 
 
     <!--user validation-->
+    <string name="classkiderror">Enter Valid Class</string>
     <string name="nameerror">Enter Valid Name</string>
     <string name="surnameerror">Enter Valid Surname</string>
     <string name="emailerror">Enter Valid Email</string>
