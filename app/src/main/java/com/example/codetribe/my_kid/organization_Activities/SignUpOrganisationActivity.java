@@ -329,7 +329,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
                                 } else {
                                     progressDialog.dismiss();
-                                    Toast.makeText(SignUpOrganisationActivity.this, "Name Already Exist", Toast.LENGTH_SHORT).show();
+                                     Toast.makeText(SignUpOrganisationActivity.this, "Name Already Exist", Toast.LENGTH_SHORT).show();
                                 }
                                 orgAuth.signOut();
                                 // }
