@@ -42,12 +42,8 @@ public class AdminTabbedActivity extends AppCompatActivity {
     private AlertDialog.Builder alertDialogBuilder;
     private ViewPager mViewPager;
 
-<<<<<<< HEAD
 
-
-=======
     private FirebaseUser user;
->>>>>>> 86488e6ecf7017bfc0b1c74849c684b85fb26740
 
     final Context context = this;
     private AwesomeValidation awesomeValidation;
@@ -141,13 +137,12 @@ public class AdminTabbedActivity extends AppCompatActivity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
 
-                                    if (awesomeValidation.validate()) {
-
+                                    if (classkidString.isEmpty() ) {
 
                                         databasekidclass.child(user.getUid()).child(databasekidclass.push().getKey()).child("className").setValue(classkid.getText().toString());
                                         Toast.makeText(AdminTabbedActivity.this, "Class Created Successfully", Toast.LENGTH_SHORT).show();
                                     } else {
-                                        Toast.makeText(AdminTabbedActivity.this, "Enter Class", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AdminTabbedActivity.this, "Please Enter Class", Toast.LENGTH_SHORT).show();
                                     }
                                     classkid.setText(" ");
 
