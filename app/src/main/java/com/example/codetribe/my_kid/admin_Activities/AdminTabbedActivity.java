@@ -19,7 +19,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
@@ -27,9 +26,9 @@ import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.codetribe.my_kid.R;
 import com.example.codetribe.my_kid.aboutUs_Activity.AboutUs;
 import com.example.codetribe.my_kid.account_Activities.LoginActivity;
-import com.example.codetribe.my_kid.account_Activities.SignUp;
 import com.example.codetribe.my_kid.account_Activities.ViewProfile;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -43,14 +42,20 @@ public class AdminTabbedActivity extends AppCompatActivity {
     private AlertDialog.Builder alertDialogBuilder;
     private ViewPager mViewPager;
 
+<<<<<<< HEAD
 
 
+=======
+    private FirebaseUser user;
+>>>>>>> 86488e6ecf7017bfc0b1c74849c684b85fb26740
 
     final Context context = this;
     private AwesomeValidation awesomeValidation;
-
+    AlertDialog alertDialog;
     EditText classkid;
-    private DatabaseReference databasekidclass;
+    private DatabaseReference databasekidclass, adminDataRef;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,13 +63,14 @@ public class AdminTabbedActivity extends AppCompatActivity {
 
 //databse
         databasekidclass = FirebaseDatabase.getInstance().getReference().child("kidclass");
+        adminDataRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
         //validation
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this, R.id.editClassAdd, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.classkiderror);
         //classkid = (EditText) findViewById(R.id.editClassAdd);
 
-
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Admin");
@@ -91,10 +97,10 @@ public class AdminTabbedActivity extends AppCompatActivity {
         alertDialogBuilder.setTitle("Add Class");
         alertDialogBuilder.setView(promptsView);
 
-        final EditText classkid = (EditText) promptsView .findViewById(R.id.editClassAdd);
+        classkid = (EditText) promptsView.findViewById(R.id.editClassAdd);
 
         classkid.setHint("Add Class");
-        classkidString= classkid.getText().toString().trim();
+        classkidString = classkid.getText().toString().trim();
     }
 
 
@@ -133,34 +139,37 @@ public class AdminTabbedActivity extends AppCompatActivity {
                     .setCancelable(false)
                     .setPositiveButton("Add",
                             new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,int id) {
+                                public void onClick(DialogInterface dialog, int id) {
 
                                     if (awesomeValidation.validate()) {
 
-                                        DatabaseReference mChildDatabase = databasekidclass.child("kidclass");
-                                        mChildDatabase.child("Class").setValue(classkid);
+
+                                        databasekidclass.child(user.getUid()).child(databasekidclass.push().getKey()).child("className").setValue(classkid.getText().toString());
                                         Toast.makeText(AdminTabbedActivity.this, "Class Created Successfully", Toast.LENGTH_SHORT).show();
                                     } else {
                                         Toast.makeText(AdminTabbedActivity.this, "Enter Class", Toast.LENGTH_SHORT).show();
                                     }
+                                    classkid.setText(" ");
 
                                 }
                             })
                     .setNegativeButton("Cancel",
                             new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,int id) {
+                                public void onClick(DialogInterface dialog, int id) {
                                     dialog.cancel();
                                 }
                             });
 
             // create alert dialog
-            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog = alertDialogBuilder.create();
 
             // show it
             alertDialog.show();
 
         }
         return super.onOptionsItemSelected(item);
+
+
     }
 
 
@@ -210,21 +219,21 @@ public class AdminTabbedActivity extends AppCompatActivity {
     }
 
 
-/*
-    private void savekidclass() {
-        if (awesomeValidation.validate()) {
+    /*
+        private void savekidclass() {
+            if (awesomeValidation.validate()) {
 
-          classkid.getText().toString().trim();
-            DatabaseReference mChildDatabase = databasekidclass.child("kidclass");
+              classkid.getText().toString().trim();
+                DatabaseReference mChildDatabase = databasekidclass.child("kidclass");
 
-            mChildDatabase.child("Class").setValue(classkid);
-            Toast.makeText(AdminTabbedActivity.this, "Class Created Successfully", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(AdminTabbedActivity.this, "Enter Class", Toast.LENGTH_SHORT).show();
+                mChildDatabase.child("Class").setValue(classkid);
+                Toast.makeText(AdminTabbedActivity.this, "Class Created Successfully", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(AdminTabbedActivity.this, "Enter Class", Toast.LENGTH_SHORT).show();
+            }
         }
-    }
 
-*/
+    */
     private void logout() {
 
 
