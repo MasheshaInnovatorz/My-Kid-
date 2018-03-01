@@ -259,6 +259,7 @@
 
             -->
 
+
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/inputteacherclass"
                 android:layout_width="match_parent"
@@ -280,6 +281,9 @@
                     android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
+
+
 
 
 
