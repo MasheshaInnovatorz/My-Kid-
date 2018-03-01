@@ -55,9 +55,10 @@ public class SignUp extends AppCompatActivity {
     private String strName;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
+    private String orgIdKey;
     private String[] spinnerArray;
 
-    private DatabaseReference mDatabaseRef, mUserCheckData, crecheDataRef, KidDataRef;
+    private DatabaseReference mDatabaseRef, mUserCheckData, crecheDataRef, KidDataRef,searchCreacheRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +78,7 @@ public class SignUp extends AppCompatActivity {
 
         crecheDataRef = FirebaseDatabase.getInstance().getReference("Creche");
         KidDataRef = FirebaseDatabase.getInstance().getReference("Kids");
-
+        searchCreacheRef =FirebaseDatabase.getInstance().getReference("Creche");
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);//shared
 
@@ -141,6 +142,7 @@ public class SignUp extends AppCompatActivity {
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
 
+
                         }
                     });
 
@@ -176,60 +178,78 @@ public class SignUp extends AppCompatActivity {
                     //
                     if (awesomeValidation.validate()) {
                         if (!orgNameList.getSelectedItem().toString().trim().equals("Select Creshe")) {
-                            KidDataRef.addValueEventListener(new ValueEventListener() {
+
+                            searchCreacheRef.addValueEventListener(new ValueEventListener() {
                                 @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                    for (DataSnapshot kidsSnapshot : dataSnapshot.getChildren()) {
+                                public void onDataChange(DataSnapshot searchSnapshot) {
+                                    for(final DataSnapshot searchDataSnapshot: searchSnapshot.getChildren()){
+                                        if(searchDataSnapshot.child("orgName").getValue().toString().equals(orgNameList.getSelectedItem().toString())){
 
-                                        progressDialog.setMessage("Wait While Creating an Parent Account");
-                                        progressDialog.show();
-
-                                        if (kidsSnapshot.child("orgName").getValue().toString().equals(strName) && kidsSnapshot.child("idNumber").getValue().toString().equals(kidsIdno.getText().toString())) {
-
-
-                                            auth.createUserWithEmailAndPassword(userEmailString, userPassString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                            KidDataRef.addValueEventListener(new ValueEventListener() {
                                                 @Override
-                                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                                    if (task.isSuccessful()) {
-                                                        String user_id = task.getResult().getUser().getUid();
-                                                        DatabaseReference mChildDatabase = mDatabaseRef.child("Users").child(user_id);
+                                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                                    for (DataSnapshot kidsSnapshot : dataSnapshot.getChildren()) {
 
-                                                        mChildDatabase.child("isVerified").setValue("unverified");
-                                                        mChildDatabase.child("orgName").setValue(strName);
-                                                        mChildDatabase.child("userKey").setValue(user_id);
-                                                        mChildDatabase.child("userAddress").setValue("");
-                                                        mChildDatabase.child("userCity").setValue("");
-                                                        mChildDatabase.child("userContact").setValue("");
-                                                        mChildDatabase.child("userGender").setValue("");
-                                                        mChildDatabase.child("userIdNumber").setValue("");
-                                                        mChildDatabase.child("role").setValue("parent");
-                                                        mChildDatabase.child("emailUser").setValue(userEmailString);
-                                                        mChildDatabase.child("passWordUser").setValue(userPassString);
-                                                        mChildDatabase.child("userName").setValue("");
-                                                        mChildDatabase.child("userSurname").setValue("");
+                                                        progressDialog.setMessage("Wait While Creating an Parent Account");
+                                                        progressDialog.show();
+
+                                                        if (kidsSnapshot.child("orgName").getValue().toString().equals(strName) && kidsSnapshot.child("idNumber").getValue().toString().equals(kidsIdno.getText().toString())) {
 
 
-                                                        Toast.makeText(SignUp.this, "Parent Account Created Successfully", Toast.LENGTH_SHORT).show();
-                                                        startActivity(new Intent(SignUp.this, LoginActivity.class));
+                                                            auth.createUserWithEmailAndPassword(userEmailString, userPassString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                                                @Override
+                                                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                                                    if (task.isSuccessful()) {
+                                                                        String user_id = task.getResult().getUser().getUid();
+                                                                        DatabaseReference mChildDatabase = mDatabaseRef.child("Users").child(user_id);
+
+                                                                        mChildDatabase.child("isVerified").setValue("unverified");
+                                                                        mChildDatabase.child("orgName").setValue(strName);
+                                                                        mChildDatabase.child("userKey").setValue(user_id);
+                                                                        mChildDatabase.child("userAddress").setValue("");
+                                                                        mChildDatabase.child("userCity").setValue("");
+                                                                        mChildDatabase.child("userContact").setValue("");
+                                                                        mChildDatabase.child("userGender").setValue("");
+                                                                        mChildDatabase.child("userIdNumber").setValue("");
+                                                                        mChildDatabase.child("role").setValue("parent");
+                                                                        mChildDatabase.child("emailUser").setValue(userEmailString);
+                                                                        mChildDatabase.child("passWordUser").setValue(userPassString);
+                                                                        mChildDatabase.child("userName").setValue("");
+                                                                        mChildDatabase.child("userOrgId").setValue(searchDataSnapshot.child("orguid").getValue().toString());
+                                                                        mChildDatabase.child("userSurname").setValue("");
 
 
-                                                    } else {
-                                                        Toast.makeText(SignUp.this, "Parent Fialed to Creating an Account", Toast.LENGTH_SHORT).show();
+                                                                        Toast.makeText(SignUp.this, "Parent Account Created Successfully", Toast.LENGTH_SHORT).show();
+                                                                        startActivity(new Intent(SignUp.this, LoginActivity.class));
+
+
+                                                                    } else {
+                                                                        Toast.makeText(SignUp.this, "Parent Fialed to Creating an Account", Toast.LENGTH_SHORT).show();
+
+                                                                    }
+                                                                }
+                                                            });
+
+                                                            progressDialog.dismiss();
+                                                        } else {
+
+                                                            Toast.makeText(SignUp.this, "You dont have a kids on this Creche,Please contact an Admin Creshe", Toast.LENGTH_SHORT).show();
+
+                                                        }
 
                                                     }
+
+
+                                                }
+
+                                                @Override
+                                                public void onCancelled(DatabaseError databaseError) {
+
                                                 }
                                             });
 
-                                            progressDialog.dismiss();
-                                        } else {
-
-                                            Toast.makeText(SignUp.this, "You dont have a kids on this Creche,Please contact an Admin Creshe", Toast.LENGTH_SHORT).show();
-
                                         }
-
                                     }
-
-
                                 }
 
                                 @Override

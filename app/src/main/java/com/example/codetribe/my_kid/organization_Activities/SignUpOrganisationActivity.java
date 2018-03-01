@@ -90,6 +90,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);//shared
         signup = (TextView) findViewById(R.id.btnRegisterCreche);
         orgAuth = FirebaseAuth.getInstance();
+
         mOrganizationRef = FirebaseDatabase.getInstance().getReference().child("Creche");
         orgValidationRef = FirebaseDatabase.getInstance().getReference().child("Creche");
 
@@ -287,23 +288,25 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                                             if (task.isSuccessful()) {
                                                 // String user_id = task.getResult().getUser().getUid();
                                                 String adminRole = "admin";
-                                                String key = mOrganizationRef.push().getKey();
+
 
                                                 DatabaseReference mChildDatabase = mOrganizationRef;
                                                 DatabaseReference mAdminRef = FirebaseDatabase.getInstance().getReference().child("Users");
                                                 String userI = task.getResult().getUser().getUid();
 
+                                                String key = mChildDatabase.push().getKey();
 
-                                                OrganizationRegister orgReg = new OrganizationRegister(key, crechNameOrg, crechAddressOrg, cityInfor, provinceorg, email, crechPhoneNoOrg, password, crechPostalCodeOrg, key);
 
-                                                CrecheOnwer_Class adminReg = new CrecheOnwer_Class(userI, adminNameOrg, adminSurnameOrg, adminIdNoOrg, adminGender, adminRole, email, crechNameOrg, crechPhoneNoOrg, cityInfor);
+                                                OrganizationRegister orgReg = new OrganizationRegister(key, crechNameOrg, crechAddressOrg, cityInfor, provinceorg, email, crechPhoneNoOrg, password, crechPostalCodeOrg, userI);
+
+                                                CrecheOnwer_Class adminReg = new CrecheOnwer_Class(userI, adminNameOrg, adminSurnameOrg, adminIdNoOrg, adminGender, adminRole, email, crechNameOrg, crechPhoneNoOrg, cityInfor,key);
 
                                                 Map<String, Object> postingOrg = orgReg.toMap();
                                                 Map<String, Object> organizationUpdate = new HashMap<>();
                                                 organizationUpdate.put(key, postingOrg);
+
                                                 Map<String, Object> postingAdmin = adminReg.toMap();
                                                 Map<String, Object> adminUpdate = new HashMap<>();
-
                                                 adminUpdate.put(userI, postingAdmin);
 
 

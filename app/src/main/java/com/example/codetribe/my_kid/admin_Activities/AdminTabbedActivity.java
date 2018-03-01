@@ -47,10 +47,11 @@ public class AdminTabbedActivity extends AppCompatActivity {
 
     final Context context = this;
     private AwesomeValidation awesomeValidation;
-    AlertDialog alertDialog;
+
     EditText classkid;
     private DatabaseReference databasekidclass, adminDataRef;
 
+    AlertDialog alertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,10 @@ public class AdminTabbedActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+
+
+
+
 
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -131,6 +136,13 @@ public class AdminTabbedActivity extends AppCompatActivity {
             logout();
         } else if (id == R.id.menu_admin_addclass) {
             // set dialog message
+
+
+            // create alert dialog
+
+           // AlertDialog pfrid = alertDialogBuilder.create();
+            //alert dialog box
+
             alertDialogBuilder
                     .setCancelable(false)
                     .setPositiveButton("Add",
@@ -145,7 +157,7 @@ public class AdminTabbedActivity extends AppCompatActivity {
                                         Toast.makeText(AdminTabbedActivity.this, "Please Enter Class", Toast.LENGTH_SHORT).show();
                                     }
                                     classkid.setText(" ");
-
+                                    removeDialog(id);
                                 }
                             })
                     .setNegativeButton("Cancel",
@@ -155,11 +167,11 @@ public class AdminTabbedActivity extends AppCompatActivity {
                                 }
                             });
 
-            // create alert dialog
             alertDialog = alertDialogBuilder.create();
-
             // show it
             alertDialog.show();
+
+
 
         }
         return super.onOptionsItemSelected(item);

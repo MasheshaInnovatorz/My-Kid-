@@ -37,7 +37,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPrefEditor;
     private TextInputLayout inputLayoutName, inputLayoutsurname, inputLayoutcontact, inputLayoutclassroom, inputLayoutidnumber, inputLayoutemail, inputLayoutpassword;
-    private String userNameString, userSurnameString, usercontactString, userprovinceString,userclassroomString, useridnumberString, usergenderString, useremailString, userpasswordString, userAddressString, userCityString;
+    private String userNameString, userSurnameString, usercontactString, userprovinceString, userclassroomString, useridnumberString, usergenderString, useremailString, userpasswordString, userAddressString, userCityString;
     private EditText name, surname, contact, classroom, idnumber, useremail, userpassword, userAddress, userCity;
     private RadioGroup gender;
     private String keyTeacher;
@@ -46,7 +46,9 @@ public class CreateTeacherAccount extends AppCompatActivity {
     private FirebaseAuth auth;
 
     //city and province
-    private  ArrayAdapter<String> adapter;
+    private ArrayAdapter<String> adapter;
+
+    private String orgId;
     private int positions;
     private String crechCity;
     private String province = "";
@@ -88,7 +90,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
         userpassword = (EditText) findViewById(R.id.teacherpassword);
         gender = (RadioGroup) findViewById(R.id.teachergenders);
         userAddress = (EditText) findViewById(R.id.teacherAddress);
-       // userCity = (EditText) findViewById(R.id.teacherCity);
+        // userCity = (EditText) findViewById(R.id.teacherCity);
 
         progressDialog = new ProgressDialog(this);
         createteacher = (TextView) findViewById(R.id.Create_Teacher_Account);
@@ -105,7 +107,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
         awesomeValidation.addValidation(this, R.id.teachersurname, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.surnameerror);
         awesomeValidation.addValidation(this, R.id.teacheremail, Patterns.EMAIL_ADDRESS, R.string.emailerror);
         awesomeValidation.addValidation(this, R.id.teacherAddress, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.address);
-      //  awesomeValidation.addValidation(this, R.id.teacherCity, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.city);
+        //  awesomeValidation.addValidation(this, R.id.teacherCity, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.city);
         awesomeValidation.addValidation(this, R.id.teachercontact, "^[+]?[0-9]{10,13}$", R.string.mobileerror);
         awesomeValidation.addValidation(this, R.id.teacherid, "^^[0-9]{13}$", R.string.iderror);
         awesomeValidation.addValidation(this, R.id.teacherclass, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}[0-9]$", R.string.classerror);
@@ -173,7 +175,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
                         break;
                 }
 
-                province  = getResources().getStringArray(R.array.city_Province)[position];
+                province = getResources().getStringArray(R.array.city_Province)[position];
 
 
             }
@@ -198,7 +200,6 @@ public class CreateTeacherAccount extends AppCompatActivity {
                 crechCity = getResources().getStringArray(R.array.city_list)[position1];
 
 
-
             }
 
             @Override
@@ -218,10 +219,10 @@ public class CreateTeacherAccount extends AppCompatActivity {
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
         //database
-       keyTeacher = auth.getCurrentUser().getUid();
+        keyTeacher = auth.getCurrentUser().getUid();
 
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        orgNameReference = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("orgName");
+        orgNameReference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
 
 
         createteacher.setOnClickListener(new View.OnClickListener() {
@@ -230,20 +231,23 @@ public class CreateTeacherAccount extends AppCompatActivity {
                 orgNameReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        String org_name = dataSnapshot.getValue(String.class);
+                        String org_name = dataSnapshot.child("orgName").getValue().toString();
+                        orgId = dataSnapshot.child("userOrgId").getValue().toString();
+
                         if (awesomeValidation.validate()) {
 
-                           progressDialog.setMessage("Wait While Adding Teacher");
+                            progressDialog.setMessage("Wait While Adding Teacher");
                             progressDialog.show();
                             saveParent(org_name);
-                             progressDialog.dismiss();
+                            progressDialog.dismiss();
 
-                          //  Toast.makeText(CreateTeacherAccount.this, "Teacher added", Toast.LENGTH_LONG).show();
+                            //  Toast.makeText(CreateTeacherAccount.this, "Teacher added", Toast.LENGTH_LONG).show();
                         } else {
 
                             Toast.makeText(CreateTeacherAccount.this, "Make sure you fix all the error shown in your input space", Toast.LENGTH_LONG).show();
                         }
                     }
+
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
 
@@ -277,55 +281,55 @@ public class CreateTeacherAccount extends AppCompatActivity {
                 userclassroomString = classroom.getText().toString().trim();
                 useridnumberString = idnumber.getText().toString().trim();
                 userAddressString = userAddress.getText().toString().trim();
-               // userCityString = userCity.getText().toString().trim();
+                // userCityString = userCity.getText().toString().trim();
 
                 userCityString = crechCity.trim();
-                userprovinceString= province.trim();
+                userprovinceString = province.trim();
 
 
                 int selectedId = gender.getCheckedRadioButtonId();
 
                 if (password.isEmpty() || password.length() < 6) {
                     Toast.makeText(CreateTeacherAccount.this, "Password cannot be less than 6 characters!", Toast.LENGTH_SHORT).show();
-                }
-                else{
-
-                if (selectedId != -1) {
-
-                    gnrteacher = (RadioButton) findViewById(selectedId);
-                    usergenderString = gnrteacher.getText().toString().trim();
-
-                    auth.createUserWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(CreateTeacherAccount.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-
-                                    if (task.isSuccessful()) {
-                                        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Users");
-
-                                        //Storing Information
-                                        TeacherClassAcc teacher = new TeacherClassAcc(userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, task.getResult().getUser().getUid().toString().trim(), task.getResult().getUser().getEmail().toString().trim(), password, role, "verified", orgNames, userAddressString,userprovinceString ,userCityString);
-
-                                        mDatabaseRef.child(task.getResult().getUser().getUid().toString().trim()).setValue(teacher);
-
-                                    }
-
-                                    if (!task.isSuccessful()) {
-                                        Toast.makeText(CreateTeacherAccount.this, "Authentication failed." , Toast.LENGTH_SHORT).show();
-
-                                    } else {
-                                        // startActivity(new Intent(Create_Teacher_Account.this, LoginActivity.class));
-                                        Toast.makeText(CreateTeacherAccount.this, "Teacher Registration Successfull" , Toast.LENGTH_SHORT).show();
-                                        finish();
-                                    }
-
-                                }
-
-                            });
-
                 } else {
-                    Toast.makeText(CreateTeacherAccount.this, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
-                }}
+
+                    if (selectedId != -1) {
+
+                        gnrteacher = (RadioButton) findViewById(selectedId);
+                        usergenderString = gnrteacher.getText().toString().trim();
+
+                        auth.createUserWithEmailAndPassword(email, password)
+                                .addOnCompleteListener(CreateTeacherAccount.this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                                        if (task.isSuccessful()) {
+                                            mDatabaseRef = FirebaseDatabase.getInstance().getReference("Users");
+
+                                            //Storing Information
+                                            TeacherClassAcc teacher = new TeacherClassAcc(userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, task.getResult().getUser().getUid().toString().trim(), task.getResult().getUser().getEmail().toString().trim(), password, role, "verified", orgNames, userAddressString, userprovinceString, userCityString, orgId);
+                                            Toast.makeText(CreateTeacherAccount.this,orgId, Toast.LENGTH_SHORT).show();
+                                            mDatabaseRef.child(task.getResult().getUser().getUid().toString().trim()).setValue(teacher);
+
+                                        }
+
+                                        if (!task.isSuccessful()) {
+                                            Toast.makeText(CreateTeacherAccount.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+
+                                        } else {
+                                            // startActivity(new Intent(Create_Teacher_Account.this, LoginActivity.class));
+                                            Toast.makeText(CreateTeacherAccount.this, "Teacher Registration Successfull", Toast.LENGTH_SHORT).show();
+                                            finish();
+                                        }
+
+                                    }
+
+                                });
+
+                    } else {
+                        Toast.makeText(CreateTeacherAccount.this, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
 
             @Override
