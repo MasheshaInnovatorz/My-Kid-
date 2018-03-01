@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -16,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -30,12 +32,16 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AdminTabbedActivity extends AppCompatActivity {
 
     String classkidString;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private AlertDialog.Builder alertDialogBuilder;
     private ViewPager mViewPager;
+
 
     private FirebaseUser user;
 
@@ -143,13 +149,12 @@ public class AdminTabbedActivity extends AppCompatActivity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
 
-                                    if (awesomeValidation.validate()) {
-
+                                    if (classkidString.isEmpty() ) {
 
                                         databasekidclass.child(user.getUid()).child(databasekidclass.push().getKey()).child("className").setValue(classkid.getText().toString());
                                         Toast.makeText(AdminTabbedActivity.this, "Class Created Successfully", Toast.LENGTH_SHORT).show();
                                     } else {
-                                        Toast.makeText(AdminTabbedActivity.this, "Enter Class", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AdminTabbedActivity.this, "Please Enter Class", Toast.LENGTH_SHORT).show();
                                     }
                                     classkid.setText(" ");
                                     removeDialog(id);
