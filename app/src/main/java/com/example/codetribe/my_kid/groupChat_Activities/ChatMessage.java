@@ -13,17 +13,24 @@ public class ChatMessage {
     Boolean btn;
     String userId;
     String imageURL;
+    String orgUserId;
 
     public ChatMessage() {
     }
 
-    public ChatMessage(String message, String name, long time, String userId,String imageURL) {
+    public ChatMessage(String message, String name, long time, String userId, String imageURL, String orgUserId) {
         this.message = message;
         this.name = name;
         this.userId = userId;
+        this.orgUserId = orgUserId;
+
         this.time = new Date().getTime();
         this.imageURL = imageURL;
 
+    }
+
+    public String getOrgUserId() {
+        return orgUserId;
     }
 
     public String getUserId() {

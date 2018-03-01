@@ -35,6 +35,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -63,12 +64,14 @@ public class GroupChatFragment extends Fragment {
     EditText messageArea;
     ScrollView scrollView;
     String userId;
+    String orgIdKey;
     //progress dialog
     ImageView image;
     private Uri imgUri;
 
 
     public static final int REQUEST_CODE = 1234;
+
 
     private ProgressDialog progressDialog;
 
@@ -99,6 +102,19 @@ public class GroupChatFragment extends Fragment {
 
         //storage database
         mStorageRef = FirebaseStorage.getInstance().getReference();
+
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                orgIdKey = dataSnapshot.child("userOrgId").getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
 
         imageAttachment.setOnClickListener(new View.OnClickListener() {
@@ -146,17 +162,18 @@ public class GroupChatFragment extends Fragment {
 
                 ChatMessage chatFax = dataSnapshot.getValue(ChatMessage.class);
 
-
-                if (dataSnapshot.child("userId").getValue().toString().equals(userId)) {
-
-
-                    addMessageBox(chatFax.getName().toString() + "\n" + chatFax.getMessage(), 1, chatFax);
+                if (dataSnapshot.child("orgUserId").getValue().toString().equals(orgIdKey)){
+                    if (dataSnapshot.child("userId").getValue().toString().equals(userId)) {
 
 
-                } else {
+                        addMessageBox(chatFax.getName().toString() + "\n" + chatFax.getMessage(), 2, chatFax);
 
-                    addMessageBox(chatFax.getName().toString() + "\n" + chatFax.getMessage(), 2, chatFax);
-                }
+
+                    } else {
+
+                        addMessageBox(chatFax.getName().toString() + "\n" + chatFax.getMessage(), 1, chatFax);
+                    }
+            }
             }
 
 
@@ -210,7 +227,7 @@ public class GroupChatFragment extends Fragment {
             msg.setBackgroundResource(R.drawable.bubble_in);
             msg.setLayoutParams(textmsg);
 
-            image.layout(100,100,100,100);
+            image.layout(100, 100, 100, 100);
             image.setScaleType(ImageView.ScaleType.FIT_XY);
             image.setBackgroundResource(R.drawable.bubble_in);
             image.setLayoutParams(textmsg);
@@ -220,7 +237,8 @@ public class GroupChatFragment extends Fragment {
             msg.setLayoutParams(textmsg);
             msg.setBackgroundResource(R.drawable.bubble_out);
 
-            image.layout(100,100,100,100);;
+            image.layout(100, 100, 100, 100);
+            ;
             image.setScaleType(ImageView.ScaleType.FIT_XY);
             image.setBackgroundResource(R.drawable.bubble_out);
             image.setLayoutParams(textmsg);
@@ -278,8 +296,10 @@ public class GroupChatFragment extends Fragment {
 
 
                     // imageUpload = new MemokidsUpload_class(txtImageName.getText().toString(), taskSnapshot.getDownloadUrl().toString(), results,  new Date().getTime());
-                    if (taskSnapshot.getDownloadUrl().toString() != "") {
-                        ChatMessage chatMessage = new ChatMessage(messageArea.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(), 0, FirebaseAuth.getInstance().getCurrentUser().getUid(), taskSnapshot.getDownloadUrl().toString());
+                    if (taskSnapshot.getDownloadUrl().toString() != " ") {
+
+
+                        ChatMessage chatMessage = new ChatMessage(messageArea.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(), 0, FirebaseAuth.getInstance().getCurrentUser().getUid(), taskSnapshot.getDownloadUrl().toString(),orgIdKey);
                         databaseReference.push().setValue(chatMessage);
 
 
@@ -287,7 +307,7 @@ public class GroupChatFragment extends Fragment {
                        /* String uploadId = databaseReference.push().getKey();
                         databaseReference.child(uploadId).setValue(chatMessage);*/
                     } else {
-                        ChatMessage chatMessage = new ChatMessage(messageArea.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(), 0, FirebaseAuth.getInstance().getCurrentUser().getUid(), "");
+                        ChatMessage chatMessage = new ChatMessage(messageArea.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(), 0, FirebaseAuth.getInstance().getCurrentUser().getUid(), "",orgIdKey);
                         databaseReference.push().setValue(chatMessage);
 
                         //save image infor in to firebase database
@@ -316,7 +336,7 @@ public class GroupChatFragment extends Fragment {
                     });
 
         } else {
-            ChatMessage chatMessage = new ChatMessage(messageArea.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(), 0, FirebaseAuth.getInstance().getCurrentUser().getUid(), "");
+            ChatMessage chatMessage = new ChatMessage(messageArea.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(), 0, FirebaseAuth.getInstance().getCurrentUser().getUid(), "",orgIdKey);
             databaseReference.push().setValue(chatMessage);
         }
     }
