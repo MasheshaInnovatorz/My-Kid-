@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -166,12 +165,12 @@ public class GroupChatFragment extends Fragment {
                     if (dataSnapshot.child("userId").getValue().toString().equals(userId)) {
 
 
-                        addMessageBox(chatFax.getName().toString() + "\n" + chatFax.getMessage(), 2, chatFax);
+                        addMessageBox(chatFax.getName().toString(),  chatFax.getMessage(), 2, chatFax);
 
 
                     } else {
 
-                        addMessageBox(chatFax.getName().toString() + "\n" + chatFax.getMessage(), 1, chatFax);
+                        addMessageBox(chatFax.getName().toString(), chatFax.getMessage(), 1, chatFax);
                     }
             }
             }
@@ -211,11 +210,11 @@ public class GroupChatFragment extends Fragment {
          databaseReference.push().setValue(chatMessage);
 
      }*/
-    public void addMessageBox(String message, int type, ChatMessage chat) {
+    public void addMessageBox(String name, String message, int type, ChatMessage chat) {
         TextView msg = new TextView(getActivity());
         image = new ImageView(getActivity());
 
-        msg.setText(DateFormat.format("dd-MM-yyyy (HH:mm)", chat.getTime()) + "\n" + message);
+       msg.setText(" " + name +"\n" + message);
 
         Glide.with(GroupChatFragment.this).load(chat.getImageURL()).override(400,400).fitCenter().into(image);
 
@@ -226,7 +225,7 @@ public class GroupChatFragment extends Fragment {
 
         if (type == 1) {
             textmsg.gravity = Gravity.LEFT;
-            msg.setMaxWidth(400);
+            msg.setMaxWidth(550);
             msg.setBackgroundResource(R.drawable.bubble_out);
             msg.setLayoutParams(textmsg);
 
@@ -239,7 +238,7 @@ public class GroupChatFragment extends Fragment {
             textmsg.gravity = Gravity.RIGHT;
 
             msg.setLayoutParams(textmsg);
-            msg.setMaxWidth(400);
+            msg.setMaxWidth(550);
             msg.setBackgroundResource(R.drawable.bubble_in);
 
 
@@ -283,8 +282,8 @@ public class GroupChatFragment extends Fragment {
     public void upload() {
         if (imgUri != null) {
             final ProgressDialog dialog = new ProgressDialog(getActivity());
-            dialog.setTitle("Sending chat Message");
-            dialog.show();
+            //dialog.setTitle("Sending chat Message");
+            //dialog.show();
             //get the storage reference
             StorageReference ref = mStorageRef.child("ChatImage/" + System.currentTimeMillis() + "." + getImageExt(imgUri));
 
@@ -292,7 +291,7 @@ public class GroupChatFragment extends Fragment {
                 @Override
                 public void onSuccess(final UploadTask.TaskSnapshot taskSnapshot) {
 
-                    dialog.dismiss();
+                    //dialog.dismiss();
 
 
                     Toast.makeText(getContext(), "Sent", Toast.LENGTH_SHORT).show();
