@@ -214,39 +214,52 @@ public class GroupChatFragment extends Fragment {
     public void addMessageBox(String message, int type, ChatMessage chat) {
         TextView msg = new TextView(getActivity());
         image = new ImageView(getActivity());
+
         msg.setText(DateFormat.format("dd-MM-yyyy (HH:mm)", chat.getTime()) + "\n" + message);
 
         Glide.with(GroupChatFragment.this).load(chat.getImageURL()).centerCrop().into(image);
 
         LinearLayout.LayoutParams textmsg = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        image.setBackgroundResource(R.drawable.bubble_in);
+
+        image.setBackgroundResource(R.drawable.bubble_out);
 
         if (type == 1) {
             textmsg.gravity = Gravity.LEFT;
-            msg.setBackgroundResource(R.drawable.bubble_in);
+            msg.setMaxWidth(400);
+            msg.setBackgroundResource(R.drawable.bubble_out);
             msg.setLayoutParams(textmsg);
 
-            image.layout(100, 100, 100, 100);
-            image.setScaleType(ImageView.ScaleType.FIT_XY);
-            image.setBackgroundResource(R.drawable.bubble_in);
+            image.setMaxWidth(400);
+            image.setMinimumWidth(390);
+            image.setMaxHeight(400);
+            image.setMinimumHeight(385);
+            image.setScaleType(ImageView.ScaleType.CENTER);
+            image.setBackgroundResource(R.drawable.bubble_out);
             image.setLayoutParams(textmsg);
 
         } else {
             textmsg.gravity = Gravity.RIGHT;
-            msg.setLayoutParams(textmsg);
-            msg.setBackgroundResource(R.drawable.bubble_out);
 
-            image.layout(100, 100, 100, 100);
-            ;
-            image.setScaleType(ImageView.ScaleType.FIT_XY);
-            image.setBackgroundResource(R.drawable.bubble_out);
+            msg.setLayoutParams(textmsg);
+            msg.setMaxWidth(400);
+            msg.setBackgroundResource(R.drawable.bubble_in);
+
+            image.setMaxWidth(400);
+            image.setMinimumWidth(390);
+            image.setMaxHeight(400);
+            image.setMinimumHeight(385);
+            image.setScaleType(ImageView.ScaleType.CENTER);
+            image.setBackgroundResource(R.drawable.bubble_in);
             image.setLayoutParams(textmsg);
         }
 
 
         chat_right.addView(msg);
-        chat_right.addView(image);
+
+        if(!chat.getImageURL().equals("")) {
+            chat_right.addView(image);
+        }
         scrollView.fullScroll(View.FOCUS_DOWN);
     }
 
