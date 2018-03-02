@@ -217,7 +217,7 @@ public class GroupChatFragment extends Fragment {
 
         msg.setText(DateFormat.format("dd-MM-yyyy (HH:mm)", chat.getTime()) + "\n" + message);
 
-        Glide.with(GroupChatFragment.this).load(chat.getImageURL()).centerCrop().into(image);
+        Glide.with(GroupChatFragment.this).load(chat.getImageURL()).override(400,400).fitCenter().into(image);
 
         LinearLayout.LayoutParams textmsg = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
@@ -230,11 +230,8 @@ public class GroupChatFragment extends Fragment {
             msg.setBackgroundResource(R.drawable.bubble_out);
             msg.setLayoutParams(textmsg);
 
-            image.setMaxWidth(400);
-            image.setMinimumWidth(390);
-            image.setMaxHeight(400);
-            image.setMinimumHeight(385);
-            image.setScaleType(ImageView.ScaleType.CENTER);
+
+            image.setScaleType(ImageView.ScaleType.FIT_XY);
             image.setBackgroundResource(R.drawable.bubble_out);
             image.setLayoutParams(textmsg);
 
@@ -245,11 +242,8 @@ public class GroupChatFragment extends Fragment {
             msg.setMaxWidth(400);
             msg.setBackgroundResource(R.drawable.bubble_in);
 
-            image.setMaxWidth(400);
-            image.setMinimumWidth(390);
-            image.setMaxHeight(400);
-            image.setMinimumHeight(385);
-            image.setScaleType(ImageView.ScaleType.CENTER);
+
+            image.setScaleType(ImageView.ScaleType.FIT_XY);
             image.setBackgroundResource(R.drawable.bubble_in);
             image.setLayoutParams(textmsg);
         }
