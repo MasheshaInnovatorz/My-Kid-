@@ -28,42 +28,53 @@ public class ResetPassword extends AppCompatActivity {
     private TextView btnReset;
     private EditText inputEmail;
     private ImageView btnBack;
+
+    //firebase Auth
     private FirebaseAuth auth;
+
+    //progress bar declaration
     private ProgressDialog progressDialog;
+
     //defining AwesomeValidation object
     private AwesomeValidation awesomeValidation;
 
     //String email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
 
-
+        //title bar title
         getSupportActionBar().setTitle("Reset Password");
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
+        //variables intialization
         inputEmail = (EditText) findViewById(R.id.reset_email);
         btnReset = (TextView) findViewById(R.id.btn_reset_password);
 
+        //progreess bra initialization
         progressDialog = new ProgressDialog(this);
 
+        //initialization of an owesome Validation
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
+        //database Authorization
         auth = FirebaseAuth.getInstance();
 
+        //validation for an reset Email
         awesomeValidation.addValidation(this, R.id.reset_email, Patterns.EMAIL_ADDRESS, R.string.emailerror);
 
 
+        //reset Buttons
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (awesomeValidation.validate()) {
 
-                    final String  email = inputEmail.getText().toString().trim();
+                    final String email = inputEmail.getText().toString().trim();
 
                     progressDialog.setMessage("Wait While Reseting Password");
                     progressDialog.show();
@@ -82,8 +93,7 @@ public class ResetPassword extends AppCompatActivity {
                                 }
                             });
 
-                }
-else {
+                } else {
                     Toast.makeText(getApplication(), "Enter your registered email id", Toast.LENGTH_SHORT).show();
 
                 }
@@ -92,7 +102,6 @@ else {
             }
         });
     }
-
 
 
     @Override

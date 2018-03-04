@@ -37,37 +37,40 @@ import java.util.List;
 
 public class AdminTabbedActivity extends AppCompatActivity {
 
-    String classkidString;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private AlertDialog.Builder alertDialogBuilder;
     private ViewPager mViewPager;
 
 
-    private FirebaseUser user;
-
     final Context context = this;
+
     private AwesomeValidation awesomeValidation;
 
-    EditText classkid;
+    private EditText classkid;
+
+    //database declaration
     private DatabaseReference databasekidclass, adminDataRef;
+    private FirebaseUser user;
 
     AlertDialog alertDialog;
+
+    //variable
+    String classkidString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_tabbed2);
 
-//databse
+        //database
         databasekidclass = FirebaseDatabase.getInstance().getReference().child("kidclass");
         adminDataRef = FirebaseDatabase.getInstance().getReference().child("Users");
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         //validation
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this, R.id.editClassAdd, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.classkiderror);
-        //classkid = (EditText) findViewById(R.id.editClassAdd);
 
-        user = FirebaseAuth.getInstance().getCurrentUser();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Admin");
@@ -81,10 +84,6 @@ public class AdminTabbedActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
-
-
-
 
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -140,7 +139,7 @@ public class AdminTabbedActivity extends AppCompatActivity {
 
             // create alert dialog
 
-           // AlertDialog pfrid = alertDialogBuilder.create();
+            // AlertDialog pfrid = alertDialogBuilder.create();
             //alert dialog box
 
             alertDialogBuilder
@@ -149,7 +148,7 @@ public class AdminTabbedActivity extends AppCompatActivity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
 
-                                    if (classkidString.isEmpty() ) {
+                                    if (!classkidString.isEmpty()) {
 
                                         databasekidclass.child(user.getUid()).child(databasekidclass.push().getKey()).child("className").setValue(classkid.getText().toString());
                                         Toast.makeText(AdminTabbedActivity.this, "Class Created Successfully", Toast.LENGTH_SHORT).show();
@@ -157,7 +156,7 @@ public class AdminTabbedActivity extends AppCompatActivity {
                                         Toast.makeText(AdminTabbedActivity.this, "Please Enter Class", Toast.LENGTH_SHORT).show();
                                     }
                                     classkid.setText(" ");
-                                    removeDialog(id);
+
                                 }
                             })
                     .setNegativeButton("Cancel",
@@ -167,10 +166,10 @@ public class AdminTabbedActivity extends AppCompatActivity {
                                 }
                             });
 
+            removeDialog(id);
             alertDialog = alertDialogBuilder.create();
             // show it
             alertDialog.show();
-
 
 
         }

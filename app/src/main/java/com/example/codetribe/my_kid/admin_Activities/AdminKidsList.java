@@ -43,17 +43,30 @@ public class AdminKidsList extends Fragment {
 
     //initialization for kids
     private ListView listUsers;
-    private String KidssKey;
-    private List<Kids> kidses;
-    private List<String> KidsListy;
-    private int counter = 0;
-    private String Idadmin;
+
+    //spinner
     private Spinner spinner;
+
+    //layout
     private CoordinatorLayout coordinatorLayout;
+
+    //floating Button for adding kids
     private FloatingActionButton kidsFab;
-    private String idLoged, parentId, kids_id;
+
+    //textView
     private TextView admintotalkids;
 
+    //variables declaration
+    private String idLoged, parentId, kids_id;
+    private String KidssKey;
+    private int counter = 0;
+    private String Idadmin;
+
+    //arrays
+    private List<Kids> kidses;
+    private List<String> KidsListy;
+
+    //declaring an objec of kids class
     private Kids listKidsSelect;
 
     //database
@@ -67,25 +80,26 @@ public class AdminKidsList extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_kids, container, false);
 
+        //listing kids on a view
         listUsers = (ListView) rootView.findViewById(R.id.listViewkidss);
-
         listUsers.setOnCreateContextMenuListener(getActivity());
         registerForContextMenu(listUsers);
 
+        //declared variables initialized
         coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.cordinatelayout);
         kidsFab = (FloatingActionButton) rootView.findViewById(R.id.add_kids_admin);
         admintotalkids = (TextView) rootView.findViewById(R.id.admintotalkids);
 
+        //gettting intent data
         Intent keyId = getActivity().getIntent();
         idLoged = keyId.getStringExtra("User_KEY");
         kids_id = keyId.getStringExtra("kid_id");
-
-
         parentId = keyId.getStringExtra("parent_id");
+
+        //arrayList
         kidses = new ArrayList<>();
 
-
-
+        //adding data Button
         kidsFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,7 +111,7 @@ public class AdminKidsList extends Fragment {
             }
         });
 
-
+        //listing users
         listUsers.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -114,10 +128,14 @@ public class AdminKidsList extends Fragment {
         });
 
 
+        //firebase instances
         kidsCreche = FirebaseDatabase.getInstance().getReference("Kids");
         usersRetriveRef = FirebaseDatabase.getInstance().getReference("Users");
 
+        //current userId
         Idadmin = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
         usersRetriveRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot crecheSnapshot) {

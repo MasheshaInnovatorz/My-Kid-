@@ -45,65 +45,69 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView login_Button, loginsignup_;
     private ImageView backtowelcome, icon;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPrefEditor;
 
-    //declaring buttons and textiew
-    private FirebaseUser mFirebaseUser;
-    private EditText editEmail, editPassword;
-
     //firebase Authentification
+    private FirebaseUser mFirebaseUser;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference mDatabaseRef;
 
+    //validation method
     private AwesomeValidation awesomeValidation;
 
+    //progress bar
     private ProgressDialog progressDialog;
+
+    //declaration of variables
     private TextView forgot;
     public static final String username = "usenameID";
     public static final String usersurname = "userSurname";
-
-
+    private EditText editEmail, editPassword;
     private TextInputLayout passwordLayout;
     private TextInputLayout emailLayout;
     private String uid = "some-uid";
     private TextInputLayout input_email;
+    private TextView login_Button, loginsignup_;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
 
+        //shared preferences for remembering an email entered
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String shared_email = sharedPreferences.getString("email", "");
+
+        //Validation style
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
-
+        //variables initialization
         loginsignup_ = (TextView) findViewById(R.id.loginsignup);
         editEmail = (EditText) findViewById(R.id.login_email);
         editPassword = (EditText) findViewById(R.id.login_password);
         forgot = (TextView) findViewById(R.id.forget_password);
         login_Button = (TextView) findViewById(R.id.login);
-
         input_email = (TextInputLayout) findViewById(R.id.input_reg_fullname);
 
 
-     //   getSupportActionBar().setDisplayShowHomeEnabled(true);
-     //   getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //Renaming of title bar
+        //   getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //   getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Log In");
 
 
-        // awesomeValidation.addValidation(this, R.id.password, "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\\\d])(?=.*[~`!@#\\\\$%\\\\^&\\\\*\\\\(\\\\)\\\\-_\\\\+=\\\\{\\\\}\\\\[\\\\]\\\\|\\\\;:\\\"<>,./\\\\?]).{8,}", R.string.passworderror);
+
+        //validation of email and password
         awesomeValidation.addValidation(this, R.id.login_email, Patterns.EMAIL_ADDRESS, R.string.emailerror);
         awesomeValidation.addValidation(this, R.id.login_password, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.passworderror);
-        //firebase
 
+        //firebase initialization
         mFirebaseAuth = FirebaseAuth.getInstance();
 
-
+        //progress bar
         progressDialog = new ProgressDialog(this);
 
         editEmail.setText(shared_email);
@@ -112,7 +116,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginsignup_.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
 
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(LoginActivity.this);
