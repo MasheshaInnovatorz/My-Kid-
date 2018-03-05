@@ -19,9 +19,11 @@ public class UserProfile {
     private String userProfilePic;
     private String userOrgId;
 
+    //constructor
     public UserProfile() {
     }
 
+    //constructor with parameters
     public UserProfile(String keyUser, String userName, String userSurname, String userIdNumber, String userAddress, String userContact, String userGender, String userCity, String userprovince, String isVerified) {
         this.keyUser = keyUser;
         this.userName = userName;

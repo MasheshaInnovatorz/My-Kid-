@@ -38,27 +38,35 @@ import java.util.List;
 
 
 public class SignUp extends AppCompatActivity {
+
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPrefEditor;
-    private EditText inputEmail, inputPassword, kidsIdno;
-    //spinner
-    private ArrayAdapter<String> dataAdapter;
-    // private Button
-    private TextView mainNav, btnSignUp;
-    private Spinner orgNameList;
-    private List<String> list;
-    private ProgressDialog progressDialog;
-    private TextInputLayout input_email1;
-    //firebase Authentification
-    private FirebaseAuth auth;
-    private AwesomeValidation awesomeValidation;
-    private String strName;
-    private FirebaseAuth.AuthStateListener mAuthListener;
 
+    private EditText inputEmail, inputPassword, kidsIdno;
+    private TextView mainNav, btnSignUp;
+
+
+    private ArrayAdapter<String> dataAdapter;
+
+    private AwesomeValidation awesomeValidation;
+
+    private ProgressDialog progressDialog;
+
+    //spinner
+    private Spinner orgNameList;
+
+    //declaration
+    private List<String> list;
+    private TextInputLayout input_email1;
     private String orgIdKey;
     private String[] spinnerArray;
+    private String strName;
 
-    private DatabaseReference mDatabaseRef, mUserCheckData, crecheDataRef, KidDataRef,searchCreacheRef;
+    //firebase Declaration
+    private FirebaseAuth auth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private DatabaseReference mDatabaseRef, mUserCheckData, crecheDataRef, KidDataRef, searchCreacheRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,32 +82,44 @@ public class SignUp extends AppCompatActivity {
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference();
-        mUserCheckData = FirebaseDatabase.getInstance().getReference().child("Users");
 
+        mUserCheckData = FirebaseDatabase.getInstance().getReference().child("Users");
         crecheDataRef = FirebaseDatabase.getInstance().getReference("Creche");
         KidDataRef = FirebaseDatabase.getInstance().getReference("Kids");
-        searchCreacheRef =FirebaseDatabase.getInstance().getReference("Creche");
+        searchCreacheRef = FirebaseDatabase.getInstance().getReference("Creche");
 
+        //shared Preference
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);//shared
 
+        //validation
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
+        //progress bar
         progressDialog = new ProgressDialog(this);
 
+        //Variable initialiaation
         btnSignUp = (TextView) findViewById(R.id.sinup);
         inputEmail = (EditText) findViewById(R.id.sign_up_email);
         inputPassword = (EditText) findViewById(R.id.signupPassword);
         kidsIdno = (EditText) findViewById(R.id.KidIdNumber);
-
         orgNameList = (Spinner) findViewById(R.id.orgname);
-        // mainNav = (TextView)findViewById(R.id.login);
+        input_email1 = (TextInputLayout) findViewById(R.id.input_email);
+        input_email1 = (TextInputLayout) findViewById(R.id.input_email);
 
+        //arrayList
+        list = new ArrayList<String>();
+
+
+        //AdapterArray
+        dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
+
+
+        //owesome Validation
         awesomeValidation.addValidation(this, R.id.signupPassword, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.passworderror);
-        //awesomeValidation.addValidation(this, R.id.signupPassword, "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\\\d])(?=.*[~`!@#\\\\$%\\\\^&\\\\*\\\\(\\\\)\\\\-_\\\\+=\\\\{\\\\}\\\\[\\\\]\\\\|\\\\;:\\\"<>,./\\\\?]).{8,}", R.string.passworderror);
         awesomeValidation.addValidation(this, R.id.sign_up_email, Patterns.EMAIL_ADDRESS, R.string.emailerror);
         awesomeValidation.addValidation(this, R.id.KidIdNumber, "^^[0-9]{13}$", R.string.iderror);
 
-
+        //Spinner for getting selected item
         orgNameList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -113,17 +133,7 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
-
-        list = new ArrayList<String>();
-
-        input_email1 = (TextInputLayout) findViewById(R.id.input_email);
-
-        dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
-
-
-        input_email1 = (TextInputLayout) findViewById(R.id.input_email);
-
-
+        //Authorization listener
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -155,7 +165,7 @@ public class SignUp extends AppCompatActivity {
             }
         };
 
-
+        //button for signup
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -182,8 +192,8 @@ public class SignUp extends AppCompatActivity {
                             searchCreacheRef.addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot searchSnapshot) {
-                                    for(final DataSnapshot searchDataSnapshot: searchSnapshot.getChildren()){
-                                        if(searchDataSnapshot.child("orgName").getValue().toString().equals(orgNameList.getSelectedItem().toString())){
+                                    for (final DataSnapshot searchDataSnapshot : searchSnapshot.getChildren()) {
+                                        if (searchDataSnapshot.child("orgName").getValue().toString().equals(orgNameList.getSelectedItem().toString())) {
 
                                             KidDataRef.addValueEventListener(new ValueEventListener() {
                                                 @Override
@@ -270,7 +280,7 @@ public class SignUp extends AppCompatActivity {
         });
     }
 
-
+    //methods for cheking up the validation
     public void checkUserValidation(DataSnapshot dataSnapshot, String emailForVer) {
         Iterator iterator = dataSnapshot.getChildren().iterator();
 
@@ -298,6 +308,7 @@ public class SignUp extends AppCompatActivity {
         progressDialog.setMessage("Wait While searching for creches list..");
         progressDialog.show();
 
+        //creche database for listing all creche that exist
         crecheDataRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

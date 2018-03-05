@@ -26,6 +26,7 @@ public class UpdateProfile extends AppCompatActivity {
 
     private AwesomeValidation awesomeValidation;
 
+    //edit text declaration
     private EditText
             Name,
             Surname,
@@ -33,6 +34,7 @@ public class UpdateProfile extends AppCompatActivity {
             City,
             phoneNumber;
 
+    //firebase user
     private FirebaseUser user;
 
     //validdation
@@ -46,9 +48,11 @@ public class UpdateProfile extends AppCompatActivity {
     //Firebase
     private DatabaseReference databaseReference, mdatabaseReference;
 
+    //variables declaration
     String keyUser;
     String userNameString, inputSurnameString, inputCityString, inputAddressString, userContactString;
 
+    //progress bar
     private ProgressDialog progressDialog;
 
     @Override
@@ -60,23 +64,25 @@ public class UpdateProfile extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Profile Update");
 
-
-
         //validation
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
+        //progress bar initialization
         progressDialog = new ProgressDialog(this);
-        //getting intent
 
+        //getting intent
         Intent intent = getIntent();
         keyUser = intent.getStringExtra("User_KEY");
 
-        user = FirebaseAuth.getInstance().getCurrentUser();
+        //initializing user Key in String from database
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-
-        //database
+        //firebase getting instances
+        user = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
+
+
+        //updating data to database for a parent registered
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -95,7 +101,7 @@ public class UpdateProfile extends AppCompatActivity {
             }
         });
 
-        //Edit lText
+        //Edit lText intialization
         Name = (EditText) findViewById(R.id.update_fullname);
         Surname = (EditText) findViewById(R.id.update_Surname);
         Address = (EditText) findViewById(R.id.update_address);
@@ -141,6 +147,7 @@ public class UpdateProfile extends AppCompatActivity {
         if (id == android.R.id.home) {
             this.finish();
         }
+        //saving data information to database
         //noinspection SimplifiableIfStatement
         if (id == R.id.profile_save) {
             if (awesomeValidation.validate()) {
