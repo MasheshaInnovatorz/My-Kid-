@@ -33,30 +33,41 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CreateTeacherAccount extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPrefEditor;
     private TextInputLayout inputLayoutName, inputLayoutsurname, inputLayoutcontact, inputLayoutclassroom, inputLayoutidnumber, inputLayoutemail, inputLayoutpassword;
     private String userNameString, userSurnameString, usercontactString, userprovinceString, userclassroomString, useridnumberString, usergenderString, useremailString, userpasswordString, userAddressString, userCityString;
-    private EditText name, surname, contact, classroom, idnumber, useremail, userpassword, userAddress, userCity;
+    private EditText name, surname, contact, idnumber, useremail, userpassword, userAddress, userCity;
     private RadioGroup gender;
     private String keyTeacher;
     private TextView createteacher;
     private String role = "teacher";
     private FirebaseAuth auth;
 
+
+    //spinner
+    private ArrayAdapter<String> dataAdapter;
+    private List<String> list;
+
+
+    private String userId;
     //city and province
     private ArrayAdapter<String> adapter;
 
-    private String orgId;
+
+    private String orgId,teacherclass;
     private int positions;
     private String crechCity;
     private String province = "";
-    private Spinner spinnerCity, spinnerProvinces;
+    private Spinner spinnerCity, spinnerProvinces,classroom;
 
     private ProgressDialog progressDialog;
     //Firebase
-    private DatabaseReference teacherReference, mDatabaseRef, mCrecheRef, orgNameReference;
+    private DatabaseReference teacherReference, mDatabaseRef, mCrecheRef, orgNameReference,currentUserRef,kidclassdata;
     private RadioButton gnrteacher;
 
     //defining AwesomeValidation object
@@ -76,7 +87,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
         inputLayoutName = (TextInputLayout) findViewById(R.id.inputteacherfullname);
         inputLayoutsurname = (TextInputLayout) findViewById(R.id.inputteacherSurname);
         inputLayoutcontact = (TextInputLayout) findViewById(R.id.inputteacherconatct);
-        inputLayoutclassroom = (TextInputLayout) findViewById(R.id.inputteacherclass);
+       // inputLayoutclassroom = (TextInputLayout) findViewById(R.id.inputteacherclass);
         inputLayoutidnumber = (TextInputLayout) findViewById(R.id.inputteacheridnumber);
         inputLayoutemail = (TextInputLayout) findViewById(R.id.inputteacheremail);
         inputLayoutpassword = (TextInputLayout) findViewById(R.id.inputteacherPassword);
@@ -84,17 +95,27 @@ public class CreateTeacherAccount extends AppCompatActivity {
         name = (EditText) findViewById(R.id.teachername);
         surname = (EditText) findViewById(R.id.teachersurname);
         contact = (EditText) findViewById(R.id.teachercontact);
-        classroom = (EditText) findViewById(R.id.teacherclass);
+
         idnumber = (EditText) findViewById(R.id.teacherid);
         useremail = (EditText) findViewById(R.id.teacheremail);
         userpassword = (EditText) findViewById(R.id.teacherpassword);
         gender = (RadioGroup) findViewById(R.id.teachergenders);
         userAddress = (EditText) findViewById(R.id.teacherAddress);
-        // userCity = (EditText) findViewById(R.id.teacherCity);
+
+        userId= FirebaseAuth.getInstance().getCurrentUser().getUid();
+        //class
+        classroom = (Spinner) findViewById(R.id.teacherclass);
+        list = new ArrayList<String>();
+        dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
 
         progressDialog = new ProgressDialog(this);
         createteacher = (TextView) findViewById(R.id.Create_Teacher_Account);
 
+
+        //database
+        kidclassdata = FirebaseDatabase.getInstance().getReference("kidclass").child(userId);
+
+        currentUserRef = FirebaseDatabase.getInstance().getReference("Users").child(userId);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String shared_email = sharedPreferences.getString("email", "");
         useremail.setText(shared_email);
@@ -110,7 +131,20 @@ public class CreateTeacherAccount extends AppCompatActivity {
         //  awesomeValidation.addValidation(this, R.id.teacherCity, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.city);
         awesomeValidation.addValidation(this, R.id.teachercontact, "^[+]?[0-9]{10,13}$", R.string.mobileerror);
         awesomeValidation.addValidation(this, R.id.teacherid, "^^[0-9]{13}$", R.string.iderror);
-        awesomeValidation.addValidation(this, R.id.teacherclass, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}[0-9]$", R.string.classerror);
+       // awesomeValidation.addValidation(this, R.id.teacherclass, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}[0-9]$", R.string.classerror);
+
+        //classs
+        classroom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                teacherclass = (String) adapterView.getItemAtPosition(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         //provinces
         spinnerProvinces = (Spinner) findViewById(R.id.teacherProvincesSpinner);
@@ -278,11 +312,11 @@ public class CreateTeacherAccount extends AppCompatActivity {
                 userNameString = name.getText().toString().trim();
                 userSurnameString = surname.getText().toString().trim();
                 usercontactString = contact.getText().toString().trim();
-                userclassroomString = classroom.getText().toString().trim();
                 useridnumberString = idnumber.getText().toString().trim();
                 userAddressString = userAddress.getText().toString().trim();
                 // userCityString = userCity.getText().toString().trim();
 
+                userclassroomString = teacherclass.trim();
                 userCityString = crechCity.trim();
                 userprovinceString = province.trim();
 
@@ -348,6 +382,66 @@ public class CreateTeacherAccount extends AppCompatActivity {
             this.finish();
         }
         return super.onOptionsItemSelected(item);
+
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        progressDialog.setMessage("Wait While searching for class list..");
+        // progressDialog.show();
+
+        currentUserRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(final DataSnapshot currentSnap) {
+
+
+                kidclassdata.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot outerSnap) {
+
+
+                        for (DataSnapshot classSnapshot : outerSnap.getChildren()) {
+
+                            //  if (!classSnapshot.child("className").getValue().toString().equals("")) {
+
+                            list.add(classSnapshot.child("className").getValue().toString());
+
+                            Toast.makeText(CreateTeacherAccount.this, classSnapshot.child("className").getValue().toString(), Toast.LENGTH_SHORT).show();
+
+                            dataAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
+                            //simple_spinner_dropdown_item
+
+                            Toast.makeText(CreateTeacherAccount.this, classSnapshot.child("className").getValue().toString(), Toast.LENGTH_SHORT).show();
+                            classroom.setAdapter(dataAdapter);
+                            progressDialog.dismiss();
+                            //   } else {
+                            //      Toast.makeText(KidActivity.this, "There is no Class", Toast.LENGTH_SHORT).show();
+                            //   }
+                        }
+
+
+
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
     }
 }
