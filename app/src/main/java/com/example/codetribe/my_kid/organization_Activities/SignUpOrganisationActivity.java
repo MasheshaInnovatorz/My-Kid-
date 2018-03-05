@@ -317,7 +317,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                                                 Map<String, Object> adminUpdate = new HashMap<>();
                                                 adminUpdate.put(userI, postingAdmin);
 
-                                              
+
 
                                           //    databasekidclass.child(user.getUid()).child(databasekidclass.push().getKey()).child("className").setValue("Select Class");
 
@@ -385,7 +385,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                if (dataSnapshot.getChildren() != null) {
+                if (dataSnapshot.getChildren().equals("")) {
                     for (DataSnapshot orgSnapShot : dataSnapshot.getChildren()) {
 
                         name = orgSnapShot.child("orgName").getValue().toString();

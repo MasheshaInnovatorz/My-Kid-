@@ -136,12 +136,12 @@ public class AdminTabbedActivity extends AppCompatActivity {
         } else if (id == R.id.menu_admin_addclass) {
             // set dialog message
 
-
+            showChangeLangDialog();
             // create alert dialog
 
             // AlertDialog pfrid = alertDialogBuilder.create();
             //alert dialog box
-
+/*
             alertDialogBuilder
                     .setCancelable(false)
                     .setPositiveButton("Add",
@@ -166,12 +166,12 @@ public class AdminTabbedActivity extends AppCompatActivity {
                                 }
                             });
 
-            removeDialog(id);
+          //  removeDialog(id);
             alertDialog = alertDialogBuilder.create();
             // show it
             alertDialog.show();
 
-
+*/
         }
         return super.onOptionsItemSelected(item);
 
@@ -232,5 +232,58 @@ public class AdminTabbedActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(AdminTabbedActivity.this, LoginActivity.class);
         startActivity(intent);
+    }
+
+    //add class
+    public void showChangeLangDialog() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.prompts, null);
+        dialogBuilder.setView(dialogView);
+
+        final EditText edt = (EditText) dialogView.findViewById(R.id.editClassAdd);
+
+        dialogBuilder.setTitle("Add Class");
+        dialogBuilder.setMessage("Enter Class below");
+        dialogBuilder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //do something with
+
+                String classkid;
+
+                classkid = edt.getText().toString();
+
+                if (!classkid.isEmpty()) {
+
+                    databasekidclass.child(user.getUid()).child(databasekidclass.push().getKey()).child("className").setValue(classkid);
+                    Toast.makeText(AdminTabbedActivity.this, "Class Created Successfully", Toast.LENGTH_SHORT).show();
+                }else
+                {
+                    Toast.makeText(AdminTabbedActivity.this, "Please Enter Class", Toast.LENGTH_SHORT).show();
+                }
+
+                /*
+
+
+                    databasekidclass.child(user.getUid()).child(databasekidclass.push().getKey()).child("className").setValue(classkid);
+                    Toast.makeText(AdminTabbedActivity.this, "Class Created Successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(AdminTabbedActivity.this, "Please Enter Class", Toast.LENGTH_SHORT).show();
+                }
+                edt.setText(" ");
+
+            }
+                //Toast.makeText(AdminTabbedActivity.this, text, Toast.LENGTH_SHORT).show();
+*/
+            }
+        });
+
+        dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //pass
+            }
+        });
+        AlertDialog b = dialogBuilder.create();
+        b.show();
     }
 }
