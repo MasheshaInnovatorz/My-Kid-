@@ -148,7 +148,7 @@ public class AdminTabbedActivity extends AppCompatActivity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
 
-                                    if (!classkidString.isEmpty()) {
+                                    if (classkidString.isEmpty()) {
 
                                         databasekidclass.child(user.getUid()).child(databasekidclass.push().getKey()).child("className").setValue(classkid.getText().toString());
                                         Toast.makeText(AdminTabbedActivity.this, "Class Created Successfully", Toast.LENGTH_SHORT).show();
@@ -225,21 +225,7 @@ public class AdminTabbedActivity extends AppCompatActivity {
     }
 
 
-    /*
-        private void savekidclass() {
-            if (awesomeValidation.validate()) {
 
-              classkid.getText().toString().trim();
-                DatabaseReference mChildDatabase = databasekidclass.child("kidclass");
-
-                mChildDatabase.child("Class").setValue(classkid);
-                Toast.makeText(AdminTabbedActivity.this, "Class Created Successfully", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(AdminTabbedActivity.this, "Enter Class", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-    */
     private void logout() {
 
 

@@ -29,6 +29,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,7 +45,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPrefEditor;
-    private DatabaseReference mOrganizationRef, orgValidationRef;
+    private DatabaseReference mOrganizationRef, orgValidationRef,databasekidclass;
     private TextView signup;
     private boolean valName;
     private int positions;
@@ -75,7 +76,8 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
     private RadioGroup gender;
     //firebase Authentification
     private FirebaseAuth orgAuth;
-
+//user
+    private FirebaseUser user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,9 +93,15 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         signup = (TextView) findViewById(R.id.btnRegisterCreche);
         orgAuth = FirebaseAuth.getInstance();
 
+        user=FirebaseAuth.getInstance().getCurrentUser();
+
+       // crecheDataRef = FirebaseDatabase.getInstance().getReference("Creche");
+
         mOrganizationRef = FirebaseDatabase.getInstance().getReference().child("Creche");
         orgValidationRef = FirebaseDatabase.getInstance().getReference().child("Creche");
 
+        //database
+        databasekidclass = FirebaseDatabase.getInstance().getReference().child("kidclass");
 
         orgaEmail = (EditText) findViewById(R.id.orgEmail);
         orgPassword = (EditText) findViewById(R.id.orgPassword);
@@ -309,6 +317,9 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                                                 Map<String, Object> adminUpdate = new HashMap<>();
                                                 adminUpdate.put(userI, postingAdmin);
 
+                                              
+
+                                          //    databasekidclass.child(user.getUid()).child(databasekidclass.push().getKey()).child("className").setValue("Select Class");
 
                                                 //Updating Messages
                                                 mAdminRef.updateChildren(adminUpdate);
