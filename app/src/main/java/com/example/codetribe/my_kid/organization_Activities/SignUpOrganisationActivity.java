@@ -231,7 +231,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> arg0) {
                 // TODO Auto-generated method stub
 
-                Toast.makeText(SignUpOrganisationActivity.this, "Please Select City", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(SignUpOrganisationActivity.this, "Please Select City", Toast.LENGTH_SHORT).show();
             }
 
         });

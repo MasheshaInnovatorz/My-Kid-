@@ -218,7 +218,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> arg0) {
                 // TODO Auto-generated method stub
 
-                Toast.makeText(CreateTeacherAccount.this, "Please Select City", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(CreateTeacherAccount.this, "Please Select City", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -240,7 +240,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> arg0) {
                 // TODO Auto-generated method stub
 
-                Toast.makeText(CreateTeacherAccount.this, "Please Select City", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(CreateTeacherAccount.this, "Please Select City", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -269,14 +269,22 @@ public class CreateTeacherAccount extends AppCompatActivity {
                         orgId = dataSnapshot.child("userOrgId").getValue().toString();
 
                         if (awesomeValidation.validate()) {
-
+                            if (!classroom.getSelectedItem().toString().trim().equals("Select Class")) {
                             progressDialog.setMessage("Wait While Adding Teacher");
                             progressDialog.show();
                             saveParent(org_name);
                             progressDialog.dismiss();
 
                             //  Toast.makeText(CreateTeacherAccount.this, "Teacher added", Toast.LENGTH_LONG).show();
-                        } else {
+                        } else
+
+                            {
+                                Toast.makeText(CreateTeacherAccount.this, "please select a class or add class ", Toast.LENGTH_SHORT).show();
+
+                            }
+                        }
+                            else
+                            {
 
                             Toast.makeText(CreateTeacherAccount.this, "Make sure you fix all the error shown in your input space", Toast.LENGTH_LONG).show();
                         }
@@ -389,7 +397,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+        list.add("Select Class");
         progressDialog.setMessage("Wait While searching for class list..");
         // progressDialog.show();
 
@@ -409,13 +417,12 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                             list.add(classSnapshot.child("className").getValue().toString());
 
-                            Toast.makeText(CreateTeacherAccount.this, classSnapshot.child("className").getValue().toString(), Toast.LENGTH_SHORT).show();
+                          //  Toast.makeText(CreateTeacherAccount.this, classSnapshot.child("className").getValue().toString(), Toast.LENGTH_SHORT).show();
 
                             dataAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
                             //simple_spinner_dropdown_item
 
-                            Toast.makeText(CreateTeacherAccount.this, classSnapshot.child("className").getValue().toString(), Toast.LENGTH_SHORT).show();
-                            classroom.setAdapter(dataAdapter);
+
                             progressDialog.dismiss();
                             //   } else {
                             //      Toast.makeText(KidActivity.this, "There is no Class", Toast.LENGTH_SHORT).show();
@@ -442,7 +449,8 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
             }
         });
-
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
+        classroom.setAdapter(dataAdapter);
     }
 }
 

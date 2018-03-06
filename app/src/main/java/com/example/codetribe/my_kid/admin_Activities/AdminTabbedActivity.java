@@ -135,43 +135,9 @@ public class AdminTabbedActivity extends AppCompatActivity {
             logout();
         } else if (id == R.id.menu_admin_addclass) {
             // set dialog message
-
+            //call class
             showChangeLangDialog();
-            // create alert dialog
 
-            // AlertDialog pfrid = alertDialogBuilder.create();
-            //alert dialog box
-/*
-            alertDialogBuilder
-                    .setCancelable(false)
-                    .setPositiveButton("Add",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-
-                                    if (classkidString.isEmpty()) {
-
-                                        databasekidclass.child(user.getUid()).child(databasekidclass.push().getKey()).child("className").setValue(classkid.getText().toString());
-                                        Toast.makeText(AdminTabbedActivity.this, "Class Created Successfully", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(AdminTabbedActivity.this, "Please Enter Class", Toast.LENGTH_SHORT).show();
-                                    }
-                                    classkid.setText(" ");
-
-                                }
-                            })
-                    .setNegativeButton("Cancel",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dialog.cancel();
-                                }
-                            });
-
-          //  removeDialog(id);
-            alertDialog = alertDialogBuilder.create();
-            // show it
-            alertDialog.show();
-
-*/
         }
         return super.onOptionsItemSelected(item);
 
@@ -244,7 +210,7 @@ public class AdminTabbedActivity extends AppCompatActivity {
         final EditText edt = (EditText) dialogView.findViewById(R.id.editClassAdd);
 
         dialogBuilder.setTitle("Add Class");
-        dialogBuilder.setMessage("Enter Class below");
+        dialogBuilder.setMessage("Enter Class Here");
         dialogBuilder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 //do something with
@@ -262,19 +228,7 @@ public class AdminTabbedActivity extends AppCompatActivity {
                     Toast.makeText(AdminTabbedActivity.this, "Please Enter Class", Toast.LENGTH_SHORT).show();
                 }
 
-                /*
 
-
-                    databasekidclass.child(user.getUid()).child(databasekidclass.push().getKey()).child("className").setValue(classkid);
-                    Toast.makeText(AdminTabbedActivity.this, "Class Created Successfully", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(AdminTabbedActivity.this, "Please Enter Class", Toast.LENGTH_SHORT).show();
-                }
-                edt.setText(" ");
-
-            }
-                //Toast.makeText(AdminTabbedActivity.this, text, Toast.LENGTH_SHORT).show();
-*/
             }
         });
 

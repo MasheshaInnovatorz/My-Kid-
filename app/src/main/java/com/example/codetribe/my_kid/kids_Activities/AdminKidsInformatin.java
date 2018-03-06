@@ -99,41 +99,6 @@ public class AdminKidsInformatin extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        //extra kid info
-/*
-        kidsDataProf.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                //kid profile
-
-                //extra kid info
-                if (dataSnapshot.child("allergies").getValue().toString() != " ")
-                    allergies.setText(dataSnapshot.child("allergies").getValue().toString());
-
-                if (dataSnapshot.child("dietRequirements").getValue().toString() != " ")
-                    dietRequirements.setText(dataSnapshot.child("dietRequirements").getValue().toString());
-
-                if (dataSnapshot.child("doctorsRecomendations").getValue().toString() != " ")
-                    doctorsRecomendations.setText(dataSnapshot.child("doctorsRecomendations").getValue().toString());
-
-                if (dataSnapshot.child("kidHeight").getValue().toString() != " ")
-                    kidHeight.setText(dataSnapshot.child("kidHeight").getValue().toString());
-
-                if (dataSnapshot.child("bodyWeight").getValue().toString() != " ")
-                    bodyWeight.setText(dataSnapshot.child("bodyWeight").getValue().toString());
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-*/
-
-
 
                 kidsDataProf.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -159,12 +124,12 @@ public class AdminKidsInformatin extends AppCompatActivity {
                                          id_Key = kidSnapshot.child("id").getValue().toString();
 
 
-                                         kidsGender.setText("Gender :" + kidSnapshot.child("gender").getValue().toString());
-                                         phonenumber.setText("Parent Contact :" + parentInfor.child("userContact").getValue().toString());
-                                         parentEmail.setText("Parent Email :" + parentInfor.child("emailUser").getValue().toString());
+                                         kidsGender.setText("Gender : " + kidSnapshot.child("gender").getValue().toString());
+                                         phonenumber.setText("Parent Contact : " + parentInfor.child("userContact").getValue().toString());
+                                         parentEmail.setText("Parent Email : " + parentInfor.child("emailUser").getValue().toString());
                                          id_Key = kidSnapshot.child("id").getValue().toString();
-                                         city.setText("Class :" + kidSnapshot.child("kidsGrade").getValue().toString());
-                                         homeAddress.setText("Address :" + kidSnapshot.child("address").getValue().toString());
+                                         city.setText("Class : " + kidSnapshot.child("kidsGrade").getValue().toString());
+                                         homeAddress.setText("Address : " + kidSnapshot.child("address").getValue().toString());
 
                                          Glide.with(getApplicationContext()).load(kidSnapshot.child("profilePic").getValue().toString()).centerCrop().into(kidsImage);
 
@@ -173,17 +138,22 @@ public class AdminKidsInformatin extends AppCompatActivity {
                                          parentEmail.setText("Parent Email :" + parentInfor.child("emailUser").getValue().toString());
 
 
-                                         //}
-
-
-                                         //if (kidSnapshot.child("id").getValue().toString().equals(idsKid)) {
-
                                          //kids names
                                          kidsUser.setText(kidSnapshot.child("surname").getValue().toString() + " " + kidSnapshot.child("name").getValue().toString());
-                                         kidsGender.setText("Gender :" + kidSnapshot.child("gender").getValue().toString());
+                                         kidsGender.setText("Gender : " + kidSnapshot.child("gender").getValue().toString());
                                          id_Key = kidSnapshot.child("id").getValue().toString();
-                                         city.setText("Class :" + kidSnapshot.child("kidsGrade").getValue().toString());
-                                         homeAddress.setText("Address :" + kidSnapshot.child("address").getValue().toString());
+                                         city.setText("Class : " + kidSnapshot.child("kidsGrade").getValue().toString());
+                                         homeAddress.setText("Address : " + kidSnapshot.child("address").getValue().toString());
+
+
+                                        //kid added infor
+                                         allergies .setText("Allergies : " + kidSnapshot.child("allergies").getValue().toString());
+                                         dietRequirements.setText("Diet Requirements : " + kidSnapshot.child("dietRequirements").getValue().toString());
+                                         doctorsRecomendations .setText("Doctors Recomendations :" + kidSnapshot.child("doctorsRecomendations").getValue().toString());
+                                         kidHeight.setText("Kid Height : " + kidSnapshot.child("kidHeight").getValue().toString());
+                                         bodyWeight .setText("Kid Weight : " + kidSnapshot.child("bodyWeight" ).getValue().toString());
+
+                                         //kid image
                                          Glide.with(getApplicationContext()).load(kidSnapshot.child("profilePic").getValue().toString()).centerCrop().into(kidsImage);
                                      }
                                  }

@@ -259,11 +259,11 @@ public class ViewProfile extends AppCompatActivity {
 
         if (dataSnapshot.child("userKey").getValue().toString().equals(userId)) {
             name.setText(dataSnapshot.child("userName").getValue().toString() + " " + dataSnapshot.child("userSurname").getValue().toString());
-            gender.setText(" Gender :" + dataSnapshot.child("userGender").getValue().toString());
+            gender.setText(" Gender : " + dataSnapshot.child("userGender").getValue().toString());
             phonenumber.setText("  phone number :" + dataSnapshot.child("userContact").getValue().toString());
-            address.setText("  Lives in :" + dataSnapshot.child("userAddress").getValue().toString());
-      //      city.setText("  City :" + dataSnapshot.child("userCity").getValue().toString());
-            email.setText("  Email :" + dataSnapshot.child("emailUser").getValue().toString());
+            address.setText("  Lives in : " + dataSnapshot.child("userAddress").getValue().toString());
+             city.setText("  City : " + dataSnapshot.child("userCity").getValue().toString());
+            email.setText("  Email : " + dataSnapshot.child("emailUser").getValue().toString());
 
         }
 

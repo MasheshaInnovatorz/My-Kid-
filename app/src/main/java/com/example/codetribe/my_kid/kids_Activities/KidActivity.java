@@ -46,7 +46,7 @@ public class KidActivity extends AppCompatActivity {
             kididNumber,
             kidparentid,
             registeredYears;
-
+    int selectedId;
     private Spinner kidAllocated;
     //classNameList
     int counter = 0;
@@ -159,6 +159,10 @@ public class KidActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (awesomeValidation.validate()) {
+                    //validate class
+              if (!kidAllocated.getSelectedItem().toString().trim().equals("Select Class")) {
+                  selectedId = radKidGender.getCheckedRadioButtonId();
+                      if (selectedId != -1) {
 
                     progressDialog.setMessage("Wait While Adding Kid");
                     progressDialog.show();
@@ -171,7 +175,7 @@ public class KidActivity extends AppCompatActivity {
 
                                 String org_name = kdataSnapshot.getValue(String.class);
                                 addkids(org_name);
-                                Toast.makeText(context, "Kid added", Toast.LENGTH_SHORT).show();
+                              //  Toast.makeText(context, "Successfully Registered", Toast.LENGTH_SHORT).show();
 
                             }
                         }
@@ -204,7 +208,7 @@ public class KidActivity extends AppCompatActivity {
                                 } else {
 
 
-                                    Toast.makeText(context, "Successfully Registered", Toast.LENGTH_SHORT).show();
+                                 Toast.makeText(context, "Successfully Registered", Toast.LENGTH_SHORT).show();
                                 }
 
 
@@ -217,7 +221,20 @@ public class KidActivity extends AppCompatActivity {
                         }
                     });
 
-                } else {
+
+                }
+                    else
+                  {
+                      Toast.makeText(context, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
+                  }
+              }
+                      else {
+
+                        Toast.makeText(context, "please select a class or add class", Toast.LENGTH_SHORT).show();
+                    }}
+
+                    else
+                    {
                     Toast.makeText(context, "Make sure you fix all the error shown in your input space", Toast.LENGTH_SHORT).show();
                 }
                 progressDialog.dismiss();
@@ -239,29 +256,36 @@ public class KidActivity extends AppCompatActivity {
         //  kidsKidsAllocated = kidAllocated.getText().toString().trim();
         kidsYearRegistered = registeredYears.getText().toString().trim();
 
-        int selectedId = radKidGender.getCheckedRadioButtonId();
-
-        if (!kididStringNumber.matches(kidStringparentid)) {
-            if (selectedId != -1) {
-
-                radGender = (RadioButton) findViewById(selectedId);
-                genderString = radGender.getText().toString();
-
-                String id = databaseKids.push().getKey();
+       //  selectedId = radKidGender.getCheckedRadioButtonId();
 
 
-                Kids kids = new Kids(id, kidStringname, kidStringsurname, kidStringaddress, kididStringNumber, kidStringparentid, kidsKidsAllocated, kidsYearRegistered, genderString, orgName);
+            if (!kididStringNumber.matches(kidStringparentid)) {
 
-                databaseKids.child(id).setValue(kids);
-                // Toast.makeText(context, "Kid added ", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplication(), AdminTabbedActivity.class));
-            } else {
-                Toast.makeText(this, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
+                //if (selectedId != -1) {
+
+                    radGender = (RadioButton) findViewById(selectedId);
+                    genderString = radGender.getText().toString();
+
+                    String id = databaseKids.push().getKey();
+
+
+                    Kids kids = new Kids(id, kidStringname, kidStringsurname, kidStringaddress, kididStringNumber, kidStringparentid, kidsKidsAllocated, kidsYearRegistered, genderString, orgName);
+
+                    databaseKids.child(id).setValue(kids);
+                    // Toast.makeText(context, "Kid added ", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplication(), AdminTabbedActivity.class));
+                }
+               // else
+                    /*
+                    {
+                    Toast.makeText(this, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
+                }
+*/
+           // }
+            else {
+                Toast.makeText(this, "Kid id cant be the same as parent", Toast.LENGTH_SHORT).show();
             }
 
-        } else {
-            Toast.makeText(this, "Kid id cant be the same as parent", Toast.LENGTH_SHORT).show();
-        }
 
     }
 
@@ -278,7 +302,7 @@ public class KidActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+        list.add("Select Class");
         progressDialog.setMessage("Wait While searching for class list..");
        // progressDialog.show();
 
@@ -291,27 +315,13 @@ public class KidActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot outerSnap) {
 
-
-
-
                               for (DataSnapshot classSnapshot : outerSnap.getChildren()) {
 
-                                  //  if (!classSnapshot.child("className").getValue().toString().equals("")) {
-
                                   list.add(classSnapshot.child("className").getValue().toString());
-                                      Toast.makeText(context, classSnapshot.child("className").getValue().toString(), Toast.LENGTH_SHORT).show();
-                                  dataAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
-                                  //simple_spinner_dropdown_item
-                                  Toast.makeText(context, classSnapshot.child("className").getValue().toString(), Toast.LENGTH_SHORT).show();
-                                  kidAllocated.setAdapter(dataAdapter);
+
                                   progressDialog.dismiss();
-                                  //   } else {
-                                  //      Toast.makeText(KidActivity.this, "There is no Class", Toast.LENGTH_SHORT).show();
-                                  //   }
+
                               }
-
-
-
 
 
                     }
@@ -330,7 +340,8 @@ public class KidActivity extends AppCompatActivity {
 
             }
         });
-
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
+        kidAllocated.setAdapter(dataAdapter);
     }
 }
 

@@ -321,7 +321,7 @@ public class GroupChatFragment extends Fragment {
                         databaseReference.child(uploadId).setValue(chatMessage);*/
                     }
                     messageArea.setText(" ");
-
+                    imgUri.equals("");
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {

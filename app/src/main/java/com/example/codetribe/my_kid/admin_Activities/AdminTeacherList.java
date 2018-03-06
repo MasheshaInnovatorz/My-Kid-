@@ -5,16 +5,23 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.codetribe.my_kid.kids_Activities.AdminKidsInformatin;
+import com.example.codetribe.my_kid.kids_Activities.Kids;
+import com.example.codetribe.my_kid.kids_Activities.KidsmemoListsActivity;
 import com.example.codetribe.my_kid.teachers_Activities.CreateTeacherAccount;
 import com.example.codetribe.my_kid.R;
 import com.example.codetribe.my_kid.teachers_Activities.UserArray;
@@ -41,6 +48,7 @@ public class AdminTeacherList extends Fragment {
     //initialization for kids
     private ListView listUsers;
     private int counter = 0;
+    Object mActionMode;
     private List<TeacherClassAcc> user;
     private String Idadmin;
     private Spinner spinner;
@@ -50,6 +58,10 @@ public class AdminTeacherList extends Fragment {
     //database
     private DatabaseReference usersRetriveRef, adminCreche;
     private FirebaseAuth adminUser;
+
+  //  private List<teachers> kidses;
+    //declaring an objec of kids class
+   // private teachers listKidsSelect;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -132,6 +144,7 @@ public class AdminTeacherList extends Fragment {
         return rootView;
     }
 
+    /*
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -152,6 +165,71 @@ public class AdminTeacherList extends Fragment {
         return true;
     }
 
+*/
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo infor = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        return super.onContextItemSelected(item);
+    }
+
+    private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
+        @Override
+        public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+            //actionMode.setTitle(listKidsSelect.getName());
+            MenuInflater inflater = actionMode.getMenuInflater();
+
+
+            inflater.inflate(R.menu.kid_admin_info, menu);
+            return true;
+        }
+
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+            return false;
+        }
+        @Override
+        public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+            switch (menuItem.getItemId()) {
+                case R.id.kidsActivities:
+
+                    Intent intent = new Intent(getContext(), KidsmemoListsActivity.class);
+                 //   intent.putExtra("kid_id", listKidsSelect.getId());
+                    startActivity(intent);
+
+                    mActionMode = null;
+                    return true;
+                case R.id.kidsProfile:
+                  //  Toast.makeText(AdminKidsList.this, "Password cannot be less than 6 characters!", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(AdminTeacherList, "", Toast.LENGTH_SHORT).show();
+                    /*
+                    Intent intent2 = new Intent(getContext(), AdminKidsInformatin.class);
+                    intent2.putExtra("nwana", listKidsSelect.getId());
+                    intent2.putExtra("User_KEY", kids_id);
+                    intent2.putExtra("parentIdentity", parentId);
+                    startActivity(intent2);
+                    mActionMode = null;
+                    */
+                    return true;
+                default:
+                    return false;
+            }
+
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode actionMode) {
+
+            mActionMode = null;
+        }
+    };
 
     @Override
     public void onStop() {

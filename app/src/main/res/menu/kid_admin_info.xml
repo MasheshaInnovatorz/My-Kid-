@@ -4,8 +4,15 @@
 
     <item
         android:id="@+id/kidsProfile"
-        android:title="Kid Information">
+        android:title="Kid Info">
 
     </item>
 
+<!--
+    <item
+        android:id="@+id/teacherProfile"
+        android:title="Teacher Info">
+
+    </item>
+-->
 </menu>

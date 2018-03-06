@@ -62,6 +62,7 @@ public class SignUp extends AppCompatActivity {
     private String[] spinnerArray;
     private String strName;
 
+    private String userId;
     //firebase Declaration
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -78,11 +79,14 @@ public class SignUp extends AppCompatActivity {
         getSupportActionBar().setTitle("Sign Up");
         // getSupportActionBar().setSubtitle("Parent");
 
-
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference();
 
+
+
+
+        //working
         mUserCheckData = FirebaseDatabase.getInstance().getReference().child("Users");
         crecheDataRef = FirebaseDatabase.getInstance().getReference("Creche");
         KidDataRef = FirebaseDatabase.getInstance().getReference("Kids");
@@ -305,10 +309,12 @@ public class SignUp extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        /*
+
         progressDialog.setMessage("Wait While searching for creches list..");
         progressDialog.show();
-
-        //creche database for listing all creche that exist
+*/
+        list.add("Select Creshe");
         crecheDataRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -316,18 +322,15 @@ public class SignUp extends AppCompatActivity {
 
                 for (DataSnapshot checheSnapshot : dataSnapshot.getChildren()) {
 
-                    if (!checheSnapshot.child("orgName").getValue().toString().equals(" ")) {
 
-                        list.add(checheSnapshot.child("orgName").getValue().toString());
 
-                        dataAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
-                        //simple_spinner_dropdown_item
 
-                        orgNameList.setAdapter(dataAdapter);
+                         list.add(checheSnapshot.child("orgName").getValue().toString());
+
+
+
                         progressDialog.dismiss();
-                    } else {
-                        Toast.makeText(SignUp.this, "There is no Creche Registered", Toast.LENGTH_SHORT).show();
-                    }
+
                 }
             }
 
@@ -337,8 +340,15 @@ public class SignUp extends AppCompatActivity {
             }
 
         });
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
+        //simple_spinner_dropdown_item
 
+        orgNameList.setAdapter(dataAdapter);
     }
+
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

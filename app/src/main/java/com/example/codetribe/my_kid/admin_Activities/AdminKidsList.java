@@ -245,66 +245,6 @@ public class AdminKidsList extends Fragment {
     };
 
 
-/*
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        //super.onCreateContextMenu(menu, v, menuInfo);
-        //
-        // getMenuInflate().inflate(R.menu.kids_menu_infor,menu);
-
-       // getActivity().getMenuInflater().inflate(R.menu.kids_menu_infor, menu);
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo infor = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-
-     /*   switch (item.getItemId()) {
-            case R.id.kidsActivities:
-
-
-
-
-        return super.onContextItemSelected(item);
-    }
-
-    private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
-        @Override
-        public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-            actionMode.setTitle(listKidsSelect.getName());
-            MenuInflater inflater = actionMode.getMenuInflater();
-
-
-            inflater.inflate(R.menu.kids_menu_infor, menu);
-            return true;
-        }
-
-        @Override
-        public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-            return false;
-        }
-
-        @Override
-        public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-            switch (menuItem.getItemId()){
-                case R.id.kidsActivities:
-                    Intent intent = new Intent(getContext(), KidActivity.class);
-                    intent.putExtra("kid_id", idLoged);
-                    intent.putExtra("User_KEY", kids_id);
-                    intent.putExtra("parentIdentity", parentId);
-                    startActivity(intent);
-
-
-            }
-            return false;
-        }
-
-        @Override
-        public void onDestroyActionMode(ActionMode actionMode) {
-            mActionMode = null;
-        }
-    };
-*/
 
     @Override
     public void onStop() {
