@@ -182,7 +182,7 @@ public class UpdateProfile extends AppCompatActivity {
                         if (dataSnapshot.exists()) {
                             progressDialog.dismiss();
                         }else{
-                            Toast.makeText(UpdateProfile.this, "Infor you are trying to upload doesnt exist", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UpdateProfile.this, "Informatio you are trying to upload doesnt exist", Toast.LENGTH_SHORT).show();
                         }
 
                     }

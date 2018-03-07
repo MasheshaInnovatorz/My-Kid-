@@ -99,7 +99,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         getSupportActionBar().setTitle("Log In");
 
 
-
         //validation of email and password
         awesomeValidation.addValidation(this, R.id.login_email, Patterns.EMAIL_ADDRESS, R.string.emailerror);
         awesomeValidation.addValidation(this, R.id.login_password, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.passworderror);
@@ -282,60 +281,57 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void checkUserValidation(DataSnapshot dataUser, String emailForVer) {
 
-        //Iterator iterator = dataSnapshot.getChildren().iterator();
 
-        //while (iterator.hasNext()) {
-        //  DataSnapshot dataUser = (DataSnapshot) iterator.next();
-
-        if (dataUser.child("isVerified").getValue().toString().equals("unverified")) {
-            Intent intentUser = new Intent(LoginActivity.this, CreateParentProfile.class);
-
-            //if (dataUser.child("emailUser").getValue().toString().trim().equals(emailForVer)) {
-
-            //if (dataUser.child("isVerified").getValue().toString().equals("unverified")) {
-            //Intent intentUser = new Intent(LoginActivity.this, CreateParentProfile.class);
-            intentUser.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
-            Toast.makeText(this, dataUser.child("userKey").getValue().toString(), Toast.LENGTH_SHORT).show();
-            startActivity(intentUser);
-
-            // }
-            //}
-
-        } else {
-            if (dataUser.child("role").getValue().toString().equals("teacher")) {
+        switch (dataUser.child("role").getValue().toString()) {
+            case "teacher":
                 Intent intent = new Intent(LoginActivity.this, TeacherTabbedActivity.class);
                 intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                 startActivity(intent);
                 Toast.makeText(this, "Welcome To TeachersActivity Page", Toast.LENGTH_SHORT).show();
 
+                break;
+            case "parent":
 
-            } else if (dataUser.child("role").getValue().toString().equals("parent")) {
-                //  Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
-                //Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
-                Intent intent = new Intent(LoginActivity.this, ParentTabbedActivity.class);
-                intent.putExtra("parent_id", dataUser.child("userIdNumber").getValue().toString());
-                //intent.putExtra("kid_id", dataUser.child("id").getValue().toString());
-                startActivity(intent);
-                Toast.makeText(this, "Welcome To Parents Page", Toast.LENGTH_SHORT).show();
+                if (dataUser.child("isVerified").getValue().toString().equals("unverified")) {
+                    Intent intentUser = new Intent(LoginActivity.this, CreateParentProfile.class);
 
-            } else if (dataUser.child("role").getValue().toString().equals("admin")) {
+                    //if (dataUser.child("emailUser").getValue().toString().trim().equals(emailForVer)) {
 
+                    //if (dataUser.child("isVerified").getValue().toString().equals("unverified")) {
+                    //Intent intentUser = new Intent(LoginActivity.this, CreateParentProfile.class);
+                    intentUser.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
+                    Toast.makeText(this, dataUser.child("userKey").getValue().toString(), Toast.LENGTH_SHORT).show();
+                    startActivity(intentUser);
+                } else {
+
+                    //  Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
+                    //Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
+                    Intent intennt = new Intent(LoginActivity.this, ParentTabbedActivity.class);
+                    intennt.putExtra("parent_id", dataUser.child("userIdNumber").getValue().toString());
+                    //intent.putExtra("kid_id", dataUser.child("id").getValue().toString());
+                    startActivity(intennt);
+                    Toast.makeText(this, "Welcome To Parents Page", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            case "admin":
                 // Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
-                Intent intent = new Intent(LoginActivity.this, AdminTabbedActivity.class);
+                Intent intente = new Intent(LoginActivity.this, AdminTabbedActivity.class);
 
                 // intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
-                intent.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
-                startActivity(intent);
+                intente.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
+                startActivity(intente);
                 Toast.makeText(this, "Welcome To AdminActivity Page", Toast.LENGTH_SHORT).show();
-            } else {
-
+                break;
+            default:
                 Toast.makeText(this, dataUser.child("role").getValue().toString(), Toast.LENGTH_SHORT).show();
                 Toast.makeText(LoginActivity.this, "Please Contact A heard Master To Assign you A Role", Toast.LENGTH_SHORT).show();
-            }
+                break;
+
 
         }
 
-        //}
+//}
     }
 
     private void userLogin() {

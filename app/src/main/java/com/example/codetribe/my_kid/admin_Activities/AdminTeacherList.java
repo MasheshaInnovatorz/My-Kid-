@@ -17,15 +17,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.codetribe.my_kid.kids_Activities.AdminKidsInformatin;
-import com.example.codetribe.my_kid.kids_Activities.Kids;
+import com.example.codetribe.my_kid.R;
 import com.example.codetribe.my_kid.kids_Activities.KidsmemoListsActivity;
 import com.example.codetribe.my_kid.teachers_Activities.CreateTeacherAccount;
-import com.example.codetribe.my_kid.R;
-import com.example.codetribe.my_kid.teachers_Activities.UserArray;
 import com.example.codetribe.my_kid.teachers_Activities.TeacherClassAcc;
+import com.example.codetribe.my_kid.teachers_Activities.UserArray;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -88,6 +85,7 @@ public class AdminTeacherList extends Fragment {
         adminCreche.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot adminSnapshot) {
+
                 usersRetriveRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -95,18 +93,20 @@ public class AdminTeacherList extends Fragment {
                         for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()) {
 
 
-                            if (kidssnapshot.child("role").getValue().toString().equals("teacher")) {
-                                if (kidssnapshot.child("orgName").getValue().equals(adminSnapshot.child("orgName").getValue().toString())) {
-                                    counter++;
-                                    TeacherClassAcc kidInf = kidssnapshot.getValue(TeacherClassAcc.class);
-                                    user.add(kidInf);
+                                if (kidssnapshot.child("role").getValue().toString().equals("teacher")) {
 
-                                    kidInf.getUserKey();
+                                    if (kidssnapshot.child("orgName").getValue().equals(adminSnapshot.child("orgName").getValue().toString())) {
 
+                                        counter++;
+                                        TeacherClassAcc kidInf = kidssnapshot.getValue(TeacherClassAcc.class);
+                                        user.add(kidInf);
+
+                                        kidInf.getUserKey();
+
+
+                                    }
 
                                 }
-
-                            }
 
                         }
                         totalteachercount.setText(  "You have "+ counter +" teachers in your cresh");

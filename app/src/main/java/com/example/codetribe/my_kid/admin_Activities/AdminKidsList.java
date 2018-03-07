@@ -127,51 +127,50 @@ public class AdminKidsList extends Fragment {
             }
         });
 
-
-        //firebase instances
-        kidsCreche = FirebaseDatabase.getInstance().getReference("Kids");
-        usersRetriveRef = FirebaseDatabase.getInstance().getReference("Users");
-
         //current userId
         Idadmin = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        //firebase instances
+        kidsCreche = FirebaseDatabase.getInstance().getReference("Kids");
+        usersRetriveRef = FirebaseDatabase.getInstance().getReference("Users").child(Idadmin);
 
 
-        usersRetriveRef.addValueEventListener(new ValueEventListener() {
+
+
+        usersRetriveRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot crecheSnapshot) {
 
-                for (final DataSnapshot adminSnap : crecheSnapshot.getChildren()) {
 
-                    if (adminSnap.child("userKey").getValue().toString().equals(Idadmin)) {
+                            kidsCreche.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    kidses.clear();
+                                    for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()) {
 
-                        kidsCreche.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                kidses.clear();
-                                for (DataSnapshot kidssnapshot : dataSnapshot.getChildren()) {
-                                    if (kidssnapshot.child("orgName").getValue().toString().equals(adminSnap.child("orgName").getValue().toString())) {
-                                        counter++;
-                                        Kids kidInf = kidssnapshot.getValue(Kids.class);
-                                        kidses.add(kidInf);
+                                        if (kidssnapshot.child("orgName").getValue().toString().equals(crecheSnapshot.child("orgName").getValue().toString())) {
+                                            counter++;
+                                            Kids kidInf = kidssnapshot.getValue(Kids.class);
+                                            kidses.add(kidInf);
 
 
-                                        KidssKey = kidInf.getId();
+                                            KidssKey = kidInf.getId();
+
+                                        }
 
                                     }
+                                    admintotalkids.setText("You have " + counter + " kids in your cresh");
+                                    KidsArray userListAdapter = new KidsArray(getActivity(), kidses);
+                                    listUsers.setAdapter(userListAdapter);
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
 
                                 }
-                                admintotalkids.setText("You have " + counter + " kids in your cresh");
-                                KidsArray userListAdapter = new KidsArray(getActivity(), kidses);
-                                listUsers.setAdapter(userListAdapter);
-                            }
+                            });
 
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
 
-                            }
-                        });
-                    }
-                }
+
             }
 
             @Override
