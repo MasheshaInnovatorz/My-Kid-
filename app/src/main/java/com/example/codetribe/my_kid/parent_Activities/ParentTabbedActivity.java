@@ -16,6 +16,7 @@ import com.example.codetribe.my_kid.aboutUs_Activity.AboutUs;
 import com.example.codetribe.my_kid.account_Activities.LoginActivity;
 import com.example.codetribe.my_kid.R;
 import com.example.codetribe.my_kid.account_Activities.ViewProfile;
+import com.example.codetribe.my_kid.groupChat_Activities.GroupChatFragment;
 import com.example.codetribe.my_kid.kids_Activities.KidsMemoListFragment;
 import com.example.codetribe.my_kid.kids_Activities.KidsViewProfile;
 import com.google.firebase.auth.FirebaseAuth;

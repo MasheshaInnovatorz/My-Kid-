@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -17,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -31,9 +29,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class AdminTabbedActivity extends AppCompatActivity {
 
@@ -210,7 +205,6 @@ public class AdminTabbedActivity extends AppCompatActivity {
         final EditText edt = (EditText) dialogView.findViewById(R.id.editClassAdd);
 
         dialogBuilder.setTitle("Add Class");
-        dialogBuilder.setMessage("Enter Class Here");
         dialogBuilder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 //do something with
@@ -218,7 +212,7 @@ public class AdminTabbedActivity extends AppCompatActivity {
                 String classkid;
 
                 classkid = edt.getText().toString();
-
+                edt.setHint("Enter Class Here");
                 if (!classkid.isEmpty()) {
 
                     databasekidclass.child(user.getUid()).child(databasekidclass.push().getKey()).child("className").setValue(classkid);

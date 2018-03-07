@@ -16,6 +16,7 @@ import com.example.codetribe.my_kid.aboutUs_Activity.AboutUs;
 import com.example.codetribe.my_kid.account_Activities.LoginActivity;
 import com.example.codetribe.my_kid.R;
 import com.example.codetribe.my_kid.account_Activities.ViewProfile;
+import com.example.codetribe.my_kid.groupChat_Activities.GroupChatFragment;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class TeacherTabbedActivity extends AppCompatActivity {

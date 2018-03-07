@@ -304,7 +304,7 @@ public class SignUp extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+        list.add("Select Creshe");
         progressDialog.setMessage("Wait While searching for creches list..");
         progressDialog.show();
 
@@ -320,10 +320,7 @@ public class SignUp extends AppCompatActivity {
 
                         list.add(checheSnapshot.child("orgName").getValue().toString());
 
-                        dataAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
-                        //simple_spinner_dropdown_item
 
-                        orgNameList.setAdapter(dataAdapter);
                         progressDialog.dismiss();
                     } else {
                         Toast.makeText(SignUp.this, "There is no Creche Registered", Toast.LENGTH_SHORT).show();
@@ -337,7 +334,10 @@ public class SignUp extends AppCompatActivity {
             }
 
         });
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
+        //simple_spinner_dropdown_item
 
+        orgNameList.setAdapter(dataAdapter);
     }
 
     @Override

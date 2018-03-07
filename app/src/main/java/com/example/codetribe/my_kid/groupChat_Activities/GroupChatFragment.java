@@ -84,6 +84,7 @@ public class GroupChatFragment extends Fragment {
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
+        imgUri.parse(" ");
         progressDialog = new ProgressDialog(getContext());
 
         chat_right = (LinearLayout) rootView.findViewById(R.id.chat_right);
@@ -154,7 +155,6 @@ public class GroupChatFragment extends Fragment {
         progressDialog.setMessage("Please wait While Loading Chat messages");
         progressDialog.show();
 
-
         userChatReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -166,6 +166,7 @@ public class GroupChatFragment extends Fragment {
 
 
                         addMessageBox(chatFax.getName().toString(),  chatFax.getMessage(), 2, chatFax);
+
 
 
                     } else {
@@ -294,7 +295,8 @@ public class GroupChatFragment extends Fragment {
                     //dialog.dismiss();
 
 
-                    Toast.makeText(getContext(), "Sent", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "Sent", Toast.LENGTH_SHORT).show();
+
                     // startActivity(new Intent(this,UploadKidsMemo.this,KidsmemoListsActivity.class));
 
                     // Intent i = new Intent(UploadKidsMemo.this, KidsMemoListFragment.class);
@@ -316,12 +318,17 @@ public class GroupChatFragment extends Fragment {
                         ChatMessage chatMessage = new ChatMessage(messageArea.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(), 0, FirebaseAuth.getInstance().getCurrentUser().getUid(), "",orgIdKey);
                         databaseReference.push().setValue(chatMessage);
 
+
                         //save image infor in to firebase database
                        /* String uploadId = databaseReference.push().getKey();
                         databaseReference.child(uploadId).setValue(chatMessage);*/
                     }
-                    messageArea.setText(" ");
-                    imgUri.equals("");
+
+                    messageArea.setText("");
+
+
+
+
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {
@@ -341,10 +348,14 @@ public class GroupChatFragment extends Fragment {
                         }
                     });
 
+
+
+
         } else {
             ChatMessage chatMessage = new ChatMessage(messageArea.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(), 0, FirebaseAuth.getInstance().getCurrentUser().getUid(), "",orgIdKey);
             databaseReference.push().setValue(chatMessage);
         }
+        imgUri.parse(" ");
     }
 
     public void showProfilePic(String image_url) {
@@ -352,7 +363,12 @@ public class GroupChatFragment extends Fragment {
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
 
+        imgUri.parse(" ");
+    }
 }
 
 

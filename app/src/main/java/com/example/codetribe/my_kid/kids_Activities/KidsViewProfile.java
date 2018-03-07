@@ -81,7 +81,7 @@ public class KidsViewProfile extends AppCompatActivity {
         kidsImage =(ImageView)findViewById(R.id.header_cover_image);
 
 
-        Toast.makeText(this, fireAuthorization.getUid(), Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, fireAuthorization.getUid(), Toast.LENGTH_SHORT).show();
 
 
 

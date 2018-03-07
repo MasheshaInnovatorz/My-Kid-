@@ -6,6 +6,7 @@
     <EditText
         android:id="@+id/editClassAdd"
         android:textAlignment="center"
+        android:hint="Enter Class Here"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
         <requestFocus/>
