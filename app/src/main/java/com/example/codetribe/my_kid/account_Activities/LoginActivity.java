@@ -11,6 +11,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -20,6 +21,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,7 +50,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private ImageView backtowelcome, icon;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPrefEditor;
-
+    RelativeLayout myLayout;
     //firebase Authentification
     private FirebaseUser mFirebaseUser;
     private FirebaseAuth mFirebaseAuth;
@@ -60,6 +62,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     //progress bar
     private ProgressDialog progressDialog;
+
 
     //declaration of variables
     private TextView forgot;
@@ -84,6 +87,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //Validation style
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
+        myLayout = (RelativeLayout) findViewById(R.id.MyRelative);
         //variables initialization
         loginsignup_ = (TextView) findViewById(R.id.loginsignup);
         editEmail = (EditText) findViewById(R.id.login_email);
@@ -223,9 +227,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onStart() {
         super.onStart();
         if (haveNetworkConnection() == false) {
-            Toast.makeText(this, "Please Confirm if You bundle is ", Toast.LENGTH_SHORT).show();
+
+            Snackbar snackbar = Snackbar.make(findViewById(R.id.myCoordinatorLayout), "Please Confirm if You Bundles is", Snackbar.LENGTH_INDEFINITE);
+            snackbar.show();
+            // Toast.makeText(this, "Please Confirm if You bundle is ", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "You  are connected to internet", Toast.LENGTH_SHORT).show();
+            Snackbar snackbar = Snackbar.make(findViewById(R.id.myCoordinatorLayout), "You  are connected to internet", Snackbar.LENGTH_LONG);
+            snackbar.show();
+            // Toast.makeText(this, "You  are connected to internet", Toast.LENGTH_SHORT).show();
         }
         progressDialog.setMessage("Wait While Logging In");
         progressDialog.show();

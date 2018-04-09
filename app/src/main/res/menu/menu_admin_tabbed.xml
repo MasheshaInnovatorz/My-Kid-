@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.codetribe.my_kid.admin_Activities.AdminTabbedActivity">
 
+
     <item
         android:id="@+id/menu_admin_addclass"
         android:orderInCategory="100"
@@ -25,5 +26,6 @@
         android:orderInCategory="100"
         android:title="Logout"
         app:showAsAction="never" />
+
 
 </menu>

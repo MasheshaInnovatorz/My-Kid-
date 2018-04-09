@@ -4,11 +4,16 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
@@ -27,10 +33,13 @@ import com.example.codetribe.my_kid.account_Activities.LoginActivity;
 import com.example.codetribe.my_kid.account_Activities.ViewProfile;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class AdminTabbedActivity extends AppCompatActivity {
+public class AdminTabbedActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private AlertDialog.Builder alertDialogBuilder;
@@ -42,35 +51,71 @@ public class AdminTabbedActivity extends AppCompatActivity {
     private AwesomeValidation awesomeValidation;
 
     private EditText classkid;
+    private TextView crechename,adminName;
 
     //database declaration
     private DatabaseReference databasekidclass, adminDataRef;
     private FirebaseUser user;
 
     AlertDialog alertDialog;
-
     //variable
     String classkidString;
+
+    FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_tabbed2);
+        setContentView(R.layout.activity_admin_drawer_app);
 
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+       // toolbar.setTitle("Admin");
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_admin_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+          this,drawer,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+      //  firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         //database
         databasekidclass = FirebaseDatabase.getInstance().getReference().child("kidclass");
-        adminDataRef = FirebaseDatabase.getInstance().getReference().child("Users");
-        user = FirebaseAuth.getInstance().getCurrentUser();
+        adminDataRef = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
+
+
 
         //validation
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this, R.id.editClassAdd, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.classkiderror);
 
+        crechename = (TextView)findViewById(R.id.crecheName);
+        adminName = (TextView)findViewById(R.id.adminName);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Admin");
+        adminDataRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String orgname = dataSnapshot.child("orgName").getValue().toString();
+                Toast.makeText(context, orgname, Toast.LENGTH_SHORT).show();
 
-        setSupportActionBar(toolbar);
+                String name = dataSnapshot.child("userName").getValue().toString() + "" + dataSnapshot.child("userSurname").getValue().toString();
+
+
+            }
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -134,7 +179,54 @@ public class AdminTabbedActivity extends AppCompatActivity {
             showChangeLangDialog();
 
         }
+
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed(){
+        DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.drawer_admin_layout);
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+
+        }
+    }
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.menu_about_us) {
+
+            Intent intent = new Intent(AdminTabbedActivity.this, AboutUs.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.menu_admin_logout) {
+            logout();
+            return true;
+        } else if (id == R.id.menu_adimin_profile) {
+            Intent intent = new Intent(AdminTabbedActivity.this, ViewProfile.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.menu_admin_logout) {
+            logout();
+        } else if (id == R.id.menu_admin_addclass) {
+            // set dialog message
+            //call class
+            showChangeLangDialog();
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_admin_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
 
 
     }
@@ -233,5 +325,11 @@ public class AdminTabbedActivity extends AppCompatActivity {
         });
         AlertDialog b = dialogBuilder.create();
         b.show();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
     }
 }
