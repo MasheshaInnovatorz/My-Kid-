@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -16,21 +17,27 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.bumptech.glide.Glide;
 import com.example.codetribe.my_kid.R;
 import com.example.codetribe.my_kid.aboutUs_Activity.AboutUs;
+import com.example.codetribe.my_kid.account_Activities.DividerDecorationNav;
 import com.example.codetribe.my_kid.account_Activities.LoginActivity;
+import com.example.codetribe.my_kid.account_Activities.UserProfile;
 import com.example.codetribe.my_kid.account_Activities.ViewProfile;
+import com.example.codetribe.my_kid.kids_Activities.Kids;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -51,60 +58,84 @@ public class AdminTabbedActivity extends AppCompatActivity implements Navigation
     private AwesomeValidation awesomeValidation;
 
     private EditText classkid;
-    private TextView crechename,adminName;
+    private TextView crechename, adminName;
 
     //database declaration
     private DatabaseReference databasekidclass, adminDataRef;
     private FirebaseUser user;
 
-    AlertDialog alertDialog;
+    private AlertDialog alertDialog;
     //variable
-    String classkidString;
+    private String classkidString;
 
-    FirebaseUser firebaseUser;
+    private FirebaseUser firebaseUser;
+    private TextView name,creacheName;
+    private ImageView profilePic,proprofile;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_drawer_app);
 
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-       // toolbar.setTitle("Admin");
+         toolbar.setTitle("Admin");
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_admin_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_admin_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-          this,drawer,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
+
+
+         navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerNaming =  navigationView.getHeaderView(0);
+        NavigationMenuView itemsDecorators = (NavigationMenuView) navigationView.getChildAt(0);
+        itemsDecorators.addItemDecoration(new DividerDecorationNav(this));
+
+        name = (TextView) headerNaming.findViewById(R.id.adminName);
+
+        creacheName = (TextView) headerNaming.findViewById(R.id.crecheName);
+
+        profilePic = (ImageView) headerNaming.findViewById(R.id.imageProfile);
+
+        proprofile = (ImageView) headerNaming.findViewById(R.id.proprofile);
+        proprofile.setImageAlpha(160);
+
         navigationView.setNavigationItemSelectedListener(this);
 
-      //  firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        //  firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         user = FirebaseAuth.getInstance().getCurrentUser();
         //database
         databasekidclass = FirebaseDatabase.getInstance().getReference().child("kidclass");
         adminDataRef = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
 
 
-
         //validation
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this, R.id.editClassAdd, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.classkiderror);
 
-        crechename = (TextView)findViewById(R.id.crecheName);
-        adminName = (TextView)findViewById(R.id.adminName);
+        crechename = (TextView) findViewById(R.id.crecheName);
+        adminName = (TextView) findViewById(R.id.adminName);
 
         adminDataRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
+                //UserProfile profObject = dataSnapshot.getValue(UserProfile.class);
                 String orgname = dataSnapshot.child("orgName").getValue().toString();
                 Toast.makeText(context, orgname, Toast.LENGTH_SHORT).show();
 
-                String name = dataSnapshot.child("userName").getValue().toString() + "" + dataSnapshot.child("userSurname").getValue().toString();
+                String namesAd = dataSnapshot.child("userName").getValue().toString() + " " + " " + dataSnapshot.child("userSurname").getValue().toString();
+                name.setText(namesAd);
+                creacheName.setText(orgname);
 
+           Glide.with(getApplication()).load(dataSnapshot.child("userProfilePic").getValue().toString()).into(profilePic);
+
+                Glide.with(getApplication()).load(dataSnapshot.child("userProfilePic").getValue().toString()).into(proprofile);
 
             }
 
@@ -114,7 +145,6 @@ public class AdminTabbedActivity extends AppCompatActivity implements Navigation
 
             }
         });
-
 
 
         // Create the adapter that will return a fragment for each of the three
@@ -184,9 +214,9 @@ public class AdminTabbedActivity extends AppCompatActivity implements Navigation
     }
 
     @Override
-    public void onBackPressed(){
-        DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.drawer_admin_layout);
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+    public void onBackPressed() {
+        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_admin_layout);
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
 
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
@@ -201,35 +231,44 @@ public class AdminTabbedActivity extends AppCompatActivity implements Navigation
 
 
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.menu_about_us) {
-
-            Intent intent = new Intent(AdminTabbedActivity.this, AboutUs.class);
-            startActivity(intent);
-            return true;
-        } else if (id == R.id.menu_admin_logout) {
-            logout();
-            return true;
-        } else if (id == R.id.menu_adimin_profile) {
-            Intent intent = new Intent(AdminTabbedActivity.this, ViewProfile.class);
-            startActivity(intent);
-            return true;
-        } else if (id == R.id.menu_admin_logout) {
-            logout();
-        } else if (id == R.id.menu_admin_addclass) {
-            // set dialog message
-            //call class
-            showChangeLangDialog();
-
-        }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_admin_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        Intent intent;
+        //noinspection
+
+        switch (id) {
+            case R.id.menu_about_us:
+                intent = new Intent(AdminTabbedActivity.this, AboutUs.class);
+                startActivity(intent);
+
+                drawer.closeDrawer(GravityCompat.START);
+                break;
+
+
+            case R.id.menu_admin_logout:
+                logout();
+                drawer.closeDrawer(GravityCompat.START);
+                break;
+
+            case R.id.menu_adimin_profile:
+                intent = new Intent(AdminTabbedActivity.this, ViewProfile.class);
+                startActivity(intent);
+                drawer.closeDrawer(GravityCompat.START);
+                break;
+
+            case R.id.menu_admin_addclass:
+                showChangeLangDialog();
+                drawer.closeDrawer(GravityCompat.START);
+
+                break;
+            default:
+                return false;
+        }
         return true;
-
-
     }
+
+
+    //  drawer.closeDrawer(GravityCompat.START);
+    //   return true;
 
 
     /**
@@ -278,7 +317,6 @@ public class AdminTabbedActivity extends AppCompatActivity implements Navigation
     }
 
 
-
     private void logout() {
 
 
@@ -309,8 +347,7 @@ public class AdminTabbedActivity extends AppCompatActivity implements Navigation
 
                     databasekidclass.child(user.getUid()).child(databasekidclass.push().getKey()).child("className").setValue(classkid);
                     Toast.makeText(AdminTabbedActivity.this, "Class Created Successfully", Toast.LENGTH_SHORT).show();
-                }else
-                {
+                } else {
                     Toast.makeText(AdminTabbedActivity.this, "Please Enter Class", Toast.LENGTH_SHORT).show();
                 }
 

@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+
         <item
             android:id="@+id/menu_admin_addclass"
             android:icon="@mipmap/ic_add_class"
+            android:checkable="true"
             android:title="Add Class"
 
             />
@@ -14,6 +15,7 @@
         <item
             android:id="@+id/menu_adimin_profile"
             android:icon="@drawable/ic_profile"
+            android:checkable="true"
             android:title="Profile"
 
              />
@@ -21,11 +23,13 @@
         <item
             android:id="@+id/menu_about_us"
             android:title="About Us"
+            android:checkable="true"
              />
-
+    <group android:checkableBehavior="single">
         <item
             android:id="@+id/menu_admin_logout"
             android:icon="@mipmap/ic_power"
+            android:checkable="true"
             android:title="Logout"
              />
     </group>

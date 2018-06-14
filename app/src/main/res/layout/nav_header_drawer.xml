@@ -1,35 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="176dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/side_bar"
     android:gravity="bottom"
-    android:orientation="vertical"
     android:paddingBottom="16dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
+    android:alpha="1"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    <!-- android:background="@drawable/side_bar" -->
+    <ImageView
+        android:id="@+id/proprofile"
+        android:src="@drawable/rudzypic"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
 
+
+        />
     <ImageView
         android:id="@+id/imageProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="8dp"
+        android:layout_width="1800dp"
+        android:layout_height="110dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:scaleType="fitCenter"
         app:srcCompat="@mipmap/ic_launcher_round"
+
         />
 
     <TextView
         android:id="@+id/adminName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_below="@+id/imageProfile"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/crecheName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_below="@+id/adminName"
+        android:gravity="center"
         />
 
-</LinearLayout>
+</RelativeLayout>

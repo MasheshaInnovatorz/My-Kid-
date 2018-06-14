@@ -14,8 +14,9 @@
 
 
     <color name="colorPrimary">#FF9800</color>
-    <color name="colorPrimaryDark">#f57c00</color>
-    <color name="colorAccent">#FF9800</color>
+    <color name="colorPrimaryDark">#F57C00</color>
+    <color name="colorAccent">#03A9F4</color>
+    <color name="colorLightPrimary">#FFCCBC</color>
 
 
 

@@ -74,7 +74,6 @@ public class AdminTeacherList extends Fragment {
 
 
         listUsers = (ListView) rootView.findViewById(R.id.teacherlistView);
-
         Idadmin = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
