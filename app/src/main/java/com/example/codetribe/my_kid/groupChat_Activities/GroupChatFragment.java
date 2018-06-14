@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +27,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.codetribe.my_kid.R;
+import com.example.codetribe.my_kid.kids_Activities.KidsmemoListAdapter;
+import com.example.codetribe.my_kid.kids_Activities.MemokidsUpload_class;
+import com.example.codetribe.my_kid.kids_Activities.UploadKidsMemo;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,6 +47,8 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -78,6 +85,7 @@ public class GroupChatFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_group_chat, container, false);
+
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -120,10 +128,12 @@ public class GroupChatFragment extends Fragment {
         imageAttachment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select image"), REQUEST_CODE);
+                Intent intent = new Intent(getContext(),UploadKidsMemo.class);
+                intent.putExtra("requestType","groupChat");
+                startActivity(intent);
+               // intent.setType("image/*");
+               // intent.setAction(Intent.ACTION_GET_CONTENT);
+                //startActivityForResult(Intent.createChooser(intent, "Select image"), REQUEST_CODE);
 
 
             }
@@ -217,7 +227,7 @@ public class GroupChatFragment extends Fragment {
 
        msg.setText(" " + name +"\n" + message);
 
-        Glide.with(GroupChatFragment.this).load(chat.getImageURL()).override(400,400).fitCenter().into(image);
+        //Glide.with(GroupChatFragment.this).load(chat.getImageURL()).override(400,400).fitCenter().into(image);
 
         LinearLayout.LayoutParams textmsg = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
@@ -252,6 +262,7 @@ public class GroupChatFragment extends Fragment {
         chat_right.addView(msg);
 
         if(!chat.getImageURL().equals("")) {
+
             chat_right.addView(image);
         }
         scrollView.fullScroll(View.FOCUS_DOWN);
@@ -304,7 +315,7 @@ public class GroupChatFragment extends Fragment {
 
 
                     // imageUpload = new MemokidsUpload_class(txtImageName.getText().toString(), taskSnapshot.getDownloadUrl().toString(), results,  new Date().getTime());
-                    if (taskSnapshot.getDownloadUrl().toString() != " ") {
+                   if (taskSnapshot.getDownloadUrl().toString() != " ") {
 
 
                         ChatMessage chatMessage = new ChatMessage(messageArea.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(), 0, FirebaseAuth.getInstance().getCurrentUser().getUid(), taskSnapshot.getDownloadUrl().toString(),orgIdKey);

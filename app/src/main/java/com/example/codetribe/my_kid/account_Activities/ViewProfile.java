@@ -57,7 +57,7 @@ public class ViewProfile extends AppCompatActivity {
     private TextView name, surname, gender, city, phonenumber, address, email, editprofile,upload;
     private String iduser;
     private String image_url;
- //   private ImageView ;
+ // private ImageView ;
     private int RESULT_LOAD_IMG = 1;
 
     private ProgressDialog progressDialog;
@@ -250,6 +250,7 @@ public class ViewProfile extends AppCompatActivity {
 
     public void showProfilePic(String image_url) {
        // Glide.with(ViewProfile.this).load(image_url).centerCrop().into(photo);
+        profilecover.setImageAlpha(100);
         Glide.with(ViewProfile.this).load(image_url).centerCrop().into(profilecover);
 
     }

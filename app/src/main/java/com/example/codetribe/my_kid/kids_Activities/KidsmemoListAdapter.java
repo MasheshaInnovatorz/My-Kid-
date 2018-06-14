@@ -36,7 +36,7 @@ public class KidsmemoListAdapter extends RecyclerView.Adapter<KidsmemoListAdapte
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.kids_memo_lists_activity, parent, false);
+                .inflate(R.layout.kids_memo_lists_activity, null, false);
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }

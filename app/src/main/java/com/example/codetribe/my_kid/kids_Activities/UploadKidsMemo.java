@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.codetribe.my_kid.R;
+import com.example.codetribe.my_kid.groupChat_Activities.ChatMessage;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,7 +43,7 @@ public class UploadKidsMemo extends AppCompatActivity {
 
 
     private StorageReference mStorageRef;
-    private DatabaseReference mDatabseRef, mDatabaseUser, mRef, uploadedName;
+    private DatabaseReference mDatabseRef, mDatabaseUser, mRef, uploadedName, databaseReference;
 
     private String name, surname, results;
     private ImageView imageview;
@@ -50,14 +51,15 @@ public class UploadKidsMemo extends AppCompatActivity {
     private Uri imgUri;
     private TextView txtUpload, txtBrowse, personUploaded;
 
+
     public static final String FB_STORAGE_PATH = "image/";
     public static final String FB_DATABASE_PATH = "image";
     public static final int REQUEST_CODE = 1234;
 
-    private  String idKid, userId, kidTeacherId, identity;
+    private String idKid, userId, kidTeacherId, identity, typeRequest;
+    private String orgIdKey;
 
-
-    private static final int CAMERA_REQUEST=123;
+    private static final int CAMERA_REQUEST = 123;
 
     long time;
 
@@ -74,14 +76,16 @@ public class UploadKidsMemo extends AppCompatActivity {
 
 
         Intent intent = getIntent();
+
         idKid = intent.getStringExtra("kid_id");
         kidTeacherId = intent.getStringExtra("kidsTeacherId");
         results = intent.getStringExtra("userUpLoader");
         userId = intent.getStringExtra("User_KEY");
+        typeRequest = intent.getStringExtra("requestType");
 
 
         mDatabaseUser = FirebaseDatabase.getInstance().getReference("Users");
-
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("groupChat");
 
         mDatabaseUser.addValueEventListener(new ValueEventListener() {
             @Override
@@ -107,14 +111,14 @@ public class UploadKidsMemo extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 String org_name = dataSnapshot.getValue(String.class);
-
-                if (idKid != null) {
-                    passingValue(idKid);
+                if (typeRequest == "kidsMemory") {
+                    if (idKid != null) {
+                        passingValue(idKid);
+                    }
+                    if (kidTeacherId != null) {
+                        passingValue(kidTeacherId);
+                    }
                 }
-                if (kidTeacherId != null) {
-                    passingValue(kidTeacherId);
-                }
-
 
             }
 
@@ -151,7 +155,7 @@ public class UploadKidsMemo extends AppCompatActivity {
         txtUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                upload();
+                upload(typeRequest);
             }
         });
 
@@ -161,7 +165,7 @@ public class UploadKidsMemo extends AppCompatActivity {
 //camera upload
 
     /*
-	public void btnClick(View view){
+    public void btnClick(View view){
 		Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		onActivityResult(intent,CAMERA_REQUEST);
 	}
@@ -190,72 +194,162 @@ public class UploadKidsMemo extends AppCompatActivity {
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
 
-    public void upload() {
-        if (imgUri != null) {
-            final ProgressDialog dialog = new ProgressDialog(this);
-            dialog.setTitle("Uploading Kids Memories");
-            dialog.show();
-            //get the storage reference
-            StorageReference ref = mStorageRef.child(FB_STORAGE_PATH + System.currentTimeMillis() + "." + getImageExt(imgUri));
+    public void upload(String typofUpload) {
 
-            ref.putFile(imgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(final UploadTask.TaskSnapshot taskSnapshot) {
+        Toast.makeText(this, typeRequest, Toast.LENGTH_SHORT).show();
+        switch (typofUpload) {
+            case "kidsMemory":
 
-                    dialog.dismiss();
+                if (imgUri != null) {
+                    final ProgressDialog dialog = new ProgressDialog(this);
 
-                    Toast.makeText(getApplicationContext(), "Kid Memory Uploaded", Toast.LENGTH_SHORT).show();
-                  // startActivity(new Intent(this,UploadKidsMemo.this,KidsmemoListsActivity.class));
+                    dialog.setTitle("Uploading Kids Memories");
+                    dialog.show();
+                    //get the storage reference
+                    StorageReference ref = mStorageRef.child(FB_STORAGE_PATH + System.currentTimeMillis() + "." + getImageExt(imgUri));
 
-                   // Intent i = new Intent(UploadKidsMemo.this, KidsMemoListFragment.class);
-                   // startActivity(i);
-
-                    uploadedName.addListenerForSingleValueEvent(new ValueEventListener() {
+                    ref.putFile(imgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            name = dataSnapshot.child("userName").getValue().toString();
-                            surname = dataSnapshot.child("userSurname").getValue().toString();
-                            results = name + " " + surname;
+                        public void onSuccess(final UploadTask.TaskSnapshot taskSnapshot) {
 
-                            MemokidsUpload_class imageUpload = new MemokidsUpload_class(txtImageName.getText().toString(), taskSnapshot.getDownloadUrl().toString(), results,  new Date().getTime());
-
-
-                            //save image infor in to firebase database
-                            String uploadId = mDatabseRef.push().getKey();
-                            mDatabseRef.child(uploadId).setValue(imageUpload);
-
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-
-
-                }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
                             dialog.dismiss();
-                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                            Toast.makeText(getApplicationContext(), "Kid Memory Uploaded", Toast.LENGTH_SHORT).show();
+                            // startActivity(new Intent(this,UploadKidsMemo.this,KidsmemoListsActivity.class));
+
+                            // Intent i = new Intent(UploadKidsMemo.this, KidsMemoListFragment.class);
+                            // startActivity(i);
+
+                            uploadedName.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    name = dataSnapshot.child("userName").getValue().toString();
+                                    surname = dataSnapshot.child("userSurname").getValue().toString();
+
+                                    results = name + " " + surname;
+
+                                    MemokidsUpload_class imageUpload = new MemokidsUpload_class(txtImageName.getText().toString(), taskSnapshot.getDownloadUrl().toString(), results, new Date().getTime());
+
+
+                                    //save image infor in to firebase database
+                                    String uploadId = mDatabseRef.push().getKey();
+                                    mDatabseRef.child(uploadId).setValue(imageUpload);
+
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+
 
                         }
                     })
-                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                            double progress = (100 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                            dialog.setMessage("Uploaded " + (int) progress + "%");
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    dialog.dismiss();
+                                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
 
-                        }
-                    });
+                                }
+                            })
+                            .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                                    double progress = (100 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                                    dialog.setMessage("Uploaded " + (int) progress + "%");
 
-        } else {
-            Toast.makeText(getApplicationContext(), "Please select image", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                } else {
+                    Toast.makeText(getApplicationContext(), "Please select image", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case "groupChat":
+                    if (imgUri != null) {
+                        final ProgressDialog dialog = new ProgressDialog(getApplication());
+                        //dialog.setTitle("Sending chat Message");
+                        //dialog.show();
+                        //get the storage reference
+
+                        uploadedName.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                orgIdKey = dataSnapshot.child("userOrgId").getValue().toString();
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+                        StorageReference ref = mStorageRef.child("ChatImage/" + System.currentTimeMillis() + "." + getImageExt(imgUri));
+
+                        ref.putFile(imgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(final UploadTask.TaskSnapshot taskSnapshot) {
+
+                                //dialog.dismiss();
+
+
+                                Toast.makeText(getApplication(), "Sent", Toast.LENGTH_SHORT).show();
+
+                                // startActivity(new Intent(this,UploadKidsMemo.this,KidsmemoListsActivity.class));
+
+                                // Intent i = new Intent(UploadKidsMemo.this, KidsMemoListFragment.class);
+                                // startActivity(i);
+
+
+                                // imageUpload = new MemokidsUpload_class(txtImageName.getText().toString(), taskSnapshot.getDownloadUrl().toString(), results,  new Date().getTime());
+                                if (taskSnapshot.getDownloadUrl().toString() != " ") {
+
+
+                                    ChatMessage chatMessage = new ChatMessage(txtImageName.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(), 0, FirebaseAuth.getInstance().getCurrentUser().getUid(), taskSnapshot.getDownloadUrl().toString(), orgIdKey);
+                                    databaseReference.push().setValue(chatMessage);
+
+
+                                    //save image infor in to firebase database
+                       /* String uploadId = databaseReference.push().getKey();
+                        databaseReference.child(uploadId).setValue(chatMessage);*/
+                                } else {
+                                    ChatMessage chatMessage = new ChatMessage(txtImageName.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(), 0, FirebaseAuth.getInstance().getCurrentUser().getUid(), "", orgIdKey);
+                                    databaseReference.push().setValue(chatMessage);
+
+
+                                    //save image infor in to firebase database
+                       /* String uploadId = databaseReference.push().getKey();
+                        databaseReference.child(uploadId).setValue(chatMessage);*/
+                                }
+
+                                txtImageName.setText("");
+
+
+                            }
+                        })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        dialog.dismiss();
+                                        Toast.makeText(getApplication(), e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                                    }
+                                })
+                                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                                        double progress = (100 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                                        dialog.setMessage("Uploaded " + (int) progress + "%");
+
+                                    }
+                                });
+
+                    }
+
+                    break;
+
         }
-    }
+    };
 
 
 
