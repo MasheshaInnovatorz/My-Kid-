@@ -3,6 +3,7 @@ package com.example.codetribe.my_kid.account_Activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
+import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.codetribe.my_kid.R;
+import com.example.codetribe.my_kid.databinding.ActivityViewProfileBinding;
 import com.example.codetribe.my_kid.parent_Activities.CreateParentProfile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -44,45 +46,28 @@ public class ViewProfile extends AppCompatActivity {
     //database
     private FirebaseStorage storage;
     private DatabaseReference databaseReference, callImage;
-    ;
     private StorageReference storageRef, imagesRef, userProfileRef;
     private FirebaseUser user;
 
     private String user_id;
-    private ImageView profilecover;
     private String idLoged;
     private String nameString, surnameString;
 
     private Uri imgUri;
-    private TextView name, surname, gender, city, phonenumber, address, email, editprofile,upload;
+
     private String iduser;
     private String image_url;
  // private ImageView ;
     private int RESULT_LOAD_IMG = 1;
 
     private ProgressDialog progressDialog;
-
+    private ActivityViewProfileBinding profileBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_profile);
-
-        //Profile_Update edit
-        editprofile = (TextView) findViewById(R.id.editprofile);
-        //initialize
-        name = (TextView) findViewById(R.id.user_profile_name);
-        // surname= (TextView)findViewById(R.id.user_profile_status);
-        gender = (TextView) findViewById(R.id.gender_view);
-
-        phonenumber = (TextView) findViewById(R.id.phone_view);
-        address = (TextView) findViewById(R.id.address_view);
-        city = (TextView) findViewById(R.id.city_view);
-        email = (TextView) findViewById(R.id.email_view);
-        upload = (TextView) findViewById(R.id.uploadpic);
-        profilecover = (ImageView) findViewById(R.id.header_cover_image);
-
-
+        //setContentView(R.layout.activity_view_profile);
+        profileBinding = DataBindingUtil.setContentView(this,R.layout.activity_view_profile);
 
         progressDialog = new ProgressDialog(this);
         storage = FirebaseStorage.getInstance();
@@ -94,7 +79,7 @@ public class ViewProfile extends AppCompatActivity {
         userProfileRef = storageRef.child("images/" + user.getUid() + ".jpg");
 
 
-        editprofile.setOnClickListener(new View.OnClickListener() {
+        profileBinding.editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(ViewProfile.this, CreateParentProfile.class);
@@ -108,7 +93,7 @@ public class ViewProfile extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
 
 
-        upload.setOnClickListener(new View.OnClickListener() {
+        profileBinding.uploadpic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent photoPickerIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -130,9 +115,8 @@ public class ViewProfile extends AppCompatActivity {
             }
         });
 
-        TextView editprofile = (TextView) findViewById(R.id.editprofile);
 
-        editprofile.setOnClickListener(new View.OnClickListener() {
+        profileBinding.editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ViewProfile.this, UpdateProfile.class);
@@ -250,21 +234,20 @@ public class ViewProfile extends AppCompatActivity {
 
     public void showProfilePic(String image_url) {
        // Glide.with(ViewProfile.this).load(image_url).centerCrop().into(photo);
-        profilecover.setImageAlpha(100);
-        Glide.with(ViewProfile.this).load(image_url).centerCrop().into(profilecover);
+        profileBinding.headerCoverImage.setImageAlpha(100);
+        Glide.with(ViewProfile.this).load(image_url).centerCrop().into(profileBinding.headerCoverImage);
 
     }
 
     private void Infor(DataSnapshot dataSnapshot, String userId) {
 
-
         if (dataSnapshot.child("userKey").getValue().toString().equals(userId)) {
-            name.setText(dataSnapshot.child("userName").getValue().toString() + " " + dataSnapshot.child("userSurname").getValue().toString());
-            gender.setText(" Gender : " + dataSnapshot.child("userGender").getValue().toString());
-            phonenumber.setText("  phone number :" + dataSnapshot.child("userContact").getValue().toString());
-            address.setText("  Lives in : " + dataSnapshot.child("userAddress").getValue().toString());
-             city.setText("  City : " + dataSnapshot.child("userCity").getValue().toString());
-            email.setText("  Email : " + dataSnapshot.child("emailUser").getValue().toString());
+            profileBinding.userProfileName.setText(dataSnapshot.child("userName").getValue().toString() + " " + dataSnapshot.child("userSurname").getValue().toString());
+            profileBinding.genderView.setText(" Gender : " + dataSnapshot.child("userGender").getValue().toString());
+            profileBinding.phoneView.setText("  phone number :" + dataSnapshot.child("userContact").getValue().toString());
+            profileBinding.addressView.setText("  Lives in : " + dataSnapshot.child("userAddress").getValue().toString());
+            profileBinding.cityView.setText("  City : " + dataSnapshot.child("userCity").getValue().toString());
+            profileBinding.emailView.setText("  Email : " + dataSnapshot.child("emailUser").getValue().toString());
 
         }
 

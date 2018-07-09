@@ -1,6 +1,7 @@
 package com.example.codetribe.my_kid.account_Activities;
 
 import android.app.ProgressDialog;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -19,40 +20,32 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.codetribe.my_kid.R;
+import com.example.codetribe.my_kid.databinding.ActivityResetPasswordBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ResetPassword extends AppCompatActivity {
 
-    private TextView btnReset;
-    private EditText inputEmail;
-    private ImageView btnBack;
-
     //firebase Auth
     private FirebaseAuth auth;
-
     //progress bar declaration
     private ProgressDialog progressDialog;
-
     //defining AwesomeValidation object
     private AwesomeValidation awesomeValidation;
-
-    //String email;
+     //binding
+    ActivityResetPasswordBinding resetPasswordBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reset_password);
+        resetPasswordBinding= DataBindingUtil.setContentView(this,R.layout.activity_reset_password);
+
 
         //title bar title
         getSupportActionBar().setTitle("Reset Password");
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        //variables intialization
-        inputEmail = (EditText) findViewById(R.id.reset_email);
-        btnReset = (TextView) findViewById(R.id.btn_reset_password);
 
         //progreess bra initialization
         progressDialog = new ProgressDialog(this);
@@ -68,13 +61,13 @@ public class ResetPassword extends AppCompatActivity {
 
 
         //reset Buttons
-        btnReset.setOnClickListener(new View.OnClickListener() {
+        resetPasswordBinding.btnResetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (awesomeValidation.validate()) {
 
-                    final String email = inputEmail.getText().toString().trim();
+                    final String email = resetPasswordBinding.resetEmail.getText().toString().trim();
 
                     progressDialog.setMessage("Wait While Reseting Password");
                     progressDialog.show();

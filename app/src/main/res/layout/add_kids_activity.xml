@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.codetribe.my_kid.parent_Activities.CreateParentProfile">
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.codetribe.my_kid.parent_Activities.CreateParentProfile">
+    >
 
     <!--tools:context="com.example.codetribe.my_kid.ProfileUpdate"> -->
 
@@ -143,30 +146,6 @@
 
             </android.support.design.widget.TextInputLayout>
 
-
-<!--
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/hpgrade"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/editGrade"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/text_left"
-                    android:layout_marginRight="@dimen/text_right"
-                    android:hint="Class Allocated"
-                    android:inputType="textCapWords"
-                    android:maxLength="12"
-                    android:padding="@dimen/text_padding"
-                    android:textAlignment="center"
-                    android:textColor="#212121"
-                    android:textColorHint="#212121"
-                    android:textSize="16dp" />
-
-            </android.support.design.widget.TextInputLayout>
--->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
@@ -274,3 +253,4 @@
     </ScrollView>
 
 </RelativeLayout>
+</layout>

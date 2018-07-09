@@ -23,6 +23,7 @@ import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.codetribe.my_kid.R;
 import com.example.codetribe.my_kid.account_Activities.SignUp;
 import com.example.codetribe.my_kid.admin_Activities.AdminTabbedActivity;
+import com.example.codetribe.my_kid.databinding.AddKidsActivityBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,14 +39,6 @@ public class KidActivity extends AppCompatActivity {
     //spinner
     private ArrayAdapter<String> dataAdapter;
     private List<String> list;
-    // private EditText;
-    private TextInputLayout hintname, hintsurname, hintkidid, hintpid, hintParentId, hintGradeAllocated, hintYear;
-    private EditText kidname,
-            kidsurname,
-            kidaddress,
-            kididNumber,
-            kidparentid,
-            registeredYears;
     int selectedId;
     private Spinner kidAllocated;
     //classNameList
@@ -53,7 +46,6 @@ public class KidActivity extends AppCompatActivity {
     private ImageView imagepic;
     private RadioGroup radKidGender;
     private RadioButton radGender;
-    private TextView btnCreate;
     private String userId;
     private String genderString, keyUser;
     private String kidStringname,
@@ -65,14 +57,14 @@ public class KidActivity extends AppCompatActivity {
             kidsYearRegistered,
             classname;
 
-
     private ProgressDialog progressDialog;
     //defining AwesomeValidation object
     private AwesomeValidation awesomeValidation;
 
     //database
     DatabaseReference databaseKids, currentUserRef, adminOrgNameRef, kidclassdata,innerClassRef;
-    Context context;
+    private Context context;
+    private AddKidsActivityBinding addKidsActivityBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,16 +84,7 @@ public class KidActivity extends AppCompatActivity {
 
         dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
 
-        //initializing
-        kidname = (EditText) findViewById(R.id.editname);
-        kidsurname = (EditText) findViewById(R.id.editSurname);
-        kidaddress = (EditText) findViewById(R.id.editAdress);
-        kididNumber = (EditText) findViewById(R.id.editkidid);
-        kidparentid = (EditText) findViewById(R.id.editParentId);
-        // kidAllocated = (EditText) findViewById(R.id.editGrade);
-        registeredYears = (EditText) findViewById(R.id.editYear);
-        radKidGender = (RadioGroup) findViewById(R.id.genders);
-        btnCreate = (TextView) findViewById(R.id.btnKidUpdate);
+
 
 
         //adding validation to edittexts
@@ -125,16 +108,6 @@ public class KidActivity extends AppCompatActivity {
             }
         });
 
-        //hint editext
-
-        hintname = (TextInputLayout) findViewById(R.id.hname);
-        hintsurname = (TextInputLayout) findViewById(R.id.hSurname);
-        hintkidid = (TextInputLayout) findViewById(R.id.hAdress);
-        hintpid = (TextInputLayout) findViewById(R.id.hkidid);
-        hintParentId = (TextInputLayout) findViewById(R.id.hpid);
-        //hintGradeAllocated = (TextInputLayout) findViewById(R.id.hpgrade);
-        hintYear = (TextInputLayout) findViewById(R.id.hpYear);
-
 
         Intent intent = getIntent();
 
@@ -155,7 +128,7 @@ public class KidActivity extends AppCompatActivity {
         //databaseKids = FirebaseDatabase.getInstance().getReference().child("Kids").child(keyUser);
 
 
-        btnCreate.setOnClickListener(new View.OnClickListener() {
+        addKidsActivityBinding.btnKidUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (awesomeValidation.validate()) {
@@ -203,7 +176,7 @@ public class KidActivity extends AppCompatActivity {
                             });
                             for (DataSnapshot dataSnap : dataSnapshot.getChildren()) {
 
-                                if (dataSnap.child("idNumber").getValue().toString().equals(kididNumber)) {
+                                if (dataSnap.child("idNumber").getValue().toString().equals(addKidsActivityBinding.editkidid)) {
                                     counter = 1;
                                 } else {
 
@@ -247,16 +220,14 @@ public class KidActivity extends AppCompatActivity {
 
     public void addkids(String orgName) {
         final String kidsKidsAllocated;
-        kidsKidsAllocated = classname.trim();
-        kidStringname = kidname.getText().toString().trim();
-        kidStringsurname = kidsurname.getText().toString().trim();
-        kidStringaddress = kidaddress.getText().toString().trim();
-        kididStringNumber = kididNumber.getText().toString().trim();
-        kidStringparentid = kidparentid.getText().toString().trim();
-        //  kidsKidsAllocated = kidAllocated.getText().toString().trim();
-        kidsYearRegistered = registeredYears.getText().toString().trim();
 
-       //  selectedId = radKidGender.getCheckedRadioButtonId();
+        kidsKidsAllocated = classname.trim();
+        kidStringname = addKidsActivityBinding.editname.getText().toString().trim();
+        kidStringsurname = addKidsActivityBinding.editSurname.getText().toString().trim();
+        kidStringaddress = addKidsActivityBinding.editAdress.getText().toString().trim();
+        kididStringNumber = addKidsActivityBinding.editkidid.getText().toString().trim();
+        kidStringparentid = addKidsActivityBinding.editParentId.getText().toString().trim();
+        kidsYearRegistered = addKidsActivityBinding.editYear.getText().toString().trim();
 
 
             if (!kididStringNumber.matches(kidStringparentid)) {
@@ -275,13 +246,7 @@ public class KidActivity extends AppCompatActivity {
                     // Toast.makeText(context, "Kid added ", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplication(), AdminTabbedActivity.class));
                 }
-               // else
-                    /*
-                    {
-                    Toast.makeText(this, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
-                }
-*/
-           // }
+
             else {
                 Toast.makeText(this, "Kid id cant be the same as parent", Toast.LENGTH_SHORT).show();
             }

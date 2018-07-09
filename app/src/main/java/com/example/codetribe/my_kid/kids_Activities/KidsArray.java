@@ -40,30 +40,23 @@ public class KidsArray extends ArrayAdapter<Kids> {
 
         TextView textKdName = (TextView) listViewItem.findViewById(R.id.textKidsName);
 
-      //  TextView textClass = (TextView) listViewItem.findViewById(R.id.textClass);
         ImageView kidsImage = (ImageView) listViewItem.findViewById(R.id.adminTeacher_Pic);
 
 
         Kids kids = kidsList.get(position);
 
         if (kids.getProfilePic().equals("")) {
-          //  Glide.with(getContext()).load(kids.getProfilePic()).centerCrop().into(kidsImage);
             GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(kidsImage);
             Glide.with(getContext()).load(R.drawable.ic_person_black_24dp).into(imageViewTarget);
 
-        }
-        else if(!kids.getProfilePic().equals("")) {
+        } else if (!kids.getProfilePic().equals("")) {
 
             Glide.with(context).load(kids.getProfilePic())
                     .thumbnail(0.5f).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(kidsImage);
 
-
-            //kidsImage.setImageResource(R.drawable.ic_person_black_24dp);
         }
-        textKdName.setText(kids.getSurname()  + " " + kids.getName() +"\n" + "Class "+ kids.getKidsGrade()  );
-        // surname.setText(kids.getSurname());
-       // textClass.setText(kids.getKidsGrade());
+        textKdName.setText(kids.getSurname() + " " + kids.getName() + "\n" + "Class " + kids.getKidsGrade());
 
         return listViewItem;
     }

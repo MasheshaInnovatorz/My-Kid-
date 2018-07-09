@@ -29,8 +29,6 @@
 
     </LinearLayout>
 
-
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_teacher_admin"
         android:layout_width="wrap_content"

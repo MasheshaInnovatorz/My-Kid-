@@ -6,7 +6,7 @@
 
         <item
             android:id="@+id/menu_admin_addclass"
-            android:icon="@mipmap/ic_add_class"
+            android:icon="@drawable/add_class_24dp"
             android:checkable="true"
             android:title="Add Class"
 
@@ -23,20 +23,16 @@
         <item
             android:id="@+id/menu_about_us"
             android:title="About Us"
+            android:icon="@drawable/aboutus_24dp"
             android:checkable="true"
              />
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/menu_admin_logout"
-            android:icon="@mipmap/ic_power"
+            android:icon="@drawable/logout_24dp"
             android:checkable="true"
             android:title="Logout"
              />
     </group>
 
-    <item android:title="Creche Class">
-        <menu>
-
-        </menu>
-    </item>
 </menu>

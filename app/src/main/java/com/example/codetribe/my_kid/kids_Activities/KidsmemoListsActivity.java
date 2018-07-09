@@ -128,7 +128,6 @@ public class KidsmemoListsActivity extends AppCompatActivity {
         }
     }
 
-
     private void Infor(DataSnapshot kidSnapshot, DataSnapshot dataSnapshot, String userId) {
 
         Iterator iterator = dataSnapshot.getChildren().iterator();

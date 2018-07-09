@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.codetribe.my_kid.parent_Activities.CreateParentProfile">
+<RelativeLayout
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.codetribe.my_kid.parent_Activities.CreateParentProfile">
+    >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -28,7 +32,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_height="wrap_content">
 
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/update_fullname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -56,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:textSize="16dp"
                     android:id="@+id/update_Surname"
                     android:layout_width="match_parent"
@@ -87,7 +91,7 @@
                 android:id="@+id/input_update_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:textSize="16dp"
                     android:id="@+id/update_address"
                     android:layout_width="match_parent"
@@ -117,7 +121,7 @@
                 android:id="@+id/input_update_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:textSize="16dp"
                     android:id="@+id/update_city"
                     android:layout_width="match_parent"
@@ -150,7 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:textSize="16dp"
                     android:id="@+id/update_phone"
                     android:layout_width="match_parent"
@@ -183,3 +187,4 @@
     </ScrollView>
 
 </RelativeLayout>
+</layout>

@@ -2,6 +2,7 @@ package com.example.codetribe.my_kid.account_Activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.codetribe.my_kid.R;
+import com.example.codetribe.my_kid.databinding.ActivityUpdateProfileBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,24 +28,8 @@ public class UpdateProfile extends AppCompatActivity {
 
     private AwesomeValidation awesomeValidation;
 
-    //edit text declaration
-    private EditText
-            Name,
-            Surname,
-            Address,
-            City,
-            phoneNumber;
-
     //firebase user
     private FirebaseUser user;
-
-    //validdation
-    private TextInputLayout
-            inputLayoutName,
-            inputLayoutSurname,
-            inputLayoutCity,
-            inputLayoutAddress,
-            inputLayoutNumber;
 
     //Firebase
     private DatabaseReference databaseReference, mdatabaseReference;
@@ -54,11 +40,13 @@ public class UpdateProfile extends AppCompatActivity {
 
     //progress bar
     private ProgressDialog progressDialog;
+    private ActivityUpdateProfileBinding updateProfileBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_profile);
+        //setContentView(R.layout.activity_update_profile);
+        updateProfileBinding = DataBindingUtil.setContentView(this,R.layout.activity_update_profile);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -88,11 +76,11 @@ public class UpdateProfile extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //Infor(dataSnapshot,user.getUid());
 
-                Name.setText(dataSnapshot.child("userName").getValue().toString());
-                Surname.setText(dataSnapshot.child("userSurname").getValue().toString());
-                phoneNumber.setText(dataSnapshot.child("userContact").getValue().toString());
-                Address.setText(dataSnapshot.child("userAddress").getValue().toString());
-                City.setText(dataSnapshot.child("userCity").getValue().toString());
+                updateProfileBinding.updateFullname.setText(dataSnapshot.child("userName").getValue().toString());
+                updateProfileBinding.updateSurname.setText(dataSnapshot.child("userSurname").getValue().toString());
+                updateProfileBinding.updatePhone.setText(dataSnapshot.child("userContact").getValue().toString());
+                updateProfileBinding.updateAddress.setText(dataSnapshot.child("userAddress").getValue().toString());
+                updateProfileBinding.updateCity.setText(dataSnapshot.child("userCity").getValue().toString());
             }
 
             @Override
@@ -101,12 +89,6 @@ public class UpdateProfile extends AppCompatActivity {
             }
         });
 
-        //Edit lText intialization
-        Name = (EditText) findViewById(R.id.update_fullname);
-        Surname = (EditText) findViewById(R.id.update_Surname);
-        Address = (EditText) findViewById(R.id.update_address);
-        City = (EditText) findViewById(R.id.update_city);
-        phoneNumber = (EditText) findViewById(R.id.update_phone);
 
 
         //adding validation to edittexts
@@ -116,12 +98,6 @@ public class UpdateProfile extends AppCompatActivity {
         awesomeValidation.addValidation(this, R.id.update_city, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.city);
         awesomeValidation.addValidation(this, R.id.update_phone, "^[+]?[0-9]{10,13}$", R.string.contacterror);
 
-        //TextLayout
-        inputLayoutName = (TextInputLayout) findViewById(R.id.input_update_fullname);
-        inputLayoutSurname = (TextInputLayout) findViewById(R.id.input_update_Surname);
-        inputLayoutAddress = (TextInputLayout) findViewById(R.id.input_update_address);
-        inputLayoutCity = (TextInputLayout) findViewById(R.id.input_update_city);
-        inputLayoutNumber = (TextInputLayout) findViewById(R.id.input_update_phoneNo);
 
 
 
@@ -155,11 +131,11 @@ public class UpdateProfile extends AppCompatActivity {
                 progressDialog.setMessage("Wait Updating Your Profile");
                 progressDialog.show();
 
-                userNameString = Name.getText().toString().trim();
-                userContactString = phoneNumber.getText().toString().trim();
-                inputSurnameString = Surname.getText().toString().trim();
-                inputAddressString = Address.getText().toString().trim();
-                inputCityString = City.getText().toString().trim();
+                userNameString = updateProfileBinding.updateFullname.getText().toString().trim();
+                userContactString = updateProfileBinding.updatePhone.getText().toString().trim();
+                inputSurnameString = updateProfileBinding.updateSurname.getText().toString().trim();
+                inputAddressString = updateProfileBinding.updateAddress.getText().toString().trim();
+                inputCityString = updateProfileBinding.updateCity.getText().toString().trim();
 
 
                 UserProfile update = new UserProfile();
@@ -182,7 +158,7 @@ public class UpdateProfile extends AppCompatActivity {
                         if (dataSnapshot.exists()) {
                             progressDialog.dismiss();
                         }else{
-                            Toast.makeText(UpdateProfile.this, "Informatio you are trying to upload doesnt exist", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UpdateProfile.this, "Information you are trying to upload doesnt exist", Toast.LENGTH_SHORT).show();
                         }
 
                     }

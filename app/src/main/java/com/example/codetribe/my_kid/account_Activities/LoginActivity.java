@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.databinding.DataBindingUtil;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.codetribe.my_kid.R;
 import com.example.codetribe.my_kid.admin_Activities.AdminTabbedActivity;
+import com.example.codetribe.my_kid.databinding.LoginActivityBinding;
 import com.example.codetribe.my_kid.organization_Activities.SignUpOrganisationActivity;
 import com.example.codetribe.my_kid.parent_Activities.CreateParentProfile;
 import com.example.codetribe.my_kid.parent_Activities.ParentTabbedActivity;
@@ -63,22 +65,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     //progress bar
     private ProgressDialog progressDialog;
 
-
     //declaration of variables
-    private TextView forgot;
     public static final String username = "usenameID";
     public static final String usersurname = "userSurname";
-    private EditText editEmail, editPassword;
-    private TextInputLayout passwordLayout;
-    private TextInputLayout emailLayout;
     private String uid = "some-uid";
-    private TextInputLayout input_email;
-    private TextView login_Button, loginsignup_;
+
+    private LoginActivityBinding loginBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_activity);
+        loginBinding = DataBindingUtil.setContentView(this, R.layout.login_activity);
 
         //shared preferences for remembering an email entered
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -88,13 +85,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
         myLayout = (RelativeLayout) findViewById(R.id.MyRelative);
-        //variables initialization
-        loginsignup_ = (TextView) findViewById(R.id.loginsignup);
-        editEmail = (EditText) findViewById(R.id.login_email);
-        editPassword = (EditText) findViewById(R.id.login_password);
-        forgot = (TextView) findViewById(R.id.forget_password);
-        login_Button = (TextView) findViewById(R.id.login);
-        input_email = (TextInputLayout) findViewById(R.id.input_reg_fullname);
 
 
         //Renaming of title bar
@@ -113,10 +103,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //progress bar
         progressDialog = new ProgressDialog(this);
 
-        editEmail.setText(shared_email);
 
         //user registration
-        loginsignup_.setOnClickListener(new View.OnClickListener() {
+        loginBinding.loginsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -218,9 +207,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         };
 
         //setOnclick
-        login_Button.setOnClickListener(this);
+        loginBinding.login.setOnClickListener(this);
         //signup.setOnClickListener(this);
-        forgot.setOnClickListener(this);
+        loginBinding.forgetPassword.setOnClickListener(this);
     }
 
     @Override
@@ -234,7 +223,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } else {
             Snackbar snackbar = Snackbar.make(findViewById(R.id.myCoordinatorLayout), "You  are connected to internet", Snackbar.LENGTH_LONG);
             snackbar.show();
-            // Toast.makeText(this, "You  are connected to internet", Toast.LENGTH_SHORT).show();
         }
         progressDialog.setMessage("Wait While Logging In");
         progressDialog.show();
@@ -270,7 +258,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        if (view == login_Button) {
+        if (view == loginBinding.login) {
 
             if (awesomeValidation.validate()) {
                 userLogin();
@@ -279,7 +267,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         }
 
-        if (view == forgot) {
+        if (view == loginBinding.forgetPassword) {
             finish();
             // startActivity(new Intent(this, UploadKidsMemo.class));
             Intent i = new Intent(LoginActivity.this, ResetPassword.class);
@@ -304,17 +292,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (dataUser.child("isVerified").getValue().toString().equals("unverified")) {
                     Intent intentUser = new Intent(LoginActivity.this, CreateParentProfile.class);
 
-                    //if (dataUser.child("emailUser").getValue().toString().trim().equals(emailForVer)) {
-
-                    //if (dataUser.child("isVerified").getValue().toString().equals("unverified")) {
-                    //Intent intentUser = new Intent(LoginActivity.this, CreateParentProfile.class);
                     intentUser.putExtra("User_KEY", dataUser.child("userKey").getValue().toString());
                     Toast.makeText(this, dataUser.child("userKey").getValue().toString(), Toast.LENGTH_SHORT).show();
                     startActivity(intentUser);
                 } else {
-
-                    //  Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
-                    //Intent intent = new Intent(LoginActivity.this, ParentActivity.class);
                     Intent intennt = new Intent(LoginActivity.this, ParentTabbedActivity.class);
                     intennt.putExtra("parent_id", dataUser.child("userIdNumber").getValue().toString());
                     //intent.putExtra("kid_id", dataUser.child("id").getValue().toString());
@@ -346,12 +327,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void userLogin() {
         final String userEmailString, userPasswordString;
 
-        userEmailString = editEmail.getText().toString().trim();
-        userPasswordString = editPassword.getText().toString().trim();
-
+        userEmailString = loginBinding.loginEmail.getText().toString().trim();
+        userPasswordString = loginBinding.loginPassword.getText().toString().trim();
 
         if (userPasswordString.isEmpty() || userPasswordString.length() < 6) {
-            editPassword.setError("Password cannot be less than 6 characters!");
+            loginBinding.loginPassword.setError("Password cannot be less than 6 characters!");
 
         } else {
 
@@ -376,15 +356,4 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-/*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-
-            this.finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-    */
 }

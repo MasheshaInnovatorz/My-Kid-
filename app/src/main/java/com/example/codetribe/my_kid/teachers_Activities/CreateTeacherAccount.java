@@ -3,6 +3,7 @@ package com.example.codetribe.my_kid.teachers_Activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.codetribe.my_kid.R;
+import com.example.codetribe.my_kid.databinding.ActivityCreateTeacherAccountBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -39,78 +41,55 @@ import java.util.List;
 public class CreateTeacherAccount extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPrefEditor;
-    private TextInputLayout inputLayoutName, inputLayoutsurname, inputLayoutcontact, inputLayoutclassroom, inputLayoutidnumber, inputLayoutemail, inputLayoutpassword;
-    private String userNameString, userSurnameString, usercontactString, userprovinceString, userclassroomString, useridnumberString, usergenderString, useremailString, userpasswordString, userAddressString, userCityString;
-    private EditText name, surname, contact, idnumber, useremail, userpassword, userAddress, userCity;
+    private String userNameString, userSurnameString, usercontactString, userprovinceString,
+            userclassroomString, useridnumberString, usergenderString, useremailString, userpasswordString, userAddressString, userCityString;
     private RadioGroup gender;
     private String keyTeacher;
     private TextView createteacher;
     private String role = "teacher";
     private FirebaseAuth auth;
 
-
     //spinner
     private ArrayAdapter<String> dataAdapter;
     private List<String> list;
-
 
     private String userId;
     //city and province
     private ArrayAdapter<String> adapter;
 
-
-    private String orgId,teacherclass;
+    private String orgId, teacherclass;
     private int positions;
     private String crechCity;
     private String province = "";
-    private Spinner spinnerCity, spinnerProvinces,classroom;
+    private Spinner spinnerCity, spinnerProvinces, classroom;
 
     private ProgressDialog progressDialog;
     //Firebase
-    private DatabaseReference teacherReference, mDatabaseRef, mCrecheRef, orgNameReference,currentUserRef,kidclassdata;
+    private DatabaseReference teacherReference, mDatabaseRef, mCrecheRef, orgNameReference, currentUserRef, kidclassdata;
     private RadioButton gnrteacher;
 
     //defining AwesomeValidation object
     private AwesomeValidation awesomeValidation;
 
+    private ActivityCreateTeacherAccountBinding activityTeacherBinding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create__teacher__account);
+       activityTeacherBinding = DataBindingUtil.setContentView(this,R.layout.activity_create_teacher_account);
 
 
         getSupportActionBar().setTitle("Add Teacher");
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-        inputLayoutName = (TextInputLayout) findViewById(R.id.inputteacherfullname);
-        inputLayoutsurname = (TextInputLayout) findViewById(R.id.inputteacherSurname);
-        inputLayoutcontact = (TextInputLayout) findViewById(R.id.inputteacherconatct);
-       // inputLayoutclassroom = (TextInputLayout) findViewById(R.id.inputteacherclass);
-        inputLayoutidnumber = (TextInputLayout) findViewById(R.id.inputteacheridnumber);
-        inputLayoutemail = (TextInputLayout) findViewById(R.id.inputteacheremail);
-        inputLayoutpassword = (TextInputLayout) findViewById(R.id.inputteacherPassword);
-
-        name = (EditText) findViewById(R.id.teachername);
-        surname = (EditText) findViewById(R.id.teachersurname);
-        contact = (EditText) findViewById(R.id.teachercontact);
-
-        idnumber = (EditText) findViewById(R.id.teacherid);
-        useremail = (EditText) findViewById(R.id.teacheremail);
-        userpassword = (EditText) findViewById(R.id.teacherpassword);
-        gender = (RadioGroup) findViewById(R.id.teachergenders);
-        userAddress = (EditText) findViewById(R.id.teacherAddress);
-
-        userId= FirebaseAuth.getInstance().getCurrentUser().getUid();
+        userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         //class
         classroom = (Spinner) findViewById(R.id.teacherclass);
         list = new ArrayList<String>();
         dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
 
         progressDialog = new ProgressDialog(this);
-        createteacher = (TextView) findViewById(R.id.Create_Teacher_Account);
-
 
         //database
         kidclassdata = FirebaseDatabase.getInstance().getReference("kidclass").child(userId);
@@ -118,7 +97,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
         currentUserRef = FirebaseDatabase.getInstance().getReference("Users").child(userId);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String shared_email = sharedPreferences.getString("email", "");
-        useremail.setText(shared_email);
+        activityTeacherBinding.teacheremail.setText(shared_email);
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
@@ -131,10 +110,10 @@ public class CreateTeacherAccount extends AppCompatActivity {
         //  awesomeValidation.addValidation(this, R.id.teacherCity, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.city);
         awesomeValidation.addValidation(this, R.id.teachercontact, "^[+]?[0-9]{10,13}$", R.string.mobileerror);
         awesomeValidation.addValidation(this, R.id.teacherid, "^^[0-9]{13}$", R.string.iderror);
-       // awesomeValidation.addValidation(this, R.id.teacherclass, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}[0-9]$", R.string.classerror);
+        // awesomeValidation.addValidation(this, R.id.teacherclass, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}[0-9]$", R.string.classerror);
 
         //classs
-        classroom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        activityTeacherBinding.teacherclass.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 teacherclass = (String) adapterView.getItemAtPosition(i);
@@ -147,14 +126,12 @@ public class CreateTeacherAccount extends AppCompatActivity {
         });
 
         //provinces
-        spinnerProvinces = (Spinner) findViewById(R.id.teacherProvincesSpinner);
         ArrayAdapter<String> provincesadapter = new ArrayAdapter<String>(CreateTeacherAccount.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_Province));
         provincesadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerProvinces.setAdapter(provincesadapter);
+        activityTeacherBinding.teacherProvincesSpinner.setAdapter(provincesadapter);
 
         //cities
-        spinnerCity = (Spinner) findViewById(R.id.teacherCitySpinner);
-        spinnerProvinces.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        activityTeacherBinding.teacherProvincesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
 
@@ -166,43 +143,43 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                         adapter = new ArrayAdapter<String>(CreateTeacherAccount.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_limpopo));
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinnerCity.setAdapter(adapter);
+                        activityTeacherBinding.teacherCitySpinner.setAdapter(adapter);
 
                         break;
                     case "Gauteng":
 
                         adapter = new ArrayAdapter<String>(CreateTeacherAccount.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_gauteng));
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinnerCity.setAdapter(adapter);
+                        activityTeacherBinding.teacherCitySpinner.setAdapter(adapter);
                         break;
                     case "Western Cape":
 
                         adapter = new ArrayAdapter<String>(CreateTeacherAccount.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_western_cape));
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinnerCity.setAdapter(adapter);
+                        activityTeacherBinding.teacherCitySpinner.setAdapter(adapter);
                         break;
                     case "Northern Cape":
 
                         adapter = new ArrayAdapter<String>(CreateTeacherAccount.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_Northern_Cape));
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinnerCity.setAdapter(adapter);
+                        activityTeacherBinding.teacherCitySpinner.setAdapter(adapter);
                         break;
                     case "Eastern Cape":
 
                         adapter = new ArrayAdapter<String>(CreateTeacherAccount.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_eastern_Cape));
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinnerCity.setAdapter(adapter);
+                        activityTeacherBinding.teacherCitySpinner.setAdapter(adapter);
                         break;
                     case "Free State":
                         adapter = new ArrayAdapter<String>(CreateTeacherAccount.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_free_state));
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinnerCity.setAdapter(adapter);
+                        activityTeacherBinding.teacherCitySpinner.setAdapter(adapter);
                         break;
 
                     case "KwaZulu-Natal":
                         adapter = new ArrayAdapter<String>(CreateTeacherAccount.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_Kwazulu_Natal));
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinnerCity.setAdapter(adapter);
+                        activityTeacherBinding.teacherCitySpinner.setAdapter(adapter);
                         break;
                     default:
                         Toast.makeText(CreateTeacherAccount.this, "PLease select one of the provinces", Toast.LENGTH_SHORT).show();
@@ -217,8 +194,6 @@ public class CreateTeacherAccount extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
                 // TODO Auto-generated method stub
-
-                //Toast.makeText(CreateTeacherAccount.this, "Please Select City", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -239,8 +214,6 @@ public class CreateTeacherAccount extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
                 // TODO Auto-generated method stub
-
-              //  Toast.makeText(CreateTeacherAccount.this, "Please Select City", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -259,7 +232,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
         orgNameReference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
 
 
-        createteacher.setOnClickListener(new View.OnClickListener() {
+        activityTeacherBinding.CreateTeacherAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 orgNameReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -269,22 +242,20 @@ public class CreateTeacherAccount extends AppCompatActivity {
                         orgId = dataSnapshot.child("userOrgId").getValue().toString();
 
                         if (awesomeValidation.validate()) {
-                            if (!classroom.getSelectedItem().toString().trim().equals("Select Class")) {
-                            progressDialog.setMessage("Wait While Adding Teacher");
-                            progressDialog.show();
-                            saveParent(org_name);
-                            progressDialog.dismiss();
+                            if (!activityTeacherBinding.teacherclass.getSelectedItem().toString().trim().equals("Select Class")) {
+                                progressDialog.setMessage("Wait While Adding Teacher");
+                                progressDialog.show();
+                                saveParent(org_name);
+                                progressDialog.dismiss();
 
-                            //  Toast.makeText(CreateTeacherAccount.this, "Teacher added", Toast.LENGTH_LONG).show();
-                        } else
+                                //  Toast.makeText(CreateTeacherAccount.this, "Teacher added", Toast.LENGTH_LONG).show();
+                            } else
 
                             {
                                 Toast.makeText(CreateTeacherAccount.this, "please select a class or add class ", Toast.LENGTH_SHORT).show();
 
                             }
-                        }
-                            else
-                            {
+                        } else {
 
                             Toast.makeText(CreateTeacherAccount.this, "Make sure you fix all the error shown in your input space", Toast.LENGTH_LONG).show();
                         }
@@ -295,7 +266,6 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                     }
                 });
-
 
             }
         });
@@ -314,22 +284,20 @@ public class CreateTeacherAccount extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-
-                String email = useremail.getText().toString().trim();
-                final String password = userpassword.getText().toString().trim();
-                userNameString = name.getText().toString().trim();
-                userSurnameString = surname.getText().toString().trim();
-                usercontactString = contact.getText().toString().trim();
-                useridnumberString = idnumber.getText().toString().trim();
-                userAddressString = userAddress.getText().toString().trim();
-                // userCityString = userCity.getText().toString().trim();
+                String email = activityTeacherBinding.teacheremail.getText().toString().trim();
+                final String password = activityTeacherBinding.teacherpassword.getText().toString().trim();
+                userNameString = activityTeacherBinding.teachername.getText().toString().trim();
+                userSurnameString = activityTeacherBinding.teachersurname.getText().toString().trim();
+                usercontactString = activityTeacherBinding.teachercontact.getText().toString().trim();
+                useridnumberString = activityTeacherBinding.teacherid.getText().toString().trim();
+                userAddressString = activityTeacherBinding.teacherAddress.getText().toString().trim();
 
                 userclassroomString = teacherclass.trim();
                 userCityString = crechCity.trim();
                 userprovinceString = province.trim();
 
 
-                int selectedId = gender.getCheckedRadioButtonId();
+                int selectedId = activityTeacherBinding.teachergenders.getCheckedRadioButtonId();
 
                 if (password.isEmpty() || password.length() < 6) {
                     Toast.makeText(CreateTeacherAccount.this, "Password cannot be less than 6 characters!", Toast.LENGTH_SHORT).show();
@@ -350,7 +318,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                                             //Storing Information
                                             TeacherClassAcc teacher = new TeacherClassAcc(userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, task.getResult().getUser().getUid().toString().trim(), task.getResult().getUser().getEmail().toString().trim(), password, role, "verified", orgNames, userAddressString, userprovinceString, userCityString, orgId);
-                                            Toast.makeText(CreateTeacherAccount.this,orgId, Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(CreateTeacherAccount.this, orgId, Toast.LENGTH_SHORT).show();
                                             mDatabaseRef.child(task.getResult().getUser().getUid().toString().trim()).setValue(teacher);
 
                                         }
@@ -417,7 +385,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                             list.add(classSnapshot.child("className").getValue().toString());
 
-                          //  Toast.makeText(CreateTeacherAccount.this, classSnapshot.child("className").getValue().toString(), Toast.LENGTH_SHORT).show();
+                            //  Toast.makeText(CreateTeacherAccount.this, classSnapshot.child("className").getValue().toString(), Toast.LENGTH_SHORT).show();
 
                             dataAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
                             //simple_spinner_dropdown_item
@@ -428,9 +396,6 @@ public class CreateTeacherAccount extends AppCompatActivity {
                             //      Toast.makeText(KidActivity.this, "There is no Class", Toast.LENGTH_SHORT).show();
                             //   }
                         }
-
-
-
 
 
                     }
@@ -450,7 +415,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
             }
         });
         dataAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
-        classroom.setAdapter(dataAdapter);
+        activityTeacherBinding.teacherclass.setAdapter(dataAdapter);
     }
 }
 

@@ -2,6 +2,7 @@ package com.example.codetribe.my_kid.kids_Activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.codetribe.my_kid.R;
 import com.example.codetribe.my_kid.account_Activities.ViewProfile;
+import com.example.codetribe.my_kid.databinding.ActivityEditKidsProfileBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,21 +24,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class EditKidsProfile extends AppCompatActivity {
 
-    private TextInputLayout h_allergies, h_dietRequirements, h_doctorsRecomendations, h_kidHeight, h_bodyWeight;
-
     private AwesomeValidation awesomeValidation;
-
-    public EditText allergies,
-            dietRequirements,
-            doctorsRecomendations,
-            kidHeight,
-            bodyWeight,
-            kid_name,
-            kid_surname,
-            kid_address;
-
-
     private ProgressDialog progressDialog;
+
     String genderString, keyUser;
     String s_allergies,
             s_dietRequirements,
@@ -46,16 +36,15 @@ public class EditKidsProfile extends AppCompatActivity {
             s_namekid,
             s_surnamekid,
             s_addresskid;
-
-
     //database
     DatabaseReference databaseKids;
+    //editBinding
+    private ActivityEditKidsProfileBinding editKidsProfileBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_kids_profile);
-
+        editKidsProfileBinding = DataBindingUtil.setContentView(this, R.layout.activity_edit_kids_profile);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -64,19 +53,6 @@ public class EditKidsProfile extends AppCompatActivity {
         //validation
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         progressDialog = new ProgressDialog(this);
-
-        //extra information
-        allergies = (EditText) findViewById(R.id.edit_Allergies);
-        dietRequirements = (EditText) findViewById(R.id.diet_Requirements);
-        doctorsRecomendations = (EditText) findViewById(R.id.doctorsRecomendations);
-        kidHeight = (EditText) findViewById(R.id.height);
-        bodyWeight = (EditText) findViewById(R.id.edit_BodyWeight);
-
-        //kids profile
-        kid_name = (EditText) findViewById(R.id.kid_name);
-        kid_surname = (EditText) findViewById(R.id.kid_surname);
-        kid_address = (EditText) findViewById(R.id.kid_address);
-
 
         Intent intent = getIntent();
         keyUser = intent.getStringExtra("kidId");
@@ -89,25 +65,25 @@ public class EditKidsProfile extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 //kid profile
-                kid_name.setText(dataSnapshot.child("name").getValue().toString());
-                kid_surname.setText(dataSnapshot.child("surname").getValue().toString());
-                kid_address.setText(dataSnapshot.child("address").getValue().toString());
+                editKidsProfileBinding.kidName.setText(dataSnapshot.child("name").getValue().toString());
+                editKidsProfileBinding.kidSurname.setText(dataSnapshot.child("surname").getValue().toString());
+                editKidsProfileBinding.kidAddress.setText(dataSnapshot.child("address").getValue().toString());
 
                 //extra kid info
                 if (dataSnapshot.child("allergies").getValue().toString() != " ")
-                    allergies.setText(dataSnapshot.child("allergies").getValue().toString());
+                    editKidsProfileBinding.editAllergies.setText(dataSnapshot.child("allergies").getValue().toString());
 
                 if (dataSnapshot.child("dietRequirements").getValue().toString() != " ")
-                    dietRequirements.setText(dataSnapshot.child("dietRequirements").getValue().toString());
+                    editKidsProfileBinding.dietRequirements.setText(dataSnapshot.child("dietRequirements").getValue().toString());
 
                 if (dataSnapshot.child("doctorsRecomendations").getValue().toString() != " ")
-                    doctorsRecomendations.setText(dataSnapshot.child("doctorsRecomendations").getValue().toString());
+                    editKidsProfileBinding.doctorsRecomendations.setText(dataSnapshot.child("doctorsRecomendations").getValue().toString());
 
                 if (dataSnapshot.child("kidHeight").getValue().toString() != " ")
-                    kidHeight.setText(dataSnapshot.child("kidHeight").getValue().toString());
+                    editKidsProfileBinding.height.setText(dataSnapshot.child("kidHeight").getValue().toString());
 
                 if (dataSnapshot.child("bodyWeight").getValue().toString() != " ")
-                    bodyWeight.setText(dataSnapshot.child("bodyWeight").getValue().toString());
+                    editKidsProfileBinding.editBodyWeight.setText(dataSnapshot.child("bodyWeight").getValue().toString());
 
             }
 
@@ -125,22 +101,21 @@ public class EditKidsProfile extends AppCompatActivity {
         awesomeValidation.addValidation(this, R.id.edit_Allergies, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.allergies_error);
         awesomeValidation.addValidation(this, R.id.diet_Requirements, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.dietRequirements_error);
         awesomeValidation.addValidation(this, R.id.doctorsRecomendations, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.doctorsRecomendations_error);
-        // awesomeValidation.addValidation(this, R.id.edit_BodyWeight, "^[0-9]", R.string.bodyWeight_error);
-        //    awesomeValidation.addValidation(this, R.id.height, "^[0-9]", R.string.kidHeight_error);
 
     }
 
+
     private void saveKids() {
         if (awesomeValidation.validate()) {
-            s_namekid = kid_name.getText().toString().trim();
-            s_surnamekid = kid_surname.getText().toString().trim();
-            s_addresskid = kid_address.getText().toString().trim();
+            s_namekid = editKidsProfileBinding.kidName.getText().toString().trim();
+            s_surnamekid = editKidsProfileBinding.kidSurname.getText().toString().trim();
+            s_addresskid = editKidsProfileBinding.kidAddress.getText().toString().trim();
 
-            s_allergies = allergies.getText().toString().trim();
-            s_dietRequirements = dietRequirements.getText().toString().trim();
-            s_doctorsRecomendations = doctorsRecomendations.getText().toString().trim();
-            s_kidHeight = kidHeight.getText().toString().trim();
-            s_bodyWeight = bodyWeight.getText().toString().trim();
+            s_allergies = editKidsProfileBinding.editAllergies.getText().toString().trim();
+            s_dietRequirements = editKidsProfileBinding.dietRequirements.getText().toString().trim();
+            s_doctorsRecomendations = editKidsProfileBinding.doctorsRecomendations.getText().toString().trim();
+            s_kidHeight = editKidsProfileBinding.height.getText().toString().trim();
+            s_bodyWeight = editKidsProfileBinding.editBodyWeight.getText().toString().trim();
 
             databaseKids.child("name").setValue(s_namekid);
             databaseKids.child("surname").setValue(s_surnamekid);

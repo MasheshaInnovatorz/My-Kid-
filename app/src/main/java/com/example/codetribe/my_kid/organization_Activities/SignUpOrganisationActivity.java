@@ -3,6 +3,7 @@ package com.example.codetribe.my_kid.organization_Activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -25,6 +26,7 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.codetribe.my_kid.R;
 import com.example.codetribe.my_kid.admin_Activities.AdminTabbedActivity;
+import com.example.codetribe.my_kid.databinding.ActivitySignUpOrganisationBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -45,8 +47,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPrefEditor;
-    private DatabaseReference mOrganizationRef, orgValidationRef,databasekidclass;
-    private TextView signup;
+    private DatabaseReference mOrganizationRef, orgValidationRef, databasekidclass;
     private boolean valName;
     private int positions;
     private String province = "";
@@ -54,48 +55,37 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
     private String name;
 
     private ArrayAdapter<String> adapter;
-    private EditText orgaEmail,
-            crechPostalCode,
-            orgPassword,
-            crechName,
-            crechAddress,
-            crechPhoneNo,
-            adminName,
-            adminSurname,
-            adminIdNo;
+
     private RadioButton radGender;
-    private Spinner spinnerCity, spinnerProvinces;
+
     private ProgressDialog progressDialog;
 
-    private String crechCity="";
+    private String crechCity = "";
 
     //defining AwesomeValidation object
     private AwesomeValidation awesomeValidation;
-    private RadioButton genderMale, genderFemale;
 
-    private RadioGroup gender;
     //firebase Authentification
     private FirebaseAuth orgAuth;
-//user
+    //user
     private FirebaseUser user;
+
+    private ActivitySignUpOrganisationBinding organizationBinding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up_organisation);
+        organizationBinding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up_organisation);
 
         getSupportActionBar().setTitle("Register Organisation");
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         progressDialog = new ProgressDialog(this);
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);//shared
-        signup = (TextView) findViewById(R.id.btnRegisterCreche);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
         orgAuth = FirebaseAuth.getInstance();
-
-        user=FirebaseAuth.getInstance().getCurrentUser();
-
-       // crecheDataRef = FirebaseDatabase.getInstance().getReference("Creche");
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         mOrganizationRef = FirebaseDatabase.getInstance().getReference().child("Creche");
         orgValidationRef = FirebaseDatabase.getInstance().getReference().child("Creche");
@@ -103,29 +93,10 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
         //database
         databasekidclass = FirebaseDatabase.getInstance().getReference().child("kidclass");
 
-        orgaEmail = (EditText) findViewById(R.id.orgEmail);
-        orgPassword = (EditText) findViewById(R.id.orgPassword);
-        crechName = (EditText) findViewById(R.id.orgName);
-        crechAddress = (EditText) findViewById(R.id.orgStrName);
-        crechPhoneNo = (EditText) findViewById(R.id.orgTelNumber);
 
-
-        //provinces
-        spinnerProvinces = (Spinner) findViewById(R.id.orgProvinces);
         ArrayAdapter<String> provincesadapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_Province));
         provincesadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerProvinces.setAdapter(provincesadapter);
-
-        //cities
-        spinnerCity = (Spinner) findViewById(R.id.orgCitySpinner);
-
-
-        crechPostalCode = (EditText) findViewById(R.id.orgPostalCode);
-        adminName = (EditText) findViewById(R.id.orgAdminName);
-        adminSurname = (EditText) findViewById(R.id.orgAdminSurname);
-        adminIdNo = (EditText) findViewById(R.id.orgAdminIDNumber);
-        gender = (RadioGroup) findViewById(R.id.AdminGender);
-
+        organizationBinding.orgProvinces.setAdapter(provincesadapter);
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         //adding validation to edittexts
@@ -144,56 +115,55 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
         //province
 
-        spinnerProvinces.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        organizationBinding.orgProvinces.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
 
 
                 positions = position;
 
-
                 switch (getResources().getStringArray(R.array.city_Province)[positions]) {
                     case "Limpopo":
 
                         adapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_limpopo));
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinnerCity.setAdapter(adapter);
+                        organizationBinding.orgCitySpinner.setAdapter(adapter);
 
                         break;
                     case "Gauteng":
 
                         adapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_gauteng));
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinnerCity.setAdapter(adapter);
+                        organizationBinding.orgCitySpinner.setAdapter(adapter);
                         break;
                     case "Western Cape":
 
                         adapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_western_cape));
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinnerCity.setAdapter(adapter);
+                        organizationBinding.orgCitySpinner.setAdapter(adapter);
                         break;
                     case "Northern Cape":
 
                         adapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_Northern_Cape));
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinnerCity.setAdapter(adapter);
+                        organizationBinding.orgCitySpinner.setAdapter(adapter);
                         break;
                     case "Eastern Cape":
 
                         adapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_eastern_Cape));
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinnerCity.setAdapter(adapter);
+                        organizationBinding.orgCitySpinner.setAdapter(adapter);
                         break;
                     case "Free State":
                         adapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_free_state));
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinnerCity.setAdapter(adapter);
+                        organizationBinding.orgCitySpinner.setAdapter(adapter);
                         break;
 
                     case "KwaZulu-Natal":
                         adapter = new ArrayAdapter<String>(SignUpOrganisationActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city_Kwazulu_Natal));
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinnerCity.setAdapter(adapter);
+                        organizationBinding.orgCitySpinner.setAdapter(adapter);
                         break;
                     default:
                         Toast.makeText(SignUpOrganisationActivity.this, "PLease select one of the provinces", Toast.LENGTH_SHORT).show();
@@ -214,9 +184,8 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
         });
 
-
         //cities
-        spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        organizationBinding.orgCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg1, View arg2, int position1, long id1) {
 
@@ -224,58 +193,45 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
                 crechCity = getResources().getStringArray(R.array.city_list)[position1];
 
-
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
                 // TODO Auto-generated method stub
-
-                //Toast.makeText(SignUpOrganisationActivity.this, "Please Select City", Toast.LENGTH_SHORT).show();
             }
 
         });
 
-        signup.setOnClickListener(new View.OnClickListener() {
+        organizationBinding.btnRegisterCreche.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                final String email = orgaEmail.getText().toString().trim();
-                final String password = orgPassword.getText().toString().trim();
+                final String email = organizationBinding.orgEmail.getText().toString().trim();
+                final String password = organizationBinding.orgPassword.getText().toString().trim();
 
-/*
-                sharedPrefEditor = sharedPreferences.edit();
-                sharedPrefEditor.putString("email", email);
-                sharedPrefEditor.apply();
-*/
                 final String creshes, crechNameOrg, provinceorg, crechAddressOrg, cityInfor, crechPhoneNoOrg, adminNameOrg, adminSurnameOrg, adminIdNoOrg, crechRefNumberOrg, crechPostalCodeOrg, adminGender;
-                crechNameOrg = crechName.getText().toString().trim();
-                crechAddressOrg = crechAddress.getText().toString().trim();
+                crechNameOrg = organizationBinding.orgName.getText().toString().trim();
+                crechAddressOrg = organizationBinding.orgStrName.getText().toString().trim();
 
                 //spinner
 
                 cityInfor = crechCity.trim();
                 provinceorg = province.trim();
-                crechPhoneNoOrg = crechPhoneNo.getText().toString().trim();
-                adminNameOrg = adminName.getText().toString().trim();
-                adminSurnameOrg = adminSurname.getText().toString().trim();
-                adminIdNoOrg = adminIdNo.getText().toString().trim();
+                crechPhoneNoOrg = organizationBinding.orgTelNumber.getText().toString().trim();
+                adminNameOrg = organizationBinding.orgAdminName.getText().toString().trim();
+                adminSurnameOrg = organizationBinding.orgAdminSurname.getText().toString().trim();
+                adminIdNoOrg = organizationBinding.orgAdminIDNumber.getText().toString().trim();
 
-                // crechRefNumberOrg = crechRefNo.getText().toString().trim();
-                crechPostalCodeOrg = crechPostalCode.getText().toString().trim();
-/*
-                if (spinnerProvinces.getSelectedItem().toString().trim().equals("Select Province")) {
-                    Toast.makeText(SignUpOrganisationActivity.this, "Error", Toast.LENGTH_SHORT).show();
-                }
-                */
-                int selectedId = gender.getCheckedRadioButtonId();
+                crechPostalCodeOrg = organizationBinding.orgPostalCode.getText().toString().trim();
+
+                int selectedId = organizationBinding.AdminGender.getCheckedRadioButtonId();
 
                 if (password.isEmpty() || password.length() < 6) {
                     Toast.makeText(SignUpOrganisationActivity.this, "Password cannot be less than 6 characters!", Toast.LENGTH_SHORT).show();
                 } else {
 
                     if (awesomeValidation.validate()) {
-                        if (!spinnerProvinces.getSelectedItem().toString().trim().equals("Select Province"))  {
+                        if (!organizationBinding.orgProvinces.getSelectedItem().toString().trim().equals("Select Province")) {
 
                             if (selectedId != -1) {
                                 radGender = (RadioButton) findViewById(selectedId);
@@ -307,7 +263,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
                                                 OrganizationRegister orgReg = new OrganizationRegister(key, crechNameOrg, crechAddressOrg, cityInfor, provinceorg, email, crechPhoneNoOrg, password, crechPostalCodeOrg, userI);
 
-                                                CrecheOnwer_Class adminReg = new CrecheOnwer_Class(userI, adminNameOrg, adminSurnameOrg, adminIdNoOrg, adminGender, adminRole, email, crechNameOrg, crechPhoneNoOrg, cityInfor,key);
+                                                CrecheOnwer_Class adminReg = new CrecheOnwer_Class(userI, adminNameOrg, adminSurnameOrg, adminIdNoOrg, adminGender, adminRole, email, crechNameOrg, crechPhoneNoOrg, cityInfor, key);
 
                                                 Map<String, Object> postingOrg = orgReg.toMap();
                                                 Map<String, Object> organizationUpdate = new HashMap<>();
@@ -318,8 +274,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                                                 adminUpdate.put(userI, postingAdmin);
 
 
-
-                                          //    databasekidclass.child(user.getUid()).child(databasekidclass.push().getKey()).child("className").setValue("Select Class");
+                                                //    databasekidclass.child(user.getUid()).child(databasekidclass.push().getKey()).child("className").setValue("Select Class");
 
                                                 //Updating Messages
                                                 mAdminRef.updateChildren(adminUpdate);
@@ -343,7 +298,7 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
 
                                 } else {
                                     progressDialog.dismiss();
-                                     Toast.makeText(SignUpOrganisationActivity.this, "Name Already Exist", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignUpOrganisationActivity.this, "Name Already Exist", Toast.LENGTH_SHORT).show();
                                 }
                                 orgAuth.signOut();
                                 // }
@@ -389,15 +344,13 @@ public class SignUpOrganisationActivity extends AppCompatActivity {
                     for (DataSnapshot orgSnapShot : dataSnapshot.getChildren()) {
 
                         name = orgSnapShot.child("orgName").getValue().toString();
-
                     }
-
                     if (name == nameOfOrg) {
                         valName = true;
                     } else {
                         valName = false;
                     }
-                }else{
+                } else {
                     valName = false;
                 }
 

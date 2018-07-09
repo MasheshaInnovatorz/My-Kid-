@@ -159,8 +159,6 @@ public class KidsMemoListFragment extends Fragment {
         Iterator iterator = dataSnapshot.getChildren().iterator();
         Iterator kidsIterator = kidSnapshot.getChildren().iterator();
 
-        // DatabaseReference teacher = FirebaseDatabase.getInstance().getReference("Users");
-
         while (kidsIterator.hasNext()) {
 
             final DataSnapshot kidsUser = (DataSnapshot) kidsIterator.next();

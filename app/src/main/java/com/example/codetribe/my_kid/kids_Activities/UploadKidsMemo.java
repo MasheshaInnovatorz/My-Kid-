@@ -3,6 +3,7 @@ package com.example.codetribe.my_kid.kids_Activities;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.codetribe.my_kid.R;
+import com.example.codetribe.my_kid.databinding.UploudKidsMemoBinding;
 import com.example.codetribe.my_kid.groupChat_Activities.ChatMessage;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -41,51 +43,48 @@ import java.util.Iterator;
 
 public class UploadKidsMemo extends AppCompatActivity {
 
-
-    private StorageReference mStorageRef;
-    private DatabaseReference mDatabseRef, mDatabaseUser, mRef, uploadedName, databaseReference;
-
-    private String name, surname, results;
-    private ImageView imageview;
-    private EditText txtImageName;
-    private Uri imgUri;
-    private TextView txtUpload, txtBrowse, personUploaded;
-
-
     public static final String FB_STORAGE_PATH = "image/";
     public static final String FB_DATABASE_PATH = "image";
     public static final int REQUEST_CODE = 1234;
+    private static final int CAMERA_REQUEST = 123;
+    //database
+    private StorageReference mStorageRef;
+    private DatabaseReference mDatabseRef, mDatabaseUser, mRef, uploadedName, databaseReference;
+    //uri
+    private Uri imgUri;
 
     private String idKid, userId, kidTeacherId, identity, typeRequest;
     private String orgIdKey;
-
-    private static final int CAMERA_REQUEST = 123;
-
-    long time;
-
+    private String name, surname, results;
+    private long time;
+    //binding
+    private UploudKidsMemoBinding uploadBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.uploud_kids_memo);
-
+        uploadBinding = DataBindingUtil.setContentView(this,R.layout.uploud_kids_memo);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Uploud Kids Memo");
 
-
+        //intent
         Intent intent = getIntent();
-
+        //variable assigned infor from intent
         idKid = intent.getStringExtra("kid_id");
         kidTeacherId = intent.getStringExtra("kidsTeacherId");
         results = intent.getStringExtra("userUpLoader");
         userId = intent.getStringExtra("User_KEY");
         typeRequest = intent.getStringExtra("requestType");
 
-
+        //assigning userId for a logged-in person
+        identity = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        //database initialization
         mDatabaseUser = FirebaseDatabase.getInstance().getReference("Users");
         databaseReference = FirebaseDatabase.getInstance().getReference().child("groupChat");
+        mRef = FirebaseDatabase.getInstance().getReference("Users").child(identity).child("userIdNumber");
+        uploadedName = FirebaseDatabase.getInstance().getReference("Users").child(identity);
 
         mDatabaseUser.addValueEventListener(new ValueEventListener() {
             @Override
@@ -98,14 +97,7 @@ public class UploadKidsMemo extends AppCompatActivity {
 
             }
         });
-        //intent.putExtra("parentIdentity",parentId);
-        identity = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-
-        mRef = FirebaseDatabase.getInstance().getReference("Users").child(identity).child("userIdNumber");
-
-
-        uploadedName = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -128,20 +120,9 @@ public class UploadKidsMemo extends AppCompatActivity {
             }
         });
 
-
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
-
-        imageview = (ImageView) findViewById(R.id.imageview);
-        txtImageName = (EditText) findViewById(R.id.entername);
-
-
-        txtBrowse = (TextView) findViewById(R.id.txtBrowse_click);
-        txtUpload = (TextView) findViewById(R.id.txtUpload_click);
-        //  personUploaded=(TextView)findViewById(R.id.kidsNameId);
-
-
-        txtBrowse.setOnClickListener(new View.OnClickListener() {
+        uploadBinding.txtBrowseClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
@@ -152,7 +133,7 @@ public class UploadKidsMemo extends AppCompatActivity {
             }
         });
 
-        txtUpload.setOnClickListener(new View.OnClickListener() {
+        uploadBinding.txtUploadClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 upload(typeRequest);
@@ -179,7 +160,7 @@ public class UploadKidsMemo extends AppCompatActivity {
 
             try {
                 Bitmap bm = MediaStore.Images.Media.getBitmap(getContentResolver(), imgUri);
-                imageview.setImageBitmap(bm);
+                uploadBinding.imageview.setImageBitmap(bm);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -228,7 +209,7 @@ public class UploadKidsMemo extends AppCompatActivity {
 
                                     results = name + " " + surname;
 
-                                    MemokidsUpload_class imageUpload = new MemokidsUpload_class(txtImageName.getText().toString(), taskSnapshot.getDownloadUrl().toString(), results, new Date().getTime());
+                                    MemokidsUpload_class imageUpload = new MemokidsUpload_class(uploadBinding.entername.getText().toString(), taskSnapshot.getDownloadUrl().toString(), results, new Date().getTime());
 
 
                                     //save image infor in to firebase database
@@ -305,7 +286,7 @@ public class UploadKidsMemo extends AppCompatActivity {
                                 if (taskSnapshot.getDownloadUrl().toString() != " ") {
 
 
-                                    ChatMessage chatMessage = new ChatMessage(txtImageName.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(), 0, FirebaseAuth.getInstance().getCurrentUser().getUid(), taskSnapshot.getDownloadUrl().toString(), orgIdKey);
+                                    ChatMessage chatMessage = new ChatMessage(uploadBinding.entername.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(), 0, FirebaseAuth.getInstance().getCurrentUser().getUid(), taskSnapshot.getDownloadUrl().toString(), orgIdKey);
                                     databaseReference.push().setValue(chatMessage);
 
 
@@ -313,7 +294,7 @@ public class UploadKidsMemo extends AppCompatActivity {
                        /* String uploadId = databaseReference.push().getKey();
                         databaseReference.child(uploadId).setValue(chatMessage);*/
                                 } else {
-                                    ChatMessage chatMessage = new ChatMessage(txtImageName.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(), 0, FirebaseAuth.getInstance().getCurrentUser().getUid(), "", orgIdKey);
+                                    ChatMessage chatMessage = new ChatMessage(uploadBinding.entername.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(), 0, FirebaseAuth.getInstance().getCurrentUser().getUid(), "", orgIdKey);
                                     databaseReference.push().setValue(chatMessage);
 
 
@@ -322,7 +303,7 @@ public class UploadKidsMemo extends AppCompatActivity {
                         databaseReference.child(uploadId).setValue(chatMessage);*/
                                 }
 
-                                txtImageName.setText("");
+                                uploadBinding.entername.setText("");
 
 
                             }

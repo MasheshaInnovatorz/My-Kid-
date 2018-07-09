@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.codetribe.my_kid.R;
+import com.example.codetribe.my_kid.databinding.ActivityAdminKidsInformatinBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -18,22 +19,15 @@ import com.google.firebase.database.ValueEventListener;
 
 public class AdminKidsInformatin extends AppCompatActivity {
 
-    private DatabaseReference kidsDataProf, userDataRef, kidsppic,parentDatabase;
+    private DatabaseReference kidsDataProf, userDataRef, kidsppic, parentDatabase;
     private FirebaseUser fireAuthorization;
-    private TextView editProfile, allergies,
-            dietRequirements,
-            doctorsRecomendations,
-            kidHeight,
-            bodyWeight;
 
     private ImageView kidsImage;
 
     private String idsKid;
-
-
     private String id_Key;
 
-    private TextView kidsUser, parentName, kidsGender, phonenumber, parentEmail, city, homeAddress;
+    private ActivityAdminKidsInformatinBinding activityAdminKidsInformatinBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,27 +49,6 @@ public class AdminKidsInformatin extends AppCompatActivity {
 
         kidsppic = FirebaseDatabase.getInstance().getReference().child("Kids");
 
-
-        editProfile = (TextView) findViewById(R.id.editprofile);
-        kidsUser = (TextView) findViewById(R.id.kids_profile_name);
-        parentName = (TextView) findViewById(R.id.parentName);
-        kidsGender = (TextView) findViewById(R.id.kids_gender_view);
-        phonenumber = (TextView) findViewById(R.id.kids_phone_view);
-        parentEmail = (TextView) findViewById(R.id.kids_email_view);
-        city = (TextView) findViewById(R.id.kids_city_view);
-        homeAddress = (TextView) findViewById(R.id.kids_address_view);
-
-        //extra information
-        allergies = (TextView) findViewById(R.id.kids_Allergies_view);
-        dietRequirements = (TextView) findViewById(R.id.kids_diet_Requirements_view);
-        doctorsRecomendations = (TextView) findViewById(R.id.kids_doctorsRequirements_view);
-        kidHeight = (TextView) findViewById(R.id.kids_height_view);
-        bodyWeight = (TextView) findViewById(R.id.kids_BodyWeight_view);
-
-        //profilePic
-        kidsImage = (ImageView) findViewById(R.id.kid_header_cover_image);
-
-       // Toast.makeText(this, fireAuthorization.getUid(), Toast.LENGTH_SHORT).show();
     }
 
 
@@ -84,69 +57,46 @@ public class AdminKidsInformatin extends AppCompatActivity {
         super.onStart();
 
 
-                kidsDataProf.addListenerForSingleValueEvent(new ValueEventListener() {
+        kidsDataProf.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(final DataSnapshot kidSnapshot) {
+
+                userDataRef.addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(final DataSnapshot kidSnapshot) {
+                    public void onDataChange(DataSnapshot userSnapshot) {
 
-                        userDataRef.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot userSnapshot) {
+                        for (DataSnapshot parentInfor : userSnapshot.getChildren()) {
 
-                         for (DataSnapshot parentInfor : userSnapshot.getChildren()) {
+                            if (kidSnapshot.child("parentid").getValue().toString().equals(parentInfor.child("userIdNumber").getValue().toString())) {
 
+                                if (parentInfor.child("orgName").getValue().toString().equals(kidSnapshot.child("orgName").getValue().toString())) {
 
-                             if (kidSnapshot.child("parentid").getValue().toString().equals(parentInfor.child("userIdNumber").getValue().toString())) {
+                                    //parent name
+                                    activityAdminKidsInformatinBinding.parentName.setText(parentInfor.child("userSurname").getValue().toString() + " " + parentInfor.child("userName").getValue().toString());
+                                    //kids names
+                                    activityAdminKidsInformatinBinding.kidsProfileName.setText(kidSnapshot.child("surname").getValue().toString() + " " + kidSnapshot.child("name").getValue().toString());
+                                    activityAdminKidsInformatinBinding.kidsGenderView.setText("Gender : " + kidSnapshot.child("gender").getValue().toString());
+                                    activityAdminKidsInformatinBinding.kidsPhoneView.setText("Parent Contact : " + parentInfor.child("userContact").getValue().toString());
+                                    activityAdminKidsInformatinBinding.kidsEmailView.setText("Parent Email : " + parentInfor.child("emailUser").getValue().toString());
+                                    activityAdminKidsInformatinBinding.kidsCityView.setText("Class : " + kidSnapshot.child("kidsGrade").getValue().toString());
+                                    activityAdminKidsInformatinBinding.kidsAddressView.setText("Address : " + kidSnapshot.child("address").getValue().toString());
 
-                                     if (parentInfor.child("orgName").getValue().toString().equals(kidSnapshot.child("orgName").getValue().toString())) {
+                                    id_Key = kidSnapshot.child("id").getValue().toString();
 
-                                         //parent name
-                                         parentName.setText(parentInfor.child("userSurname").getValue().toString() + " " + parentInfor.child("userName").getValue().toString());
-                                         //kids names
-                                         kidsUser.setText(kidSnapshot.child("surname").getValue().toString() + " " + kidSnapshot.child("name").getValue().toString());
+                                    //kid added infor
+                                    activityAdminKidsInformatinBinding.kidsAllergiesView.setText("Allergies : " + kidSnapshot.child("allergies").getValue().toString());
+                                    activityAdminKidsInformatinBinding.kidsDietRequirementsView.setText("Diet Requirements : " + kidSnapshot.child("dietRequirements").getValue().toString());
+                                    activityAdminKidsInformatinBinding.kidsDietRequirementsView.setText("Doctors Recomendations :" + kidSnapshot.child("doctorsRecomendations").getValue().toString());
+                                    activityAdminKidsInformatinBinding.kidsHeightView.setText("Kid Height : " + kidSnapshot.child("kidHeight").getValue().toString());
+                                    activityAdminKidsInformatinBinding.kidsBodyWeightView.setText("Kid Weight : " + kidSnapshot.child("bodyWeight").getValue().toString());
 
+                                    //kid image
+                                    Glide.with(getApplicationContext()).load(kidSnapshot.child("profilePic").getValue().toString()).centerCrop().into(activityAdminKidsInformatinBinding.kidHeaderCoverImage);
+                                }
+                            }
 
-                                         id_Key = kidSnapshot.child("id").getValue().toString();
+                        }
 
-
-                                         kidsGender.setText("Gender : " + kidSnapshot.child("gender").getValue().toString());
-                                         phonenumber.setText("Parent Contact : " + parentInfor.child("userContact").getValue().toString());
-                                         parentEmail.setText("Parent Email : " + parentInfor.child("emailUser").getValue().toString());
-                                         id_Key = kidSnapshot.child("id").getValue().toString();
-                                         city.setText("Class : " + kidSnapshot.child("kidsGrade").getValue().toString());
-                                         homeAddress.setText("Address : " + kidSnapshot.child("address").getValue().toString());
-
-                                         Glide.with(getApplicationContext()).load(kidSnapshot.child("profilePic").getValue().toString()).centerCrop().into(kidsImage);
-
-                                         parentName.setText(parentInfor.child("userName").getValue().toString() + " " + parentInfor.child("userName").getValue().toString());
-                                         phonenumber.setText("Parent Contact :" + parentInfor.child("userContact").getValue().toString());
-                                         parentEmail.setText("Parent Email :" + parentInfor.child("emailUser").getValue().toString());
-
-
-                                         //kids names
-                                         kidsUser.setText(kidSnapshot.child("surname").getValue().toString() + " " + kidSnapshot.child("name").getValue().toString());
-                                         kidsGender.setText("Gender : " + kidSnapshot.child("gender").getValue().toString());
-                                         id_Key = kidSnapshot.child("id").getValue().toString();
-                                         city.setText("Class : " + kidSnapshot.child("kidsGrade").getValue().toString());
-                                         homeAddress.setText("Address : " + kidSnapshot.child("address").getValue().toString());
-
-
-                                        //kid added infor
-                                         allergies .setText("Allergies : " + kidSnapshot.child("allergies").getValue().toString());
-                                         dietRequirements.setText("Diet Requirements : " + kidSnapshot.child("dietRequirements").getValue().toString());
-                                         doctorsRecomendations .setText("Doctors Recomendations :" + kidSnapshot.child("doctorsRecomendations").getValue().toString());
-                                         kidHeight.setText("Kid Height : " + kidSnapshot.child("kidHeight").getValue().toString());
-                                         bodyWeight .setText("Kid Weight : " + kidSnapshot.child("bodyWeight" ).getValue().toString());
-
-                                         //kid image
-                                         Glide.with(getApplicationContext()).load(kidSnapshot.child("profilePic").getValue().toString()).centerCrop().into(kidsImage);
-                                     }
-                                 }
-
-                             }
-
-
-                           // }
-                       // }
 
                     }
 

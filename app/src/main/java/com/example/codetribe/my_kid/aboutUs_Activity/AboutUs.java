@@ -1,3 +1,4 @@
+
 package com.example.codetribe.my_kid.aboutUs_Activity;
 
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +19,6 @@ public class AboutUs extends AppCompatActivity {
         getSupportActionBar().setTitle("About Us");
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -28,6 +28,5 @@ public class AboutUs extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
-    //
 
 }

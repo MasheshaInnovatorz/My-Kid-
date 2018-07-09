@@ -198,10 +198,8 @@ public class AdminKidsList extends Fragment {
     private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
         @Override
         public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-            //actionMode.setTitle(listKidsSelect.getName());
+
             MenuInflater inflater = actionMode.getMenuInflater();
-
-
             inflater.inflate(R.menu.kid_admin_info, menu);
             return true;
         }
@@ -219,7 +217,7 @@ public class AdminKidsList extends Fragment {
                     Intent intent = new Intent(getContext(), KidsmemoListsActivity.class);
                     intent.putExtra("kid_id", listKidsSelect.getId());
                     startActivity(intent);
-
+                    actionMode.finish();
                     mActionMode = null;
                     return true;
                 case R.id.kidsProfile:
@@ -228,7 +226,8 @@ public class AdminKidsList extends Fragment {
                     intent2.putExtra("User_KEY", kids_id);
                     intent2.putExtra("parentIdentity", parentId);
                     startActivity(intent2);
-                    mActionMode = null;
+                    actionMode.finish();
+                    mActionMode=null;
                     return true;
                 default:
                     return false;

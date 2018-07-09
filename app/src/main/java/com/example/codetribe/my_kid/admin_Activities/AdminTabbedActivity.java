@@ -107,7 +107,6 @@ public class AdminTabbedActivity extends AppCompatActivity implements Navigation
 
         navigationView.setNavigationItemSelectedListener(this);
 
-        //  firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         user = FirebaseAuth.getInstance().getCurrentUser();
         //database
         databasekidclass = FirebaseDatabase.getInstance().getReference().child("kidclass");

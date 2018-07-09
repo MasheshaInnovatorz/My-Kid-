@@ -3,6 +3,7 @@ package com.example.codetribe.my_kid.account_Activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.codetribe.my_kid.R;
+import com.example.codetribe.my_kid.databinding.ActivitySignUpBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -42,10 +44,6 @@ public class SignUp extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPrefEditor;
 
-    private EditText inputEmail, inputPassword, kidsIdno;
-    private TextView mainNav, btnSignUp;
-
-
     private ArrayAdapter<String> dataAdapter;
 
     private AwesomeValidation awesomeValidation;
@@ -57,7 +55,6 @@ public class SignUp extends AppCompatActivity {
 
     //declaration
     private List<String> list;
-    private TextInputLayout input_email1;
     private String orgIdKey;
     private String[] spinnerArray;
     private String strName;
@@ -66,17 +63,16 @@ public class SignUp extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference mDatabaseRef, mUserCheckData, crecheDataRef, KidDataRef, searchCreacheRef;
-
+    private ActivitySignUpBinding signUpBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        signUpBinding = DataBindingUtil.setContentView(this,R.layout.activity_sign_up);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Sign Up");
-        // getSupportActionBar().setSubtitle("Parent");
 
 
         //Get Firebase auth instance
@@ -89,22 +85,13 @@ public class SignUp extends AppCompatActivity {
         searchCreacheRef = FirebaseDatabase.getInstance().getReference("Creche");
 
         //shared Preference
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);//shared
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         //validation
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
         //progress bar
         progressDialog = new ProgressDialog(this);
-
-        //Variable initialiaation
-        btnSignUp = (TextView) findViewById(R.id.sinup);
-        inputEmail = (EditText) findViewById(R.id.sign_up_email);
-        inputPassword = (EditText) findViewById(R.id.signupPassword);
-        kidsIdno = (EditText) findViewById(R.id.KidIdNumber);
-        orgNameList = (Spinner) findViewById(R.id.orgname);
-        input_email1 = (TextInputLayout) findViewById(R.id.input_email);
-        input_email1 = (TextInputLayout) findViewById(R.id.input_email);
 
         //arrayList
         list = new ArrayList<String>();
@@ -120,7 +107,7 @@ public class SignUp extends AppCompatActivity {
         awesomeValidation.addValidation(this, R.id.KidIdNumber, "^^[0-9]{13}$", R.string.iderror);
 
         //Spinner for getting selected item
-        orgNameList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        signUpBinding.orgname.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 strName = (String) adapterView.getItemAtPosition(i);
@@ -166,17 +153,17 @@ public class SignUp extends AppCompatActivity {
         };
 
         //button for signup
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
+        signUpBinding.sinup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = inputEmail.getText().toString().trim();
-                String password = inputPassword.getText().toString().trim();
+                String email = signUpBinding.signUpEmail.getText().toString().trim();
+                String password = signUpBinding.signupPassword.getText().toString().trim();
 
 
                 final String userEmailString, userPassString;
 
-                userEmailString = inputEmail.getText().toString().trim();
-                userPassString = inputPassword.getText().toString().trim();
+                userEmailString = signUpBinding.signUpEmail.getText().toString().trim();
+                userPassString = signUpBinding.signupPassword.getText().toString().trim();
 
                 sharedPrefEditor = sharedPreferences.edit();
                 sharedPrefEditor.putString("email", userEmailString);
@@ -187,13 +174,13 @@ public class SignUp extends AppCompatActivity {
                 } else {
                     //
                     if (awesomeValidation.validate()) {
-                        if (!orgNameList.getSelectedItem().toString().trim().equals("Select Creshe")) {
+                        if (!signUpBinding.orgname.getSelectedItem().toString().trim().equals("Select Creshe")) {
 
                             searchCreacheRef.addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot searchSnapshot) {
                                     for (final DataSnapshot searchDataSnapshot : searchSnapshot.getChildren()) {
-                                        if (searchDataSnapshot.child("orgName").getValue().toString().equals(orgNameList.getSelectedItem().toString())) {
+                                        if (searchDataSnapshot.child("orgName").getValue().toString().equals(signUpBinding.orgname.getSelectedItem().toString())) {
 
                                             KidDataRef.addValueEventListener(new ValueEventListener() {
                                                 @Override
@@ -203,7 +190,8 @@ public class SignUp extends AppCompatActivity {
                                                         progressDialog.setMessage("Wait While Creating an Parent Account");
                                                         progressDialog.show();
 
-                                                        if (kidsSnapshot.child("orgName").getValue().toString().equals(strName) && kidsSnapshot.child("idNumber").getValue().toString().equals(kidsIdno.getText().toString())) {
+
+                                                        if (kidsSnapshot.child("orgName").getValue().toString().equals(strName) && kidsSnapshot.child("idNumber").getValue().toString().equals(signUpBinding.inputKidIdNumber.getEditText().toString())) {
 
 
                                                             auth.createUserWithEmailAndPassword(userEmailString, userPassString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -337,7 +325,7 @@ public class SignUp extends AppCompatActivity {
         dataAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
         //simple_spinner_dropdown_item
 
-        orgNameList.setAdapter(dataAdapter);
+        signUpBinding.orgname.setAdapter(dataAdapter);
     }
 
     @Override
