@@ -1,6 +1,7 @@
 package com.example.codetribe.my_kid.admin_Activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -118,6 +119,8 @@ public class AdminKidsList extends Fragment {
 
                 listKidsSelect = kidses.get(i);
                 if (mActionMode != null) {
+
+                    view.setBackgroundColor(Color.parseColor("#FF9800"));
                     return false;
                 }
 

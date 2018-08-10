@@ -68,6 +68,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginLeft="@dimen/text_left"
                 android:layout_marginRight="@dimen/text_right"
+                android:layout_marginBottom="10dp"
                 android:background="#212121" />
 
 
@@ -82,6 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/text_left"
                     android:layout_marginRight="@dimen/text_right"
+                    android:layout_marginTop="10dp"
                     android:hint="Kid ID Number"
                     android:inputType="number"
                     android:maxLength="13"

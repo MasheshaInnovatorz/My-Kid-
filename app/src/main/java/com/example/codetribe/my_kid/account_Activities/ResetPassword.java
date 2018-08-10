@@ -25,7 +25,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ResetPassword extends AppCompatActivity {
+/*-public class ResetPassword extends AppCompatActivity {
 
     //firebase Auth
     private FirebaseAuth auth;
@@ -107,4 +107,4 @@ public class ResetPassword extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-}
+}*/

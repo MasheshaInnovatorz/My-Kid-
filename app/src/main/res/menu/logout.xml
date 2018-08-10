@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:title="save"
-        android:id="@+id/profile_save"
-     android:icon="@drawable/ic_done_white_24dp"
+        android:id="@+id/logout_menu"
+        android:icon="@drawable/powerwhite"
         app:showAsAction="ifRoom" />
 </menu>

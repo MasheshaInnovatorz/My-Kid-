@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn= "navigation_view">
+    <group android:checkableBehavior="none">
+    <item
+        android:id="@+id/menu_parent_profile"
+        android:icon="@drawable/ic_profile"
+        android:title="Profile"
+
+        />
+
+    <item
+        android:id="@+id/menu_kids_profile"
+        android:icon="@drawable/ic_profile"
+        android:title="Kids Profile"
+
+        />
+
+    <item
+        android:id="@+id/menu_parent_aboutus"
+        android:title="About Us"
+        android:icon="@drawable/aboutus_24dp"
+        />
+
+        <item
+            android:id="@+id/menu_parent_Logout"
+            android:icon="@drawable/logout_24dp"
+            android:title="Logout"
+            />
+    </group>
+
+</menu>

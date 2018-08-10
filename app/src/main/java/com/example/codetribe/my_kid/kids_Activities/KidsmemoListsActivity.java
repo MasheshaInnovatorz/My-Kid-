@@ -211,6 +211,7 @@ public class KidsmemoListsActivity extends AppCompatActivity {
                                             intent.putExtra("kid_id", KidsId);
                                             intent.putExtra("kidsTeacherId", kidsUserId);
                                             intent.putExtra("User_KEY", userKey);
+                                            intent.putExtra("requestType","kidsMemory");
                                             startActivity(intent);
 
                                         } else {

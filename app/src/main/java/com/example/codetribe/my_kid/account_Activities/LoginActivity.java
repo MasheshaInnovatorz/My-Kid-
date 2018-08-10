@@ -1,6 +1,7 @@
 package com.example.codetribe.my_kid.account_Activities;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -83,7 +85,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         //Validation style
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
-
+        awesomeValidation.addValidation(this, R.id.reset_email, Patterns.EMAIL_ADDRESS, R.string.emailerror);
         myLayout = (RelativeLayout) findViewById(R.id.MyRelative);
 
 
@@ -103,13 +105,61 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //progress bar
         progressDialog = new ProgressDialog(this);
 
+loginBinding.forgetPassword.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(LoginActivity.this);
+        View mView = getLayoutInflater().inflate(R.layout.activity_reset_password, null);
+        mBuilder.setTitle("Reset Password");
 
+        final TextInputEditText resetEmail = (TextInputEditText)mView.findViewById(R.id.reset_email);
+
+
+        mBuilder.setPositiveButton("Reset", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // if (awesomeValidation.validate()) {
+
+                final String email = resetEmail.getText().toString();
+
+                progressDialog.setMessage("Wait While Reseting Password");
+                progressDialog.show();
+
+                mFirebaseAuth.sendPasswordResetEmail(email)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(LoginActivity.this, "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(LoginActivity.this, "You Dont Have Account To Reset !", Toast.LENGTH_SHORT).show();
+                                }
+
+                                progressDialog.dismiss();
+                            }
+                        });
+
+               /*} else {
+                   Toast.makeText(getApplication(), "Enter your registered email id", Toast.LENGTH_SHORT).show();
+
+               }*/
+            }
+        });
+        mBuilder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+                dialogInterface.dismiss();
+            }
+        });
+        mBuilder.setView(mView);
+        AlertDialog dialog = mBuilder.create();
+        dialog.show();
+    }
+});
         //user registration
         loginBinding.loginsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(LoginActivity.this);
                 View mView = getLayoutInflater().inflate(R.layout.dialogue_spinner, null);
                 mBuilder.setTitle("Select an option to create Account?");
@@ -209,7 +259,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //setOnclick
         loginBinding.login.setOnClickListener(this);
         //signup.setOnClickListener(this);
-        loginBinding.forgetPassword.setOnClickListener(this);
+       // loginBinding.forgetPassword.setOnClickListener(this);
     }
 
     @Override
@@ -267,13 +317,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         }
 
-        if (view == loginBinding.forgetPassword) {
-            finish();
-            // startActivity(new Intent(this, UploadKidsMemo.class));
-            Intent i = new Intent(LoginActivity.this, ResetPassword.class);
-            startActivity(i);
-
-        }
     }
 
     private void checkUserValidation(DataSnapshot dataUser, String emailForVer) {
@@ -323,6 +366,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 //}
     }
+
+
+
 
     private void userLogin() {
         final String userEmailString, userPasswordString;

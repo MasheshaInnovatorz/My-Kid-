@@ -125,6 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/text_left"
                     android:layout_marginRight="@dimen/text_right"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
                     <TextView

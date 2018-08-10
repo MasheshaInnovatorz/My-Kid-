@@ -69,9 +69,10 @@ public class AdminTabbedActivity extends AppCompatActivity implements Navigation
     private String classkidString;
 
     private FirebaseUser firebaseUser;
-    private TextView name,creacheName;
-    private ImageView profilePic,proprofile;
+    private TextView name, creacheName;
+    private ImageView profilePic, proprofile;
     private NavigationView navigationView;
+    private DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,10 +80,10 @@ public class AdminTabbedActivity extends AppCompatActivity implements Navigation
         setContentView(R.layout.activity_admin_drawer_app);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-         toolbar.setTitle("Admin");
+        toolbar.setTitle("Admin");
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_admin_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_admin_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
@@ -90,9 +91,8 @@ public class AdminTabbedActivity extends AppCompatActivity implements Navigation
         toggle.syncState();
 
 
-
-         navigationView = (NavigationView) findViewById(R.id.nav_view);
-        View headerNaming =  navigationView.getHeaderView(0);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerNaming = navigationView.getHeaderView(0);
         NavigationMenuView itemsDecorators = (NavigationMenuView) navigationView.getChildAt(0);
         itemsDecorators.addItemDecoration(new DividerDecorationNav(this));
 
@@ -132,7 +132,7 @@ public class AdminTabbedActivity extends AppCompatActivity implements Navigation
                 name.setText(namesAd);
                 creacheName.setText(orgname);
 
-           Glide.with(getApplication()).load(dataSnapshot.child("userProfilePic").getValue().toString()).into(profilePic);
+                Glide.with(getApplication()).load(dataSnapshot.child("userProfilePic").getValue().toString()).into(profilePic);
 
                 Glide.with(getApplication()).load(dataSnapshot.child("userProfilePic").getValue().toString()).into(proprofile);
 
@@ -175,38 +175,17 @@ public class AdminTabbedActivity extends AppCompatActivity implements Navigation
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_admin_tabbed, menu);
+        getMenuInflater().inflate(R.menu.logout, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.menu_about_us) {
-
-            Intent intent = new Intent(AdminTabbedActivity.this, AboutUs.class);
-            startActivity(intent);
-            return true;
-        } else if (id == R.id.menu_admin_logout) {
+        if (id == R.id.logout_menu) {
             logout();
             return true;
-        } else if (id == R.id.menu_adimin_profile) {
-            Intent intent = new Intent(AdminTabbedActivity.this, ViewProfile.class);
-            startActivity(intent);
-            return true;
-        } else if (id == R.id.menu_admin_logout) {
-            logout();
-        } else if (id == R.id.menu_admin_addclass) {
-            // set dialog message
-            //call class
-            showChangeLangDialog();
-
         }
 
         return super.onOptionsItemSelected(item);
@@ -214,10 +193,10 @@ public class AdminTabbedActivity extends AppCompatActivity implements Navigation
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_admin_layout);
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
 
-            drawerLayout.closeDrawer(GravityCompat.START);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+
+            drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
 
@@ -230,7 +209,7 @@ public class AdminTabbedActivity extends AppCompatActivity implements Navigation
 
 
         int id = item.getItemId();
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_admin_layout);
+
         Intent intent;
         //noinspection
 
@@ -362,6 +341,7 @@ public class AdminTabbedActivity extends AppCompatActivity implements Navigation
         AlertDialog b = dialogBuilder.create();
         b.show();
     }
+
 
     @Override
     protected void onStart() {

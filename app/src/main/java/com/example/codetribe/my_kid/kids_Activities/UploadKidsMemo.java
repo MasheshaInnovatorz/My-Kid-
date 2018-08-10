@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -104,12 +106,9 @@ public class UploadKidsMemo extends AppCompatActivity {
 
                 String org_name = dataSnapshot.getValue(String.class);
                 if (typeRequest == "kidsMemory") {
-                    if (idKid != null) {
-                        passingValue(idKid);
-                    }
-                    if (kidTeacherId != null) {
-                        passingValue(kidTeacherId);
-                    }
+
+
+
                 }
 
             }
@@ -133,17 +132,33 @@ public class UploadKidsMemo extends AppCompatActivity {
             }
         });
 
-        uploadBinding.txtUploadClick.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                upload(typeRequest);
-            }
-        });
+
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
 
-//camera upload
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.save,menu);
+
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.profile_save) {
+            upload(typeRequest);
+
+            return true;
+
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+    //camera upload
 
     /*
     public void btnClick(View view){
@@ -180,7 +195,12 @@ public class UploadKidsMemo extends AppCompatActivity {
         Toast.makeText(this, typeRequest, Toast.LENGTH_SHORT).show();
         switch (typofUpload) {
             case "kidsMemory":
-
+                if (idKid != null) {
+                    passingValue(idKid);
+                }else
+                if (kidTeacherId != null) {
+                    passingValue(kidTeacherId);
+                }
                 if (imgUri != null) {
                     final ProgressDialog dialog = new ProgressDialog(this);
 
@@ -356,16 +376,6 @@ public class UploadKidsMemo extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-
-            this.finish();
-        }
-        return super.onOptionsItemSelected(item);
-
-    }
 
 }
 
