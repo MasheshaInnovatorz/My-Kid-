@@ -1,9 +1,13 @@
 package com.example.codetribe.my_kid.kids_Activities;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.codetribe.my_kid.R;
+import com.example.codetribe.my_kid.account_Activities.LoginActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -203,10 +210,48 @@ public class KidsmemoListsActivity extends AppCompatActivity {
                                     Toast.makeText(KidsmemoListsActivity.this, "Ahh you dont belong to any categories", Toast.LENGTH_SHORT).show();
                                 }
 
+
+                                //Working at it
                                 share.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        if (KidsId != null || kidsUserId != null) {
+
+                                        AlertDialog.Builder mBuilder = new AlertDialog.Builder(KidsmemoListsActivity.this);
+                                        View mView = getLayoutInflater().inflate(R.layout.activity_reset_password, null);
+                                        mBuilder.setTitle("Reset Password");
+
+                                        final TextInputEditText resetEmail = (TextInputEditText) mView.findViewById(R.id.reset_email);
+
+
+                                        mBuilder.setPositiveButton("Reset", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+
+
+                                                final String email = resetEmail.getText().toString();
+
+                                                progressDialog.setMessage("Wait While Reseting Password");
+                                                progressDialog.show();
+
+
+
+                                            }
+                                        });
+                                        mBuilder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int which) {
+                                                dialogInterface.dismiss();
+                                            }
+                                        });
+                                        mBuilder.setView(mView);
+                                        AlertDialog dialog = mBuilder.create();
+                                        dialog.show();
+
+
+
+
+
+                                        /*  if (KidsId != null || kidsUserId != null) {
                                             Intent intent = new Intent(KidsmemoListsActivity.this, UploadKidsMemo.class);
                                             intent.putExtra("kid_id", KidsId);
                                             intent.putExtra("kidsTeacherId", kidsUserId);
@@ -217,7 +262,7 @@ public class KidsmemoListsActivity extends AppCompatActivity {
                                         } else {
                                             Toast.makeText(KidsmemoListsActivity.this, "You dont have a kids in this creche or maybe made a mistake", Toast.LENGTH_SHORT).show();
                                             return;
-                                        }
+                                        }*/
                                     }
                                 });
 

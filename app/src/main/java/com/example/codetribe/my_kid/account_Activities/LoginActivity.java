@@ -105,57 +105,53 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //progress bar
         progressDialog = new ProgressDialog(this);
 
-loginBinding.forgetPassword.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(LoginActivity.this);
-        View mView = getLayoutInflater().inflate(R.layout.activity_reset_password, null);
-        mBuilder.setTitle("Reset Password");
-
-        final TextInputEditText resetEmail = (TextInputEditText)mView.findViewById(R.id.reset_email);
-
-
-        mBuilder.setPositiveButton("Reset", new DialogInterface.OnClickListener() {
+        loginBinding.forgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // if (awesomeValidation.validate()) {
+            public void onClick(View v) {
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(LoginActivity.this);
+                View mView = getLayoutInflater().inflate(R.layout.activity_reset_password, null);
+                mBuilder.setTitle("Reset Password");
 
-                final String email = resetEmail.getText().toString();
+                final TextInputEditText resetEmail = (TextInputEditText) mView.findViewById(R.id.reset_email);
 
-                progressDialog.setMessage("Wait While Reseting Password");
-                progressDialog.show();
 
-                mFirebaseAuth.sendPasswordResetEmail(email)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(LoginActivity.this, "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(LoginActivity.this, "You Dont Have Account To Reset !", Toast.LENGTH_SHORT).show();
-                                }
+                mBuilder.setPositiveButton("Reset", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
-                                progressDialog.dismiss();
-                            }
-                        });
 
-               /*} else {
-                   Toast.makeText(getApplication(), "Enter your registered email id", Toast.LENGTH_SHORT).show();
+                        final String email = resetEmail.getText().toString();
 
-               }*/
+                        progressDialog.setMessage("Wait While Reseting Password");
+                        progressDialog.show();
+
+                        mFirebaseAuth.sendPasswordResetEmail(email)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(LoginActivity.this, "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(LoginActivity.this, "You Dont Have Account To Reset !", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                        progressDialog.dismiss();
+                                    }
+                                });
+
+                    }
+                });
+                mBuilder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                mBuilder.setView(mView);
+                AlertDialog dialog = mBuilder.create();
+                dialog.show();
             }
         });
-        mBuilder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int which) {
-                dialogInterface.dismiss();
-            }
-        });
-        mBuilder.setView(mView);
-        AlertDialog dialog = mBuilder.create();
-        dialog.show();
-    }
-});
         //user registration
         loginBinding.loginsignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -248,7 +244,6 @@ loginBinding.forgetPassword.setOnClickListener(new View.OnClickListener() {
                         }
                     });
 
-
                 } else {
 
 
@@ -258,8 +253,7 @@ loginBinding.forgetPassword.setOnClickListener(new View.OnClickListener() {
 
         //setOnclick
         loginBinding.login.setOnClickListener(this);
-        //signup.setOnClickListener(this);
-       // loginBinding.forgetPassword.setOnClickListener(this);
+
     }
 
     @Override
@@ -366,8 +360,6 @@ loginBinding.forgetPassword.setOnClickListener(new View.OnClickListener() {
 
 //}
     }
-
-
 
 
     private void userLogin() {

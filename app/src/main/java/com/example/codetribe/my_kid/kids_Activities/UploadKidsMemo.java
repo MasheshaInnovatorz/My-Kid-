@@ -175,7 +175,7 @@ public class UploadKidsMemo extends AppCompatActivity {
 
             try {
                 Bitmap bm = MediaStore.Images.Media.getBitmap(getContentResolver(), imgUri);
-                uploadBinding.imageview.setImageBitmap(bm);
+                uploadBinding.selectedImage.setImageBitmap(bm);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
