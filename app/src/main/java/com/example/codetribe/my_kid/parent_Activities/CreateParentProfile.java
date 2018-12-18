@@ -59,7 +59,7 @@ public class CreateParentProfile extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(" Parent Profile Update");
+        getSupportActionBar().setTitle("Parent Profile Update");
 
         //validation
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
@@ -213,7 +213,6 @@ public class CreateParentProfile extends AppCompatActivity {
 
                     if (!TextUtils.isEmpty(inputIdnumberString)) {
 
-                        //(String keyUser, String userName, String userSurname, String userIdNumber, String userAddress,String userContact,String userGender,String userCity,String userprovince,  String isVerified) {
                         String isVerified = "verified";
                         UserProfile profile = new UserProfile(keyUser, userNameString, inputSurnameString, inputIdnumberString, inputAddressString, userContactString, genderString,userCityString,userprovinceString,isVerified);
                         databaseReference.child("userName").setValue(profile.getUserName());
@@ -221,10 +220,11 @@ public class CreateParentProfile extends AppCompatActivity {
                         databaseReference.child("userIdNumber").setValue(profile.getUserIdNumber());
                         databaseReference.child("userContact").setValue(profile.getUserContact());
                         databaseReference.child("userAddress").setValue(profile.getUserAddress());
-                        databaseReference.child("userprovince").setValue(profile.getuserprovince());
+                        databaseReference.child("userProvince").setValue(profile.getuserprovince());
                         databaseReference.child("userCity").setValue(profile.getUserCity());
                         databaseReference.child("userGender").setValue(profile.getUserGender());
                         databaseReference.child("isVerified").setValue(profile.getIsVerified());
+                        databaseReference.child("userProfilePic").setValue(" ");
 
 
                         startActivity(new Intent(CreateParentProfile.this, ParentTabbedActivity.class));

@@ -192,7 +192,6 @@ public class UploadKidsMemo extends AppCompatActivity {
 
     public void upload(String typofUpload) {
 
-        Toast.makeText(this, typeRequest, Toast.LENGTH_SHORT).show();
         switch (typofUpload) {
             case "kidsMemory":
                 if (idKid != null) {
@@ -216,10 +215,6 @@ public class UploadKidsMemo extends AppCompatActivity {
                             dialog.dismiss();
 
                             Toast.makeText(getApplicationContext(), "Kid Memory Uploaded", Toast.LENGTH_SHORT).show();
-                            // startActivity(new Intent(this,UploadKidsMemo.this,KidsmemoListsActivity.class));
-
-                            // Intent i = new Intent(UploadKidsMemo.this, KidsMemoListFragment.class);
-                            // startActivity(i);
 
                             uploadedName.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
@@ -296,11 +291,6 @@ public class UploadKidsMemo extends AppCompatActivity {
 
                                 Toast.makeText(getApplication(), "Sent", Toast.LENGTH_SHORT).show();
 
-                                // startActivity(new Intent(this,UploadKidsMemo.this,KidsmemoListsActivity.class));
-
-                                // Intent i = new Intent(UploadKidsMemo.this, KidsMemoListFragment.class);
-                                // startActivity(i);
-
 
                                 // imageUpload = new MemokidsUpload_class(txtImageName.getText().toString(), taskSnapshot.getDownloadUrl().toString(), results,  new Date().getTime());
                                 if (taskSnapshot.getDownloadUrl().toString() != " ") {
@@ -311,16 +301,12 @@ public class UploadKidsMemo extends AppCompatActivity {
 
 
                                     //save image infor in to firebase database
-                       /* String uploadId = databaseReference.push().getKey();
-                        databaseReference.child(uploadId).setValue(chatMessage);*/
+
                                 } else {
                                     ChatMessage chatMessage = new ChatMessage(uploadBinding.entername.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail(), 0, FirebaseAuth.getInstance().getCurrentUser().getUid(), "", orgIdKey);
                                     databaseReference.push().setValue(chatMessage);
 
 
-                                    //save image infor in to firebase database
-                       /* String uploadId = databaseReference.push().getKey();
-                        databaseReference.child(uploadId).setValue(chatMessage);*/
                                 }
 
                                 uploadBinding.entername.setText("");

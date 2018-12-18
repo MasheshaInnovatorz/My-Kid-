@@ -143,7 +143,7 @@ public class EditKidsProfile extends AppCompatActivity {
                 }
             });
 
-            Toast.makeText(EditKidsProfile.this, "Kid Information Uptdated", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditKidsProfile.this, "Kid Information Updated", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(EditKidsProfile.this, ViewProfile.class);
             startActivity(intent);
         } else

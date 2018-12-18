@@ -125,7 +125,6 @@ public class TeacherFragment extends Fragment {
                                     counter++;
                                     Kids kidInf = kidssnapshot.getValue(Kids.class);
                                     kid.add(kidInf);
-                                    //    Toast.makeText(TeachersActivity.this,kidInf.getId(), Toast.LENGTH_SHORT).show();
                                 }
                             } else {
 

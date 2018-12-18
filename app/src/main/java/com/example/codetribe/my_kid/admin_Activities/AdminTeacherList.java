@@ -143,29 +143,6 @@ public class AdminTeacherList extends Fragment {
         return rootView;
     }
 
-    /*
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        menu.setHeaderTitle("???");
-       // menu.add(0,v.getId(),0,"Kids Information");
-        menu.add(0,v.getId(),0,"Teacher Information");
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        if (item.getTitle() == "Teacher Information") {
-            Toast.makeText(getContext(), "Teacher Information", Toast.LENGTH_SHORT).show();
-        }
-
-        else {
-            return false;
-        }
-        return true;
-    }
-
-*/
-
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
 

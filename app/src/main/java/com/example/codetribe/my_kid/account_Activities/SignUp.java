@@ -65,6 +65,7 @@ public class SignUp extends AppCompatActivity {
     private DatabaseReference mDatabaseRef, mUserCheckData, crecheDataRef, KidDataRef, searchCreacheRef;
     private ActivitySignUpBinding signUpBinding;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +74,8 @@ public class SignUp extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Sign Up");
+
+
 
 
         //Get Firebase auth instance
@@ -143,7 +146,6 @@ public class SignUp extends AppCompatActivity {
                         }
                     });
 
-                    //startActivity(new Intent(LoginActivity.this, Welcome.class));
 
                 } else {
 
@@ -159,11 +161,12 @@ public class SignUp extends AppCompatActivity {
                 String email = signUpBinding.signUpEmail.getText().toString().trim();
                 String password = signUpBinding.signupPassword.getText().toString().trim();
 
+                //signupPassword
 
                 final String userEmailString, userPassString;
 
                 userEmailString = signUpBinding.signUpEmail.getText().toString().trim();
-                userPassString = signUpBinding.signupPassword.getText().toString().trim();
+                userPassString = signUpBinding.signupPassword.getText().toString();
 
                 sharedPrefEditor = sharedPreferences.edit();
                 sharedPrefEditor.putString("email", userEmailString);
@@ -187,13 +190,12 @@ public class SignUp extends AppCompatActivity {
                                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                                     for (DataSnapshot kidsSnapshot : dataSnapshot.getChildren()) {
 
-                                                        progressDialog.setMessage("Wait While Creating an Parent Account");
-                                                        progressDialog.show();
 
 
-                                                        if (kidsSnapshot.child("orgName").getValue().toString().equals(strName) && kidsSnapshot.child("idNumber").getValue().toString().equals(signUpBinding.inputKidIdNumber.getEditText().toString())) {
+                                                        if (kidsSnapshot.child("orgName").getValue().toString().equals(strName) && kidsSnapshot.child("idNumber").getValue().toString().equals(signUpBinding.KidIdNumber.getText().toString())) {
 
-
+                                                            progressDialog.setMessage("Wait While Creating an Parent Account");
+                                                            progressDialog.show();
                                                             auth.createUserWithEmailAndPassword(userEmailString, userPassString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                                                 @Override
                                                                 public void onComplete(@NonNull Task<AuthResult> task) {

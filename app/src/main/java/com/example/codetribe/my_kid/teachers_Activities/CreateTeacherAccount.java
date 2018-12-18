@@ -200,7 +200,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
 
         //cities
-        spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        activityTeacherBinding.teacherCitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg1, View arg2, int position1, long id1) {
 
@@ -248,7 +248,7 @@ public class CreateTeacherAccount extends AppCompatActivity {
                                 saveParent(org_name);
                                 progressDialog.dismiss();
 
-                                //  Toast.makeText(CreateTeacherAccount.this, "Teacher added", Toast.LENGTH_LONG).show();
+
                             } else
 
                             {
@@ -318,7 +318,6 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                                             //Storing Information
                                             TeacherClassAcc teacher = new TeacherClassAcc(userNameString, userSurnameString, usercontactString, userclassroomString, useridnumberString, usergenderString, task.getResult().getUser().getUid().toString().trim(), task.getResult().getUser().getEmail().toString().trim(), password, role, "verified", orgNames, userAddressString, userprovinceString, userCityString, orgId);
-                                            Toast.makeText(CreateTeacherAccount.this, orgId, Toast.LENGTH_SHORT).show();
                                             mDatabaseRef.child(task.getResult().getUser().getUid().toString().trim()).setValue(teacher);
 
                                         }
@@ -381,20 +380,17 @@ public class CreateTeacherAccount extends AppCompatActivity {
 
                         for (DataSnapshot classSnapshot : outerSnap.getChildren()) {
 
-                            //  if (!classSnapshot.child("className").getValue().toString().equals("")) {
+
 
                             list.add(classSnapshot.child("className").getValue().toString());
 
-                            //  Toast.makeText(CreateTeacherAccount.this, classSnapshot.child("className").getValue().toString(), Toast.LENGTH_SHORT).show();
 
                             dataAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
+
                             //simple_spinner_dropdown_item
 
-
                             progressDialog.dismiss();
-                            //   } else {
-                            //      Toast.makeText(KidActivity.this, "There is no Class", Toast.LENGTH_SHORT).show();
-                            //   }
+
                         }
 
 

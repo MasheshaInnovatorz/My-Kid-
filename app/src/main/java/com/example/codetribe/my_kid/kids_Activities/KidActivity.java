@@ -3,6 +3,7 @@ package com.example.codetribe.my_kid.kids_Activities;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,7 @@ import com.example.codetribe.my_kid.R;
 import com.example.codetribe.my_kid.account_Activities.SignUp;
 import com.example.codetribe.my_kid.admin_Activities.AdminTabbedActivity;
 import com.example.codetribe.my_kid.databinding.AddKidsActivityBinding;
+import com.example.codetribe.my_kid.databinding.CreateParentProfileBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -48,6 +50,7 @@ public class KidActivity extends AppCompatActivity {
     private RadioButton radGender;
     private String userId;
     private String genderString, keyUser;
+
     private String kidStringname,
             kidStringsurname,
             kidStringaddress,
@@ -57,18 +60,24 @@ public class KidActivity extends AppCompatActivity {
             kidsYearRegistered,
             classname;
 
+    private EditText kidsName, kidsSurname, kidsAddress, kidsid, kidsParentId, kidsYear;
+
     private ProgressDialog progressDialog;
     //defining AwesomeValidation object
     private AwesomeValidation awesomeValidation;
 
+    TextView btnKid;
     //database
-    DatabaseReference databaseKids, currentUserRef, adminOrgNameRef, kidclassdata,innerClassRef;
+    DatabaseReference databaseKids, currentUserRef, adminOrgNameRef, kidclassdata, innerClassRef;
     private Context context;
     private AddKidsActivityBinding addKidsActivityBinding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        addKidsActivityBinding = DataBindingUtil.setContentView(this, R.layout.add_kids_activity);
+
         setContentView(R.layout.add_kids_activity);
 
         context = getApplicationContext();
@@ -84,7 +93,21 @@ public class KidActivity extends AppCompatActivity {
 
         dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
 
+        //Edit text
+        kidsName = (EditText) findViewById(R.id.editname);
+        kidsSurname = (EditText) findViewById(R.id.editSurname);
+        kidsAddress = (EditText) findViewById(R.id.editAdress);
+        kidsid = (EditText) findViewById(R.id.editkidid);
+        kidsParentId = (EditText) findViewById(R.id.editParentId);
+        kidsYear = (EditText) findViewById(R.id.editYear);
 
+
+
+
+        radKidGender = (RadioGroup) findViewById(R.id.genders);
+        btnKid = (TextView) findViewById(R.id.btnKidUpdate);
+
+        //kids input
 
 
         //adding validation to edittexts
@@ -128,45 +151,28 @@ public class KidActivity extends AppCompatActivity {
         //databaseKids = FirebaseDatabase.getInstance().getReference().child("Kids").child(keyUser);
 
 
-        addKidsActivityBinding.btnKidUpdate.setOnClickListener(new View.OnClickListener() {
+        btnKid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (awesomeValidation.validate()) {
                     //validate class
-              if (!kidAllocated.getSelectedItem().toString().trim().equals("Select Class")) {
-                  selectedId = radKidGender.getCheckedRadioButtonId();
-                      if (selectedId != -1) {
+                    if (!kidAllocated.getSelectedItem().toString().trim().equals("Select Class")) {
+                        selectedId = radKidGender.getCheckedRadioButtonId();
+                        if (selectedId != -1) {
 
-                    progressDialog.setMessage("Wait While Adding Kid");
-                    progressDialog.show();
+                            progressDialog.setMessage("Wait While Adding Kid");
+                            progressDialog.show();
 
 
-                    adminOrgNameRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(final DataSnapshot kdataSnapshot) {
-                            if (counter != 1) {
-
-                                String org_name = kdataSnapshot.getValue(String.class);
-                                addkids(org_name);
-                              //  Toast.makeText(context, "Successfully Registered", Toast.LENGTH_SHORT).show();
-
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-
-                    databaseKids.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-
-                            innerClassRef.addValueEventListener(new ValueEventListener() {
+                            adminOrgNameRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                public void onDataChange(final DataSnapshot kdataSnapshot) {
+                                    if (counter != 1) {
 
+                                        String org_name = kdataSnapshot.getValue(String.class);
+                                        addkids(org_name);
+
+                                    }
                                 }
 
                                 @Override
@@ -174,40 +180,51 @@ public class KidActivity extends AppCompatActivity {
 
                                 }
                             });
-                            for (DataSnapshot dataSnap : dataSnapshot.getChildren()) {
 
-                                if (dataSnap.child("idNumber").getValue().toString().equals(addKidsActivityBinding.editkidid)) {
-                                    counter = 1;
-                                } else {
+                            databaseKids.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                    innerClassRef.addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+
+                                        }
+                                    });
+                                    for (DataSnapshot dataSnap : dataSnapshot.getChildren()) {
+
+                                        if (dataSnap.child("idNumber").getValue().toString().equals(addKidsActivityBinding.editkidid)) {
+                                            counter = 1;
+                                        } else {
 
 
-                                 Toast.makeText(context, "Successfully Registered", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(context, "Successfully Registered", Toast.LENGTH_SHORT).show();
+                                        }
+
+
+                                    }
                                 }
 
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
 
-                            }
+                                }
+                            });
+
+
+                        } else {
+                            Toast.makeText(context, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
                         }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-
-
-                }
-                    else
-                  {
-                      Toast.makeText(context, "Make sure you select gender before you continue", Toast.LENGTH_SHORT).show();
-                  }
-              }
-                      else {
+                    } else {
 
                         Toast.makeText(context, "please select a class or add class", Toast.LENGTH_SHORT).show();
-                    }}
-
-                    else
-                    {
+                    }
+                } else {
                     Toast.makeText(context, "Make sure you fix all the error shown in your input space", Toast.LENGTH_SHORT).show();
                 }
                 progressDialog.dismiss();
@@ -222,34 +239,30 @@ public class KidActivity extends AppCompatActivity {
         final String kidsKidsAllocated;
 
         kidsKidsAllocated = classname.trim();
-        kidStringname = addKidsActivityBinding.editname.getText().toString().trim();
-        kidStringsurname = addKidsActivityBinding.editSurname.getText().toString().trim();
-        kidStringaddress = addKidsActivityBinding.editAdress.getText().toString().trim();
-        kididStringNumber = addKidsActivityBinding.editkidid.getText().toString().trim();
-        kidStringparentid = addKidsActivityBinding.editParentId.getText().toString().trim();
-        kidsYearRegistered = addKidsActivityBinding.editYear.getText().toString().trim();
+        kidStringname =kidsName.getText().toString().trim();
+        kidStringsurname = kidsSurname.getText().toString().trim();
+        kidStringaddress = kidsAddress.getText().toString().trim();
+        kididStringNumber =kidsid.getText().toString().trim();
+        kidStringparentid = kidsParentId.getText().toString().trim();
+        kidsYearRegistered = kidsYear.getText().toString().trim();
+
+        if (kididStringNumber != kidStringparentid) {
+
+            //if (selectedId != -1) {
+
+            radGender = (RadioButton) findViewById(selectedId);
+            genderString = radGender.getText().toString();
+
+            String id = databaseKids.push().getKey();
 
 
-            if (!kididStringNumber.matches(kidStringparentid)) {
+            Kids kids = new Kids(id, kidStringname, kidStringsurname, kidStringaddress, kididStringNumber, kidStringparentid, kidsKidsAllocated, kidsYearRegistered, genderString, orgName);
 
-                //if (selectedId != -1) {
-
-                    radGender = (RadioButton) findViewById(selectedId);
-                    genderString = radGender.getText().toString();
-
-                    String id = databaseKids.push().getKey();
-
-
-                    Kids kids = new Kids(id, kidStringname, kidStringsurname, kidStringaddress, kididStringNumber, kidStringparentid, kidsKidsAllocated, kidsYearRegistered, genderString, orgName);
-
-                    databaseKids.child(id).setValue(kids);
-                    // Toast.makeText(context, "Kid added ", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplication(), AdminTabbedActivity.class));
-                }
-
-            else {
-                Toast.makeText(this, "Kid id cant be the same as parent", Toast.LENGTH_SHORT).show();
-            }
+            databaseKids.child(id).setValue(kids);
+            startActivity(new Intent(getApplication(), AdminTabbedActivity.class));
+        } else {
+            Toast.makeText(this, "Kid id can't be the same as parent", Toast.LENGTH_SHORT).show();
+        }
 
 
     }
@@ -269,7 +282,7 @@ public class KidActivity extends AppCompatActivity {
         super.onStart();
         list.add("Select Class");
         progressDialog.setMessage("Wait While searching for class list..");
-       // progressDialog.show();
+        // progressDialog.show();
 
         currentUserRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -280,13 +293,13 @@ public class KidActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot outerSnap) {
 
-                              for (DataSnapshot classSnapshot : outerSnap.getChildren()) {
+                        for (DataSnapshot classSnapshot : outerSnap.getChildren()) {
 
-                                  list.add(classSnapshot.child("className").getValue().toString());
+                            list.add(classSnapshot.child("className").getValue().toString());
 
-                                  progressDialog.dismiss();
+                            progressDialog.dismiss();
 
-                              }
+                        }
 
 
                     }

@@ -126,16 +126,15 @@ public class AdminTabbedActivity extends AppCompatActivity implements Navigation
 
                 //UserProfile profObject = dataSnapshot.getValue(UserProfile.class);
                 String orgname = dataSnapshot.child("orgName").getValue().toString();
-                Toast.makeText(context, orgname, Toast.LENGTH_SHORT).show();
 
                 String namesAd = dataSnapshot.child("userName").getValue().toString() + " " + " " + dataSnapshot.child("userSurname").getValue().toString();
                 name.setText(namesAd);
                 creacheName.setText(orgname);
+                if (dataSnapshot.child("userProfilePic").getValue().toString() != null) {
+                    Glide.with(getApplication()).load(dataSnapshot.child("userProfilePic").getValue().toString()).into(profilePic);
 
-                Glide.with(getApplication()).load(dataSnapshot.child("userProfilePic").getValue().toString()).into(profilePic);
-
-                Glide.with(getApplication()).load(dataSnapshot.child("userProfilePic").getValue().toString()).into(proprofile);
-
+                    Glide.with(getApplication()).load(dataSnapshot.child("userProfilePic").getValue().toString()).into(proprofile);
+                }
             }
 
 

@@ -14,14 +14,13 @@ import java.util.Map;
 public class OrganizationRegister {
     private String uid;
     private String orgname;
-    private String orgAddress;//add street name and postal code
+    private String orgAddress;
     private String orgCity;
     private String orgProvince;
     private String orgEmail;
     private String orgPhoneNo;
     private String orgPassword;
     private String adminKey;
-   // private String orgRegNumber;
     private String orgPostalCode;
 
     public Map<String, Boolean> stars = new HashMap<>();
@@ -97,7 +96,6 @@ public class OrganizationRegister {
         organizationSave.put("emailUser", orgEmail);
         organizationSave.put("orgPhoneNumber", orgPhoneNo);
         organizationSave.put("orgPassword", orgPassword);
-       // organizationSave.put("orgRegNumber", orgRegNumber);
         organizationSave.put("orgPostalCode", orgPostalCode);
         organizationSave.put("adminKey", adminKey);
         organizationSave.put("isVerified", "verified");

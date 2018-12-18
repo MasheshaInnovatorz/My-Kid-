@@ -6,10 +6,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by CodeTribe on 10/11/2017.
- */
-//"Select Creshe"
+
 @IgnoreExtraProperties
 public class CrecheOnwer_Class {
     private String adminUid;
@@ -23,6 +20,7 @@ public class CrecheOnwer_Class {
     private String orgName;
     private String userCity;
     private String userOrgId;
+    private String userProfilePic;
 
     public CrecheOnwer_Class() {
     }
@@ -41,21 +39,19 @@ public class CrecheOnwer_Class {
         this.adminContact = adminContact;
         this.userCity = userCity;
         this.userOrgId = userOrgId;
+        this.userProfilePic = " ";
 
     }
 
-    /*
-     String uid;
-    String name;
-    String surname;
-    String address;
-    String idNumber;
-    String parentid;
-    String profilepic;
-    String gender;
-    String grade;
-     */
 
+
+    public String getUserProfilePic() {
+        return userProfilePic;
+    }
+
+    public void setUserProfilePic(String userProfilePic) {
+        this.userProfilePic = userProfilePic;
+    }
 
     private String getAdminUid() {
         return adminUid;
@@ -120,7 +116,7 @@ public class CrecheOnwer_Class {
         adminSave.put("isVerified", "verified");
         adminSave.put("userAddress", "Egret");
         adminSave.put("userOrgId",userOrgId);
-
+        adminSave.put("userProfilePic",userProfilePic);
 
         return adminSave;
     }

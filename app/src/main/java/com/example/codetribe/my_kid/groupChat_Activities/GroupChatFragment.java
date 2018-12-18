@@ -145,7 +145,7 @@ public class GroupChatFragment extends Fragment {
                 if (messageArea.getText().toString().trim().equals("")) {
                     Toast.makeText(getContext(), "Please input some text...", Toast.LENGTH_SHORT).show();
                 } else {
-                    //   messageSend();
+
                     upload();
 
                 }

@@ -20,7 +20,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.codetribe.my_kid.aboutUs_Activity.AboutUs;
@@ -28,7 +27,6 @@ import com.example.codetribe.my_kid.account_Activities.DividerDecorationNav;
 import com.example.codetribe.my_kid.account_Activities.LoginActivity;
 import com.example.codetribe.my_kid.R;
 import com.example.codetribe.my_kid.account_Activities.ViewProfile;
-import com.example.codetribe.my_kid.admin_Activities.AdminTabbedActivity;
 import com.example.codetribe.my_kid.groupChat_Activities.GroupChatFragment;
 import com.example.codetribe.my_kid.kids_Activities.KidsMemoListFragment;
 import com.example.codetribe.my_kid.kids_Activities.KidsViewProfile;
@@ -106,9 +104,10 @@ public class ParentTabbedActivity extends AppCompatActivity implements Navigatio
                 name.setText(namesAd);
                 creacheName.setText(dataSnapshot.child("orgName").getValue().toString());
 
-                Glide.with(getApplication()).load(dataSnapshot.child("userProfilePic").getValue().toString()).into(profilePic);
+                    Glide.with(getApplication()).load(dataSnapshot.child("userProfilePic").getValue().toString()).into(profilePic);
 
-                Glide.with(getApplication()).load(dataSnapshot.child("userProfilePic").getValue().toString()).into(proprofile);
+                    Glide.with(getApplication()).load(dataSnapshot.child("userProfilePic").getValue().toString()).into(proprofile);
+
             }
 
             @Override

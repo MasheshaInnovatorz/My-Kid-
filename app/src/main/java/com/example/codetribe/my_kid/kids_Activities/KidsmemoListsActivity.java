@@ -248,21 +248,6 @@ public class KidsmemoListsActivity extends AppCompatActivity {
                                         dialog.show();
 
 
-
-
-
-                                        /*  if (KidsId != null || kidsUserId != null) {
-                                            Intent intent = new Intent(KidsmemoListsActivity.this, UploadKidsMemo.class);
-                                            intent.putExtra("kid_id", KidsId);
-                                            intent.putExtra("kidsTeacherId", kidsUserId);
-                                            intent.putExtra("User_KEY", userKey);
-                                            intent.putExtra("requestType","kidsMemory");
-                                            startActivity(intent);
-
-                                        } else {
-                                            Toast.makeText(KidsmemoListsActivity.this, "You dont have a kids in this creche or maybe made a mistake", Toast.LENGTH_SHORT).show();
-                                            return;
-                                        }*/
                                     }
                                 });
 
